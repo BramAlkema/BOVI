@@ -3,8 +3,8 @@
  * Manages inline studios for flow visualization
  */
 
-import type { FlowSpec } from '../flow/types.js';
-import { createInlineStudio, InlineStudio } from '../studio.js';
+import type { FlowSpec } from "../flow/types.js";
+import { createInlineStudio, InlineStudio } from "../studio.js";
 
 /**
  * Studio manager service that handles flow visualization
@@ -31,7 +31,7 @@ export class StudioManagerService {
       // Add studio to existing panel
       const panel = document.querySelector(`#${flowId} .panel:last-child`);
       if (panel) {
-        const studioDiv = document.createElement('div');
+        const studioDiv = document.createElement("div");
         studioDiv.innerHTML = `
           <h3>Flow Visualization</h3>
           <div id="${flowId}Studio" class="studio-container"></div>
@@ -40,12 +40,12 @@ export class StudioManagerService {
         studioContainer = document.getElementById(`${flowId}Studio`)!;
       }
     }
-    
+
     if (studioContainer) {
       const studio = createInlineStudio(`${flowId}Studio`);
       studio.renderFlow(flowSpec).catch(console.error);
       this.studios.set(flowId, studio);
-      
+
       console.log(`🎨 Studio created for ${flowId}`);
     }
   }
@@ -90,7 +90,7 @@ export class StudioManagerService {
       if (container) {
         container.remove();
       }
-      
+
       this.studios.delete(flowId);
       console.log(`🗑️ Removed studio for ${flowId}`);
     }

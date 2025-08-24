@@ -1,10 +1,10 @@
 // M1: Episodes (tutorial podcast) – minimal queue
 
-export interface Episode { 
-  id: string; 
-  title: string; 
-  mode: "B" | "O" | "V" | "I"; 
-  lengthMin: number; 
+export interface Episode {
+  id: string;
+  title: string;
+  mode: "B" | "O" | "V" | "I";
+  lengthMin: number;
   played: boolean;
 }
 
@@ -13,7 +13,7 @@ const seed: Episode[] = [
   { id: "ep-pots", title: "Pots & sweeps basics", mode: "B", lengthMin: 4, played: false },
   { id: "ep-rent", title: "Fair rent counters", mode: "O", lengthMin: 6, played: false },
   { id: "ep-cohort", title: "Joining buying cohorts", mode: "I", lengthMin: 3, played: false },
-  { id: "ep-rails", title: "Payment rails explained", mode: "V", lengthMin: 7, played: false }
+  { id: "ep-rails", title: "Payment rails explained", mode: "V", lengthMin: 7, played: false },
 ];
 
 // Load played status from localStorage
@@ -39,7 +39,7 @@ function savePlayedStatus() {
 loadPlayedStatus();
 
 export async function nextEpisodes(limit = 3): Promise<Episode[]> {
-  // TODO: re-rank by context; for now, return unplayed first
+  // ENHANCEMENT: Implement contextual ranking based on user's current mode preferences and recent activity
   return seed.filter(e => !e.played).slice(0, limit);
 }
 

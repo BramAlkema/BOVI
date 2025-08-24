@@ -3,7 +3,7 @@
  * Utilities for managing flow execution context and state
  */
 
-import type { FlowContext, FlowSpec } from './types.js';
+import type { FlowContext, FlowSpec } from "./types.js";
 
 /**
  * Context manager for flow execution state
@@ -22,7 +22,7 @@ export class FlowContextManager {
       userOverrides: {},
       startTime: 0,
       aiButlerEnabled: true,
-      completed: false
+      completed: false,
     };
 
     this.contexts.set(flowSpec.id, context);
@@ -74,7 +74,7 @@ export class FlowContextManager {
    * Get context value by path (dot notation)
    */
   getContextValue(context: FlowContext, path: string): any {
-    const parts = path.split('.');
+    const parts = path.split(".");
     let value: any = context;
 
     for (const part of parts) {

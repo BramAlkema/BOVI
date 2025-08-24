@@ -18,7 +18,7 @@ export async function bootUI(appElementId = "app", fallbackPluginId = "ui-satnav
   if (!appElement) {
     throw new Error(`App element with id '${appElementId}' not found`);
   }
-  
+
   try {
     await mountUI(appElement, fallbackPluginId);
     console.log("BOVI UI booted successfully");
@@ -46,7 +46,7 @@ if (typeof window !== "undefined") {
       return Promise.reject(new Error("App element not found"));
     }
   };
-  
+
   (window as any).listUIs = () => {
     console.table(["ui-satnav", "ui-routes-lights", "ui-rooms-chores", "ui-mission-deck"]);
   };

@@ -3,6 +3,8 @@
  * Crisis management with automated profile switching
  */
 
+import { StorageKeys } from "../core/constants.js";
+
 export interface StormProfile {
   id: string;
   name: string;
@@ -12,7 +14,7 @@ export interface StormProfile {
     contracts: string[]; // Contracts to activate/pause
     rails: string[]; // Preferred payment methods
     notifications: {
-      frequency: 'high' | 'medium' | 'low';
+      frequency: "high" | "medium" | "low";
       channels: string[];
     };
   };
@@ -24,17 +26,17 @@ let activeStormProfile: string | null = null;
 /**
  * Create Storm Mode profile for crisis management
  */
-export async function createStormProfile(profile: Omit<StormProfile, 'id'>): Promise<StormProfile> {
+export async function createStormProfile(profile: Omit<StormProfile, "id">): Promise<StormProfile> {
   const stormProfile: StormProfile = {
     id: `storm_${Date.now()}`,
-    ...profile
+    ...profile,
   };
-  
+
   // Store profile
-  const profiles = JSON.parse(localStorage.getItem('bovi.stormProfiles') || '[]');
+  const profiles = JSON.parse(localStorage.getItem(StorageKeys.STORM_PROFILES) || "[]");
   profiles.push(stormProfile);
-  localStorage.setItem('bovi.stormProfiles', JSON.stringify(profiles));
-  
+  localStorage.setItem(StorageKeys.STORM_PROFILES, JSON.stringify(profiles));
+
   return stormProfile;
 }
 
@@ -46,36 +48,35 @@ export async function activateStormMode(profileId: string): Promise<{
   changes: string[];
   revertTime: string;
 }> {
-  
-  const profiles: StormProfile[] = JSON.parse(localStorage.getItem('bovi.stormProfiles') || '[]');
+  const profiles: StormProfile[] = JSON.parse(localStorage.getItem(StorageKeys.STORM_PROFILES) || "[]");
   const profile = profiles.find(p => p.id === profileId);
-  
+
   if (!profile) {
     throw new Error(`Storm profile ${profileId} not found`);
   }
-  
+
   // Save current state before switching
   const currentState = {
     timestamp: new Date().toISOString(),
     // Would save current pots, contracts, rails state here
   };
-  localStorage.setItem('bovi.preStormState', JSON.stringify(currentState));
-  
+  localStorage.setItem(StorageKeys.PRE_STORM_STATE, JSON.stringify(currentState));
+
   // Activate storm profile
   activeStormProfile = profileId;
-  localStorage.setItem('bovi.activeStormProfile', profileId);
-  
+  localStorage.setItem(StorageKeys.ACTIVE_STORM_PROFILE, profileId);
+
   const changes = [
     `Budget adjustments: ${Object.keys(profile.changes.pots).length} pots modified`,
     `Contracts: ${profile.changes.contracts.length} affected`,
     `Payment rails: ${profile.changes.rails.length} prioritized`,
-    `Notifications: ${profile.changes.notifications.frequency} frequency`
+    `Notifications: ${profile.changes.notifications.frequency} frequency`,
   ];
-  
+
   return {
     activated: true,
     changes,
-    revertTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // Auto-revert in 1 week
+    revertTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // Auto-revert in 1 week
   };
 }
 
@@ -84,30 +85,30 @@ export async function activateStormMode(profileId: string): Promise<{
  */
 export async function deactivateStormMode(): Promise<void> {
   if (!activeStormProfile) {
-    throw new Error('No active storm profile to deactivate');
+    throw new Error("No active storm profile to deactivate");
   }
-  
+
   // Restore pre-storm state
-  const preStormState = localStorage.getItem('bovi.preStormState');
+  const preStormState = localStorage.getItem(StorageKeys.PRE_STORM_STATE);
   if (preStormState) {
     // Would restore previous pots, contracts, rails state here
-    localStorage.removeItem('bovi.preStormState');
+    localStorage.removeItem(StorageKeys.PRE_STORM_STATE);
   }
-  
+
   activeStormProfile = null;
-  localStorage.removeItem('bovi.activeStormProfile');
+  localStorage.removeItem(StorageKeys.ACTIVE_STORM_PROFILE);
 }
 
 /**
  * Get currently active storm profile
  */
 export function getActiveStormProfile(): string | null {
-  return activeStormProfile || localStorage.getItem('bovi.activeStormProfile');
+  return activeStormProfile || localStorage.getItem(StorageKeys.ACTIVE_STORM_PROFILE);
 }
 
 /**
  * Get all available storm profiles
  */
 export function getStormProfiles(): StormProfile[] {
-  return JSON.parse(localStorage.getItem('bovi.stormProfiles') || '[]');
+  return JSON.parse(localStorage.getItem(StorageKeys.STORM_PROFILES) || "[]");
 }

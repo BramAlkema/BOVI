@@ -32,8 +32,8 @@ export class TimerManager {
     this.timeouts.set(key, toId);
   }
 
-  cancelById(flow: string, node: string) { 
-    this.cancel(`${flow}:${node}`); 
+  cancelById(flow: string, node: string) {
+    this.cancel(`${flow}:${node}`);
   }
 
   private cancel(key: TimerKey) {
@@ -46,15 +46,15 @@ export class TimerManager {
   }
 
   private clear(key: TimerKey) {
-    const i = this.intervals.get(key); 
-    if (i) { 
-      clearInterval(i); 
-      this.intervals.delete(key); 
+    const i = this.intervals.get(key);
+    if (i) {
+      clearInterval(i);
+      this.intervals.delete(key);
     }
-    const t = this.timeouts.get(key);  
-    if (t) { 
-      clearTimeout(t);   
-      this.timeouts.delete(key); 
+    const t = this.timeouts.get(key);
+    if (t) {
+      clearTimeout(t);
+      this.timeouts.delete(key);
     }
   }
 }
@@ -63,28 +63,37 @@ export const Timers = new TimerManager();
 
 /** Optional helper: attach a countdown label to an element */
 export function mountCountdown(el: HTMLElement, flow: string, node: string) {
-  const offStart = Bus.on("I.default.started", d => { 
+  const offStart = Bus.on("I.default.started", d => {
     if (d.flow === flow && d.node === node) {
       el.textContent = `Auto-apply in ${d.seconds}s`;
-      el.style.display = 'block';
+      el.style.display = "block";
     }
   });
-  const offTick = Bus.on("I.default.ticked", d => { 
+  const offTick = Bus.on("I.default.ticked", d => {
     if (d.flow === flow && d.node === node) {
       el.textContent = `Auto-apply in ${d.secondsLeft}s`;
     }
   });
-  const offCancel = Bus.on("I.default.cancelled", d => { 
+  const offCancel = Bus.on("I.default.cancelled", d => {
     if (d.flow === flow && d.node === node) {
-      el.textContent = `Cancelled`;
-      setTimeout(() => { el.style.display = 'none'; }, 2000);
+      el.textContent = "Cancelled";
+      setTimeout(() => {
+        el.style.display = "none";
+      }, 2000);
     }
   });
-  const offApply = Bus.on("I.default.applied", d => { 
+  const offApply = Bus.on("I.default.applied", d => {
     if (d.flow === flow && d.node === node) {
-      el.textContent = `Applied`;
-      setTimeout(() => { el.style.display = 'none'; }, 2000);
+      el.textContent = "Applied";
+      setTimeout(() => {
+        el.style.display = "none";
+      }, 2000);
     }
   });
-  return () => { offStart(); offTick(); offCancel(); offApply(); };
+  return () => {
+    offStart();
+    offTick();
+    offCancel();
+    offApply();
+  };
 }

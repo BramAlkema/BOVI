@@ -21,7 +21,21 @@
     "prefer-const": "error",
     "no-var": "error",
     "arrow-spacing": "error",
-    "object-shorthand": "error"
+    "object-shorthand": "error",
+    "eol-last": ["error", "always"],
+    "max-len": ["error", { "code": 100, "ignoreStrings": true, "ignoreUrls": true, "ignoreTemplateLiterals": true }]
   },
-  "ignorePatterns": ["dist/", "node_modules/", "*.config.js", "lib/**/*.ts"]
+  "overrides": [
+    {
+      "files": ["lib/**/*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "@typescript-eslint/no-explicit-any": "warn"
+      }
+    }
+  ],
+  "ignorePatterns": ["dist/", "node_modules/", "*.config.js", "lib/__tests__/**"]
 }

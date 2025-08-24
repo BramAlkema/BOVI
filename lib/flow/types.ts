@@ -3,7 +3,7 @@
  * Type definitions for flow DSL and execution
  */
 
-// Flow DSL Types  
+// Flow DSL Types
 export interface FlowNode {
   id: string;
   type: string; // B.*, O.*, V.*, I.*
@@ -50,7 +50,7 @@ export interface FlowContext {
 }
 
 // Flow execution states
-export type FlowState = 'idle' | 'running' | 'completed' | 'error';
+export type FlowState = "idle" | "running" | "completed" | "error";
 
 // Node execution result types
 export interface NodeExecutionResult {
@@ -60,7 +60,7 @@ export interface NodeExecutionResult {
 export interface PDAResult {
   nominal: number;
   real: number;
-  quality: 'Great' | 'OK' | 'Poor';
+  quality: "Great" | "OK" | "Poor";
 }
 
 export interface CalculateResult {

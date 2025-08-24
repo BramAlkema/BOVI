@@ -4,12 +4,12 @@ import { listUIPlugins, getActiveUIPluginId } from "./plugins/registry.js";
 export function addDevSwitcher() {
   // Only add in development mode
   if (process.env.NODE_ENV === "production") return;
-  
+
   const plugins = listUIPlugins();
   if (plugins.length <= 1) return; // No point if only one plugin
-  
+
   const activeId = getActiveUIPluginId();
-  
+
   // Create floating dev panel
   const panel = document.createElement("div");
   panel.innerHTML = `
@@ -93,9 +93,9 @@ export function addDevSwitcher() {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(panel);
-  
+
   // Populate plugin list
   const pluginList = panel.querySelector("#pluginList")!;
   plugins.forEach(plugin => {
@@ -104,11 +104,11 @@ export function addDevSwitcher() {
     btn.className = plugin.id === activeId ? "active" : "";
     btn.onclick = async () => {
       if (plugin.id === activeId) return;
-      
+
       // Update active state
       pluginList.querySelectorAll("button").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      
+
       // Switch UI
       try {
         await (window as any).switchUI(plugin.id);
@@ -123,6 +123,6 @@ export function addDevSwitcher() {
     btn.setAttribute("data-id", plugin.id);
     pluginList.appendChild(btn);
   });
-  
+
   console.log("Dev UI switcher added (top-right corner)");
 }

@@ -24,21 +24,24 @@ export interface HamburgerBasket {
 /**
  * Create a fixed hamburger basket for tracking
  */
-export async function createHamburgerBasket(name: string, items: HamburgerBasket['items']): Promise<HamburgerBasket> {
+export async function createHamburgerBasket(
+  name: string,
+  items: HamburgerBasket["items"]
+): Promise<HamburgerBasket> {
   const basket: HamburgerBasket = {
     id: `hamburger_${Date.now()}`,
     name,
     items,
     created: new Date().toISOString(),
     lastUpdated: new Date().toISOString(),
-    public: false
+    public: false,
   };
-  
+
   // Store locally
   const baskets = getStoredBaskets();
   baskets.push(basket);
-  localStorage.setItem('bovi.hamburgerBaskets', JSON.stringify(baskets));
-  
+  localStorage.setItem("bovi.hamburgerBaskets", JSON.stringify(baskets));
+
   return basket;
 }
 
@@ -48,17 +51,17 @@ export async function createHamburgerBasket(name: string, items: HamburgerBasket
 export async function publishBasket(basketId: string): Promise<string> {
   const baskets = getStoredBaskets();
   const basket = baskets.find(b => b.id === basketId);
-  
+
   if (!basket) {
     throw new Error(`Basket ${basketId} not found`);
   }
-  
+
   basket.public = true;
   basket.shareUrl = `${window.location.origin}/basket/${basketId}`;
-  
+
   // Store updated basket
-  localStorage.setItem('bovi.hamburgerBaskets', JSON.stringify(baskets));
-  
+  localStorage.setItem("bovi.hamburgerBaskets", JSON.stringify(baskets));
+
   // In production, would sync to server for public sharing
   return basket.shareUrl;
 }
@@ -74,16 +77,16 @@ export async function calculateHamburgerInflation(basketId: string): Promise<{
 }> {
   const baskets = getStoredBaskets();
   const basket = baskets.find(b => b.id === basketId);
-  
+
   if (!basket) {
     throw new Error(`Basket ${basketId} not found`);
   }
-  
+
   const current = basket.items.reduce((sum, item) => sum + item.price, 0);
   const previous = basket.items.reduce((sum, item) => sum + item.usual, 0);
   const change = current - previous;
   const changePercent = change / previous;
-  
+
   return { current, previous, change, changePercent };
 }
 
@@ -91,5 +94,5 @@ export async function calculateHamburgerInflation(basketId: string): Promise<{
  * Get all stored baskets
  */
 export function getStoredBaskets(): HamburgerBasket[] {
-  return JSON.parse(localStorage.getItem('bovi.hamburgerBaskets') || '[]');
+  return JSON.parse(localStorage.getItem("bovi.hamburgerBaskets") || "[]");
 }

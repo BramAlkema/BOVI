@@ -4,26 +4,24 @@ import { Bus } from "../core/bus.js";
 import { Receipts, rid } from "../core/receipts.js";
 
 /** Example pending defaults (replace with real hooks into flows) */
-export interface PendingDefault { 
-  flow: string; 
-  node: string; 
-  label: string; 
+export interface PendingDefault {
+  flow: string;
+  node: string;
+  label: string;
   apply: () => Promise<void>;
 }
 
 const queue: PendingDefault[] = [];
 
 /** Allow other modules to enqueue defaults */
-export function enqueueDefault(pd: PendingDefault) { 
+export function enqueueDefault(pd: PendingDefault) {
   // Prevent duplicates
-  const exists = queue.find(existing => 
-    existing.flow === pd.flow && existing.node === pd.node
-  );
+  const exists = queue.find(existing => existing.flow === pd.flow && existing.node === pd.node);
   if (!exists) {
     queue.push(pd);
-    Bus.emit("ui.toast", { 
-      kind: "info", 
-      msg: `Queued: ${pd.label}` 
+    Bus.emit("ui.toast", {
+      kind: "info",
+      msg: `Queued: ${pd.label}`,
     });
   }
 }
@@ -41,57 +39,57 @@ export function getPendingDefaults(): PendingDefault[] {
 /** Apply all, emitting toasts and receipts */
 export async function applyAllPendingDefaults(): Promise<number> {
   let applied = 0;
-  
+
   if (queue.length === 0) {
-    Bus.emit("ui.toast", { 
-      kind: "info", 
-      msg: "No pending defaults to apply" 
+    Bus.emit("ui.toast", {
+      kind: "info",
+      msg: "No pending defaults to apply",
     });
     return 0;
   }
 
-  Bus.emit("ui.toast", { 
-    kind: "info", 
-    msg: `Applying ${queue.length} default action${queue.length === 1 ? '' : 's'}...` 
+  Bus.emit("ui.toast", {
+    kind: "info",
+    msg: `Applying ${queue.length} default action${queue.length === 1 ? "" : "s"}...`,
   });
 
   while (queue.length) {
     const pd = queue.shift()!;
-    
+
     try {
       await pd.apply();
-      
+
       const id = rid("default");
       Receipts.add({
-        id, 
+        id,
         action: `${pd.flow}.${pd.node}.defaultApplied`,
         when: new Date().toISOString(),
         why: `Applied default: ${pd.label}`,
         undoUntil: new Date(Date.now() + 10_000).toISOString(), // 10s undo window
-        meta: { flow: pd.flow, node: pd.node }
+        meta: { flow: pd.flow, node: pd.node },
       });
-      
-      Bus.emit("ui.toast", { 
-        kind: "success", 
-        msg: `✓ ${pd.label}` 
+
+      Bus.emit("ui.toast", {
+        kind: "success",
+        msg: `✓ ${pd.label}`,
       });
-      
+
       applied++;
     } catch (error) {
-      Bus.emit("ui.toast", { 
-        kind: "error", 
-        msg: `Failed: ${pd.label}` 
+      Bus.emit("ui.toast", {
+        kind: "error",
+        msg: `Failed: ${pd.label}`,
       });
-      
+
       // Log error but continue with other defaults
       console.error(`Failed to apply default for ${pd.flow}.${pd.node}:`, error);
     }
   }
 
   if (applied > 0) {
-    Bus.emit("ui.toast", { 
-      kind: "success", 
-      msg: `Applied ${applied} safe default${applied === 1 ? '' : 's'}` 
+    Bus.emit("ui.toast", {
+      kind: "success",
+      msg: `Applied ${applied} safe default${applied === 1 ? "" : "s"}`,
     });
   }
 
@@ -101,22 +99,22 @@ export async function applyAllPendingDefaults(): Promise<number> {
 /** Example undo handler – caller must wire to a UI button */
 export async function tryUndo(receiptId: string): Promise<boolean> {
   if (!Receipts.undoableWithin(receiptId)) {
-    Bus.emit("ui.toast", { 
-      kind: "warn", 
-      msg: "Undo window elapsed" 
+    Bus.emit("ui.toast", {
+      kind: "warn",
+      msg: "Undo window elapsed",
     });
     return false;
   }
-  
-  // TODO: perform reversal here (domain-specific)
+
+  // INTEGRATION: Implement domain-specific transaction reversal logic (refunds, cancellations, adjustments)
   // For now, just mark as undone
   Receipts.markUndone(receiptId);
-  
-  Bus.emit("ui.toast", { 
-    kind: "info", 
-    msg: "Action undone" 
+
+  Bus.emit("ui.toast", {
+    kind: "info",
+    msg: "Action undone",
   });
-  
+
   return true;
 }
 
@@ -124,12 +122,12 @@ export async function tryUndo(receiptId: string): Promise<boolean> {
 export function populateExampleDefaults() {
   enqueueDefault({
     flow: "groceries",
-    node: "act1", 
+    node: "act1",
     label: "Swap to usual brand",
     apply: async () => {
       // Mock grocery swap
       await new Promise(resolve => setTimeout(resolve, 500));
-    }
+    },
   });
 
   enqueueDefault({
@@ -139,7 +137,7 @@ export function populateExampleDefaults() {
     apply: async () => {
       // Mock bill payment
       await new Promise(resolve => setTimeout(resolve, 300));
-    }
+    },
   });
 
   enqueueDefault({
@@ -149,6 +147,6 @@ export function populateExampleDefaults() {
     apply: async () => {
       // Mock pot sweep
       await new Promise(resolve => setTimeout(resolve, 200));
-    }
+    },
   });
 }

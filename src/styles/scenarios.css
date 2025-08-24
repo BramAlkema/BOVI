@@ -20,22 +20,22 @@
 /* Mode-specific scenario styling */
 .scenario.balanced {
   border-color: var(--balanced);
-  background: rgba(76,201,240,.08);
+  background: rgba(76, 201, 240, 0.08);
 }
 
 .scenario.obligated {
   border-color: var(--obligated);
-  background: rgba(255,107,107,.08);
+  background: rgba(255, 107, 107, 0.08);
 }
 
 .scenario.value {
   border-color: var(--value);
-  background: rgba(161,255,181,.08);
+  background: rgba(161, 255, 181, 0.08);
 }
 
 .scenario.immediate {
   border-color: var(--immediate);
-  background: rgba(255,209,102,.08);
+  background: rgba(255, 209, 102, 0.08);
 }
 
 /* Scenario content */
@@ -54,14 +54,14 @@
   justify-content: space-between;
   padding: var(--space-md);
   border-radius: var(--space-md);
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.05));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.05));
   border: var(--outline);
 }
 
 /* Progress gauges */
 .gauge {
   height: 10px;
-  background: rgba(255,255,255,.08);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -77,7 +77,7 @@
 .demo-result {
   margin-top: var(--space-md);
   padding: var(--space-md);
-  background: rgba(255,255,255,.02);
+  background: rgba(255, 255, 255, 0.02);
   border-radius: var(--space-sm);
   border-left: 3px solid var(--brand);
 }
@@ -94,7 +94,7 @@
   gap: var(--space-sm);
   padding: var(--space-sm);
   border-radius: var(--space-sm);
-  background: rgba(255,255,255,.02);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .mode-analysis .mode-item .mode-badge {
@@ -111,7 +111,7 @@
 
 .countdown {
   font-variant-numeric: tabular-nums;
-  background: rgba(255,255,255,.08);
+  background: rgba(255, 255, 255, 0.08);
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--space-sm);
   border: var(--outline);

@@ -3,8 +3,8 @@
  * Handles loading and initialization of flow specifications
  */
 
-import type { FlowSpec } from '../flow/types.js';
-import { flowRunner } from '../flow/index.js';
+import type { FlowSpec } from "../flow/types.js";
+import { flowRunner } from "../flow/index.js";
 
 /**
  * Flow loader service that manages flow specification loading
@@ -15,15 +15,15 @@ export class FlowLoaderService {
   /**
    * Load flow specifications from JSON files
    */
-  async loadFlowSpecs(flowIds: string[] = ['groceries', 'rent', 'energy']): Promise<void> {
+  async loadFlowSpecs(flowIds: string[] = ["groceries", "rent", "energy"]): Promise<void> {
     for (const flowId of flowIds) {
       try {
         const response = await fetch(`/flows/${flowId}.json`);
         const flowSpec: FlowSpec = await response.json();
-        
+
         this.flowSpecs.set(flowId, flowSpec);
         await flowRunner.loadFlow(flowSpec);
-        
+
         console.log(`📋 Loaded flow: ${flowId}`);
       } catch (error) {
         console.warn(`Failed to load flow ${flowId}:`, error);
@@ -63,10 +63,10 @@ export class FlowLoaderService {
     try {
       const response = await fetch(`/flows/${flowId}.json`);
       const flowSpec: FlowSpec = await response.json();
-      
+
       this.flowSpecs.set(flowId, flowSpec);
       await flowRunner.loadFlow(flowSpec);
-      
+
       console.log(`🔄 Reloaded flow: ${flowId}`);
     } catch (error) {
       console.error(`Failed to reload flow ${flowId}:`, error);

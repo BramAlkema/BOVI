@@ -3,9 +3,9 @@
  * Background monitoring of key performance indicators
  */
 
-import { Bus, emit } from '../bus.js';
-import { KPIMetric } from '../api-types.js';
-import type { BoviAPI } from '../api/facade.js';
+import { Bus, emit } from "../bus.js";
+import { KPIMetric } from "../api-types.js";
+import type { BoviAPI } from "../api/facade.js";
 
 /**
  * KPI monitoring service that tracks system health metrics
@@ -21,19 +21,19 @@ export class KPIMonitoringService {
    */
   start(): void {
     if (this.isRunning) {
-      console.warn('KPI monitoring already running');
+      console.warn("KPI monitoring already running");
       return;
     }
 
     this.isRunning = true;
-    
+
     // Monitor rule compliance
     const complianceInterval = setInterval(async () => {
       try {
         const compliance = await this.api.rules.checkRuleCompliance();
-        this.updateKPI('rule_compliance', compliance.compliance, 0.9);
+        this.updateKPI("rule_compliance", compliance.compliance, 0.9);
       } catch (error) {
-        console.warn('Rule compliance monitoring failed:', error);
+        console.warn("Rule compliance monitoring failed:", error);
       }
     }, 60000); // Every minute
 
@@ -41,9 +41,9 @@ export class KPIMonitoringService {
     const fairnessInterval = setInterval(async () => {
       try {
         const report = await this.api.fairness.report();
-        this.updateKPI('rail_fairness', report.averageFairness, 0.95);
+        this.updateKPI("rail_fairness", report.averageFairness, 0.95);
       } catch (error) {
-        console.warn('Rail fairness monitoring failed:', error);
+        console.warn("Rail fairness monitoring failed:", error);
       }
     }, 300000); // Every 5 minutes
 
@@ -51,16 +51,16 @@ export class KPIMonitoringService {
     const statsInterval = setInterval(async () => {
       try {
         const stats = await this.api.getSystemStats();
-        this.updateKPI('appeals_pending', 1 - (stats.appealsPending / 100), 0.8); // Inverse metric
-        this.updateKPI('clearinghouses_active', Math.min(stats.clearinghousesActive / 3, 1), 0.33);
+        this.updateKPI("appeals_pending", 1 - stats.appealsPending / 100, 0.8); // Inverse metric
+        this.updateKPI("clearinghouses_active", Math.min(stats.clearinghousesActive / 3, 1), 0.33);
       } catch (error) {
-        console.warn('System stats monitoring failed:', error);
+        console.warn("System stats monitoring failed:", error);
       }
     }, 600000); // Every 10 minutes
 
     this.monitoringIntervals = [complianceInterval, fairnessInterval, statsInterval];
-    
-    console.log('📊 KPI monitoring service started');
+
+    console.log("📊 KPI monitoring service started");
   }
 
   /**
@@ -74,29 +74,28 @@ export class KPIMonitoringService {
     this.monitoringIntervals.forEach(interval => clearInterval(interval));
     this.monitoringIntervals = [];
     this.isRunning = false;
-    
-    console.log('📊 KPI monitoring service stopped');
+
+    console.log("📊 KPI monitoring service stopped");
   }
 
   /**
    * Update KPI metric and emit event
    */
   private updateKPI(name: string, value: number, threshold: number): void {
-    const status = value >= threshold ? 'green' : 
-                  value >= threshold * 0.8 ? 'amber' : 'red';
-    
+    const status = value >= threshold ? "green" : value >= threshold * 0.8 ? "amber" : "red";
+
     const kpi: KPIMetric = {
       name,
       value,
       threshold,
       status,
-      trend: 'stable' // Would calculate from historical data
+      trend: "stable", // Would calculate from historical data
     };
 
-    emit('ui.kpi.updated', { 
-      flow: 'system',
-      kpi: name, 
-      value: kpi 
+    emit("ui.kpi.updated", {
+      flow: "system",
+      kpi: name,
+      value: kpi,
     });
   }
 
@@ -105,18 +104,18 @@ export class KPIMonitoringService {
    */
   async updateMetric(metricName: string): Promise<void> {
     switch (metricName) {
-      case 'rule_compliance':
-        const compliance = await this.api.rules.checkRuleCompliance();
-        this.updateKPI('rule_compliance', compliance.compliance, 0.9);
-        break;
-      
-      case 'rail_fairness':
-        const report = await this.api.fairness.report();
-        this.updateKPI('rail_fairness', report.averageFairness, 0.95);
-        break;
-      
-      default:
-        console.warn(`Unknown KPI metric: ${metricName}`);
+    case "rule_compliance":
+      const compliance = await this.api.rules.checkRuleCompliance();
+      this.updateKPI("rule_compliance", compliance.compliance, 0.9);
+      break;
+
+    case "rail_fairness":
+      const report = await this.api.fairness.report();
+      this.updateKPI("rail_fairness", report.averageFairness, 0.95);
+      break;
+
+    default:
+      console.warn(`Unknown KPI metric: ${metricName}`);
     }
   }
 
@@ -126,7 +125,7 @@ export class KPIMonitoringService {
   getStatus(): { running: boolean; activeIntervals: number } {
     return {
       running: this.isRunning,
-      activeIntervals: this.monitoringIntervals.length
+      activeIntervals: this.monitoringIntervals.length,
     };
   }
 }

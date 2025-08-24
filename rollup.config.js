@@ -2,18 +2,23 @@ import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
 export default [
-  // Legacy JavaScript app
+  // Main TypeScript app
   {
-    input: 'src/scripts/app.js',
+    input: 'src/scripts/app.ts',
     output: {
       file: 'dist/app.min.js',
       format: 'es',
       inlineDynamicImports: true
     },
-    plugins: [terser()],
+    plugins: [
+      typescript({
+        tsconfig: './tsconfig.json'
+      }),
+      terser()
+    ],
     external: []
   },
-  // New TypeScript modules
+  // BOVI TypeScript modules
   {
     input: 'dist/lib/lib/integration.js', // TypeScript already compiled by tsc
     output: {

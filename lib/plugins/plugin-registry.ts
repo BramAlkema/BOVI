@@ -3,14 +3,14 @@
  * Enhanced plugin registration and management system
  */
 
-import type { 
-  Plugin, 
-  PluginManifest, 
-  PluginStatus, 
+import type {
+  Plugin,
+  PluginManifest,
+  PluginStatus,
   PluginCategory,
-  PluginContext 
-} from './plugin-types.js';
-import { emit } from '../bus.js';
+  PluginContext,
+} from "./plugin-types.js";
+import { emit } from "../bus.js";
 
 /**
  * Enhanced plugin registry with lifecycle management
@@ -20,38 +20,38 @@ export class PluginRegistry {
   private statuses = new Map<string, PluginStatus>();
   private configs = new Map<string, Record<string, any>>();
   private dependencies = new Map<string, Set<string>>();
-  
+
   /**
    * Register a plugin
    */
   register(plugin: Plugin): void {
     const { id } = plugin.manifest;
-    
+
     if (this.plugins.has(id)) {
       throw new Error(`Plugin ${id} is already registered`);
     }
-    
+
     // Validate manifest
     this.validateManifest(plugin.manifest);
-    
+
     // Register plugin
     this.plugins.set(id, plugin);
     this.statuses.set(id, {
-      state: 'uninitialized',
-      lastUpdated: Date.now()
+      state: "uninitialized",
+      lastUpdated: Date.now(),
     });
-    
+
     // Load default config
     if (plugin.manifest.config?.defaults) {
       this.configs.set(id, { ...plugin.manifest.config.defaults });
     }
-    
+
     // Track dependencies
     if (plugin.manifest.dependencies?.plugins) {
       this.dependencies.set(id, new Set(plugin.manifest.dependencies.plugins));
     }
-    
-    emit('plugin:registered', { pluginId: id, manifest: plugin.manifest });
+
+    emit("plugin:registered", { pluginId: id, manifest: plugin.manifest });
     console.log(`🔌 Plugin registered: ${id}`);
   }
 
@@ -61,12 +61,12 @@ export class PluginRegistry {
   async unregister(id: string): Promise<void> {
     const plugin = this.plugins.get(id);
     if (!plugin) return;
-    
+
     // Deactivate if active
-    if (this.getStatus(id).state === 'active') {
+    if (this.getStatus(id).state === "active") {
       await this.deactivate(id);
     }
-    
+
     // Destroy plugin
     if (plugin.destroy) {
       try {
@@ -75,13 +75,13 @@ export class PluginRegistry {
         console.error(`Error destroying plugin ${id}:`, error);
       }
     }
-    
+
     // Remove from registry
     this.plugins.delete(id);
     this.statuses.delete(id);
     this.configs.delete(id);
     this.dependencies.delete(id);
-    
+
     console.log(`🔌 Plugin unregistered: ${id}`);
   }
 
@@ -93,33 +93,32 @@ export class PluginRegistry {
     if (!plugin) {
       throw new Error(`Plugin ${id} not found`);
     }
-    
+
     const status = this.statuses.get(id)!;
-    if (status.state !== 'uninitialized') {
+    if (status.state !== "uninitialized") {
       return;
     }
-    
+
     try {
       // Check dependencies
       await this.checkDependencies(id);
-      
+
       // Initialize plugin
       if (plugin.initialize) {
         await plugin.initialize(context);
       }
-      
+
       // Update status
-      this.updateStatus(id, { state: 'initialized' });
-      
-      emit('plugin:initialized', { pluginId: id });
+      this.updateStatus(id, { state: "initialized" });
+
+      emit("plugin:initialized", { pluginId: id });
       console.log(`🚀 Plugin initialized: ${id}`);
-      
     } catch (error) {
-      this.updateStatus(id, { 
-        state: 'error', 
-        error: (error as Error).message 
+      this.updateStatus(id, {
+        state: "error",
+        error: (error as Error).message,
       });
-      emit('plugin:error', { pluginId: id, error: error as Error, phase: 'initialization' });
+      emit("plugin:error", { pluginId: id, error: error as Error, phase: "initialization" });
       throw error;
     }
   }
@@ -132,34 +131,33 @@ export class PluginRegistry {
     if (!plugin) {
       throw new Error(`Plugin ${id} not found`);
     }
-    
+
     const status = this.statuses.get(id)!;
-    if (status.state === 'active') {
+    if (status.state === "active") {
       return;
     }
-    
-    if (status.state === 'uninitialized') {
+
+    if (status.state === "uninitialized") {
       await this.initialize(id, context);
     }
-    
+
     try {
       // Activate plugin
       if (plugin.activate) {
         await plugin.activate(context);
       }
-      
+
       // Update status
-      this.updateStatus(id, { state: 'active' });
-      
-      emit('plugin:activated', { pluginId: id });
+      this.updateStatus(id, { state: "active" });
+
+      emit("plugin:activated", { pluginId: id });
       console.log(`✅ Plugin activated: ${id}`);
-      
     } catch (error) {
-      this.updateStatus(id, { 
-        state: 'error', 
-        error: (error as Error).message 
+      this.updateStatus(id, {
+        state: "error",
+        error: (error as Error).message,
       });
-      emit('plugin:error', { pluginId: id, error: error as Error, phase: 'initialization' });
+      emit("plugin:error", { pluginId: id, error: error as Error, phase: "initialization" });
       throw error;
     }
   }
@@ -172,30 +170,29 @@ export class PluginRegistry {
     if (!plugin) {
       throw new Error(`Plugin ${id} not found`);
     }
-    
+
     const status = this.statuses.get(id)!;
-    if (status.state !== 'active') {
+    if (status.state !== "active") {
       return;
     }
-    
+
     try {
       // Deactivate plugin
       if (plugin.deactivate && context) {
         await plugin.deactivate(context);
       }
-      
+
       // Update status
-      this.updateStatus(id, { state: 'inactive' });
-      
-      emit('plugin:deactivated', { pluginId: id });
+      this.updateStatus(id, { state: "inactive" });
+
+      emit("plugin:deactivated", { pluginId: id });
       console.log(`⏸️ Plugin deactivated: ${id}`);
-      
     } catch (error) {
-      this.updateStatus(id, { 
-        state: 'error', 
-        error: (error as Error).message 
+      this.updateStatus(id, {
+        state: "error",
+        error: (error as Error).message,
       });
-      emit('plugin:error', { pluginId: id, error: error as Error, phase: 'initialization' });
+      emit("plugin:error", { pluginId: id, error: error as Error, phase: "initialization" });
       throw error;
     }
   }
@@ -211,10 +208,12 @@ export class PluginRegistry {
    * Get plugin status
    */
   getStatus(id: string): PluginStatus {
-    return this.statuses.get(id) || {
-      state: 'uninitialized',
-      lastUpdated: 0
-    };
+    return (
+      this.statuses.get(id) || {
+        state: "uninitialized",
+        lastUpdated: 0,
+      }
+    );
   }
 
   /**
@@ -236,7 +235,7 @@ export class PluginRegistry {
    */
   getActive(): Plugin[] {
     return Array.from(this.plugins.entries())
-      .filter(([id]) => this.getStatus(id).state === 'active')
+      .filter(([id]) => this.getStatus(id).state === "active")
       .map(([_, plugin]) => plugin);
   }
 
@@ -248,18 +247,18 @@ export class PluginRegistry {
     if (!plugin) {
       throw new Error(`Plugin ${id} not found`);
     }
-    
+
     // Merge with existing config
     const currentConfig = this.configs.get(id) || {};
     const newConfig = { ...currentConfig, ...config };
     this.configs.set(id, newConfig);
-    
+
     // Apply configuration
     if (plugin.configure) {
       await plugin.configure(newConfig);
     }
-    
-    emit('plugin:config-changed', { pluginId: id, config: newConfig });
+
+    emit("plugin:config-changed", { pluginId: id, config: newConfig });
   }
 
   /**
@@ -273,33 +272,33 @@ export class PluginRegistry {
 
   private validateManifest(manifest: PluginManifest): void {
     if (!manifest.id) {
-      throw new Error('Plugin manifest must have an id');
+      throw new Error("Plugin manifest must have an id");
     }
-    
+
     if (!manifest.name) {
-      throw new Error('Plugin manifest must have a name');
+      throw new Error("Plugin manifest must have a name");
     }
-    
+
     if (!manifest.version) {
-      throw new Error('Plugin manifest must have a version');
+      throw new Error("Plugin manifest must have a version");
     }
-    
+
     if (!manifest.category) {
-      throw new Error('Plugin manifest must have a category');
+      throw new Error("Plugin manifest must have a category");
     }
   }
 
   private async checkDependencies(id: string): Promise<void> {
     const deps = this.dependencies.get(id);
     if (!deps) return;
-    
+
     for (const depId of deps) {
       if (!this.plugins.has(depId)) {
         throw new Error(`Plugin ${id} requires ${depId} but it is not registered`);
       }
-      
+
       const depStatus = this.getStatus(depId);
-      if (depStatus.state === 'uninitialized' || depStatus.state === 'error') {
+      if (depStatus.state === "uninitialized" || depStatus.state === "error") {
         throw new Error(`Plugin ${id} requires ${depId} but it is not initialized`);
       }
     }
@@ -310,7 +309,7 @@ export class PluginRegistry {
     this.statuses.set(id, {
       ...current,
       ...updates,
-      lastUpdated: Date.now()
+      lastUpdated: Date.now(),
     });
   }
 }

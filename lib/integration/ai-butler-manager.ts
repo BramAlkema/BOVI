@@ -3,8 +3,8 @@
  * Manages AI Butler state and countdown displays
  */
 
-import { emit, on } from '../bus.js';
-import { flowRunner } from '../flow/index.js';
+import { emit, on } from "../bus.js";
+import { flowRunner } from "../flow/index.js";
 
 /**
  * AI Butler manager service that handles butler state and UI integration
@@ -19,8 +19,8 @@ export class AIButlerManagerService {
     this.setupAIButlerToggle();
     this.setupCountdownDisplays();
     this.setupToastNotifications();
-    
-    console.log('🤖 AI Butler manager initialized');
+
+    console.log("🤖 AI Butler manager initialized");
   }
 
   /**
@@ -28,21 +28,23 @@ export class AIButlerManagerService {
    */
   private setupAIButlerToggle(): void {
     // Get existing AI toggle
-    const toggleBtn = document.getElementById('toggleAI');
-    const aiStateSpan = document.getElementById('aiState');
-    
+    const toggleBtn = document.getElementById("toggleAI");
+    const aiStateSpan = document.getElementById("aiState");
+
     if (toggleBtn && aiStateSpan) {
-      toggleBtn.addEventListener('click', () => {
+      toggleBtn.addEventListener("click", () => {
         this.aiButlerEnabled = !this.aiButlerEnabled;
-        aiStateSpan.textContent = this.aiButlerEnabled ? 'ON' : 'OFF';
-        
-        emit('ui.ai_butler.toggled', { enabled: this.aiButlerEnabled });
-        
+        aiStateSpan.textContent = this.aiButlerEnabled ? "ON" : "OFF";
+
+        emit("ui.ai_butler.toggled", { enabled: this.aiButlerEnabled });
+
         // Update all flow runners
         const activeFlows = flowRunner.getActiveFlows();
         activeFlows.forEach(flowId => {
           // Note: This would need to be updated based on actual flow runner implementation
-          console.log(`AI Butler ${this.aiButlerEnabled ? 'enabled' : 'disabled'} for flow: ${flowId}`);
+          console.log(
+            `AI Butler ${this.aiButlerEnabled ? "enabled" : "disabled"} for flow: ${flowId}`
+          );
         });
       });
     }
@@ -53,20 +55,20 @@ export class AIButlerManagerService {
    */
   private setupCountdownDisplays(): void {
     // Update countdown displays for each flow
-    on('ui.countdown.tick', (event) => {
+    on("ui.countdown.tick", event => {
       this.updateCountdownDisplays(event.detail.flow, event.detail.node, event.detail.remaining);
     });
-    
+
     // Handle timer completion events
-    on('I.default.applied', (event) => {
+    on("I.default.applied", event => {
       this.clearCountdownDisplay(event.detail.flow, event.detail.node);
     });
-    
-    on('B.default.applied', (event) => {
+
+    on("B.default.applied", event => {
       this.clearCountdownDisplay(event.detail.flow, event.detail.node);
     });
-    
-    on('O.default.applied', (event) => {
+
+    on("O.default.applied", event => {
       this.clearCountdownDisplay(event.detail.flow, event.detail.node);
     });
   }
@@ -75,31 +77,31 @@ export class AIButlerManagerService {
    * Set up toast notifications for flow events
    */
   private setupToastNotifications(): void {
-    const toastElement = document.getElementById('toast');
+    const toastElement = document.getElementById("toast");
     if (!toastElement) return;
-    
+
     const showToast = (message: string): void => {
       toastElement.textContent = message;
-      toastElement.classList.add('show');
+      toastElement.classList.add("show");
       setTimeout(() => {
-        toastElement.classList.remove('show');
+        toastElement.classList.remove("show");
       }, 2400);
     };
-    
+
     // Toast for significant events
-    on('I.default.applied', (event) => {
+    on("I.default.applied", event => {
       showToast(`✅ ${event.detail.action} applied automatically`);
     });
-    
-    on('B.default.applied', (event) => {
-      showToast(`⚖️ Fair counter-offer submitted`);
+
+    on("B.default.applied", event => {
+      showToast("⚖️ Fair counter-offer submitted");
     });
-    
-    on('O.default.applied', (event) => {
-      showToast(`👥 Enrolled in collective action`);
+
+    on("O.default.applied", event => {
+      showToast("👥 Enrolled in collective action");
     });
-    
-    on('flow.error', (event) => {
+
+    on("flow.error", event => {
       showToast(`❌ Error in ${event.detail.flow} flow`);
     });
   }
@@ -113,29 +115,29 @@ export class AIButlerManagerService {
       `${flowId}Countdown`,
       `${flowId}-countdown`,
       `${nodeId}-countdown`,
-      'countdown' // Generic countdown element
+      "countdown", // Generic countdown element
     ];
-    
+
     flowCountdowns.forEach(id => {
       const element = document.getElementById(id);
       if (element) {
         if (this.aiButlerEnabled && remaining > 0) {
           element.textContent = `Auto-apply in ${remaining}s`;
-          element.style.display = 'block';
+          element.style.display = "block";
         } else if (!this.aiButlerEnabled) {
-          element.textContent = 'AI Butler is OFF';
-          element.style.display = 'block';
+          element.textContent = "AI Butler is OFF";
+          element.style.display = "block";
         } else {
-          element.style.display = 'none';
+          element.style.display = "none";
         }
       }
     });
-    
+
     // Update specific UI elements based on flow
-    if (flowId === 'groceries' && nodeId === 'suggest_swap') {
-      const swapCountdown = document.querySelector('.countdown');
+    if (flowId === "groceries" && nodeId === "suggest_swap") {
+      const swapCountdown = document.querySelector(".countdown");
       if (swapCountdown) {
-        swapCountdown.textContent = this.aiButlerEnabled ? `${remaining}s` : 'OFF';
+        swapCountdown.textContent = this.aiButlerEnabled ? `${remaining}s` : "OFF";
       }
     }
   }
@@ -146,24 +148,24 @@ export class AIButlerManagerService {
   private clearCountdownDisplay(flowId: string, nodeId: string): void {
     const countdownElements = [
       `${flowId}Countdown`,
-      `${flowId}-countdown`, 
+      `${flowId}-countdown`,
       `${nodeId}-countdown`,
-      'countdown'
+      "countdown",
     ];
-    
+
     countdownElements.forEach(id => {
       const element = document.getElementById(id);
       if (element) {
-        element.style.display = 'none';
-        element.textContent = '';
+        element.style.display = "none";
+        element.textContent = "";
       }
     });
-    
+
     // Clear specific countdown elements
-    const genericCountdowns = document.querySelectorAll('.countdown');
+    const genericCountdowns = document.querySelectorAll(".countdown");
     genericCountdowns.forEach(element => {
-      (element as HTMLElement).textContent = '';
-      (element as HTMLElement).style.display = 'none';
+      (element as HTMLElement).textContent = "";
+      (element as HTMLElement).style.display = "none";
     });
   }
 
@@ -179,7 +181,7 @@ export class AIButlerManagerService {
    */
   setEnabled(enabled: boolean): void {
     this.aiButlerEnabled = enabled;
-    emit('ui.ai_butler.toggled', { enabled });
+    emit("ui.ai_butler.toggled", { enabled });
   }
 
   /**

@@ -2,17 +2,17 @@
 
 export interface Receipt {
   id: string;
-  action: string;         // e.g., "groceries.swap.default"
-  when: string;           // ISO timestamp
-  why: string;            // human explanation
-  undoUntil?: string;     // ISO if reversible
+  action: string; // e.g., "groceries.swap.default"
+  when: string; // ISO timestamp
+  why: string; // human explanation
+  undoUntil?: string; // ISO if reversible
   meta?: Record<string, unknown>;
 }
 
 export interface ReceiptAppeal {
-  actionId: string; 
-  opened: string; 
-  status: "open" | "resolved"; 
+  actionId: string;
+  opened: string;
+  status: "open" | "resolved";
   outcome?: string;
 }
 
@@ -22,12 +22,12 @@ class ReceiptStore {
 
   constructor() {
     try {
-      const r = localStorage.getItem("bovi.receipts"); 
+      const r = localStorage.getItem("bovi.receipts");
       if (r) this.receipts = JSON.parse(r);
-      const a = localStorage.getItem("bovi.appeals");  
+      const a = localStorage.getItem("bovi.appeals");
       if (a) this.appeals = JSON.parse(a);
-    } catch { 
-      /* ignore parse errors */ 
+    } catch {
+      /* ignore parse errors */
     }
   }
 
@@ -37,8 +37,8 @@ class ReceiptStore {
     return r.id;
   }
 
-  list(limit = 100) { 
-    return this.receipts.slice(0, limit); 
+  list(limit = 100) {
+    return this.receipts.slice(0, limit);
   }
 
   undoableWithin(id: string): boolean {
@@ -55,26 +55,26 @@ class ReceiptStore {
   }
 
   openAppeal(actionId: string) {
-    const a: ReceiptAppeal = { 
-      actionId, 
-      opened: new Date().toISOString(), 
-      status: "open" 
+    const a: ReceiptAppeal = {
+      actionId,
+      opened: new Date().toISOString(),
+      status: "open",
     };
     this.appeals.unshift(a);
     localStorage.setItem("bovi.appeals", JSON.stringify(this.appeals));
     return a;
   }
 
-  listAppeals(limit = 100) { 
-    return this.appeals.slice(0, limit); 
+  listAppeals(limit = 100) {
+    return this.appeals.slice(0, limit);
   }
 
   resolveAppeal(actionId: string, outcome: string) {
     const a = this.appeals.find(x => x.actionId === actionId && x.status === "open");
-    if (a) { 
-      a.status = "resolved"; 
-      a.outcome = outcome; 
-      localStorage.setItem("bovi.appeals", JSON.stringify(this.appeals)); 
+    if (a) {
+      a.status = "resolved";
+      a.outcome = outcome;
+      localStorage.setItem("bovi.appeals", JSON.stringify(this.appeals));
     }
   }
 }

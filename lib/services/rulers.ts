@@ -3,6 +3,8 @@
  * Manages inflation measurement rulers with drift calculations
  */
 
+import { StorageKeys, Defaults } from "../core/constants.js";
+
 export interface Ruler {
   id: string;
   name: string;
@@ -11,43 +13,43 @@ export interface Ruler {
   bpDrift: number; // Basis points of drift from baseline
 }
 
-let activeRulerId = localStorage.getItem('bovi.activeRuler') || 'bovi-local';
+let activeRulerId = localStorage.getItem(StorageKeys.ACTIVE_RULER) || Defaults.RULER_ID;
 
 /**
  * Get all available rulers with drift metrics
  */
 export async function getRulers(): Promise<Ruler[]> {
   const baseline = 0.03; // 3% baseline inflation
-  
+
   return [
     {
-      id: 'bovi-local',
-      name: 'BOVI Local LTS',
-      method: 'Personal basket tracking',
+      id: "bovi-local",
+      name: "BOVI Local LTS",
+      method: "Personal basket tracking",
       lastUpdated: new Date().toISOString(),
-      bpDrift: Math.round((await calculateLocalLTS() - baseline) * 10000)
+      bpDrift: Math.round(((await calculateLocalLTS()) - baseline) * 10000),
     },
     {
-      id: 'bovi-cohort',
-      name: 'BOVI Cohort LTS', 
-      method: 'Community aggregated',
+      id: "bovi-cohort",
+      name: "BOVI Cohort LTS",
+      method: "Community aggregated",
       lastUpdated: new Date().toISOString(),
-      bpDrift: Math.round((await calculateCohortLTS() - baseline) * 10000)
+      bpDrift: Math.round(((await calculateCohortLTS()) - baseline) * 10000),
     },
     {
-      id: 'ons-cpi',
-      name: 'ONS Official CPI',
-      method: 'Government published',
-      lastUpdated: '2024-01-15T09:30:00Z',
-      bpDrift: Math.round((0.032 - baseline) * 10000) // +20bp
+      id: "ons-cpi",
+      name: "ONS Official CPI",
+      method: "Government published",
+      lastUpdated: "2024-01-15T09:30:00Z",
+      bpDrift: Math.round((0.032 - baseline) * 10000), // +20bp
     },
     {
-      id: 'truflation',
-      name: 'Truflation Real-time',
-      method: 'Blockchain oracle',
+      id: "truflation",
+      name: "Truflation Real-time",
+      method: "Blockchain oracle",
       lastUpdated: new Date().toISOString(),
-      bpDrift: Math.round((0.0285 - baseline) * 10000) // -15bp
-    }
+      bpDrift: Math.round((0.0285 - baseline) * 10000), // -15bp
+    },
   ];
 }
 
@@ -57,18 +59,20 @@ export async function getRulers(): Promise<Ruler[]> {
 export async function switchRuler(rulerId: string): Promise<void> {
   const rulers = await getRulers();
   const ruler = rulers.find(r => r.id === rulerId);
-  
+
   if (!ruler) {
     throw new Error(`Unknown ruler: ${rulerId}`);
   }
-  
+
   activeRulerId = rulerId;
-  localStorage.setItem('bovi.activeRuler', rulerId);
-  
+  localStorage.setItem(StorageKeys.ACTIVE_RULER, rulerId);
+
   // Emit event for UI updates
-  window.dispatchEvent(new CustomEvent('ruler:changed', { 
-    detail: { rulerId, ruler } 
-  }));
+  window.dispatchEvent(
+    new CustomEvent("ruler:changed", {
+      detail: { rulerId, ruler },
+    })
+  );
 }
 
 /**

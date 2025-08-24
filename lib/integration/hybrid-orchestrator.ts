@@ -3,12 +3,12 @@
  * Main orchestrator that coordinates all integration components
  */
 
-import { flowLoader } from './flow-loader.js';
-import { studioManager } from './studio-manager.js';
-import { uiBridge } from './ui-bridge.js';
-import { aiButlerManager } from './ai-butler-manager.js';
-import { auditTrail } from './audit-trail.js';
-import { notificationService } from './notification-service.js';
+import { flowLoader } from "./flow-loader.js";
+import { studioManager } from "./studio-manager.js";
+import { uiBridge } from "./ui-bridge.js";
+import { aiButlerManager } from "./ai-butler-manager.js";
+import { auditTrail } from "./audit-trail.js";
+import { notificationService } from "./notification-service.js";
 
 /**
  * Hybrid system orchestrator that initializes and coordinates all integration components
@@ -21,34 +21,33 @@ export class HybridSystemOrchestrator {
    */
   async initialize(): Promise<void> {
     if (this.initialized) {
-      console.warn('BOVI hybrid system already initialized');
+      console.warn("BOVI hybrid system already initialized");
       return;
     }
 
     try {
-      console.log('🚀 Initializing BOVI hybrid system...');
-      
+      console.log("🚀 Initializing BOVI hybrid system...");
+
       // Step 1: Load flow specifications
       await flowLoader.loadFlowSpecs();
-      
+
       // Step 2: Initialize studios for flow visualization
       const flowSpecs = flowLoader.getAllFlowSpecs();
       studioManager.initializeStudios(flowSpecs);
-      
+
       // Step 3: Bridge existing UI with flow system
       uiBridge.initialize(flowSpecs);
-      
+
       // Step 4: Set up AI Butler management
       aiButlerManager.initialize();
-      
+
       // Step 5: Initialize notification service
       notificationService.initialize();
-      
+
       this.initialized = true;
-      console.log('✅ BOVI hybrid system initialized successfully');
-      
+      console.log("✅ BOVI hybrid system initialized successfully");
     } catch (error) {
-      console.error('❌ Failed to initialize BOVI hybrid system:', error);
+      console.error("❌ Failed to initialize BOVI hybrid system:", error);
       throw error;
     }
   }
@@ -62,19 +61,18 @@ export class HybridSystemOrchestrator {
     }
 
     try {
-      console.log('🔄 Shutting down BOVI hybrid system...');
-      
+      console.log("🔄 Shutting down BOVI hybrid system...");
+
       // Stop monitoring services
       notificationService.stop();
-      
+
       // Clear studios
       studioManager.clearAll();
-      
+
       this.initialized = false;
-      console.log('✅ BOVI hybrid system shutdown complete');
-      
+      console.log("✅ BOVI hybrid system shutdown complete");
     } catch (error) {
-      console.error('❌ Error during hybrid system shutdown:', error);
+      console.error("❌ Error during hybrid system shutdown:", error);
       throw error;
     }
   }
@@ -95,15 +93,15 @@ export class HybridSystemOrchestrator {
     flowsLoaded: number;
     studiosActive: number;
     aiButlerEnabled: boolean;
-  } {
+    } {
     const flowSpecs = flowLoader.getAllFlowSpecs();
     const studios = studioManager.getAllStudios();
-    
+
     return {
       initialized: this.initialized,
       flowsLoaded: Object.keys(flowSpecs).length,
       studiosActive: Object.keys(studios).length,
-      aiButlerEnabled: aiButlerManager.isEnabled()
+      aiButlerEnabled: aiButlerManager.isEnabled(),
     };
   }
 
@@ -113,10 +111,10 @@ export class HybridSystemOrchestrator {
   getComponents(): {
     flowSpecs: Record<string, any>;
     studios: Record<string, any>;
-  } {
+    } {
     return {
       flowSpecs: flowLoader.getAllFlowSpecs(),
-      studios: studioManager.getAllStudios()
+      studios: studioManager.getAllStudios(),
     };
   }
 
@@ -137,7 +135,7 @@ export class HybridSystemOrchestrator {
   /**
    * Show notification
    */
-  showNotification(message: string, type?: 'info' | 'success' | 'error'): void {
+  showNotification(message: string, type?: "info" | "success" | "error"): void {
     notificationService.showNotification(message, type);
   }
 }

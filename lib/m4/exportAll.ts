@@ -11,8 +11,8 @@ export async function exportAll(): Promise<Blob> {
     trials: listTrials(),
     distribution: getDist(),
     indexProviders: await listIndexProviders(),
-    chosenProvider: getChosenProvider()
+    chosenProvider: getChosenProvider(),
     // add: flows, receipts, contracts if you expose their stores
   };
-  return new Blob([JSON.stringify(payload, null, 2)], { type:"application/json" });
+  return new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
 }

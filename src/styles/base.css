@@ -4,41 +4,61 @@
  */
 
 /* Reset and base styles */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
   background: radial-gradient(1200px 800px at 80% -10%, #1b2940, transparent 60%), var(--bg);
   color: var(--text);
-  font: var(--font-size-base)/var(--line-height-base) var(--font-family);
+  font: var(--font-size-base) / var(--line-height-base) var(--font-family);
 }
 
 /* Typography hierarchy */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0 0 var(--space-md) 0;
   font-weight: 600;
   line-height: 1.2;
 }
 
-h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.25rem; }
-h4 { font-size: 1.1rem; }
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 1.1rem;
+}
 
 p {
   margin: 0 0 var(--space-md) 0;
 }
 
 /* Utility classes */
-.text-muted { color: var(--muted); }
-.text-small { font-size: var(--font-size-small); }
-.text-large { 
-  font-size: var(--font-size-large); 
-  font-weight: 700; 
+.text-muted {
+  color: var(--muted);
+}
+.text-small {
+  font-size: var(--font-size-small);
+}
+.text-large {
+  font-size: var(--font-size-large);
+  font-weight: 700;
 }
 
 /* Layout utilities */

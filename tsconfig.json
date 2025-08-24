@@ -27,15 +27,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "lib/**/*",
-    "src/**/*",
-    "flows/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.test.ts",
-    "**/*.spec.ts"
-  ]
+  "include": ["lib/**/*", "src/**/*", "flows/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }

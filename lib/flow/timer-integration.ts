@@ -3,10 +3,10 @@
  * Handles timeout-based node execution and event management
  */
 
-import { Bus } from '../bus.js';
-import { startTimer, cancelTimer, TimerConfig } from '../timer.js';
-import type { FlowNode, FlowContext } from './types.js';
-import { FlowContextManager } from './context.js';
+import { Bus } from "../bus.js";
+import { startTimer, cancelTimer, TimerConfig } from "../timer.js";
+import type { FlowNode, FlowContext } from "./types.js";
+import { FlowContextManager } from "./context.js";
 
 /**
  * Timer integration service for flow execution
@@ -17,17 +17,21 @@ export class FlowTimerService {
   /**
    * Start timeout for a node that requires time-based execution
    */
-  startNodeTimeout(node: FlowNode, flowId: string, onComplete: (nodeId: string, output: any) => void): void {
+  startNodeTimeout(
+    node: FlowNode,
+    flowId: string,
+    onComplete: (nodeId: string, output: any) => void
+  ): void {
     const context = this.contextManager.getContext(flowId);
     if (!context) return;
 
-    const [mode] = node.type.split('.');
+    const [mode] = node.type.split(".");
     const timerConfig: TimerConfig = {
       flow: flowId,
       node: node.id,
       timeout_s: node.config.timeout_s,
       action: node.config.action,
-      mode: mode as 'V' | 'I' | 'B' | 'O'
+      mode: mode as "V" | "I" | "B" | "O",
     };
 
     const timerId = startTimer(timerConfig);
@@ -40,14 +44,14 @@ export class FlowTimerService {
   /**
    * Cancel timeout for a specific node
    */
-  cancelNodeTimeout(flowId: string, nodeId: string, reason: string = 'user_action'): void {
+  cancelNodeTimeout(flowId: string, nodeId: string, reason: string = "user_action"): void {
     const context = this.contextManager.getContext(flowId);
     if (!context) return;
 
     // Find and cancel active timer for this node
     // Note: In a production system, you'd maintain timer metadata
     const activeTimer = Array.from(context.activeTimers)[0]; // Simplified
-    
+
     if (activeTimer) {
       cancelTimer(activeTimer, reason);
       this.contextManager.removeActiveTimer(context, activeTimer);
@@ -61,7 +65,7 @@ export class FlowTimerService {
     const context = this.contextManager.getContext(flowId);
     if (!context) return;
 
-    this.contextManager.clearActiveTimers(context, (timerId) => {
+    this.contextManager.clearActiveTimers(context, timerId => {
       cancelTimer(timerId, reason);
     });
   }
@@ -70,10 +74,10 @@ export class FlowTimerService {
    * Set up event handlers for timer completion/cancellation
    */
   private setupTimerEventHandlers(
-    mode: string, 
-    flowId: string, 
-    nodeId: string, 
-    timerId: string, 
+    mode: string,
+    flowId: string,
+    nodeId: string,
+    timerId: string,
     onComplete: (nodeId: string, output: any) => void
   ): void {
     const context = this.contextManager.getContext(flowId);
@@ -85,9 +89,9 @@ export class FlowTimerService {
           const output = {
             action_applied: true,
             result: event.detail?.result || {},
-            type: 'timeout'
+            type: "timeout",
           };
-          
+
           this.contextManager.removeActiveTimer(context, timerId);
           onComplete(nodeId, output);
         }
@@ -103,18 +107,18 @@ export class FlowTimerService {
 
     // Create handlers based on mode
     switch (mode) {
-      case 'I':
-        createHandlers('I.default');
-        break;
-      case 'B':
-        createHandlers('B.default');
-        break;
-      case 'O':
-        createHandlers('O.default');
-        break;
-      case 'V':
-        createHandlers('V.default');
-        break;
+    case "I":
+      createHandlers("I.default");
+      break;
+    case "B":
+      createHandlers("B.default");
+      break;
+    case "O":
+      createHandlers("O.default");
+      break;
+    case "V":
+      createHandlers("V.default");
+      break;
     }
   }
 }

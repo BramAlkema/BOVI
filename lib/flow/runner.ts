@@ -3,11 +3,11 @@
  * Orchestrates flow execution using modular components
  */
 
-import { emit } from '../bus.js';
-import type { FlowSpec, FlowNode, FlowContext, FlowState } from './types.js';
-import { FlowContextManager } from './context.js';
-import { FlowTimerService } from './timer-integration.js';
-import { NodeExecutorService } from './node-executors.js';
+import { emit } from "../bus.js";
+import type { FlowSpec, FlowNode, FlowContext, FlowState } from "./types.js";
+import { FlowContextManager } from "./context.js";
+import { FlowTimerService } from "./timer-integration.js";
+import { NodeExecutorService } from "./node-executors.js";
 
 /**
  * Main flow runner that orchestrates execution of BOVI flows
@@ -38,7 +38,7 @@ export class FlowRunner {
   startFlow(flowId: string, initialContext?: any): void {
     const context = this.contextManager.getContext(flowId);
     const flowSpec = this.flowSpecs.get(flowId);
-    
+
     if (!context || !flowSpec) {
       console.error(`Flow ${flowId} not found or not loaded`);
       return;
@@ -49,7 +49,7 @@ export class FlowRunner {
       startTime: Date.now(),
       currentNode: this.getStartNode(flowSpec)?.id,
       completed: false,
-      error: undefined
+      error: undefined,
     });
 
     // Merge initial context if provided
@@ -58,9 +58,9 @@ export class FlowRunner {
     }
 
     // Emit flow started event
-    emit('flow.started', {
+    emit("flow.started", {
       flow: flowId,
-      context: flowSpec.context
+      context: flowSpec.context,
     });
 
     // Start executing from first node
@@ -100,7 +100,6 @@ export class FlowRunner {
 
       // Move to next node
       this.moveToNextNode(flowId, nodeId);
-
     } catch (error) {
       this.errorFlow(flowId, error as Error, nodeId);
     }
@@ -116,7 +115,7 @@ export class FlowRunner {
     if (!context || !flowSpec) return;
 
     const nextNode = this.getNextNode(flowSpec, currentNodeId, context);
-    
+
     if (nextNode) {
       this.contextManager.updateContext(flowId, { currentNode: nextNode.id });
       this.executeNode(nextNode.id, flowId);
@@ -134,15 +133,15 @@ export class FlowRunner {
 
     this.contextManager.updateContext(flowId, {
       completed: true,
-      currentNode: undefined
+      currentNode: undefined,
     });
 
     // Clear any active timers
-    this.timerService.cancelAllTimers(flowId, 'flow_completed');
+    this.timerService.cancelAllTimers(flowId, "flow_completed");
 
-    emit('flow.completed', {
+    emit("flow.completed", {
       flow: flowId,
-      outputs: context.nodeOutputs
+      outputs: context.nodeOutputs,
     });
   }
 
@@ -155,16 +154,16 @@ export class FlowRunner {
 
     this.contextManager.updateContext(flowId, {
       error,
-      completed: true
+      completed: true,
     });
 
     // Clear any active timers
-    this.timerService.cancelAllTimers(flowId, 'flow_error');
+    this.timerService.cancelAllTimers(flowId, "flow_error");
 
-    emit('flow.error', {
+    emit("flow.error", {
       flow: flowId,
       error,
-      node: nodeId
+      node: nodeId,
     });
   }
 
@@ -173,7 +172,7 @@ export class FlowRunner {
   /**
    * Cancel timeout for a specific node
    */
-  cancelTimeout(flowId: string, nodeId: string, reason: string = 'user_action'): void {
+  cancelTimeout(flowId: string, nodeId: string, reason: string = "user_action"): void {
     this.timerService.cancelNodeTimeout(flowId, nodeId, reason);
   }
 
@@ -185,20 +184,20 @@ export class FlowRunner {
     if (!context) return;
 
     // Cancel any active timeout
-    this.timerService.cancelNodeTimeout(flowId, nodeId, 'user_override');
+    this.timerService.cancelNodeTimeout(flowId, nodeId, "user_override");
 
     // Apply user action immediately
-    emit('ui.action.override', {
+    emit("ui.action.override", {
       flow: flowId,
       node: nodeId,
-      action
+      action,
     });
 
     // Store override result and continue flow
     const output = {
       action_applied: true,
-      result: { applied: true, type: 'user_override', action },
-      type: 'override'
+      result: { applied: true, type: "user_override", action },
+      type: "override",
     };
 
     this.contextManager.storeNodeOutput(context, nodeId, output);
@@ -215,7 +214,7 @@ export class FlowRunner {
     if (!context) return;
 
     // Clear all active timers
-    this.timerService.cancelAllTimers(flowId, 'flow_stopped');
+    this.timerService.cancelAllTimers(flowId, "flow_stopped");
 
     // Remove from active flows
     this.contextManager.removeContext(flowId);
@@ -226,11 +225,11 @@ export class FlowRunner {
    */
   getFlowState(flowId: string): FlowState {
     const context = this.contextManager.getContext(flowId);
-    if (!context) return 'idle';
-    if (context.error) return 'error';
-    if (context.completed) return 'completed';
-    if (context.currentNode) return 'running';
-    return 'idle';
+    if (!context) return "idle";
+    if (context.error) return "error";
+    if (context.completed) return "completed";
+    if (context.currentNode) return "running";
+    return "idle";
   }
 
   /**
@@ -260,7 +259,11 @@ export class FlowRunner {
   /**
    * Get the next node based on edge conditions
    */
-  private getNextNode(flowSpec: FlowSpec, currentNodeId: string, context: FlowContext): FlowNode | null {
+  private getNextNode(
+    flowSpec: FlowSpec,
+    currentNodeId: string,
+    context: FlowContext
+  ): FlowNode | null {
     const outgoingEdges = flowSpec.edges.filter(e => e.from === currentNodeId);
 
     for (const edge of outgoingEdges) {
@@ -276,15 +279,15 @@ export class FlowRunner {
    * Evaluate edge condition
    */
   private evaluateCondition(condition: string, context: FlowContext): boolean {
-    if (condition === 'always') return true;
-    if (condition === 'never') return false;
+    if (condition === "always") return true;
+    if (condition === "never") return false;
 
     try {
       const evaluated = condition.replace(/\{\{(.*?)\}\}/g, (match, variable) => {
-        return String(this.contextManager.getContextValue(context, variable) || 'null');
+        return String(this.contextManager.getContextValue(context, variable) || "null");
       });
 
-      return new Function('return ' + evaluated)();
+      return new Function("return " + evaluated)();
     } catch {
       return false;
     }

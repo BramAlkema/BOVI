@@ -3,6 +3,8 @@
  * Central event system for BOVI actions and flow coordination
  */
 
+import { BoviEvents } from "./core/constants.js";
+
 // BOVI event types with strong typing
 export interface BoviEventMap {
   // Value mode events (V.*)
@@ -48,8 +50,8 @@ export interface BoviEventMap {
   'ui.ai_butler.toggled': { enabled: boolean };
 
   // System events
-  'bovi.system.initialized': { timestamp: string; version?: string };
-  'bovi.system.shutdown': { timestamp: string; reason?: string };
+  [BoviEvents.SYSTEM_INITIALIZED]: { timestamp: string; version?: string };
+  [BoviEvents.SYSTEM_SHUTDOWN]: { timestamp: string; reason?: string };
   
   // Plugin system events
   'plugin:registered': { pluginId: string; manifest: any };

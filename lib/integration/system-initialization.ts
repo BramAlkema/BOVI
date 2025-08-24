@@ -3,11 +3,12 @@
  * Orchestrates the startup of all BOVI system components
  */
 
-import { Bus, emit } from '../bus.js';
-import { api } from '../api/facade.js';
-import { KPIMonitoringService } from '../monitoring/kpi-monitoring.js';
-import { dashboard } from '../monitoring/kpi-dashboard.js';
-import { initializePluginSystem } from '../plugins/index.js';
+import { Bus, emit } from "../bus.js";
+import { api } from "../api/facade.js";
+import { KPIMonitoringService } from "../monitoring/kpi-monitoring.js";
+import { dashboard } from "../monitoring/kpi-dashboard.js";
+import { initializePluginSystem } from "../plugins/index.js";
+import { BoviEvents } from "../core/constants.js";
 
 /**
  * System initialization service that coordinates startup of all components
@@ -25,34 +26,33 @@ export class SystemInitializer {
    */
   async initialize(): Promise<void> {
     if (this.initialized) {
-      console.warn('BOVI system already initialized');
+      console.warn("BOVI system already initialized");
       return;
     }
 
     try {
-      console.log('🚀 Initializing BOVI system components...');
+      console.log("🚀 Initializing BOVI system components...");
 
       // Initialize API façade
       await api.initialize();
-      
+
       // Start KPI monitoring
       this.kpiMonitoring.start();
-      
+
       // Initialize plugin system
       await initializePluginSystem();
-      
+
       // Emit system ready event
-      emit('ui.ai_butler.toggled', { enabled: true });
-      emit('bovi.system.initialized', { 
+      emit("ui.ai_butler.toggled", { enabled: true });
+      emit(BoviEvents.SYSTEM_INITIALIZED, {
         timestamp: new Date().toISOString(),
-        version: '1.0.0'
+        version: "1.0.0",
       });
 
       this.initialized = true;
-      console.log('✅ BOVI system initialization complete');
-
+      console.log("✅ BOVI system initialization complete");
     } catch (error) {
-      console.error('❌ Failed to initialize BOVI system:', error);
+      console.error("❌ Failed to initialize BOVI system:", error);
       throw error;
     }
   }
@@ -66,22 +66,21 @@ export class SystemInitializer {
     }
 
     try {
-      console.log('🔄 Shutting down BOVI system...');
-      
+      console.log("🔄 Shutting down BOVI system...");
+
       // Stop monitoring
       this.kpiMonitoring.stop();
-      
+
       // Clear dashboard
       dashboard.clearMetrics();
-      
+
       // Emit shutdown event
-      emit('bovi.system.shutdown', { timestamp: new Date().toISOString() });
+      emit(BoviEvents.SYSTEM_SHUTDOWN, { timestamp: new Date().toISOString() });
 
       this.initialized = false;
-      console.log('✅ BOVI system shutdown complete');
-
+      console.log("✅ BOVI system shutdown complete");
     } catch (error) {
-      console.error('❌ Error during system shutdown:', error);
+      console.error("❌ Error during system shutdown:", error);
       throw error;
     }
   }
@@ -94,12 +93,12 @@ export class SystemInitializer {
     apiReady: boolean;
     monitoringActive: boolean;
     healthScore: number;
-  } {
+    } {
     return {
       initialized: this.initialized,
       apiReady: this.initialized,
       monitoringActive: this.kpiMonitoring.getStatus().running,
-      healthScore: dashboard.getHealthScore()
+      healthScore: dashboard.getHealthScore(),
     };
   }
 
