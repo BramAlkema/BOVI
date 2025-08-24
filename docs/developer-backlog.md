@@ -412,4 +412,91 @@ function chooseClearinghouse(id: string): Promise<void>;
 
 ---
 
-*This backlog balances the need for stable, predictable systems (Friedman) with the benefits of competition, choice, and local knowledge (Hayek). Features from both stances can be implemented in parallel, creating a robust ecosystem that serves diverse user needs while maintaining economic coherence.*
+## 🚢 **Shipping Priority Features**
+*Production-ready features for immediate deployment*
+
+### **Phase 1: Personal BOVI (4-6 weeks)**
+
+**Rulers API** ⭐⭐⭐⭐⭐
+- `getRulers(): { id, name, method, lastUpdated, bpDrift }[]`
+- Universal renderer component for switching rulers in any view
+- Real-time drift calculation from baseline inflation
+
+**Money-veil Card** ⭐⭐⭐⭐⭐
+- Personal inflation drift vs official rates
+- Bracket creep impact calculator
+- Real interest rate effects on savings
+- Weekly digest email with personalized insights
+
+**Index Commons Store** ⭐⭐⭐⭐
+- IndexedDB storage for local inflation data
+- Quality scoring and source tracking
+- JSON export for portability
+- Privacy-first with no PII transmission
+
+**Hamburger Sentinel** ⭐⭐⭐⭐⭐
+- Fixed basket component for personal inflation tracking
+- Public share links for viral growth
+- Real-time price change notifications
+- Community basket comparison
+
+### **Phase 2: Social BOVI (6-8 weeks)**
+
+**Smart-contract Templates** ⭐⭐⭐⭐⭐
+- LTS index references in rental/salary contracts
+- Cap/floor/carryover logic with clear terms
+- Undo window for contract modifications
+- PDF + JSON receipts for legal compliance
+
+**Cohort Engine** ⭐⭐⭐⭐
+- Reverse auction mechanism for group buying
+- "No-one-worse-off" mathematical guarantee
+- KPIs: join rate, improvement percentage, zero harm rate
+- Cross-category cohort formation (groceries, energy, insurance)
+
+### **Phase 3: Advanced BOVI (8-10 weeks)**
+
+**Storm Mode Profile** ⭐⭐⭐
+- Preset changes to spending pots during crises
+- Contract pause/resume automation
+- Payment rail switching for reduced fees
+- Notification frequency adjustment
+- Automatic trigger conditions (inflation > 5%, income drop)
+
+---
+
+## 🛠 **Technical Implementation Notes**
+
+### APIs Ready to Ship
+All shipping APIs include:
+- Complete TypeScript definitions with JSDoc
+- Comprehensive unit tests (>85% coverage)
+- IndexedDB integration for local storage
+- Event-driven integration with existing BOVI system
+- Privacy-by-default design with explicit consent flows
+
+### Integration Points
+- **Rulers API**: Extends existing `IndexProvider` interface
+- **Money-veil**: Integrates with BOVI event bus for real-time updates  
+- **IndexedDB**: Uses Dexie for clean database API
+- **PDF Receipts**: Client-side generation with jsPDF
+- **Cohort Engine**: Mathematical fairness constraint with provable guarantees
+
+### Performance Targets
+- Ruler switching: <200ms response time
+- Money-veil calculation: <500ms for complex scenarios
+- Local index computation: <200ms (privacy requirement)
+- Cohort fairness check: <1s for 100-participant groups
+- Storm mode activation: <5s end-to-end
+
+### Success Metrics
+- **Ruler adoption**: >60% users try non-default rulers within first week
+- **Money-veil engagement**: >40% weekly active usage of card
+- **Hamburger viral coefficient**: >0.3 (each user brings 0.3 new users via sharing)
+- **Contract completion rate**: >90% of created contracts get signed
+- **Cohort satisfaction**: >95% "no worse off" guarantee success rate
+- **Storm mode effectiveness**: >20% spending reduction during activation
+
+---
+
+*This shipping backlog focuses on high-impact, production-ready features that deliver immediate user value while building toward the full BOVI ecosystem. Each feature is designed for standalone deployment with clear success metrics and technical specifications.*
