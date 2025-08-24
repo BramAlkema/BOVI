@@ -11,6 +11,7 @@ export interface CohortAuction {
   improvement: number; // % improvement vs individual
   noWorseOffCheck: boolean; // Guarantee nobody worse off
   joinDeadline: string;
+  targetSize: number;
   status: "forming" | "active" | "completed";
 }
 
@@ -29,6 +30,7 @@ export async function createCohortAuction(
     improvement: 0,
     noWorseOffCheck: true, // BOVI guarantee
     joinDeadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 1 week
+    targetSize,
     status: "forming",
   };
 

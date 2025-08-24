@@ -11,7 +11,7 @@ import type { BoviAPI } from "../api/facade.js";
  * KPI monitoring service that tracks system health metrics
  */
 export class KPIMonitoringService {
-  private monitoringIntervals: NodeJS.Timeout[] = [];
+  private monitoringIntervals: ReturnType<typeof setInterval>[] = [];
   private isRunning = false;
 
   constructor(private api: BoviAPI) {}
@@ -104,15 +104,17 @@ export class KPIMonitoringService {
    */
   async updateMetric(metricName: string): Promise<void> {
     switch (metricName) {
-    case "rule_compliance":
+    case "rule_compliance": {
       const compliance = await this.api.rules.checkRuleCompliance();
       this.updateKPI("rule_compliance", compliance.compliance, 0.9);
       break;
+    }
 
-    case "rail_fairness":
+    case "rail_fairness": {
       const report = await this.api.fairness.report();
       this.updateKPI("rail_fairness", report.averageFairness, 0.95);
       break;
+    }
 
     default:
       console.warn(`Unknown KPI metric: ${metricName}`);

@@ -15,7 +15,11 @@ export function loadTrials() {
   try {
     const s = localStorage.getItem(KEY);
     if (s) trials = JSON.parse(s);
-  } catch {}
+  } catch (error) {
+    // ignore parse errors and reset trials
+    console.error("Failed to load trials", error);
+    trials = [];
+  }
   return trials;
 }
 

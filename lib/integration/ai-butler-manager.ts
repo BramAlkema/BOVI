@@ -93,11 +93,11 @@ export class AIButlerManagerService {
       showToast(`✅ ${event.detail.action} applied automatically`);
     });
 
-    on("B.default.applied", event => {
+    on("B.default.applied", () => {
       showToast("⚖️ Fair counter-offer submitted");
     });
 
-    on("O.default.applied", event => {
+    on("O.default.applied", () => {
       showToast("👥 Enrolled in collective action");
     });
 

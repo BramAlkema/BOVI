@@ -1,5 +1,4 @@
 // Money-veil calculators (stub inputs; wire to your data)
-import { getRulers } from "../core/rulers.js";
 
 export interface MoneyVeil {
   driftBp: number; // user LTS vs CPI (basis points / year)
