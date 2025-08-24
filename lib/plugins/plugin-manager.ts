@@ -198,12 +198,14 @@ export class PluginManager {
       showNotification: (message: string, type?: "info" | "success" | "error") => {
         notificationService.showNotification(message, type);
       },
+    codex/fix-linting-errors-and-warnings-e94x7d
       log: (message: string, level: "info" | "warn" | "error" = "warn") => {
         if (level === "error") {
           console.error(`[Plugin] ${message}`);
         } else {
           // Treat "info" level the same as a warning to avoid using disallowed console methods
           console.warn(`[Plugin] ${message}`);
+     main
         }
       },
     };
