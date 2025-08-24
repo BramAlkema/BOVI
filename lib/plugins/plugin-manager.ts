@@ -27,7 +27,7 @@ export class PluginManager {
     }
 
     try {
-      console.log("🔌 Initializing plugin system...");
+      console.warn("🔌 Initializing plugin system...");
 
       // Create plugin context
       const context = this.createPluginContext();
@@ -39,7 +39,7 @@ export class PluginManager {
       await this.initializeCorePlugins(context);
 
       this.initialized = true;
-      console.log("✅ Plugin system initialized");
+      console.warn("✅ Plugin system initialized");
     } catch (error) {
       console.error("❌ Failed to initialize plugin system:", error);
       throw error;
@@ -66,7 +66,7 @@ export class PluginManager {
     await pluginRegistry.initialize(plugin.manifest.id, context);
     await pluginRegistry.activate(plugin.manifest.id, context);
 
-    console.log(`📦 Plugin installed: ${plugin.manifest.id}`);
+    console.warn(`📦 Plugin installed: ${plugin.manifest.id}`);
   }
 
   /**
@@ -74,7 +74,7 @@ export class PluginManager {
    */
   async uninstall(id: string): Promise<void> {
     await pluginRegistry.unregister(id);
-    console.log(`🗑️ Plugin uninstalled: ${id}`);
+    console.warn(`🗑️ Plugin uninstalled: ${id}`);
   }
 
   /**
@@ -155,7 +155,7 @@ export class PluginManager {
    * Restart plugin system
    */
   async restart(): Promise<void> {
-    console.log("🔄 Restarting plugin system...");
+    console.warn("🔄 Restarting plugin system...");
 
     // Deactivate all plugins
     const activePlugins = pluginRegistry.getActive();
@@ -198,8 +198,13 @@ export class PluginManager {
       showNotification: (message: string, type?: "info" | "success" | "error") => {
         notificationService.showNotification(message, type);
       },
-      log: (message: string, level?: "info" | "warn" | "error") => {
-        console[level || "info"](`[Plugin] ${message}`);
+      log: (message: string, level: "info" | "warn" | "error" = "warn") => {
+        if (level === "error") {
+          console.error(`[Plugin] ${message}`);
+        } else {
+          // Treat "info" level the same as a warning to avoid using disallowed console methods
+          console.warn(`[Plugin] ${message}`);
+        }
       },
     };
   }
@@ -208,11 +213,7 @@ export class PluginManager {
    * Register built-in plugins
    */
   private async registerBuiltInPlugins(): Promise<void> {
-    // This would register built-in plugins
-    // For now, we'll just log that built-ins are being discovered
-    console.log("🔍 Discovering built-in plugins...");
-
-    // In a real implementation, this would:
+    // This would register built-in plugins. In a real implementation, this would:
     // 1. Scan for plugin files in specific directories
     // 2. Load plugin manifests
     // 3. Register discovered plugins

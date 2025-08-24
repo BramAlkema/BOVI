@@ -6,7 +6,6 @@
 import {
   createCohortAuction,
   joinCohortAuction,
-  getActiveAuctions,
 } from "../services/cohort-auctions.js";
 
 export function setupCohortEngine(): void {
@@ -239,7 +238,7 @@ function showCohortCreationModal(category: string): void {
     const targetSize = parseInt(targetSizeInput.value) || 50;
 
     try {
-      const auction = await createCohortAuction(category, targetSize);
+      await createCohortAuction(category, targetSize);
       modal.remove();
       showNotification(`Created ${category} cohort! Share with friends to build momentum.`);
       updateCohortDisplays(); // Refresh UI
