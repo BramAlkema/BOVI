@@ -38,5 +38,8 @@ export * from "./ui/plugins/types.js";
 export * from "./ui/plugins/registry.js";
 export * from "./ui/plugins/host.js";
 export * from "./ui/plugins/m0-satnav.plugin.js";
+export * from "./ui/plugins/routes-lights.plugin.js";
+export * from "./ui/plugins/rooms-chores.plugin.js";
+export * from "./ui/plugins/mission-deck.plugin.js";
 export * from "./ui/boot.js";
 export * from "./ui/dev-switcher.js";

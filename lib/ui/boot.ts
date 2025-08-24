@@ -2,13 +2,15 @@
 import { registerUIPlugin } from "./plugins/registry.js";
 import { mountUI, switchUI } from "./plugins/host.js";
 import { SatnavPlugin } from "./plugins/m0-satnav.plugin.js";
-// (Later) import other UI plugins: routesLightsPlugin, roomsChoresPlugin, missionDeckPlugin
+import { RoutesLightsPlugin } from "./plugins/routes-lights.plugin.js";
+import { RoomsChoresPlugin } from "./plugins/rooms-chores.plugin.js";
+import { MissionDeckPlugin } from "./plugins/mission-deck.plugin.js";
 
 // Register all available UI plugins
 registerUIPlugin(SatnavPlugin);
-// registerUIPlugin(RoutesLightsPlugin); 
-// registerUIPlugin(RoomsChoresPlugin); 
-// registerUIPlugin(MissionDeckPlugin);
+registerUIPlugin(RoutesLightsPlugin);
+registerUIPlugin(RoomsChoresPlugin);
+registerUIPlugin(MissionDeckPlugin);
 
 // Boot function
 export async function bootUI(appElementId = "app", fallbackPluginId = "ui-satnav") {
@@ -44,8 +46,7 @@ if (typeof window !== "undefined") {
     }
   };
   
-  (window as any).listUIPlugins = () => {
-    const { listUIPlugins } = require("./plugins/registry.js");
-    return listUIPlugins();
+  (window as any).listUIs = () => {
+    console.table(["ui-satnav", "ui-routes-lights", "ui-rooms-chores", "ui-mission-deck"]);
   };
 }
