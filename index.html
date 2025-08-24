@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOVI Framework — Educational Money App</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#111823;
+      --panel-2:#0f141d;
+      --muted:#7a8798;
+      --text:#e7eef9;
+      --brand:#4cc9f0;
+      --brand-2:#a1ffb5;
+      --warn:#ffd166;
+      --danger:#ff6b6b;
+      --ok:#7cf08a;
+      --balanced:#4cc9f0;
+      --obligated:#ff6b6b;
+      --value:#a1ffb5;
+      --immediate:#ffd166;
+      --outline: 1px solid rgba(255,255,255,0.08);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    html,body{height:100%; background:radial-gradient(1200px 800px at 80% -10%, #1b2940, transparent 60%), var(--bg); color:var(--text);
+      font: 15px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      margin:0;}
+    .app{display:grid; grid-template-rows:auto 1fr; min-height:100vh;}
+    header{display:flex; align-items:center; gap:14px; padding:14px 18px; background:var(--panel-2); border-bottom:var(--outline); position:sticky; top:0; z-index:5}
+    header .logo{width:36px; height:36px; border-radius:10px; background:conic-gradient(from 230deg, var(--brand), var(--brand-2)); display:grid; place-items:center; box-shadow: var(--shadow)}
+    header h1{font-size:16px; margin:0 4px 0 0; letter-spacing:.3px}
+    header .sub{color:var(--muted); font-size:13px}
+
+    .frame{display:grid; grid-template-columns: 240px 1fr; gap:18px; padding:18px;}
+    nav{background:var(--panel); border:var(--outline); border-radius:var(--radius); padding:10px; height:max(70vh, 540px); position:sticky; top:74px}
+    nav button{display:flex; align-items:center; gap:10px; width:100%; padding:10px 12px; margin:4px 0; background:transparent; color:var(--text); border:var(--outline); border-radius:12px; cursor:pointer; transition:all .18s ease}
+    nav button[aria-current="page"]{background:linear-gradient(180deg, rgba(76,201,240,.16), rgba(76,201,240,.06)); border-color: rgba(76,201,240,.35)}
+    nav button:hover{transform:translateY(-1px); border-color: rgba(255,255,255,.2)}
+
+    main{min-height:70vh}
+    .panel{background:var(--panel); border:var(--outline); border-radius:var(--radius); padding:18px; box-shadow: var(--shadow); margin-bottom:18px}
+    .grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px}
+    .kpi{display:flex; align-items:center; justify-content:space-between; padding:14px; border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.05)); border:var(--outline)}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .big{font-size:28px; font-weight:700}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:var(--outline); background:rgba(255,255,255,.04)}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:var(--outline); color:var(--text); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.06)); cursor:pointer}
+    .btn.brand{border-color: rgba(76,201,240,.5); background:linear-gradient(180deg, rgba(76,201,240,.18), rgba(76,201,240,.08))}
+
+    .stack{display:flex; flex-direction:column; gap:12px}
+    .row{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+    .right{margin-left:auto}
+
+    .divider{height:1px; background:rgba(255,255,255,.08); margin:10px 0}
+
+    .card{padding:14px; border-radius:14px; border:var(--outline); background:rgba(255,255,255,.03)}
+    .card h4{margin:.2rem 0 .4rem 0}
+
+    .scenario{padding:16px; border-radius:14px; margin:10px 0; cursor:pointer; transition:all .2s ease}
+    .scenario:hover{transform:translateY(-2px)}
+    .scenario.balanced{border:2px solid var(--balanced); background:rgba(76,201,240,.08)}
+    .scenario.obligated{border:2px solid var(--obligated); background:rgba(255,107,107,.08)}
+    .scenario.value{border:2px solid var(--value); background:rgba(161,255,181,.08)}
+    .scenario.immediate{border:2px solid var(--immediate); background:rgba(255,209,102,.08)}
+
+    .mode-badge{padding:4px 8px; border-radius:8px; font-size:11px; font-weight:600; text-transform:uppercase}
+    .mode-badge.balanced{background:var(--balanced); color:#000}
+    .mode-badge.obligated{background:var(--obligated); color:#000}
+    .mode-badge.value{background:var(--value); color:#000}
+    .mode-badge.immediate{background:var(--immediate); color:#000}
+
+    section[hidden]{display:none!important}
+
+    @media (max-width: 920px){
+      .frame{grid-template-columns: 1fr}
+      nav{position:relative; top:0; height:auto}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#0b0f14" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m2 17 10 5 10-5M2 12l10 5 10-5" stroke="#0b0f14" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <h1>BOVI Framework</h1>
+      <div class="sub">Educational app: Balanced • Obligated • Value • Immediate — Four fairness modes of money</div>
+    </div>
+  </header>
+
+  <div class="frame">
+    <nav>
+      <button class="tab" data-tab="overview" aria-current="page">🏠 Overview</button>
+      <button class="tab" data-tab="balanced">⚖️ Balanced</button>
+      <button class="tab" data-tab="obligated">👑 Obligated</button>
+      <button class="tab" data-tab="value">💱 Value</button>
+      <button class="tab" data-tab="immediate">🤝 Immediate</button>
+      <button class="tab" data-tab="scenarios">🎭 Scenarios</button>
+      <button class="tab" data-tab="bundle">📦 Bundle</button>
+    </nav>
+
+    <main>
+      <!-- OVERVIEW -->
+      <section id="overview" class="stack">
+        <div class="panel">
+          <h2>The BOVI Framework</h2>
+          <p class="muted">Money isn't a single invention—it's a bundle of four fairness modes that humans use to structure exchange. Each mode maps to Alan Fiske's relational models and solves different trade problems.</p>
+          
+          <div class="grid">
+            <div class="card">
+              <span class="mode-badge balanced">B</span>
+              <h4>Balanced (Equality Matching)</h4>
+              <p class="small">Fairness as symmetry. Ledgers, tallies, keeping score across time. Everyone gets their turn, debts must be squared.</p>
+            </div>
+            <div class="card">
+              <span class="mode-badge obligated">O</span>
+              <h4>Obligated (Authority Ranking)</h4>
+              <p class="small">Fairness as compliance with hierarchy. You owe taxes, rent, tribute. Money as political infrastructure.</p>
+            </div>
+            <div class="card">
+              <span class="mode-badge value">V</span>
+              <h4>Value (Market Pricing)</h4>
+              <p class="small">Fairness as proportionality. Transferable medium where units are interchangeable. Minimal money.</p>
+            </div>
+            <div class="card">
+              <span class="mode-badge immediate">I</span>
+              <h4>Immediate (Communal Sharing)</h4>
+              <p class="small">Fairness as direct equivalence. Tit-for-tat swaps. Anchors our visceral fairness instinct.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Core Insight</h3>
+          <p>Competing "origin stories" of money aren't contradictory—they each reflect one fairness mode. The BOVI bundle explains why money reforms spark moral outrage: each mode plugs into a deep fairness instinct.</p>
+          <div class="row">
+            <span class="chip">Many origins, one bundle</span>
+            <span class="chip">Fairness modes bundled together</span>
+            <span class="chip">Reform requires understanding all modes</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- BALANCED -->
+      <section id="balanced" class="stack" hidden>
+        <div class="panel">
+          <h2><span class="mode-badge balanced">B</span> Balanced — Keeping Score</h2>
+          <p class="muted"><strong>Fiske Mode:</strong> Equality Matching — fairness as symmetry, everyone gets their turn</p>
+          
+          <div class="card">
+            <h4>Economic Argument</h4>
+            <p>Fairness across time requires records—ledgers, tallies, or common knowledge. Periodic settling slashes transaction costs compared to constant barter.</p>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <h4>Key Features</h4>
+              <ul class="small">
+                <li>Known money supply = distributed ledger</li>
+                <li>Society's collective memory of fairness</li>
+                <li>Counterfeiting despised (falsifies records)</li>
+                <li>Periodic settlement reduces costs</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Historical Example</h4>
+              <p class="small"><strong>Tally sticks in medieval England</strong><br>
+              Split wooden sticks recorded debts. Both parties kept half, ensuring accurate records and preventing fraud.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Interactive Demo: Tally System</h3>
+          <div class="scenario balanced" onclick="runTallyDemo()">
+            <div class="row">
+              <div>
+                <strong>Village Tally Network</strong>
+                <p class="small muted">See how medieval villagers used split sticks to track debts and maintain fairness over time</p>
+              </div>
+              <span class="btn">Run Demo</span>
+            </div>
+          </div>
+          <div id="tallyResult" class="card" style="display:none">
+            <p id="tallyText"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- OBLIGATED -->
+      <section id="obligated" class="stack" hidden>
+        <div class="panel">
+          <h2><span class="mode-badge obligated">O</span> Obligated — Enforced Payments</h2>
+          <p class="muted"><strong>Fiske Mode:</strong> Authority Ranking — fairness as compliance with hierarchy</p>
+          
+          <div class="card">
+            <h4>Economic Argument</h4>
+            <p>Authority makes money compulsory—you owe it in taxes, rent, tribute. You don't hold it because you want to; you hold it because you must.</p>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <h4>Key Features</h4>
+              <ul class="small">
+                <li>Extraction isn't a bug, it's the point</li>
+                <li>Money as political infrastructure</li>
+                <li>Compliance with hierarchy required</li>
+                <li>What's "owed to Caesar"</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Historical Example</h4>
+              <p class="small"><strong>Roman coin system</strong><br>
+              Kings mint coins, pay troops, then demand taxes in those same coins, creating circulation through obligation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Interactive Demo: Tax Drive Theory</h3>
+          <div class="scenario obligated" onclick="runTaxDemo()">
+            <div class="row">
+              <div>
+                <strong>King's Coin Circulation</strong>
+                <p class="small muted">Experience how authority creates money demand through taxation requirements</p>
+              </div>
+              <span class="btn">Run Demo</span>
+            </div>
+          </div>
+          <div id="taxResult" class="card" style="display:none">
+            <p id="taxText"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE -->
+      <section id="value" class="stack" hidden>
+        <div class="panel">
+          <h2><span class="mode-badge value">V</span> Value — Minimal Money</h2>
+          <p class="muted"><strong>Fiske Mode:</strong> Market Pricing — fairness as proportionality, units are interchangeable</p>
+          
+          <div class="card">
+            <h4>Economic Argument</h4>
+            <p>Money's leanest form is a transferable medium. You accept it not because it's shiny or "backed," but because both you and the next person expect to unlock trades with it tomorrow.</p>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <h4>Key Features</h4>
+              <ul class="small">
+                <li>Double expectation of wants</li>
+                <li>Fractional trades possible</li>
+                <li>Stunningly lean—just transferable tokens</li>
+                <li>Market Pricing feels "cold"</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Historical Example</h4>
+              <p class="small"><strong>Playing cards in New France</strong><br>
+              17th-century colonists used playing cards as currency when official coins were scarce.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Interactive Demo: Double Coincidence Problem</h3>
+          <div class="scenario value" onclick="runValueDemo()">
+            <div class="row">
+              <div>
+                <strong>Trading Post Simulation</strong>
+                <p class="small muted">See how transferable tokens solve the double coincidence of wants problem</p>
+              </div>
+              <span class="btn">Run Demo</span>
+            </div>
+          </div>
+          <div id="valueResult" class="card" style="display:none">
+            <p id="valueText"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMMEDIATE -->
+      <section id="immediate" class="stack" hidden>
+        <div class="panel">
+          <h2><span class="mode-badge immediate">I</span> Immediate — Tit-for-Tat</h2>
+          <p class="muted"><strong>Fiske Mode:</strong> Communal Sharing — fairness as direct equivalence</p>
+          
+          <div class="card">
+            <h4>Economic Argument</h4>
+            <p>Direct swaps are the oldest mode: a loaf for a chicken, my labour for your favour. They collapse when goods are indivisible or mismatched.</p>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <h4>Key Features</h4>
+              <ul class="small">
+                <li>Works for divisible, everyday exchanges</li>
+                <li>Anchors visceral "fairness instinct"</li>
+                <li>"Eye for an eye" equivalence</li>
+                <li>Open access within the group</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Modern Example</h4>
+              <p class="small"><strong>Blue-zone parking</strong><br>
+              Everyone gets the same time slot, no exceptions. Direct equivalence in action.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Interactive Demo: Barter Limits</h3>
+          <div class="scenario immediate" onclick="runImmediateDemo()">
+            <div class="row">
+              <div>
+                <strong>Village Market Barter</strong>
+                <p class="small muted">Experience the limits of direct exchange when goods are indivisible</p>
+              </div>
+              <span class="btn">Run Demo</span>
+            </div>
+          </div>
+          <div id="immediateResult" class="card" style="display:none">
+            <p id="immediateText"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENARIOS -->
+      <section id="scenarios" class="stack" hidden>
+        <div class="panel">
+          <h2>Real-World Scenarios</h2>
+          <p class="muted">Explore how different fairness modes play out in everyday situations. Click scenarios to see the BOVI analysis.</p>
+          
+          <div class="grid">
+            <div class="scenario balanced" onclick="showScenario('rent')">
+              <span class="mode-badge balanced">B</span>
+              <h4>Rent Collection</h4>
+              <p class="small">Monthly payments create a balanced ledger between tenant and landlord over time.</p>
+            </div>
+            
+            <div class="scenario obligated" onclick="showScenario('tax')">
+              <span class="mode-badge obligated">O</span>
+              <h4>Tax Season</h4>
+              <p class="small">Government requires payment in official currency, driving demand through authority.</p>
+            </div>
+            
+            <div class="scenario value" onclick="showScenario('market')">
+              <span class="mode-badge value">V</span>
+              <h4>Farmers Market</h4>
+              <p class="small">Cash enables proportional exchange between diverse goods and services.</p>
+            </div>
+            
+            <div class="scenario immediate" onclick="showScenario('favor')">
+              <span class="mode-badge immediate">I</span>
+              <h4>Neighborhood Favors</h4>
+              <p class="small">Direct reciprocity: "I'll watch your kids if you fix my fence."</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="scenarioResult" class="panel" style="display:none">
+          <h3 id="scenarioTitle"></h3>
+          <div id="scenarioContent"></div>
+        </div>
+      </section>
+
+      <!-- BUNDLE -->
+      <section id="bundle" class="stack" hidden>
+        <div class="panel">
+          <h2>The Bundle Effect</h2>
+          <p class="muted">Modern money is "heavy" because all four modes are layered together. Each extends the others, but switching between modes feels awkward—explaining why monetary reform sparks moral outrage.</p>
+          
+          <div class="grid">
+            <div class="card">
+              <h4>How Modes Extend Each Other</h4>
+              <ul class="small">
+                <li><strong>V</strong> unlocks trades</li>
+                <li><strong>B</strong> ensures fairness over time</li>
+                <li><strong>O</strong> enforces compliance</li>
+                <li><strong>I</strong> grounds gut fairness sense</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Mode Switching Friction</h4>
+              <p class="small">Your wife taking fries = fine (Immediate)<br>
+              Your boss doing it = creepy (crosses into Authority)<br>
+              <br>Same visceral clash explains money reform resistance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Crypto's Error and Opportunity</h3>
+          <div class="card">
+            <p>Crypto set out to escape fiat's extraction but copied its bundle instead—mimicking banks, mints, and ledgers with new jargon. A truly radical crypto would unbundle: build V lean, then consciously rebundle the other modes.</p>
+            <div class="row">
+              <span class="chip">Promise: New fairness regime</span>
+              <span class="chip warn">Reality: Fell back into B+O tropes</span>
+              <span class="chip">Opportunity: Conscious rebundling</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+// Navigation
+$$('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    $$('.tab').forEach(b => b.removeAttribute('aria-current'));
+    btn.setAttribute('aria-current', 'page');
+    const tab = btn.dataset.tab;
+    $$('main > section').forEach(s => s.hidden = (s.id !== tab));
+  });
+});
+
+// Demo functions
+function runTallyDemo() {
+  const result = $('#tallyResult');
+  const text = $('#tallyText');
+  text.innerHTML = `
+    <strong>Demo:</strong> Alice owes Bob 3 chickens. They split a wooden stick—Alice keeps the "stock," Bob keeps the "foil."<br><br>
+    ✅ Both have proof of the debt<br>
+    ✅ Can't be counterfeited (pieces must match)<br>
+    ✅ Debt settled when pieces reunite<br><br>
+    This is <strong>Balanced mode</strong>: fairness through symmetric record-keeping across time.
+  `;
+  result.style.display = 'block';
+}
+
+function runTaxDemo() {
+  const result = $('#taxResult');
+  const text = $('#taxText');
+  text.innerHTML = `
+    <strong>Demo:</strong> The King mints gold coins and pays soldiers' salaries. Then demands taxes in gold coins only.<br><br>
+    ✅ Soldiers need goods from merchants<br>
+    ✅ Merchants need coins to pay taxes<br>
+    ✅ Circular flow created through obligation<br><br>
+    This is <strong>Obligated mode</strong>: money demand driven by authority's requirements.
+  `;
+  result.style.display = 'block';
+}
+
+function runValueDemo() {
+  const result = $('#valueResult');
+  const text = $('#valueText');
+  text.innerHTML = `
+    <strong>Demo:</strong> Without money: Baker wants shoes, shoemaker wants meat, butcher wants bread—circular problem!<br><br>
+    With transferable tokens:<br>
+    ✅ Baker sells bread for tokens<br>
+    ✅ Uses tokens to buy shoes<br>
+    ✅ Shoemaker uses tokens for meat<br><br>
+    This is <strong>Value mode</strong>: minimal money solving double coincidence through mutual expectations.
+  `;
+  result.style.display = 'block';
+}
+
+function runImmediateDemo() {
+  const result = $('#immediateResult');
+  const text = $('#immediateText');
+  text.innerHTML = `
+    <strong>Demo:</strong> You want to trade 1 cow for chickens, but the chicken farmer only has 3 chickens and needs a whole cow.<br><br>
+    ❌ Can't split the cow<br>
+    ❌ Value mismatch (1 cow ≠ 3 chickens)<br>
+    ❌ Direct barter fails<br><br>
+    This is why <strong>Immediate mode</strong> needs support from other modes for complex trades.
+  `;
+  result.style.display = 'block';
+}
+
+// Scenario analysis
+function showScenario(type) {
+  const result = $('#scenarioResult');
+  const title = $('#scenarioTitle');
+  const content = $('#scenarioContent');
+  
+  const scenarios = {
+    rent: {
+      title: 'Rent Analysis: Balanced Mode Primary',
+      content: `
+        <div class="card">
+          <h4>BOVI Breakdown:</h4>
+          <p><span class="mode-badge balanced">B</span> <strong>Balanced (Primary):</strong> Monthly payment creates symmetric obligation. Tenant gets housing, landlord gets payment, scores must balance over time.</p>
+          <p><span class="mode-badge obligated">O</span> <strong>Obligated:</strong> Legal framework enforces contract. Courts provide authority backing.</p>
+          <p><span class="mode-badge value">V</span> <strong>Value:</strong> Rent amount reflects market pricing of housing value.</p>
+          <p><span class="mode-badge immediate">I</span> <strong>Immediate:</strong> "Roof over head for money" feels fair at gut level.</p>
+        </div>
+      `
+    },
+    tax: {
+      title: 'Tax Analysis: Obligated Mode Primary',
+      content: `
+        <div class="card">
+          <h4>BOVI Breakdown:</h4>
+          <p><span class="mode-badge obligated">O</span> <strong>Obligated (Primary):</strong> Government authority requires payment. No choice—you owe what hierarchy demands.</p>
+          <p><span class="mode-badge balanced">B</span> <strong>Balanced:</strong> Citizens expect services in return for taxes paid.</p>
+          <p><span class="mode-badge value">V</span> <strong>Value:</strong> Tax rates theoretically reflect proportional contribution to society.</p>
+          <p><span class="mode-badge immediate">I</span> <strong>Immediate:</strong> "Pay your fair share" appeals to direct reciprocity instinct.</p>
+        </div>
+      `
+    },
+    market: {
+      title: 'Market Analysis: Value Mode Primary',
+      content: `
+        <div class="card">
+          <h4>BOVI Breakdown:</h4>
+          <p><span class="mode-badge value">V</span> <strong>Value (Primary):</strong> Cash enables proportional exchange. $5 apples vs $2 carrots—units are interchangeable.</p>
+          <p><span class="mode-badge immediate">I</span> <strong>Immediate:</strong> "Good produce for good money" feels directly equivalent.</p>
+          <p><span class="mode-badge balanced">B</span> <strong>Balanced:</strong> Repeated transactions create reputation ledger over time.</p>
+          <p><span class="mode-badge obligated">O</span> <strong>Obligated:</strong> Health regulations and market rules provide authority framework.</p>
+        </div>
+      `
+    },
+    favor: {
+      title: 'Favor Analysis: Immediate Mode Primary',
+      content: `
+        <div class="card">
+          <h4>BOVI Breakdown:</h4>
+          <p><span class="mode-badge immediate">I</span> <strong>Immediate (Primary):</strong> Direct reciprocity. Childcare time for fence repair time—equivalent effort exchange.</p>
+          <p><span class="mode-badge balanced">B</span> <strong>Balanced:</strong> "You helped me, now I help you" creates ongoing account of mutual aid.</p>
+          <p><span class="mode-badge value">V</span> <strong>Value:</strong> Both parties assess if the trade feels proportionally fair.</p>
+          <p><span class="mode-badge obligated">O</span> <strong>Obligated:</strong> Social pressure and community norms enforce reciprocity.</p>
+        </div>
+      `
+    }
+  };
+  
+  title.textContent = scenarios[type].title;
+  content.innerHTML = scenarios[type].content;
+  result.style.display = 'block';
+}
+</script>
+</body>
+</html>
