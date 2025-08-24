@@ -1,4 +1,4 @@
-export interface Trial { 
+export interface M4Trial { 
   id: string; 
   hypothesis: string; 
   start: string; 
@@ -9,7 +9,7 @@ export interface Trial {
 }
 
 const KEY = "trials";
-let trials: Trial[] = [];
+let trials: M4Trial[] = [];
 
 export function loadTrials() { 
   try { 
@@ -23,7 +23,7 @@ export function listTrials() {
   return trials; 
 }
 
-export function addTrial(t: Trial) { 
+export function addTrial(t: M4Trial) { 
   trials.unshift(t); 
   localStorage.setItem(KEY, JSON.stringify(trials)); 
   return t; 

@@ -1,7 +1,7 @@
 // Minimal SVG Studio (no deps; simple layered layout)
 import type { Mode } from "../core/bus.js";
 
-export interface FlowSpec { 
+export interface M3FlowSpec { 
   id: string; 
   nodes: NodeSpec[]; 
   edges: EdgeSpec[]; 
@@ -19,7 +19,7 @@ export interface EdgeSpec {
   label?: string;
 }
 
-export function renderStudio(flow: FlowSpec, mount: HTMLElement) {
+export function renderStudio(flow: M3FlowSpec, mount: HTMLElement) {
   mount.innerHTML = "";
   const layers = toposort(flow); // array of node arrays, left->right
   const xGap=220, yGap=96, w=180, h=64, pad=20;
@@ -74,7 +74,7 @@ export function renderStudio(flow: FlowSpec, mount: HTMLElement) {
   mount.appendChild(svg);
 }
 
-function toposort(flow: FlowSpec): NodeSpec[][] {
+function toposort(flow: M3FlowSpec): NodeSpec[][] {
   const indeg = new Map<string, number>(flow.nodes.map(n=>[n.id,0]));
   for (const e of flow.edges) indeg.set(e.to, (indeg.get(e.to)??0)+1);
   const S = flow.nodes.filter(n=>(indeg.get(n.id)??0)===0);

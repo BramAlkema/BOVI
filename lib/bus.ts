@@ -46,6 +46,18 @@ export interface BoviEventMap {
   'ui.action.override': { flow: string; node: string; action: string };
   'ui.kpi.updated': { flow: string; kpi: string; value: any };
   'ui.ai_butler.toggled': { enabled: boolean };
+
+  // System events
+  'bovi.system.initialized': { timestamp: string; version?: string };
+  'bovi.system.shutdown': { timestamp: string; reason?: string };
+  
+  // Plugin system events
+  'plugin:registered': { pluginId: string; manifest: any };
+  'plugin:initialized': { pluginId: string };
+  'plugin:error': { pluginId: string; error: Error; phase: string };
+  'plugin:activated': { pluginId: string };
+  'plugin:deactivated': { pluginId: string };
+  'plugin:config-changed': { pluginId: string; config: any };
 }
 
 // Type-safe event bus

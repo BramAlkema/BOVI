@@ -1,4 +1,4 @@
-export interface RuleVersion { 
+export interface M4RuleVersion { 
   id: string; 
   semver: string; 
   summary: string; 
@@ -7,7 +7,7 @@ export interface RuleVersion {
 }
 
 const KEY = "rules-registry";
-let rules: RuleVersion[] = [];
+let rules: M4RuleVersion[] = [];
 
 export function loadRules() { 
   try { 
@@ -21,7 +21,7 @@ export function getRules() {
   return rules; 
 }
 
-export function scheduleRule(rv: RuleVersion) { 
+export function scheduleRule(rv: M4RuleVersion) { 
   rules.unshift(rv); 
   localStorage.setItem(KEY, JSON.stringify(rules)); 
   return rv; 

@@ -18,7 +18,7 @@ export interface IndexSnapshot {
 
 const KEY = "index-commons";
 
-export class IndexCommons {
+export class M3IndexCommons {
   private sources: IndexSource[] = [];
   
   constructor() { 

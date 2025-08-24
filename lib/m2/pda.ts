@@ -7,7 +7,7 @@ export interface Quote {
   size?: number;
 }
 
-export interface PDAResult {
+export interface M2PDAResult {
   itemId: string; 
   median: number; 
   mad: number;
@@ -30,12 +30,12 @@ export const mad = (xs: number[]) => {
 export const normaliseShrink = (price:number, packNow:number, packBase:number) =>
   price * (packBase / Math.max(1e-6, packNow));
 
-export function computePDA(quotes: Quote[], basePack?:number, packNow?:number, personalMedian?:number): PDAResult {
+export function computePDA(quotes: Quote[], basePack?:number, packNow?:number, personalMedian?:number): M2PDAResult {
   const ps = quotes.map(q=>q.price);
   const m = median(ps), d = mad(ps);
   const unit = (basePack && packNow) ? normaliseShrink(m, packNow, basePack) : undefined;
   const rel = personalMedian ? ( (unit ?? m) - personalMedian ) / personalMedian : 0;
-  const score: PDAResult["score"] = rel < -0.02 ? "👍" : rel < 0.02 ? "→" : "👎";
+  const score: M2PDAResult["score"] = rel < -0.02 ? "👍" : rel < 0.02 ? "→" : "👎";
   return {
     itemId: quotes[0]?.itemId ?? "",
     median: +m.toFixed(2), 

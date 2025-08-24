@@ -44,8 +44,8 @@ export class SystemInitializer {
       // Emit system ready event
       emit('ui.ai_butler.toggled', { enabled: true });
       emit('bovi.system.initialized', { 
-        timestamp: Date.now(),
-        components: ['api', 'monitoring', 'dashboard', 'plugins']
+        timestamp: new Date().toISOString(),
+        version: '1.0.0'
       });
 
       this.initialized = true;
@@ -75,7 +75,7 @@ export class SystemInitializer {
       dashboard.clearMetrics();
       
       // Emit shutdown event
-      emit('bovi.system.shutdown', { timestamp: Date.now() });
+      emit('bovi.system.shutdown', { timestamp: new Date().toISOString() });
 
       this.initialized = false;
       console.log('✅ BOVI system shutdown complete');

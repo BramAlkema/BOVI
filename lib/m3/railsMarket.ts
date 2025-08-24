@@ -1,7 +1,7 @@
 // Rails marketplace (generic; plug real adapters later)
 export type RailId = "SEPA" | "FPS" | "Card" | "L2-USDC" | "L2-EURC";
 
-export interface RailQuote { 
+export interface M3RailQuote { 
   rail: RailId; 
   fee: number; 
   etaSec: number; 
@@ -19,7 +19,7 @@ export interface PaymentIntent {
 export interface RailAdapter {
   id: RailId; 
   init(): Promise<void>;
-  quote(p: PaymentIntent): Promise<RailQuote>;
+  quote(p: PaymentIntent): Promise<M3RailQuote>;
   send(p: PaymentIntent): Promise<{txId: string}>;
   status(txId: string): Promise<"pending" | "confirmed" | "failed">;
 }
@@ -31,7 +31,7 @@ export function registerRail(r: RailAdapter) {
 }
 
 export async function listQuotes(p: PaymentIntent) { 
-  const out: RailQuote[] = []; 
+  const out: M3RailQuote[] = []; 
   for(const r of REG.values()) {
     out.push(await r.quote(p)); 
   }

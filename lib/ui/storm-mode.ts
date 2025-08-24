@@ -143,7 +143,20 @@ function setupStormModeEventHandlers(container: HTMLElement): void {
     };
     
     try {
-      await createStormProfile(profileName, triggers, budgetAdjustments);
+      await createStormProfile({
+        name: profileName,
+        description: `Custom storm profile created for ${profileName}`,
+        changes: {
+          pots: budgetAdjustments,
+          contracts: [],
+          rails: [],
+          notifications: {
+            frequency: 'medium',
+            channels: ['ui']
+          }
+        },
+        triggers: triggers
+      });
       profileForm.style.display = 'none';
       form.reset();
       await loadStormProfiles();
@@ -210,9 +223,9 @@ async function loadStormProfiles(): Promise<void> {
           </div>
           <div class="profile-adjustments">
             <strong>Budget Changes:</strong>
-            ${Object.entries(profile.budgetAdjustments)
-              .filter(([_, value]) => value !== 0)
-              .map(([category, value]) => `${category}: ${value > 0 ? '+' : ''}${value}%`)
+            ${Object.entries(profile.changes.pots)
+              .filter(([_, value]) => (value as number) !== 0)
+              .map(([category, value]) => `${category}: ${(value as number) > 0 ? '+' : ''}${value}%`)
               .join(', ')}
           </div>
           <div class="profile-actions">

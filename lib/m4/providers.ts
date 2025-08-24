@@ -1,5 +1,5 @@
 // Index providers marketplace
-export interface IndexProvider { 
+export interface M4IndexProvider { 
   id: string; 
   name: string; 
   method: string; 
@@ -7,7 +7,7 @@ export interface IndexProvider {
   notes?: string;
 }
 
-const PROVIDERS: IndexProvider[] = [
+const PROVIDERS: M4IndexProvider[] = [
   { id: "CPI", name: "Official CPI", method: "gov" },
   { id: "LTS", name: "Your €LTS", method: "personal-basket" },
   { id: "COHORT", name: "Cohort LTS", method: "cohort-basket" }

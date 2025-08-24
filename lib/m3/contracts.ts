@@ -4,7 +4,7 @@ export interface LTSIndexRef {
   deflator: number;
 }
 
-export interface ContractTemplate {
+export interface M3ContractTemplate {
   id: string; 
   kind: "rent" | "subscription"; 
   amountLTS: number; 
@@ -22,14 +22,14 @@ export interface Rendered {
   hash: string;
 }
 
-export async function renderContract(ct: ContractTemplate): Promise<Rendered> {
+export async function renderContract(ct: M3ContractTemplate): Promise<Rendered> {
   const json = new Blob([JSON.stringify(ct, null, 2)], { type:"application/json" });
   const txt = new Blob([humanText(ct)], { type:"text/plain" });
   const hash = await sha256(await blobToArrayBuffer(json));
   return { json, txt, hash };
 }
 
-function humanText(ct: ContractTemplate) {
+function humanText(ct: M3ContractTemplate) {
   return `Contract: ${ct.kind}
 Base amount: €LTS ${ct.amountLTS} (base ${ct.index.baseYear})
 Indexation: deflator=${ct.index.deflator}

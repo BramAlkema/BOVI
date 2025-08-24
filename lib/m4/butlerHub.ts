@@ -1,12 +1,12 @@
 // Rival butlers (manifests only; you wire execution)
-export interface ButlerManifest { 
+export interface M4ButlerManifest { 
   id: string; 
   name: string; 
   version: string; 
   caps: string[];
 }
 
-const BUTLERS: ButlerManifest[] = [
+const BUTLERS: M4ButlerManifest[] = [
   { 
     id: "core", 
     name: "Core Butler", 

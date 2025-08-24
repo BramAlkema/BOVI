@@ -9,7 +9,7 @@ export interface Receipt {
   meta?: Record<string, unknown>;
 }
 
-export interface Appeal {
+export interface ReceiptAppeal {
   actionId: string; 
   opened: string; 
   status: "open" | "resolved"; 
@@ -18,7 +18,7 @@ export interface Appeal {
 
 class ReceiptStore {
   private receipts: Receipt[] = [];
-  private appeals: Appeal[] = [];
+  private appeals: ReceiptAppeal[] = [];
 
   constructor() {
     try {
@@ -55,7 +55,7 @@ class ReceiptStore {
   }
 
   openAppeal(actionId: string) {
-    const a: Appeal = { 
+    const a: ReceiptAppeal = { 
       actionId, 
       opened: new Date().toISOString(), 
       status: "open" 

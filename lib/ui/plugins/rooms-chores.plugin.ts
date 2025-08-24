@@ -1,8 +1,8 @@
-import type { UIPlugin, UIContext, UIInstance } from "./types.js";
+import type { UIComponentPlugin, UIContext, UIInstance } from "./types.js";
 import { applyAllPendingDefaults } from "../../m1/safeCta.js";
 import { getBillsSafe, getBestDeal, getEnergyStatus } from "../../api/tiles.js";
 
-export const RoomsChoresPlugin: UIPlugin = {
+export const RoomsChoresPlugin: UIComponentPlugin = {
   manifest: {
     id: "ui-rooms-chores",
     name: "Rooms & Chores",

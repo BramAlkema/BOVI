@@ -1,10 +1,10 @@
 // Registry + Host
-import type { UIPlugin } from "./types.js";
+import type { UIComponentPlugin } from "./types.js";
 
-const REG = new Map<string, UIPlugin>();
+const REG = new Map<string, UIComponentPlugin>();
 let activeId: string | null = null;
 
-export function registerUIPlugin(p: UIPlugin) { 
+export function registerUIPlugin(p: UIComponentPlugin) { 
   REG.set(p.manifest.id, p); 
 }
 

@@ -1,9 +1,9 @@
-import type { UIPlugin, UIContext, UIInstance } from "./types.js";
+import type { UIComponentPlugin, UIContext, UIInstance } from "./types.js";
 import { applyAllPendingDefaults } from "../../m1/safeCta.js";
 import { getBillsSafe, getBestDeal, getEnergyStatus } from "../../api/tiles.js";
 import { nextEpisodes, markPlayed } from "../../api/episodes.js";
 
-export const RoutesLightsPlugin: UIPlugin = {
+export const RoutesLightsPlugin: UIComponentPlugin = {
   manifest: {
     id: "ui-routes-lights",
     name: "Routes & Lights",

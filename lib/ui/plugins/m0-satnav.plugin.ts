@@ -1,10 +1,10 @@
 // M0 Satnav as a plugin (example)
-import type { UIPlugin, UIContext, UIInstance } from "./types.js";
+import type { UIComponentPlugin, UIContext, UIInstance } from "./types.js";
 import { applyAllPendingDefaults } from "../../m1/safeCta.js";
 import { getBillsSafe, getBestDeal, getEnergyStatus } from "../../api/tiles.js";
 import { nextEpisodes, markPlayed } from "../../api/episodes.js";
 
-export const SatnavPlugin: UIPlugin = {
+export const SatnavPlugin: UIComponentPlugin = {
   manifest: {
     id: "ui-satnav",
     name: "Satnav (M0/M1)",

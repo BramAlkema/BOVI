@@ -26,7 +26,7 @@ export interface UIPluginManifest {
   cssScoped?: boolean;              // use shadow DOM for isolation
 }
 
-export interface UIPlugin {
+export interface UIComponentPlugin {
   manifest: UIPluginManifest;
   mount(ctx: UIContext): Promise<UIInstance>;
 }

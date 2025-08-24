@@ -431,8 +431,34 @@
 <!-- Legacy Application JavaScript -->
 <script type="module" src="src/scripts/app.js"></script>
 
-<!-- New Hybrid System -->
-<script type="module" src="lib/integration.ts"></script>
+<!-- New Modular BOVI System -->
+<script type="module">
+  // Import the modular BOVI framework
+  import { systemInitializer } from './lib/integration/system-initialization.js';
+  import { hybridOrchestrator } from './lib/integration/hybrid-orchestrator.js';
+  import { initializePluginSystem } from './lib/plugins/index.js';
+  
+  // Initialize the modular system
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      console.log('🚀 Starting BOVI modular system...');
+      
+      // Initialize the plugin system first
+      await initializePluginSystem();
+      
+      // Initialize the hybrid orchestrator
+      await hybridOrchestrator.initialize();
+      
+      // Start the system initializer
+      await systemInitializer.initialize();
+      
+      console.log('✅ BOVI modular system ready');
+      
+    } catch (error) {
+      console.error('❌ Failed to initialize BOVI system:', error);
+    }
+  });
+</script>
 
 <script>
 // Update event counter for demo

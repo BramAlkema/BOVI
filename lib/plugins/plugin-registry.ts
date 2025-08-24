@@ -51,7 +51,7 @@ export class PluginRegistry {
       this.dependencies.set(id, new Set(plugin.manifest.dependencies.plugins));
     }
     
-    emit('plugin:registered', { plugin });
+    emit('plugin:registered', { pluginId: id, manifest: plugin.manifest });
     console.log(`🔌 Plugin registered: ${id}`);
   }
 
@@ -111,7 +111,7 @@ export class PluginRegistry {
       // Update status
       this.updateStatus(id, { state: 'initialized' });
       
-      emit('plugin:initialized', { plugin });
+      emit('plugin:initialized', { pluginId: id });
       console.log(`🚀 Plugin initialized: ${id}`);
       
     } catch (error) {
@@ -119,7 +119,7 @@ export class PluginRegistry {
         state: 'error', 
         error: (error as Error).message 
       });
-      emit('plugin:error', { plugin, error: error as Error });
+      emit('plugin:error', { pluginId: id, error: error as Error, phase: 'initialization' });
       throw error;
     }
   }
@@ -151,7 +151,7 @@ export class PluginRegistry {
       // Update status
       this.updateStatus(id, { state: 'active' });
       
-      emit('plugin:activated', { plugin });
+      emit('plugin:activated', { pluginId: id });
       console.log(`✅ Plugin activated: ${id}`);
       
     } catch (error) {
@@ -159,7 +159,7 @@ export class PluginRegistry {
         state: 'error', 
         error: (error as Error).message 
       });
-      emit('plugin:error', { plugin, error: error as Error });
+      emit('plugin:error', { pluginId: id, error: error as Error, phase: 'initialization' });
       throw error;
     }
   }
@@ -187,7 +187,7 @@ export class PluginRegistry {
       // Update status
       this.updateStatus(id, { state: 'inactive' });
       
-      emit('plugin:deactivated', { plugin });
+      emit('plugin:deactivated', { pluginId: id });
       console.log(`⏸️ Plugin deactivated: ${id}`);
       
     } catch (error) {
@@ -195,7 +195,7 @@ export class PluginRegistry {
         state: 'error', 
         error: (error as Error).message 
       });
-      emit('plugin:error', { plugin, error: error as Error });
+      emit('plugin:error', { pluginId: id, error: error as Error, phase: 'initialization' });
       throw error;
     }
   }
@@ -259,7 +259,7 @@ export class PluginRegistry {
       await plugin.configure(newConfig);
     }
     
-    emit('plugin:config-changed', { plugin, config: newConfig });
+    emit('plugin:config-changed', { pluginId: id, config: newConfig });
   }
 
   /**

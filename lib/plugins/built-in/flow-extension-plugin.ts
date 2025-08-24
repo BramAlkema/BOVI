@@ -3,10 +3,10 @@
  * Demonstrates how to extend the flow system with plugins
  */
 
-import type { Plugin, PluginContext, FlowExtensionPlugin } from '../plugin-types.js';
+import type { Plugin, PluginContext, FlowExtensionPlugin as IFlowExtensionPlugin } from '../plugin-types.js';
 import type { FlowSpec } from '../../flow/types.js';
 
-export class FlowExtensionPlugin implements FlowExtensionPlugin {
+export class FlowExtensionPlugin implements IFlowExtensionPlugin {
   manifest = {
     id: 'bovi-core-flow-extensions',
     name: 'BOVI Flow Extensions',
