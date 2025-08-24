@@ -32,3 +32,11 @@ export * from "./m4/butlerHub.js";
 export * from "./m4/trials.js";
 export * from "./m4/distribution.js";
 export * from "./m4/exportAll.js";
+
+// UI Plugin System
+export * from "./ui/plugins/types.js";
+export * from "./ui/plugins/registry.js";
+export * from "./ui/plugins/host.js";
+export * from "./ui/plugins/m0-satnav.plugin.js";
+export * from "./ui/boot.js";
+export * from "./ui/dev-switcher.js";
