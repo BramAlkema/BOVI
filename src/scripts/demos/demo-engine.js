@@ -3,7 +3,7 @@
  * Interactive demonstration system for BOVI modes
  */
 
-import { $, dom, events, animate } from '../core/utils.js';
+import { $, dom, animate } from "../core/utils.js";
 
 class DemoEngine {
   constructor() {
@@ -38,7 +38,7 @@ class DemoEngine {
     
     try {
       // Clear previous content
-      dom.setContent(container, '');
+      dom.setContent(container, "");
       
       // Run the demo
       await demo.run(container);
@@ -48,7 +48,7 @@ class DemoEngine {
       
     } catch (error) {
       console.error(`Error running demo '${demoId}':`, error);
-      dom.setContent(container, '<p class="text-muted">Demo failed to load</p>');
+      dom.setContent(container, "<p class=\"text-muted\">Demo failed to load</p>");
     }
   }
   
@@ -74,15 +74,15 @@ export class Demo {
   /**
    * Override this method in concrete demos
    */
-  async run(container) {
-    throw new Error('Demo.run() must be implemented by subclass');
+  async run(_container) {
+    throw new Error("Demo.run() must be implemented by subclass");
   }
   
   /**
    * Helper to create demo content structure
    */
   createDemoStructure(container, content) {
-    const demoEl = dom.createElement('div', 'demo-result');
+    const demoEl = dom.createElement("div", "demo-result");
     demoEl.innerHTML = `
       <h4>${this.title}</h4>
       <div class="demo-content">${content}</div>
@@ -95,16 +95,16 @@ export class Demo {
    * Helper to create mode analysis
    */
   createModeAnalysis(analysis) {
-    const modes = ['balanced', 'obligated', 'value', 'immediate'];
+    const modes = ["balanced", "obligated", "value", "immediate"];
     const modeNames = {
-      balanced: 'Balanced (Equality Matching)',
-      obligated: 'Obligated (Authority Ranking)', 
-      value: 'Value (Market Pricing)',
-      immediate: 'Immediate (Communal Sharing)'
+      balanced: "Balanced (Equality Matching)",
+      obligated: "Obligated (Authority Ranking)", 
+      value: "Value (Market Pricing)",
+      immediate: "Immediate (Communal Sharing)"
     };
     
     const analysisHtml = modes.map(mode => {
-      if (!analysis[mode]) return '';
+      if (!analysis[mode]) return "";
       
       return `
         <div class="mode-item">
@@ -115,7 +115,7 @@ export class Demo {
           </div>
         </div>
       `;
-    }).join('');
+    }).join("");
     
     return `<div class="mode-analysis">${analysisHtml}</div>`;
   }

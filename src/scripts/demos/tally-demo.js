@@ -3,15 +3,15 @@
  * Interactive demonstration of medieval tally stick system
  */
 
-import { Demo, registerDemo } from './demo-engine.js';
+import { Demo, registerDemo } from "./demo-engine.js";
 
 class TallyDemo extends Demo {
   constructor() {
     super(
-      'tally',
-      'Village Tally Network',
-      'balanced',
-      'Experience how medieval villagers used split sticks to track debts and maintain fairness over time'
+      "tally",
+      "Village Tally Network",
+      "balanced",
+      "Experience how medieval villagers used split sticks to track debts and maintain fairness over time"
     );
   }
   
@@ -61,17 +61,17 @@ class TallyDemo extends Demo {
       </div>
       
       ${this.createModeAnalysis({
-        balanced: 'Primary mode - tally creates symmetric record-keeping system where both parties maintain proof of obligation',
-        obligated: 'Village customs and social pressure enforce the tally system\'s legitimacy',
-        value: 'Standard notch system allows proportional representation of different debt amounts',
-        immediate: 'Physical splitting feels viscerally fair - "you get half, I get half"'
-      })}
+    balanced: "Primary mode - tally creates symmetric record-keeping system where both parties maintain proof of obligation",
+    obligated: "Village customs and social pressure enforce the tally system's legitimacy",
+    value: "Standard notch system allows proportional representation of different debt amounts",
+    immediate: "Physical splitting feels viscerally fair - \"you get half, I get half\""
+  })}
     `;
     
     this.createDemoStructure(container, content);
     
     // Add some interactive styling
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       .tally-visualization {
         display: flex;

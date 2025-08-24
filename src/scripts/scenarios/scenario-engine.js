@@ -3,7 +3,7 @@
  * Real-world scenario analysis system
  */
 
-import { $, dom, events, animate } from '../core/utils.js';
+import { $, dom, animate } from "../core/utils.js";
 
 class ScenarioEngine {
   constructor() {
@@ -48,7 +48,7 @@ class ScenarioEngine {
    * Render scenario analysis HTML
    */
   renderScenarioAnalysis(scenario) {
-    const primaryMode = scenario.primaryMode || 'balanced';
+    const primaryMode = scenario.primaryMode || "balanced";
     const breakdown = scenario.breakdown || {};
     
     const modeCards = Object.entries(breakdown).map(([mode, description]) => {
@@ -56,21 +56,21 @@ class ScenarioEngine {
       const modeLabel = this.getModeLabel(mode);
       
       return `
-        <div class="mode-breakdown-card ${mode} ${isPrimary ? 'primary' : ''}">
+        <div class="mode-breakdown-card ${mode} ${isPrimary ? "primary" : ""}">
           <div class="mode-header">
             <span class="mode-badge ${mode}">${mode[0].toUpperCase()}</span>
-            <strong>${modeLabel}${isPrimary ? ' (Primary)' : ''}</strong>
+            <strong>${modeLabel}${isPrimary ? " (Primary)" : ""}</strong>
           </div>
           <p class="text-small">${description}</p>
         </div>
       `;
-    }).join('');
+    }).join("");
     
     return `
       <div class="scenario-analysis">
         <h3>${scenario.title}</h3>
         <div class="scenario-description">
-          <p class="text-muted">${scenario.description || ''}</p>
+          <p class="text-muted">${scenario.description || ""}</p>
         </div>
         <div class="mode-breakdown">
           <h4>BOVI Mode Analysis:</h4>
@@ -89,13 +89,13 @@ class ScenarioEngine {
    * Render scenario insights
    */
   renderInsights(scenario) {
-    if (!scenario.insights) return '';
+    if (!scenario.insights) return "";
     
     return `
       <div class="insights-section">
         <h4>Key Insights:</h4>
         <ul class="insights-list">
-          ${scenario.insights.map(insight => `<li>${insight}</li>`).join('')}
+          ${scenario.insights.map(insight => `<li>${insight}</li>`).join("")}
         </ul>
       </div>
     `;
@@ -106,10 +106,10 @@ class ScenarioEngine {
    */
   getModeLabel(mode) {
     const labels = {
-      balanced: 'Balanced (Equality Matching)',
-      obligated: 'Obligated (Authority Ranking)',
-      value: 'Value (Market Pricing)',
-      immediate: 'Immediate (Communal Sharing)'
+      balanced: "Balanced (Equality Matching)",
+      obligated: "Obligated (Authority Ranking)",
+      value: "Value (Market Pricing)",
+      immediate: "Immediate (Communal Sharing)"
     };
     return labels[mode] || mode;
   }

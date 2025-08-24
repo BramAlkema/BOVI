@@ -3,13 +3,13 @@
  * Handles tab-based navigation and section visibility
  */
 
-import { $$, events, dom } from './utils.js';
+import { $$, events, dom } from "./utils.js";
 
 class NavigationManager {
   constructor() {
-    this.currentTab = 'overview';
-    this.tabButtons = $$('.tab');
-    this.sections = $$('main > section');
+    this.currentTab = "overview";
+    this.tabButtons = $$(".tab");
+    this.sections = $$("main > section");
     
     this.init();
   }
@@ -17,7 +17,7 @@ class NavigationManager {
   init() {
     // Set up tab click handlers
     this.tabButtons.forEach(button => {
-      events.on(button, 'click', (e) => {
+      events.on(button, "click", (e) => {
         e.preventDefault();
         const tabId = button.dataset.tab;
         this.navigateToTab(tabId);
@@ -25,8 +25,8 @@ class NavigationManager {
     });
     
     // Handle browser back/forward
-    events.on(window, 'popstate', (e) => {
-      const tabId = e.state?.tab || 'overview';
+    events.on(window, "popstate", (e) => {
+      const tabId = e.state?.tab || "overview";
       this.navigateToTab(tabId, false);
     });
     
@@ -44,11 +44,11 @@ class NavigationManager {
     
     // Update browser history
     if (pushState) {
-      history.pushState({ tab: tabId }, '', `#${tabId}`);
+      history.pushState({ tab: tabId }, "", `#${tabId}`);
     }
     
     // Dispatch navigation event
-    window.dispatchEvent(new CustomEvent('bovi:navigate', {
+    window.dispatchEvent(new CustomEvent("bovi:navigate", {
       detail: { tab: tabId }
     }));
   }
@@ -56,11 +56,11 @@ class NavigationManager {
   updateActiveTab() {
     this.tabButtons.forEach(button => {
       if (button.dataset.tab === this.currentTab) {
-        button.setAttribute('aria-current', 'page');
-        dom.addClass(button, 'active');
+        button.setAttribute("aria-current", "page");
+        dom.addClass(button, "active");
       } else {
-        button.removeAttribute('aria-current');
-        dom.removeClass(button, 'active');
+        button.removeAttribute("aria-current");
+        dom.removeClass(button, "active");
       }
     });
   }
@@ -69,10 +69,10 @@ class NavigationManager {
     this.sections.forEach(section => {
       if (section.id === tabId) {
         dom.show(section);
-        section.setAttribute('aria-hidden', 'false');
+        section.setAttribute("aria-hidden", "false");
       } else {
         dom.hide(section);
-        section.setAttribute('aria-hidden', 'true');
+        section.setAttribute("aria-hidden", "true");
       }
     });
   }
