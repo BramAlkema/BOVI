@@ -18,7 +18,11 @@ export function getDist() {
   try {
     const s = localStorage.getItem(KEY);
     if (s) data = JSON.parse(s);
-  } catch {}
+  } catch (error) {
+    // ignore malformed data and reset
+    console.error("Failed to parse distribution data", error);
+    data = [];
+  }
   return data;
 }
 

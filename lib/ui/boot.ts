@@ -48,6 +48,6 @@ if (typeof window !== "undefined") {
   };
 
   (window as any).listUIs = () => {
-    console.table(["ui-satnav", "ui-routes-lights", "ui-rooms-chores", "ui-mission-deck"]);
+    return ["ui-satnav", "ui-routes-lights", "ui-rooms-chores", "ui-mission-deck"];
   };
 }

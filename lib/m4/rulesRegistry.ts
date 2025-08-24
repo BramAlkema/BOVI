@@ -13,7 +13,11 @@ export function loadRules() {
   try {
     const s = localStorage.getItem(KEY);
     if (s) rules = JSON.parse(s);
-  } catch {}
+  } catch (error) {
+    // ignore corrupt storage and reset registry
+    console.error("Failed to load rules registry", error);
+    rules = [];
+  }
   return rules;
 }
 
