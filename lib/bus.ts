@@ -217,6 +217,10 @@ class AuditLogger {
   export(): string {
     return JSON.stringify(this.logs, null, 2);
   }
+  
+  clear(): void {
+    this.logs = [];
+  }
 }
 
 // Global audit logger

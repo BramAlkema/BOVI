@@ -33,14 +33,28 @@ export * from "./m4/distribution.js";
 export * from "./m4/exportAll.js";
 
 // Services Layer
-export * from "./services/rulers.js";
-export * from "./services/index-commons.js";
-export * from "./services/hamburger.js";
-export * from "./services/money-veil.js";
-export * from "./services/weekly-digest.js";
-export * from "./services/smart-contracts.js";
-export * from "./services/cohort-auctions.js";
-export * from "./services/storm-mode.js";
+export * as ServicesRulers from "./services/rulers.js";
+export * as ServicesIndexCommons from "./services/index-commons.js";
+export * as ServicesHamburger from "./services/hamburger.js";
+export * as ServicesMoneyVeil from "./services/money-veil.js";
+export * as ServicesWeeklyDigest from "./services/weekly-digest.js";
+export * as ServicesSmartContracts from "./services/smart-contracts.js";
+export * as ServicesCohortAuctions from "./services/cohort-auctions.js";
+export * as ServicesStormMode from "./services/storm-mode.js";
+
+// API and Monitoring Layer
+export * from "./api/index.js";
+export * from "./monitoring/index.js";
+export * from "./integration/system-initialization.js";
+
+// Flow Module
+export * from "./flow/index.js";
+
+// Integration Module
+export * from "./integration/index.js";
+
+// Plugin System
+export * from "./plugins/index.js";
 
 // UI Plugin System
 export * from "./ui/plugins/types.js";
