@@ -1,24 +1,24 @@
-module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
-  extensionsToTreatAsEsm: ['.ts'],
+export default {
+  preset: "ts-jest",
+  testEnvironment: "jsdom",
+  extensionsToTreatAsEsm: [".ts"],
   globals: {
-    'ts-jest': {
+    "ts-jest": {
       useESM: true
     }
   },
-  moduleNameMapping: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
+  moduleNameMapper: {
+    "^(\\.{1,2}/.*)\\.js$": "$1"
   },
   testMatch: [
-    '<rootDir>/lib/**/__tests__/**/*.test.ts'
+    "<rootDir>/lib/**/__tests__/**/*.test.ts"
   ],
   collectCoverageFrom: [
-    'lib/**/*.ts',
-    '!lib/**/__tests__/**',
-    '!lib/**/*.d.ts'
+    "lib/**/*.ts",
+    "!lib/**/__tests__/**",
+    "!lib/**/*.d.ts"
   ],
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'html'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js']
+  coverageDirectory: "coverage",
+  coverageReporters: ["text", "lcov", "html"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
 };

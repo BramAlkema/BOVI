@@ -131,7 +131,6 @@ export class NodeExecutorService {
    * Execute assessment node
    */
   private async executeAssessNode(node: FlowNode, context: FlowContext): Promise<AssessResult> {
-    const criteria = node.config?.criteria || {};
     const threshold = node.config?.threshold || 0.5;
 
     // Simple assessment logic
@@ -154,7 +153,6 @@ export class NodeExecutorService {
    */
   private async executeDetectNode(node: FlowNode, context: FlowContext): Promise<DetectResult> {
     const triggers = node.config?.triggers || [];
-    const threshold = node.config?.threshold || 0;
 
     // Check previous node outputs for violations
     let violationDetected = false;
@@ -187,7 +185,7 @@ export class NodeExecutorService {
   /**
    * Execute default action node
    */
-  private async executeDefaultNode(node: FlowNode, context: FlowContext): Promise<DefaultResult> {
+  private async executeDefaultNode(node: FlowNode, _context: FlowContext): Promise<DefaultResult> {
     const action = node.config?.action || "default_action";
 
     // Simulate applying the action

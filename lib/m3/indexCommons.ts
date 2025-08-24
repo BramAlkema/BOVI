@@ -25,7 +25,11 @@ export class M3IndexCommons {
     try {
       const s = localStorage.getItem(KEY);
       if (s) this.sources = JSON.parse(s);
-    } catch {}
+    } catch (error) {
+      // ignore parse errors and start with empty state
+      console.error("Failed to parse index commons from storage", error);
+      this.sources = [];
+    }
   }
 
   add(src: IndexSource) {
