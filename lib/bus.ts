@@ -8,8 +8,12 @@ export interface BoviEventMap {
   // Value mode events (V.*)
   'V.pda.started': { flow: string; node: string; items: any[] };
   'V.pda.completed': { flow: string; node: string; nominal: number; real: number; quality: string };
+  'V.calculate.started': { flow: string; node: string; context: any };
   'V.calculate.completed': { flow: string; node: string; result: number };
   'V.assess.completed': { flow: string; node: string; assessment: boolean };
+  'V.default.started': { flow: string; node: string; timeout_s: number; action: string };
+  'V.default.cancelled': { flow: string; node: string; reason: string };
+  'V.default.applied': { flow: string; node: string; action: string; result: any };
   
   // Immediate mode events (I.*)
   'I.detect.violation': { flow: string; node: string; violation: string; affected: any[] };
@@ -18,6 +22,7 @@ export interface BoviEventMap {
   'I.default.applied': { flow: string; node: string; action: string; result: any };
   
   // Balanced mode events (B.*)
+  'B.calculate.started': { flow: string; node: string; context: any };
   'B.calculate.completed': { flow: string; node: string; values: Record<string, number> };
   'B.default.started': { flow: string; node: string; timeout_s: number; action: string };
   'B.default.cancelled': { flow: string; node: string; reason: string };
@@ -40,6 +45,7 @@ export interface BoviEventMap {
   'ui.countdown.tick': { flow: string; node: string; remaining: number };
   'ui.action.override': { flow: string; node: string; action: string };
   'ui.kpi.updated': { flow: string; kpi: string; value: any };
+  'ui.ai_butler.toggled': { enabled: boolean };
 }
 
 // Type-safe event bus
@@ -56,7 +62,7 @@ class TypedEventBus extends EventTarget {
     });
     
     // Log event for debugging
-    if (process.env.NODE_ENV === 'development') {
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
       console.log(`🚌 BOVI Event: ${type}`, detail);
     }
     
@@ -108,7 +114,12 @@ export const onBoviMode = (
     }
   };
   
-  Bus.addEventListener('*', handler as EventListener);
+  // Note: EventTarget doesn't support wildcard listeners
+  // We'll implement this by listening to all known BOVI events
+  const eventTypes = Object.keys({} as BoviEventMap).filter(key => key.startsWith(`${mode}.`));
+  eventTypes.forEach(eventType => {
+    Bus.addEventListener(eventType, handler as EventListener);
+  });
 };
 
 export const onFlow = (
@@ -197,7 +208,7 @@ class AuditLogger {
     }
     
     if (filter?.since) {
-      filtered = filtered.filter(log => log.timestamp >= filter.since);
+      filtered = filtered.filter(log => log.timestamp >= filter.since!);
     }
     
     return filtered;

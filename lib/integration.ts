@@ -3,9 +3,9 @@
  * Bridges existing HTML app with new Flow DSL and event system
  */
 
-import { FlowSpec, FlowRunner, flowRunner } from './flow';
-import { Bus, emit, on, AuditLog } from './bus';
-import { InlineStudio, createInlineStudio } from './studio';
+import { FlowSpec, FlowRunner, flowRunner } from './flow.js';
+import { Bus, emit, on, AuditLog } from './bus.js';
+import { InlineStudio, createInlineStudio } from './studio.js';
 
 // Load flow specifications
 const flowSpecs: Record<string, FlowSpec> = {};
@@ -82,7 +82,7 @@ const initializeStudios = (): void => {
     
     if (studioContainer) {
       const studio = createInlineStudio(`${flowId}Studio`);
-      studio.renderFlow(flowSpec);
+      studio.renderFlow(flowSpec).catch(console.error);
       studios[flowId] = studio;
       
       console.log(`🎨 Studio created for ${flowId}`);
@@ -266,14 +266,85 @@ const initializeAIButler = (): void => {
 };
 
 const integrateAIButler = (): void => {
-  // Update countdown displays
+  // Update countdown displays for each flow
   on('ui.countdown.tick', (event) => {
-    const countdownElement = document.querySelector(`[id*="Countdown"]`);
-    if (countdownElement) {
-      countdownElement.textContent = aiButlerEnabled 
-        ? `Auto-apply in ${event.detail.remaining}s`
-        : 'AI Butler is OFF';
+    updateCountdownDisplays(event.detail.flow, event.detail.node, event.detail.remaining);
+  });
+  
+  // Handle timer completion events
+  on('I.default.applied', (event) => {
+    clearCountdownDisplay(event.detail.flow, event.detail.node);
+  });
+  
+  on('B.default.applied', (event) => {
+    clearCountdownDisplay(event.detail.flow, event.detail.node);
+  });
+  
+  on('O.default.applied', (event) => {
+    clearCountdownDisplay(event.detail.flow, event.detail.node);
+  });
+};
+
+/**
+ * Update countdown displays in the UI
+ */
+const updateCountdownDisplays = (flowId: string, nodeId: string, remaining: number): void => {
+  // Update flow-specific countdowns
+  const flowCountdowns = [
+    `${flowId}Countdown`,
+    `${flowId}-countdown`,
+    `${nodeId}-countdown`,
+    'countdown' // Generic countdown element
+  ];
+  
+  flowCountdowns.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      if (aiButlerEnabled && remaining > 0) {
+        element.textContent = `Auto-apply in ${remaining}s`;
+        element.style.display = 'block';
+      } else if (!aiButlerEnabled) {
+        element.textContent = 'AI Butler is OFF';
+        element.style.display = 'block';
+      } else {
+        element.style.display = 'none';
+      }
     }
+  });
+  
+  // Update specific UI elements based on flow
+  if (flowId === 'groceries' && nodeId === 'suggest_swap') {
+    const swapCountdown = document.querySelector('.countdown');
+    if (swapCountdown) {
+      swapCountdown.textContent = aiButlerEnabled ? `${remaining}s` : 'OFF';
+    }
+  }
+};
+
+/**
+ * Clear countdown display when timer completes or is cancelled
+ */
+const clearCountdownDisplay = (flowId: string, nodeId: string): void => {
+  const countdownElements = [
+    `${flowId}Countdown`,
+    `${flowId}-countdown`, 
+    `${nodeId}-countdown`,
+    'countdown'
+  ];
+  
+  countdownElements.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.style.display = 'none';
+      element.textContent = '';
+    }
+  });
+  
+  // Clear specific countdown elements
+  const genericCountdowns = document.querySelectorAll('.countdown');
+  genericCountdowns.forEach(element => {
+    (element as HTMLElement).textContent = '';
+    (element as HTMLElement).style.display = 'none';
   });
 };
 

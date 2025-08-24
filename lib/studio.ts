@@ -3,8 +3,9 @@
  * SVG-based flow visualization with live event highlighting
  */
 
-import { FlowSpec, FlowNode, FlowEdge } from './flow';
-import { Bus, on } from './bus';
+import { FlowSpec, FlowNode, FlowEdge } from './flow.js';
+import { Bus, on } from './bus.js';
+import ELK, { ElkNode, LayoutOptions } from 'elkjs/lib/elk.bundled.js';
 
 // Layout calculation using ELK-style algorithm (simplified)
 interface LayoutNode {
@@ -38,7 +39,7 @@ const BOVI_COLORS = {
 
 export class InlineStudio {
   private container: HTMLElement;
-  private svg: SVGElement;
+  private svg!: SVGElement;
   private flowSpec: FlowSpec | null = null;
   private layout: Layout | null = null;
   private activeNodes: Set<string> = new Set();
@@ -193,132 +194,85 @@ export class InlineStudio {
     this.container.appendChild(this.svg);
   }
   
-  public renderFlow(flowSpec: FlowSpec): void {
+  public async renderFlow(flowSpec: FlowSpec): Promise<void> {
     this.flowSpec = flowSpec;
-    this.layout = this.calculateLayout(flowSpec);
+    this.layout = await this.calculateLayout(flowSpec);
     this.render();
   }
   
-  private calculateLayout(flowSpec: FlowSpec): Layout {
-    // Simplified layered layout algorithm
-    const layers: string[][] = this.calculateLayers(flowSpec);
-    const nodeWidth = 120;
-    const nodeHeight = 60;
-    const layerSpacing = 200;
-    const nodeSpacing = 80;
+  private async calculateLayout(flowSpec: FlowSpec): Promise<Layout> {
+    // Use ELK for professional graph layout
+    const elk = new ELK();
     
-    const nodes: LayoutNode[] = [];
-    const edges: LayoutEdge[] = [];
+    // Convert Flow DSL to ELK format
+    const elkGraph: ElkNode = {
+      id: 'root',
+      layoutOptions: {
+        'elk.algorithm': 'layered',
+        'elk.direction': 'DOWN',
+        'elk.spacing.nodeNode': '50',
+        'elk.layered.spacing.nodeNodeBetweenLayers': '80',
+        'elk.spacing.edgeNode': '30'
+      },
+      children: flowSpec.nodes.map(node => ({
+        id: node.id,
+        width: 120,
+        height: 60,
+        labels: [{ text: node.label }]
+      })),
+      edges: flowSpec.edges.map(edge => ({
+        id: `${edge.from}-${edge.to}`,
+        sources: [edge.from],
+        targets: [edge.to]
+      }))
+    };
     
-    // Position nodes in layers
-    layers.forEach((layer, layerIndex) => {
-      const layerY = layerIndex * layerSpacing + 50;
-      const startX = (800 - (layer.length - 1) * nodeSpacing - nodeWidth) / 2;
-      
-      layer.forEach((nodeId, nodeIndex) => {
-        nodes.push({
-          id: nodeId,
-          x: startX + nodeIndex * nodeSpacing,
-          y: layerY,
-          width: nodeWidth,
-          height: nodeHeight
-        });
-      });
-    });
+    const layoutedGraph = await elk.layout(elkGraph);
     
-    // Calculate edge paths
-    flowSpec.edges.forEach(edge => {
-      const fromNode = nodes.find(n => n.id === edge.from);
-      const toNode = nodes.find(n => n.id === edge.to);
-      
-      if (fromNode && toNode) {
-        const fromX = fromNode.x + fromNode.width / 2;
-        const fromY = fromNode.y + fromNode.height;
-        const toX = toNode.x + toNode.width / 2;
-        const toY = toNode.y;
-        
-        // Simple straight line path
-        edges.push({
-          from: edge.from,
-          to: edge.to,
-          points: [
-            { x: fromX, y: fromY },
-            { x: toX, y: toY }
+    // Convert ELK result back to our format
+    const nodes: LayoutNode[] = layoutedGraph.children?.map(child => ({
+      id: child.id!,
+      x: child.x || 0,
+      y: child.y || 0,
+      width: child.width || 120,
+      height: child.height || 60
+    })) || [];
+    
+    const edges: LayoutEdge[] = layoutedGraph.edges?.map(elkEdge => {
+      const sections = elkEdge.sections || [];
+      const points = sections.length > 0 
+        ? [
+            { x: sections[0].startPoint.x, y: sections[0].startPoint.y },
+            { x: sections[0].endPoint.x, y: sections[0].endPoint.y }
           ]
-        });
-      }
-    });
-    
-    const maxY = Math.max(...nodes.map(n => n.y + n.height)) + 50;
+        : [{ x: 0, y: 0 }, { x: 0, y: 0 }];
+        
+      return {
+        from: elkEdge.sources?.[0] || '',
+        to: elkEdge.targets?.[0] || '',
+        points
+      };
+    }) || [];
     
     return {
       nodes,
       edges,
-      width: 800,
-      height: Math.max(400, maxY)
+      width: Math.max(800, (layoutedGraph.width || 800) + 100),
+      height: Math.max(400, (layoutedGraph.height || 400) + 100)
     };
   }
   
-  private calculateLayers(flowSpec: FlowSpec): string[][] {
-    // Simple topological sort for layering
-    const layers: string[][] = [];
-    const visited = new Set<string>();
-    const inDegree: Record<string, number> = {};
-    
-    // Calculate in-degrees
-    flowSpec.nodes.forEach(node => {
-      inDegree[node.id] = 0;
-    });
-    
-    flowSpec.edges.forEach(edge => {
-      inDegree[edge.to] = (inDegree[edge.to] || 0) + 1;
-    });
-    
-    // Find nodes with no incoming edges (start nodes)
-    let currentLayer = flowSpec.nodes
-      .filter(node => inDegree[node.id] === 0)
-      .map(node => node.id);
-    
-    while (currentLayer.length > 0) {
-      layers.push([...currentLayer]);
-      currentLayer.forEach(nodeId => visited.add(nodeId));
-      
-      const nextLayer: string[] = [];
-      
-      currentLayer.forEach(nodeId => {
-        flowSpec.edges
-          .filter(edge => edge.from === nodeId)
-          .forEach(edge => {
-            inDegree[edge.to]--;
-            if (inDegree[edge.to] === 0 && !visited.has(edge.to)) {
-              nextLayer.push(edge.to);
-            }
-          });
-      });
-      
-      currentLayer = nextLayer;
-    }
-    
-    // Add any remaining nodes (circular dependencies)
-    const remaining = flowSpec.nodes
-      .filter(node => !visited.has(node.id))
-      .map(node => node.id);
-    
-    if (remaining.length > 0) {
-      layers.push(remaining);
-    }
-    
-    return layers;
-  }
   
   private render(): void {
     if (!this.layout || !this.flowSpec) return;
     
-    // Clear previous content
-    while (this.svg.firstChild?.tagName !== 'style') {
-      if (this.svg.firstChild?.tagName === 'style') break;
-      this.svg.removeChild(this.svg.lastChild!);
-    }
+    // Clear previous content (keep style element)
+    const children = Array.from(this.svg.children);
+    children.forEach(child => {
+      if ((child as Element).tagName !== 'style' && (child as Element).tagName !== 'defs') {
+        this.svg.removeChild(child);
+      }
+    });
     
     // Update viewBox
     this.svg.setAttribute('viewBox', `0 0 ${this.layout.width} ${this.layout.height}`);
@@ -519,7 +473,7 @@ export class InlineStudio {
     
     // In a real implementation, show this in a proper UI
     // For now, just emit an event
-    Bus.emit('ui.node.selected', { nodeId: node.id, details });
+    window.dispatchEvent(new CustomEvent('ui.node.selected', { detail: { nodeId: node.id, details } }));
   }
   
   public clear(): void {
