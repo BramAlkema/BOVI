@@ -75,7 +75,7 @@ export function renderStudio(flow: FlowSpec, mount: HTMLElement) {
 }
 
 function toposort(flow: FlowSpec): NodeSpec[][] {
-  const indeg = new Map(flow.nodes.map(n=>[n.id,0] as const));
+  const indeg = new Map<string, number>(flow.nodes.map(n=>[n.id,0]));
   for (const e of flow.edges) indeg.set(e.to, (indeg.get(e.to)??0)+1);
   const S = flow.nodes.filter(n=>(indeg.get(n.id)??0)===0);
   const layers: NodeSpec[][] = []; 

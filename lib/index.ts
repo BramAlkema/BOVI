@@ -22,7 +22,6 @@ export * from "./m3/studio.js";
 export * from "./m3/indexCommons.js";
 export * from "./m3/contracts.js";
 export * from "./m3/railsMarket.js";
-export * from "./m3/rulers.js";
 export * from "./m3/storm.js";
 
 // M4 Lab

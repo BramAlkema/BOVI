@@ -179,9 +179,10 @@ function setupMoneyVeilCard(): void {
       const netImpact = document.querySelector('#net-impact');
       
       if (inflationDrift) {
-        const drift = (veilData.inflationDrift * 100).toFixed(2);
-        inflationDrift.textContent = `${drift > 0 ? '+' : ''}${drift}%`;
-        inflationDrift.className = `metric-value ${drift > 0 ? 'negative' : 'positive'}`;
+        const driftValue = veilData.inflationDrift * 100;
+        const drift = driftValue.toFixed(2);
+        inflationDrift.textContent = `${driftValue > 0 ? '+' : ''}${drift}%`;
+        inflationDrift.className = `metric-value ${driftValue > 0 ? 'negative' : 'positive'}`;
       }
       
       if (bracketCreep) bracketCreep.textContent = `£${Math.abs(veilData.bracketCreep).toFixed(2)}`;

@@ -43,6 +43,7 @@ if (typeof window !== "undefined") {
       return switchUI(appElement, id);
     } else {
       console.error("App element not found for UI switching");
+      return Promise.reject(new Error("App element not found"));
     }
   };
   

@@ -195,7 +195,7 @@ export interface Trial {
 export class BoviAPIError extends Error {
   constructor(
     public code: string,
-    public message: string,
+    public override message: string,
     public details?: any
   ) {
     super(message);

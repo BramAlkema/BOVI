@@ -1,5 +1,7 @@
 // M0: Typed Event Bus
 
+export type Mode = "B" | "O" | "V" | "I";
+
 export type AppEvent =
   | "I.default.started" | "I.default.ticked" | "I.default.cancelled" | "I.default.applied"
   | "B.sweep.applied" | "B.pot.breached"
