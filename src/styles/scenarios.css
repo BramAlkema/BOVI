@@ -1,0 +1,119 @@
+/**
+ * BOVI Scenarios Styling
+ * Interactive scenario components and mode-specific styling
+ */
+
+/* Interactive scenarios */
+.scenario {
+  padding: var(--space-lg);
+  border-radius: var(--space-md);
+  margin: var(--space-sm) 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.scenario:hover {
+  transform: translateY(-2px);
+}
+
+/* Mode-specific scenario styling */
+.scenario.balanced {
+  border-color: var(--balanced);
+  background: rgba(76,201,240,.08);
+}
+
+.scenario.obligated {
+  border-color: var(--obligated);
+  background: rgba(255,107,107,.08);
+}
+
+.scenario.value {
+  border-color: var(--value);
+  background: rgba(161,255,181,.08);
+}
+
+.scenario.immediate {
+  border-color: var(--immediate);
+  background: rgba(255,209,102,.08);
+}
+
+/* Scenario content */
+.scenario h4 {
+  margin-bottom: var(--space-xs);
+}
+
+.scenario .small {
+  opacity: 0.8;
+}
+
+/* KPI displays */
+.kpi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-radius: var(--space-md);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.05));
+  border: var(--outline);
+}
+
+/* Progress gauges */
+.gauge {
+  height: 10px;
+  background: rgba(255,255,255,.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.gauge > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  transition: width var(--transition-medium);
+}
+
+/* Demo result containers */
+.demo-result {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(255,255,255,.02);
+  border-radius: var(--space-sm);
+  border-left: 3px solid var(--brand);
+}
+
+/* Analysis breakdowns */
+.mode-analysis {
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.mode-analysis .mode-item {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--space-sm);
+  background: rgba(255,255,255,.02);
+}
+
+.mode-analysis .mode-item .mode-badge {
+  flex-shrink: 0;
+}
+
+/* Interactive elements specific to scenarios */
+.scenario-controls {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  align-items: center;
+}
+
+.countdown {
+  font-variant-numeric: tabular-nums;
+  background: rgba(255,255,255,.08);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--space-sm);
+  border: var(--outline);
+  font-size: var(--font-size-small);
+}

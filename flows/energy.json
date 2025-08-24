@@ -1,0 +1,107 @@
+{
+  "id": "energy",
+  "title": "Energy — Cohort switching", 
+  "description": "If your tariff drifts above the cohort baseline, the default is to enrol you in the next group switch (you can opt out).",
+  "context": {
+    "current_tariff": 92,
+    "cohort_baseline": 78,
+    "enrollment_deadline": "Friday 18:00"
+  },
+  "nodes": [
+    {
+      "id": "calculate_excess",
+      "type": "V.Calculate",
+      "label": "Calculate tariff excess",
+      "description": "Value mode: proportional cost comparison",
+      "config": {
+        "current_tariff": "{{context.current_tariff}}",
+        "cohort_baseline": "{{context.cohort_baseline}}"
+      },
+      "outputs": ["excess_monthly", "annual_saving", "excess_percent"]
+    },
+    {
+      "id": "assess_switching_benefit", 
+      "type": "O.Assess",
+      "label": "Assess cohort benefit",
+      "description": "Authority ranking: collective vs individual power",
+      "config": {
+        "minimum_saving": 10,
+        "cohort_power_multiplier": 1.2
+      },
+      "outputs": ["switching_beneficial", "collective_advantage"]
+    },
+    {
+      "id": "enroll_in_cohort",
+      "type": "O.Default",
+      "label": "Enroll in energy cohort",
+      "description": "Default to collective action for better outcomes",
+      "config": {
+        "timeout_s": 10,
+        "episode": "ep-cohort",
+        "action": "cohort_enrollment", 
+        "reversible": true,
+        "deadline": "{{context.enrollment_deadline}}"
+      },
+      "outputs": ["enrolled", "enrollment_confirmed"]
+    },
+    {
+      "id": "update_energy_kpis",
+      "type": "B.Sweep", 
+      "label": "Update energy KPIs",
+      "description": "Track collective action outcomes",
+      "config": {
+        "kpis": {
+          "tariff_excess": "last(calculate_excess.excess_monthly)",
+          "cohort_enrollments": "count(enroll_in_cohort.applied)",
+          "annual_savings": "sum(calculate_excess.annual_saving)"
+        }
+      },
+      "outputs": ["kpi_updated"]
+    },
+    {
+      "id": "trigger_cohort_episode",
+      "type": "B.Learn",
+      "label": "Queue cohort education",
+      "description": "Explain collective bargaining power concepts",
+      "config": {
+        "episode_id": "ep-cohort",
+        "trigger": "on_enrollment",
+        "priority": "medium"
+      },
+      "outputs": ["episode_queued"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "calculate_excess",
+      "to": "assess_switching_benefit",
+      "label": "excess_calculated", 
+      "condition": "excess_monthly > 0"
+    },
+    {
+      "from": "assess_switching_benefit",
+      "to": "enroll_in_cohort",
+      "label": "beneficial_switch",
+      "condition": "switching_beneficial == true"
+    },
+    {
+      "from": "enroll_in_cohort", 
+      "to": "update_energy_kpis",
+      "label": "action_completed",
+      "condition": "always"
+    },
+    {
+      "from": "enroll_in_cohort",
+      "to": "trigger_cohort_episode",
+      "label": "enrolled",
+      "condition": "enrolled == true"
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "bovi_modes": ["O", "V", "B"],
+    "primary_mode": "O",
+    "created": "2024-08-24", 
+    "tags": ["energy", "cohort", "collective_action", "obligated_fairness"]
+  }
+}

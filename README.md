@@ -11,93 +11,168 @@ BOVI explains money as a bundle of four fairness modes, each solving different t
 - **🟢 Value** (Market Pricing) — Transferable medium, proportional exchange
 - **🟡 Immediate** (Communal Sharing) — Direct swaps, tit-for-tat, visceral fairness
 
-## Core Insight
+## 🚀 **Hybrid Architecture**
 
-Competing "origin stories" of money aren't contradictory—they each reflect one fairness mode. Money reforms spark moral outrage because each mode plugs into deep fairness instincts. Understanding BOVI means seeing monetary policy as moral psychology, not just economics.
+This app combines educational interface with sophisticated flow management:
 
-## Features
+### **Satnav UI** (User-Friendly)
+- Familiar interface for exploring BOVI concepts
+- Interactive demos and real-world scenarios
+- AI Butler with transparent timeout defaults
 
-### 🎓 Interactive Learning Modules
-- Individual deep-dives into each BOVI mode
-- Historical examples and modern applications
-- Interactive demos showing each fairness logic in action
+### **Flow DSL Engine** (TypeScript)
+- JSON-based flow specifications for each scenario
+- XState-powered execution with timeout handling  
+- Type-safe event bus for audit compliance
+- Live SVG visualization studios
 
-### 🎭 Scenario-Based Learning
-- Real-world situations analyzed through BOVI lens
-- Multi-mode breakdowns showing how fairness modes interact
-- Practical examples from rent negotiations to grocery shopping
-
-### 📦 Bundle Explorer
-- Understand how modes layer together in modern money systems
-- Explore why unbundling is difficult but necessary
-- Crypto's errors and opportunities through BOVI framework
-
-### 🎨 Polished UX
-- Clean, professional interface inspired by the LTS Money App
-- Responsive design that works on all devices
-- Smooth interactions and micro-animations
+### **Single Source of Truth**
+```json
+{
+  "id": "groceries",
+  "nodes": [
+    {"type": "V.PDA", "timeout_s": 10, "episode": "ep-shrink"}
+  ],
+  "meta": {"bovi_modes": ["V", "I", "B"], "primary_mode": "I"}
+}
+```
 
 ## Quick Start
 
-1. Clone this repository
-2. Open `index.html` in your browser
-3. Explore the framework starting with the Overview section
-4. Try the interactive demos and scenarios
+### Development Setup
+```bash
+# Clone and install
+git clone https://github.com/BramAlkema/BOVI.git
+cd BOVI
+npm install
 
-## Educational Approach
+# Start development server  
+npm run dev
 
-### Learning Path
-1. **Overview** — Understand the core BOVI insight
-2. **Individual Modes** — Deep dive into each fairness logic
-3. **Scenarios** — See BOVI in real-world situations
-4. **Bundle Analysis** — Understand why reform is hard
+# TypeScript development with watch mode
+npm run dev:watch
+```
 
-### Key Pedagogical Principles
-- **Scenarios First** — Start with concrete examples, not abstract theory
-- **Interactive Discovery** — Learn through doing, not reading
-- **Personal Relevance** — Connect to everyday money experiences
-- **Progressive Complexity** — Build from simple to sophisticated understanding
+### Production Build (Automated)
+- **Push to `main`** → GitHub Actions automatically builds and deploys
+- **TypeScript compiled** → JavaScript for fast loading
+- **Assets optimized** → CSS minified, flows copied
+- **Deployed to GitHub Pages** → Same domain, zero downtime
+
+## Development Commands
+
+```bash
+npm run dev          # Start local server
+npm run build        # Full production build
+npm run typecheck    # Check TypeScript without compiling
+npm run lint         # ESLint with TypeScript support  
+npm run format       # Prettier formatting
+npm run dev:watch    # TypeScript compilation with watch mode
+```
+
+## Architecture Deep Dive
+
+### **Flow DSL System**
+- **3 Production Flows**: groceries.json, rent.json, energy.json
+- **BOVI Type System**: B.* (Balanced), O.* (Obligated), V.* (Value), I.* (Immediate)
+- **XState Integration**: Sophisticated state management with timeout handling
+- **Event-Driven**: All user actions emit structured BOVI events
+
+### **Live Studios**
+- **SVG Visualization**: Real-time flow execution with node highlighting
+- **BOVI Color Coding**: Each fairness mode has distinct visual identity
+- **Interactive Nodes**: Click for flow details and audit information
+- **Cross-Tab Sync**: BroadcastChannel mirrors events to other windows
+
+### **Type Safety**
+```typescript
+// Full event typing
+emit('I.default.applied', {
+  flow: 'groceries',
+  node: 'suggest_swap', 
+  euros_saved: 2.10
+});
+
+// Audit compliance
+const logs = AuditLog.getLogs({
+  flow: 'groceries',
+  since: Date.now() - 86400000
+});
+```
+
+## GitHub Actions Integration
+
+The project uses GitHub Actions for seamless TypeScript deployment:
+
+1. **Code Push** → Triggers build pipeline
+2. **TypeScript Compilation** → `tsc` generates JavaScript
+3. **Bundle Optimization** → Rollup + Terser minification  
+4. **Asset Processing** → CSS concatenation, flow copying
+5. **GitHub Pages Deploy** → Automatic publication
+
+**No manual builds required!** Just push TypeScript and get optimized JavaScript deployment.
+
+## Educational Features
+
+### 🎓 Interactive Learning Modules
+- Individual deep-dives into each BOVI mode
+- Historical examples with interactive demonstrations
+- Real-world scenario analysis with multi-mode breakdowns
+
+### 🎭 Scenario-Based Learning
+- Groceries: Shrinkflation detection (Immediate mode)
+- Rent: Fair negotiation (Balanced mode)  
+- Energy: Cohort switching (Obligated mode)
+
+### 📊 Live Analytics
+- Flow execution tracking
+- AI Butler decision audit trail
+- KPI aggregation across scenarios
+
+### 🎨 Production-Quality UX
+- Professional dark theme with BOVI color system
+- Responsive design for mobile and desktop
+- Smooth animations and micro-interactions
+- Accessibility compliant (WCAG 2.1)
 
 ## Target Audiences
 
 - **Students** — Economics, psychology, anthropology courses
 - **Professionals** — FinTech, policy makers, financial advisors
 - **General Public** — Anyone wanting to understand money's moral dimensions
-- **Researchers** — Exploring fairness, behavioral economics, monetary theory
+- **Developers** — Example of hybrid educational architecture
 
 ## Theoretical Foundation
 
-BOVI builds on Alan Fiske's Relational Models Theory, mapping his four fundamental patterns of social interaction to monetary exchange:
+BOVI maps Alan Fiske's Relational Models Theory to monetary exchange:
 
-| Fiske Model | BOVI Mode | Fairness Logic | Example |
-|-------------|-----------|----------------|---------|
-| Equality Matching | Balanced | Symmetry, turn-taking | Tally sticks |
-| Authority Ranking | Obligated | Hierarchical compliance | Tax payments |
-| Market Pricing | Value | Proportional exchange | Currency trading |
-| Communal Sharing | Immediate | Direct equivalence | Neighborhood favors |
-
-## Project Structure
-
-```
-BOVI/
-├── index.html              # Main educational app
-├── README.md              # This file
-├── docs/                  # Documentation directory
-│   ├── backstory.md       # Project origins and motivation
-│   ├── theory.md          # Detailed theoretical foundation
-│   ├── examples.md        # Extended examples and case studies
-│   └── implementation.md  # Technical documentation
-└── assets/               # Future: images, videos, etc.
-```
+| Fiske Model | BOVI Mode | Fairness Logic | Technology Implementation |
+|-------------|-----------|----------------|---------------------------|
+| Equality Matching | Balanced | Symmetry, turn-taking | B.* node types, ledger tracking |
+| Authority Ranking | Obligated | Hierarchical compliance | O.* nodes, timeout enforcement |
+| Market Pricing | Value | Proportional exchange | V.* PDA, price discovery |
+| Communal Sharing | Immediate | Direct equivalence | I.* detection, fairness violations |
 
 ## Contributing
 
-This is an educational project exploring monetary fairness through interactive learning. Contributions welcome:
+This is an open educational project exploring monetary fairness:
 
-1. **Content** — Additional examples, scenarios, historical cases
-2. **Interactivity** — New demos, simulations, visualizations
-3. **UX** — Interface improvements, accessibility enhancements
-4. **Theory** — Extensions to BOVI framework, academic connections
+1. **Content** — Additional scenarios, historical examples
+2. **Technology** — New flow types, studio enhancements  
+3. **Theory** — Extensions to BOVI framework
+4. **Accessibility** — Multi-language, improved a11y
+
+### TypeScript Development
+- Strong typing throughout the flow system
+- Event bus with compile-time safety
+- Proper separation of concerns
+- Extensive JSDoc documentation
+
+## Live Demo
+
+**🚀 Production**: https://bramalkema.github.io/BOVI/
+**📊 Analytics**: GitHub Actions build logs
+**🔍 Source**: Full TypeScript + JavaScript hybrid codebase
 
 ## License
 
@@ -108,8 +183,8 @@ Open source educational project. See docs/ for detailed attribution and sources.
 - 📚 [Detailed Theory](docs/theory.md) — Academic foundation and references
 - 🎭 [Extended Examples](docs/examples.md) — More real-world BOVI applications  
 - 📖 [Project Backstory](docs/backstory.md) — Why BOVI matters now
-- ⚙️ [Implementation](docs/implementation.md) — Technical details and future roadmap
+- ⚙️ [Implementation](docs/implementation.md) — Technical architecture details
 
 ---
 
-**"Money isn't a single invention—it's a bundle of fairness modes. Reform requires understanding all four."**
+**"Money isn't a single invention—it's a bundle of fairness modes. TypeScript helps us build that understanding with precision and scalability."**

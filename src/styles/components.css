@@ -1,0 +1,188 @@
+/**
+ * BOVI UI Components
+ * Reusable interface elements
+ */
+
+/* App shell */
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--panel-2);
+  border-bottom: var(--outline);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+header .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: conic-gradient(from 230deg, var(--brand), var(--brand-2));
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 16px;
+  margin: 0 var(--space-xs) 0 0;
+  letter-spacing: 0.3px;
+}
+
+header .sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Main layout frame */
+.frame {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+/* Navigation */
+nav {
+  background: var(--panel);
+  border: var(--outline);
+  border-radius: var(--radius);
+  padding: var(--space-sm);
+  height: max(70vh, 540px);
+  position: sticky;
+  top: 74px;
+}
+
+nav button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-xs) 0;
+  background: transparent;
+  color: var(--text);
+  border: var(--outline);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+nav button[aria-current="page"] {
+  background: linear-gradient(180deg, rgba(76,201,240,.16), rgba(76,201,240,.06));
+  border-color: rgba(76,201,240,.35);
+}
+
+nav button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.2);
+}
+
+/* Main content area */
+main {
+  min-height: 70vh;
+}
+
+/* Panels */
+.panel {
+  background: var(--panel);
+  border: var(--outline);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--space-lg);
+}
+
+/* Cards */
+.card {
+  padding: var(--space-md);
+  border-radius: var(--space-md);
+  border: var(--outline);
+  background: rgba(255,255,255,.03);
+}
+
+.card h4 {
+  margin: 0.2rem 0 0.4rem 0;
+}
+
+/* Interactive elements */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 12px;
+  border: var(--outline);
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.06));
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  font-size: inherit;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn.brand {
+  border-color: rgba(76,201,240,.5);
+  background: linear-gradient(180deg, rgba(76,201,240,.18), rgba(76,201,240,.08));
+}
+
+/* Chips and badges */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px var(--space-sm);
+  border-radius: 999px;
+  border: var(--outline);
+  background: rgba(255,255,255,.04);
+  font-size: var(--font-size-small);
+}
+
+/* BOVI mode badges */
+.mode-badge {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--space-sm);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.mode-badge.balanced { background: var(--balanced); }
+.mode-badge.obligated { background: var(--obligated); }
+.mode-badge.value { background: var(--value); }
+.mode-badge.immediate { background: var(--immediate); }
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,.08);
+  margin: var(--space-sm) 0;
+}
+
+/* Responsive design */
+@media (max-width: 920px) {
+  .frame {
+    grid-template-columns: 1fr;
+  }
+  
+  nav {
+    position: relative;
+    top: 0;
+    height: auto;
+  }
+}

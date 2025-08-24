@@ -1,0 +1,108 @@
+{
+  "id": "rent",
+  "title": "Rent — Negotiate increase",
+  "description": "Compare the landlord's nominal rise to your real costs. If you do nothing, the AI butler will submit a fair counter based on your personal index.",
+  "context": {
+    "unit": "€",
+    "current_rent": 1200,
+    "proposed_increase": 5.0,
+    "personal_index": 2.2
+  },
+  "nodes": [
+    {
+      "id": "calculate_fair_counter",
+      "type": "B.Calculate",
+      "label": "Calculate fair counter-offer",
+      "description": "Balanced mode: symmetric indexation vs landlord proposal",
+      "config": {
+        "base_rent": "{{context.current_rent}}",
+        "landlord_increase": "{{context.proposed_increase}}",
+        "personal_index": "{{context.personal_index}}"
+      },
+      "outputs": ["landlord_ask", "fair_counter", "gap_amount"]
+    },
+    {
+      "id": "assess_gap",
+      "type": "V.Assess", 
+      "label": "Assess negotiation gap",
+      "description": "Value mode: proportional fairness evaluation",
+      "config": {
+        "threshold_euros": 20,
+        "threshold_percent": 2.0
+      },
+      "outputs": ["gap_significant", "negotiation_recommended"]
+    },
+    {
+      "id": "submit_counter",
+      "type": "B.Default",
+      "label": "Submit counter-offer",
+      "description": "Default to balanced fairness unless overridden", 
+      "config": {
+        "timeout_s": 10,
+        "episode": "ep-lts",
+        "action": "submit_counter_offer",
+        "reversible": true
+      },
+      "outputs": ["counter_submitted", "negotiation_started"]
+    },
+    {
+      "id": "update_housing_kpis",
+      "type": "B.Sweep",
+      "label": "Update housing KPIs",
+      "description": "Track rent negotiation outcomes",
+      "config": {
+        "kpis": {
+          "rent_gap": "last(calculate_fair_counter.gap_amount)",
+          "counters_submitted": "count(submit_counter.applied)",
+          "housing_burden": "current_rent / monthly_income"
+        }
+      },
+      "outputs": ["kpi_updated"]
+    },
+    {
+      "id": "trigger_lts_episode",
+      "type": "B.Learn",
+      "label": "Queue LTS education",
+      "description": "Explain real vs nominal money concepts",
+      "config": {
+        "episode_id": "ep-lts", 
+        "trigger": "on_counter_submitted",
+        "priority": "medium"
+      },
+      "outputs": ["episode_queued"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "calculate_fair_counter",
+      "to": "assess_gap",
+      "label": "gap_calculated",
+      "condition": "gap_amount != null"
+    },
+    {
+      "from": "assess_gap",
+      "to": "submit_counter", 
+      "label": "gap_significant",
+      "condition": "negotiation_recommended == true"
+    },
+    {
+      "from": "submit_counter",
+      "to": "update_housing_kpis",
+      "label": "action_completed",
+      "condition": "always"
+    },
+    {
+      "from": "submit_counter",
+      "to": "trigger_lts_episode",
+      "label": "counter_submitted",
+      "condition": "counter_submitted == true"
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "bovi_modes": ["B", "V"],
+    "primary_mode": "B", 
+    "created": "2024-08-24",
+    "tags": ["rent", "negotiation", "balanced_fairness", "indexation"]
+  }
+}

@@ -1,0 +1,54 @@
+/**
+ * BOVI Design System - CSS Custom Properties
+ * Core color palette and design tokens
+ */
+
+:root {
+  /* Base Colors */
+  --bg: #0b0f14;        /* Near-black blue background */
+  --panel: #111823;     /* Card/panel background */
+  --panel-2: #0f141d;   /* Header/navigation background */
+  --text: #e7eef9;      /* Primary text color */
+  --muted: #7a8798;     /* Secondary text color */
+  
+  /* Brand Colors */
+  --brand: #4cc9f0;     /* Primary accent */
+  --brand-2: #a1ffb5;   /* Secondary accent */
+  
+  /* Status Colors */
+  --warn: #ffd166;      /* Warning/attention */
+  --danger: #ff6b6b;    /* Error/danger */
+  --ok: #7cf08a;        /* Success/confirmation */
+  
+  /* BOVI Mode Colors */
+  --balanced: #4cc9f0;   /* Blue - stability, balance */
+  --obligated: #ff6b6b;  /* Red - authority, urgency */
+  --value: #a1ffb5;      /* Green - growth, value */
+  --immediate: #ffd166;  /* Yellow - attention, warmth */
+  
+  /* Layout Properties */
+  --outline: 1px solid rgba(255, 255, 255, 0.08);
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  
+  /* Typography */
+  --font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", 
+                 Roboto, Inter, "Helvetica Neue", Arial, 
+                 "Apple Color Emoji", "Segoe UI Emoji";
+  --font-size-base: 15px;
+  --line-height-base: 1.45;
+  --font-size-small: 12px;
+  --font-size-large: 28px;
+  
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 18px;
+  --space-xl: 24px;
+  
+  /* Animation */
+  --transition-fast: 0.18s ease;
+  --transition-medium: 0.24s ease;
+  --transition-slow: 0.3s ease;
+}

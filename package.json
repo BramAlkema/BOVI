@@ -1,0 +1,56 @@
+{
+  "name": "bovi-framework",
+  "version": "1.0.0",
+  "description": "Educational app for understanding the four fairness modes of money",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run serve",
+    "serve": "python3 -m http.server 8080 || python -m http.server 8080",
+    "build": "npm run clean && npm run build:ts && npm run build:css && npm run build:assets && npm run build:html",
+    "build:ts": "tsc && rollup -c",
+    "build:css": "npm run concat:css && npm run minify:css",
+    "build:assets": "cp -r flows dist/ && cp -r assets dist/ 2>/dev/null || true",
+    "build:html": "npm run copy:html",
+    "concat:css": "cat src/styles/variables.css src/styles/base.css src/styles/components.css src/styles/scenarios.css > dist/styles.css",
+    "minify:css": "csso dist/styles.css --output dist/styles.min.css",
+    "copy:html": "cp index.html dist/ && sed -i.bak 's|src/styles/[^\"]*|styles.min.css|g' dist/index.html && sed -i.bak 's|src/scripts/app.js|app.min.js|g' dist/index.html && sed -i.bak 's|lib/integration.ts|lib/integration.js|g' dist/index.html && rm -f dist/index.html.bak",
+    "clean": "rm -rf dist && mkdir -p dist/lib",
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'No tests yet'",
+    "lint": "eslint lib/**/*.ts src/scripts/**/*.js --fix",
+    "format": "prettier --write lib/**/*.ts src/**/*.{js,css,html} *.{json,md}",
+    "deploy": "echo 'Deployment handled by GitHub Actions'",
+    "dev:watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "rollup": "^4.0.0",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "csso-cli": "^4.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "tslib": "^2.6.0"
+  },
+  "dependencies": {
+    "xstate": "^5.0.0"
+  },
+  "keywords": [
+    "education",
+    "economics", 
+    "money",
+    "fairness",
+    "bovi",
+    "fiske",
+    "behavioral-economics"
+  ],
+  "author": "BOVI Framework Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BramAlkema/BOVI.git"
+  },
+  "homepage": "https://bramalkema.github.io/BOVI/"
+}
