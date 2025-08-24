@@ -16,7 +16,7 @@ export function applyStorm(p: StormPreset) {
     kind: "warn",
     msg: `Storm mode on: pots +${p.potsBoostPct}%, caps tightened ${p.capTightenBp}bp`,
   });
-  // INTEGRATION: Apply changes to lib/m1/pots.ts, lib/contracts/*, and lib/services/rails.ts modules
+  // INTEGRATION: Apply changes to lib/m1/pots.ts, lib/contracts/*, and lib/services/rails.ts
 }
 
 export function clearStorm() {

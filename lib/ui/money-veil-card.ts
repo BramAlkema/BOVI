@@ -68,8 +68,12 @@ function createMoneyVeilCard(): HTMLElement {
 async function updateMoneyVeilData(): Promise<void> {
   try {
     // Get user financial data (mock for now)
-    const income = parseFloat(localStorage.getItem(StorageKeys.USER_INCOME) || Defaults.USER_INCOME);
-    const savings = parseFloat(localStorage.getItem(StorageKeys.USER_SAVINGS) || Defaults.USER_SAVINGS);
+    const income = parseFloat(
+      localStorage.getItem(StorageKeys.USER_INCOME) || Defaults.USER_INCOME
+    );
+    const savings = parseFloat(
+      localStorage.getItem(StorageKeys.USER_SAVINGS) || Defaults.USER_SAVINGS
+    );
     const interestRate = 0.04; // 4%
 
     const veilData = await calculateMoneyVeil(income, savings, interestRate);

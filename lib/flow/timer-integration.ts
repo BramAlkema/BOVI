@@ -5,7 +5,7 @@
 
 import { Bus } from "../bus.js";
 import { startTimer, cancelTimer, TimerConfig } from "../timer.js";
-import type { FlowNode, FlowContext } from "./types.js";
+import type { FlowNode } from "./types.js";
 import { FlowContextManager } from "./context.js";
 
 /**

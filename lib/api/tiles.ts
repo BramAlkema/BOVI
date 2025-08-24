@@ -2,7 +2,7 @@
 
 export type BillsSafe = "OK" | "WATCH";
 export async function getBillsSafe(): Promise<BillsSafe> {
-  // INTEGRATION: Integrate with pots API (lib/m1/pots.ts) and sweeps module for real balance calculations
+  // INTEGRATION: Integrate with pots API (lib/m1/pots.ts) and sweeps module
   // Simulate checking account balance vs upcoming bills
   await new Promise(resolve => setTimeout(resolve, 100)); // Simulate API call
 
@@ -28,7 +28,7 @@ export async function getBestDeal(): Promise<{ label: string; delta: number }> {
 
 export type EnergyStatus = "OK" | "Switching" | "Join cohort";
 export async function getEnergyStatus(): Promise<EnergyStatus> {
-  // INTEGRATION: Connect to cohort services (lib/services/cohort-auctions.ts) for real energy switching status
+  // INTEGRATION: Connect to cohort services for energy switching status
   await new Promise(resolve => setTimeout(resolve, 120)); // Simulate API call
 
   const statuses: EnergyStatus[] = ["OK", "Switching", "Join cohort"];

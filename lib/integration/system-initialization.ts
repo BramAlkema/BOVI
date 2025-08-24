@@ -3,7 +3,7 @@
  * Orchestrates the startup of all BOVI system components
  */
 
-import { Bus, emit } from "../bus.js";
+import { emit } from "../bus.js";
 import { api } from "../api/facade.js";
 import { KPIMonitoringService } from "../monitoring/kpi-monitoring.js";
 import { dashboard } from "../monitoring/kpi-dashboard.js";

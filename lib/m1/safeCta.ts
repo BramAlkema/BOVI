@@ -106,7 +106,7 @@ export async function tryUndo(receiptId: string): Promise<boolean> {
     return false;
   }
 
-  // INTEGRATION: Implement domain-specific transaction reversal logic (refunds, cancellations, adjustments)
+  // INTEGRATION: Implement domain-specific transaction reversal logic
   // For now, just mark as undone
   Receipts.markUndone(receiptId);
 

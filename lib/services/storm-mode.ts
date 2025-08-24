@@ -76,7 +76,7 @@ export async function activateStormMode(profileId: string): Promise<{
   return {
     activated: true,
     changes,
-    revertTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // Auto-revert in 1 week
+    revertTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // Auto-revert
   };
 }
 

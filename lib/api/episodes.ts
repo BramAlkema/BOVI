@@ -39,7 +39,7 @@ function savePlayedStatus() {
 loadPlayedStatus();
 
 export async function nextEpisodes(limit = 3): Promise<Episode[]> {
-  // ENHANCEMENT: Implement contextual ranking based on user's current mode preferences and recent activity
+  // ENHANCEMENT: Implement contextual ranking based on user's current mode preferences and activity
   return seed.filter(e => !e.played).slice(0, limit);
 }
 

@@ -3,7 +3,7 @@
  * Background monitoring of key performance indicators
  */
 
-import { Bus, emit } from "../bus.js";
+import { emit } from "../bus.js";
 import { KPIMetric } from "../api-types.js";
 import type { BoviAPI } from "../api/facade.js";
 
