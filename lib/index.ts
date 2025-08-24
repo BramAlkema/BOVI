@@ -32,6 +32,16 @@ export * from "./m4/trials.js";
 export * from "./m4/distribution.js";
 export * from "./m4/exportAll.js";
 
+// Services Layer
+export * from "./services/rulers.js";
+export * from "./services/index-commons.js";
+export * from "./services/hamburger.js";
+export * from "./services/money-veil.js";
+export * from "./services/weekly-digest.js";
+export * from "./services/smart-contracts.js";
+export * from "./services/cohort-auctions.js";
+export * from "./services/storm-mode.js";
+
 // UI Plugin System
 export * from "./ui/plugins/types.js";
 export * from "./ui/plugins/registry.js";

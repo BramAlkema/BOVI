@@ -5,7 +5,14 @@
 
 import { Bus, emit, on } from './bus.js';
 import { flowRunner } from './flow.js';
-import * as ShippingAPI from './shipping-apis.js';
+import { getRulers, switchRuler, getActiveRuler } from './services/rulers.js';
+import { indexCommons } from './services/index-commons.js';
+import { createHamburgerBasket, calculateHamburgerInflation } from './services/hamburger.js';
+import { calculateMoneyVeil } from './services/money-veil.js';
+import { generateWeeklyDigest } from './services/weekly-digest.js';
+import { createSmartContract } from './services/smart-contracts.js';
+import { createCohortAuction, joinCohortAuction } from './services/cohort-auctions.js';
+import { createStormProfile, activateStormMode, getStormProfiles } from './services/storm-mode.js';
 
 // =============================================================================
 // UI INTEGRATION LAYER
@@ -47,7 +54,7 @@ export async function initializeShippingFeatures(): Promise<void> {
 function setupRulerRenderer(): void {
   // Add ruler switcher to all relevant views
   const addRulerSwitcher = async (container: HTMLElement) => {
-    const rulers = await ShippingAPI.getRulers();
+    const rulers = await getRulers();
     const activeRuler = localStorage.getItem('bovi.activeRuler') || 'bovi-local';
     
     const switcherHTML = `
@@ -74,7 +81,7 @@ function setupRulerRenderer(): void {
     
     select?.addEventListener('change', async (e) => {
       const rulerId = (e.target as HTMLSelectElement).value;
-      await ShippingAPI.switchRuler(rulerId);
+      await switchRuler(rulerId);
       
       const ruler = rulers.find(r => r.id === rulerId);
       if (ruler && methodInfo) {
@@ -157,7 +164,7 @@ function setupMoneyVeilCard(): void {
     // Set up event handlers
     const digestBtn = card.querySelector('#weekly-digest-btn');
     digestBtn?.addEventListener('click', async () => {
-      const digest = await ShippingAPI.generateWeeklyDigest();
+      const digest = await generateWeeklyDigest();
       showDigestModal(digest);
     });
   }
@@ -170,7 +177,7 @@ function setupMoneyVeilCard(): void {
       const savings = parseFloat(localStorage.getItem('bovi.userSavings') || '10000');
       const interestRate = 0.04; // 4%
       
-      const veilData = await ShippingAPI.calculateMoneyVeil(income, savings, interestRate);
+      const veilData = await calculateMoneyVeil(income, savings, interestRate);
       
       // Update display
       const inflationDrift = document.querySelector('#inflation-drift');
@@ -317,7 +324,7 @@ function setupHamburgerEventHandlers(container: HTMLElement): void {
     
     if (nameInput.value && items.length > 0) {
       try {
-        await ShippingAPI.createHamburgerBasket(nameInput.value, items);
+        await createHamburgerBasket(nameInput.value, items);
         basketForm.style.display = 'none';
         nameInput.value = '';
         await loadHamburgerBaskets(); // Refresh display
@@ -346,7 +353,7 @@ async function loadHamburgerBaskets(): Promise<void> {
     
     const basketsHTML = await Promise.all(
       baskets.map(async basket => {
-        const inflation = await ShippingAPI.calculateHamburgerInflation(basket.id);
+        const inflation = await calculateHamburgerInflation(basket.id);
         const changeClass = inflation.changePercent > 0 ? 'negative' : 'positive';
         
         return `
@@ -426,7 +433,7 @@ function setupSmartContractUI(): void {
     const { templateId, parties, terms } = (event as CustomEvent).detail;
     
     try {
-      const result = await ShippingAPI.createSmartContract(templateId, parties, terms);
+      const result = await createSmartContract(templateId, parties, terms);
       
       // Show contract and receipts
       showContractModal(result.contract, result.receipt);
@@ -511,7 +518,7 @@ function startStormModeMonitoring(): void {
   // Monitor for storm mode triggers
   setInterval(async () => {
     try {
-      const rulers = await ShippingAPI.getRulers();
+      const rulers = await getRulers();
       const localInflation = rulers.find(r => r.id === 'bovi-local')?.bpDrift || 0;
       
       // Check if inflation exceeds 5% (500bp)
@@ -541,7 +548,7 @@ function startWeeklyDigest(): void {
     // Generate and show digest
     setTimeout(async () => {
       try {
-        const digest = await ShippingAPI.generateWeeklyDigest();
+        const digest = await generateWeeklyDigest();
         showDigestModal(digest);
         localStorage.setItem('bovi.lastWeeklyDigest', Date.now().toString());
       } catch (error) {
