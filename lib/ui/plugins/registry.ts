@@ -24,3 +24,7 @@ export function setActiveUIPluginId(id: string) {
   activeId = id; 
   localStorage.setItem("ui:active", id); 
 }
+
+export function getAllUIPlugins() {
+  return [...REG.values()];
+}

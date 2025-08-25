@@ -5,6 +5,11 @@
 
 import {
   createSmartContract,
+  downloadPDFReceipt,
+  getStoredContracts,
+  signContract,
+  canUndoContract,
+  undoContract,
   type ContractClause,
   type SmartContract,
 } from "../services/smart-contracts.js";
@@ -12,6 +17,9 @@ import {
 export function setupSmartContractUI(): void {
   // Add contract creation to relevant contexts
   addContractButtons();
+  
+  // Add contract management interface
+  addContractManagementPanel();
 
   // Listen for contract creation requests
   window.addEventListener("bovi.createContract", async event => {
@@ -24,6 +32,9 @@ export function setupSmartContractUI(): void {
       showContractModal(result.contract, result.receipt);
 
       showNotification("Smart contract created successfully!");
+      
+      // Refresh contract list if visible
+      refreshContractList();
     } catch (error) {
       showNotification("Failed to create contract", "error");
       console.error("Contract creation error:", error);
@@ -222,12 +233,7 @@ function showContractModal(contract: SmartContract, receipt: { pdf: Blob; json: 
   const copyBtn = modal.querySelector("#copy-link");
 
   pdfBtn?.addEventListener("click", () => {
-    const url = URL.createObjectURL(receipt.pdf);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `contract-${contract.id}.pdf`;
-    a.click();
-    URL.revokeObjectURL(url);
+    downloadPDFReceipt(receipt.pdf, contract.id);
   });
 
   jsonBtn?.addEventListener("click", () => {
@@ -261,4 +267,120 @@ function showNotification(message: string, type: "info" | "error" = "info"): voi
   document.body.appendChild(notification);
 
   setTimeout(() => notification.remove(), 3000);
+}
+
+function addContractManagementPanel(): void {
+  // Find a suitable container (bundle or scenarios section)
+  const targetContainer = document.querySelector("#bundle") || document.querySelector("#scenarios");
+  
+  if (targetContainer && !targetContainer.querySelector(".contract-management")) {
+    const panel = document.createElement("div");
+    panel.className = "panel contract-management";
+    panel.innerHTML = `
+      <h3>📄 Smart Contract Management</h3>
+      <div class="contract-list-container">
+        <button id="show-contracts" class="btn secondary">View My Contracts</button>
+        <div id="contract-list" class="contract-list" style="display:none;">
+          <!-- Contract list will be populated here -->
+        </div>
+      </div>
+    `;
+    
+    targetContainer.appendChild(panel);
+    
+    // Set up event listeners
+    const showBtn = panel.querySelector("#show-contracts");
+    showBtn?.addEventListener("click", () => {
+      const listContainer = panel.querySelector("#contract-list") as HTMLElement;
+      if (listContainer) {
+        const isVisible = listContainer.style.display !== "none";
+        if (isVisible) {
+          listContainer.style.display = "none";
+          (showBtn as HTMLButtonElement).textContent = "View My Contracts";
+        } else {
+          listContainer.style.display = "block";
+          (showBtn as HTMLButtonElement).textContent = "Hide Contracts";
+          refreshContractList();
+        }
+      }
+    });
+  }
+}
+
+function refreshContractList(): void {
+  const listContainer = document.querySelector("#contract-list");
+  if (!listContainer) return;
+  
+  const contracts = getStoredContracts();
+  
+  if (contracts.length === 0) {
+    listContainer.innerHTML = '<p class="text-muted">No contracts found. Create your first contract above!</p>';
+    return;
+  }
+  
+  const contractHTML = contracts.map(contract => `
+    <div class="contract-item card">
+      <div class="contract-header">
+        <h4>${contract.templateId.toUpperCase()} Contract</h4>
+        <span class="contract-status ${contract.signed ? 'signed' : 'unsigned'}">${contract.signed ? '✓ Signed' : '⏳ Pending'}</span>
+      </div>
+      <div class="contract-details">
+        <p><strong>ID:</strong> ${contract.id}</p>
+        <p><strong>Parties:</strong> ${contract.parties.join(", ")}</p>
+        <p><strong>Created:</strong> ${new Date(contract.created).toLocaleDateString()}</p>
+        <p><strong>Effective:</strong> ${new Date(contract.effectiveFrom).toLocaleDateString()}</p>
+        ${canUndoContract(contract.id) ? `<p class="undo-warning"><strong>⏰ Can undo until:</strong> ${new Date(contract.undoDeadline).toLocaleDateString()}</p>` : ''}
+      </div>
+      <div class="contract-actions">
+        ${!contract.signed ? `<button class="btn brand sign-contract" data-contract-id="${contract.id}">✓ Sign Contract</button>` : ''}
+        <button class="btn secondary download-pdf" data-contract-id="${contract.id}">📄 Download PDF</button>
+        ${canUndoContract(contract.id) ? `<button class="btn danger undo-contract" data-contract-id="${contract.id}">❌ Undo Contract</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+  
+  listContainer.innerHTML = contractHTML;
+  
+  // Add event listeners for actions
+  listContainer.querySelectorAll('.sign-contract').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const contractId = (e.target as HTMLElement).dataset.contractId;
+      if (contractId && signContract(contractId)) {
+        showNotification('Contract signed successfully!');
+        refreshContractList();
+      }
+    });
+  });
+  
+  listContainer.querySelectorAll('.download-pdf').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const contractId = (e.target as HTMLElement).dataset.contractId;
+      if (contractId) {
+        const contract = contracts.find(c => c.id === contractId);
+        if (contract) {
+          // Re-generate PDF for download
+          const result = await createSmartContract(
+            contract.templateId as "rent" | "salary" | "loan",
+            contract.parties,
+            contract.clause
+          );
+          downloadPDFReceipt(result.receipt.pdf, contractId);
+        }
+      }
+    });
+  });
+  
+  listContainer.querySelectorAll('.undo-contract').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const contractId = (e.target as HTMLElement).dataset.contractId;
+      if (contractId && confirm('Are you sure you want to undo this contract? This action cannot be reversed.')) {
+        if (undoContract(contractId)) {
+          showNotification('Contract undone successfully');
+          refreshContractList();
+        } else {
+          showNotification('Failed to undo contract - undo window may have expired', 'error');
+        }
+      }
+    });
+  });
 }

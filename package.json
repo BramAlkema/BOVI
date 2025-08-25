@@ -62,5 +62,9 @@
     "type": "git",
     "url": "https://github.com/BramAlkema/BOVI.git"
   },
-  "homepage": "https://bramalkema.github.io/BOVI/"
+  "homepage": "https://bramalkema.github.io/BOVI/",
+  "dependencies": {
+    "@types/jspdf": "^1.3.3",
+    "jspdf": "^3.0.1"
+  }
 }

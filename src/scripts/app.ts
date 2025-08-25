@@ -9,6 +9,12 @@ import { runDemo } from "./demos/demo-engine.js";
 import { $, $$, events } from "./core/utils.js";
 import { setupKPIDashboardUI, generateDemoKPIData } from "../../lib/ui/kpi-dashboard-ui.js";
 import { performanceCollector } from "../../lib/monitoring/performance-collector.js";
+import { registerUIPlugin } from "../../lib/ui/plugins/registry.js";
+import { mountUI } from "../../lib/ui/plugins/host.js";
+import { SatnavPlugin } from "../../lib/ui/plugins/m0-satnav.plugin.js";
+import { setupSmartContractUI } from "../../lib/ui/smart-contracts.js";
+import { computeBenchmark, benchmarkBoviOperations } from "../../lib/monitoring/compute-benchmarks.js";
+import { setupBenchmarkPanel } from "../../lib/ui/benchmark-panel.js";
 
 class BoviApp {
   private navigation: Navigation | null = null;
@@ -30,14 +36,26 @@ class BoviApp {
       // Load demos
       await this.loadDemos();
 
+      // Register UI plugins
+      this.registerUIPlugins();
+
       // Set up event listeners
       this.setupEventListeners();
 
       // Initialize KPI dashboard
       setupKPIDashboardUI();
       
+      // Initialize smart contract system
+      setupSmartContractUI();
+      
       // Start performance monitoring
       performanceCollector.startSystemMonitoring();
+      
+      // Initialize compute benchmarking
+      this.initializeComputeBenchmarking();
+      
+      // Set up benchmark panel UI
+      setupBenchmarkPanel();
       
       // Generate demo KPI data for demonstration
       setTimeout(() => {
@@ -112,6 +130,9 @@ class BoviApp {
   private onNavigate(tab: string): void {
     // Tab-specific initialization
     switch (tab) {
+      case "overview":
+        this.initializeOverviewTab();
+        break;
       case "balanced":
       case "obligated":
       case "value":
@@ -124,6 +145,22 @@ class BoviApp {
       case "bundle":
         this.initializeBundleTab();
         break;
+    }
+  }
+
+  /**
+   * Initialize overview tab with Satnav plugin
+   */
+  private async initializeOverviewTab(): Promise<void> {
+    const overviewSection = $("#overview");
+    if (overviewSection && !(overviewSection as HTMLElement).dataset.pluginMounted) {
+      try {
+        // Mount the Satnav plugin as the overview interface
+        await mountUI(overviewSection as HTMLElement, "ui-satnav");
+        (overviewSection as HTMLElement).dataset.pluginMounted = "true";
+      } catch (error) {
+        console.error("Failed to mount Satnav plugin for overview:", error);
+      }
     }
   }
 
@@ -175,6 +212,9 @@ class BoviApp {
     const hash = window.location.hash.slice(1);
     if (hash && this.navigation) {
       this.navigation.goTo(hash);
+    } else {
+      // Initialize overview tab as default
+      this.initializeOverviewTab();
     }
   }
 
@@ -213,6 +253,61 @@ class BoviApp {
       if (activeResult && activeResult.parentElement) {
         activeResult.parentElement.hidden = true;
       }
+    }
+  }
+
+  /**
+   * Register UI plugins
+   */
+  private registerUIPlugins(): void {
+    // Register the Satnav plugin as default for M0
+    registerUIPlugin(SatnavPlugin);
+  }
+
+  /**
+   * Initialize compute benchmarking system
+   */
+  private async initializeComputeBenchmarking(): Promise<void> {
+    try {
+      // Set up performance thresholds for compute operations
+      performanceCollector.setThreshold('compute_local_index_duration', { red: 1000, amber: 500 });
+      performanceCollector.setThreshold('butler_switching_duration', { red: 2000, amber: 1000 });
+      performanceCollector.setThreshold('json_processing_duration', { red: 100, amber: 50 });
+      
+      // Run initial benchmark suite to establish baselines (background task)
+      setTimeout(async () => {
+        try {
+          console.log('Running initial compute benchmarks...');
+          const suiteResult = await benchmarkBoviOperations();
+          
+          // Set baselines for future comparisons
+          suiteResult.results.forEach(result => {
+            computeBenchmark.setBaseline(result.operationName, result);
+          });
+          
+          console.log(`Benchmarking complete: ${suiteResult.results.length} operations benchmarked`);
+          
+          // Track overall benchmark metrics
+          performanceCollector.trackKPI('benchmark_suite_duration', suiteResult.totalDuration);
+          performanceCollector.trackKPI('benchmark_suite_throughput', suiteResult.summary.averageThroughput);
+          
+        } catch (error) {
+          console.warn('Initial benchmarking failed:', error);
+        }
+      }, 5000); // Run after app initialization is complete
+      
+      // Set up performance alerts
+      performanceCollector.onAlert((alert) => {
+        console.warn(`Performance Alert: ${alert.message}`);
+        
+        // Could emit UI toast notification
+        window.dispatchEvent(new CustomEvent('bovi:performance-alert', {
+          detail: alert
+        }));
+      });
+      
+    } catch (error) {
+      console.warn('Failed to initialize compute benchmarking:', error);
     }
   }
 }

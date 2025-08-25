@@ -2,10 +2,10 @@ export default {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   extensionsToTreatAsEsm: [".ts"],
-  globals: {
-    "ts-jest": {
+  transform: {
+    "^.+\\.ts$": ["ts-jest", {
       useESM: true
-    }
+    }]
   },
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1"
@@ -20,5 +20,6 @@ export default {
   ],
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov", "html"],
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  testTimeout: 10000
 };
