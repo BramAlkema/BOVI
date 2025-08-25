@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOVI Framework — Educational Money App with Visual Flow Editor</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0a0e1a; color: #e7eef9; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .flow-editor { 
+      position: relative; width: 800px; height: 500px; 
+      background: #1a1d24; border: 2px solid #2a2f3a; 
+      border-radius: 12px; margin: 2rem auto;
+    }
+    .flow-node { 
+      position: absolute; width: 160px; height: 80px;
+      background: linear-gradient(135deg, #2a3441 0%, #1e2832 100%);
+      border: 2px solid #4cc9f0; border-radius: 12px; padding: 12px;
+      cursor: grab; user-select: none; color: #e7eef9;
+    }
+    .flow-node:active { cursor: grabbing; }
+    h1 { text-align: center; margin-bottom: 2rem; }
+    h2 { margin: 2rem 0 1rem 0; }
+    p { margin: 1rem 0; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎛️ BOVI Visual Flow Editor</h1>
+    <p>Drag and connect BOVI nodes to create custom fairness mode workflows:</p>
+    
+    <div class="flow-editor" id="flowEditor">
+      <div class="flow-node" style="left: 50px; top: 50px;" data-type="V.PDA">
+        📊 PDA Node<br>
+        <small>Personal Data Assessment</small>
+      </div>
+      
+      <div class="flow-node" style="left: 300px; top: 150px;" data-type="I.Detect">
+        🔍 Detect Node<br>
+        <small>Violation Detection</small>
+      </div>
+      
+      <div class="flow-node" style="left: 550px; top: 250px;" data-type="B.Sweep">
+        🧹 Sweep Node<br>
+        <small>KPI Collection</small>
+      </div>
+    </div>
+
+    <h2>📦 The Complete BOVI Bundle</h2>
+    <p><strong>Balanced:</strong> Fairness as symmetry - ledgers, tallies, turn-taking</p>
+    <p><strong>Obligated:</strong> Fairness as compliance - taxes, rent, hierarchical duties</p>
+    <p><strong>Value:</strong> Fairness as proportionality - price discovery, transferable units</p>
+    <p><strong>Immediate:</strong> Fairness as direct equivalence - tit-for-tat, visceral fairness</p>
+  </div>
+
+  <script>
+    // Simple drag and drop implementation
+    let draggedElement = null;
+    let dragOffset = { x: 0, y: 0 };
+
+    document.querySelectorAll('.flow-node').forEach(node => {
+      node.addEventListener('mousedown', startDrag);
+    });
+
+    function startDrag(e) {
+      draggedElement = e.target.closest('.flow-node');
+      const rect = draggedElement.getBoundingClientRect();
+      const containerRect = document.getElementById('flowEditor').getBoundingClientRect();
+      
+      dragOffset.x = e.clientX - rect.left;
+      dragOffset.y = e.clientY - rect.top;
+      
+      draggedElement.style.zIndex = '10';
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', endDrag);
+    }
+
+    function drag(e) {
+      if (!draggedElement) return;
+      
+      const containerRect = document.getElementById('flowEditor').getBoundingClientRect();
+      const x = e.clientX - containerRect.left - dragOffset.x;
+      const y = e.clientY - containerRect.top - dragOffset.y;
+      
+      draggedElement.style.left = Math.max(0, Math.min(x, 640)) + 'px';
+      draggedElement.style.top = Math.max(0, Math.min(y, 420)) + 'px';
+    }
+
+    function endDrag() {
+      if (draggedElement) {
+        draggedElement.style.zIndex = '2';
+        draggedElement = null;
+      }
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('mouseup', endDrag);
+    }
+
+    console.log('🎛️ BOVI Visual Flow Editor loaded successfully!');
+  </script>
+</body>
+</html>
