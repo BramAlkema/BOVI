@@ -26,7 +26,8 @@ export const BoviEvents = {
   CONTRACT_CREATED: "bovi.createContract",
   COHORT_JOINED: "bovi.joinCohort",
   RECALCULATE_ALL: "bovi.recalculateAll",
-  SHOW_DIGEST: "bovi.showDigest"
+  SHOW_DIGEST: "bovi.showDigest",
+  KPI_UPDATED: "bovi.kpi.updated"
 } as const;
 
 // LocalStorage key prefixes

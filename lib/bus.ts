@@ -49,6 +49,9 @@ export interface BoviEventMap {
   'ui.kpi.updated': { flow: string; kpi: string; value: any };
   'ui.ai_butler.toggled': { enabled: boolean };
 
+  // KPI events
+  [BoviEvents.KPI_UPDATED]: { kpi: string; value: any };
+
   // System events
   [BoviEvents.SYSTEM_INITIALIZED]: { timestamp: string; version?: string };
   [BoviEvents.SYSTEM_SHUTDOWN]: { timestamp: string; reason?: string };

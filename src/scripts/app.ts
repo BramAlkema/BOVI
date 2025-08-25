@@ -7,6 +7,8 @@ import { initNavigation, Navigation } from "./core/navigation.js";
 import { showScenario } from "./scenarios/scenario-engine.js";
 import { runDemo } from "./demos/demo-engine.js";
 import { $, $$, events } from "./core/utils.js";
+import { setupKPIDashboardUI, generateDemoKPIData } from "../../lib/ui/kpi-dashboard-ui.js";
+import { performanceCollector } from "../../lib/monitoring/performance-collector.js";
 
 class BoviApp {
   private navigation: Navigation | null = null;
@@ -30,6 +32,17 @@ class BoviApp {
 
       // Set up event listeners
       this.setupEventListeners();
+
+      // Initialize KPI dashboard
+      setupKPIDashboardUI();
+      
+      // Start performance monitoring
+      performanceCollector.startSystemMonitoring();
+      
+      // Generate demo KPI data for demonstration
+      setTimeout(() => {
+        generateDemoKPIData();
+      }, 2000);
 
       // Handle initial route
       this.handleInitialRoute();

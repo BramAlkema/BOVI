@@ -5,6 +5,7 @@
 
 import { Bus } from "../bus.js";
 import { KPIMetric } from "../api-types.js";
+import { BoviEvents } from "../core/constants.js";
 
 /**
  * KPI Dashboard for monitoring system health and displaying metrics
@@ -14,7 +15,7 @@ export class KPIDashboard {
 
   constructor() {
     // Listen for KPI updates
-    Bus.on("ui.kpi.updated", event => {
+    Bus.on(BoviEvents.KPI_UPDATED, event => {
       if (typeof event.detail.value === "object" && "name" in event.detail.value) {
         this.metrics.set(event.detail.kpi, event.detail.value as KPIMetric);
       }
