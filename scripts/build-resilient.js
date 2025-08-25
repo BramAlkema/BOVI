@@ -149,19 +149,25 @@ class ResilientBuild {
       
       let htmlContent = fs.readFileSync(htmlInput, 'utf8');
       
-      // Replace CSS references with minified bundle
+      // Remove any existing external CSS references 
       htmlContent = htmlContent.replace(
         /<link rel="stylesheet"[^>]*src\/styles\/[^>]*>/g, 
         ''
       );
       
-      // Add minified CSS reference
+      // Add CSS bundle reference before closing </head>
       htmlContent = htmlContent.replace(
-        '  <!-- Cache buster: 2025-08-25 -->',
-        `  <link rel="stylesheet" href="${this.config.build.output.cssBundle}">\n  <!-- Cache buster: ${new Date().toISOString().split('T')[0]} -->`
+        '</head>',
+        `  <link rel="stylesheet" href="${this.config.build.output.cssBundle}">\n</head>`
       );
       
-      // Replace JS references
+      // Add JS bundle reference before closing </body>  
+      htmlContent = htmlContent.replace(
+        '</body>',
+        `  <script src="${this.config.build.output.jsBundle}"></script>\n</body>`
+      );
+      
+      // Replace any existing TS references
       htmlContent = htmlContent.replace(
         /src="src\/scripts\/app\.ts"/g,
         `src="${this.config.build.output.jsBundle}"`
@@ -219,16 +225,12 @@ class ResilientBuild {
         this.errors.push('HTML missing BOVI Framework title');
       }
       
-      if (!htmlContent.includes('styles.min.css')) {
+      if (!htmlContent.includes(this.config.build.output.cssBundle)) {
         this.errors.push('HTML missing CSS bundle reference');
       }
       
-      if (!htmlContent.includes('app.min.js')) {
+      if (!htmlContent.includes(this.config.build.output.jsBundle)) {
         this.errors.push('HTML missing JS bundle reference');
-      }
-      
-      if (!htmlContent.includes('KPI Dashboard will be inserted here')) {
-        this.warnings.push('HTML missing KPI Dashboard insertion point');
       }
     }
   }
