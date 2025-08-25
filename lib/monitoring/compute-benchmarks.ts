@@ -227,7 +227,10 @@ export class ComputeBenchmark {
   /**
    * Compare current performance against baseline
    */
-  compareAgainstBaseline(operationName: string, current: BenchmarkResult): ComparativeBenchmark | null {
+  compareAgainstBaseline(
+    operationName: string,
+    current: BenchmarkResult
+  ): ComparativeBenchmark | null {
     const baseline = this.baselines.get(operationName);
     if (!baseline) {
       // Set current as baseline if none exists
