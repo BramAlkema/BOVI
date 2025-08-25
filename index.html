@@ -3,100 +3,412 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BOVI Framework — Educational Money App with Visual Flow Editor</title>
+  <title>BOVI Framework — Your Personal Money Fairness Assistant</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: #0a0e1a; color: #e7eef9; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-    .flow-editor { 
-      position: relative; width: 800px; height: 500px; 
-      background: #1a1d24; border: 2px solid #2a2f3a; 
-      border-radius: 12px; margin: 2rem auto;
+    body { 
+      font-family: system-ui, -apple-system, sans-serif; 
+      background: linear-gradient(135deg, #0a0e1a 0%, #1a1d24 100%); 
+      color: #e7eef9; 
+      line-height: 1.6;
     }
-    .flow-node { 
-      position: absolute; width: 160px; height: 80px;
-      background: linear-gradient(135deg, #2a3441 0%, #1e2832 100%);
-      border: 2px solid #4cc9f0; border-radius: 12px; padding: 12px;
-      cursor: grab; user-select: none; color: #e7eef9;
+    
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: radial-gradient(circle at center, rgba(76, 201, 240, 0.1) 0%, transparent 70%);
     }
-    .flow-node:active { cursor: grabbing; }
-    h1 { text-align: center; margin-bottom: 2rem; }
-    h2 { margin: 2rem 0 1rem 0; }
-    p { margin: 1rem 0; line-height: 1.6; }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #4cc9f0, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero .tagline {
+      font-size: 1.3rem;
+      color: #a3b4d4;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-primary {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #4cc9f0, #3b82f6);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 25px rgba(76, 201, 240, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(76, 201, 240, 0.4);
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    
+    .complexity-layers {
+      padding: 4rem 0;
+    }
+    
+    .complexity-layers h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #e7eef9;
+    }
+    
+    .layers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .layer-card {
+      background: rgba(42, 52, 65, 0.4);
+      border: 1px solid #2a2f3a;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .layer-card:hover {
+      background: rgba(42, 52, 65, 0.6);
+      border-color: #4cc9f0;
+      transform: translateY(-4px);
+    }
+    
+    .layer-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #4cc9f0, #3b82f6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .layer-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #e7eef9;
+    }
+    
+    .layer-subtitle {
+      color: #a3b4d4;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    
+    .layer-description {
+      color: #c7d2fe;
+      margin-bottom: 1.5rem;
+    }
+    
+    .layer-features {
+      list-style: none;
+    }
+    
+    .layer-features li {
+      color: #4cc9f0;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .layer-features li:before {
+      content: "→ ";
+      margin-right: 0.5rem;
+    }
+    
+    .bovi-modes {
+      background: rgba(42, 52, 65, 0.3);
+      padding: 4rem 0;
+      margin-top: 4rem;
+    }
+    
+    .bovi-modes h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #e7eef9;
+    }
+    
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .mode-card {
+      background: rgba(30, 40, 50, 0.5);
+      border: 1px solid #2a2f3a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .mode-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      margin: 0 auto 1rem;
+    }
+    
+    .mode-balanced { background: linear-gradient(135deg, #10b981, #059669); }
+    .mode-obligated { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .mode-value { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+    .mode-immediate { background: linear-gradient(135deg, #ef4444, #dc2626); }
+    
+    .mode-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #e7eef9;
+    }
+    
+    .mode-description {
+      color: #a3b4d4;
+      font-size: 0.9rem;
+    }
+    
+    .demo-section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    .demo-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #e7eef9;
+    }
+    
+    .cta-secondary {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: transparent;
+      color: #4cc9f0;
+      text-decoration: none;
+      border: 2px solid #4cc9f0;
+      border-radius: 8px;
+      font-weight: 500;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-secondary:hover {
+      background: #4cc9f0;
+      color: #0a0e1a;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #2a2f3a;
+      color: #6b7280;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero .tagline { font-size: 1.1rem; }
+      .layers-grid { grid-template-columns: 1fr; }
+      .modes-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎛️ BOVI Visual Flow Editor</h1>
-    <p>Drag and connect BOVI nodes to create custom fairness mode workflows:</p>
-    
-    <div class="flow-editor" id="flowEditor">
-      <div class="flow-node" style="left: 50px; top: 50px;" data-type="V.PDA">
-        📊 PDA Node<br>
-        <small>Personal Data Assessment</small>
-      </div>
-      
-      <div class="flow-node" style="left: 300px; top: 150px;" data-type="I.Detect">
-        🔍 Detect Node<br>
-        <small>Violation Detection</small>
-      </div>
-      
-      <div class="flow-node" style="left: 550px; top: 250px;" data-type="B.Sweep">
-        🧹 Sweep Node<br>
-        <small>KPI Collection</small>
+  <div class="hero">
+    <div class="container">
+      <h1>🎛️ BOVI Framework</h1>
+      <p class="tagline">Your Personal Money Fairness Assistant</p>
+      <p style="max-width: 600px; margin: 0 auto 2rem; color: #c7d2fe;">
+        Navigate inflation, make smarter financial decisions, and ensure fairness in every transaction with AI-powered insights tailored to your needs.
+      </p>
+      <a href="#start-m0" class="cta-primary">Start Your Journey</a>
+    </div>
+  </div>
+
+  <div class="complexity-layers" id="complexity-layers">
+    <div class="container">
+      <h2>Choose Your Experience Level</h2>
+      <div class="layers-grid">
+        
+        <div class="layer-card" onclick="window.location.href='#m0'" id="m0-card">
+          <div class="layer-badge">M0</div>
+          <h3 class="layer-title">Just Keep Me Safe</h3>
+          <p class="layer-subtitle">"It just works"</p>
+          <p class="layer-description">
+            A simple, intuitive money app that protects you from inflation without requiring any understanding of economics.
+          </p>
+          <ul class="layer-features">
+            <li>One-button financial protection</li>
+            <li>Automatic inflation adjustments</li>
+            <li>Simple visual feedback</li>
+            <li>Zero learning curve required</li>
+          </ul>
+        </div>
+
+        <div class="layer-card" onclick="window.location.href='#m1'" id="m1-card">
+          <div class="layer-badge">M1</div>
+          <h3 class="layer-title">Light Control</h3>
+          <p class="layer-subtitle">"I want some control"</p>
+          <p class="layer-description">
+            Safe defaults with the ability to override decisions and see what's happening behind the scenes.
+          </p>
+          <ul class="layer-features">
+            <li>Simple toggles and preferences</li>
+            <li>Safe defaults with overrides</li>
+            <li>Basic notification controls</li>
+            <li>Gentle guided learning</li>
+          </ul>
+        </div>
+
+        <div class="layer-card" onclick="window.location.href='#m2'" id="m2-card">
+          <div class="layer-badge">M2</div>
+          <h3 class="layer-title">Power User</h3>
+          <p class="layer-subtitle">"I want to understand"</p>
+          <p class="layer-description">
+            Advanced tools for tracking personal inflation, joining cohorts, and analyzing money-veil effects.
+          </p>
+          <ul class="layer-features">
+            <li>Personal inflation tracking</li>
+            <li>Cohort formation and joining</li>
+            <li>Money-veil calculations</li>
+            <li>Detailed financial analytics</li>
+          </ul>
+        </div>
+
+        <div class="layer-card" onclick="window.location.href='#m3'" id="m3-card">
+          <div class="layer-badge">M3</div>
+          <h3 class="layer-title">Expert Tools</h3>
+          <p class="layer-subtitle">"I want sophisticated control"</p>
+          <p class="layer-description">
+            Complex economic modeling, smart contracts, and programmable financial automation.
+          </p>
+          <ul class="layer-features">
+            <li>Smart contract templates</li>
+            <li>Storm mode automation</li>
+            <li>Visual flow editor</li>
+            <li>Advanced economic modeling</li>
+          </ul>
+        </div>
+
+        <div class="layer-card" onclick="window.location.href='#m4'" id="m4-card">
+          <div class="layer-badge">M4</div>
+          <h3 class="layer-title">Developer</h3>
+          <p class="layer-subtitle">"Full extensibility"</p>
+          <p class="layer-description">
+            Complete customization, plugin development, and experimental framework access.
+          </p>
+          <ul class="layer-features">
+            <li>Custom plugin development</li>
+            <li>Full API access</li>
+            <li>Experimental trials</li>
+            <li>System architecture control</li>
+          </ul>
+        </div>
+
       </div>
     </div>
+  </div>
 
-    <h2>📦 The Complete BOVI Bundle</h2>
-    <p><strong>Balanced:</strong> Fairness as symmetry - ledgers, tallies, turn-taking</p>
-    <p><strong>Obligated:</strong> Fairness as compliance - taxes, rent, hierarchical duties</p>
-    <p><strong>Value:</strong> Fairness as proportionality - price discovery, transferable units</p>
-    <p><strong>Immediate:</strong> Fairness as direct equivalence - tit-for-tat, visceral fairness</p>
+  <div class="bovi-modes">
+    <div class="container">
+      <h2>📦 The Complete BOVI Bundle</h2>
+      <p style="text-align: center; color: #a3b4d4; max-width: 800px; margin: 0 auto;">
+        Four complementary approaches to fairness, automatically applied based on context
+      </p>
+      
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-badge mode-balanced">B</div>
+          <h3 class="mode-title">Balanced</h3>
+          <p class="mode-description">Fairness as symmetry — ledgers, tallies, turn-taking</p>
+        </div>
+        
+        <div class="mode-card">
+          <div class="mode-badge mode-obligated">O</div>
+          <h3 class="mode-title">Obligated</h3>
+          <p class="mode-description">Fairness as compliance — taxes, rent, hierarchical duties</p>
+        </div>
+        
+        <div class="mode-card">
+          <div class="mode-badge mode-value">V</div>
+          <h3 class="mode-title">Value</h3>
+          <p class="mode-description">Fairness as proportionality — price discovery, transferable units</p>
+        </div>
+        
+        <div class="mode-card">
+          <div class="mode-badge mode-immediate">I</div>
+          <h3 class="mode-title">Immediate</h3>
+          <p class="mode-description">Fairness as direct equivalence — tit-for-tat, visceral fairness</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <div class="container">
+      <h2>Try BOVI Now</h2>
+      <p style="color: #a3b4d4; margin-bottom: 2rem;">Experience the power of intelligent money management</p>
+      
+      <a href="#m0-demo" class="cta-secondary">🚀 Quick Demo</a>
+      <a href="#visual-editor" class="cta-secondary">🎛️ Visual Editor</a>
+      <a href="#documentation" class="cta-secondary">📚 Documentation</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <p>BOVI Framework — Making Money Fairer, One Decision at a Time</p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+        Open source • Privacy-first • Built for everyone
+      </p>
+    </div>
   </div>
 
   <script>
-    // Simple drag and drop implementation
-    let draggedElement = null;
-    let dragOffset = { x: 0, y: 0 };
-
-    document.querySelectorAll('.flow-node').forEach(node => {
-      node.addEventListener('mousedown', startDrag);
+    // Add smooth scrolling and interaction
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
     });
 
-    function startDrag(e) {
-      draggedElement = e.target.closest('.flow-node');
-      const rect = draggedElement.getBoundingClientRect();
-      const containerRect = document.getElementById('flowEditor').getBoundingClientRect();
+    // Add card hover effects
+    document.querySelectorAll('.layer-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-6px)';
+      });
       
-      dragOffset.x = e.clientX - rect.left;
-      dragOffset.y = e.clientY - rect.top;
-      
-      draggedElement.style.zIndex = '10';
-      document.addEventListener('mousemove', drag);
-      document.addEventListener('mouseup', endDrag);
-    }
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
 
-    function drag(e) {
-      if (!draggedElement) return;
-      
-      const containerRect = document.getElementById('flowEditor').getBoundingClientRect();
-      const x = e.clientX - containerRect.left - dragOffset.x;
-      const y = e.clientY - containerRect.top - dragOffset.y;
-      
-      draggedElement.style.left = Math.max(0, Math.min(x, 640)) + 'px';
-      draggedElement.style.top = Math.max(0, Math.min(y, 420)) + 'px';
-    }
-
-    function endDrag() {
-      if (draggedElement) {
-        draggedElement.style.zIndex = '2';
-        draggedElement = null;
-      }
-      document.removeEventListener('mousemove', drag);
-      document.removeEventListener('mouseup', endDrag);
-    }
-
-    console.log('🎛️ BOVI Visual Flow Editor loaded successfully!');
+    console.log('🎛️ BOVI Framework Homepage loaded successfully!');
+    console.log('Ready for progressive complexity navigation M0-M4');
   </script>
 </body>
 </html>
