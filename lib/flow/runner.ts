@@ -33,6 +33,14 @@ export class FlowRunner {
   }
 
   /**
+   * Execute a flow specification
+   */
+  async executeFlow(flowSpec: FlowSpec): Promise<any> {
+    await this.loadFlow(flowSpec);
+    return this.startFlow(flowSpec.id);
+  }
+
+  /**
    * Start executing a flow
    */
   startFlow(flowId: string, initialContext?: any): void {

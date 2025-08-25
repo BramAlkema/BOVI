@@ -57,6 +57,10 @@ class BoviApp {
       // Set up benchmark panel UI
       setupBenchmarkPanel();
       
+      // Set up visual flow editor
+      const { setupFlowEditorPanel } = await import("../../lib/ui/flow-editor-panel.js");
+      setupFlowEditorPanel();
+      
       // Generate demo KPI data for demonstration
       setTimeout(() => {
         generateDemoKPIData();
