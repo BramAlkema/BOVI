@@ -34,10 +34,7 @@ jobs:
         run: npm ci
 
       - name: Build project
-        run: |
-          echo "Skipping npm build, using simple version"
-          mkdir -p dist
-          cp simple-index.html dist/index.html
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
