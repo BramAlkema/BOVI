@@ -198,11 +198,13 @@ export class PluginManager {
       showNotification: (message: string, type?: "info" | "success" | "error") => {
         notificationService.showNotification(message, type);
       },
-      log: (message: string, level: "warn" | "error" = "warn") => {
+      log: (message: string, level: "info" | "warn" | "error" = "warn") => {
         if (level === "warn") {
           console.warn(`[Plugin] ${message}`);
-        } else {
+        } else if (level === "error") {
           console.error(`[Plugin] ${message}`);
+        } else {
+          console.log(`[Plugin] ${message}`);
         }
       },
     };

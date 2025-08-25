@@ -131,6 +131,7 @@ export class NodeExecutorService {
    * Execute assessment node
    */
   private async executeAssessNode(node: FlowNode, context: FlowContext): Promise<AssessResult> {
+    // const _criteria = node.config?.criteria || {}; // Reserved for future use
     const threshold = node.config?.threshold || 0.5;
 
     // Simple assessment logic
@@ -153,6 +154,7 @@ export class NodeExecutorService {
    */
   private async executeDetectNode(node: FlowNode, context: FlowContext): Promise<DetectResult> {
     const triggers = node.config?.triggers || [];
+    // const threshold = node.config?.threshold || 0; // Reserved for future use
 
     // Check previous node outputs for violations
     let violationDetected = false;
