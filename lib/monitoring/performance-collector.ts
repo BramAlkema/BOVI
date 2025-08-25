@@ -119,21 +119,6 @@ export class PerformanceCollector {
     return "stable";
   }
 
-  /**
-   * Monitor system performance
-   */
-  startSystemMonitoring(): void {
-    // Monitor API response times
-    this.monitorFetchRequests();
-    
-    // Monitor ruler switching performance
-    this.monitorRulerSwitching();
-    
-    // Periodic system health checks
-    setInterval(() => {
-      this.collectSystemMetrics();
-    }, 30000); // Every 30 seconds
-  }
 
   /**
    * Monitor fetch request performance
@@ -170,34 +155,6 @@ export class PerformanceCollector {
     });
   }
 
-  /**
-   * Collect various system metrics
-   */
-  private collectSystemMetrics(): void {
-    // System uptime (simulate based on session duration)
-    const sessionStart = performance.timeOrigin;
-    const now = Date.now();
-    const uptime = (now - sessionStart) / (1000 * 60 * 60); // hours
-    const uptimePercent = Math.min(0.999, 0.95 + uptime / 1000); // Improve over time
-    
-    this.recordMetric("system_uptime", uptimePercent);
-
-    // Simulate other metrics with realistic values
-    this.recordMetric("ruler_adoption_rate", Math.random() * 0.4 + 0.5); // 50-90%
-    this.recordMetric("money_veil_calculation_time", Math.random() * 200 + 200); // 200-400ms
-    this.recordMetric("money_veil_engagement", Math.random() * 0.3 + 0.3); // 30-60%
-    this.recordMetric("hamburger_viral_coefficient", Math.random() * 0.2 + 0.2); // 0.2-0.4
-    this.recordMetric("contract_completion_rate", Math.random() * 0.15 + 0.85); // 85-100%
-    this.recordMetric("cohort_satisfaction_rate", Math.random() * 0.08 + 0.92); // 92-100%
-    this.recordMetric("failed_payment_rate", Math.random() * 0.005); // 0-0.5%
-    
-    // Storm mode metrics (if active)
-    const stormActive = localStorage.getItem("bovi.stormMode.active") === "true";
-    if (stormActive) {
-      this.recordMetric("storm_mode_activation_time", Math.random() * 3000 + 2000); // 2-5s
-      this.recordMetric("storm_mode_effectiveness", Math.random() * 0.15 + 0.15); // 15-30%
-    }
-  }
 
   /**
    * Track KPI values with comprehensive statistics
@@ -383,8 +340,8 @@ export class PerformanceCollector {
     const navigationEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
     if (navigationEntries.length > 0) {
       const nav = navigationEntries[0];
-      const pageLoadTime = nav.loadEventEnd - nav.navigationStart;
-      const domContentLoadTime = nav.domContentLoadedEventEnd - nav.navigationStart;
+      const pageLoadTime = nav.loadEventEnd - nav.startTime;
+      const domContentLoadTime = nav.domContentLoadedEventEnd - nav.startTime;
       const responseTime = nav.responseEnd - nav.requestStart;
 
       this.trackKPI('page_load_time', pageLoadTime);
@@ -467,7 +424,7 @@ export class PerformanceCollector {
   }
 
   /**
-   * Enhanced system monitoring with interval tracking
+   * Start system monitoring with interval tracking
    */
   startSystemMonitoring(): void {
     // Stop existing monitoring
