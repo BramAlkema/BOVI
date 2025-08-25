@@ -15,6 +15,7 @@ import { SatnavPlugin } from "../../lib/ui/plugins/m0-satnav.plugin.js";
 import { setupSmartContractUI } from "../../lib/ui/smart-contracts.js";
 import { computeBenchmark, benchmarkBoviOperations } from "../../lib/monitoring/compute-benchmarks.js";
 import { setupBenchmarkPanel } from "../../lib/ui/benchmark-panel.js";
+import { setupFlowEditorPanel } from "../../lib/ui/flow-editor-panel.js";
 
 class BoviApp {
   private navigation: Navigation | null = null;
@@ -58,7 +59,6 @@ class BoviApp {
       setupBenchmarkPanel();
       
       // Set up visual flow editor
-      const { setupFlowEditorPanel } = await import("../../lib/ui/flow-editor-panel.js");
       setupFlowEditorPanel();
       
       // Generate demo KPI data for demonstration
