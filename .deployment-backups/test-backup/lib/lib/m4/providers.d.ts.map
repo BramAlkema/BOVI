@@ -1,0 +1,1 @@
+{"version":3,"file":"providers.d.ts","sourceRoot":"","sources":["../../../../lib/m4/providers.ts"],"names":[],"mappings":"AACA,MAAM,WAAW,eAAe;IAC9B,EAAE,EAAE,MAAM,CAAC;IACX,IAAI,EAAE,MAAM,CAAC;IACb,MAAM,EAAE,MAAM,CAAC;IACf,GAAG,CAAC,EAAE,MAAM,CAAC;IACb,KAAK,CAAC,EAAE,MAAM,CAAC;CAChB;AAUD,wBAAsB,kBAAkB,+BAEvC;AAED,wBAAsB,cAAc,CAAC,EAAE,EAAE,MAAM,iBAG9C;AAED,wBAAgB,iBAAiB,WAEhC"}

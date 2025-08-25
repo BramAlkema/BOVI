@@ -1,0 +1,111 @@
+{
+  "id": "groceries",
+  "title": "Groceries — Scan basket",
+  "description": "See nominal €, real €LTS, and a deal-quality signal. If AI Butler is ON, a suggested swap will auto-apply after a short countdown unless you cancel.",
+  "context": {
+    "unit": "€LTS",
+    "deflator": 0.86,
+    "base_year": "2020",
+    "personal_index": "Food‑heavy"
+  },
+  "nodes": [
+    {
+      "id": "scan_basket",
+      "type": "V.PDA",
+      "label": "Scan demo basket",
+      "description": "Price discovery aggregation from basket items",
+      "config": {
+        "items": [
+          {"name": "Coffee 500g", "price": 5.49, "usual": 5.10, "category": "food"},
+          {"name": "Pasta 450g (was 500g)", "price": 1.40, "usual": 1.30, "category": "food", "shrink": true},
+          {"name": "Olive oil 750ml", "price": 6.99, "usual": 7.20, "category": "food"},
+          {"name": "Shampoo 250ml", "price": 2.15, "usual": 2.50, "category": "other"}
+        ]
+      },
+      "outputs": ["nominal_total", "real_total", "deal_quality"]
+    },
+    {
+      "id": "detect_shrinkflation",
+      "type": "I.Detect",
+      "label": "Shrinkflation detection",
+      "description": "Immediate mode fairness violation detection",
+      "config": {
+        "triggers": ["shrink"],
+        "threshold": 0.02
+      },
+      "outputs": ["violation_detected", "affected_items"]
+    },
+    {
+      "id": "suggest_swap",
+      "type": "I.Default", 
+      "label": "Swap back to usual brand",
+      "description": "Default action to maintain fairness expectations",
+      "config": {
+        "timeout_s": 10,
+        "episode": "ep-shrink",
+        "action": "swap_to_usual",
+        "reversible": true
+      },
+      "outputs": ["action_applied", "euros_saved"]
+    },
+    {
+      "id": "update_kpis",
+      "type": "B.Sweep",
+      "label": "Update grocery KPIs", 
+      "description": "Balanced mode tracking of fairness interventions",
+      "config": {
+        "kpis": {
+          "deal_quality": "last(scan_basket.deal_quality)",
+          "defaults_applied": "count(suggest_swap.applied)",
+          "euros_saved": "sum(suggest_swap.euros_saved)"
+        }
+      },
+      "outputs": ["kpi_updated"]
+    },
+    {
+      "id": "trigger_episode",
+      "type": "B.Learn",
+      "label": "Queue learning episode",
+      "description": "Contextual education delivery",
+      "config": {
+        "episode_id": "ep-shrink",
+        "trigger": "on_swap_applied",
+        "priority": "high"
+      },
+      "outputs": ["episode_queued"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "scan_basket",
+      "to": "detect_shrinkflation",
+      "label": "basket_data",
+      "condition": "items.length > 0"
+    },
+    {
+      "from": "detect_shrinkflation", 
+      "to": "suggest_swap",
+      "label": "violation_found",
+      "condition": "violation_detected == true"
+    },
+    {
+      "from": "suggest_swap",
+      "to": "update_kpis", 
+      "label": "action_completed",
+      "condition": "always"
+    },
+    {
+      "from": "suggest_swap",
+      "to": "trigger_episode",
+      "label": "swap_applied", 
+      "condition": "action_applied == true"
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "bovi_modes": ["V", "I", "B"],
+    "primary_mode": "I",
+    "created": "2024-08-24",
+    "tags": ["grocery", "shrinkflation", "immediate_fairness"]
+  }
+}

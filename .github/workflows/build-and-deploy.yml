@@ -43,6 +43,9 @@ jobs:
       - name: Build TypeScript and bundle
         run: npm run build
 
+      - name: Validate deployment
+        run: npm run validate
+
       - name: Setup Pages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/configure-pages@v4

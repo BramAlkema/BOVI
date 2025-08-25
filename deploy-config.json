@@ -1,0 +1,62 @@
+{
+  "deployment": {
+    "version": "1.0.0",
+    "strategy": "build-validate-deploy",
+    "rollback": {
+      "enabled": true,
+      "keepVersions": 3
+    },
+    "validation": {
+      "required": [
+        "index.html",
+        "styles.min.css", 
+        "app.min.js"
+      ],
+      "healthChecks": [
+        "basicLoad",
+        "cssIntegrity", 
+        "jsIntegrity",
+        "navigationWorking"
+      ]
+    }
+  },
+  "build": {
+    "entryPoints": {
+      "html": "index.html",
+      "css": [
+        "src/styles/variables.css",
+        "src/styles/base.css", 
+        "src/styles/components.css",
+        "src/styles/scenarios.css",
+        "src/styles/kpi-dashboard.css"
+      ],
+      "js": {
+        "main": "src/scripts/app.ts",
+        "libs": "lib/**/*.ts"
+      }
+    },
+    "output": {
+      "dir": "dist",
+      "cssBundle": "styles.min.css",
+      "jsBundle": "app.min.js"
+    },
+    "processing": {
+      "minifyCss": true,
+      "minifyJs": true,
+      "processHtml": true
+    }
+  },
+  "structure": {
+    "critical": [
+      "index.html",
+      "package.json",
+      "src/scripts/app.ts",
+      "lib/monitoring/kpi-dashboard.ts"
+    ],
+    "flexible": [
+      "src/styles/*.css",
+      "lib/**/*.ts",
+      "flows/*.json"
+    ]
+  }
+}

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOVI Framework — Educational Money App</title>
+  <link rel="stylesheet" href="styles.min.css">
+  <!-- Cache buster: 2025-08-25 -->
+  
+  <!-- Stylesheets -->
+  
+  
+  
+  
+  
+  
+  <!-- Custom styles for mode breakdown cards -->
+  <style>
+    .mode-breakdown-card {
+      padding: var(--space-md);
+      border-radius: var(--space-sm);
+      margin: var(--space-sm) 0;
+      border-left: 4px solid;
+    }
+    
+    .mode-breakdown-card.balanced { 
+      border-left-color: var(--balanced);
+      background: rgba(76,201,240,.05);
+    }
+    .mode-breakdown-card.obligated { 
+      border-left-color: var(--obligated);
+      background: rgba(255,107,107,.05);
+    }
+    .mode-breakdown-card.value { 
+      border-left-color: var(--value);
+      background: rgba(161,255,181,.05);
+    }
+    .mode-breakdown-card.immediate { 
+      border-left-color: var(--immediate);
+      background: rgba(255,209,102,.05);
+    }
+    
+    .mode-breakdown-card.primary {
+      border-left-width: 6px;
+      background: rgba(255,255,255,.08);
+    }
+    
+    .mode-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    
+    .insights-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-sm) 0;
+    }
+    
+    .insights-list li {
+      margin: var(--space-xs) 0;
+      padding-left: var(--space-lg);
+      position: relative;
+    }
+    
+    .insights-list li::before {
+      content: '💡';
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    /* Demo result areas */
+    .demo-result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--background-secondary, #f8f9fa);
+      border-radius: 6px;
+      border: 1px solid var(--border-color, #e5e5e5);
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#0b0f14" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m2 17 10 5 10-5M2 12l10 5 10-5" stroke="#0b0f14" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <h1>BOVI Framework</h1>
+      <div class="sub">Educational app: Balanced • Obligated • Value • Immediate — Four fairness modes of money</div>
+    </div>
+    <div class="right row">
+      <span class="chip" id="aiChip" aria-live="polite" title="AI Butler defaults decisions to the fair option if you do nothing">🤖 AI Butler: <b id="aiState">ON</b></span>
+      <button class="btn ghost" id="toggleAI">Toggle</button>
+    </div>
+  </header>
+
+  <div class="frame">
+    <nav>
+      <button class="tab" data-tab="overview" aria-current="page">🏠 Overview</button>
+      <button class="tab" data-tab="balanced">⚖️ Balanced</button>
+      <button class="tab" data-tab="obligated">👑 Obligated</button>
+      <button class="tab" data-tab="value">💱 Value</button>
+      <button class="tab" data-tab="immediate">🤝 Immediate</button>
+      <button class="tab" data-tab="scenarios">🎭 Scenarios</button>
+      <button class="tab" data-tab="bundle">📦 Bundle</button>
+    </nav>
+
+    <main>
+      <!-- Overview Section -->
+      <section id="overview" class="stack">
+        <div class="panel">
+          <h2>The BOVI Framework</h2>
+          <p class="text-muted">Money isn't a single invention—it's a bundle of four fairness modes that humans use to structure exchange. Each mode maps to Alan Fiske's relational models and solves different trade problems.</p>
+          
+          <div class="grid">
+            <div class="card">
+              <span class="mode-badge balanced">B</span>
+              <h4>Balanced (Equality Matching)</h4>
+              <p class="text-small">Fairness as symmetry. Ledgers, tallies, keeping score across time. Everyone gets their turn, debts must be squared.</p>
+            </div>
+            <div class="card">
+              <span class="mode-badge obligated">O</span>
+              <h4>Obligated (Authority Ranking)</h4>
+              <p class="text-small">Fairness as compliance with hierarchy. You owe taxes, rent, tribute. Money as political infrastructure.</p>
+            </div>
+            <div class="card">
+              <span class="mode-badge value">V</span>
+              <h4>Value (Market Pricing)</h4>
+              <p class="text-small">Fairness as proportionality. Transferable medium where units are interchangeable. Minimal money.</p>
+            </div>
+            <div class="card">
+              <span class="mode-badge immediate">I</span>
+              <h4>Immediate (Communal Sharing)</h4>
+              <p class="text-small">Fairness as direct equivalence. Tit-for-tat swaps. Anchors our visceral fairness instinct.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Core Insight</h3>
+          <p>Competing "origin stories" of money aren't contradictory—they each reflect one fairness mode. The BOVI bundle explains why money reforms spark moral outrage: each mode plugs into a deep fairness instinct.</p>
+          <div class="row">
+            <span class="chip">Many origins, one bundle</span>
+            <span class="chip">Fairness modes bundled together</span>
+            <span class="chip">Reform requires understanding all modes</span>
+          </div>
+        </div>
+
+        <!-- KPI Dashboard will be inserted here by setupKPIDashboardUI() -->
+      </section>
+
+      <!-- Balanced Mode Section -->
+      <section id="balanced" class="stack" hidden>
+        <div class="panel">
+          <h2>⚖️ Balanced Mode (Equality Matching)</h2>
+          <p class="text-muted">Fairness as symmetry. Explore rulers, money-veil calculations, and hamburger tracking.</p>
+          
+          <div class="grid">
+            <div class="card">
+              <h4>📏 Ruler Switcher</h4>
+              <p class="text-small">Switch between inflation measurement methods: LTS, CPI, Wage-based indices.</p>
+              <button class="btn secondary" data-demo="ruler-switch" data-container="#balancedResult">Try Ruler Switching</button>
+            </div>
+            <div class="card">
+              <h4>👁️ Money-veil Card</h4>
+              <p class="text-small">See through nominal prices to real purchasing power over time.</p>
+              <button class="btn secondary" data-demo="money-veil" data-container="#balancedResult">View Money Veil</button>
+            </div>
+            <div class="card">
+              <h4>🍔 Hamburger Sentinel</h4>
+              <p class="text-small">Track your fixed basket of goods and share inflation insights.</p>
+              <button class="btn secondary" data-demo="hamburger" data-container="#balancedResult">Track Basket</button>
+            </div>
+          </div>
+          <div id="balancedResult" class="demo-result" hidden>
+            <!-- Demo results will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Obligated Mode Section -->
+      <section id="obligated" class="stack" hidden>
+        <div class="panel">
+          <h2>👑 Obligated Mode (Authority Ranking)</h2>
+          <p class="text-muted">Fairness as compliance with hierarchy. Contracts, cohorts, and smart obligations.</p>
+          
+          <div class="grid">
+            <div class="card">
+              <h4>📋 Smart Contracts</h4>
+              <p class="text-small">Index-linked contracts with automatic adjustments and legal receipts.</p>
+              <button class="btn secondary" data-demo="smart-contract" data-container="#obligatedResult">Create Contract</button>
+            </div>
+            <div class="card">
+              <h4>👥 Cohort Engine</h4>
+              <p class="text-small">Form groups with "no-one-worse-off" mathematical guarantees.</p>
+              <button class="btn secondary" data-demo="cohort" data-container="#obligatedResult">Join Cohort</button>
+            </div>
+          </div>
+          <div id="obligatedResult" class="demo-result" hidden>
+            <!-- Demo results will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Value Mode Section -->
+      <section id="value" class="stack" hidden>
+        <div class="panel">
+          <h2>💱 Value Mode (Market Pricing)</h2>
+          <p class="text-muted">Fairness as proportionality. Storm mode and advanced financial tools.</p>
+          
+          <div class="grid">
+            <div class="card">
+              <h4>🌪️ Storm Mode</h4>
+              <p class="text-small">Automated crisis response with preset spending changes and notifications.</p>
+              <button class="btn secondary" data-demo="storm-mode" data-container="#valueResult">Activate Storm Mode</button>
+            </div>
+            <div class="card">
+              <h4>🏪 Index Commons</h4>
+              <p class="text-small">Local knowledge capture and quality scoring for inflation indices.</p>
+              <button class="btn secondary" data-demo="index-commons" data-container="#valueResult">Browse Commons</button>
+            </div>
+          </div>
+          <div id="valueResult" class="demo-result" hidden>
+            <!-- Demo results will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Immediate Mode Section -->
+      <section id="immediate" class="stack" hidden>
+        <div class="panel">
+          <h2>🤝 Immediate Mode (Communal Sharing)</h2>
+          <p class="text-muted">Fairness as direct equivalence. Real-time swaps and instant decisions.</p>
+          
+          <div class="grid">
+            <div class="card">
+              <h4>⚡ Instant Swaps</h4>
+              <p class="text-small">Tit-for-tat exchanges that anchor visceral fairness instincts.</p>
+              <button class="btn secondary" data-demo="instant-swap" data-container="#immediateResult">Try Instant Swap</button>
+            </div>
+          </div>
+          <div id="immediateResult" class="demo-result" hidden>
+            <!-- Demo results will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Scenarios Section -->
+      <section id="scenarios" class="stack" hidden>
+        <div class="panel">
+          <h2>🎭 Live Scenarios</h2>
+          <p class="text-muted">Interactive scenarios demonstrating BOVI modes in real-world situations.</p>
+          
+          <div class="grid">
+            <div class="scenario card" data-scenario="grocery-inflation">
+              <h4>🛒 Grocery Inflation</h4>
+              <p class="text-small">Navigate shrinkflation and price changes using multiple fairness modes.</p>
+            </div>
+            <div class="scenario card" data-scenario="rent-negotiation">
+              <h4>🏠 Rent Negotiation</h4>
+              <p class="text-small">Counter landlord increases with index-aligned arguments.</p>
+            </div>
+            <div class="scenario card" data-scenario="energy-cohort">
+              <h4>⚡ Energy Cohort</h4>
+              <p class="text-small">Join group switching to get better tariffs through collective action.</p>
+            </div>
+          </div>
+          <div id="scenarioResult" class="panel" hidden>
+            <div class="scenario-analysis"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bundle Section -->
+      <section id="bundle" class="stack" hidden>
+        <div class="panel">
+          <h2>📦 The Complete Bundle</h2>
+          <p class="text-muted">Understanding how all four fairness modes work together in the BOVI framework.</p>
+          
+          <div class="mode-breakdown-card balanced">
+            <div class="mode-header">
+              <span class="mode-badge balanced">B</span>
+              <h4>Balanced — Equality Matching</h4>
+            </div>
+            <ul class="insights-list">
+              <li>Rulers track real value across time periods</li>
+              <li>Money-veil reveals purchasing power changes</li>
+              <li>Hamburger basket enables personal inflation tracking</li>
+            </ul>
+          </div>
+
+          <div class="mode-breakdown-card obligated">
+            <div class="mode-header">
+              <span class="mode-badge obligated">O</span>
+              <h4>Obligated — Authority Ranking</h4>
+            </div>
+            <ul class="insights-list">
+              <li>Smart contracts with automatic index adjustments</li>
+              <li>Cohort formation with mathematical fairness guarantees</li>
+              <li>Hierarchical compliance and obligation tracking</li>
+            </ul>
+          </div>
+
+          <div class="mode-breakdown-card value">
+            <div class="mode-header">
+              <span class="mode-badge value">V</span>
+              <h4>Value — Market Pricing</h4>
+            </div>
+            <ul class="insights-list">
+              <li>Storm mode for crisis response automation</li>
+              <li>Index commons for decentralized price discovery</li>
+              <li>Proportional fairness in market transactions</li>
+            </ul>
+          </div>
+
+          <div class="mode-breakdown-card immediate">
+            <div class="mode-header">
+              <span class="mode-badge immediate">I</span>
+              <h4>Immediate — Communal Sharing</h4>
+            </div>
+            <ul class="insights-list">
+              <li>Instant swaps based on direct equivalence</li>
+              <li>Tit-for-tat fairness anchoring</li>
+              <li>Real-time decision making</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<!-- BOVI Application Entry Point -->
+<script type="module" src="app.min.js"></script>
+
+<!-- Modular BOVI System Initialization -->
+<script type="module">
+  // Import the modular BOVI framework
+  import { systemInitializer } from './lib/integration/system-initialization.js';
+  import { hybridOrchestrator } from './lib/integration/hybrid-orchestrator.js';
+  import { initializePluginSystem } from './lib/plugins/index.js';
+  
+  // Initialize the modular system
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      console.log('🚀 Starting BOVI modular system...');
+      
+      // Initialize the plugin system first
+      await initializePluginSystem();
+      
+      // Initialize the hybrid orchestrator
+      await hybridOrchestrator.initialize();
+      
+      // Start the system initializer
+      await systemInitializer.initialize();
+      
+      console.log('✅ BOVI modular system ready');
+      
+    } catch (error) {
+      console.error('❌ Failed to initialize BOVI system:', error);
+    }
+  });
+</script>
+</body>
+</html>

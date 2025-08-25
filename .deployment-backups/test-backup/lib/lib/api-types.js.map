@@ -1,0 +1,1 @@
+{"version":3,"file":"api-types.js","sourceRoot":"","sources":["../../../lib/api-types.ts"],"names":[],"mappings":"AAkMA,MAAM,OAAO,YAAa,SAAQ,KAAK;IACrC,YACS,IAAY,EACH,OAAe,EACxB,OAAa;QAEpB,KAAK,CAAC,OAAO,CAAC,CAAC;QAJR,SAAI,GAAJ,IAAI,CAAQ;QACH,YAAO,GAAP,OAAO,CAAQ;QACxB,YAAO,GAAP,OAAO,CAAM;QAGpB,IAAI,CAAC,IAAI,GAAG,cAAc,CAAC;IAC7B,CAAC;CACF"}

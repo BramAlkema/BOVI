@@ -1,0 +1,1 @@
+{"version":3,"file":"weekly-digest.d.ts","sourceRoot":"","sources":["../../../../lib/services/weekly-digest.ts"],"names":[],"mappings":"AAKA,MAAM,WAAW,YAAY;IAC3B,MAAM,EAAE,MAAM,CAAC;IACf,UAAU,EAAE,MAAM,EAAE,CAAC;IACrB,SAAS,EAAE,MAAM,CAAC;IAClB,eAAe,EAAE,MAAM,EAAE,CAAC;CAC3B;AAKD,wBAAsB,oBAAoB,IAAI,OAAO,CAAC,YAAY,CAAC,CAkBlE"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"rulesRegistry.d.ts","sourceRoot":"","sources":["../../../../lib/m4/rulesRegistry.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,aAAa;IAC5B,EAAE,EAAE,MAAM,CAAC;IACX,MAAM,EAAE,MAAM,CAAC;IACf,OAAO,EAAE,MAAM,CAAC;IAChB,aAAa,EAAE,MAAM,CAAC;IACtB,UAAU,CAAC,EAAE,MAAM,CAAC;CACrB;AAKD,wBAAgB,SAAS,oBAUxB;AAED,wBAAgB,QAAQ,oBAEvB;AAED,wBAAgB,YAAY,CAAC,EAAE,EAAE,aAAa,iBAI7C"}

@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "npm run serve",
     "serve": "python3 -m http.server 8080 || python -m http.server 8080",
-    "build": "npm run clean && npm run build:ts && npm run build:css && npm run build:assets && npm run build:html",
+    "build": "node scripts/build-resilient.js",
+    "build:legacy": "npm run clean && npm run build:ts && npm run build:css && npm run build:assets && npm run build:html",
+    "validate": "node scripts/validate-deployment.js",
+    "rollback": "node scripts/rollback.js",
     "build:ts": "tsc && rollup -c",
     "build:css": "npm run concat:css && npm run minify:css",
     "build:assets": "cp -r flows dist/ && cp -r assets dist/ 2>/dev/null || true",
