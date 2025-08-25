@@ -248,7 +248,7 @@
       <h2>Choose Your Experience Level</h2>
       <div class="layers-grid">
         
-        <div class="layer-card" onclick="window.location.href='#m0'" id="m0-card">
+        <div class="layer-card" onclick="enterBOVI('m0')" id="m0-card">
           <div class="layer-badge">M0</div>
           <h3 class="layer-title">Just Keep Me Safe</h3>
           <p class="layer-subtitle">"It just works"</p>
@@ -263,7 +263,7 @@
           </ul>
         </div>
 
-        <div class="layer-card" onclick="window.location.href='#m1'" id="m1-card">
+        <div class="layer-card" onclick="enterBOVI('m1')" id="m1-card">
           <div class="layer-badge">M1</div>
           <h3 class="layer-title">Light Control</h3>
           <p class="layer-subtitle">"I want some control"</p>
@@ -278,7 +278,7 @@
           </ul>
         </div>
 
-        <div class="layer-card" onclick="window.location.href='#m2'" id="m2-card">
+        <div class="layer-card" onclick="enterBOVI('m2')" id="m2-card">
           <div class="layer-badge">M2</div>
           <h3 class="layer-title">Power User</h3>
           <p class="layer-subtitle">"I want to understand"</p>
@@ -293,7 +293,7 @@
           </ul>
         </div>
 
-        <div class="layer-card" onclick="window.location.href='#m3'" id="m3-card">
+        <div class="layer-card" onclick="enterBOVI('m3')" id="m3-card">
           <div class="layer-badge">M3</div>
           <h3 class="layer-title">Expert Tools</h3>
           <p class="layer-subtitle">"I want sophisticated control"</p>
@@ -308,7 +308,7 @@
           </ul>
         </div>
 
-        <div class="layer-card" onclick="window.location.href='#m4'" id="m4-card">
+        <div class="layer-card" onclick="enterBOVI('m4')" id="m4-card">
           <div class="layer-badge">M4</div>
           <h3 class="layer-title">Developer</h3>
           <p class="layer-subtitle">"Full extensibility"</p>
@@ -367,9 +367,9 @@
       <h2>Try BOVI Now</h2>
       <p style="color: #a3b4d4; margin-bottom: 2rem;">Experience the power of intelligent money management</p>
       
-      <a href="#m0-demo" class="cta-secondary">🚀 Quick Demo</a>
-      <a href="#visual-editor" class="cta-secondary">🎛️ Visual Editor</a>
-      <a href="#documentation" class="cta-secondary">📚 Documentation</a>
+      <a href="javascript:showDemo()" class="cta-secondary">🚀 Quick Demo</a>
+      <a href="javascript:showVisualEditor()" class="cta-secondary">🎛️ Visual Editor</a>
+      <a href="javascript:showDocumentation()" class="cta-secondary">📚 Documentation</a>
     </div>
   </div>
 
@@ -383,6 +383,217 @@
   </div>
 
   <script>
+    // BOVI Entry Point Functions
+    function enterBOVI(level) {
+      console.log(`🎛️ Entering BOVI ${level.toUpperCase()} mode`);
+      
+      // Store user's chosen complexity level
+      localStorage.setItem('bovi.complexityLevel', level);
+      
+      // Show modal with level-appropriate content
+      showComplexityModal(level);
+    }
+
+    function showComplexityModal(level) {
+      const levelConfig = {
+        m0: {
+          title: 'M0: Just Keep Me Safe',
+          subtitle: '"It just works"',
+          content: `
+            <div style="text-align: center; padding: 2rem;">
+              <div style="font-size: 4rem; margin-bottom: 1rem;">🛡️</div>
+              <h3 style="color: #4cc9f0; margin-bottom: 1rem;">Welcome to Safe Mode</h3>
+              <p style="margin-bottom: 2rem; color: #c7d2fe;">
+                One-button financial protection. No complexity, just safety from inflation.
+              </p>
+              <div style="background: rgba(76, 201, 240, 0.1); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                <button onclick="activateProtection()" style="
+                  background: linear-gradient(135deg, #10b981, #059669);
+                  color: white;
+                  border: none;
+                  padding: 1rem 2rem;
+                  border-radius: 8px;
+                  font-size: 1.2rem;
+                  font-weight: 600;
+                  cursor: pointer;
+                  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+                ">🛡️ Keep Me Safe</button>
+              </div>
+              <p style="color: #a3b4d4; font-size: 0.9rem;">
+                This will automatically adjust your money settings to protect against inflation.
+              </p>
+            </div>
+          `
+        },
+        m1: {
+          title: 'M1: Light Control',
+          subtitle: '"I want some control"',
+          content: `
+            <div style="text-align: center; padding: 2rem;">
+              <div style="font-size: 4rem; margin-bottom: 1rem;">⚙️</div>
+              <h3 style="color: #f59e0b; margin-bottom: 1rem;">Safe Defaults with Options</h3>
+              <p style="margin-bottom: 2rem; color: #c7d2fe;">
+                Control the basics while keeping automatic protections enabled.
+              </p>
+              <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 12px;">
+                <p style="color: #a3b4d4;">🚧 Coming Soon</p>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">
+                  M1 features are in development. Currently available: M0 (Safe Mode)
+                </p>
+              </div>
+            </div>
+          `
+        },
+        m2: {
+          title: 'M2: Power User',
+          subtitle: '"I want to understand the system"',
+          content: `
+            <div style="text-align: center; padding: 2rem;">
+              <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
+              <h3 style="color: #8b5cf6; margin-bottom: 1rem;">Advanced Tools & Analytics</h3>
+              <p style="margin-bottom: 2rem; color: #c7d2fe;">
+                Deep understanding of inflation impacts and group coordination.
+              </p>
+              <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 12px;">
+                <p style="color: #a3b4d4;">🚧 Coming Soon</p>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">
+                  M2 features are in development. Available: Money-veil calculations, Cohort tools
+                </p>
+              </div>
+            </div>
+          `
+        },
+        m3: {
+          title: 'M3: Expert Tools',
+          subtitle: '"I want sophisticated control"',
+          content: `
+            <div style="text-align: center; padding: 2rem;">
+              <div style="font-size: 4rem; margin-bottom: 1rem;">🎛️</div>
+              <h3 style="color: #4cc9f0; margin-bottom: 1rem;">Visual Flow Editor</h3>
+              <p style="margin-bottom: 2rem; color: #c7d2fe;">
+                Build custom workflows with smart contracts and automation.
+              </p>
+              <button onclick="openVisualEditor()" style="
+                background: linear-gradient(135deg, #4cc9f0, #3b82f6);
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3);
+                margin-bottom: 1rem;
+              ">🎛️ Open Flow Editor</button>
+              <p style="color: #6b7280; font-size: 0.9rem;">
+                Drag-and-drop interface for creating BOVI workflows
+              </p>
+            </div>
+          `
+        },
+        m4: {
+          title: 'M4: Developer',
+          subtitle: '"Full extensibility"',
+          content: `
+            <div style="text-align: center; padding: 2rem;">
+              <div style="font-size: 4rem; margin-bottom: 1rem;">👩‍💻</div>
+              <h3 style="color: #ef4444; margin-bottom: 1rem;">Full API Access</h3>
+              <p style="margin-bottom: 2rem; color: #c7d2fe;">
+                Complete customization and plugin development capabilities.
+              </p>
+              <div style="background: rgba(239, 68, 68, 0.1); padding: 1.5rem; border-radius: 12px;">
+                <p style="color: #a3b4d4;">🚧 Coming Soon</p>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">
+                  Developer tools are in development. Check GitHub for API documentation.
+                </p>
+              </div>
+            </div>
+          `
+        }
+      };
+
+      const config = levelConfig[level];
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 14, 26, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      `;
+
+      modal.innerHTML = `
+        <div style="
+          background: linear-gradient(135deg, #1a1d24 0%, #2a3441 100%);
+          border: 2px solid #4cc9f0;
+          border-radius: 16px;
+          max-width: 500px;
+          width: 90%;
+          max-height: 80vh;
+          overflow-y: auto;
+        ">
+          <div style="
+            padding: 1.5rem;
+            border-bottom: 1px solid #2a2f3a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          ">
+            <div>
+              <h2 style="color: #e7eef9; margin: 0; font-size: 1.3rem;">${config.title}</h2>
+              <p style="color: #a3b4d4; margin: 0.5rem 0 0 0; font-style: italic;">${config.subtitle}</p>
+            </div>
+            <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="
+              background: none;
+              border: none;
+              color: #a3b4d4;
+              font-size: 1.5rem;
+              cursor: pointer;
+              padding: 0.5rem;
+            ">&times;</button>
+          </div>
+          <div style="color: #e7eef9;">
+            ${config.content}
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+      
+      // Close modal when clicking outside
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      });
+    }
+
+    function activateProtection() {
+      alert('🛡️ Protection activated! Your money settings are now automatically adjusted to protect against inflation.');
+      document.querySelector('div[style*="position: fixed"]').remove();
+    }
+
+    function openVisualEditor() {
+      window.open('/visual-editor.html', '_blank');
+    }
+
+    function showDemo() {
+      enterBOVI('m0'); // Default to M0 for demo
+    }
+
+    function showVisualEditor() {
+      enterBOVI('m3'); // Visual editor is M3
+    }
+
+    function showDocumentation() {
+      window.open('https://github.com/BramAlkema/BOVI/tree/main/docs', '_blank');
+    }
+
     // Add smooth scrolling and interaction
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
