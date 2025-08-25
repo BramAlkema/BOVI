@@ -7,10 +7,14 @@ import { FlowEditor } from "./flow-editor.js";
 import type { FlowSpec } from "../flow/types.js";
 
 export function setupFlowEditorPanel(): void {
+  console.log("🎛️ Setting up Flow Editor Panel...");
+  
   // Find a suitable container (bundle or scenarios section)
   const targetContainer = document.querySelector("#bundle") || document.querySelector("#scenarios");
+  console.log("Target container found:", targetContainer);
   
   if (targetContainer && !targetContainer.querySelector(".flow-editor-panel")) {
+    console.log("Adding flow editor panel to:", targetContainer.id);
     const panel = document.createElement("div");
     panel.className = "panel flow-editor-panel";
     panel.innerHTML = `
