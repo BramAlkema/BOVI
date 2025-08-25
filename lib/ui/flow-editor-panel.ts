@@ -3,8 +3,8 @@
  * Integration component for the visual flow editor
  */
 
-import { FlowEditor } from './flow-editor.js';
-import type { FlowSpec } from '../flow/types.js';
+import { FlowEditor } from "./flow-editor.js";
+import type { FlowSpec } from "../flow/types.js";
 
 export function setupFlowEditorPanel(): void {
   // Find a suitable container (bundle or scenarios section)

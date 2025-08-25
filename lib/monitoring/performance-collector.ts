@@ -15,7 +15,7 @@ export interface PerformanceThreshold {
 export interface PerformanceAlert {
   metric: string;
   value: number;
-  threshold: 'amber' | 'red';
+  threshold: "amber" | "red";
   message: string;
 }
 
@@ -25,7 +25,7 @@ export interface KPIData {
   min?: number;
   max?: number;
   samples: number;
-  trend?: 'up' | 'down' | 'stable';
+  trend?: "up" | "down" | "stable";
 }
 
 export interface TimingStats {
@@ -47,7 +47,7 @@ export interface SlowResource {
 export class PerformanceCollector {
   private startTimes: Map<string, number> = new Map();
   private metrics: Map<string, number[]> = new Map();
-  private systemMonitoringInterval?: NodeJS.Timeout;
+  private systemMonitoringInterval?: any;
   private alertCallbacks: ((alert: PerformanceAlert) => void)[] = [];
   private thresholds: Map<string, PerformanceThreshold> = new Map();
   private kpiData: Map<string, KPIData> = new Map();
@@ -164,8 +164,8 @@ export class PerformanceCollector {
       this.kpiData.set(name, {
         current: value,
         samples: 0,
-        min: typeof value === 'number' ? value : undefined,
-        max: typeof value === 'number' ? value : undefined,
+        min: typeof value === "number" ? value : undefined,
+        max: typeof value === "number" ? value : undefined,
       });
     }
 
@@ -173,7 +173,7 @@ export class PerformanceCollector {
     data.current = value;
     data.samples++;
 
-    if (typeof value === 'number') {
+    if (typeof value === "number") {
       data.min = data.min === undefined ? value : Math.min(data.min, value);
       data.max = data.max === undefined ? value : Math.max(data.max, value);
       
@@ -219,18 +219,18 @@ export class PerformanceCollector {
   /**
    * Get threshold status for a metric
    */
-  getThresholdStatus(metric: string): 'green' | 'amber' | 'red' {
+  getThresholdStatus(metric: string): "green" | "amber" | "red" {
     const data = this.kpiData.get(metric);
     const threshold = this.thresholds.get(metric);
     
-    if (!data || !threshold || typeof data.current !== 'number') {
-      return 'green';
+    if (!data || !threshold || typeof data.current !== "number") {
+      return "green";
     }
 
     const value = data.current as number;
-    if (value >= threshold.red) return 'red';
-    if (value >= threshold.amber) return 'amber';
-    return 'green';
+    if (value >= threshold.red) return "red";
+    if (value >= threshold.amber) return "amber";
+    return "green";
   }
 
   /**
@@ -247,16 +247,16 @@ export class PerformanceCollector {
     const threshold = this.thresholds.get(metric);
     if (!threshold) return;
 
-    let alertLevel: 'amber' | 'red' | null = null;
-    if (value >= threshold.red) alertLevel = 'red';
-    else if (value >= threshold.amber) alertLevel = 'amber';
+    let alertLevel: "amber" | "red" | null = null;
+    if (value >= threshold.red) alertLevel = "red";
+    else if (value >= threshold.amber) alertLevel = "amber";
 
     if (alertLevel) {
       const alert: PerformanceAlert = {
         metric,
         value,
         threshold: alertLevel,
-        message: `Metric ${metric} exceeded ${alertLevel} threshold (${value} >= ${alertLevel === 'red' ? threshold.red : threshold.amber})`
+        message: `Metric ${metric} exceeded ${alertLevel} threshold (${value} >= ${alertLevel === "red" ? threshold.red : threshold.amber})`
       };
 
       this.alertCallbacks.forEach(callback => callback(alert));
@@ -310,7 +310,7 @@ export class PerformanceCollector {
       collectionStart: number;
       sampleCount: number;
     };
-  } {
+    } {
     const metrics = this.getMetrics();
     const sampleCount = Object.values(metrics).reduce((sum, data) => sum + data.samples, 0);
 
@@ -329,24 +329,24 @@ export class PerformanceCollector {
    */
   collectSystemMetrics(): void {
     // Memory usage (if available)
-    if ('memory' in performance && performance.memory) {
+    if ("memory" in performance && performance.memory) {
       const memory = (performance as any).memory;
-      this.trackKPI('memory_used', memory.usedJSHeapSize);
-      this.trackKPI('memory_total', memory.totalJSHeapSize);
-      this.trackKPI('memory_limit', memory.jsHeapSizeLimit);
+      this.trackKPI("memory_used", memory.usedJSHeapSize);
+      this.trackKPI("memory_total", memory.totalJSHeapSize);
+      this.trackKPI("memory_limit", memory.jsHeapSizeLimit);
     }
 
     // Navigation timing (if available)
-    const navigationEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+    const navigationEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
     if (navigationEntries.length > 0) {
       const nav = navigationEntries[0];
       const pageLoadTime = nav.loadEventEnd - nav.startTime;
       const domContentLoadTime = nav.domContentLoadedEventEnd - nav.startTime;
       const responseTime = nav.responseEnd - nav.requestStart;
 
-      this.trackKPI('page_load_time', pageLoadTime);
-      this.trackKPI('dom_content_load_time', domContentLoadTime);
-      this.trackKPI('response_time', responseTime);
+      this.trackKPI("page_load_time", pageLoadTime);
+      this.trackKPI("dom_content_load_time", domContentLoadTime);
+      this.trackKPI("response_time", responseTime);
     }
 
     // Continue with existing system metrics collection
@@ -357,11 +357,11 @@ export class PerformanceCollector {
    * Collect resource timing metrics
    */
   collectResourceMetrics(): void {
-    const resourceEntries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+    const resourceEntries = performance.getEntriesByType("resource") as PerformanceResourceTiming[];
     
     resourceEntries.forEach(resource => {
       const duration = resource.duration;
-      this.trackKPI('resource_load_time', duration);
+      this.trackKPI("resource_load_time", duration);
     });
   }
 
@@ -369,7 +369,7 @@ export class PerformanceCollector {
    * Get slow resources above threshold
    */
   getSlowResources(thresholdMs: number): SlowResource[] {
-    const resourceEntries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+    const resourceEntries = performance.getEntriesByType("resource") as PerformanceResourceTiming[];
     
     return resourceEntries
       .filter(resource => resource.duration > thresholdMs)
@@ -386,7 +386,7 @@ export class PerformanceCollector {
   getTimings(): Record<string, number> {
     const timings: Record<string, number> = {};
     this.kpiData.forEach((data, name) => {
-      if (name.includes('_duration') && typeof data.average === 'number') {
+      if (name.includes("_duration") && typeof data.average === "number") {
         timings[name] = data.average;
       }
     });
@@ -400,7 +400,7 @@ export class PerformanceCollector {
     const durationKey = `${operationName}_duration`;
     const data = this.kpiData.get(durationKey);
     
-    if (!data || typeof data.average !== 'number' || data.min === undefined || data.max === undefined) {
+    if (!data || typeof data.average !== "number" || data.min === undefined || data.max === undefined) {
       return undefined;
     }
 

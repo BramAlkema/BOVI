@@ -96,12 +96,12 @@ async function generatePDFReceipt(contract: SmartContract): Promise<Blob> {
   let yPos = 75;
   
   const details = [
-    [`Contract ID:`, contract.id],
-    [`Template Type:`, contract.templateId.toUpperCase()],
-    [`Parties:`, contract.parties.join(", ")],
-    [`Created:`, new Date(contract.created).toLocaleString()],
-    [`Effective From:`, new Date(contract.effectiveFrom).toLocaleString()],
-    [`Undo Deadline:`, new Date(contract.undoDeadline).toLocaleString()]
+    ["Contract ID:", contract.id],
+    ["Template Type:", contract.templateId.toUpperCase()],
+    ["Parties:", contract.parties.join(", ")],
+    ["Created:", new Date(contract.created).toLocaleString()],
+    ["Effective From:", new Date(contract.effectiveFrom).toLocaleString()],
+    ["Undo Deadline:", new Date(contract.undoDeadline).toLocaleString()]
   ];
   
   details.forEach(([label, value]) => {
@@ -137,11 +137,11 @@ async function generatePDFReceipt(contract: SmartContract): Promise<Blob> {
   doc.setFont("helvetica", "normal");
   
   const params = [
-    [`LTS Index Reference:`, contract.clause.ltsIndex],
-    [`Cap (basis points):`, contract.clause.capBp?.toString() || "No cap"],
-    [`Floor (basis points):`, contract.clause.floorBp?.toString() || "No floor"],
-    [`Carryover Unused Adjustments:`, contract.clause.carry ? "Yes" : "No"],
-    [`Undo Window:`, `${contract.clause.undoWindowHours} hours`]
+    ["LTS Index Reference:", contract.clause.ltsIndex],
+    ["Cap (basis points):", contract.clause.capBp?.toString() || "No cap"],
+    ["Floor (basis points):", contract.clause.floorBp?.toString() || "No floor"],
+    ["Carryover Unused Adjustments:", contract.clause.carry ? "Yes" : "No"],
+    ["Undo Window:", `${contract.clause.undoWindowHours} hours`]
   ];
   
   params.forEach(([label, value]) => {

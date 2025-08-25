@@ -314,7 +314,7 @@ function refreshContractList(): void {
   const contracts = getStoredContracts();
   
   if (contracts.length === 0) {
-    listContainer.innerHTML = '<p class="text-muted">No contracts found. Create your first contract above!</p>';
+    listContainer.innerHTML = "<p class=\"text-muted\">No contracts found. Create your first contract above!</p>";
     return;
   }
   
@@ -322,38 +322,38 @@ function refreshContractList(): void {
     <div class="contract-item card">
       <div class="contract-header">
         <h4>${contract.templateId.toUpperCase()} Contract</h4>
-        <span class="contract-status ${contract.signed ? 'signed' : 'unsigned'}">${contract.signed ? '✓ Signed' : '⏳ Pending'}</span>
+        <span class="contract-status ${contract.signed ? "signed" : "unsigned"}">${contract.signed ? "✓ Signed" : "⏳ Pending"}</span>
       </div>
       <div class="contract-details">
         <p><strong>ID:</strong> ${contract.id}</p>
         <p><strong>Parties:</strong> ${contract.parties.join(", ")}</p>
         <p><strong>Created:</strong> ${new Date(contract.created).toLocaleDateString()}</p>
         <p><strong>Effective:</strong> ${new Date(contract.effectiveFrom).toLocaleDateString()}</p>
-        ${canUndoContract(contract.id) ? `<p class="undo-warning"><strong>⏰ Can undo until:</strong> ${new Date(contract.undoDeadline).toLocaleDateString()}</p>` : ''}
+        ${canUndoContract(contract.id) ? `<p class="undo-warning"><strong>⏰ Can undo until:</strong> ${new Date(contract.undoDeadline).toLocaleDateString()}</p>` : ""}
       </div>
       <div class="contract-actions">
-        ${!contract.signed ? `<button class="btn brand sign-contract" data-contract-id="${contract.id}">✓ Sign Contract</button>` : ''}
+        ${!contract.signed ? `<button class="btn brand sign-contract" data-contract-id="${contract.id}">✓ Sign Contract</button>` : ""}
         <button class="btn secondary download-pdf" data-contract-id="${contract.id}">📄 Download PDF</button>
-        ${canUndoContract(contract.id) ? `<button class="btn danger undo-contract" data-contract-id="${contract.id}">❌ Undo Contract</button>` : ''}
+        ${canUndoContract(contract.id) ? `<button class="btn danger undo-contract" data-contract-id="${contract.id}">❌ Undo Contract</button>` : ""}
       </div>
     </div>
-  `).join('');
+  `).join("");
   
   listContainer.innerHTML = contractHTML;
   
   // Add event listeners for actions
-  listContainer.querySelectorAll('.sign-contract').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
+  listContainer.querySelectorAll(".sign-contract").forEach(btn => {
+    btn.addEventListener("click", async (e) => {
       const contractId = (e.target as HTMLElement).dataset.contractId;
       if (contractId && signContract(contractId)) {
-        showNotification('Contract signed successfully!');
+        showNotification("Contract signed successfully!");
         refreshContractList();
       }
     });
   });
   
-  listContainer.querySelectorAll('.download-pdf').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
+  listContainer.querySelectorAll(".download-pdf").forEach(btn => {
+    btn.addEventListener("click", async (e) => {
       const contractId = (e.target as HTMLElement).dataset.contractId;
       if (contractId) {
         const contract = contracts.find(c => c.id === contractId);
@@ -370,15 +370,15 @@ function refreshContractList(): void {
     });
   });
   
-  listContainer.querySelectorAll('.undo-contract').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  listContainer.querySelectorAll(".undo-contract").forEach(btn => {
+    btn.addEventListener("click", (e) => {
       const contractId = (e.target as HTMLElement).dataset.contractId;
-      if (contractId && confirm('Are you sure you want to undo this contract? This action cannot be reversed.')) {
+      if (contractId && confirm("Are you sure you want to undo this contract? This action cannot be reversed.")) {
         if (undoContract(contractId)) {
-          showNotification('Contract undone successfully');
+          showNotification("Contract undone successfully");
           refreshContractList();
         } else {
-          showNotification('Failed to undo contract - undo window may have expired', 'error');
+          showNotification("Failed to undo contract - undo window may have expired", "error");
         }
       }
     });

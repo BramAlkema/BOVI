@@ -3,8 +3,8 @@
  * Provides user interface for running and viewing compute benchmarks
  */
 
-import { computeBenchmark, benchmarkBoviOperations, type BenchmarkResult } from '../monitoring/compute-benchmarks.js';
-import { performanceCollector } from '../monitoring/performance-collector.js';
+import { computeBenchmark, benchmarkBoviOperations, type BenchmarkResult } from "../monitoring/compute-benchmarks.js";
+// import { performanceCollector } from '../monitoring/performance-collector.js';
 
 export function setupBenchmarkPanel(): void {
   addBenchmarkPanelToPage();
@@ -12,11 +12,11 @@ export function setupBenchmarkPanel(): void {
 
 function addBenchmarkPanelToPage(): void {
   // Find a suitable container (bundle or scenarios section)
-  const targetContainer = document.querySelector('#bundle') || document.querySelector('#scenarios');
+  const targetContainer = document.querySelector("#bundle") || document.querySelector("#scenarios");
   
-  if (targetContainer && !targetContainer.querySelector('.benchmark-panel')) {
-    const panel = document.createElement('div');
-    panel.className = 'panel benchmark-panel';
+  if (targetContainer && !targetContainer.querySelector(".benchmark-panel")) {
+    const panel = document.createElement("div");
+    panel.className = "panel benchmark-panel";
     panel.innerHTML = `
       <h3>⚡ Performance Benchmarks</h3>
       <div class="benchmark-controls">
@@ -41,21 +41,21 @@ function addBenchmarkPanelToPage(): void {
 }
 
 function setupBenchmarkEventListeners(panel: Element): void {
-  const runBtn = panel.querySelector('#run-benchmarks') as HTMLButtonElement;
-  const exportBtn = panel.querySelector('#export-benchmarks') as HTMLButtonElement;
-  const clearBtn = panel.querySelector('#clear-benchmarks') as HTMLButtonElement;
-  const statusDiv = panel.querySelector('#benchmark-status') as HTMLElement;
-  const resultsDiv = panel.querySelector('#benchmark-results') as HTMLElement;
+  const runBtn = panel.querySelector("#run-benchmarks") as HTMLButtonElement;
+  const exportBtn = panel.querySelector("#export-benchmarks") as HTMLButtonElement;
+  const clearBtn = panel.querySelector("#clear-benchmarks") as HTMLButtonElement;
+  const statusDiv = panel.querySelector("#benchmark-status") as HTMLElement;
+  const resultsDiv = panel.querySelector("#benchmark-results") as HTMLElement;
 
-  runBtn?.addEventListener('click', async () => {
+  runBtn?.addEventListener("click", async () => {
     runBtn.disabled = true;
-    runBtn.textContent = 'Running...';
-    statusDiv.style.display = 'block';
-    resultsDiv.style.display = 'none';
+    runBtn.textContent = "Running...";
+    statusDiv.style.display = "block";
+    resultsDiv.style.display = "none";
 
     try {
       // Simulate progress updates
-      const progressFill = statusDiv.querySelector('.progress-fill') as HTMLElement;
+      const progressFill = statusDiv.querySelector(".progress-fill") as HTMLElement;
       let progress = 0;
       const progressInterval = setInterval(() => {
         progress = Math.min(progress + Math.random() * 20, 90);
@@ -65,47 +65,47 @@ function setupBenchmarkEventListeners(panel: Element): void {
       const suiteResult = await benchmarkBoviOperations();
       
       clearInterval(progressInterval);
-      progressFill.style.width = '100%';
+      progressFill.style.width = "100%";
       
       setTimeout(() => {
-        statusDiv.style.display = 'none';
+        statusDiv.style.display = "none";
         displayBenchmarkResults(resultsDiv, suiteResult.results);
-        resultsDiv.style.display = 'block';
+        resultsDiv.style.display = "block";
       }, 500);
 
-      showNotification('Benchmarks completed successfully!', 'success');
+      showNotification("Benchmarks completed successfully!", "success");
       
     } catch (error) {
-      console.error('Benchmark failed:', error);
-      statusDiv.style.display = 'none';
-      showNotification('Benchmark failed. Check console for details.', 'error');
+      console.error("Benchmark failed:", error);
+      statusDiv.style.display = "none";
+      showNotification("Benchmark failed. Check console for details.", "error");
     } finally {
       runBtn.disabled = false;
-      runBtn.textContent = 'Run Compute Benchmarks';
+      runBtn.textContent = "Run Compute Benchmarks";
     }
   });
 
-  exportBtn?.addEventListener('click', () => {
+  exportBtn?.addEventListener("click", () => {
     const data = computeBenchmark.exportBenchmarkData();
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = `bovi-benchmarks-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `bovi-benchmarks-${new Date().toISOString().split("T")[0]}.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     
     URL.revokeObjectURL(url);
-    showNotification('Benchmark data exported!', 'info');
+    showNotification("Benchmark data exported!", "info");
   });
 
-  clearBtn?.addEventListener('click', () => {
-    if (confirm('Clear all benchmark data? This cannot be undone.')) {
+  clearBtn?.addEventListener("click", () => {
+    if (confirm("Clear all benchmark data? This cannot be undone.")) {
       computeBenchmark.clear();
-      resultsDiv.style.display = 'none';
-      showNotification('Benchmark data cleared', 'info');
+      resultsDiv.style.display = "none";
+      showNotification("Benchmark data cleared", "info");
     }
   });
 }
@@ -118,7 +118,7 @@ function displayBenchmarkResults(container: HTMLElement, results: BenchmarkResul
     return `
       <div class="benchmark-result-item">
         <div class="result-header">
-          <h4>${result.operationName.replace(/.*_/, '').replace(/-/g, ' ')}</h4>
+          <h4>${result.operationName.replace(/.*_/, "").replace(/-/g, " ")}</h4>
           <span class="throughput-badge" style="background: ${throughputColor}">
             ${result.throughput.toFixed(0)} ops/sec
           </span>
@@ -145,11 +145,11 @@ function displayBenchmarkResults(container: HTMLElement, results: BenchmarkResul
               <label>Memory:</label>
               <span>${formatBytes(result.memoryUsage.peak - result.memoryUsage.before)}</span>
             </div>
-          ` : ''}
+          ` : ""}
         </div>
       </div>
     `;
-  }).join('');
+  }).join("");
 
   // Calculate suite summary
   const totalOperations = results.length;
@@ -181,42 +181,42 @@ function displayBenchmarkResults(container: HTMLElement, results: BenchmarkResul
 }
 
 function getThroughputColor(throughput: number): string {
-  if (throughput > 1000) return '#22c55e'; // Green
-  if (throughput > 100) return '#eab308';  // Yellow
-  return '#ef4444'; // Red
+  if (throughput > 1000) return "#22c55e"; // Green
+  if (throughput > 100) return "#eab308";  // Yellow
+  return "#ef4444"; // Red
 }
 
 function formatBytes(bytes: number): string {
-  if (bytes === 0) return '0 B';
+  if (bytes === 0) return "0 B";
   
   const k = 1024;
-  const sizes = ['B', 'KB', 'MB', 'GB'];
+  const sizes = ["B", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
 }
 
-function showNotification(message: string, type: 'info' | 'success' | 'error' = 'info'): void {
+function showNotification(message: string, type: "info" | "success" | "error" = "info"): void {
   // Create toast notification
-  const toast = document.createElement('div');
+  const toast = document.createElement("div");
   toast.className = `toast ${type}`;
   toast.textContent = message;
   
   // Position toast
-  toast.style.position = 'fixed';
-  toast.style.top = '20px';
-  toast.style.right = '20px';
-  toast.style.padding = '12px 16px';
-  toast.style.borderRadius = '8px';
-  toast.style.color = 'white';
-  toast.style.fontWeight = '600';
-  toast.style.zIndex = '1000';
+  toast.style.position = "fixed";
+  toast.style.top = "20px";
+  toast.style.right = "20px";
+  toast.style.padding = "12px 16px";
+  toast.style.borderRadius = "8px";
+  toast.style.color = "white";
+  toast.style.fontWeight = "600";
+  toast.style.zIndex = "1000";
   
   // Set background color based on type
   const colors = {
-    info: '#3b82f6',
-    success: '#22c55e',
-    error: '#ef4444'
+    info: "#3b82f6",
+    success: "#22c55e",
+    error: "#ef4444"
   };
   toast.style.background = colors[type];
   

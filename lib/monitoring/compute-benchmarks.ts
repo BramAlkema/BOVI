@@ -3,7 +3,7 @@
  * Specialized benchmarking for compute-intensive operations
  */
 
-import { performanceCollector } from './performance-collector.js';
+import { performanceCollector } from "./performance-collector.js";
 
 // Benchmark result interfaces
 export interface BenchmarkResult {
@@ -88,7 +88,7 @@ export class ComputeBenchmark {
     }
 
     // Force garbage collection if available and requested
-    if (collectGC && 'gc' in global) {
+    if (collectGC && "gc" in global) {
       (global as any).gc();
     }
 
@@ -227,7 +227,7 @@ export class ComputeBenchmark {
   /**
    * Compare current performance against baseline
    */
-  compareAgainstBaseline(operationName: string, current: BenchmarkResult): ComparativeBenchmark | null {
+  compareAgainstBaseline(\n    operationName: string, \n    current: BenchmarkResult\n  ): ComparativeBenchmark | null {
     const baseline = this.baselines.get(operationName);
     if (!baseline) {
       // Set current as baseline if none exists
@@ -235,7 +235,9 @@ export class ComputeBenchmark {
       return null;
     }
 
-    const performanceChange = ((baseline.averagePerIteration - current.averagePerIteration) / baseline.averagePerIteration) * 100;
+    const baselineAvg = baseline.averagePerIteration;
+    const currentAvg = current.averagePerIteration;
+    const performanceChange = ((baselineAvg - currentAvg) / baselineAvg) * 100;
     const improvement = Math.max(0, performanceChange);
     const regression = Math.max(0, -performanceChange);
     
@@ -286,7 +288,7 @@ export class ComputeBenchmark {
       totalBenchmarks: number;
       averagePerformance: number;
     };
-  } {
+    } {
     const resultsObj: Record<string, BenchmarkResult[]> = {};
     this.results.forEach((results, name) => {
       resultsObj[name] = results;
@@ -325,7 +327,7 @@ export class ComputeBenchmark {
   // Utility methods
 
   private getMemoryUsage(): number {
-    if ('memory' in performance && performance.memory) {
+    if ("memory" in performance && performance.memory) {
       return (performance as any).memory.usedJSHeapSize;
     }
     return 0;
@@ -367,23 +369,23 @@ export function benchmark(name?: string) {
  */
 export async function benchmarkBoviOperations(): Promise<BenchmarkSuite> {
   // Import compute operations dynamically to avoid circular dependencies
-  const { computeLocalIndex } = await import('../hayek-apis.js');
-  const { switchButler } = await import('../friedman-apis.js');
+  const { computeLocalIndex } = await import("../hayek-apis.js");
+  const { switchButler } = await import("../friedman-apis.js");
 
-  return computeBenchmark.benchmarkSuite('bovi-compute-ops', {
-    'local-index-calculation': () => computeLocalIndex([
+  return computeBenchmark.benchmarkSuite("bovi-compute-ops", {
+    "local-index-calculation": () => computeLocalIndex([
       { price: 2.5 }, { price: 1.2 }, { price: 3.8 }, { price: 0.9 }
     ]),
-    'butler-switching': () => switchButler('bovi-default'),
-    'json-processing': () => {
-      const data = { complex: 'data', with: ['arrays', 1, 2, 3], and: { nested: 'objects' } };
+    "butler-switching": () => switchButler("bovi-default"),
+    "json-processing": () => {
+      const data = { complex: "data", with: ["arrays", 1, 2, 3], and: { nested: "objects" } };
       return JSON.parse(JSON.stringify(data));
     },
-    'array-sorting': () => {
+    "array-sorting": () => {
       const arr = Array.from({ length: 1000 }, () => Math.random());
       return arr.sort((a, b) => a - b);
     },
-    'mathematical-operations': () => {
+    "mathematical-operations": () => {
       let result = 0;
       for (let i = 0; i < 1000; i++) {
         result += Math.sqrt(i * Math.PI) / Math.log(i + 1);

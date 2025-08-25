@@ -60,8 +60,8 @@ export class FlowEditor {
   }
 
   private setupEditor(): void {
-    this.container.innerHTML = '';
-    this.container.className = 'flow-editor';
+    this.container.innerHTML = "";
+    this.container.className = "flow-editor";
     this.container.style.cssText = `
       position: relative;
       width: ${this.config.width}px;
@@ -74,8 +74,8 @@ export class FlowEditor {
     `;
 
     // Canvas for nodes
-    this.canvas = document.createElement('div');
-    this.canvas.className = 'flow-canvas';
+    this.canvas = document.createElement("div");
+    this.canvas.className = "flow-canvas";
     this.canvas.style.cssText = `
       position: relative;
       width: 100%;
@@ -85,7 +85,7 @@ export class FlowEditor {
     `;
 
     // SVG layer for connections
-    this.svgLayer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    this.svgLayer = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     this.svgLayer.style.cssText = `
       position: absolute;
       top: 0;
@@ -102,21 +102,21 @@ export class FlowEditor {
 
   private bindEvents(): void {
     // Mouse events for dragging
-    this.container.addEventListener('mousedown', this.handleMouseDown.bind(this));
-    this.container.addEventListener('mousemove', this.handleMouseMove.bind(this));
-    this.container.addEventListener('mouseup', this.handleMouseUp.bind(this));
-    this.container.addEventListener('mouseleave', this.handleMouseUp.bind(this));
+    this.container.addEventListener("mousedown", this.handleMouseDown.bind(this));
+    this.container.addEventListener("mousemove", this.handleMouseMove.bind(this));
+    this.container.addEventListener("mouseup", this.handleMouseUp.bind(this));
+    this.container.addEventListener("mouseleave", this.handleMouseUp.bind(this));
 
     // Touch events for mobile
-    this.container.addEventListener('touchstart', this.handleTouchStart.bind(this));
-    this.container.addEventListener('touchmove', this.handleTouchMove.bind(this));
-    this.container.addEventListener('touchend', this.handleTouchEnd.bind(this));
+    this.container.addEventListener("touchstart", this.handleTouchStart.bind(this));
+    this.container.addEventListener("touchmove", this.handleTouchMove.bind(this));
+    this.container.addEventListener("touchend", this.handleTouchEnd.bind(this));
 
     // Prevent context menu on right click
-    this.container.addEventListener('contextmenu', e => e.preventDefault());
+    this.container.addEventListener("contextmenu", e => e.preventDefault());
   }
 
-  public addNode(nodeData: Omit<FlowNode, 'id'>, position: NodePosition): VisualNode {
+  public addNode(nodeData: Omit<FlowNode, "id">, position: NodePosition): VisualNode {
     const node: VisualNode = {
       id: `node_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       position: this.config.snapToGrid ? this.snapToGrid(position) : position,
@@ -142,15 +142,18 @@ export class FlowEditor {
     this.redrawConnections();
   }
 
-  public addConnection(from: { nodeId: string; port: string }, to: { nodeId: string; port: string }): void {
+  public addConnection(
+    from: { nodeId: string; port: string }, 
+    to: { nodeId: string; port: string }
+  ): void {
     const connection: Connection = { from, to };
     this.connections.push(connection);
     this.renderConnection(connection);
   }
 
   private renderNode(node: VisualNode): void {
-    const nodeElement = document.createElement('div');
-    nodeElement.className = `flow-node ${node.type.toLowerCase().replace('.', '-')}`;
+    const nodeElement = document.createElement("div");
+    nodeElement.className = `flow-node ${node.type.toLowerCase().replace(".", "-")}`;
     nodeElement.dataset.nodeId = node.id;
     nodeElement.style.cssText = `
       position: absolute;
@@ -170,8 +173,8 @@ export class FlowEditor {
     `;
 
     // Node header
-    const header = document.createElement('div');
-    header.className = 'node-header';
+    const header = document.createElement("div");
+    header.className = "node-header";
     header.style.cssText = `
       display: flex;
       align-items: center;
@@ -181,11 +184,11 @@ export class FlowEditor {
       font-size: 13px;
     `;
 
-    const icon = document.createElement('span');
+    const icon = document.createElement("span");
     icon.textContent = this.getNodeIcon(node.type);
-    icon.style.cssText = 'font-size: 16px;';
+    icon.style.cssText = "font-size: 16px;";
 
-    const title = document.createElement('span');
+    const title = document.createElement("span");
     title.textContent = node.label || node.type;
 
     header.appendChild(icon);
@@ -193,8 +196,8 @@ export class FlowEditor {
 
     // Node description
     if (node.description) {
-      const desc = document.createElement('div');
-      desc.className = 'node-description';
+      const desc = document.createElement("div");
+      desc.className = "node-description";
       desc.textContent = node.description;
       desc.style.cssText = `
         font-size: 11px;
@@ -206,8 +209,8 @@ export class FlowEditor {
     }
 
     // Connection ports
-    const inputPort = document.createElement('div');
-    inputPort.className = 'input-port';
+    const inputPort = document.createElement("div");
+    inputPort.className = "input-port";
     inputPort.style.cssText = `
       position: absolute;
       left: -6px;
@@ -221,8 +224,8 @@ export class FlowEditor {
       cursor: crosshair;
     `;
 
-    const outputPort = document.createElement('div');
-    outputPort.className = 'output-port';
+    const outputPort = document.createElement("div");
+    outputPort.className = "output-port";
     outputPort.style.cssText = `
       position: absolute;
       right: -6px;
@@ -241,17 +244,17 @@ export class FlowEditor {
     nodeElement.appendChild(outputPort);
 
     // Add hover effects
-    nodeElement.addEventListener('mouseenter', () => {
+    nodeElement.addEventListener("mouseenter", () => {
       if (!this.dragState.isDragging) {
         nodeElement.style.boxShadow = `0 8px 32px rgba(${this.hexToRgb(this.getNodeColor(node.type))}, 0.3)`;
-        nodeElement.style.transform = 'translateY(-2px)';
+        nodeElement.style.transform = "translateY(-2px)";
       }
     });
 
-    nodeElement.addEventListener('mouseleave', () => {
+    nodeElement.addEventListener("mouseleave", () => {
       if (!this.dragState.isDragging) {
-        nodeElement.style.boxShadow = 'none';
-        nodeElement.style.transform = 'translateY(0)';
+        nodeElement.style.boxShadow = "none";
+        nodeElement.style.transform = "translateY(0)";
       }
     });
 
@@ -276,33 +279,33 @@ export class FlowEditor {
 
     // Create curved path
     const midX = (fromPos.x + toPos.x) / 2;
-    const path = `M ${fromPos.x} ${fromPos.y} C ${midX} ${fromPos.y} ${midX} ${toPos.y} ${toPos.x} ${toPos.y}`;
+    const path = `M ${fromPos.x} ${fromPos.y} ` +
+      `C ${midX} ${fromPos.y} ${midX} ${toPos.y} ${toPos.x} ${toPos.y}`;
 
-    const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    pathElement.setAttribute('d', path);
-    pathElement.setAttribute('stroke', '#4cc9f0');
-    pathElement.setAttribute('stroke-width', '2');
-    pathElement.setAttribute('fill', 'none');
-    pathElement.setAttribute('stroke-dasharray', '5,5');
-    pathElement.style.filter = 'drop-shadow(0 0 4px rgba(76, 201, 240, 0.3))';
+    const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    pathElement.setAttribute("d", path);
+    pathElement.setAttribute("stroke", "#4cc9f0");
+    pathElement.setAttribute("stroke-width", "2");
+    pathElement.setAttribute("fill", "none");
+    pathElement.setAttribute("stroke-dasharray", "5,5");
+    pathElement.style.filter = "drop-shadow(0 0 4px rgba(76, 201, 240, 0.3))";
 
     connection.path = path;
     this.svgLayer.appendChild(pathElement);
   }
 
   private redrawConnections(): void {
-    this.svgLayer.innerHTML = '';
+    this.svgLayer.innerHTML = "";
     this.connections.forEach(connection => this.renderConnection(connection));
   }
 
   private handleMouseDown(event: MouseEvent): void {
     const target = event.target as HTMLElement;
-    const nodeElement = target.closest('.flow-node') as HTMLElement;
+    const nodeElement = target.closest(".flow-node") as HTMLElement;
     
     if (nodeElement) {
       const nodeId = nodeElement.dataset.nodeId!;
       const rect = nodeElement.getBoundingClientRect();
-      const containerRect = this.container.getBoundingClientRect();
 
       this.dragState = {
         isDragging: true,
@@ -315,8 +318,8 @@ export class FlowEditor {
       };
 
       this.selectNode(nodeId);
-      nodeElement.style.cursor = 'grabbing';
-      nodeElement.style.zIndex = '10';
+      nodeElement.style.cursor = "grabbing";
+      nodeElement.style.zIndex = "10";
     }
   }
 
@@ -329,7 +332,10 @@ export class FlowEditor {
 
     const newPos = this.config.snapToGrid 
       ? this.snapToGrid({ x, y })
-      : { x: Math.max(0, Math.min(x, this.config.width - 160)), y: Math.max(0, Math.min(y, this.config.height - 80)) };
+      : { 
+        x: Math.max(0, Math.min(x, this.config.width - 160)), 
+        y: Math.max(0, Math.min(y, this.config.height - 80))
+      };
 
     this.updateNodePosition(this.dragState.nodeId, newPos);
   }
@@ -338,12 +344,17 @@ export class FlowEditor {
     if (this.dragState.nodeId) {
       const nodeElement = this.container.querySelector(`[data-node-id="${this.dragState.nodeId}"]`) as HTMLElement;
       if (nodeElement) {
-        nodeElement.style.cursor = 'grab';
-        nodeElement.style.zIndex = '2';
+        nodeElement.style.cursor = "grab";
+        nodeElement.style.zIndex = "2";
       }
     }
 
-    this.dragState = { isDragging: false, nodeId: null, startPos: { x: 0, y: 0 }, offset: { x: 0, y: 0 } };
+    this.dragState = { 
+      isDragging: false, 
+      nodeId: null, 
+      startPos: { x: 0, y: 0 }, 
+      offset: { x: 0, y: 0 } 
+    };
   }
 
   private handleTouchStart(event: TouchEvent): void {
@@ -399,7 +410,7 @@ export class FlowEditor {
     this.selectedNode = nodeId;
     const nodeElement = this.container.querySelector(`[data-node-id="${nodeId}"]`) as HTMLElement;
     if (nodeElement) {
-      nodeElement.style.borderColor = '#fff';
+      nodeElement.style.borderColor = "#fff";
     }
   }
 
@@ -411,28 +422,28 @@ export class FlowEditor {
   }
 
   private getNodeColor(nodeType: string): string {
-    const [mode] = nodeType.split('.');
+    const [mode] = nodeType.split(".");
     switch (mode) {
-      case 'B': return '#4cc9f0'; // Balanced - Blue
-      case 'O': return '#ff6b6b'; // Obligated - Red  
-      case 'V': return '#a1ffb5'; // Value - Green
-      case 'I': return '#ffd166'; // Immediate - Yellow
-      default: return '#8b949e';
+    case "B": return "#4cc9f0"; // Balanced - Blue
+    case "O": return "#ff6b6b"; // Obligated - Red  
+    case "V": return "#a1ffb5"; // Value - Green
+    case "I": return "#ffd166"; // Immediate - Yellow
+    default: return "#8b949e";
     }
   }
 
   private getNodeIcon(nodeType: string): string {
     switch (nodeType) {
-      case 'V.PDA': return '📊';
-      case 'V.Calculate': return '🔢';
-      case 'V.Assess': return '⚖️';
-      case 'I.Detect': return '🔍';
-      case 'I.Default':
-      case 'B.Default':
-      case 'O.Default': return '⚙️';
-      case 'B.Sweep': return '🧹';
-      case 'B.Learn': return '📚';
-      default: return '📦';
+    case "V.PDA": return "📊";
+    case "V.Calculate": return "🔢";
+    case "V.Assess": return "⚖️";
+    case "I.Detect": return "🔍";
+    case "I.Default":
+    case "B.Default":
+    case "O.Default": return "⚙️";
+    case "B.Sweep": return "🧹";
+    case "B.Learn": return "📚";
+    default: return "📦";
     }
   }
 
@@ -440,18 +451,18 @@ export class FlowEditor {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? 
       `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : 
-      '76, 201, 240';
+      "76, 201, 240";
   }
 
   public exportAsPNG(): void {
     // Simple implementation - take screenshot of container
-    import('html2canvas').then((html2canvas) => {
+    import("html2canvas").then((html2canvas) => {
       html2canvas.default(this.container).then(canvas => {
         canvas.toBlob(blob => {
           if (blob) {
             const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.download = 'bovi-flow.png';
+            const link = document.createElement("a");
+            link.download = "bovi-flow.png";
             link.href = url;
             link.click();
             URL.revokeObjectURL(url);
@@ -460,19 +471,19 @@ export class FlowEditor {
       });
     }).catch(() => {
       // Fallback: create simple canvas export
-      const canvas = document.createElement('canvas');
+      const canvas = document.createElement("canvas");
       canvas.width = this.config.width;
       canvas.height = this.config.height;
-      const ctx = canvas.getContext('2d')!;
+      const ctx = canvas.getContext("2d")!;
       
-      ctx.fillStyle = '#1a1d24';
+      ctx.fillStyle = "#1a1d24";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       canvas.toBlob(blob => {
         if (blob) {
           const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.download = 'bovi-flow.png';
+          const link = document.createElement("a");
+          link.download = "bovi-flow.png";
           link.href = url;
           link.click();
           URL.revokeObjectURL(url);
@@ -484,8 +495,8 @@ export class FlowEditor {
   public clear(): void {
     this.nodes.clear();
     this.connections = [];
-    this.canvas.innerHTML = '';
-    this.svgLayer.innerHTML = '';
+    this.canvas.innerHTML = "";
+    this.svgLayer.innerHTML = "";
     this.selectedNode = null;
   }
 
@@ -503,22 +514,22 @@ export class FlowEditor {
       from: conn.from.nodeId,
       to: conn.to.nodeId,
       label: `edge_${index}`,
-      condition: 'always'
+      condition: "always"
     }));
 
     return {
       id: `flow_${Date.now()}`,
-      title: 'Custom Flow',
-      description: 'Flow created with visual editor',
+      title: "Custom Flow",
+      description: "Flow created with visual editor",
       context: {},
       nodes,
       edges,
       meta: {
-        version: '1.0.0',
-        bovi_modes: ['B', 'O', 'V', 'I'],
-        primary_mode: 'V',
+        version: "1.0.0",
+        bovi_modes: ["B", "O", "V", "I"],
+        primary_mode: "V",
         created: new Date().toISOString(),
-        tags: ['visual', 'custom']
+        tags: ["visual", "custom"]
       }
     };
   }
