@@ -438,7 +438,7 @@
       }
     }
 
-    // Launch pure M0 satnav plugin
+    // Launch pure M0 satnav plugin - embedded version
     function launchSatnavApp() {
       // Hide homepage content
       document.body.style.display = 'none';
@@ -477,27 +477,96 @@
         document.body.style.display = '';
       };
       
+      // Create embedded satnav interface
+      const satnavInterface = document.createElement('div');
+      satnavInterface.innerHTML = `
+        <style>
+          .satnav-wrap { font-family: system-ui, sans-serif; color: #e7eef9; background: #0a0e1a; display: grid; gap: 12px; padding: 16px 16px 16px 16px; min-height: 100vh; padding-top: 60px; }
+          .satnav-row { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+          .satnav-card { background: #0e1320; border: 1px solid #232a3b; border-radius: 12px; padding: 14px; }
+          .satnav-card h3, .satnav-card h4 { margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #e7eef9; }
+          .satnav-cta { background: #2a7; border: none; color: #031; font-weight: 700; padding: 12px 16px; border-radius: 10px; cursor: pointer; margin-top: 12px; transition: all 0.2s; }
+          .satnav-cta:hover { background: #3b8; transform: translateY(-1px); }
+          .satnav-cta:disabled { opacity: 0.7; cursor: not-allowed; }
+          .satnav-episode { display: flex; align-items: center; justify-content: space-between; }
+          .satnav-episode button { background: #4cc9f0; border: none; color: #041920; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+          .satnav-episode button:hover { background: #5dd3ff; }
+          .satnav-episode button:disabled { opacity: 0.7; cursor: not-allowed; }
+          .satnav-status { font-size: 12px; opacity: 0.8; margin-top: 4px; color: #a3b4d4; }
+        </style>
+        <div class="satnav-wrap">
+          <div class="satnav-card">
+            <h3>🧭 BOVI Financial Satnav</h3>
+            <div id="overall">✅ All systems operational</div>
+            <button class="satnav-cta" id="safe">🚗 Auto-drive: Keep me safe</button>
+          </div>
+          <div class="satnav-row">
+            <div class="satnav-card">
+              <h4>💰 Bills</h4>
+              <div id="tile-roof">Checking your bills...</div>
+              <div class="satnav-status">Auto-protection available</div>
+            </div>
+            <div class="satnav-card">
+              <h4>🛒 Deals</h4>
+              <div id="tile-food">Finding best deals...</div>
+              <div class="satnav-status">Smart switching enabled</div>
+            </div>
+            <div class="satnav-card">
+              <h4>⚡ Energy</h4>
+              <div id="tile-power">Monitoring contracts...</div>
+              <div class="satnav-status">Rate optimization active</div>
+            </div>
+          </div>
+          <div class="satnav-card satnav-episode">
+            <div>
+              <div id="ep">💡 Next: Understanding Inflation Protection</div>
+              <div class="satnav-status" id="ep-mode">M0 mode • 3 min explainer</div>
+            </div>
+            <button id="play">▶ Play</button>
+          </div>
+        </div>
+      `;
+      
       appContainer.appendChild(backButton);
+      appContainer.appendChild(satnavInterface);
       document.body.appendChild(appContainer);
       
-      // Launch satnav plugin in app container
-      if (typeof window.bootUI === 'function') {
-        window.bootUI('bovi-app', 'ui-satnav');
-      } else {
-        // Fallback: load the satnav plugin manually
-        import('./dist/lib/lib/ui/boot.js').then(module => {
-          module.bootUI('bovi-app', 'ui-satnav');
-        }).catch(err => {
-          console.error('Failed to load satnav plugin:', err);
-          appContainer.innerHTML = `
-            <div style="padding: 2rem; color: #e7eef9; text-align: center; margin-top: 2rem;">
-              <h2>🧭 BOVI Satnav Loading...</h2>
-              <p>Please wait while we initialize your financial navigation system.</p>
-              <div style="margin: 2rem 0;">Loading satnav plugin...</div>
-            </div>
-          `;
-        });
-      }
+      // Wire up the "Keep me safe" button
+      const safeBtn = satnavInterface.querySelector('#safe');
+      safeBtn.onclick = async () => {
+        safeBtn.disabled = true;
+        safeBtn.textContent = 'Activating protection...';
+        
+        // Simulate API calls and show progress
+        setTimeout(() => {
+          satnavInterface.querySelector('#tile-roof').textContent = '✅ Bills optimized';
+          satnavInterface.querySelector('#tile-food').textContent = '✅ Deals activated';  
+          satnavInterface.querySelector('#tile-power').textContent = '✅ Energy secured';
+          satnavInterface.querySelector('#overall').textContent = '🛡️ Protection active - You are safe!';
+          
+          safeBtn.textContent = '✅ Protection Active';
+          safeBtn.style.background = '#10b981';
+          safeBtn.style.color = 'white';
+          
+          // Show success notification
+          setTimeout(() => {
+            alert('🎉 Success! Your money is now protected from inflation. BOVI is automatically optimizing your bills, deals, and energy contracts.');
+          }, 500);
+        }, 2000);
+      };
+      
+      // Wire up the episode play button
+      const playBtn = satnavInterface.querySelector('#play');
+      playBtn.onclick = () => {
+        playBtn.disabled = true;
+        playBtn.textContent = '▶ Playing...';
+        
+        setTimeout(() => {
+          alert('🎬 Episode: "Understanding Inflation Protection"\n\nThis 3-minute explainer would teach you how BOVI keeps your money safe automatically, without you needing to understand complex economics.');
+          playBtn.textContent = '✅ Watched';
+          playBtn.disabled = false;
+        }, 1000);
+      };
     }
 
     // Launch M1 with light controls on top of satnav
