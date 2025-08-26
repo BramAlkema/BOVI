@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/16</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/15</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,64 +92,85 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Registry + Host
 import type { UIComponentPlugin } from "./types.js";
 &nbsp;
-const REG = new Map&lt;string, UIComponentPlugin&gt;();
-let activeId: string | null = null;
+const REG = <span class="cstat-no" title="statement not covered" >new Map&lt;string, UIComponentPlugin&gt;();</span>
+let activeId: string | null = <span class="cstat-no" title="statement not covered" >null;</span>
 &nbsp;
-export function registerUIPlugin(p: UIComponentPlugin) { 
-  REG.set(p.manifest.id, p); 
+export function <span class="fstat-no" title="function not covered" >registerUIPlugin(</span>p: UIComponentPlugin) { 
+<span class="cstat-no" title="statement not covered" >  REG.set(p.manifest.id, p); </span>
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >listUIPlugins(</span>) { 
 <span class="cstat-no" title="statement not covered" >  return [...REG.values()].map(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >p.manifest)</span>; </span>
 }
 &nbsp;
-export function getUIPlugin(id: string) { 
-  return REG.get(id) || null; 
+export function <span class="fstat-no" title="function not covered" >getUIPlugin(</span>id: string) { 
+<span class="cstat-no" title="statement not covered" >  return REG.get(id) || null; </span>
 }
 &nbsp;
-export function getActiveUIPluginId() { 
-  return activeId || <span class="branch-1 cbranch-no" title="branch not covered" >localStorage.getItem("ui:active") </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >null; </span>
+export function <span class="fstat-no" title="function not covered" >getActiveUIPluginId(</span>) { 
+<span class="cstat-no" title="statement not covered" >  return activeId || localStorage.getItem("ui:active") || null; </span>
 }
 &nbsp;
-export function setActiveUIPluginId(id: string) { 
-  activeId = id; 
-  localStorage.setItem("ui:active", id); 
+export function <span class="fstat-no" title="function not covered" >setActiveUIPluginId(</span>id: string) { 
+<span class="cstat-no" title="statement not covered" >  activeId = id; </span>
+<span class="cstat-no" title="statement not covered" >  localStorage.setItem("ui:active", id); </span>
 }
 &nbsp;
-export function getAllUIPlugins() {
-  return [...REG.values()];
+export function <span class="fstat-no" title="function not covered" >getAllUIPlugins(</span>) {
+<span class="cstat-no" title="statement not covered" >  return [...REG.values()];</span>
+}
+&nbsp;
+// Test utility - clear registry for test isolation
+export function <span class="fstat-no" title="function not covered" >__clearRegistryForTesting(</span>) {
+<span class="cstat-no" title="statement not covered" >  REG.clear();</span>
+<span class="cstat-no" title="statement not covered" >  activeId = null;</span>
+<span class="cstat-no" title="statement not covered" >  localStorage.removeItem("ui:active");</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -157,7 +178,7 @@ export function getAllUIPlugins() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-25T15:38:12.205Z
+                at 2025-08-25T23:25:17.602Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

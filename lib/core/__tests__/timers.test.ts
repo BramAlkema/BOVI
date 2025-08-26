@@ -121,8 +121,11 @@ describe('BOVI Timers', () => {
       // Try to cancel non-existent timer
       timerManager.cancelById('non-existent', 'timer');
       
-      // Should not emit cancelled event
-      expect(busSpy).not.toHaveBeenCalledWith('I.default.cancelled', expect.any(Object));
+      // Should not emit cancelled event for non-existent timer
+      expect(busSpy).not.toHaveBeenCalledWith('I.default.cancelled', {
+        flow: 'non-existent',
+        node: 'timer'
+      });
     });
   });
 

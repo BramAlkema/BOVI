@@ -355,7 +355,12 @@ export const computeBenchmark = new ComputeBenchmark();
  * Quick benchmark decorator for functions
  */
 export function benchmark(name?: string) {
-  return function (target: any, propertyName: string, descriptor: PropertyDescriptor) {
+  return function (target: any, propertyName: string, descriptor?: PropertyDescriptor) {
+    if (!descriptor) {
+      // Handle case where descriptor is not provided (property decorator)
+      return;
+    }
+    
     const method = descriptor.value;
     const benchmarkName = name || `${target.constructor.name}.${propertyName}`;
 

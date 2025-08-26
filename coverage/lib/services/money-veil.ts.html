@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -133,41 +133,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * BOVI Money-Veil Card
@@ -186,28 +186,28 @@ export interface MoneyVeilData {
 /**
  * Calculate personal money-veil effects
  */
-export async function <span class="fstat-no" title="function not covered" >calculateMoneyVeil(</span>
+export async function calculateMoneyVeil(
   income: number,
   savings: number,
   interestRate: number
 ): Promise&lt;MoneyVeilData&gt; {
   // Get personal inflation rate
-  const personalInflation = <span class="cstat-no" title="statement not covered" >await calculateLocalLTS();</span>
-  const officialInflation = <span class="cstat-no" title="statement not covered" >0.032;</span> // ONS CPI
-  const inflationDrift = <span class="cstat-no" title="statement not covered" >personalInflation - officialInflation;</span>
+  const personalInflation = await calculateLocalLTS();
+  const officialInflation = 0.032; // ONS CPI
+  const inflationDrift = personalInflation - officialInflation;
 &nbsp;
   // Calculate bracket creep (simplified)
-  const bracketCreep = <span class="cstat-no" title="statement not covered" >Math.max(0, inflationDrift * income * 0.2);</span> // 20% tax rate assumption
+  const bracketCreep = Math.max(0, inflationDrift * income * 0.2); // 20% tax rate assumption
 &nbsp;
   // Calculate real rate impact on savings
-  const nominalReturn = <span class="cstat-no" title="statement not covered" >savings * interestRate;</span>
-  const realReturn = <span class="cstat-no" title="statement not covered" >savings * (interestRate - personalInflation);</span>
-  const realRate = <span class="cstat-no" title="statement not covered" >realReturn - nominalReturn;</span>
+  const nominalReturn = savings * interestRate;
+  const realReturn = savings * (interestRate - personalInflation);
+  const realRate = realReturn - nominalReturn;
 &nbsp;
   // Net impact (negative = money losing value faster than expected)
-  const netImpact = <span class="cstat-no" title="statement not covered" >bracketCreep + realRate;</span>
+  const netImpact = bracketCreep + realRate;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return {</span>
+  return {
     userId: "current-user",
     inflationDrift,
     bracketCreep,
@@ -218,9 +218,9 @@ export async function <span class="fstat-no" title="function not covered" >calcu
 }
 &nbsp;
 // Private helper function
-async function <span class="fstat-no" title="function not covered" >calculateLocalLTS(</span>): Promise&lt;number&gt; {
+async function calculateLocalLTS(): Promise&lt;number&gt; {
   // Mock calculation - replace with real basket tracking
-<span class="cstat-no" title="statement not covered" >  return 0.0347; </span>// 3.47% inflation
+  return 0.0347; // 3.47% inflation
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -229,7 +229,7 @@ async function <span class="fstat-no" title="function not covered" >calculateLoc
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-25T15:38:12.253Z
+                at 2025-08-25T23:25:17.662Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

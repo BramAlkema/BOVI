@@ -7,7 +7,8 @@ import {
   getUIPlugin,
   getAllUIPlugins,
   setActiveUIPluginId,
-  getActiveUIPluginId
+  getActiveUIPluginId,
+  __clearRegistryForTesting
 } from '../registry.js';
 import type { UIComponentPlugin } from '../types.js';
 
@@ -38,11 +39,7 @@ describe('UI Plugin Registry', () => {
 
   beforeEach(() => {
     // Clear registry before each test
-    const plugins = getAllUIPlugins();
-    plugins.forEach((plugin: UIComponentPlugin) => {
-      // We need to access the internal registry to clear it
-      // This is a bit hacky but needed for test isolation
-    });
+    __clearRegistryForTesting();
   });
 
   describe('registerUIPlugin', () => {

@@ -61,9 +61,9 @@ export async function joinCohortAuction(auctionId: string): Promise<{
     throw new Error("Auction no longer accepting participants");
   }
 
-  // Calculate if user would benefit
-  const currentUserCost = 100; // Mock current cost
-  const cohortCost = 95; // Mock cohort negotiated price
+  // Calculate if user would benefit based on category
+  const currentUserCost = getCurrentUserCost(auction.category);
+  const cohortCost = getCohortNegotiatedPrice(auction.category, auction.participants);
   const projectedSavings = currentUserCost - cohortCost;
 
   if (projectedSavings < 0) {
@@ -96,6 +96,74 @@ export async function joinCohortAuction(auctionId: string): Promise<{
  * Get all active cohort auctions
  */
 export function getActiveAuctions(): CohortAuction[] {
-  const auctions: CohortAuction[] = JSON.parse(localStorage.getItem("bovi.cohortAuctions") || "[]");
-  return auctions.filter(a => a.status === "forming" || a.status === "active");
+  try {
+    const auctions: CohortAuction[] = JSON.parse(localStorage.getItem("bovi.cohortAuctions") || "[]");
+    return auctions.filter(a => a.status === "forming" || a.status === "active");
+  } catch (error) {
+    console.warn("Failed to parse cohort auctions from localStorage:", error);
+    return [];
+  }
+}
+
+/**
+ * Get current user cost for category from stored spending data or market averages
+ */
+function getCurrentUserCost(category: string): number {
+  // Try to get user's actual spending from stored data
+  const userSpending = JSON.parse(localStorage.getItem("bovi.userSpending") || "{}");
+  
+  if (userSpending[category]) {
+    return userSpending[category].monthlyAverage || getMarketAverage(category);
+  }
+  
+  return getMarketAverage(category);
+}
+
+/**
+ * Get market average costs by category
+ */
+function getMarketAverage(category: string): number {
+  const marketAverages: Record<string, number> = {
+    energy: 125.50,      // Average monthly energy bill (UK)
+    groceries: 400.00,   // Average monthly grocery spend
+    broadband: 30.00,    // Average monthly broadband
+    insurance: 85.00,    // Average monthly insurance
+    gym: 45.00,          // Average monthly gym membership
+    utilities: 95.00     // Average monthly utilities
+  };
+  
+  return marketAverages[category] || 100;
+}
+
+/**
+ * Calculate cohort negotiated price based on group size and buying power
+ */
+function getCohortNegotiatedPrice(category: string, participants: number): number {
+  const baseCost = getMarketAverage(category);
+  
+  // Group buying power: more participants = better rates
+  // Scale: 50+ participants = 15% discount, 25+ = 10%, 10+ = 5%
+  let discountRate = 0;
+  if (participants >= 50) {
+    discountRate = 0.15;
+  } else if (participants >= 25) {
+    discountRate = 0.10;
+  } else if (participants >= 10) {
+    discountRate = 0.05;
+  }
+  
+  // Category-specific negotiation power
+  const categoryMultipliers: Record<string, number> = {
+    energy: 1.2,      // High negotiation potential
+    groceries: 0.8,   // Lower negotiation potential
+    broadband: 1.1,   // Good negotiation potential
+    insurance: 1.0,   // Standard negotiation
+    gym: 0.9,         // Limited negotiation
+    utilities: 1.1    // Good negotiation potential
+  };
+  
+  const categoryMultiplier = categoryMultipliers[category] || 1.0;
+  const effectiveDiscount = discountRate * categoryMultiplier;
+  
+  return parseFloat((baseCost * (1 - effectiveDiscount)).toFixed(2));
 }

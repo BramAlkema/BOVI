@@ -229,6 +229,12 @@
       .layers-grid { grid-template-columns: 1fr; }
       .modes-grid { grid-template-columns: 1fr; }
     }
+    
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -390,196 +396,136 @@
       // Store user's chosen complexity level
       localStorage.setItem('bovi.complexityLevel', level);
       
-      // Show modal with level-appropriate content
-      showComplexityModal(level);
+      // Launch the appropriate BOVI layer
+      launchBoviLayer(level);
     }
 
-    function showComplexityModal(level) {
-      const levelConfig = {
+    function launchBoviLayer(level) {
+      const layerConfig = {
         m0: {
-          title: 'M0: Just Keep Me Safe',
-          subtitle: '"It just works"',
-          content: `
-            <div style="text-align: center; padding: 2rem;">
-              <div style="font-size: 4rem; margin-bottom: 1rem;">🛡️</div>
-              <h3 style="color: #4cc9f0; margin-bottom: 1rem;">Welcome to Safe Mode</h3>
-              <p style="margin-bottom: 2rem; color: #c7d2fe;">
-                One-button financial protection. No complexity, just safety from inflation.
-              </p>
-              <div style="background: rgba(76, 201, 240, 0.1); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
-                <button onclick="activateProtection()" style="
-                  background: linear-gradient(135deg, #10b981, #059669);
-                  color: white;
-                  border: none;
-                  padding: 1rem 2rem;
-                  border-radius: 8px;
-                  font-size: 1.2rem;
-                  font-weight: 600;
-                  cursor: pointer;
-                  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-                ">🛡️ Keep Me Safe</button>
-              </div>
-              <p style="color: #a3b4d4; font-size: 0.9rem;">
-                This will automatically adjust your money settings to protect against inflation.
-              </p>
-            </div>
-          `
+          name: 'Satnav Mode',
+          description: 'Just keep me safe - simple financial protection',
+          action: () => launchSatnavApp()
         },
         m1: {
-          title: 'M1: Light Control',
-          subtitle: '"I want some control"',
-          content: `
-            <div style="text-align: center; padding: 2rem;">
-              <div style="font-size: 4rem; margin-bottom: 1rem;">⚙️</div>
-              <h3 style="color: #f59e0b; margin-bottom: 1rem;">Safe Defaults with Options</h3>
-              <p style="margin-bottom: 2rem; color: #c7d2fe;">
-                Control the basics while keeping automatic protections enabled.
-              </p>
-              <div style="background: rgba(245, 158, 11, 0.1); padding: 1.5rem; border-radius: 12px;">
-                <p style="color: #a3b4d4;">🚧 Coming Soon</p>
-                <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">
-                  M1 features are in development. Currently available: M0 (Safe Mode)
-                </p>
-              </div>
-            </div>
-          `
+          name: 'Light Control',
+          description: 'Safe defaults with basic preferences',
+          action: () => launchSatnavWithControls()
         },
         m2: {
-          title: 'M2: Power User',
-          subtitle: '"I want to understand the system"',
-          content: `
-            <div style="text-align: center; padding: 2rem;">
-              <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
-              <h3 style="color: #8b5cf6; margin-bottom: 1rem;">Advanced Tools & Analytics</h3>
-              <p style="margin-bottom: 2rem; color: #c7d2fe;">
-                Deep understanding of inflation impacts and group coordination.
-              </p>
-              <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 12px;">
-                <p style="color: #a3b4d4;">🚧 Coming Soon</p>
-                <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">
-                  M2 features are in development. Available: Money-veil calculations, Cohort tools
-                </p>
-              </div>
-            </div>
-          `
+          name: 'Power User',
+          description: 'Advanced analytics and cohort tools',
+          action: () => launchFullBoviApp('m2')
         },
         m3: {
-          title: 'M3: Expert Tools',
-          subtitle: '"I want sophisticated control"',
-          content: `
-            <div style="text-align: center; padding: 2rem;">
-              <div style="font-size: 4rem; margin-bottom: 1rem;">🎛️</div>
-              <h3 style="color: #4cc9f0; margin-bottom: 1rem;">Visual Flow Editor</h3>
-              <p style="margin-bottom: 2rem; color: #c7d2fe;">
-                Build custom workflows with smart contracts and automation.
-              </p>
-              <button onclick="openVisualEditor()" style="
-                background: linear-gradient(135deg, #4cc9f0, #3b82f6);
-                color: white;
-                border: none;
-                padding: 1rem 2rem;
-                border-radius: 8px;
-                font-size: 1.1rem;
-                font-weight: 600;
-                cursor: pointer;
-                box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3);
-                margin-bottom: 1rem;
-              ">🎛️ Open Flow Editor</button>
-              <p style="color: #6b7280; font-size: 0.9rem;">
-                Drag-and-drop interface for creating BOVI workflows
-              </p>
-            </div>
-          `
+          name: 'Expert Tools',
+          description: 'Visual flow editor and smart contracts',
+          action: () => launchFullBoviApp('m3')
         },
         m4: {
-          title: 'M4: Developer',
-          subtitle: '"Full extensibility"',
-          content: `
-            <div style="text-align: center; padding: 2rem;">
-              <div style="font-size: 4rem; margin-bottom: 1rem;">👩‍💻</div>
-              <h3 style="color: #ef4444; margin-bottom: 1rem;">Full API Access</h3>
-              <p style="margin-bottom: 2rem; color: #c7d2fe;">
-                Complete customization and plugin development capabilities.
-              </p>
-              <div style="background: rgba(239, 68, 68, 0.1); padding: 1.5rem; border-radius: 12px;">
-                <p style="color: #a3b4d4;">🚧 Coming Soon</p>
-                <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.5rem;">
-                  Developer tools are in development. Check GitHub for API documentation.
-                </p>
-              </div>
-            </div>
-          `
+          name: 'Developer Access',
+          description: 'Full API and plugin development',
+          action: () => launchFullBoviApp('m4')
         }
       };
 
-      const config = levelConfig[level];
-      const modal = document.createElement('div');
-      modal.style.cssText = `
+      const config = layerConfig[level];
+      if (config) {
+        console.log(`🚀 Launching ${config.name}: ${config.description}`);
+        config.action();
+      } else {
+        console.error('Unknown complexity level:', level);
+      }
+    }
+
+    // Launch pure M0 satnav plugin
+    function launchSatnavApp() {
+      // Hide homepage content
+      document.body.style.display = 'none';
+      
+      // Create app container
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-app';
+      appContainer.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(10, 14, 26, 0.95);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
+        background: #0a0e1a;
+        z-index: 2000;
       `;
-
-      modal.innerHTML = `
-        <div style="
-          background: linear-gradient(135deg, #1a1d24 0%, #2a3441 100%);
-          border: 2px solid #4cc9f0;
-          border-radius: 16px;
-          max-width: 500px;
-          width: 90%;
-          max-height: 80vh;
-          overflow-y: auto;
-        ">
-          <div style="
-            padding: 1.5rem;
-            border-bottom: 1px solid #2a2f3a;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          ">
-            <div>
-              <h2 style="color: #e7eef9; margin: 0; font-size: 1.3rem;">${config.title}</h2>
-              <p style="color: #a3b4d4; margin: 0.5rem 0 0 0; font-style: italic;">${config.subtitle}</p>
-            </div>
-            <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="
-              background: none;
-              border: none;
-              color: #a3b4d4;
-              font-size: 1.5rem;
-              cursor: pointer;
-              padding: 0.5rem;
-            ">&times;</button>
-          </div>
-          <div style="color: #e7eef9;">
-            ${config.content}
-          </div>
-        </div>
-      `;
-
-      document.body.appendChild(modal);
       
-      // Close modal when clicking outside
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.remove();
-        }
-      });
+      // Add back button
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(76, 201, 240, 0.1);
+        border: 1px solid #4cc9f0;
+        color: #4cc9f0;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        z-index: 2001;
+      `;
+      backButton.onclick = () => {
+        appContainer.remove();
+        document.body.style.display = '';
+      };
+      
+      appContainer.appendChild(backButton);
+      document.body.appendChild(appContainer);
+      
+      // Launch satnav plugin in app container
+      if (typeof window.bootUI === 'function') {
+        window.bootUI('bovi-app', 'ui-satnav');
+      } else {
+        // Fallback: load the satnav plugin manually
+        import('./lib/ui/boot.js').then(module => {
+          module.bootUI('bovi-app', 'ui-satnav');
+        }).catch(err => {
+          console.error('Failed to load satnav plugin:', err);
+          appContainer.innerHTML = `
+            <div style="padding: 2rem; color: #e7eef9; text-align: center; margin-top: 2rem;">
+              <h2>🧭 BOVI Satnav Loading...</h2>
+              <p>Please wait while we initialize your financial navigation system.</p>
+              <div style="margin: 2rem 0;">Loading satnav plugin...</div>
+            </div>
+          `;
+        });
+      }
     }
 
-    function activateProtection() {
-      alert('🛡️ Protection activated! Your money settings are now automatically adjusted to protect against inflation.');
-      document.querySelector('div[style*="position: fixed"]').remove();
+    // Launch M1 with light controls on top of satnav
+    function launchSatnavWithControls() {
+      alert('🚧 M1 Light Control mode is coming soon! For now, launching M0 Satnav.');
+      launchSatnavApp();
     }
+
+    // Launch full BOVI app for M2-M4
+    function launchFullBoviApp(level) {
+      // Redirect to the main BOVI application
+      const params = new URLSearchParams();
+      params.set('layer', level);
+      
+      // Check if we have a separate app entry point
+      if (document.querySelector('#app')) {
+        // We're already in the main app, just switch layers
+        localStorage.setItem('bovi.complexityLevel', level);
+        window.location.reload();
+      } else {
+        // Navigate to the main app
+        window.location.href = `app.html?${params.toString()}`;
+      }
+    }
+
 
     function openVisualEditor() {
-      window.open('/visual-editor.html', '_blank');
+      window.open('visual-editor.html', '_blank');
     }
 
     function showDemo() {

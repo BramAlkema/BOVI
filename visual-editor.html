@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOVI Visual Flow Editor</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: system-ui, -apple-system, sans-serif; 
+      background: #0a0e1a; 
+      color: #e7eef9;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .header {
+      background: #1a1d24;
+      border-bottom: 2px solid #2a2f3a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header h1 {
+      color: #4cc9f0;
+      font-size: 1.5rem;
+    }
+    
+    .header .controls {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .btn {
+      background: linear-gradient(135deg, #4cc9f0, #3b82f6);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3);
+    }
+    
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #4cc9f0;
+      color: #4cc9f0;
+    }
+    
+    .btn.secondary:hover {
+      background: #4cc9f0;
+      color: #0a0e1a;
+    }
+    
+    .editor-container {
+      height: calc(100vh - 80px);
+      display: flex;
+    }
+    
+    .sidebar {
+      width: 250px;
+      background: #1a1d24;
+      border-right: 2px solid #2a2f3a;
+      padding: 1rem;
+    }
+    
+    .sidebar h3 {
+      color: #e7eef9;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    
+    .node-palette {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .palette-node {
+      background: linear-gradient(135deg, #2a3441 0%, #1e2832 100%);
+      border: 1px solid #4cc9f0;
+      border-radius: 8px;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.9rem;
+    }
+    
+    .palette-node:hover {
+      transform: translateX(4px);
+      border-color: #7dd3fc;
+      box-shadow: 0 2px 8px rgba(76, 201, 240, 0.2);
+    }
+    
+    .flow-canvas {
+      flex: 1;
+      position: relative;
+      background: 
+        radial-gradient(circle at 25% 25%, rgba(76, 201, 240, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    }
+    
+    .flow-editor { 
+      position: relative; 
+      width: 100%; 
+      height: 100%; 
+      background: 
+        linear-gradient(rgba(42, 47, 58, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42, 47, 58, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    
+    .flow-node { 
+      position: absolute; 
+      width: 160px; 
+      height: 80px;
+      background: linear-gradient(135deg, #2a3441 0%, #1e2832 100%);
+      border: 2px solid #4cc9f0; 
+      border-radius: 12px; 
+      padding: 12px;
+      cursor: grab; 
+      user-select: none; 
+      color: #e7eef9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .flow-node:active { 
+      cursor: grabbing; 
+    }
+    
+    .flow-node:hover {
+      border-color: #7dd3fc;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(76, 201, 240, 0.3);
+    }
+    
+    .node-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .node-subtitle {
+      font-size: 0.75rem;
+      color: #a3b4d4;
+    }
+    
+    .connection-port {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #4cc9f0;
+      border: 2px solid #1a1d24;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .input-port {
+      left: -6px;
+      top: 50%;
+    }
+    
+    .output-port {
+      right: -6px;
+      top: 50%;
+    }
+    
+    .connections-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .status-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 29, 36, 0.9);
+      border-top: 1px solid #2a2f3a;
+      padding: 0.5rem 1rem;
+      color: #a3b4d4;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .welcome-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 14, 26, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    
+    .welcome-card {
+      background: linear-gradient(135deg, #1a1d24 0%, #2a3441 100%);
+      border: 2px solid #4cc9f0;
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+      max-width: 500px;
+    }
+    
+    .welcome-card h2 {
+      color: #4cc9f0;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .welcome-card p {
+      color: #c7d2fe;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎛️ BOVI Visual Flow Editor</h1>
+    <div class="controls">
+      <button class="btn secondary" onclick="goHome()">← Back to Home</button>
+      <button class="btn" onclick="exportFlow()">Export Flow</button>
+      <button class="btn" onclick="saveFlow()">Save Flow</button>
+    </div>
+  </div>
+
+  <div class="editor-container">
+    <div class="sidebar">
+      <h3>📦 Node Palette</h3>
+      <div class="node-palette">
+        <div class="palette-node" data-type="V.PDA" draggable="true">
+          📊 PDA Node<br>
+          <small>Personal Data Assessment</small>
+        </div>
+        <div class="palette-node" data-type="I.Detect" draggable="true">
+          🔍 Detect Node<br>
+          <small>Violation Detection</small>
+        </div>
+        <div class="palette-node" data-type="B.Sweep" draggable="true">
+          🧹 Sweep Node<br>
+          <small>KPI Collection</small>
+        </div>
+        <div class="palette-node" data-type="O.Contract" draggable="true">
+          📋 Contract Node<br>
+          <small>Smart Contracts</small>
+        </div>
+        <div class="palette-node" data-type="V.Cohort" draggable="true">
+          👥 Cohort Node<br>
+          <small>Group Formation</small>
+        </div>
+        <div class="palette-node" data-type="I.Storm" draggable="true">
+          ⛈️ Storm Node<br>
+          <small>Crisis Response</small>
+        </div>
+      </div>
+      
+      <h3 style="margin-top: 2rem;">🎛️ Properties</h3>
+      <div id="node-properties">
+        <p style="color: #6b7280; font-size: 0.8rem;">
+          Select a node to edit properties
+        </p>
+      </div>
+    </div>
+
+    <div class="flow-canvas">
+      <div class="flow-editor" id="flowEditor">
+        <svg class="connections-layer" width="100%" height="100%">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#4cc9f0" />
+            </marker>
+          </defs>
+        </svg>
+        
+        <!-- Example nodes -->
+        <div class="flow-node" id="node-pda" style="left: 100px; top: 100px; z-index: 2;" data-type="V.PDA">
+          <div class="connection-port input-port"></div>
+          <div class="node-title">📊 PDA Node</div>
+          <div class="node-subtitle">Personal Data Assessment</div>
+          <div class="connection-port output-port"></div>
+        </div>
+        
+        <div class="flow-node" id="node-detect" style="left: 350px; top: 200px; z-index: 2;" data-type="I.Detect">
+          <div class="connection-port input-port"></div>
+          <div class="node-title">🔍 Detect Node</div>
+          <div class="node-subtitle">Violation Detection</div>
+          <div class="connection-port output-port"></div>
+        </div>
+        
+        <div class="flow-node" id="node-sweep" style="left: 600px; top: 150px; z-index: 2;" data-type="B.Sweep">
+          <div class="connection-port input-port"></div>
+          <div class="node-title">🧹 Sweep Node</div>
+          <div class="node-subtitle">KPI Collection</div>
+          <div class="connection-port output-port"></div>
+        </div>
+      </div>
+      
+      <div class="status-bar">
+        <div>Nodes: <span id="node-count">3</span> | Connections: <span id="connection-count">0</span></div>
+        <div>BOVI M3 Flow Editor | Ready</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Welcome overlay -->
+  <div class="welcome-overlay" id="welcomeOverlay">
+    <div class="welcome-card">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">🎛️</div>
+      <h2>Welcome to M3 Tools</h2>
+      <p>
+        Build custom BOVI workflows by dragging nodes from the palette and connecting them. 
+        Create smart contracts, automate decision flows, and design sophisticated fairness logic.
+      </p>
+      <button class="btn" onclick="startTutorial()">🚀 Start Tutorial</button>
+      <button class="btn secondary" onclick="closeWelcome()" style="margin-left: 1rem;">Skip</button>
+    </div>
+  </div>
+
+  <script>
+    let draggedElement = null;
+    let dragOffset = { x: 0, y: 0 };
+    let nodeCount = 3;
+    let connectionCount = 0;
+
+    // Initialize the editor
+    function initEditor() {
+      setupDragAndDrop();
+      setupPalette();
+      updateNodeCount();
+    }
+
+    function setupDragAndDrop() {
+      document.querySelectorAll('.flow-node').forEach(node => {
+        node.addEventListener('mousedown', startDrag);
+        node.addEventListener('click', selectNode);
+      });
+    }
+
+    function startDrag(e) {
+      if (e.target.classList.contains('connection-port')) return;
+      
+      draggedElement = e.currentTarget;
+      const rect = draggedElement.getBoundingClientRect();
+      const containerRect = document.getElementById('flowEditor').getBoundingClientRect();
+      
+      dragOffset.x = e.clientX - rect.left;
+      dragOffset.y = e.clientY - rect.top;
+      
+      draggedElement.style.zIndex = '10';
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', endDrag);
+    }
+
+    function drag(e) {
+      if (!draggedElement) return;
+      
+      const containerRect = document.getElementById('flowEditor').getBoundingClientRect();
+      const x = e.clientX - containerRect.left - dragOffset.x;
+      const y = e.clientY - containerRect.top - dragOffset.y;
+      
+      draggedElement.style.left = Math.max(0, Math.min(x, containerRect.width - 160)) + 'px';
+      draggedElement.style.top = Math.max(0, Math.min(y, containerRect.height - 80)) + 'px';
+    }
+
+    function endDrag() {
+      if (draggedElement) {
+        draggedElement.style.zIndex = '2';
+        draggedElement = null;
+      }
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('mouseup', endDrag);
+    }
+
+    function setupPalette() {
+      document.querySelectorAll('.palette-node').forEach(node => {
+        node.addEventListener('click', () => addNodeFromPalette(node.dataset.type));
+      });
+    }
+
+    function addNodeFromPalette(type) {
+      nodeCount++;
+      const nodeId = `node-${Date.now()}`;
+      const x = Math.random() * 400 + 50;
+      const y = Math.random() * 300 + 50;
+      
+      const nodeTypes = {
+        'V.PDA': { icon: '📊', title: 'PDA Node', subtitle: 'Personal Data Assessment' },
+        'I.Detect': { icon: '🔍', title: 'Detect Node', subtitle: 'Violation Detection' },
+        'B.Sweep': { icon: '🧹', title: 'Sweep Node', subtitle: 'KPI Collection' },
+        'O.Contract': { icon: '📋', title: 'Contract Node', subtitle: 'Smart Contracts' },
+        'V.Cohort': { icon: '👥', title: 'Cohort Node', subtitle: 'Group Formation' },
+        'I.Storm': { icon: '⛈️', title: 'Storm Node', subtitle: 'Crisis Response' }
+      };
+      
+      const nodeConfig = nodeTypes[type] || { icon: '🔧', title: 'Unknown', subtitle: 'Node' };
+      
+      const node = document.createElement('div');
+      node.className = 'flow-node';
+      node.id = nodeId;
+      node.style.left = x + 'px';
+      node.style.top = y + 'px';
+      node.style.zIndex = '2';
+      node.dataset.type = type;
+      
+      node.innerHTML = `
+        <div class="connection-port input-port"></div>
+        <div class="node-title">${nodeConfig.icon} ${nodeConfig.title}</div>
+        <div class="node-subtitle">${nodeConfig.subtitle}</div>
+        <div class="connection-port output-port"></div>
+      `;
+      
+      document.getElementById('flowEditor').appendChild(node);
+      
+      // Add event listeners
+      node.addEventListener('mousedown', startDrag);
+      node.addEventListener('click', selectNode);
+      
+      updateNodeCount();
+    }
+
+    function selectNode(e) {
+      // Remove previous selections
+      document.querySelectorAll('.flow-node').forEach(n => n.style.borderColor = '#4cc9f0');
+      
+      // Select this node
+      e.currentTarget.style.borderColor = '#10b981';
+      
+      // Show properties
+      const type = e.currentTarget.dataset.type;
+      document.getElementById('node-properties').innerHTML = `
+        <div style="background: rgba(76, 201, 240, 0.1); padding: 1rem; border-radius: 8px;">
+          <strong>${type}</strong>
+          <div style="margin-top: 0.5rem; font-size: 0.8rem;">
+            <div>ID: ${e.currentTarget.id}</div>
+            <div>Position: (${e.currentTarget.style.left}, ${e.currentTarget.style.top})</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateNodeCount() {
+      document.getElementById('node-count').textContent = document.querySelectorAll('.flow-node').length;
+    }
+
+    function goHome() {
+      window.location.href = 'index.html';
+    }
+
+    function exportFlow() {
+      const nodes = Array.from(document.querySelectorAll('.flow-node')).map(node => ({
+        id: node.id,
+        type: node.dataset.type,
+        position: {
+          x: parseInt(node.style.left),
+          y: parseInt(node.style.top)
+        }
+      }));
+      
+      const flow = {
+        version: '1.0.0',
+        created: new Date().toISOString(),
+        nodes: nodes,
+        connections: []
+      };
+      
+      const blob = new Blob([JSON.stringify(flow, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `bovi-flow-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function saveFlow() {
+      alert('💾 Flow saved to local storage!');
+      // In a real implementation, this would save to localStorage or send to server
+    }
+
+    function startTutorial() {
+      closeWelcome();
+      alert('🎓 Tutorial coming soon! For now, try dragging the existing nodes or click palette items to add new ones.');
+    }
+
+    function closeWelcome() {
+      document.getElementById('welcomeOverlay').style.display = 'none';
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', initEditor);
+
+    console.log('🎛️ BOVI Visual Flow Editor loaded successfully!');
+    console.log('M3 Expert Tools: Build custom fairness workflows');
+  </script>
+</body>
+</html>

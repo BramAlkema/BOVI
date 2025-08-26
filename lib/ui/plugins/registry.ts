@@ -28,3 +28,10 @@ export function setActiveUIPluginId(id: string) {
 export function getAllUIPlugins() {
   return [...REG.values()];
 }
+
+// Test utility - clear registry for test isolation
+export function __clearRegistryForTesting() {
+  REG.clear();
+  activeId = null;
+  localStorage.removeItem("ui:active");
+}
