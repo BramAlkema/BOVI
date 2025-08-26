@@ -485,7 +485,7 @@
         window.bootUI('bovi-app', 'ui-satnav');
       } else {
         // Fallback: load the satnav plugin manually
-        import('./lib/ui/boot.js').then(module => {
+        import('./dist/lib/lib/ui/boot.js').then(module => {
           module.bootUI('bovi-app', 'ui-satnav');
         }).catch(err => {
           console.error('Failed to load satnav plugin:', err);
