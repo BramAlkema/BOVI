@@ -1,6 +1,6 @@
 # Four Friends and the Rope
 
-*A children's-book version of why money works. From the BOVI framework.*
+*The standalone children's edition — the same village as Intermezzo 8A of* The Four Modes*, told for younger readers. A companion artifact, not a chapter of the main book.*
 
 ---
 
@@ -252,4 +252,4 @@ The value of any rope is the trades it unlocks, the conflicts it settles, the wo
 
 ---
 
-*End of book.*
+*The end.* — *the standalone children's edition.*

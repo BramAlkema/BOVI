@@ -2,7 +2,7 @@
 
 > *This is what we leave with — the questions that, once installed, we cannot uninstall.*
 
-**Part VII — Living the Unbundle** · [Index](README.md) · Prev: [Chapter 22](22-the-tally.md)
+**Part VII — Living the Unbundle** · [Index](README.md) · Prev: [Intermezzo 22A](22a-on-whose-shoulders.md)
 
 ## Opening scaffold
 

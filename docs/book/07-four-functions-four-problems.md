@@ -13,7 +13,7 @@ Doña Elena's Sunday afternoon, examined function-by-function instead of as a si
 1. Decomposition of Doña Elena's stack by function.
 2. The textbook's four functions named and listed (medium of exchange, unit of account, store of value, standard of deferred payment).
 3. Each function's actual requirements (table of conflicting wants).
-4. Why bundling them creates impossible trade-offs (central bank impossible-triangle work).
+4. Why bundling them creates impossible trade-offs. The sharpest conflict is **medium vs store**: a thing good to *save* gets held onto, which makes it bad to *spend* — so medium-quality and store-quality pull against each other and cannot be co-optimised in one instrument. This is the deepest reason the bundle fails; the central bank's impossible-trinity problems are downstream of it.
 5. The unbundled stack as the natural answer.
 6. Why "is X really money" debates are category errors.
 

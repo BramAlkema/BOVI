@@ -34,7 +34,7 @@
 
 - First time the Big Mac War is told in full.
 - The "personal index / personal PDA" thread for Chapter 21 starts to be set up here.
-- The five axioms from Chapter 4 return: this chapter is what happens when the "common knowledge of acceptance" axiom cracks.
+- The foundation from Chapters 4–5 returns: inflation is what happens when Ch 4's **symmetrically-known supply** (integrity) cracks and Ch 5's **selection loop** (common knowledge of acceptance) frays with it. Keep the split in view — the *worth* (the trades money unlocks) does not vanish; the *coordination* on which token carries it does.
 
 ## Closing scaffold
 

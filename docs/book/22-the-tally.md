@@ -2,7 +2,7 @@
 
 > *A modern tally rope — mode-aware infrastructure for the social units closest to your life.*
 
-**Part VII — Living the Unbundle** · [Index](README.md) · Prev: [Chapter 21](21-personal-stack.md) · Next: [Chapter 23](23-defensive-vocabulary.md)
+**Part VII — Living the Unbundle** · [Index](README.md) · Prev: [Chapter 21](21-personal-stack.md) · Next: [Intermezzo 22A](22a-on-whose-shoulders.md)
 
 ## Opening scaffold
 

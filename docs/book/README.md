@@ -13,8 +13,10 @@ Working title for a 23-chapter book in 7 parts on money, the four fairness modes
 
 ## Source material
 
-The book draws on framework material developed in:
+The book draws on framework material developed in (canonical foundation first):
 
+- `../FOUNDATIONS.md` — the rebuilt six-stone foundation (the settled consensus; supersedes the value-theory framing in the older docs below)
+- `../CANON.md` — the 20 Quirks + apparatus
 - `../MINIMAL-MONEY-THEORY.md`
 - `../UNBUNDLING-MONEY-FUNCTIONS.md`
 - `../WEALTH-TRANSACTION-SEPARATION.md`
@@ -36,7 +38,7 @@ The book draws on framework material developed in:
 - [Chapter 3 — Consent as Orthogonal](03-consent-as-orthogonal.md)
 
 ### Part II — Money as Coordination Infrastructure
-*Money is a portable forgetful ledger whose value comes from common knowledge of future acceptance, and which always requires a bootstrap.*
+*Money is a sufficiently-reliable ledger of who has given and not yet received; its value is floorless but fruitful — the trades it unlocks, pulled from the future, not pushed from the past. Common knowledge of acceptance **selects** which money wins; it does not create the worth. And every money requires a bootstrap.*
 
 - [Chapter 4 — What Money Is](04-what-money-is.md)
 - [Chapter 5 — Why It Has Value](05-why-it-has-value.md)
@@ -78,6 +80,7 @@ The book draws on framework material developed in:
 
 - [Chapter 21 — The Personal Stack](21-personal-stack.md)
 - [Chapter 22 — The Tally](22-the-tally.md)
+- [Intermezzo 22A — On Whose Shoulders](22a-on-whose-shoulders.md)
 - [Chapter 23 — The Defensive Vocabulary](23-defensive-vocabulary.md)
 
 ## Cross-book subarcs
