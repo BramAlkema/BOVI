@@ -3,17 +3,17 @@
 export interface Episode {
   id: string;
   title: string;
-  mode: "B" | "O" | "V" | "I";
+  mode: "B" | "O" | "V" | "I" | "mixed";
   lengthMin: number;
   played: boolean;
 }
 
 const seed: Episode[] = [
-  { id: "ep-shrink", title: "Spotting shrinkflation", mode: "V", lengthMin: 5, played: false },
-  { id: "ep-pots", title: "Pots & sweeps basics", mode: "B", lengthMin: 4, played: false },
-  { id: "ep-rent", title: "Fair rent counters", mode: "O", lengthMin: 6, played: false },
-  { id: "ep-cohort", title: "Joining buying cohorts", mode: "I", lengthMin: 3, played: false },
-  { id: "ep-rails", title: "Payment rails explained", mode: "V", lengthMin: 7, played: false },
+  { id: "ep-same-20", title: "The same 20, four exchanges", mode: "mixed", lengthMin: 4, played: false },
+  { id: "ep-dinner-bill", title: "The dinner bill is not about the amount", mode: "mixed", lengthMin: 5, played: false },
+  { id: "ep-subscription", title: "When a price becomes an obligation", mode: "O", lengthMin: 5, played: false },
+  { id: "ep-pda", title: "Why buyers need price memory", mode: "V", lengthMin: 4, played: false },
+  { id: "ep-tally", title: "A ledger that can also say gift", mode: "B", lengthMin: 6, played: false },
 ];
 
 // Load played status from localStorage

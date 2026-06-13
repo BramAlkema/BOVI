@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ye Tally Rope Sketch</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f7f7f3;
+      color: #172033;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px;
+      display: grid;
+      gap: 22px;
+    }
+    h1, h2, p {
+      margin: 0;
+    }
+    p {
+      color: #4b5563;
+      max-width: 840px;
+    }
+    .panel {
+      background: #fff;
+      border: 1px solid #d7dce5;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+    }
+    svg {
+      display: block;
+      width: 100%;
+      min-width: 940px;
+      height: auto;
+    }
+    .rope {
+      fill: none;
+      stroke: #111;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .rope-shadow {
+      fill: none;
+      stroke: rgba(0, 0, 0, 0.12);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .rail {
+      fill: #94c47d;
+      stroke: #31572c;
+      stroke-width: 2;
+    }
+    .fixed {
+      fill: #f000d7;
+      stroke: #111;
+      stroke-width: 2;
+    }
+    .want {
+      fill: #0808e8;
+      stroke: #111;
+      stroke-width: 2;
+    }
+    .settle {
+      fill: #ff9f1c;
+      stroke: #111;
+      stroke-width: 2;
+    }
+    .mark {
+      stroke: #52606d;
+      stroke-width: 1;
+    }
+    .label {
+      font-size: 18px;
+      font-weight: 700;
+      fill: #172033;
+    }
+    .small {
+      font-size: 14px;
+      fill: #4b5563;
+    }
+    .note {
+      fill: #fff7df;
+      stroke: #ddad32;
+      stroke-width: 1.5;
+    }
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .legend div {
+      background: #fff;
+      border: 1px solid #d7dce5;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .swatch {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid #111;
+      margin-right: 6px;
+      vertical-align: -2px;
+    }
+    .green { background: #94c47d; border-radius: 2px; }
+    .blue { background: #0808e8; }
+    .orange { background: #ff9f1c; }
+    .pink { background: #f000d7; }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Ye Tally Rope</h1>
+      <p>This is a geometry sketch, not a literal historical claim. The rope is a shared public ledger. Peg movement records wants, residuals, and net positions before those claims become portable money.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Peg And Rope System</h2>
+      <svg viewBox="0 0 1180 720" role="img" aria-label="Tally rope peg system">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#172033"></path>
+          </marker>
+        </defs>
+
+        <rect x="20" y="20" width="1140" height="680" rx="18" fill="#fbfbf6" stroke="#d7dce5"></rect>
+
+        <text x="64" y="58" class="label">public rope: everyone sees the same tension</text>
+        <text x="64" y="84" class="small">The top run is the shared supply/ledger. The loops around villagers are their local net positions.</text>
+
+        <line x1="120" y1="122" x2="1040" y2="122" stroke="#111" stroke-width="2" stroke-dasharray="7 8"></line>
+        <circle cx="100" cy="120" r="40" class="fixed"></circle>
+        <circle cx="1080" cy="120" r="40" class="fixed"></circle>
+        <text x="58" y="188" class="small">fixed peg</text>
+        <text x="1036" y="188" class="small">fixed peg</text>
+
+        <g id="villager-1">
+          <text x="238" y="198" text-anchor="middle" class="label">Adam</text>
+          <rect x="222" y="268" width="30" height="400" class="rail"></rect>
+          <line x1="237" y1="296" x2="237" y2="640" class="mark" stroke-dasharray="4 14"></line>
+          <circle cx="237" cy="220" r="36" class="want"></circle>
+          <circle cx="237" cy="620" r="36" class="settle"></circle>
+        </g>
+
+        <g id="villager-2">
+          <text x="438" y="198" text-anchor="middle" class="label">Oz</text>
+          <rect x="422" y="268" width="30" height="400" class="rail"></rect>
+          <line x1="437" y1="296" x2="437" y2="640" class="mark" stroke-dasharray="4 14"></line>
+          <circle cx="437" cy="220" r="36" class="want"></circle>
+          <circle cx="437" cy="620" r="36" class="settle"></circle>
+        </g>
+
+        <g id="villager-3">
+          <text x="638" y="198" text-anchor="middle" class="label">Bea</text>
+          <rect x="622" y="268" width="30" height="400" class="rail"></rect>
+          <line x1="637" y1="296" x2="637" y2="640" class="mark" stroke-dasharray="4 14"></line>
+          <circle cx="637" cy="220" r="36" class="want"></circle>
+          <circle cx="637" cy="620" r="36" class="settle"></circle>
+        </g>
+
+        <g id="villager-4">
+          <text x="838" y="198" text-anchor="middle" class="label">Kai</text>
+          <rect x="822" y="268" width="30" height="400" class="rail"></rect>
+          <line x1="837" y1="296" x2="837" y2="640" class="mark" stroke-dasharray="4 14"></line>
+          <circle cx="837" cy="220" r="36" class="want"></circle>
+          <circle cx="837" cy="620" r="36" class="settle"></circle>
+        </g>
+
+        <path class="rope-shadow" d="
+          M100 120
+          C95 84, 123 78, 140 104
+          C170 70, 300 88, 385 91
+          C520 95, 650 76, 800 88
+          C930 98, 1045 82, 1080 120
+          C1096 140, 1090 168, 1068 186
+          C1015 230, 943 205, 874 207
+          C858 188, 816 190, 802 220
+          C788 252, 818 274, 826 302
+          C843 368, 835 505, 854 590
+          C885 598, 890 642, 858 660
+          C830 675, 790 662, 786 628
+          C780 556, 802 388, 770 300
+          C752 250, 710 230, 674 222
+          C668 188, 612 188, 602 220
+          C592 254, 626 274, 626 310
+          C628 392, 602 512, 656 590
+          C682 606, 680 648, 652 664
+          C620 682, 584 656, 590 620
+          C596 545, 582 396, 585 316
+          C588 260, 564 232, 474 224
+          C468 188, 412 188, 402 220
+          C392 252, 426 274, 426 312
+          C426 392, 378 522, 456 590
+          C484 604, 480 648, 452 664
+          C418 686, 382 650, 392 620
+          C420 538, 384 410, 388 316
+          C392 254, 352 232, 274 222
+          C268 188, 212 188, 202 220
+          C192 254, 230 276, 250 304
+          C292 364, 246 520, 256 588
+          C286 598, 288 642, 258 660
+          C226 680, 188 652, 192 616
+          C204 506, 222 384, 202 300
+          C184 224, 122 206, 100 120
+        "></path>
+        <path class="rope" d="
+          M100 120
+          C95 84, 123 78, 140 104
+          C170 70, 300 88, 385 91
+          C520 95, 650 76, 800 88
+          C930 98, 1045 82, 1080 120
+          C1096 140, 1090 168, 1068 186
+          C1015 230, 943 205, 874 207
+          C858 188, 816 190, 802 220
+          C788 252, 818 274, 826 302
+          C843 368, 835 505, 854 590
+          C885 598, 890 642, 858 660
+          C830 675, 790 662, 786 628
+          C780 556, 802 388, 770 300
+          C752 250, 710 230, 674 222
+          C668 188, 612 188, 602 220
+          C592 254, 626 274, 626 310
+          C628 392, 602 512, 656 590
+          C682 606, 680 648, 652 664
+          C620 682, 584 656, 590 620
+          C596 545, 582 396, 585 316
+          C588 260, 564 232, 474 224
+          C468 188, 412 188, 402 220
+          C392 252, 426 274, 426 312
+          C426 392, 378 522, 456 590
+          C484 604, 480 648, 452 664
+          C418 686, 382 650, 392 620
+          C420 538, 384 410, 388 316
+          C392 254, 352 232, 274 222
+          C268 188, 212 188, 202 220
+          C192 254, 230 276, 250 304
+          C292 364, 246 520, 256 588
+          C286 598, 288 642, 258 660
+          C226 680, 188 652, 192 616
+          C204 506, 222 384, 202 300
+          C184 224, 122 206, 100 120
+        "></path>
+
+        <path class="rope" d="M202 220 A35 35 0 1 1 272 220"></path>
+        <path class="rope" d="M202 620 A35 35 0 1 0 272 620"></path>
+        <path class="rope" d="M402 220 A35 35 0 1 1 472 220"></path>
+        <path class="rope" d="M402 620 A35 35 0 1 0 472 620"></path>
+        <path class="rope" d="M602 220 A35 35 0 1 1 672 220"></path>
+        <path class="rope" d="M602 620 A35 35 0 1 0 672 620"></path>
+        <path class="rope" d="M802 220 A35 35 0 1 1 872 220"></path>
+        <path class="rope" d="M802 620 A35 35 0 1 0 872 620"></path>
+
+        <path d="M320 602 C365 560, 392 560, 437 602" fill="none" stroke="#ddad32" stroke-width="4" stroke-dasharray="8 8" marker-end="url(#arrow)"></path>
+        <path d="M520 602 C565 560, 592 560, 637 602" fill="none" stroke="#ddad32" stroke-width="4" stroke-dasharray="8 8" marker-end="url(#arrow)"></path>
+        <path d="M720 602 C765 560, 792 560, 837 602" fill="none" stroke="#ddad32" stroke-width="4" stroke-dasharray="8 8" marker-end="url(#arrow)"></path>
+
+        <rect x="72" y="532" width="270" height="96" rx="10" class="note"></rect>
+        <text x="90" y="560" class="label">netting</text>
+        <text x="90" y="586" class="small">Many small bilateral leftovers</text>
+        <text x="90" y="610" class="small">collapse into fewer village positions.</text>
+
+        <rect x="880" y="310" width="240" height="108" rx="10" class="note"></rect>
+        <text x="900" y="338" class="label">rope slice</text>
+        <text x="900" y="364" class="small">Cutting a claim loose makes it</text>
+        <text x="900" y="388" class="small">portable, but opens forgery risk.</text>
+
+        <path d="M955 420 C950 460, 945 500, 935 540" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"></path>
+        <path d="M930 468 L976 490" stroke="#f07878" stroke-width="5"></path>
+        <path d="M976 468 L930 490" stroke="#f07878" stroke-width="5"></path>
+      </svg>
+    </section>
+
+    <section class="panel">
+      <h2>What The Rope Adds</h2>
+      <svg viewBox="0 0 1080 300" role="img" aria-label="Economic mechanism">
+        <rect x="20" y="34" width="180" height="74" rx="8" fill="#fff" stroke="#263244"></rect>
+        <text x="110" y="64" text-anchor="middle" class="label">uneven trade</text>
+        <text x="110" y="90" text-anchor="middle" class="small">1 axe = 1.6 spears</text>
+
+        <rect x="250" y="34" width="180" height="74" rx="8" fill="#fff" stroke="#263244"></rect>
+        <text x="340" y="64" text-anchor="middle" class="label">residual</text>
+        <text x="340" y="90" text-anchor="middle" class="small">what about 0.6?</text>
+
+        <rect x="480" y="34" width="180" height="74" rx="8" fill="#fff" stroke="#263244"></rect>
+        <text x="570" y="64" text-anchor="middle" class="label">village rope</text>
+        <text x="570" y="90" text-anchor="middle" class="small">public memory</text>
+
+        <rect x="710" y="34" width="180" height="74" rx="8" fill="#fff" stroke="#263244"></rect>
+        <text x="800" y="64" text-anchor="middle" class="label">netting</text>
+        <text x="800" y="90" text-anchor="middle" class="small">fewer settle-ups</text>
+
+        <rect x="480" y="180" width="180" height="74" rx="8" fill="#fff" stroke="#263244"></rect>
+        <text x="570" y="210" text-anchor="middle" class="label">rope slice</text>
+        <text x="570" y="236" text-anchor="middle" class="small">portable claim</text>
+
+        <rect x="710" y="180" width="180" height="74" rx="8" fill="#fff" stroke="#263244"></rect>
+        <text x="800" y="210" text-anchor="middle" class="label">money</text>
+        <text x="800" y="236" text-anchor="middle" class="small">standard rope slice</text>
+
+        <path d="M200 71 H250" stroke="#172033" stroke-width="3" marker-end="url(#arrow)"></path>
+        <path d="M430 71 H480" stroke="#172033" stroke-width="3" marker-end="url(#arrow)"></path>
+        <path d="M660 71 H710" stroke="#172033" stroke-width="3" marker-end="url(#arrow)"></path>
+        <path d="M570 108 V180" stroke="#172033" stroke-width="3" marker-end="url(#arrow)"></path>
+        <path d="M660 217 H710" stroke="#172033" stroke-width="3" marker-end="url(#arrow)"></path>
+      </svg>
+    </section>
+
+    <section class="legend">
+      <div><span class="swatch pink"></span><strong>Fixed pegs</strong><br>Supply / anchor points.</div>
+      <div><span class="swatch blue"></span><strong>Want pegs</strong><br>Demand pulling on the rope.</div>
+      <div><span class="swatch green"></span><strong>Rails</strong><br>Allowed movement / credit capacity.</div>
+      <div><span class="swatch orange"></span><strong>Settlement pegs</strong><br>Net position after village netting.</div>
+    </section>
+  </main>
+</body>
+</html>

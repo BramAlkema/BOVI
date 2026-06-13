@@ -37,3 +37,7 @@ logs
 tmp/
 temp/
 .tmp/
+
+# Tooling / local agent state (never commit)
+.claude/
+.agent-os/

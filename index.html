@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BOVI Framework — Your Personal Money Fairness Assistant</title>
+  <title>BOVI Framework — Exchange Lens</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { 
@@ -53,6 +53,292 @@
     }
     
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    .case-thread {
+      padding: 4rem 0;
+      background: rgba(17, 24, 39, 0.52);
+      border-top: 1px solid #263244;
+      border-bottom: 1px solid #263244;
+    }
+
+    .case-thread h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #e7eef9;
+    }
+
+    .case-thread-intro {
+      color: #a3b4d4;
+      max-width: 860px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    .case-thread-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.8fr) minmax(360px, 1.2fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .case-picker,
+    .case-main,
+    .proof-card {
+      background: rgba(30, 40, 50, 0.55);
+      border: 1px solid #2a2f3a;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .case-picker {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .case-tab {
+      border: 1px solid #354255;
+      background: #121a27;
+      color: #e7eef9;
+      border-radius: 8px;
+      padding: 0.85rem;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .case-tab.active,
+    .case-tab:hover {
+      border-color: #62c6a6;
+      background: #14241f;
+    }
+
+    .case-tab strong,
+    .proof-card strong {
+      display: block;
+      color: #f3f6fb;
+      margin-bottom: 0.25rem;
+    }
+
+    .case-thread-kicker {
+      color: #62c6a6;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    .case-thread-title {
+      font-size: clamp(1.55rem, 3vw, 2.35rem);
+      line-height: 1.08;
+      margin: 0.25rem 0 0.75rem;
+    }
+
+    .thread-layers {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .thread-layer {
+      display: grid;
+      grid-template-columns: 58px 1fr 112px;
+      gap: 0.75rem;
+      align-items: center;
+      border-top: 1px solid #2a2f3a;
+      padding-top: 0.75rem;
+    }
+
+    .thread-layer-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      border-radius: 8px;
+      background: #0d131e;
+      color: #62c6a6;
+      font-weight: 800;
+    }
+
+    .thread-layer button {
+      border: 1px solid #62c6a6;
+      background: rgba(98, 198, 166, 0.12);
+      color: #b8f3dd;
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .case-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .proof-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0.2rem 0.55rem;
+      background: #0d131e;
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .trade-lab {
+      padding: 4rem 0;
+    }
+
+    .trade-lab h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #e7eef9;
+    }
+
+    .trade-lab-intro {
+      color: #a3b4d4;
+      max-width: 860px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    .trade-lab-layout {
+      display: grid;
+      grid-template-columns: minmax(360px, 1.1fr) minmax(280px, .9fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .advantage-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .trade-panel {
+      background: rgba(30, 40, 50, 0.55);
+      border: 1px solid #2a2f3a;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .sim-world {
+      position: relative;
+      min-height: 380px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(98, 198, 166, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(98, 198, 166, 0.08) 1px, transparent 1px),
+        #0d131e;
+      background-size: 32px 32px;
+      border: 1px solid #293241;
+      border-radius: 8px;
+    }
+
+    .sim-agent {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #071018;
+      font-size: 0.72rem;
+      font-weight: 900;
+      border: 3px solid #e7eef9;
+      transition: left .22s linear, top .22s linear, transform .16s ease, box-shadow .16s ease;
+    }
+
+    .sim-agent.active {
+      transform: scale(1.18);
+      box-shadow: 0 0 0 6px rgba(98, 198, 166, 0.16);
+    }
+
+    .sim-agent.failed {
+      box-shadow: 0 0 0 6px rgba(240, 120, 120, 0.18);
+    }
+
+    .good-a { background: #62c6a6; }
+    .good-b { background: #8ab4f8; }
+    .good-c { background: #e7a23c; }
+    .good-d { background: #f07878; }
+
+    .lab-controls,
+    .sim-mode-row {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .sim-mode-row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 1rem;
+    }
+
+    .sim-mode,
+    .sim-action {
+      border: 1px solid #354255;
+      background: #151d2a;
+      color: #e7eef9;
+      border-radius: 8px;
+      padding: 0.75rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .sim-mode.active,
+    .sim-mode:hover,
+    .sim-action:hover {
+      border-color: #62c6a6;
+      background: #14241f;
+    }
+
+    .sim-action.primary {
+      background: #173229;
+      border-color: #62c6a6;
+      color: #b8f3dd;
+    }
+
+    .sim-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .sim-stat,
+    .mechanic-box,
+    .advantage-card {
+      background: #0d131e;
+      border: 1px solid #293241;
+      border-radius: 8px;
+      padding: 0.85rem;
+    }
+
+    .sim-stat strong,
+    .mechanic-box strong,
+    .advantage-card strong {
+      display: block;
+      color: #f3f6fb;
+      margin-bottom: 0.25rem;
+    }
+
+    .sim-log {
+      max-height: 160px;
+      overflow: auto;
+      display: grid;
+      gap: 0.5rem;
+      color: #aebbd0;
+      font-size: 0.85rem;
+    }
+
+    .mechanic-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
     
     .complexity-layers {
       padding: 4rem 0;
@@ -228,6 +514,10 @@
       .hero .tagline { font-size: 1.1rem; }
       .layers-grid { grid-template-columns: 1fr; }
       .modes-grid { grid-template-columns: 1fr; }
+      .case-thread-layout { grid-template-columns: 1fr; }
+      .thread-layer { grid-template-columns: 48px 1fr; }
+      .thread-layer button { grid-column: 2; }
+      .trade-lab-layout, .advantage-grid, .sim-mode-row, .sim-stats { grid-template-columns: 1fr; }
     }
     
     @keyframes pulse {
@@ -240,12 +530,101 @@
 <body>
   <div class="hero">
     <div class="container">
-      <h1>🎛️ BOVI Framework</h1>
-      <p class="tagline">Your Personal Money Fairness Assistant</p>
+      <h1>🎛️ BOVI Exchange Lens</h1>
+      <p class="tagline">A tool for seeing what kind of exchange you are inside</p>
       <p style="max-width: 600px; margin: 0 auto 2rem; color: #c7d2fe;">
-        Navigate inflation, make smarter financial decisions, and ensure fairness in every transaction with AI-powered insights tailored to your needs.
+        Money is the carrier. The real object is the exchange: gift, debt, price, duty,
+        care, claim, subscription, trap, promise. BOVI makes that structure visible.
       </p>
-      <a href="#start-m0" class="cta-primary">Start Your Journey</a>
+      <a href="javascript:showDemo()" class="cta-primary">Open the Lens</a>
+      <a href="#case-thread" class="cta-secondary">Follow One Case</a>
+    </div>
+  </div>
+
+  <div class="case-thread" id="case-thread">
+    <div class="container">
+      <h2>One Case Through All Layers</h2>
+      <p class="case-thread-intro">
+        Start with one sharp event and carry it through the whole ladder. The point is not five separate apps.
+        It is one exchange becoming visible at five depths.
+      </p>
+
+      <div class="case-thread-layout">
+        <div class="case-picker" id="case-thread-tabs"></div>
+        <div class="case-main" id="case-thread-output"></div>
+      </div>
+
+      <div class="case-proof-grid" id="case-proof-set"></div>
+    </div>
+  </div>
+
+  <div class="trade-lab" id="fractional-trade-lab">
+    <div class="container">
+      <h2>Fractional Trade Lab</h2>
+      <p class="trade-lab-intro">
+        Exchange first saves time through comparative advantage. Then repeated exchange compounds the gain by making people better at the task they specialise in.
+        Money enters when that exchange has to scale beyond one matched pair.
+      </p>
+
+      <div class="advantage-grid">
+        <div class="advantage-card">
+          <strong>Adam alone</strong>
+          Spear: 4 hours<br>
+          Axe: 3 hours<br>
+          <span class="small">Both tools: 7 hours</span>
+        </div>
+        <div class="advantage-card">
+          <strong>Oz alone</strong>
+          Spear: 1 hour<br>
+          Axe: 2 hours<br>
+          <span class="small">Both tools: 3 hours</span>
+        </div>
+        <div class="advantage-card">
+          <strong>Specialise and trade</strong>
+          Adam makes two axes: 6 hours<br>
+          Oz makes two spears: 2 hours<br>
+          <span class="small">Two complete sets: 8 hours, not 10. Each saves one hour.</span>
+        </div>
+        <div class="advantage-card">
+          <strong>Prosperity loop</strong>
+          Saved time becomes practice, tools, search, rest, or invention.
+          <span class="small">The more they exchange, the more specialised they become.</span>
+        </div>
+        <div class="advantage-card">
+          <strong>Where money enters</strong>
+          Bilateral trade still needs Adam and Oz to match.
+          <span class="small">Fractional money lets each sell to anyone and carry a transferable claim.</span>
+        </div>
+        <div class="advantage-card">
+          <strong>Ye tally rope</strong>
+          Adam gives an axe now. Oz ties a spear-knot on the shared rope.
+          <span class="small">The rope is symmetric memory: claim, ruler, and settlement before full money.</span>
+        </div>
+      </div>
+
+      <div class="trade-lab-layout">
+        <div class="trade-panel">
+          <div class="sim-mode-row">
+            <button class="sim-mode active" data-sim-mode="barter">Reciprocal</button>
+            <button class="sim-mode" data-sim-mode="tally">Tally rope</button>
+            <button class="sim-mode" data-sim-mode="money">Known-supply money</button>
+            <button class="sim-mode" data-sim-mode="opaque">Opaque supply</button>
+          </div>
+          <div class="sim-world" id="sim-world"></div>
+        </div>
+
+        <div class="trade-panel">
+          <h3>Mechanics</h3>
+          <div class="mechanic-grid" id="sim-mechanics"></div>
+          <div class="sim-stats" id="sim-stats"></div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-bottom: 1rem;">
+            <button class="sim-action primary" id="sim-step">Step</button>
+            <button class="sim-action" id="sim-run">Run</button>
+            <button class="sim-action" id="sim-reset">Reset</button>
+          </div>
+          <div class="sim-log" id="sim-log"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -256,76 +635,81 @@
         
         <div class="layer-card" onclick="enterBOVI('m0')" id="m0-card">
           <div class="layer-badge">M0</div>
-          <h3 class="layer-title">Just Keep Me Safe</h3>
-          <p class="layer-subtitle">"It just works"</p>
+          <h3 class="layer-title">Exchange Lens</h3>
+          <p class="layer-subtitle">"What kind of exchange is this?"</p>
           <p class="layer-description">
-            A simple, intuitive money app that protects you from inflation without requiring any understanding of economics.
+            The same money object is shown in four contexts so the bundle becomes
+            tangible before any theory appears.
           </p>
           <ul class="layer-features">
-            <li>One-button financial protection</li>
-            <li>Automatic inflation adjustments</li>
-            <li>Simple visual feedback</li>
-            <li>Zero learning curve required</li>
+            <li>Same object, four meanings</li>
+            <li>Mode recognition before explanation</li>
+            <li>Hidden fairness question exposed</li>
+            <li>Concrete diagnostic prompts</li>
           </ul>
         </div>
 
         <div class="layer-card" onclick="enterBOVI('m1')" id="m1-card">
           <div class="layer-badge">M1</div>
-          <h3 class="layer-title">Light Control</h3>
-          <p class="layer-subtitle">"I want some control"</p>
+          <h3 class="layer-title">Mode Diary</h3>
+          <p class="layer-subtitle">"Where am I being moved?"</p>
           <p class="layer-description">
-            Safe defaults with the ability to override decisions and see what's happening behind the scenes.
+            Track real exchanges, spot forced mode shifts, and learn your own
+            default fairness reflexes.
           </p>
           <ul class="layer-features">
-            <li>Simple toggles and preferences</li>
-            <li>Safe defaults with overrides</li>
-            <li>Basic notification controls</li>
-            <li>Gentle guided learning</li>
+            <li>Tag daily money moments</li>
+            <li>Detect Value and Obligated forcing</li>
+            <li>Consent and exit questions</li>
+            <li>Mode preference pattern</li>
           </ul>
         </div>
 
         <div class="layer-card" onclick="enterBOVI('m2')" id="m2-card">
           <div class="layer-badge">M2</div>
-          <h3 class="layer-title">Power User</h3>
-          <p class="layer-subtitle">"I want to understand"</p>
+          <h3 class="layer-title">Household Instruments</h3>
+          <p class="layer-subtitle">"Give the buyer memory"</p>
           <p class="layer-description">
-            Advanced tools for tracking personal inflation, joining cohorts, and analyzing money-veil effects.
+            Personal price memory, basket tracking, subscription exposure, and
+            shrinkflation detection. Instrumentation as parity.
           </p>
           <ul class="layer-features">
-            <li>Personal inflation tracking</li>
-            <li>Cohort formation and joining</li>
+            <li>Personal PDA and index</li>
+            <li>Subscription obligation map</li>
             <li>Money-veil calculations</li>
-            <li>Detailed financial analytics</li>
+            <li>Basket and shrinkflation memory</li>
           </ul>
         </div>
 
         <div class="layer-card" onclick="enterBOVI('m3')" id="m3-card">
           <div class="layer-badge">M3</div>
-          <h3 class="layer-title">Expert Tools</h3>
-          <p class="layer-subtitle">"I want sophisticated control"</p>
+          <h3 class="layer-title">Bundle Builder</h3>
+          <p class="layer-subtitle">"Design the mix consciously"</p>
           <p class="layer-description">
-            Complex economic modeling, smart contracts, and programmable financial automation.
+            Build ledgers, indexed contracts, group tallies, and crisis responses
+            that make the chosen bundle explicit.
           </p>
           <ul class="layer-features">
-            <li>Smart contract templates</li>
-            <li>Storm mode automation</li>
-            <li>Visual flow editor</li>
-            <li>Advanced economic modeling</li>
+            <li>Mode-aware Tally</li>
+            <li>Indexed contracts</li>
+            <li>Storm mode decomposition</li>
+            <li>Visual exchange flows</li>
           </ul>
         </div>
 
         <div class="layer-card" onclick="enterBOVI('m4')" id="m4-card">
           <div class="layer-badge">M4</div>
-          <h3 class="layer-title">Developer</h3>
-          <p class="layer-subtitle">"Full extensibility"</p>
+          <h3 class="layer-title">System Lab</h3>
+          <p class="layer-subtitle">"What bootstrap pays for this?"</p>
           <p class="layer-description">
-            Complete customization, plugin development, and experimental framework access.
+            Explore anchors, bootstraps, rails, rulers, platforms, and political
+            defaults as exchange architecture.
           </p>
           <ul class="layer-features">
-            <li>Custom plugin development</li>
-            <li>Full API access</li>
-            <li>Experimental trials</li>
-            <li>System architecture control</li>
+            <li>Anchor and bootstrap simulator</li>
+            <li>Plural rulers and rails</li>
+            <li>Policy and platform trials</li>
+            <li>Extensible research surface</li>
           </ul>
         </div>
 
@@ -337,7 +721,7 @@
     <div class="container">
       <h2>📦 The Complete BOVI Bundle</h2>
       <p style="text-align: center; color: #a3b4d4; max-width: 800px; margin: 0 auto;">
-        Four complementary approaches to fairness, automatically applied based on context
+        Four exchange grammars that get compressed into the same money object
       </p>
       
       <div class="modes-grid">
@@ -371,7 +755,7 @@
   <div class="demo-section">
     <div class="container">
       <h2>Try BOVI Now</h2>
-      <p style="color: #a3b4d4; margin-bottom: 2rem;">Experience the power of intelligent money management</p>
+      <p style="color: #a3b4d4; margin-bottom: 2rem;">Start with a concrete exchange and watch the hidden structure appear</p>
       
       <a href="javascript:showDemo()" class="cta-secondary">🚀 Quick Demo</a>
       <a href="javascript:showVisualEditor()" class="cta-secondary">🎛️ Visual Editor</a>
@@ -381,7 +765,7 @@
 
   <div class="footer">
     <div class="container">
-      <p>BOVI Framework — Making Money Fairer, One Decision at a Time</p>
+      <p>BOVI Framework — Making Exchange Architecture Visible</p>
       <p style="margin-top: 0.5rem; font-size: 0.8rem;">
         Open source • Privacy-first • Built for everyone
       </p>
@@ -389,6 +773,514 @@
   </div>
 
   <script>
+    const caseThreads = {
+      "subscription-renewal": {
+        title: "Streaming subscription renewed at 02:14",
+        tag: "Primary throughline",
+        claim: "A tiny monthly price becomes an annual obligation because the seller chose the timing, the reminder, and the exit path.",
+        proves: "Stable money lets platforms rebundle future claims into prices that feel too small to reason about.",
+        layers: {
+          m0: "Lens: this is not just a price. It is Value being folded into an Obligated exchange.",
+          m1: "Diary: record who chose the frame, whether refusal was real, and what evidence you kept.",
+          m2: "Instrument: annualise the claim, track the renewal, measure exit friction, keep cancellation proof.",
+          m3: "Bundle: write the explicit contract bundle - price, renewal, notice, exit, and receipt.",
+          m4: "System: stress-test platformbug under stable fiat. Convenience is not consent."
+        }
+      },
+      "shrinkflation-cereal": {
+        title: "Same cereal price, smaller box",
+        tag: "Money-veil proof",
+        claim: "The shelf number is stable while the unit claim changes underneath.",
+        proves: "Rote price memory is not knowledge when sellers can alter the measured unit.",
+        layers: {
+          m0: "Lens: the visible Value price hides a Balanced-mode ledger violation.",
+          m1: "Diary: log the forced shift from price memory to unit measurement.",
+          m2: "Instrument: compare unit price and package size outside your head.",
+          m3: "Bundle: require an index anchor for repeated household purchases.",
+          m4: "System: stress-test fiatbug. Stable numbers can hide unstable claims."
+        }
+      },
+      "dinner-bill": {
+        title: "Friend paid dinner before anyone discussed it",
+        tag: "Mode-collision proof",
+        claim: "The same bill can be price, gift, host duty, status move, or silent debt.",
+        proves: "The wrong ledger can be the harm; not every exchange should become exact accounting.",
+        layers: {
+          m0: "Lens: identify whether this is Value, Balanced, Obligated, Immediate, or mixed.",
+          m1: "Diary: record who collapsed the mode for the group.",
+          m2: "Instrument: use parity language, not price optimisation.",
+          m3: "Bundle: design the social rule before payment: split, treat, round, or host duty.",
+          m4: "System: stress-test ledgerbug. Recording everything is not the same as fairness."
+        }
+      },
+      "card-conversion": {
+        title: "Card charged the wrong exchange rate",
+        tag: "Rail proof",
+        claim: "A completed purchase hides a second exchange chosen by the payment rail.",
+        proves: "Money is not only a unit. The rail can choose price, timing, reversibility, and recourse.",
+        layers: {
+          m0: "Lens: the visible purchase hides a second Value-mode event.",
+          m1: "Diary: record whether the route and spread were visible before settlement.",
+          m2: "Instrument: require rate preview, spread disclosure, and route comparison.",
+          m3: "Bundle: specify rail, quote, settlement, reversal, and proof.",
+          m4: "System: stress-test platformbug and cryptobug. The user experiences the toolchain, not the theory."
+        }
+      },
+      "rent-index": {
+        title: "Rent increase email says it is just the rules",
+        tag: "Ruler proof",
+        claim: "A market claim can hide inside Obligated language unless the ruler and refusal path are visible.",
+        proves: "Contracts need plural distinctions: duty, price, index, notice, evidence, and appeal.",
+        layers: {
+          m0: "Lens: separate legal duty from the priced claim.",
+          m1: "Diary: ask who chose the comparison set, notice window, and counter-offer path.",
+          m2: "Instrument: gather comparable rents, terms, index, and receipt.",
+          m3: "Bundle: design an indexed contract with cap, floor, evidence, and exit.",
+          m4: "System: stress-test rulers and governance, not just money supply."
+        }
+      }
+    };
+
+    const caseLayerHints = {
+      "subscription-renewal": {
+        m0Case: "subscription",
+        m1Entry: "subscription",
+        m2Instrument: "subscriptions",
+        m3Bundle: "subscription",
+        m4System: "stableFiat",
+        m4Bug: "platformbug"
+      },
+      "shrinkflation-cereal": {
+        m0Case: "shrink",
+        m1Entry: "groceries",
+        m2Instrument: "basket",
+        m3Bundle: "groceries",
+        m4System: "stableFiat",
+        m4Bug: "fiatbug"
+      },
+      "dinner-bill": {
+        m0Case: "dinner",
+        m1Entry: "dinner",
+        m2Instrument: "parity",
+        m3Bundle: "dinner",
+        m4System: "mutualCredit",
+        m4Bug: "ledgerbug"
+      },
+      "card-conversion": {
+        m0Case: "card",
+        m1Entry: "card-spread",
+        m2Instrument: "parity",
+        m3Bundle: "storm",
+        m4System: "cryptoProtocol",
+        m4Bug: "cryptobug"
+      },
+      "rent-index": {
+        m0Case: "rent",
+        m1Entry: "rent",
+        m2Instrument: "veil",
+        m3Bundle: "rent",
+        m4System: "stableFiat",
+        m4Bug: "fiatbug"
+      }
+    };
+
+    function getActiveCaseThread() {
+      return localStorage.getItem('bovi.activeCaseThread') || 'subscription-renewal';
+    }
+
+    function getCaseHint(caseId = getActiveCaseThread()) {
+      return caseLayerHints[caseId] || caseLayerHints["subscription-renewal"];
+    }
+
+    function setActiveCaseThread(caseId) {
+      const nextCase = caseThreads[caseId] ? caseId : 'subscription-renewal';
+      localStorage.setItem('bovi.activeCaseThread', nextCase);
+      renderCaseThread(nextCase);
+    }
+
+    function launchThreadLayer(level) {
+      localStorage.setItem('bovi.activeCaseThread', getActiveCaseThread());
+      enterBOVI(level);
+    }
+
+    function renderCaseThread(caseId = getActiveCaseThread()) {
+      const activeId = caseThreads[caseId] ? caseId : 'subscription-renewal';
+      const activeCase = caseThreads[activeId];
+      localStorage.setItem('bovi.activeCaseThread', activeId);
+
+      const tabs = document.querySelector('#case-thread-tabs');
+      const output = document.querySelector('#case-thread-output');
+      const proofSet = document.querySelector('#case-proof-set');
+      if (!tabs || !output || !proofSet) return;
+
+      tabs.innerHTML = Object.keys(caseThreads).map(key => {
+        const item = caseThreads[key];
+        return `
+          <button class="case-tab ${key === activeId ? 'active' : ''}" data-thread-case="${key}">
+            <strong>${item.title}</strong>
+            <span class="small">${item.tag}</span>
+          </button>
+        `;
+      }).join('');
+
+      tabs.querySelectorAll('[data-thread-case]').forEach(button => {
+        button.addEventListener('click', () => setActiveCaseThread(button.dataset.threadCase));
+      });
+
+      output.innerHTML = `
+        <div class="case-thread-kicker">${activeCase.tag}</div>
+        <h3 class="case-thread-title">${activeCase.title}</h3>
+        <p style="color: #c7d2fe; margin-bottom: .75rem;">${activeCase.claim}</p>
+        <div class="proof-tag">${activeCase.proves}</div>
+        <div class="thread-layers">
+          ${Object.keys(activeCase.layers).map(level => `
+            <div class="thread-layer">
+              <span class="thread-layer-badge">${level.toUpperCase()}</span>
+              <span>${activeCase.layers[level]}</span>
+              <button onclick="launchThreadLayer('${level}')">Open ${level.toUpperCase()}</button>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      proofSet.innerHTML = Object.keys(caseThreads).filter(key => key !== 'subscription-renewal').map(key => {
+        const item = caseThreads[key];
+        return `
+          <div class="proof-card">
+            <span class="proof-tag">${item.tag}</span>
+            <strong>${item.title}</strong>
+            <p class="small">${item.proves}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    const simGoods = [
+      { id: "A", className: "good-a" },
+      { id: "B", className: "good-b" },
+      { id: "C", className: "good-c" },
+      { id: "D", className: "good-d" }
+    ];
+
+    let simMode = "barter";
+    let simSeed = 42;
+    let simAgents = [];
+    let simTimer = null;
+    let simLastPair = [];
+    let simLastFailed = false;
+    let simState = {
+      tick: 0,
+      attempts: 0,
+      successes: 0,
+      settlements: 0,
+      failures: 0,
+      supply: 0,
+      reportedSupply: 0,
+      hiddenIssued: 0,
+      claims: [],
+      trust: 100,
+      log: []
+    };
+
+    function simRandom() {
+      simSeed = (simSeed * 1664525 + 1013904223) % 4294967296;
+      return simSeed / 4294967296;
+    }
+
+    function randomGood(except) {
+      const pool = simGoods.map(good => good.id).filter(good => good !== except);
+      return pool[Math.floor(simRandom() * pool.length)];
+    }
+
+    function createSimAgents() {
+      simAgents = Array.from({ length: 28 }, (_, index) => {
+        const produces = simGoods[index % simGoods.length].id;
+        return {
+          id: index + 1,
+          produces,
+          wants: randomGood(produces),
+          money: ["money", "opaque"].includes(simMode) ? 2 : 0,
+          x: 6 + simRandom() * 86,
+          y: 8 + simRandom() * 80
+        };
+      });
+    }
+
+    function resetTradeSimulation(mode = simMode) {
+      simMode = mode;
+      simSeed = 42;
+      simLastPair = [];
+      simLastFailed = false;
+      createSimAgents();
+      const supply = simAgents.reduce((sum, agent) => sum + agent.money, 0);
+      simState = {
+        tick: 0,
+        attempts: 0,
+        successes: 0,
+        settlements: 0,
+        failures: 0,
+        supply,
+        reportedSupply: supply,
+        hiddenIssued: 0,
+        claims: [],
+        trust: 100,
+        log: []
+      };
+      stopTradeSimulation();
+      renderTradeSimulation();
+    }
+
+    function stopTradeSimulation() {
+      if (simTimer) {
+        clearInterval(simTimer);
+        simTimer = null;
+      }
+      const run = document.querySelector('#sim-run');
+      if (run) run.textContent = 'Run';
+    }
+
+    function pushSimLog(message) {
+      simState.log.unshift(`t${simState.tick}: ${message}`);
+      simState.log = simState.log.slice(0, 8);
+    }
+
+    function moveAgents() {
+      simAgents.forEach(agent => {
+        agent.x = Math.max(3, Math.min(93, agent.x + (simRandom() - 0.5) * 10));
+        agent.y = Math.max(5, Math.min(87, agent.y + (simRandom() - 0.5) * 10));
+      });
+    }
+
+    function choosePair() {
+      const first = Math.floor(simRandom() * simAgents.length);
+      let second = Math.floor(simRandom() * simAgents.length);
+      if (second === first) second = (second + 1) % simAgents.length;
+      return [simAgents[first], simAgents[second]];
+    }
+
+    function closeWant(agent) {
+      agent.wants = randomGood(agent.produces);
+    }
+
+    function attemptBarter(a, b) {
+      if (a.wants === b.produces && b.wants === a.produces) {
+        simState.settlements += 2;
+        closeWant(a);
+        closeWant(b);
+        pushSimLog(`reciprocal match: ${a.id} and ${b.id} both closed a want.`);
+        return true;
+      }
+      pushSimLog(`failed match: ${a.id} wanted ${a.wants}, ${b.id} wanted ${b.wants}.`);
+      return false;
+    }
+
+    function claimCountAgainst(debtorId) {
+      return simState.claims.filter(claim => claim.debtor === debtorId).length;
+    }
+
+    function redeemTallyClaim(buyer, seller) {
+      const index = simState.claims.findIndex(claim => claim.debtor === seller.id && claim.creditor === buyer.id);
+      if (index === -1) return false;
+      simState.claims.splice(index, 1);
+      simState.settlements += 1;
+      closeWant(buyer);
+      pushSimLog(`${buyer.id} redeemed a rope-knot against ${seller.id}; old credit settled the want.`);
+      return true;
+    }
+
+    function writeTallyClaim(buyer, seller) {
+      if (claimCountAgainst(buyer.id) >= 3) {
+        pushSimLog(`${buyer.id} wanted ${seller.produces}, but their rope was already loaded with claims.`);
+        return false;
+      }
+      simState.claims.push({ debtor: buyer.id, creditor: seller.id, good: seller.produces });
+      simState.settlements += 1;
+      closeWant(buyer);
+      pushSimLog(`${seller.id} gave ${seller.produces}; ${buyer.id} tied one visible rope-knot claim.`);
+      return true;
+    }
+
+    function attemptTally(a, b) {
+      if (a.wants === b.produces && b.wants === a.produces) {
+        simState.settlements += 2;
+        closeWant(a);
+        closeWant(b);
+        pushSimLog(`direct swap: ${a.id} and ${b.id} matched, no rope needed.`);
+        return true;
+      }
+
+      if (a.wants === b.produces) {
+        return redeemTallyClaim(a, b) || writeTallyClaim(a, b);
+      }
+
+      if (b.wants === a.produces) {
+        return redeemTallyClaim(b, a) || writeTallyClaim(b, a);
+      }
+
+      pushSimLog(`no want matched; the rope cannot invent demand.`);
+      return false;
+    }
+
+    function transferMoney(buyer, seller) {
+      buyer.money -= 1;
+      seller.money += 1;
+      simState.settlements += 1;
+      closeWant(buyer);
+    }
+
+    function attemptMoney(a, b) {
+      if (simMode === "opaque" && simState.tick > 0 && simState.tick % 9 === 0) {
+        const receiver = simAgents[Math.floor(simRandom() * simAgents.length)];
+        receiver.money += 6;
+        simState.supply += 6;
+        simState.hiddenIssued += 6;
+        simState.trust = Math.max(25, 100 - simState.hiddenIssued * 3);
+        pushSimLog(`hidden issuance: +6 tokens appeared outside the known rule.`);
+      }
+
+      const accepted = simRandom() * 100 <= simState.trust;
+      if (!accepted) {
+        pushSimLog(`refused: supply opacity lowered trust to ${simState.trust}%.`);
+        return false;
+      }
+
+      if (a.wants === b.produces && a.money > 0) {
+        transferMoney(a, b);
+        pushSimLog(`${a.id} paid one token to ${b.id}; ${b.id} can spend later.`);
+        return true;
+      }
+
+      if (b.wants === a.produces && b.money > 0) {
+        transferMoney(b, a);
+        pushSimLog(`${b.id} paid one token to ${a.id}; ${a.id} can spend later.`);
+        return true;
+      }
+
+      if ((a.wants === b.produces && a.money === 0) || (b.wants === a.produces && b.money === 0)) {
+        pushSimLog(`want existed, but the buyer had no transferable claim.`);
+      } else {
+        pushSimLog(`no direct want in this meeting, but future fractional matches remain possible.`);
+      }
+      return false;
+    }
+
+    function stepTradeSimulation() {
+      simState.tick += 1;
+      simState.attempts += 1;
+      moveAgents();
+      const [a, b] = choosePair();
+      simLastPair = [a.id, b.id];
+      const attempts = {
+        barter: attemptBarter,
+        tally: attemptTally,
+        money: attemptMoney,
+        opaque: attemptMoney
+      };
+      const success = attempts[simMode](a, b);
+      simLastFailed = !success;
+      if (success) simState.successes += 1;
+      if (!success) simState.failures += 1;
+      renderTradeSimulation();
+    }
+
+    function mechanicCopy() {
+      if (simMode === "barter") {
+        return [
+          ["Rule", "A meeting settles only if each side wants exactly what the other produces."],
+          ["Cost", "Most meetings fail because one exchange has to clear a whole relationship."],
+          ["Lesson", "No extra trade, but a very expensive matching problem."]
+        ];
+      }
+      if (simMode === "tally") {
+        return [
+          ["Rule", "A one-sided trade can close if the buyer ties a visible rope-knot claim."],
+          ["Mechanic", "The rope is shared memory: debtor, creditor, amount, and later settlement are legible to both sides."],
+          ["Lesson", "The tally reduces coincidence-of-wants, but claims are still relationship-bound until they become transferable."]
+        ];
+      }
+      if (simMode === "money") {
+        return [
+          ["Rule", "A buyer spends one known-supply token for one desired good."],
+          ["Mechanic", "The seller accepts a fractional claim and spends it later with someone else."],
+          ["Lesson", "The extra step lowers search cost because settlement is transferable and divisible."]
+        ];
+      }
+      return [
+        ["Rule", "The same token mechanism works until hidden issuance breaks common knowledge."],
+        ["Failure", "Reported supply stays fixed while actual supply changes."],
+        ["Lesson", "Fractional settlement needs a symmetrically known supply rule."]
+      ];
+    }
+
+    function renderTradeSimulation() {
+      const world = document.querySelector('#sim-world');
+      const mechanics = document.querySelector('#sim-mechanics');
+      const stats = document.querySelector('#sim-stats');
+      const log = document.querySelector('#sim-log');
+      if (!world || !mechanics || !stats || !log) return;
+
+      document.querySelectorAll('[data-sim-mode]').forEach(button => {
+        button.classList.toggle('active', button.dataset.simMode === simMode);
+      });
+
+      world.innerHTML = simAgents.map(agent => {
+        const good = simGoods.find(item => item.id === agent.produces);
+        const active = simLastPair.includes(agent.id);
+        const failed = active && simLastFailed;
+        const label = simMode === "tally"
+          ? `${agent.wants}${claimCountAgainst(agent.id)}`
+          : `${agent.wants}${simMode === "barter" ? "" : agent.money}`;
+        return `
+          <div class="sim-agent ${good.className} ${active ? 'active' : ''} ${failed ? 'failed' : ''}"
+               style="left: ${agent.x}%; top: ${agent.y}%"
+               title="Produces ${agent.produces}, wants ${agent.wants}, tokens ${agent.money}, rope debts ${claimCountAgainst(agent.id)}">
+            ${label}
+          </div>
+        `;
+      }).join('');
+
+      mechanics.innerHTML = mechanicCopy().map(item => `
+        <div class="mechanic-box"><strong>${item[0]}</strong>${item[1]}</div>
+      `).join('');
+
+      const rate = simState.attempts ? Math.round((simState.successes / simState.attempts) * 100) : 0;
+      stats.innerHTML = `
+        <div class="sim-stat"><strong>Attempts</strong>${simState.attempts}</div>
+        <div class="sim-stat"><strong>Settlements</strong>${simState.settlements}</div>
+        <div class="sim-stat"><strong>Settlement rate</strong>${rate}%</div>
+        <div class="sim-stat"><strong>Known supply</strong>${["money", "opaque"].includes(simMode) ? `${simState.reportedSupply} reported / ${simState.supply} actual` : "none"}</div>
+        <div class="sim-stat"><strong>Rope claims</strong>${simMode === "tally" ? simState.claims.length : "not used"}</div>
+        <div class="sim-stat"><strong>Failed meetings</strong>${simState.failures}</div>
+        <div class="sim-stat"><strong>Trust</strong>${simMode === "opaque" ? `${simState.trust}%` : "100%"}</div>
+      `;
+
+      log.innerHTML = simState.log.length
+        ? simState.log.map(item => `<div>${item}</div>`).join('')
+        : '<div>Press Step or Run to start the mechanics.</div>';
+    }
+
+    function initTradeSimulation() {
+      document.querySelectorAll('[data-sim-mode]').forEach(button => {
+        button.addEventListener('click', () => resetTradeSimulation(button.dataset.simMode));
+      });
+      const step = document.querySelector('#sim-step');
+      const run = document.querySelector('#sim-run');
+      const reset = document.querySelector('#sim-reset');
+      if (!step || !run || !reset) return;
+
+      step.addEventListener('click', stepTradeSimulation);
+      run.addEventListener('click', () => {
+        if (simTimer) {
+          stopTradeSimulation();
+          return;
+        }
+        run.textContent = 'Pause';
+        simTimer = setInterval(stepTradeSimulation, 450);
+      });
+      reset.addEventListener('click', () => resetTradeSimulation(simMode));
+      resetTradeSimulation('barter');
+    }
+
     // BOVI Entry Point Functions
     function enterBOVI(level) {
       console.log(`🎛️ Entering BOVI ${level.toUpperCase()} mode`);
@@ -403,29 +1295,29 @@
     function launchBoviLayer(level) {
       const layerConfig = {
         m0: {
-          name: 'Satnav Mode',
-          description: 'Just keep me safe - simple financial protection',
+          name: 'Exchange Lens',
+          description: 'same object, four exchange meanings',
           action: () => launchSatnavApp()
         },
         m1: {
-          name: 'Light Control',
-          description: 'Safe defaults with basic preferences',
+          name: 'Mode Diary',
+          description: 'tag real exchanges and spot forced modes',
           action: () => launchSatnavWithControls()
         },
         m2: {
-          name: 'Power User',
-          description: 'Advanced analytics and cohort tools',
-          action: () => launchFullBoviApp('m2')
+          name: 'Household Instruments',
+          description: 'price memory, indices, obligations, and buyer parity',
+          action: () => launchHouseholdInstruments()
         },
         m3: {
-          name: 'Expert Tools',
-          description: 'Visual flow editor and smart contracts',
-          action: () => launchFullBoviApp('m3')
+          name: 'Bundle Builder',
+          description: 'mode-aware ledgers, contracts, and flows',
+          action: () => launchBundleBuilder()
         },
         m4: {
-          name: 'Developer Access',
-          description: 'Full API and plugin development',
-          action: () => launchFullBoviApp('m4')
+          name: 'System Lab',
+          description: 'anchors, bootstraps, rails, rulers, and trials',
+          action: () => launchSystemLab()
         }
       };
 
@@ -438,141 +1330,1746 @@
       }
     }
 
-    // Launch pure M0 satnav plugin - embedded version
+    // Launch M0 Exchange Lens - embedded version
     function launchSatnavApp() {
-      // Hide homepage content
-      document.body.style.display = 'none';
-      
-      // Create app container
       const appContainer = document.createElement('div');
       appContainer.id = 'bovi-app';
       appContainer.style.cssText = `
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #0a0e1a;
+        inset: 0;
+        background: #0b0e14;
         z-index: 2000;
+        overflow: auto;
       `;
-      
-      // Add back button
+
       const backButton = document.createElement('button');
       backButton.innerHTML = '← Back to Home';
       backButton.style.cssText = `
         position: fixed;
         top: 1rem;
         right: 1rem;
-        background: rgba(76, 201, 240, 0.1);
-        border: 1px solid #4cc9f0;
-        color: #4cc9f0;
+        background: rgba(98, 198, 166, 0.12);
+        border: 1px solid #62c6a6;
+        color: #b8f3dd;
         padding: 0.5rem 1rem;
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
         z-index: 2001;
       `;
-      backButton.onclick = () => {
-        appContainer.remove();
-        document.body.style.display = '';
-      };
-      
-      // Create embedded satnav interface
-      const satnavInterface = document.createElement('div');
-      satnavInterface.innerHTML = `
+      backButton.onclick = () => appContainer.remove();
+
+      const lensInterface = document.createElement('div');
+      lensInterface.innerHTML = `
         <style>
-          .satnav-wrap { font-family: system-ui, sans-serif; color: #e7eef9; background: #0a0e1a; display: grid; gap: 12px; padding: 16px 16px 16px 16px; min-height: 100vh; padding-top: 60px; }
-          .satnav-row { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-          .satnav-card { background: #0e1320; border: 1px solid #232a3b; border-radius: 12px; padding: 14px; }
-          .satnav-card h3, .satnav-card h4 { margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #e7eef9; }
-          .satnav-cta { background: #2a7; border: none; color: #031; font-weight: 700; padding: 12px 16px; border-radius: 10px; cursor: pointer; margin-top: 12px; transition: all 0.2s; }
-          .satnav-cta:hover { background: #3b8; transform: translateY(-1px); }
-          .satnav-cta:disabled { opacity: 0.7; cursor: not-allowed; }
-          .satnav-episode { display: flex; align-items: center; justify-content: space-between; }
-          .satnav-episode button { background: #4cc9f0; border: none; color: #041920; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; }
-          .satnav-episode button:hover { background: #5dd3ff; }
-          .satnav-episode button:disabled { opacity: 0.7; cursor: not-allowed; }
-          .satnav-status { font-size: 12px; opacity: 0.8; margin-top: 4px; color: #a3b4d4; }
+          .lens-wrap { font-family: system-ui, sans-serif; color: #e7eef9; display: grid; gap: 18px; padding: 72px 18px 24px; min-height: 100vh; }
+          .lens-shell { width: min(1120px, 100%); margin: 0 auto; display: grid; gap: 18px; }
+          .lens-hero { display: grid; gap: 10px; max-width: 760px; }
+          .lens-hero h2 { margin: 0; font-size: clamp(28px, 5vw, 56px); line-height: 1.02; letter-spacing: 0; }
+          .lens-hero p { margin: 0; color: #aebbd0; max-width: 680px; }
+          .lens-grid { display: grid; grid-template-columns: minmax(260px, 0.9fr) minmax(280px, 1.1fr); gap: 14px; }
+          .lens-card { background: #111722; border: 1px solid #293241; border-radius: 8px; padding: 16px; }
+          .lens-card h3 { margin: 0 0 10px; color: #f3f6fb; letter-spacing: 0; }
+          .mode-stack { display: grid; gap: 10px; }
+          .mode-button, .case-button { width: 100%; border: 1px solid #354255; background: #151d2a; color: #e7eef9; border-radius: 8px; padding: 12px; text-align: left; cursor: pointer; display: grid; gap: 4px; }
+          .mode-button:hover, .case-button:hover, .mode-button.active, .case-button.active { border-color: #62c6a6; background: #182337; }
+          .mode-row { display: flex; align-items: center; gap: 10px; }
+          .mode-dot { width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; color: #081017; }
+          .dot-b { background: #62c6a6; }
+          .dot-o { background: #e7a23c; }
+          .dot-v { background: #8ab4f8; }
+          .dot-i { background: #f07878; }
+          .small { color: #aebbd0; font-size: 13px; }
+          .lens-output { min-height: 100%; display: grid; gap: 12px; align-content: start; }
+          .lens-kicker { color: #62c6a6; font-size: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: .08em; }
+          .question { font-size: clamp(22px, 3vw, 34px); line-height: 1.08; color: #fff; margin: 0; }
+          .diagnostic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+          .diagnostic-box { background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 12px; }
+          .diagnostic-box strong { display: block; margin-bottom: 5px; color: #f3f6fb; }
+          .tool-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+          .tool-strip div { border-left: 3px solid #62c6a6; padding-left: 10px; color: #cbd5e1; }
+          @media (max-width: 820px) {
+            .lens-grid, .diagnostic-grid, .tool-strip { grid-template-columns: 1fr; }
+          }
         </style>
-        <div class="satnav-wrap">
-          <div class="satnav-card">
-            <h3>🧭 BOVI Financial Satnav</h3>
-            <div id="overall">✅ All systems operational</div>
-            <button class="satnav-cta" id="safe">🚗 Auto-drive: Keep me safe</button>
-          </div>
-          <div class="satnav-row">
-            <div class="satnav-card">
-              <h4>💰 Bills</h4>
-              <div id="tile-roof">Checking your bills...</div>
-              <div class="satnav-status">Auto-protection available</div>
-            </div>
-            <div class="satnav-card">
-              <h4>🛒 Deals</h4>
-              <div id="tile-food">Finding best deals...</div>
-              <div class="satnav-status">Smart switching enabled</div>
-            </div>
-            <div class="satnav-card">
-              <h4>⚡ Energy</h4>
-              <div id="tile-power">Monitoring contracts...</div>
-              <div class="satnav-status">Rate optimization active</div>
-            </div>
-          </div>
-          <div class="satnav-card satnav-episode">
-            <div>
-              <div id="ep">💡 Next: Understanding Inflation Protection</div>
-              <div class="satnav-status" id="ep-mode">M0 mode • 3 min explainer</div>
-            </div>
-            <button id="play">▶ Play</button>
+        <div class="lens-wrap">
+          <div class="lens-shell">
+            <section class="lens-hero">
+              <div class="lens-kicker">M0 Exchange Lens</div>
+              <h2>Same money. Different exchange.</h2>
+              <p>Click a familiar object. BOVI shows the mode, the question it asks, what breaks when the mode is hidden, and the first move that gives the user agency.</p>
+            </section>
+
+            <section class="lens-grid">
+              <div class="lens-card">
+                <h3>The same 20</h3>
+                <div class="mode-stack">
+                  <button class="mode-button active" data-lens="balanced">
+                    <span class="mode-row"><span class="mode-dot dot-b">B</span><strong>Roommate groceries</strong></span>
+                    <span class="small">You hand over 20 because they paid last time.</span>
+                  </button>
+                  <button class="mode-button" data-lens="obligated">
+                    <span class="mode-row"><span class="mode-dot dot-o">O</span><strong>Boss lunch allowance</strong></span>
+                    <span class="small">The company gives 20 during a work meeting.</span>
+                  </button>
+                  <button class="mode-button" data-lens="value">
+                    <span class="mode-row"><span class="mode-dot dot-v">V</span><strong>Book sold to a stranger</strong></span>
+                    <span class="small">They pay 20 because that is the agreed price.</span>
+                  </button>
+                  <button class="mode-button" data-lens="immediate">
+                    <span class="mode-row"><span class="mode-dot dot-i">I</span><strong>Grandmother gives 20</strong></span>
+                    <span class="small">No ledger, no price, no claim. Just care.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="lens-card lens-output" id="lens-output"></div>
+            </section>
+
+            <section class="lens-grid">
+              <div class="lens-card">
+                <h3>Now diagnose a real exchange</h3>
+                <div class="mode-stack">
+                  <button class="case-button active" data-case="subscription">Streaming subscription renewal</button>
+                  <button class="case-button" data-case="shrink">Same cereal price, smaller box</button>
+                  <button class="case-button" data-case="rent">Rent increase email</button>
+                  <button class="case-button" data-case="dinner">Dinner bill with friends</button>
+                  <button class="case-button" data-case="card">4.7x card conversion</button>
+                </div>
+              </div>
+              <div class="lens-card lens-output" id="case-output"></div>
+            </section>
+
+            <section class="lens-card">
+              <h3>The tool shape</h3>
+              <div class="tool-strip">
+                <div><strong>Lens</strong><br>See the exchange mode before accepting the frame.</div>
+                <div><strong>Memory</strong><br>Keep price, obligation, and mode history outside your head.</div>
+                <div><strong>Move</strong><br>Name the basis, refuse the wrong frame, or route to another tool.</div>
+              </div>
+            </section>
           </div>
         </div>
       `;
-      
+
       appContainer.appendChild(backButton);
-      appContainer.appendChild(satnavInterface);
+      appContainer.appendChild(lensInterface);
       document.body.appendChild(appContainer);
-      
-      // Wire up the "Keep me safe" button
-      const safeBtn = satnavInterface.querySelector('#safe');
-      safeBtn.onclick = async () => {
-        safeBtn.disabled = true;
-        safeBtn.textContent = 'Activating protection...';
-        
-        // Simulate API calls and show progress
-        setTimeout(() => {
-          satnavInterface.querySelector('#tile-roof').textContent = '✅ Bills optimized';
-          satnavInterface.querySelector('#tile-food').textContent = '✅ Deals activated';  
-          satnavInterface.querySelector('#tile-power').textContent = '✅ Energy secured';
-          satnavInterface.querySelector('#overall').textContent = '🛡️ Protection active - You are safe!';
-          
-          safeBtn.textContent = '✅ Protection Active';
-          safeBtn.style.background = '#10b981';
-          safeBtn.style.color = 'white';
-          
-          // Show success notification
-          setTimeout(() => {
-            alert('🎉 Success! Your money is now protected from inflation. BOVI is automatically optimizing your bills, deals, and energy contracts.');
-          }, 500);
-        }, 2000);
+
+      const modes = {
+        balanced: {
+          label: "Balanced",
+          symbol: "B",
+          question: "Are we even?",
+          frame: "The 20 is not mainly a price. It is a ledger repair.",
+          breakage: "If this is over-counted, friendship becomes bookkeeping. If it is under-counted, one person quietly carries the load.",
+          move: "Name the ledger, then decide whether this should count or be released as a gift."
+        },
+        obligated: {
+          label: "Obligated",
+          symbol: "O",
+          question: "Is the authority legitimate?",
+          frame: "The 20 comes from a hierarchy. The amount matters less than who had the standing to set the rule.",
+          breakage: "If it pretends to be generosity, authority hides inside warmth. If it pretends to be a market price, compliance hides inside choice.",
+          move: "Ask who decided, where the rule lives, and what refusal would cost."
+        },
+        value: {
+          label: "Value",
+          symbol: "V",
+          question: "Is the price right?",
+          frame: "The 20 is a spot exchange between people who do not need a lasting relationship.",
+          breakage: "If the seller knows your willingness to pay and you do not know the market, Value mode becomes extraction.",
+          move: "Bring an instrument: price history, comparison, fees, spread, and alternatives."
+        },
+        immediate: {
+          label: "Immediate",
+          symbol: "I",
+          question: "Are we okay?",
+          frame: "The 20 is care made visible. Counting it too hard would damage the thing it expresses.",
+          breakage: "Immediate mode is exploitable because its defence is not counting.",
+          move: "Check whether refusal is allowed. If no costs the relationship, this is not pure care."
+        }
       };
-      
-      // Wire up the episode play button
-      const playBtn = satnavInterface.querySelector('#play');
-      playBtn.onclick = () => {
-        playBtn.disabled = true;
-        playBtn.textContent = '▶ Playing...';
-        
-        setTimeout(() => {
-          alert('🎬 Episode: "Understanding Inflation Protection"\n\nThis 3-minute explainer would teach you how BOVI keeps your money safe automatically, without you needing to understand complex economics.');
-          playBtn.textContent = '✅ Watched';
-          playBtn.disabled = false;
-        }, 1000);
+
+      const cases = {
+        subscription: {
+          title: "Streaming subscription renewal",
+          visible: "A tiny monthly price.",
+          hidden: "A future obligation rebundled into a number small enough to ignore.",
+          forced: "Value-mode signup becomes Obligated-mode lock-in.",
+          question: "Can I exit as easily as I entered?",
+          instrument: "Annualised cost, renewal calendar, cancellation proof, and a log of unused months."
+        },
+        shrink: {
+          title: "Same cereal price, smaller box",
+          visible: "The shelf price looks stable.",
+          hidden: "The unit changed under the familiar number.",
+          forced: "Value mode is presented as unchanged while the Balanced comparison changed.",
+          question: "Did the price stay stable, or did the measured claim shrink?",
+          instrument: "Unit-price memory, package-size history, and a basket comparison."
+        },
+        rent: {
+          title: "Rent increase email",
+          visible: "A new amount due next month.",
+          hidden: "Value, Obligated, and Immediate collide: market rent, legal power, and shelter.",
+          forced: "The landlord may present authority as market inevitability.",
+          question: "Which part is price, which part is power, and which part is need?",
+          instrument: "Comparable rents, contract terms, local rules, and a counter-offer receipt."
+        },
+        dinner: {
+          title: "Dinner bill with friends",
+          visible: "One total at the end of the meal.",
+          hidden: "Four live proposals: split equally, pay your own, host pays, or do not count.",
+          forced: "A payment app can silently turn the whole night into Balanced mode.",
+          question: "Which relationship are we trying to preserve?",
+          instrument: "Mode tag before amount: gift, split, exact price, or obligation."
+        },
+        card: {
+          title: "4.7x card conversion",
+          visible: "A coffee paid by card.",
+          hidden: "A routing decision made by banks and processors at a spread you did not see.",
+          forced: "You thought you were buying coffee; the system also sold you an exchange rate.",
+          question: "Did I consent to this pricing event?",
+          instrument: "Rate preview, rail comparison, fee/spread disclosure, and a refusal path."
+        }
       };
+
+      function renderMode(key) {
+        const item = modes[key];
+        lensInterface.querySelector('#lens-output').innerHTML = `
+          <div class="lens-kicker">${item.symbol} mode: ${item.label}</div>
+          <p class="question">${item.question}</p>
+          <div class="diagnostic-grid">
+            <div class="diagnostic-box"><strong>What the money is doing</strong>${item.frame}</div>
+            <div class="diagnostic-box"><strong>What breaks</strong>${item.breakage}</div>
+          </div>
+          <div class="diagnostic-box"><strong>First useful move</strong>${item.move}</div>
+        `;
+      }
+
+      function renderCase(key) {
+        const item = cases[key];
+        lensInterface.querySelector('#case-output').innerHTML = `
+          <div class="lens-kicker">Diagnostic card</div>
+          <p class="question">${item.title}</p>
+          <div class="diagnostic-grid">
+            <div class="diagnostic-box"><strong>Visible surface</strong>${item.visible}</div>
+            <div class="diagnostic-box"><strong>Hidden structure</strong>${item.hidden}</div>
+            <div class="diagnostic-box"><strong>Mode forcing</strong>${item.forced}</div>
+            <div class="diagnostic-box"><strong>Question</strong>${item.question}</div>
+          </div>
+          <div class="diagnostic-box"><strong>Instrument to give the buyer parity</strong>${item.instrument}</div>
+        `;
+      }
+
+      lensInterface.querySelectorAll('[data-lens]').forEach(button => {
+        button.addEventListener('click', () => {
+          lensInterface.querySelectorAll('[data-lens]').forEach(b => b.classList.remove('active'));
+          button.classList.add('active');
+          renderMode(button.dataset.lens);
+        });
+      });
+
+      lensInterface.querySelectorAll('[data-case]').forEach(button => {
+        button.addEventListener('click', () => {
+          lensInterface.querySelectorAll('[data-case]').forEach(b => b.classList.remove('active'));
+          button.classList.add('active');
+          renderCase(button.dataset.case);
+        });
+      });
+
+      const hintedCase = getCaseHint().m0Case;
+      const initialCase = cases[hintedCase] ? hintedCase : 'subscription';
+      lensInterface.querySelectorAll('[data-case]').forEach(button => {
+        button.classList.toggle('active', button.dataset.case === initialCase);
+      });
+
+      renderMode('balanced');
+      renderCase(initialCase);
     }
 
-    // Launch M1 with light controls on top of satnav
+    // Launch M1 with mode diary controls on top of the lens
     function launchSatnavWithControls() {
-      alert('🚧 M1 Light Control mode is coming soon! For now, launching M0 Satnav.');
-      launchSatnavApp();
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-mode-diary';
+      appContainer.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: #0b0e14;
+        z-index: 2000;
+        overflow: auto;
+      `;
+
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(138, 180, 248, 0.12);
+        border: 1px solid #8ab4f8;
+        color: #d7e6ff;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        z-index: 2001;
+      `;
+      backButton.onclick = () => appContainer.remove();
+
+      const diaryInterface = document.createElement('div');
+      diaryInterface.innerHTML = `
+        <style>
+          .diary-wrap { font-family: system-ui, sans-serif; color: #e7eef9; padding: 72px 18px 24px; min-height: 100vh; }
+          .diary-shell { width: min(1180px, 100%); margin: 0 auto; display: grid; gap: 18px; }
+          .diary-hero { display: grid; gap: 10px; max-width: 820px; }
+          .diary-hero h2 { margin: 0; font-size: clamp(28px, 5vw, 54px); line-height: 1.03; letter-spacing: 0; }
+          .diary-hero p { margin: 0; color: #aebbd0; }
+          .diary-grid { display: grid; grid-template-columns: minmax(260px, .85fr) minmax(320px, 1.15fr); gap: 14px; }
+          .diary-panel { background: #111722; border: 1px solid #293241; border-radius: 8px; padding: 16px; }
+          .diary-panel h3 { margin: 0 0 10px; color: #f3f6fb; }
+          .inbox { display: grid; gap: 10px; }
+          .inbox button, .mode-choice, .save-reading { border: 1px solid #354255; background: #151d2a; color: #e7eef9; border-radius: 8px; padding: 12px; text-align: left; cursor: pointer; }
+          .inbox button.active, .inbox button:hover, .mode-choice.active, .mode-choice:hover { border-color: #8ab4f8; background: #182337; }
+          .save-reading { text-align: center; background: #23385f; border-color: #8ab4f8; font-weight: 700; }
+          .small { color: #aebbd0; font-size: 13px; }
+          .kicker { color: #8ab4f8; font-size: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: .08em; }
+          .reading-title { font-size: clamp(22px, 3vw, 34px); line-height: 1.08; margin: 0 0 10px; }
+          .fact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
+          .fact { background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 12px; }
+          .fact strong { display: block; color: #f3f6fb; margin-bottom: 5px; }
+          .mode-picker { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+          .mode-choice { text-align: center; font-weight: 800; }
+          .diary-log { display: grid; gap: 8px; }
+          .log-row { display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: start; border-top: 1px solid #293241; padding-top: 10px; }
+          .badge { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; color: #071018; }
+          .b { background: #62c6a6; }
+          .o { background: #e7a23c; }
+          .v { background: #8ab4f8; }
+          .i { background: #f07878; }
+          .mixed { background: #d8b4fe; }
+          .bars { display: grid; gap: 8px; }
+          .bar-row { display: grid; grid-template-columns: 28px 1fr 34px; gap: 8px; align-items: center; color: #cbd5e1; }
+          .bar-track { background: #0d131e; height: 8px; border-radius: 999px; overflow: hidden; }
+          .bar-fill { height: 100%; width: 0; background: #8ab4f8; }
+          @media (max-width: 880px) {
+            .diary-grid, .fact-grid, .mode-picker { grid-template-columns: 1fr; }
+          }
+        </style>
+        <div class="diary-wrap">
+          <div class="diary-shell">
+            <section class="diary-hero">
+              <div class="kicker">M1 Mode Diary</div>
+              <h2>Do not budget harder. Name the exchange.</h2>
+              <p>A diary entry is not a transaction row. It is a record of which fairness mode was invoked, who invoked it, and whether refusal was real.</p>
+            </section>
+
+            <section class="diary-grid">
+              <div class="diary-panel">
+                <h3>Exchange inbox</h3>
+                <div class="inbox" id="diary-inbox"></div>
+              </div>
+
+              <div class="diary-panel" id="diary-reading"></div>
+            </section>
+
+            <section class="diary-grid">
+              <div class="diary-panel">
+                <h3>Your pattern</h3>
+                <div class="bars" id="diary-bars"></div>
+              </div>
+              <div class="diary-panel">
+                <h3>Saved readings</h3>
+                <div class="diary-log" id="diary-log"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      `;
+
+      appContainer.appendChild(backButton);
+      appContainer.appendChild(diaryInterface);
+      document.body.appendChild(appContainer);
+
+      const entries = [
+        {
+          id: "subscription",
+          title: "Streaming subscription renewed at 02:14",
+          surface: "A small monthly price.",
+          hidden: "The signup price has become a recurring obligation.",
+          who: "The platform chose the timing, reminder style, and cancellation path.",
+          refuse: "Yes, but only after finding the exit.",
+          suggested: "O",
+          move: "Annualise it, put renewal on a calendar, and keep cancellation proof."
+        },
+        {
+          id: "groceries",
+          title: "Same cereal price, smaller box",
+          surface: "The shelf price looks stable.",
+          hidden: "The unit changed under the nominal price.",
+          who: "The seller changed the measurement problem.",
+          refuse: "Only if you remember the previous size.",
+          suggested: "B",
+          move: "Log unit price and package size. Treat shrinkflation as a ledger violation."
+        },
+        {
+          id: "work-family",
+          title: "Can you stay late? We are a family here.",
+          surface: "A warm request.",
+          hidden: "Immediate language is carrying workplace authority and unpaid labour.",
+          who: "The employer chose the relationship frame.",
+          refuse: "If refusal risks status or job security, consent is weak.",
+          suggested: "I",
+          move: "Translate warmth back into terms: time, pay, obligation, exit."
+        },
+        {
+          id: "rent",
+          title: "Rent increase email says it is just the rules",
+          surface: "A new amount due next month.",
+          hidden: "A priced claim is being carried by legal authority and shelter need.",
+          who: "The landlord chose the ruler, timing, and comparison set.",
+          refuse: "Only if there is a real notice, counter-offer, or appeal path.",
+          suggested: "mixed",
+          move: "Separate duty, index, evidence, notice, and refusal into distinct questions."
+        },
+        {
+          id: "dinner",
+          title: "Friend paid dinner before anyone could discuss it",
+          surface: "A generous gesture.",
+          hidden: "Could be gift, status move, silent ledger, or host duty.",
+          who: "The payer collapsed the mode for the group.",
+          refuse: "Socially difficult after the fact.",
+          suggested: "mixed",
+          move: "Name it lightly: gift, round, host treat, or something to square later."
+        },
+        {
+          id: "card-spread",
+          title: "Card charged the wrong exchange rate",
+          surface: "A completed purchase.",
+          hidden: "The payment rail inserted a second Value-mode event.",
+          who: "The bank and processor chose the route.",
+          refuse: "Not after settlement, unless the route was visible first.",
+          suggested: "V",
+          move: "Require rate preview, spread disclosure, and a route alternative."
+        }
+      ];
+
+      const modeLabels = {
+        B: "Balanced",
+        O: "Obligated",
+        V: "Value",
+        I: "Immediate",
+        mixed: "Mixed"
+      };
+
+      const hintedEntry = getCaseHint().m1Entry;
+      let selectedId = entries.some(entry => entry.id === hintedEntry) ? hintedEntry : entries[0].id;
+      let selectedMode = entries.find(entry => entry.id === selectedId).suggested;
+      let log = [];
+
+      try {
+        log = JSON.parse(localStorage.getItem('bovi.modeDiary') || '[]');
+      } catch {
+        log = [];
+      }
+
+      function saveLog() {
+        localStorage.setItem('bovi.modeDiary', JSON.stringify(log.slice(-12)));
+      }
+
+      function renderInbox() {
+        const inbox = diaryInterface.querySelector('#diary-inbox');
+        inbox.innerHTML = entries.map(entry => `
+          <button class="${entry.id === selectedId ? 'active' : ''}" data-entry="${entry.id}">
+            <strong>${entry.title}</strong>
+            <span class="small">${entry.surface}</span>
+          </button>
+        `).join('');
+
+        inbox.querySelectorAll('[data-entry]').forEach(button => {
+          button.addEventListener('click', () => {
+            selectedId = button.dataset.entry;
+            selectedMode = entries.find(entry => entry.id === selectedId).suggested;
+            renderAll();
+          });
+        });
+      }
+
+      function renderReading() {
+        const entry = entries.find(item => item.id === selectedId);
+        const output = diaryInterface.querySelector('#diary-reading');
+        output.innerHTML = `
+          <div class="kicker">Current reading</div>
+          <p class="reading-title">${entry.title}</p>
+          <div class="fact-grid">
+            <div class="fact"><strong>Visible surface</strong>${entry.surface}</div>
+            <div class="fact"><strong>Hidden structure</strong>${entry.hidden}</div>
+            <div class="fact"><strong>Who chose the frame?</strong>${entry.who}</div>
+            <div class="fact"><strong>Could I refuse?</strong>${entry.refuse}</div>
+          </div>
+          <div class="small">Tag the mode this exchange is trying to use:</div>
+          <div class="mode-picker">
+            ${Object.keys(modeLabels).map(mode => `
+              <button class="mode-choice ${mode === selectedMode ? 'active' : ''}" data-mode="${mode}">${mode}<br><span class="small">${modeLabels[mode]}</span></button>
+            `).join('')}
+          </div>
+          <div class="fact"><strong>Useful move</strong>${entry.move}</div>
+          <button class="save-reading" id="save-reading">Save this reading</button>
+        `;
+
+        output.querySelectorAll('[data-mode]').forEach(button => {
+          button.addEventListener('click', () => {
+            selectedMode = button.dataset.mode;
+            renderReading();
+          });
+        });
+
+        output.querySelector('#save-reading').addEventListener('click', () => {
+          log.push({
+            title: entry.title,
+            mode: selectedMode,
+            when: new Date().toLocaleString()
+          });
+          saveLog();
+          renderPattern();
+          renderLog();
+        });
+      }
+
+      function renderPattern() {
+        const counts = { B: 0, O: 0, V: 0, I: 0, mixed: 0 };
+        log.forEach(item => {
+          counts[item.mode] = (counts[item.mode] || 0) + 1;
+        });
+        const total = Math.max(1, log.length);
+        diaryInterface.querySelector('#diary-bars').innerHTML = Object.keys(modeLabels).map(mode => {
+          const pct = Math.round((counts[mode] / total) * 100);
+          return `
+            <div class="bar-row">
+              <span>${mode}</span>
+              <span class="bar-track"><span class="bar-fill" style="width: ${pct}%"></span></span>
+              <span>${counts[mode]}</span>
+            </div>
+          `;
+        }).join('') + `<div class="small">${log.length ? 'This is not a budget. It is your exchange weather.' : 'Save readings to build a mode pattern.'}</div>`;
+      }
+
+      function renderLog() {
+        const logEl = diaryInterface.querySelector('#diary-log');
+        if (!log.length) {
+          logEl.innerHTML = '<div class="small">No saved readings yet. Pick an exchange, tag its mode, and save it.</div>';
+          return;
+        }
+        logEl.innerHTML = log.slice().reverse().map(item => `
+          <div class="log-row">
+            <span class="badge ${String(item.mode).toLowerCase()}">${item.mode}</span>
+            <div><strong>${item.title}</strong><br><span class="small">${modeLabels[item.mode]} • ${item.when}</span></div>
+          </div>
+        `).join('');
+      }
+
+      function renderAll() {
+        renderInbox();
+        renderReading();
+        renderPattern();
+        renderLog();
+      }
+
+      renderAll();
+    }
+
+    // Launch M2 Household Instruments - buyer-side instrumentation
+    function launchHouseholdInstruments() {
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-household-instruments';
+      appContainer.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: #0b0e14;
+        z-index: 2000;
+        overflow: auto;
+      `;
+
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(244, 208, 63, 0.12);
+        border: 1px solid #f4d03f;
+        color: #fff1a6;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        z-index: 2001;
+      `;
+      backButton.onclick = () => appContainer.remove();
+
+      const instrumentInterface = document.createElement('div');
+      instrumentInterface.innerHTML = `
+        <style>
+          .instrument-wrap { font-family: system-ui, sans-serif; color: #e7eef9; padding: 72px 18px 24px; min-height: 100vh; }
+          .instrument-shell { width: min(1200px, 100%); margin: 0 auto; display: grid; gap: 18px; }
+          .instrument-hero { display: grid; gap: 10px; max-width: 860px; }
+          .instrument-hero h2 { margin: 0; font-size: clamp(28px, 5vw, 54px); line-height: 1.03; letter-spacing: 0; }
+          .instrument-hero p { margin: 0; color: #aebbd0; }
+          .instrument-grid { display: grid; grid-template-columns: minmax(270px, .8fr) minmax(340px, 1.2fr); gap: 14px; }
+          .instrument-panel { background: #111722; border: 1px solid #293241; border-radius: 8px; padding: 16px; }
+          .instrument-panel h3 { margin: 0 0 10px; color: #f3f6fb; }
+          .instrument-list { display: grid; gap: 10px; }
+          .instrument-button, .instrument-save { border: 1px solid #354255; background: #151d2a; color: #e7eef9; border-radius: 8px; padding: 12px; text-align: left; cursor: pointer; }
+          .instrument-button.active, .instrument-button:hover { border-color: #f4d03f; background: #201e12; }
+          .instrument-save { background: #3a3212; border-color: #f4d03f; text-align: center; font-weight: 800; margin-top: 12px; }
+          .instrument-kicker { color: #f4d03f; font-size: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: .08em; }
+          .instrument-title { font-size: clamp(22px, 3vw, 34px); line-height: 1.08; margin: 0 0 10px; }
+          .small { color: #aebbd0; font-size: 13px; }
+          .instrument-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
+          .instrument-fact { background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 12px; }
+          .instrument-fact strong { display: block; color: #f3f6fb; margin-bottom: 5px; }
+          .instrument-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+          .instrument-table th, .instrument-table td { border-top: 1px solid #293241; padding: 10px 8px; text-align: left; vertical-align: top; }
+          .instrument-table th { color: #f4d03f; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+          .meter { height: 8px; background: #0d131e; border-radius: 999px; overflow: hidden; }
+          .meter span { display: block; height: 100%; background: #f4d03f; }
+          .pill { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 8px; background: #0d131e; color: #cbd5e1; font-size: 12px; }
+          .watch-row { display: grid; grid-template-columns: 92px 1fr; gap: 10px; border-top: 1px solid #293241; padding-top: 10px; margin-top: 10px; }
+          .signal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+          @media (max-width: 900px) {
+            .instrument-grid, .instrument-facts, .signal-grid { grid-template-columns: 1fr; }
+            .instrument-table { font-size: 13px; }
+          }
+        </style>
+        <div class="instrument-wrap">
+          <div class="instrument-shell">
+            <section class="instrument-hero">
+              <div class="instrument-kicker">M2 Household Instruments</div>
+              <h2>The seller gets instrumentation. The buyer needs instruments too.</h2>
+              <p>This layer does not ask the household to memorise harder. It gives the buyer external memory for units, renewals, rails, and forced mode shifts.</p>
+            </section>
+
+            <section class="instrument-grid">
+              <div class="instrument-panel">
+                <h3>Instrument stack</h3>
+                <div class="instrument-list">
+                  <button class="instrument-button active" data-instrument="basket"><strong>Basket memory</strong><br><span class="small">Nominal price, unit price, package size.</span></button>
+                  <button class="instrument-button" data-instrument="subscriptions"><strong>Obligation map</strong><br><span class="small">Tiny monthly prices become annual claims.</span></button>
+                  <button class="instrument-button" data-instrument="veil"><strong>Money-veil check</strong><br><span class="small">Stable money can hide unstable claims.</span></button>
+                  <button class="instrument-button" data-instrument="parity"><strong>Parity moves</strong><br><span class="small">What the buyer needs because the seller already has it.</span></button>
+                </div>
+              </div>
+
+              <div class="instrument-panel" id="instrument-output"></div>
+            </section>
+
+            <section class="instrument-grid">
+              <div class="instrument-panel">
+                <h3>Household signal</h3>
+                <div class="signal-grid" id="instrument-signals"></div>
+              </div>
+              <div class="instrument-panel">
+                <h3>Saved instrument readings</h3>
+                <div id="instrument-watchlist"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      `;
+
+      appContainer.appendChild(backButton);
+      appContainer.appendChild(instrumentInterface);
+      document.body.appendChild(appContainer);
+
+      const basketItems = [
+        { name: "Cereal", oldPrice: 4.20, oldQty: 500, newPrice: 4.20, newQty: 425, factor: 1000, unit: "kg", note: "Shelf price unchanged; package shrank." },
+        { name: "Olive oil", oldPrice: 8.50, oldQty: 1000, newPrice: 8.10, newQty: 750, factor: 1000, unit: "l", note: "Nominal discount, worse unit claim." },
+        { name: "Detergent", oldPrice: 12.00, oldQty: 38, newPrice: 12.00, newQty: 32, factor: 1, unit: "wash", note: "Same price, fewer uses." },
+        { name: "Coffee", oldPrice: 6.00, oldQty: 500, newPrice: 6.40, newQty: 450, factor: 1000, unit: "kg", note: "Both price and unit changed." }
+      ];
+
+      const subscriptions = [
+        { name: "Streaming", monthly: 12.99, renewal: "02:14 auto-renewal", friction: 74, move: "Annualise, calendar renewal, keep cancellation proof." },
+        { name: "Cloud storage", monthly: 9.99, renewal: "Storage lock-in", friction: 61, move: "Export test, downgrade path, second backup." },
+        { name: "Gym", monthly: 34.50, renewal: "Notice period", friction: 82, move: "Record notice window and cancellation channel." },
+        { name: "Delivery pass", monthly: 6.99, renewal: "Basket nudges", friction: 45, move: "Compare full price basket with and without pass." }
+      ];
+
+      const parityMoves = [
+        { seller: "A/B tests price and placement", buyer: "Keeps basket snapshots and unit history", mode: "Value" },
+        { seller: "Turns signup into renewal", buyer: "Maps the obligation and exit cost", mode: "Obligated" },
+        { seller: "Changes package or rail", buyer: "Normalises the unit and route before paying", mode: "Balanced" },
+        { seller: "Uses warmth, loyalty, family language", buyer: "Translates relationship claims back into terms", mode: "Immediate" }
+      ];
+
+      const instrumentCopy = {
+        basket: {
+          title: "Basket memory",
+          summary: "Prices should not have to live in your head. The instrument remembers the unit, the package, and the old claim.",
+          save: "Save basket reading"
+        },
+        subscriptions: {
+          title: "Obligation map",
+          summary: "A monthly price is often a disguised annual obligation with friction around exit.",
+          save: "Save obligation reading"
+        },
+        veil: {
+          title: "Money-veil check",
+          summary: "Stable nominal money can teach the wrong compression: the number looks familiar while the claim changes underneath.",
+          save: "Save veil reading"
+        },
+        parity: {
+          title: "Parity moves",
+          summary: "The point is not convenience. It is parity against sellers who already instrument everything.",
+          save: "Save parity reading"
+        }
+      };
+
+      const hintedInstrument = getCaseHint().m2Instrument;
+      let selectedInstrument = instrumentCopy[hintedInstrument] ? hintedInstrument : "basket";
+      let watchlist = [];
+
+      try {
+        watchlist = JSON.parse(localStorage.getItem('bovi.householdInstruments') || '[]');
+      } catch {
+        watchlist = [];
+      }
+
+      function money(value) {
+        return `EUR ${value.toFixed(2)}`;
+      }
+
+      function pct(value) {
+        return `${value >= 0 ? '+' : ''}${value.toFixed(1)}%`;
+      }
+
+      function unitPrice(item, side) {
+        const price = side === "old" ? item.oldPrice : item.newPrice;
+        const qty = side === "old" ? item.oldQty : item.newQty;
+        return price / qty * item.factor;
+      }
+
+      function unitChange(item) {
+        return (unitPrice(item, "new") / unitPrice(item, "old") - 1) * 100;
+      }
+
+      function nominalChange(item) {
+        return (item.newPrice / item.oldPrice - 1) * 100;
+      }
+
+      function hiddenChange(item) {
+        return unitChange(item) - nominalChange(item);
+      }
+
+      function saveReading() {
+        const copy = instrumentCopy[selectedInstrument];
+        watchlist.push({
+          kind: copy.title,
+          note: copy.summary,
+          when: new Date().toLocaleString()
+        });
+        watchlist = watchlist.slice(-10);
+        localStorage.setItem('bovi.householdInstruments', JSON.stringify(watchlist));
+        renderWatchlist();
+      }
+
+      function renderBasket() {
+        const rows = basketItems.map(item => `
+          <tr>
+            <td><strong>${item.name}</strong><br><span class="small">${item.note}</span></td>
+            <td>${money(item.oldPrice)} / ${item.oldQty}</td>
+            <td>${money(item.newPrice)} / ${item.newQty}</td>
+            <td>${money(unitPrice(item, "new"))} per ${item.unit}</td>
+            <td><span class="pill">${pct(unitChange(item))}</span><br><span class="small">hidden: ${pct(hiddenChange(item))}</span></td>
+          </tr>
+        `).join('');
+
+        return `
+          <table class="instrument-table">
+            <thead><tr><th>Item</th><th>Old claim</th><th>New claim</th><th>Comparable unit</th><th>Signal</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        `;
+      }
+
+      function renderSubscriptions() {
+        const rows = subscriptions.map(item => `
+          <tr>
+            <td><strong>${item.name}</strong><br><span class="small">${item.renewal}</span></td>
+            <td>${money(item.monthly)}</td>
+            <td>${money(item.monthly * 12)}</td>
+            <td><div class="meter"><span style="width: ${item.friction}%"></span></div><span class="small">${item.friction}/100 exit friction</span></td>
+            <td>${item.move}</td>
+          </tr>
+        `).join('');
+
+        return `
+          <table class="instrument-table">
+            <thead><tr><th>Claim</th><th>Monthly veil</th><th>Annual obligation</th><th>Exit cost</th><th>Buyer move</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        `;
+      }
+
+      function renderVeil() {
+        const stable = basketItems.filter(item => Math.abs(nominalChange(item)) < 1 && unitChange(item) > 5).length;
+        const annual = subscriptions.reduce((sum, item) => sum + item.monthly * 12, 0);
+        return `
+          <div class="instrument-facts">
+            <div class="instrument-fact"><strong>Stable shelf numbers</strong>${stable} items look stable while the unit worsens.</div>
+            <div class="instrument-fact"><strong>Annualised claims</strong>${money(annual)} in recurring obligations.</div>
+            <div class="instrument-fact"><strong>Compression failure</strong>Nominal memory is no longer the same as price knowledge.</div>
+          </div>
+          <table class="instrument-table">
+            <thead><tr><th>What intuition sees</th><th>What the instrument sees</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr><td>Same cereal price</td><td>${pct(unitChange(basketItems[0]))} unit increase</td><td>Rote price memory has gone stale.</td></tr>
+              <tr><td>Cheap monthly subscription</td><td>${money(subscriptions[0].monthly * 12)} annual claim</td><td>The price is also an obligation.</td></tr>
+              <tr><td>Card payment completed</td><td>Rail and spread chosen elsewhere</td><td>Settlement can hide a second exchange.</td></tr>
+            </tbody>
+          </table>
+        `;
+      }
+
+      function renderParity() {
+        const rows = parityMoves.map(item => `
+          <tr>
+            <td>${item.seller}</td>
+            <td>${item.buyer}</td>
+            <td><span class="pill">${item.mode}</span></td>
+          </tr>
+        `).join('');
+
+        return `
+          <table class="instrument-table">
+            <thead><tr><th>Seller instrumentation</th><th>Buyer instrument</th><th>Mode exposed</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        `;
+      }
+
+      function renderOutput() {
+        const copy = instrumentCopy[selectedInstrument];
+        const body = {
+          basket: renderBasket,
+          subscriptions: renderSubscriptions,
+          veil: renderVeil,
+          parity: renderParity
+        }[selectedInstrument]();
+
+        instrumentInterface.querySelector('#instrument-output').innerHTML = `
+          <div class="instrument-kicker">Current instrument</div>
+          <p class="instrument-title">${copy.title}</p>
+          <p class="small">${copy.summary}</p>
+          ${body}
+          <button class="instrument-save" id="save-instrument-reading">${copy.save}</button>
+        `;
+
+        instrumentInterface.querySelector('#save-instrument-reading').addEventListener('click', saveReading);
+      }
+
+      function renderSignals() {
+        const avgUnit = basketItems.reduce((sum, item) => sum + unitChange(item), 0) / basketItems.length;
+        const avgNominal = basketItems.reduce((sum, item) => sum + nominalChange(item), 0) / basketItems.length;
+        const annual = subscriptions.reduce((sum, item) => sum + item.monthly * 12, 0);
+        const highFriction = subscriptions.filter(item => item.friction >= 70).length;
+        instrumentInterface.querySelector('#instrument-signals').innerHTML = `
+          <div class="instrument-fact"><strong>Unit-price index</strong>${pct(avgUnit)}</div>
+          <div class="instrument-fact"><strong>Nominal memory</strong>${pct(avgNominal)}</div>
+          <div class="instrument-fact"><strong>Annual obligations</strong>${money(annual)}</div>
+          <div class="instrument-fact"><strong>High-friction exits</strong>${highFriction}</div>
+        `;
+      }
+
+      function renderWatchlist() {
+        const target = instrumentInterface.querySelector('#instrument-watchlist');
+        if (!watchlist.length) {
+          target.innerHTML = '<div class="small">No saved readings yet. Use the instruments, then save the reading you want to remember.</div>';
+          return;
+        }
+        target.innerHTML = watchlist.slice().reverse().map(item => `
+          <div class="watch-row">
+            <span class="pill">${item.kind}</span>
+            <div><strong>${item.when}</strong><br><span class="small">${item.note}</span></div>
+          </div>
+        `).join('');
+      }
+
+      function renderAll() {
+        instrumentInterface.querySelectorAll('[data-instrument]').forEach(button => {
+          button.classList.toggle('active', button.dataset.instrument === selectedInstrument);
+        });
+        renderOutput();
+        renderSignals();
+        renderWatchlist();
+      }
+
+      instrumentInterface.querySelectorAll('[data-instrument]').forEach(button => {
+        button.addEventListener('click', () => {
+          selectedInstrument = button.dataset.instrument;
+          renderAll();
+        });
+      });
+
+      renderAll();
+    }
+
+    // Launch M3 Bundle Builder - explicit mode composition
+    function launchBundleBuilder() {
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-bundle-builder';
+      appContainer.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: #0b0e14;
+        z-index: 2000;
+        overflow: auto;
+      `;
+
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(216, 180, 254, 0.12);
+        border: 1px solid #d8b4fe;
+        color: #ead7ff;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        z-index: 2001;
+      `;
+      backButton.onclick = () => appContainer.remove();
+
+      const builderInterface = document.createElement('div');
+      builderInterface.innerHTML = `
+        <style>
+          .bundle-wrap { font-family: system-ui, sans-serif; color: #e7eef9; padding: 72px 18px 24px; min-height: 100vh; }
+          .bundle-shell { width: min(1220px, 100%); margin: 0 auto; display: grid; gap: 18px; }
+          .bundle-hero { display: grid; gap: 10px; max-width: 900px; }
+          .bundle-hero h2 { margin: 0; font-size: clamp(28px, 5vw, 54px); line-height: 1.03; letter-spacing: 0; }
+          .bundle-hero p { margin: 0; color: #aebbd0; }
+          .bundle-grid { display: grid; grid-template-columns: minmax(280px, .82fr) minmax(360px, 1.18fr); gap: 14px; }
+          .bundle-panel { background: #111722; border: 1px solid #293241; border-radius: 8px; padding: 16px; }
+          .bundle-panel h3 { margin: 0 0 10px; color: #f3f6fb; }
+          .bundle-list { display: grid; gap: 10px; }
+          .bundle-button, .bundle-save, .bundle-step { border: 1px solid #354255; background: #151d2a; color: #e7eef9; border-radius: 8px; padding: 12px; cursor: pointer; }
+          .bundle-button { text-align: left; }
+          .bundle-button.active, .bundle-button:hover, .bundle-step:hover { border-color: #d8b4fe; background: #221a2e; }
+          .bundle-save { background: #2e2140; border-color: #d8b4fe; text-align: center; font-weight: 800; }
+          .bundle-save.secondary { background: #111722; color: #ead7ff; }
+          .bundle-kicker { color: #d8b4fe; font-size: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: .08em; }
+          .bundle-title { font-size: clamp(22px, 3vw, 34px); line-height: 1.08; margin: 0 0 10px; }
+          .small { color: #aebbd0; font-size: 13px; }
+          .bundle-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
+          .bundle-fact { background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 12px; }
+          .bundle-fact strong { display: block; color: #f3f6fb; margin-bottom: 5px; }
+          .bundle-flow { display: grid; gap: 8px; margin-top: 12px; }
+          .flow-step { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; border-top: 1px solid #293241; padding-top: 10px; }
+          .mode-token { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; color: #071018; }
+          .mode-token.b { background: #62c6a6; }
+          .mode-token.o { background: #e7a23c; }
+          .mode-token.v { background: #8ab4f8; }
+          .mode-token.i { background: #f07878; }
+          .mix-row { display: grid; grid-template-columns: 34px 1fr 46px 80px; gap: 10px; align-items: center; margin: 10px 0; }
+          .mix-track { height: 10px; background: #0d131e; border-radius: 999px; overflow: hidden; }
+          .mix-fill { height: 100%; background: #d8b4fe; }
+          .mix-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+          .bundle-step { padding: 6px 8px; text-align: center; }
+          .guard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+          .guard { display: flex; gap: 8px; align-items: start; background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 10px; }
+          .guard input { margin-top: 2px; }
+          .bundle-clause { background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 12px; white-space: pre-wrap; line-height: 1.45; }
+          .saved-bundles { display: grid; gap: 8px; }
+          .saved-row { display: grid; grid-template-columns: 118px 1fr; gap: 10px; border-top: 1px solid #293241; padding-top: 10px; }
+          .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 8px; background: #0d131e; color: #cbd5e1; font-size: 12px; }
+          @media (max-width: 940px) {
+            .bundle-grid, .bundle-facts, .guard-grid { grid-template-columns: 1fr; }
+            .mix-row { grid-template-columns: 34px 1fr 42px; }
+            .mix-controls { grid-column: 2 / 4; }
+          }
+        </style>
+        <div class="bundle-wrap">
+          <div class="bundle-shell">
+            <section class="bundle-hero">
+              <div class="bundle-kicker">M3 Bundle Builder</div>
+              <h2>Money is a bundle. Build the bundle on purpose.</h2>
+              <p>This layer turns the theory into design work: choose which exchange modes belong together, which distinctions must stay visible, and which guardrails keep convenience from becoming extraction.</p>
+            </section>
+
+            <section class="bundle-grid">
+              <div class="bundle-panel">
+                <h3>Bundle templates</h3>
+                <div class="bundle-list" id="bundle-templates"></div>
+              </div>
+              <div class="bundle-panel" id="bundle-output"></div>
+            </section>
+
+            <section class="bundle-grid">
+              <div class="bundle-panel">
+                <h3>Mode mix and guardrails</h3>
+                <div id="bundle-mix"></div>
+              </div>
+              <div class="bundle-panel">
+                <h3>Generated bundle clause</h3>
+                <div class="bundle-clause" id="bundle-clause"></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px;">
+                  <button class="bundle-save" id="save-bundle">Save bundle</button>
+                  <button class="bundle-save secondary" id="open-node-editor">Open node editor</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="bundle-panel">
+              <h3>Saved bundle designs</h3>
+              <div class="saved-bundles" id="saved-bundles"></div>
+            </section>
+          </div>
+        </div>
+      `;
+
+      appContainer.appendChild(backButton);
+      appContainer.appendChild(builderInterface);
+      document.body.appendChild(appContainer);
+
+      const modeMeta = {
+        B: { label: "Balanced", question: "What must be kept square?" },
+        O: { label: "Obligated", question: "What duty or rule governs this?" },
+        V: { label: "Value", question: "What is the priced exchange?" },
+        I: { label: "Immediate", question: "What care or presence must not become a ledger?" }
+      };
+
+      const guardLabels = {
+        ledger: "Ledger memory",
+        index: "Index anchor",
+        exit: "Exit right",
+        care: "Care override"
+      };
+
+      const bundles = {
+        subscription: {
+          title: "Subscription renewal contract",
+          subtitle: "A tiny price that must expose its future claim.",
+          problem: "Signup is sold as Value mode, but renewal behaves like an obligation after the platform owns timing, reminders, and exit.",
+          weights: { B: 10, O: 50, V: 30, I: 10 },
+          guards: { ledger: true, index: false, exit: true, care: false },
+          rules: [
+            "Annualise the monthly price beside the signup button.",
+            "State renewal date, reminder rule, and cancellation channel.",
+            "Keep a receipt for both signup and cancellation."
+          ],
+          flow: [
+            ["V", "User accepts a priced service."],
+            ["O", "Renewal turns the price into a recurring claim."],
+            ["B", "Usage and billing history decide whether the exchange stayed square."],
+            ["I", "Human support handles hardship, illness, or accidental lock-in."]
+          ],
+          risk: "If the obligation is hidden inside a small nominal price, consent is simulated by convenience.",
+          move: "Bundle price, renewal, reminder, exit, and proof into one readable commitment."
+        },
+        groceries: {
+          title: "Shared house groceries",
+          subtitle: "A tally that does not poison care.",
+          problem: "Groceries move between price, household duty, favour, and resentment if the bundle is implicit.",
+          weights: { B: 55, O: 10, V: 20, I: 15 },
+          guards: { ledger: true, index: true, exit: false, care: true },
+          rules: [
+            "Keep a running tally for recurring staples.",
+            "Use unit prices for expensive items.",
+            "Let small care purchases expire instead of hardening into debt."
+          ],
+          flow: [
+            ["V", "Shopper faces shelf prices and substitutions."],
+            ["B", "Household squares recurring shared costs."],
+            ["I", "Small acts of care can remain gifts."],
+            ["O", "House rule decides when the tally resets."]
+          ],
+          risk: "If everything becomes a debt, care dies. If everything becomes care, one person subsidises the rest.",
+          move: "Name which items are tally items, which are gifts, and which need consent before purchase."
+        },
+        rent: {
+          title: "Indexed rent agreement",
+          subtitle: "A contract that separates price, duty, and measurement.",
+          problem: "Stable nominal money can hide whether the claim, the unit, or the rule changed.",
+          weights: { B: 10, O: 45, V: 35, I: 10 },
+          guards: { ledger: true, index: true, exit: true, care: false },
+          rules: [
+            "State the index and the base period.",
+            "Separate maintenance duty from rent price.",
+            "Require notice, comparison evidence, and a counter-offer path."
+          ],
+          flow: [
+            ["O", "Legal tenancy defines duties and notice."],
+            ["V", "Rent is priced against comparable use."],
+            ["B", "Indexation prevents silent drift in either direction."],
+            ["I", "Hardship can trigger a separate human process."]
+          ],
+          risk: "If Value is hidden inside Obligated language, the tenant is told a market claim is just the rules.",
+          move: "Put the index, evidence basis, notice window, and refusal path in the same readable clause."
+        },
+        storm: {
+          title: "Storm mode household",
+          subtitle: "Decompose money before the emergency chooses for you.",
+          problem: "A crisis makes transaction money, store of value, credit, and care networks split apart.",
+          weights: { B: 25, O: 25, V: 25, I: 25 },
+          guards: { ledger: true, index: false, exit: true, care: true },
+          rules: [
+            "Keep a thin transaction buffer separate from savings.",
+            "Pre-name who can advance funds and on what terms.",
+            "Allow care transfers that are not converted into debt by default."
+          ],
+          flow: [
+            ["V", "Cash or card settles immediate purchases."],
+            ["O", "Credit line carries temporary claims."],
+            ["B", "Household ledger tracks who bridged what."],
+            ["I", "Care network covers moments where pricing would break the relationship."]
+          ],
+          risk: "Pure unbundling is lower friction until the household needs to climb a hill together.",
+          move: "Prewrite the emergency bundle: buffer, credit route, tally rule, and care exception."
+        },
+        dinner: {
+          title: "Dinner with friends",
+          subtitle: "A social exchange where the wrong ledger can be the harm.",
+          problem: "The same bill can be price, round, gift, status move, or silent debt.",
+          weights: { B: 35, O: 5, V: 30, I: 30 },
+          guards: { ledger: false, index: false, exit: true, care: true },
+          rules: [
+            "Ask before collapsing the mode for the group.",
+            "Let a declared gift stay a gift.",
+            "Use a tally only when repeated rounds make memory useful."
+          ],
+          flow: [
+            ["V", "The restaurant bill is a priced exchange."],
+            ["I", "One person may offer a gift or host gesture."],
+            ["B", "Repeated rounds can be kept roughly square."],
+            ["O", "A prior invitation can create host duty."]
+          ],
+          risk: "Efficiency can become a status move if the payer chooses the mode for everyone.",
+          move: "Name it lightly before payment: split, my treat, your round next time, or host invitation."
+        }
+      };
+
+      const hintedBundle = getCaseHint().m3Bundle;
+      let selectedBundle = bundles[hintedBundle] ? hintedBundle : "groceries";
+      let workingWeights = { ...bundles[selectedBundle].weights };
+      let workingGuards = { ...bundles[selectedBundle].guards };
+      let savedBundles = [];
+
+      try {
+        savedBundles = JSON.parse(localStorage.getItem('bovi.bundleBuilder') || '[]');
+      } catch {
+        savedBundles = [];
+      }
+
+      function activeBundle() {
+        return bundles[selectedBundle];
+      }
+
+      function totalWeight() {
+        return Math.max(1, Object.values(workingWeights).reduce((sum, value) => sum + value, 0));
+      }
+
+      function modePercent(mode) {
+        return Math.round((workingWeights[mode] / totalWeight()) * 100);
+      }
+
+      function mixSummary() {
+        return Object.keys(modeMeta).map(mode => `${mode}:${modePercent(mode)}%`).join(' ');
+      }
+
+      function activeGuardNames() {
+        return Object.keys(guardLabels).filter(key => workingGuards[key]).map(key => guardLabels[key]);
+      }
+
+      function metrics() {
+        const percentages = Object.keys(modeMeta).map(modePercent);
+        const compression = Math.max(...percentages);
+        const diversity = percentages.filter(value => value >= 15).length;
+        const guardCount = activeGuardNames().length;
+        const resilience = Math.min(100, Math.round((100 - compression) * 0.45 + diversity * 12 + guardCount * 10));
+        const friction = Math.min(100, Math.round(diversity * 11 + guardCount * 9));
+        return { compression, diversity, guardCount, resilience, friction };
+      }
+
+      function generatedClause() {
+        const bundle = activeBundle();
+        const dominant = Object.keys(modeMeta).sort((a, b) => workingWeights[b] - workingWeights[a])[0];
+        const secondary = Object.keys(modeMeta).sort((a, b) => workingWeights[b] - workingWeights[a])[1];
+        const guards = activeGuardNames();
+        return [
+          `${bundle.title}`,
+          `Primary grammar: ${modeMeta[dominant].label}. Secondary grammar: ${modeMeta[secondary].label}.`,
+          `Mode mix: ${mixSummary()}.`,
+          `Guardrails: ${guards.length ? guards.join(', ') : 'none selected'}.`,
+          `Rule: do not let ${modeMeta[dominant].label} erase the ${modeMeta[secondary].label} question: ${modeMeta[secondary].question}`,
+          `Move: ${bundle.move}`
+        ].join('\n');
+      }
+
+      function renderTemplates() {
+        builderInterface.querySelector('#bundle-templates').innerHTML = Object.keys(bundles).map(key => {
+          const bundle = bundles[key];
+          return `
+            <button class="bundle-button ${key === selectedBundle ? 'active' : ''}" data-bundle="${key}">
+              <strong>${bundle.title}</strong><br>
+              <span class="small">${bundle.subtitle}</span>
+            </button>
+          `;
+        }).join('');
+
+        builderInterface.querySelectorAll('[data-bundle]').forEach(button => {
+          button.addEventListener('click', () => {
+            selectedBundle = button.dataset.bundle;
+            workingWeights = { ...bundles[selectedBundle].weights };
+            workingGuards = { ...bundles[selectedBundle].guards };
+            renderAll();
+          });
+        });
+      }
+
+      function renderBundle() {
+        const bundle = activeBundle();
+        const score = metrics();
+        builderInterface.querySelector('#bundle-output').innerHTML = `
+          <div class="bundle-kicker">Current design</div>
+          <p class="bundle-title">${bundle.title}</p>
+          <p class="small">${bundle.problem}</p>
+          <div class="bundle-facts">
+            <div class="bundle-fact"><strong>Compression risk</strong>${score.compression}% in the dominant mode.</div>
+            <div class="bundle-fact"><strong>Hill capacity</strong>${score.resilience}/100 resilience.</div>
+            <div class="bundle-fact"><strong>Operating friction</strong>${score.friction}/100 explicitness cost.</div>
+          </div>
+          <div class="bundle-fact"><strong>Failure if hidden</strong>${bundle.risk}</div>
+          <div class="bundle-fact"><strong>Bundle rules</strong>${bundle.rules.map(rule => `<div class="small">- ${rule}</div>`).join('')}</div>
+          <div class="bundle-flow">
+            ${bundle.flow.map(step => `
+              <div class="flow-step">
+                <span class="mode-token ${step[0].toLowerCase()}">${step[0]}</span>
+                <div><strong>${modeMeta[step[0]].label}</strong><br><span class="small">${step[1]}</span></div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      function renderMix() {
+        const rows = Object.keys(modeMeta).map(mode => `
+          <div class="mix-row">
+            <span class="mode-token ${mode.toLowerCase()}">${mode}</span>
+            <span class="mix-track"><span class="mix-fill" style="width: ${modePercent(mode)}%"></span></span>
+            <span>${modePercent(mode)}%</span>
+            <span class="mix-controls">
+              <button class="bundle-step" data-adjust-mode="${mode}" data-adjust="-5">-</button>
+              <button class="bundle-step" data-adjust-mode="${mode}" data-adjust="5">+</button>
+            </span>
+          </div>
+        `).join('');
+
+        const guards = Object.keys(guardLabels).map(key => `
+          <label class="guard">
+            <input type="checkbox" data-guard="${key}" ${workingGuards[key] ? 'checked' : ''}>
+            <span><strong>${guardLabels[key]}</strong><br><span class="small">${guardDescription(key)}</span></span>
+          </label>
+        `).join('');
+
+        builderInterface.querySelector('#bundle-mix').innerHTML = `
+          ${rows}
+          <div class="guard-grid">${guards}</div>
+        `;
+
+        builderInterface.querySelectorAll('[data-adjust-mode]').forEach(button => {
+          button.addEventListener('click', () => {
+            const mode = button.dataset.adjustMode;
+            const delta = Number(button.dataset.adjust);
+            workingWeights[mode] = Math.max(0, Math.min(100, workingWeights[mode] + delta));
+            renderAll();
+          });
+        });
+
+        builderInterface.querySelectorAll('[data-guard]').forEach(input => {
+          input.addEventListener('change', () => {
+            workingGuards[input.dataset.guard] = input.checked;
+            renderAll();
+          });
+        });
+      }
+
+      function guardDescription(key) {
+        return {
+          ledger: "Memory that keeps repeated claims from becoming vibes.",
+          index: "A ruler that stops nominal comfort from hiding unit drift.",
+          exit: "A refusal path so obligations do not masquerade as choice.",
+          care: "A human exception that prevents every relation becoming price."
+        }[key];
+      }
+
+      function renderClause() {
+        builderInterface.querySelector('#bundle-clause').textContent = generatedClause();
+      }
+
+      function saveBundle() {
+        savedBundles.push({
+          title: activeBundle().title,
+          mix: mixSummary(),
+          guards: activeGuardNames().join(', ') || 'none',
+          clause: generatedClause(),
+          when: new Date().toLocaleString()
+        });
+        savedBundles = savedBundles.slice(-8);
+        localStorage.setItem('bovi.bundleBuilder', JSON.stringify(savedBundles));
+        renderSaved();
+      }
+
+      function renderSaved() {
+        const target = builderInterface.querySelector('#saved-bundles');
+        if (!savedBundles.length) {
+          target.innerHTML = '<div class="small">No saved bundles yet. Tune a template, then save the explicit design.</div>';
+          return;
+        }
+        target.innerHTML = savedBundles.slice().reverse().map(item => `
+          <div class="saved-row">
+            <span class="pill">${item.title}</span>
+            <div><strong>${item.mix}</strong><br><span class="small">${item.guards} • ${item.when}</span></div>
+          </div>
+        `).join('');
+      }
+
+      function renderAll() {
+        renderTemplates();
+        renderBundle();
+        renderMix();
+        renderClause();
+        renderSaved();
+        builderInterface.querySelector('#save-bundle').onclick = saveBundle;
+        builderInterface.querySelector('#open-node-editor').onclick = openVisualEditor;
+      }
+
+      renderAll();
+    }
+
+    // Launch M4 System Lab - exchange architecture trials
+    function launchSystemLab() {
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-system-lab';
+      appContainer.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: #0b0e14;
+        z-index: 2000;
+        overflow: auto;
+      `;
+
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(98, 198, 166, 0.12);
+        border: 1px solid #62c6a6;
+        color: #b8f3dd;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        z-index: 2001;
+      `;
+      backButton.onclick = () => appContainer.remove();
+
+      const labInterface = document.createElement('div');
+      labInterface.innerHTML = `
+        <style>
+          .lab-wrap { font-family: system-ui, sans-serif; color: #e7eef9; padding: 72px 18px 24px; min-height: 100vh; }
+          .lab-shell { width: min(1220px, 100%); margin: 0 auto; display: grid; gap: 18px; }
+          .lab-hero { display: grid; gap: 10px; max-width: 930px; }
+          .lab-hero h2 { margin: 0; font-size: clamp(28px, 5vw, 54px); line-height: 1.03; letter-spacing: 0; }
+          .lab-hero p { margin: 0; color: #aebbd0; }
+          .lab-grid { display: grid; grid-template-columns: minmax(280px, .82fr) minmax(360px, 1.18fr); gap: 14px; }
+          .lab-panel { background: #111722; border: 1px solid #293241; border-radius: 8px; padding: 16px; }
+          .lab-panel h3 { margin: 0 0 10px; color: #f3f6fb; }
+          .lab-list { display: grid; gap: 10px; }
+          .lab-button, .lab-step, .lab-save { border: 1px solid #354255; background: #151d2a; color: #e7eef9; border-radius: 8px; padding: 12px; cursor: pointer; }
+          .lab-button { text-align: left; }
+          .lab-button.active, .lab-button:hover, .lab-step:hover { border-color: #62c6a6; background: #14241f; }
+          .lab-save { background: #173229; border-color: #62c6a6; text-align: center; font-weight: 800; }
+          .lab-kicker { color: #62c6a6; font-size: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: .08em; }
+          .lab-title { font-size: clamp(22px, 3vw, 34px); line-height: 1.08; margin: 0 0 10px; }
+          .small { color: #aebbd0; font-size: 13px; }
+          .lab-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
+          .lab-fact { background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 12px; }
+          .lab-fact strong { display: block; color: #f3f6fb; margin-bottom: 5px; }
+          .gene-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+          .gene { border-left: 3px solid #62c6a6; background: #0d131e; padding: 10px; }
+          .knob-row { display: grid; grid-template-columns: 110px 1fr 42px 80px; gap: 10px; align-items: center; margin: 10px 0; }
+          .knob-track { height: 10px; background: #0d131e; border-radius: 999px; overflow: hidden; }
+          .knob-fill { height: 100%; background: #62c6a6; }
+          .knob-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+          .lab-step { padding: 6px 8px; text-align: center; }
+          .bug-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+          .bug-card { background: #0d131e; border: 1px solid #293241; border-radius: 8px; padding: 12px; }
+          .bug-card.active { border-color: #62c6a6; }
+          .bug-card button { width: 100%; margin-top: 8px; }
+          .trial-row { display: grid; grid-template-columns: 130px 1fr; gap: 10px; border-top: 1px solid #293241; padding-top: 10px; }
+          .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 8px; background: #0d131e; color: #cbd5e1; font-size: 12px; }
+          @media (max-width: 940px) {
+            .lab-grid, .lab-facts, .gene-grid, .bug-grid { grid-template-columns: 1fr; }
+            .knob-row { grid-template-columns: 110px 1fr 42px; }
+            .knob-controls { grid-column: 2 / 4; }
+          }
+        </style>
+        <div class="lab-wrap">
+          <div class="lab-shell">
+            <section class="lab-hero">
+              <div class="lab-kicker">M4 System Lab</div>
+              <h2>Every money system buys compression with a bootstrap.</h2>
+              <p>This layer asks what the system assumes, which guardrails hold it together, and which ideology bug makes its costs disappear.</p>
+            </section>
+
+            <section class="lab-grid">
+              <div class="lab-panel">
+                <h3>System prototypes</h3>
+                <div class="lab-list" id="system-prototypes"></div>
+              </div>
+              <div class="lab-panel" id="system-output"></div>
+            </section>
+
+            <section class="lab-grid">
+              <div class="lab-panel">
+                <h3>Architecture knobs</h3>
+                <div id="system-knobs"></div>
+              </div>
+              <div class="lab-panel">
+                <h3>Minimal survival genes</h3>
+                <div class="gene-grid" id="system-genes"></div>
+              </div>
+            </section>
+
+            <section class="lab-panel">
+              <h3>Ideology bug matrix</h3>
+              <div class="bug-grid" id="bug-matrix"></div>
+            </section>
+
+            <section class="lab-grid">
+              <div class="lab-panel">
+                <h3>Current trial verdict</h3>
+                <div id="trial-verdict"></div>
+                <button class="lab-save" id="save-system-trial" style="margin-top: 12px; width: 100%;">Save system trial</button>
+              </div>
+              <div class="lab-panel">
+                <h3>Saved system trials</h3>
+                <div id="saved-system-trials"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      `;
+
+      appContainer.appendChild(backButton);
+      appContainer.appendChild(labInterface);
+      document.body.appendChild(appContainer);
+
+      const systems = {
+        stableFiat: {
+          title: "Stable-fiat platform society",
+          subtitle: "High compression, high convenience, hidden privilege.",
+          anchor: "State-backed unit of account",
+          bootstrap: "Tax, law, banking rails, credible monetary institutions",
+          rail: "Cards, bank transfers, platforms",
+          ruler: "Consumer price index plus private platform metrics",
+          valley: "Thin everyday transaction money with rich institutions around it.",
+          cost: "The money veil feels natural, so sellers can rebundle future claims into small nominal prices.",
+          failure: "Over-compression: people confuse stable numbers with stable claims.",
+          knobs: { stability: 88, plurality: 26, exit: 45, memory: 38 }
+        },
+        hardMoney: {
+          title: "Hard-money settlement culture",
+          subtitle: "Scarcity as truth, liquidity as afterthought.",
+          anchor: "Scarce commodity or hard cap",
+          bootstrap: "Custody, assays, vaults, political violence around reserves",
+          rail: "Settlement-heavy transfers, credit substitutes, custodians",
+          ruler: "Weight, purity, exchange ratio",
+          valley: "Store-of-value narrative with transaction layers built on top.",
+          cost: "Value mode overreaches: scarcity is mistaken for social truth.",
+          failure: "Under-liquidity and custodial rebundling: the anti-fiat escape rebuilds banks by necessity.",
+          knobs: { stability: 58, plurality: 20, exit: 56, memory: 72 }
+        },
+        mutualCredit: {
+          title: "Mutual-credit town",
+          subtitle: "Ledger-rich, money-thin, locally legible.",
+          anchor: "Member ledger and credit limits",
+          bootstrap: "Trust boundary, governance, dispute process",
+          rail: "Shared ledger entries",
+          ruler: "Local labour, service, or basket unit",
+          valley: "Thin medium of exchange with explicit social accounting.",
+          cost: "Works beautifully inside the boundary and becomes brittle at the edge.",
+          failure: "Boundary problem: the system must decide who can owe whom and how much.",
+          knobs: { stability: 46, plurality: 70, exit: 50, memory: 86 }
+        },
+        cryptoProtocol: {
+          title: "Protocol-money network",
+          subtitle: "Code as settlement, governance pushed off-screen.",
+          anchor: "Protocol rule and token supply",
+          bootstrap: "Miners or validators, exchanges, custody, social fork legitimacy",
+          rail: "Wallets, bridges, L2s, exchanges",
+          ruler: "Token unit plus volatile outside quote",
+          valley: "Settlement certainty for insiders, exchange-rate work for users.",
+          cost: "The protocol looks complete while governance, custody, and pricing return elsewhere.",
+          failure: "Tool-chain rebundling: wallets, bridges, exchanges, and stablecoins become the actual money experience.",
+          knobs: { stability: 35, plurality: 62, exit: 76, memory: 64 }
+        },
+        stormPlural: {
+          title: "Storm-mode plural rails",
+          subtitle: "Unbundled by design before crisis unbundles by force.",
+          anchor: "Multiple anchors for different jobs",
+          bootstrap: "Prepared buffers, care networks, credit lines, local ledgers",
+          rail: "Cash, bank, credit, vouchers, mutual aid",
+          ruler: "Basket, time, duty, and emergency priority",
+          valley: "Redundancy over elegance: many imperfect tools survive better than one perfect tool.",
+          cost: "Higher operating overhead while things are calm.",
+          failure: "If the system stays too unbundled, it loses the ability to coordinate small climbs quickly.",
+          knobs: { stability: 54, plurality: 88, exit: 70, memory: 80 }
+        }
+      };
+
+      const genes = [
+        ["Medium", "Something that can close a transaction without renegotiating the whole relation."],
+        ["Ledger", "Memory of claims, even when that memory is deliberately allowed to expire."],
+        ["Ruler", "A way to compare claims without pretending the ruler is the truth."],
+        ["Rail", "A path for transfer, settlement, and reversal rules."],
+        ["Exit", "A credible refusal path when the chosen mode is wrong."],
+        ["Governance", "A way to update rules, settle disputes, and handle edge cases."]
+      ];
+
+      const bugs = {
+        fiatbug: {
+          name: "Fiatbug",
+          fantasy: "Stable state money is neutral infrastructure.",
+          missed: "Stable numbers can train over-compression and hide changing claims.",
+          test: "Can users see unit, renewal, rail, and refusal changes without mental bookkeeping?"
+        },
+        goldbug: {
+          name: "Goldbug",
+          fantasy: "Scarcity is truth, so social trust can be bypassed.",
+          missed: "Custody, credit, liquidity, violence, and governance come back through the side door.",
+          test: "Can the system transact at household speed without rebuilding banks?"
+        },
+        cryptobug: {
+          name: "Cryptobug",
+          fantasy: "Protocol rules replace institutions.",
+          missed: "Exchanges, bridges, custody, forks, and social legitimacy become institutions anyway.",
+          test: "Where does the ordinary user actually experience price, safety, and recourse?"
+        },
+        platformbug: {
+          name: "Platformbug",
+          fantasy: "Convenience is consent.",
+          missed: "Instrumentation, defaults, churn models, and cancellation friction choose the exchange frame.",
+          test: "Can the buyer refuse, compare, export, and leave without a maze?"
+        },
+        barterbug: {
+          name: "Barterbug",
+          fantasy: "Remove money and power disappears.",
+          missed: "Status, obligation, memory, and coercion survive without coins.",
+          test: "Who remembers, who enforces, and who can say no?"
+        },
+        ledgerbug: {
+          name: "Ledgerbug",
+          fantasy: "Recording everything makes exchange fair.",
+          missed: "Some relations are harmed by exact accounting.",
+          test: "Which claims should expire, forgive, or remain gifts?"
+        }
+      };
+
+      const systemHint = getCaseHint();
+      let selectedSystem = systems[systemHint.m4System] ? systemHint.m4System : "stableFiat";
+      let selectedBug = bugs[systemHint.m4Bug] ? systemHint.m4Bug : "fiatbug";
+      let knobs = { ...systems[selectedSystem].knobs };
+      let trials = [];
+
+      try {
+        trials = JSON.parse(localStorage.getItem('bovi.systemLab') || '[]');
+      } catch {
+        trials = [];
+      }
+
+      function activeSystem() {
+        return systems[selectedSystem];
+      }
+
+      function score() {
+        const compression = Math.round(knobs.stability * 0.55 + knobs.memory * 0.25 - knobs.plurality * 0.18 - knobs.exit * 0.08);
+        const resilience = Math.round(knobs.plurality * 0.38 + knobs.exit * 0.28 + knobs.memory * 0.24 + knobs.stability * 0.10);
+        const overhead = Math.round(knobs.plurality * 0.36 + knobs.memory * 0.24 + knobs.exit * 0.22 - knobs.stability * 0.08);
+        const extraction = Math.round(compression * 0.45 + (100 - knobs.exit) * 0.35 + (100 - knobs.memory) * 0.20);
+        return {
+          compression: Math.max(0, Math.min(100, compression)),
+          resilience: Math.max(0, Math.min(100, resilience)),
+          overhead: Math.max(0, Math.min(100, overhead)),
+          extraction: Math.max(0, Math.min(100, extraction))
+        };
+      }
+
+      function renderSystems() {
+        labInterface.querySelector('#system-prototypes').innerHTML = Object.keys(systems).map(key => {
+          const system = systems[key];
+          return `
+            <button class="lab-button ${key === selectedSystem ? 'active' : ''}" data-system="${key}">
+              <strong>${system.title}</strong><br>
+              <span class="small">${system.subtitle}</span>
+            </button>
+          `;
+        }).join('');
+
+        labInterface.querySelectorAll('[data-system]').forEach(button => {
+          button.addEventListener('click', () => {
+            selectedSystem = button.dataset.system;
+            knobs = { ...systems[selectedSystem].knobs };
+            selectedBug = selectedSystem === "hardMoney" ? "goldbug" : selectedSystem === "cryptoProtocol" ? "cryptobug" : "fiatbug";
+            renderAll();
+          });
+        });
+      }
+
+      function renderSystemOutput() {
+        const system = activeSystem();
+        const current = score();
+        labInterface.querySelector('#system-output').innerHTML = `
+          <div class="lab-kicker">Current architecture</div>
+          <p class="lab-title">${system.title}</p>
+          <p class="small">${system.valley}</p>
+          <div class="lab-facts">
+            <div class="lab-fact"><strong>Anchor</strong>${system.anchor}</div>
+            <div class="lab-fact"><strong>Bootstrap</strong>${system.bootstrap}</div>
+            <div class="lab-fact"><strong>Rails and ruler</strong>${system.rail}<br><span class="small">${system.ruler}</span></div>
+          </div>
+          <div class="lab-facts">
+            <div class="lab-fact"><strong>Compression</strong>${current.compression}/100</div>
+            <div class="lab-fact"><strong>Resilience</strong>${current.resilience}/100</div>
+            <div class="lab-fact"><strong>Extraction surface</strong>${current.extraction}/100</div>
+          </div>
+          <div class="lab-fact"><strong>Cost</strong>${system.cost}</div>
+          <div class="lab-fact" style="margin-top: 10px;"><strong>Failure mode</strong>${system.failure}</div>
+        `;
+      }
+
+      function renderKnobs() {
+        const labels = {
+          stability: "Stability",
+          plurality: "Plurality",
+          exit: "Exit",
+          memory: "Memory"
+        };
+
+        labInterface.querySelector('#system-knobs').innerHTML = Object.keys(labels).map(key => `
+          <div class="knob-row">
+            <strong>${labels[key]}</strong>
+            <span class="knob-track"><span class="knob-fill" style="width: ${knobs[key]}%"></span></span>
+            <span>${knobs[key]}</span>
+            <span class="knob-controls">
+              <button class="lab-step" data-knob="${key}" data-delta="-5">-</button>
+              <button class="lab-step" data-knob="${key}" data-delta="5">+</button>
+            </span>
+          </div>
+        `).join('');
+
+        labInterface.querySelectorAll('[data-knob]').forEach(button => {
+          button.addEventListener('click', () => {
+            const key = button.dataset.knob;
+            knobs[key] = Math.max(0, Math.min(100, knobs[key] + Number(button.dataset.delta)));
+            renderAll();
+          });
+        });
+      }
+
+      function renderGenes() {
+        labInterface.querySelector('#system-genes').innerHTML = genes.map(item => `
+          <div class="gene"><strong>${item[0]}</strong><br><span class="small">${item[1]}</span></div>
+        `).join('');
+      }
+
+      function renderBugMatrix() {
+        labInterface.querySelector('#bug-matrix').innerHTML = Object.keys(bugs).map(key => {
+          const bug = bugs[key];
+          return `
+            <div class="bug-card ${key === selectedBug ? 'active' : ''}">
+              <strong>${bug.name}</strong>
+              <div class="small"><strong>Fantasy</strong><br>${bug.fantasy}</div>
+              <div class="small" style="margin-top: 8px;"><strong>Missed cost</strong><br>${bug.missed}</div>
+              <button class="lab-button" data-bug="${key}">Stress-test</button>
+            </div>
+          `;
+        }).join('');
+
+        labInterface.querySelectorAll('[data-bug]').forEach(button => {
+          button.addEventListener('click', () => {
+            selectedBug = button.dataset.bug;
+            renderAll();
+          });
+        });
+      }
+
+      function verdictText() {
+        const system = activeSystem();
+        const bug = bugs[selectedBug];
+        const current = score();
+        const warning = current.extraction > 60
+          ? "The design is easy to use but gives sellers or authorities a large hidden surface."
+          : current.overhead > 60
+            ? "The design decomposes well but may be too costly for everyday use."
+            : "The design has a workable balance between compression and decomposition.";
+        return `
+          <div class="lab-fact"><strong>Trial</strong>${system.title} against ${bug.name}.</div>
+          <div class="lab-fact" style="margin-top: 10px;"><strong>Stress test</strong>${bug.test}</div>
+          <div class="lab-fact" style="margin-top: 10px;"><strong>Verdict</strong>${warning}</div>
+        `;
+      }
+
+      function renderVerdict() {
+        labInterface.querySelector('#trial-verdict').innerHTML = verdictText();
+      }
+
+      function saveTrial() {
+        const current = score();
+        trials.push({
+          system: activeSystem().title,
+          bug: bugs[selectedBug].name,
+          compression: current.compression,
+          resilience: current.resilience,
+          extraction: current.extraction,
+          when: new Date().toLocaleString()
+        });
+        trials = trials.slice(-8);
+        localStorage.setItem('bovi.systemLab', JSON.stringify(trials));
+        renderSavedTrials();
+      }
+
+      function renderSavedTrials() {
+        const target = labInterface.querySelector('#saved-system-trials');
+        if (!trials.length) {
+          target.innerHTML = '<div class="small">No saved trials yet. Pick a system, tune the knobs, stress-test an ideology bug, and save the result.</div>';
+          return;
+        }
+        target.innerHTML = trials.slice().reverse().map(item => `
+          <div class="trial-row">
+            <span class="pill">${item.bug}</span>
+            <div><strong>${item.system}</strong><br><span class="small">compression ${item.compression}, resilience ${item.resilience}, extraction ${item.extraction} • ${item.when}</span></div>
+          </div>
+        `).join('');
+      }
+
+      function renderAll() {
+        renderSystems();
+        renderSystemOutput();
+        renderKnobs();
+        renderGenes();
+        renderBugMatrix();
+        renderVerdict();
+        renderSavedTrials();
+        labInterface.querySelector('#save-system-trial').onclick = saveTrial;
+      }
+
+      renderAll();
     }
 
     // Launch full BOVI app for M2-M4
@@ -632,6 +3129,9 @@
         this.style.transform = 'translateY(0)';
       });
     });
+
+    renderCaseThread();
+    initTradeSimulation();
 
     console.log('🎛️ BOVI Framework Homepage loaded successfully!');
     console.log('Ready for progressive complexity navigation M0-M4');

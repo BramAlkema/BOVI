@@ -73,9 +73,49 @@ class DeploymentValidator {
     
     // Check critical content
     const criticalContent = [
-      'BOVI Framework',
-      'Balanced • Obligated • Value • Immediate',
-      'setupKPIDashboardUI',
+      'BOVI Exchange Lens',
+      'One Case Through All Layers',
+      'bovi.activeCaseThread',
+      'Streaming subscription renewed at 02:14',
+      'Same cereal price, smaller box',
+      'Fractional Trade Lab',
+      'Adam alone',
+      'Specialise and trade',
+      'Each saves one hour',
+      'Prosperity loop',
+      'Where money enters',
+      'Ye tally rope',
+      'Tally rope',
+      'Known-supply money',
+      'Opaque supply',
+      'Same money. Different exchange.',
+      'M1 Mode Diary',
+      'bovi.modeDiary',
+      'M2 Household Instruments',
+      'bovi.householdInstruments',
+      'M3 Bundle Builder',
+      'bovi.bundleBuilder',
+      'M4 System Lab',
+      'bovi.systemLab',
+      'data-lens="balanced"',
+      'data-case="subscription"',
+      'id: "subscription"',
+      '[data-entry]',
+      'data-instrument="basket"',
+      'Shared house groceries',
+      '[data-bundle]',
+      'data-adjust-mode',
+      'Stable-fiat platform society',
+      'Minimal survival genes',
+      'Fiatbug',
+      'Goldbug',
+      '[data-system]',
+      'data-knob',
+      'data-bug',
+      'data-thread-case',
+      'data-sim-mode',
+      'sim-world',
+      'Save this reading',
       'styles.min.css',
       'app.min.js'
     ];
@@ -86,20 +126,47 @@ class DeploymentValidator {
       }
     }
     
-    // Check for proper structure
-    if (!html.includes('<nav>')) {
-      this.errors.push('HTML missing navigation structure');
+    // Check for tangible Exchange Lens structure
+    if (!html.includes('enterBOVI(\'m0\')')) {
+      this.errors.push('HTML missing M0 entry point');
     }
-    
-    if (!html.includes('data-tab="overview"')) {
-      this.errors.push('HTML missing tab navigation');
+
+    if (!html.includes('renderCaseThread') || !html.includes('launchThreadLayer')) {
+      this.errors.push('HTML missing cross-layer case thread handlers');
+    }
+
+    if (!html.includes('initTradeSimulation') || !html.includes('stepTradeSimulation') || !html.includes('attemptMoney') || !html.includes('attemptTally')) {
+      this.errors.push('HTML missing fractional trade simulation handlers');
+    }
+
+    if (!html.includes('renderMode') || !html.includes('renderCase')) {
+      this.errors.push('HTML missing Exchange Lens interaction handlers');
+    }
+
+    if (!html.includes('renderReading') || !html.includes('renderPattern')) {
+      this.errors.push('HTML missing Mode Diary interaction handlers');
+    }
+
+    if (!html.includes('launchHouseholdInstruments') || !html.includes('renderBasket') || !html.includes('renderSubscriptions')) {
+      this.errors.push('HTML missing Household Instruments interaction handlers');
+    }
+
+    if (!html.includes('launchBundleBuilder') || !html.includes('generatedClause') || !html.includes('renderMix')) {
+      this.errors.push('HTML missing Bundle Builder interaction handlers');
+    }
+
+    if (!html.includes('launchSystemLab') || !html.includes('renderBugMatrix') || !html.includes('renderSystemOutput')) {
+      this.errors.push('HTML missing System Lab interaction handlers');
     }
     
     // Check for old content that shouldn't be there
     const deprecatedContent = [
       'Groceries — Scan basket',
       'Rent — Negotiate increase',
-      'Energy — Cohort switching'
+      'Energy — Cohort switching',
+      'BOVI Financial Satnav',
+      'Auto-drive: Keep me safe',
+      'Your money is now protected from inflation'
     ];
     
     for (const deprecated of deprecatedContent) {
@@ -117,10 +184,9 @@ class DeploymentValidator {
     
     // Check for critical styles
     const criticalStyles = [
-      '.kpi-dashboard-panel',
       '.mode-badge',
       '.panel',
-      '.tab'
+      '.scenario'
     ];
     
     for (const style of criticalStyles) {
@@ -144,9 +210,7 @@ class DeploymentValidator {
     
     // Check for critical functions
     const criticalFunctions = [
-      'BoviApp',
-      'initNavigation',
-      'setupKPIDashboardUI'
+      'BoviApp'
     ];
     
     for (const func of criticalFunctions) {
@@ -177,14 +241,10 @@ class DeploymentValidator {
     // Check lib directory structure
     const libDir = path.join(this.distDir, 'lib');
     if (fs.existsSync(libDir)) {
-      const hasIntegration = fs.existsSync(path.join(libDir, 'integration'));
-      const hasMonitoring = fs.existsSync(path.join(libDir, 'monitoring'));
+      const hasIntegrationBundle = fs.existsSync(path.join(libDir, 'integration.min.js'));
       
-      if (!hasIntegration) {
-        this.warnings.push('Missing lib/integration directory');
-      }
-      if (!hasMonitoring) {
-        this.warnings.push('Missing lib/monitoring directory');
+      if (!hasIntegrationBundle) {
+        this.warnings.push('Missing lib/integration.min.js bundle');
       }
     } else {
       this.errors.push('Missing lib directory in dist');
