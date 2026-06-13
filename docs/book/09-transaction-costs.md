@@ -38,3 +38,29 @@ A young migrant wants to send €100 home for a sibling's birthday. Western Unio
 ## Closing scaffold
 
 Markets work brilliantly when transaction costs are low. When they are not, three other mechanisms quietly do the work.
+
+---
+
+## Draft
+
+A man in London wants to send a hundred euros to his sister in Lagos for her birthday.
+
+He has options. Western Union will do it today, for a fee of around eight per cent and an exchange rate quietly worse than the real one — call it fifteen euros gone by the time it lands, a sixth of the gift, most of a day's wage where he works. His bank will do it for less, if he is willing to wait five working days and fill in a form asking the purpose of the transfer. Or he can buy a hundred euros of a dollar-stablecoin on his phone, send it to his sister's wallet, and have her convert it to naira at the street rate — total cost about thirty cents, total time about three minutes.
+
+The gift is the same hundred euros in every case. What differs — by a factor of fifty, between half a coffee and a week's wage — is the *transaction cost*: the price of moving value from one person to another. And that price, nearly invisible to a comfortable reader who pays it without noticing, is one of the largest single facts about the economy.
+
+### The cost nobody counts
+
+In 1937 a young Ronald Coase asked a question that sounds trivial and is not: if markets are such efficient ways to coordinate, why do firms exist at all? Why is so much economic activity organised *inside* companies — by managers giving orders — rather than through a thousand market contracts between individuals? His answer founded a field. Markets are not free to use. Every trade carries a cost: finding the counterparty, agreeing the terms, writing the contract, enforcing it, insuring against its failure. Firms exist to swallow those costs — to replace a swarm of expensive little market transactions with a single employment relationship. A company is not, at bottom, a production unit. It is a container for transaction costs that would otherwise be unbearable.
+
+Once you hold the concept you start seeing it everywhere, and then someone measures it. When the economists Wallis and North tried to add up the "transaction sector" of the American economy — everyone whose job is not to make things but to *coordinate* the making and moving and trading of them: the bankers, lawyers, insurers, wholesalers, clerks, managers, the whole apparatus of getting deals done — they found it was on the order of half of GDP. Half. The majority of a rich economy's activity is not production. It is the cost of coordinating production.
+
+Which means that lowering that cost is among the most powerful things anyone can do, and it rarely looks dramatic. When M-Pesa let Kenyans send money by text message, later studies estimated it lifted Kenyan GDP by around two per cent and pulled hundreds of thousands of households out of poverty — not by producing anything, but by making it cheap to move small sums, so that more trades simply happened. That is what "fintech" actually is, beneath the branding: the ongoing reduction of the cost of moving and recording value. Every basis point shaved off a transaction is a trade that could not happen before and now can.
+
+### The real economy is the invisible one
+
+This reframes the whole discipline, gently but completely. We are taught that economics is about supply, demand, and the price that clears them. But supply curves and demand curves are *downstream* of transaction-cost structure — they describe what happens once trading is cheap enough to happen at all. The deep variable, the one that decides how much of the possible cooperation actually occurs, is the cost of coordinating. Markets are not abstract optimisers floating in space. They are *infrastructure for lowering coordination cost*, and they work brilliantly precisely when that cost is low.
+
+Notice, too, that the London remittance and the trading floors of the City are the *same problem* at different scales. A hedge fund shaving microseconds off a trade and a labourer shaving euros off a transfer to Lagos are both doing the one thing the real economy is mostly made of: lowering the cost of moving value between two parties who want to cooperate. The difference is only who can afford which tools.
+
+But markets are not the only way coordination happens, and not always the best one. They work when transaction costs are low and the parties are strangers who owe each other nothing. When those conditions fail — and they fail constantly, in families, in firms, in emergencies, in everything that matters most — three other mechanisms quietly take over the work. That is the next chapter, and it is where we find that the market-versus-state argument of the last century was hiding half the economy.
