@@ -37,3 +37,45 @@ A Berlin coffee shop. €4.20. Card tap. Done. The young European tourist from C
 ## Closing scaffold
 
 The same coffee, different awareness. The book ends.
+
+---
+
+## Draft
+
+A coffee shop in Berlin. Four euros twenty. She taps her card, it beeps, she leaves. She has not thought about her money once.
+
+It is, of course, the same act we watched in the very first pages — the effortless, invisible tap we set against Doña Elena's Sunday and called the puzzle rather than the standard. And it is, the book has quietly suggested without ever quite saying so, the same young woman who was overcharged for a coffee in Buenos Aires, who started keeping a notebook, who is now home. The card still works. The system is not broken. Nothing about the scene has changed.
+
+Except her. She cannot tap the card any more without seeing, for half a second, the machinery behind the beep — the ledgers settling, the spread skimmed, the four functions bundled into one smooth instrument, the modes she is moving between without naming them. The coffee is the same. The awareness is not. And that — not a different action, not a better portfolio, not a revolution — is the entire gift this book has to give.
+
+### The questions you can no longer not ask
+
+We never handed you a doctrine. We handed you, one chapter at a time, a small set of questions, and by now the questions have become reflexes. Gather them up; this is the whole of it, the defensive vocabulary, collected at last in one place:
+
+*What is the anchor?* — what makes anyone trust how much of this money exists: a law, a metal, a piece of mathematics?
+
+*What is the network?* — who accepts this, how widely, and is there a market to spend it in?
+
+*Which function am I using this for?* — medium, unit, store, deferred payment — and have I confused one for another, or let one tool pretend to do all four?
+
+*Which mode did this collapse into?* — Value, Balanced, Obligated, Immediate — and is it the mode this exchange should be?
+
+*Who decided that, and could I refuse?* — the consent axis under every authority and every price.
+
+*What is the bootstrap, and who pays for it?* — because every money is paid for by someone, and the first question about any new one is always: who, and how?
+
+Six questions. You can ask them of a banknote, a crypto token, a gift card, a subscription, a salary, a wedding, a workplace that calls itself a family, a government that calls a fine a fee. They do not tell you what to do. They tell you what is happening. And once installed they cannot be uninstalled — which is the only kind of education worth the name.
+
+### What the book refuses, one last time
+
+You might expect the ending to tell you to *do* something — switch your savings, build a Tally, demand a better currency, change the world. We will not, and the refusal is the last and most deliberate move in the book.
+
+The framework does not liberate you from the bundle. The Berlin barista still lives inside a stable currency that compresses her four functions into one; she will still tap her card, still hold most of her life in a single instrument, still enjoy the real achievement that stable money is. We are not against any of that. What the framework does is narrower and, we think, more honest: it stops the lies from working *invisibly.* It does not stop the spread being skimmed; it lets you see it. It does not stop the price being personalised against you; it lets you name it. It does not stop the workplace flying the family flag; it lets you ask whether you could refuse. It will not save you from the system. It only ensures that, from now on, whatever the system does to you, it has to do where you can see it.
+
+That is enough. It is, in fact, a great deal — because almost everything money does *to* people, it does by not being seen. The skim hides in the smoothness; the extraction hides in the warmth; the bundle hides in the convenience. Sight is the whole defence, and sight is what you have now.
+
+So we will not tell you what to do with it. You may build the personal stack or you may not; you may start a Tally with your friends or carry on with the awkwardness; you may move your savings or leave them exactly where they are. What you cannot do, ever again, is *unsee* what you have been shown. The coffee in Berlin costs four euros twenty, exactly as it always did. The only thing that has changed is that you now know what you are holding when you pay for it — and what it is holding of yours.
+
+The framework was never ours to give. We took it from the giants who thought it, and from the millions like Doña Elena who lived it, and we only carried it into one room and turned on a light. Now it is yours. Use it gently — on the world, and on yourself. Watch what they hide. Ask what mode this is. Refuse to be confused.
+
+And enjoy the coffee.
