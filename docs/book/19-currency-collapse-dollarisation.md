@@ -38,3 +38,27 @@ Doña Elena's wealth allocation, examined as a defensive response to systemic cu
 ## Closing scaffold
 
 Doña Elena is not unique. There are billions like her. The next chapter is the survey.
+
+---
+
+## Draft
+
+Go back to Doña Elena one last time in this analytical mode, and read her Sunday not as sophistication, and not as warmth, but as *field notes from a forty-year emergency.*
+
+Every move she makes we have admired in turn — the timed pesos, the dollars into stablecoin, the loan, the cueva rate in her head. Now read them the way a casualty reads a battlefield. She does not hold pesos a day longer than the law forces her to, because a peso held is a peso bleeding value; she keeps her savings in USDT because the peso cannot be trusted to store anything; she knows the blue rate because the official one is a fiction she cannot afford to believe. None of this is a strategy she chose. It is a set of scars, each one the healed wound of a specific betrayal by a currency that failed the people who depended on it. The competence we have praised for nineteen chapters is, seen plainly, the competence of a survivor.
+
+### The same collapse, over and over
+
+What happened to Argentina has happened, in its essentials, again and again — Weimar Germany, Zimbabwe, Lebanon, Venezuela, a long grim roll. And it always moves in the same order, the order our framework predicts. First the **anchor** breaks: the supply becomes untrustworthy, the common knowledge cracks — the thing from the last chapter. Then the **network** frays: as people lose faith, they begin refusing the currency for the things that matter most, and each refusal makes the next more rational. And then the population **migrates** — not by decree, not by ideology, but by survival, toward whatever anchor they can still reach.
+
+That migration has a name economists use too narrowly: *dollarisation.* But watch what it actually is, and you will recognise it, because it is the whole thesis of this book happening under duress. As the home currency fails, its bundled functions come apart and each migrates to wherever it still works. The medium of exchange limps on for small daily trades. The store of value flees into dollars, or USDT, or gold, or property, or cattle — whatever holds. The unit of account quietly switches: people begin *thinking* in dollars even while spending in pesos. Long-term contracts get written in a foreign unit or an index. The only function the dying currency reliably keeps is the one an authority can compel — taxes, payable in the local money because the state still ranks above the market and says so. That tax demand is the Obligated floor beneath the whole collapsing structure, the single thread keeping the home currency in use at all.
+
+This is **spontaneous unbundling** — the unbundled stack we have spent the book describing, assembling itself overnight, out of necessity, in the hands of people who have never read a word of monetary theory. And it inverts the famous law. Gresham told us bad money drives out good — people spend the debased coin and hoard the sound one. True enough when both circulate freely. But when the bad money is *forced* — when the state compels the peso for tax — something sharper happens: the good money becomes the *savings* vehicle while the bad money is used and discarded as fast as possible, a hot potato no one will hold an hour longer than they must. The forced-bad and the chosen-good split cleanly into two jobs — which is unbundling again, written in the language of distress.
+
+### What the survivor knows
+
+Here is the reframing the chapter has been moving toward, and it closes the inversion the whole book is built on. We opened by placing Doña Elena against the Berlin barista and asking you to notice that the barista's invisible, effortless money is the historical exception and Doña Elena's juggling is the human norm. Now we can say why her competence matters so much: *she can see the thing the barista cannot.* The person living inside a broken currency knows, in her body, that money was never one thing — because she has watched it come apart into its component jobs and had to hold each one separately to survive. The person living inside a working currency has been spared that knowledge, and the sparing is a real mercy, and it is also a kind of blindness. She mistakes the bundle for the nature of money, because her bundle has never failed.
+
+The framework in this book was not, in any honest sense, built by economists. It was built by the millions of people like Doña Elena who were forced to learn it the hard way, and who have been running sophisticated unbundled monetary architectures on instinct and necessity for as long as currencies have failed — which is to say, always. We are not teaching them anything. We are reading their practice back to ourselves, slowly, and giving it the words it never needed.
+
+Doña Elena is not a remarkable exception. There are, on any honest count, billions of people closer to her condition than to the barista's. The next chapter steps back from her at last, to survey the whole vast unbundled world the comfortable economies have spent a century mistaking for a backwater — and that turns out to be the actual present, and quite possibly the future, of money.
