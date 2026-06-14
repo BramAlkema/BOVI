@@ -83,6 +83,16 @@ The book draws on framework material developed in (canonical foundation first):
 - [Intermezzo 22A — On Whose Shoulders](22a-on-whose-shoulders.md)
 - [Chapter 23 — The Defensive Vocabulary](23-defensive-vocabulary.md)
 
+### Part VIII — The Machinery
+*The rigorous twin to the accessible body: the mathematics the book left out, and the framework as buildable contracts. Optional — the body is complete without it.*
+
+- [Epilogue — The Machinery](epilogue-the-machinery.md)
+
+### Back matter — The Field Book
+*A practical manual for the unbundled life and the Money Tool.*
+
+- [The Field Book — The Money Tool](fieldbook-the-money-tool.md)
+
 ## Cross-book subarcs
 
 These run underneath the chapter structure and reward the careful reader:
