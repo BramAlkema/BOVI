@@ -33,6 +33,7 @@ Hayek's *Denationalisation of Money* (1976). Airtight argument. Nobel laureate. 
 
 ## Subarcs
 
+- Clearing-discipline arc: the four engines are mode-subsidies — coercion = Obligated pays, commodity = prestige-sphere (B/O/I) demand pays, platform = existing relational networks lend theirs, speculation = Value funding itself. "Bundled at bootstrap" is a mode-bundle, not only a function-bundle.
 - First appearance of the bootstrap-vs-use-layer distinction that organises Parts III through VII.
 - Foreshadows Chapter 22 (the Tally), which will be examined as a use-layer construction needing to inherit network from somewhere else.
 - Bitcoin re-evaluation arc reaches its inflection point here.
@@ -104,6 +105,8 @@ This is, by some distance, the most *efficient* known bootstrap mechanism — an
 **Who pays**: the host platform — through direct investment, user-acquisition spend, deliberate cross-subsidy, or state mandate. **What it buys**: a payment rail that inherits the network density of the host from day one.
 
 The trade-off is dependency. A payment rail that inherits its network from a platform is also at the mercy of that platform's politics, business model, and survival.
+
+Before we move on, notice what the four engines are in the vocabulary of Part I. Only one of them — speculation — is Value mode paying for itself, the strange self-funding case where a market pulls itself up by its own expected future. The other three are all *another mode's* demand subsidising the Value rail. State coercion is Obligated mode paying: the tax is rank-imposed clearing, and it buys the till. The commodity bootstrap ran in great part on demand that was ceremonial and prestige-bound — cattle, cowries, the goods of bridewealth and standing (and in part on plain use: salt for the pot) — the Obligated and Immediate spheres paying without meaning to. Platform leverage borrows a network that a web of existing relationships already built. Bundling at the bootstrap layer, in other words, is not only a bundling of functions. It is a bundling of *modes* — and every money carries the birthmark of the mode that paid for it.
 
 ### The two-layer pattern
 

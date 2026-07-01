@@ -32,6 +32,7 @@ A bridal party fighting over who pays for what — the same fight everyone has h
 
 ## Subarcs
 
+- **Seed of the clearing-discipline arc:** the modes count in four different ways (Fiske's own scale-type observation — nominal/ordinal/interval/ratio). Stated as a curiosity here; becomes the hinge in Ch 4 (a mode = a rule for when the ledger must clear).
 - Anthropology lineage threaded gently — Mauss, Polanyi, Sahlins, Fiske footnoted but not foregrounded.
 - The bridal party returns in Chapters 12, 15, and 22 for different analytical work each time. First of four uses.
 - First introduction of the four modes that organise the entire rest of the book.
@@ -66,6 +67,8 @@ He gave them careful academic names. We will use plainer ones, and a one-line te
 | **Balanced** | *"Are we even?"* | Reciprocity, kept track of over time. Favours, turns, debts that should square up. |
 | **Obligated** | *"Who decides — and is that legitimate?"* | Authority. One party ranks above another and the exchange follows the rank. |
 | **Immediate** | *"Are we okay?"* | Sharing without counting. Gift, care, the pooled life of people who do not keep score. |
+
+One regularity is worth flagging before we go on, because it will quietly turn out to be the hinge of the whole book. The four modes *count* in four different ways. Immediate does not count at all. Obligated counts rank — who stands above whom. Balanced counts one-for-one — turns and favours that should match. Value counts in ratios — prices, proportions, anything divided by anything. Fiske noticed this himself: his four patterns are, in order, the four classic scales of measurement — nominal, ordinal, interval, ratio. Four modes, four kinds of arithmetic. Two chapters from now, that observation will join the modes to money at the root.
 
 Now go back to the spreadsheet, and the fight decodes instantly.
 

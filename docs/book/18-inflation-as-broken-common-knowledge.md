@@ -1,6 +1,6 @@
 # Chapter 18: Inflation as Broken Common Knowledge
 
-> *Inflation is not a price phenomenon — it is a coordination failure. The supply pillar cracks, common knowledge collapses, prices rise as a symptom.*
+> *The inflation that breaks currencies is not a price phenomenon — it is a coordination failure. The supply pillar cracks, common knowledge collapses, prices rise as a symptom. The ordinary kind — real shocks inside a trusted unit — is weather; this chapter is about the instrument breaking.*
 
 **Part VI — Macro as Infrastructure Failure** · [Index](README.md) · Prev: [Chapter 17](17-politics-of-mode-defaults.md) · Next: [Chapter 19](19-currency-collapse-dollarisation.md)
 
@@ -11,12 +11,13 @@
 ## Structural beats
 
 1. The 2011 Big Mac War in detail.
-2. Headline CPI vs. lived inflation (why the numbers diverge).
-3. Personal indices (Big Mac, your notebook) as more honest than institutional measures.
-4. Why governments suppress indices (and why suppression is itself a tell).
-5. The 26% one-day jump after the *NYT* and *Economist* exposed the suppression.
-6. The recent reversal — Milei's crawling peg, Argentina now second-most-expensive Big Mac in the world.
-7. Both directions reveal currency manipulation.
+2. Two kinds of inflation — shock-inflation inside a trusted unit (weather; the rich world's early-2020s burst) vs credibility-inflation (the instrument breaks). The chapter's claim is scoped to the second; the tells that tell them apart.
+3. Headline CPI vs. lived inflation (why the numbers diverge).
+4. Personal indices (Big Mac, your notebook) as more honest than institutional measures.
+5. Why governments suppress indices (and why suppression is itself a tell).
+6. The 26% one-day jump after the *NYT* and *Economist* exposed the suppression.
+7. The recent reversal — Milei's crawling peg, Argentina now second-most-expensive Big Mac in the world.
+8. Both directions reveal currency manipulation.
 
 ## Themes
 
@@ -28,6 +29,7 @@
 ## Twists
 
 - The reader expects "inflation makes prices go up." The chapter argues it is the other way around — prices rising are the *symptom*; the cause is broken common knowledge of supply.
+- The claim is scoped, not universal: the rich world's early-2020s inflation was mostly weather — real shocks inside a trusted unit — and it ended the way weather ends. The chapter's subject is the other kind, and the tells (rate gaps, fleeing contracts, leaned-on measurements) distinguish them.
 - The same currency, same country, can be artificially *cheap* (2011) or artificially *expensive* (now) — and both are tells of manipulation.
 
 ## Subarcs
@@ -50,7 +52,9 @@ Not for the customers' benefit. The Big Mac had a price problem — specifically
 
 ### Prices are the symptom, not the disease
 
-We are taught a simple story about inflation: too much money chasing too few goods, so prices rise. It is not wrong, exactly, but it points at the wrong thing — it makes the rising prices the event. Watch the Big Mac war and the causation runs the other way. The prices were not the disease. They were a *readout.* What the Argentine state was actually fighting was not a number on a menu but the *common knowledge* the number carried — the shared, public, checkable fact of what the peso could buy. Inflation, at bottom, is not a price phenomenon. It is the cracking of common knowledge about a currency: the supply pillar from Chapter 4 — symmetrically-known supply, the integrity that lets everyone trust how much exists — gives way; the selection loop from Chapter 5 — the shared expectation that the money is good — frays behind it; and *then* prices climb, oscillate, and run, as the visible symptom of an invisible loss of trust. Keep the split from those chapters in view: the *worth* of money — the trades it could unlock — has not evaporated; what has broken is the *coordination* on which token still carries it.
+We are taught a simple story about inflation: too much money chasing too few goods, so prices rise. It is not wrong, exactly, but it points at the wrong thing — it makes the rising prices the event. Watch the Big Mac war and the causation runs the other way. The prices were not the disease. They were a *readout.* What the Argentine state was actually fighting was not a number on a menu but the *common knowledge* the number carried — the shared, public, checkable fact of what the peso could buy. Inflation — at least the kind that kills currencies, a distinction we will sharpen in a moment — is not, at bottom, a price phenomenon. It is the cracking of common knowledge about a currency: the supply pillar from Chapter 4 — symmetrically-known supply, the integrity that lets everyone trust how much exists — gives way; the selection loop from Chapter 5 — the shared expectation that the money is good — frays behind it; and *then* prices climb, oscillate, and run, as the visible symptom of an invisible loss of trust. Keep the split from those chapters in view: the *worth* of money — the trades it could unlock — has not evaporated; what has broken is the *coordination* on which token still carries it.
+
+Now the promised distinction, because the word *inflation* names two things that deserve different names. There is the ordinary kind: a harvest fails, a war cuts the oil, a pandemic snarls the ports and a stimulus lands on the snarl — real things get scarce, flush money meets them, and prices rise *inside a unit everyone still trusts.* The ruler is fine; the readings moved, and everyone can see roughly why. The rich world's burst of the early 2020s was mostly this kind, and it ended the way weather ends. And there is the kind this chapter is about: when what cracks is not the supply of goods but the credibility of the unit itself — when people stop believing they know how much money exists, or what the ruler will mean next month. The first is weather. The second is the instrument breaking. And the tells are worth keeping in a pocket, because the two can look alike from inside a supermarket: weather-inflation is loudly and publicly explained, and self-limiting; instrument-inflation comes with a widening gap between official and street rates, with long contracts fleeing the unit — and, surest of all, with a government leaning on the measurements.
 
 This is why some inflations recover and others spiral into the abyss. If the broken common knowledge can be repaired quickly — credibility restored, the supply made legible again — the currency limps and heals. If the institutional trust is gone for a generation, as in Weimar or Zimbabwe, no amount of monetary tinkering brings it back, because the thing that broke was never really the quantity. It was the belief.
 

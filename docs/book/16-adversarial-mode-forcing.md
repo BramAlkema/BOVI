@@ -6,11 +6,11 @@
 
 ## Opening scaffold
 
-The 4.7× credit card story again — but this time examined as algorithmic *imposition*. The tourist did not agree to a Value-mode pricing event. It was forced on her by a system that knew things about her.
+The 3× credit card story again — but this time examined as algorithmic *imposition*. The tourist did not agree to a Value-mode pricing event. It was forced on her by a system that knew things about her.
 
 ## Structural beats
 
-1. The 4.7× story, third use.
+1. The 3× story, third use.
 2. The buyer-obfuscation arms race — PDA-as-attacker vs PDA-as-defender, the inevitable adversarial dynamic.
 3. Surveillance pricing, behavioural targeting, dynamic pricing (Uber surge, dating-app pricing by age).
 4. *"We're a family here"* as Value-mode-disguised-as-Immediate (workplace extraction).
@@ -30,7 +30,7 @@ The 4.7× credit card story again — but this time examined as algorithmic *imp
 
 ## Subarcs
 
-- 4.7× story's third and final use.
+- 3× story's third and final use.
 - The Doña-Elena/Berlin-barista contrast returns implicitly — the rich-country reader is *more* exposed to algorithmic mode-forcing than the dollarised-country reader, because her environment is more digitised.
 - The voluntary/coerced axis from Chapter 3 returns: forced Value mode is *coerced* Value, with the same legitimacy problem as coerced Obligated.
 
@@ -42,9 +42,9 @@ At individual scale, mode-forcing is friction. At societal scale, it is politics
 
 ## Draft
 
-One last time, the €23 coffee — and now we care neither about the friction nor the definition. We care that it was *done to her.*
+One last time, the €16 coffee — and now we care neither about the friction nor the definition. We care that it was *done to her.* (The state's fictional exchange rate did the heaviest lifting, as we saw — but the engines that stacked their skims on top of it chose her, specifically.)
 
-She did not choose to enter a Value-mode pricing event. She thought she was buying a coffee. A system she could not see — her bank, the card network, a dynamic-currency-conversion engine that knew her home country, her card type, her ignorance of the local rate — decided, in milliseconds, to run the transaction in the mode most profitable to itself, and to do so at the precise moment she was least able to object. This is not a confused friend assuming the wrong mode at dinner. This is an adversary, choosing a mode against you, on purpose, with better information than you have. It has a name: **adversarial mode forcing.**
+She did not choose to enter a Value-mode pricing event. She thought she was buying a coffee. A system she could not see — her bank, the card network, a dynamic-currency-conversion engine that knew her home country, her card type, her ignorance of the local rate — decided, in milliseconds, to run the transaction in the mode most profitable to itself, and to do so at the precise moment she was least able to object. This is not a confused friend assuming the wrong mode at dinner. This is an adversary, choosing a mode against you, on purpose, with better information than you have. It has a name: **adversarial mode forcing.** In ledger terms, it is being forced onto the counterparty's clearing discipline — priced now, on their information, at the moment you can least refuse.
 
 ### The arms race over your willingness to pay
 

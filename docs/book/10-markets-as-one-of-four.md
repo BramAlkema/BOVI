@@ -57,7 +57,7 @@ The day-to-day cooperation among the four engineers — covering each other's sh
 
 And when a crew member falls seriously ill, something else takes over entirely. Nobody invoices the sick. The crew pools its care, shares its hours, carries the load, because the relationship is worth infinitely more than any transaction inside it. That is **Immediate** mode — sharing without counting — and a ship that could not switch into it for its own wounded would not be a society. It would be a vending machine with people inside.
 
-Four mechanisms. Markets price; bureaucracies command; reciprocity networks remember; communities share. The crew did not invent them in sequence, one failing into the next. All four were present from the first day — the way they are present in every human group that has ever existed — and the crew's only real task was to notice which good belonged to which, and stop forcing all four through the single channel of price.
+Four mechanisms. Markets price; bureaucracies command; reciprocity networks remember; communities share. They are, notice, the four clearing disciplines from Chapter 4 run at societal scale: the market clears at once, the bureaucracy clears on the authority's schedule, the reciprocity network nets over years, and the community never settles at all. The crew did not invent them in sequence, one failing into the next. All four were present from the first day — the way they are present in every human group that has ever existed — and the crew's only real task was to notice which good belonged to which, and stop forcing all four through the single channel of price.
 
 ### The argument that hid half the economy
 

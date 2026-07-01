@@ -42,7 +42,7 @@ Money is also social. The next chapter handles groups.
 
 ## Draft
 
-In a café in Buenos Aires, the young European tourist — the one who paid twenty-three euros for a coffee and has not forgotten it — takes out a small notebook and writes five lines.
+In a café in Buenos Aires, the young European tourist — the one who paid sixteen euros for a coffee and has not forgotten it — takes out a small notebook and writes five lines.
 
 *Flat white, 2.* *Big Mac, 3.20.* *Transit pass, 8.* *Haircut, 4.* *Share of the room, 120 a week.*
 

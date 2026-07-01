@@ -39,7 +39,7 @@ Most money friction is not solo; it is *between people* — flatmates, friends, 
 
 ### What it is
 
-The Tally is the village rope, updated: a single **shared ledger**, visible to everyone in a small group, that records who has given and not yet received, **nets circular debts automatically**, and — the one thing the rope did not need but a modern group does — **remembers the mode of every entry.**
+The Tally is the village rope, updated: a single **shared ledger**, visible to everyone in a small group, that records who has given and not yet received, **nets circular debts automatically**, and — the one thing the rope did not need but a modern group does — **remembers the mode of every entry**: which clearing discipline it belongs to, and so when, and whether, it must ever square.
 
 ### The four buttons
 
@@ -62,7 +62,7 @@ A flatshare (rent **O**, the shared shop **B**, the night someone cooked for eve
 
 ### Honest status
 
-The Tally is a **product proposal**, not a finished, shipped app, and the book has been clear about that throughout. A prototype of the wider system — the *Exchange Lens*, an interactive teacher for these ideas — exists and is live; the mode-aware Tally described here is sketched, partly built, and openly named as a *direction* rather than a download. Treat this section as a spec you could hand a builder — which is exactly what it is.
+The Tally is a **product proposal**, not a finished, shipped app, and the book has been clear about that throughout. A prototype of the wider system — the *Exchange Lens*, an interactive teacher for these ideas — exists and is live, and it now includes a working Tally you can try: the four buttons, the leaning canvas, the gift marked untouchable, and a mode-blind toggle that shows what the ordinary tools would have done to the same weekend. It borrows its network the honest way: the whole ledger travels *inside a link* — cut the rope, paste it into the group chat, and whoever opens it lays the same rope out on their own device, no server or account involved. The fully chat-native product this section describes — the Tally living inside the conversation itself — remains a *direction* rather than a download. Treat this section as a spec you could hand a builder — which is exactly what it is.
 
 ---
 
@@ -73,9 +73,11 @@ When something lands in front of you — a banknote, a token, a gift card, a sub
 1. **Anchor.** What makes anyone trust how much of this exists — law, metal, maths?
 2. **Network.** Who accepts it, how widely, and is there a market to spend it in?
 3. **Function.** Which job am I using it for — medium, unit, store, deferred payment — and is one tool quietly pretending to do all four?
-4. **Mode.** Which did this collapse into — Value, Balanced, Obligated, Immediate — and is it the right one?
+4. **Mode.** Which did this collapse into — Value, Balanced, Obligated, Immediate? That is: when and whether must this clear, and says who?
 5. **Consent.** Who decided that, and could I refuse without unacceptable cost?
 6. **Bootstrap.** Who paid to make this money exist, and how?
+
+And beneath all six: **which way does the worth flow** — pushed from what stands behind it, or pulled by the next trade it unlocks? If the sales pitch answers "pushed," you have found the essentialism; every other line on this card follows from refusing it.
 
 You will not always act on the answers. But you will always *see* — and seeing, as the last chapter said, is the whole defence.
 

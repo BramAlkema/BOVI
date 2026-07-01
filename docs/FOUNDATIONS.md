@@ -36,6 +36,8 @@ The minimal object that holds "who has given and not received" is a list of net 
 
 **Known ≠ fixed:** the commodity ledger only *looks* like it needs a fixed total; that fixity is the substrate being conserved, not a requirement. Mutual credit (signed balances, zero net, elastic gross) is the same ledger with the substrate removed and the fixity dropped.
 
+**The modes as clearing disciplines (a frame, not a stone):** a mode is a rule about *when and whether the ledger must clear*. Value clears now; Balanced nets over a window; Obligated clears on schedule, with penalty; Immediate never clears — recording it as clearable is the insult. Formal footing is borrowed: Fiske himself maps the four relational models onto the four classic measurement scales (Communal Sharing = nominal, Authority Ranking = ordinal, Equality Matching = interval, Market Pricing = ratio — Fiske 1991; 1992 *Psych. Review*), so the modes are the four **resolutions a ledger can keep**, and money is the ratio/instant-clearing discipline made infrastructural. Consistent with Stone 1 (the pull is mode-general; double-coincidence is the Value-acute case) and Stone 3's scope guard (gifts don't price at a margin). *Status:* packaging of Fiske, no new theorem. *Drop-test:* remove the frame and Stones 1–6 stand unchanged — it carries exposition (the money story and the mode story are one object), not load. Complements `EXTRACTION-AND-THE-MODES.md`, where the same four modes appear as extraction's *costumes*: this frame says what a mode is mechanically; that one says how extraction dresses in them.
+
 ---
 
 ## Stone 3 — the value: floorless but fruitful

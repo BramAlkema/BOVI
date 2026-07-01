@@ -11,7 +11,7 @@ A Berlin coffee shop. €4.20. Card tap. Done. The young European tourist from C
 ## Structural beats
 
 1. The Berlin coffee scene as inverse of Chapter 1.
-2. The questions the book has installed (anchor / network / function / mode / consent / bootstrap).
+2. The questions the book has installed (anchor / network / function / mode / consent / bootstrap) — and beneath all six, the direction question: pushed from behind, or pulled by the next trade?
 3. How to ask each one.
 4. What changes once you see the bundle (you do not necessarily *do* anything different — you see differently).
 5. The system is not broken in the rich-country case; you have been given the means to recognise that it is *one configuration* and not a natural state.
@@ -58,13 +58,15 @@ We never handed you a doctrine. We handed you, one chapter at a time, a small se
 
 *Which function am I using this for?* — medium, unit, store, deferred payment — and have I confused one for another, or let one tool pretend to do all four?
 
-*Which mode did this collapse into?* — Value, Balanced, Obligated, Immediate — and is it the mode this exchange should be?
+*Which mode did this collapse into?* — Value, Balanced, Obligated, Immediate — which is to ask: when and whether must this clear, and is that the discipline this exchange should be under?
 
 *Who decided that, and could I refuse?* — the consent axis under every authority and every price.
 
 *What is the bootstrap, and who pays for it?* — because every money is paid for by someone, and the first question about any new one is always: who, and how?
 
-Six questions. You can ask them of a banknote, a crypto token, a gift card, a subscription, a salary, a wedding, a workplace that calls itself a family, a government that calls a fine a fee. They do not tell you what to do. They tell you what is happening. And once installed they cannot be uninstalled — which is the only kind of education worth the name.
+And beneath all six, the one question the book was written to install: *which way does the worth flow?* Pushed in from behind — by the metal, the labour, the decree? Or pulled in from ahead, by the next trade this thing lets someone close? You have the tests in your hands now: turn the backing dial and nothing moves; take away the next trade and everything does. Everything that will ever be sold to you as holding value *by nature* — a coin, a token, a flag, a bloodline — is the first answer wearing a costume. Everything you have watched actually work, from the rope to the dollar in a Lima market, is the second.
+
+Six questions, one direction. You can ask them of a banknote, a crypto token, a gift card, a subscription, a salary, a wedding, a workplace that calls itself a family, a government that calls a fine a fee. They do not tell you what to do. They tell you what is happening. And once installed they cannot be uninstalled — which is the only kind of education worth the name.
 
 ### What the book refuses, one last time
 
@@ -76,6 +78,6 @@ That is enough. It is, in fact, a great deal — because almost everything money
 
 So we will not tell you what to do with it. You may build the personal stack or you may not; you may start a Tally with your friends or carry on with the awkwardness; you may move your savings or leave them exactly where they are. What you cannot do, ever again, is *unsee* what you have been shown. The coffee in Berlin costs four euros twenty, exactly as it always did. The only thing that has changed is that you now know what you are holding when you pay for it — and what it is holding of yours.
 
-The framework was never ours to give. We took it from the giants who thought it, and from the millions like Doña Elena who lived it, and we only carried it into one room and turned on a light. Now it is yours. Use it gently — on the world, and on yourself. Watch what they hide. Ask what mode this is. Refuse to be confused.
+The framework was never ours to give. We took it from the giants who thought it, and from the millions like Doña Elena who lived it, and we only carried it into one room and turned on a light. Now it is yours. Use it gently — on the world, and on yourself. Watch what they hide. Ask what mode this is. Ask which way the worth flows. Refuse to be confused.
 
 And enjoy the coffee.

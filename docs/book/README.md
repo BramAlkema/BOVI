@@ -38,7 +38,7 @@ The book draws on framework material developed in (canonical foundation first):
 - [Chapter 3 — Consent as Orthogonal](03-consent-as-orthogonal.md)
 
 ### Part II — Money as Coordination Infrastructure
-*Money is a sufficiently-reliable ledger of who has given and not yet received; its value is floorless but fruitful — the trades it unlocks, pulled from the future, not pushed from the past. Common knowledge of acceptance **selects** which money wins; it does not create the worth. And every money requires a bootstrap.*
+*Money is a sufficiently-reliable ledger of who has given and not yet received; its value is floorless but fruitful — the trades it unlocks, pulled from the future, not pushed from the past. Common knowledge of acceptance **selects** which money wins; it does not create the worth. And every money requires a bootstrap. The joint with Part I lands here (Ch 4): a mode is a rule for when and whether the ledger must clear, and money is the Value discipline given infrastructure.*
 
 - [Chapter 4 — What Money Is](04-what-money-is.md)
 - [Chapter 5 — Why It Has Value](05-why-it-has-value.md)
@@ -54,7 +54,7 @@ The book draws on framework material developed in (canonical foundation first):
 - [Chapter 10 — Markets as One of Four Mechanisms](10-markets-as-one-of-four.md)
 
 ### Part IV — The Four Modes Up Close
-*Each mode has its own logic, native math, native institutions, and characteristic failure shapes.*
+*Each mode has its own logic, native math, native institutions, and characteristic failure shapes — four clearing disciplines, each with its own arithmetic (Fiske's scale types) and its own rot.*
 
 - [Chapter 11 — Value Mode](11-value-mode.md)
 - [Chapter 12 — Balanced Mode](12-balanced-mode.md)
@@ -99,10 +99,12 @@ These run underneath the chapter structure and reward the careful reader:
 
 1. **The Doña Elena revisitation** — five appearances (Chs 1, 7, 14, 19, 20), each examining the same scene under a different analytical lens.
 2. **The bridal party fight** — four appearances (Chs 2, 12, 15, 22): raw confusion → Balanced-mode pathology → mode-tagged dissolution → the tool that would have helped.
-3. **The 4.7× credit card** — three appearances (Chs 4, 11, 16): friction as diagnostic → Value-mode definition → adversarial mode forcing.
+3. **The 3× credit card** — three appearances (Chs 4, 11, 16): friction as diagnostic → Value-mode definition → adversarial mode forcing. (€5 → €16: the official-rate fiction ≈3× plus DCC, spread, and fee — reconstructible arithmetic, and the mechanism seeds the cueva of Ch 13.)
 4. **Bitcoin re-evaluation** — appears critically in early chapters, sympathetically in Ch 6 (cold-start), settling at "bundled at bootstrap, instrumental at use."
 5. **The Berlin barista** — bookends the volume (Ch 1 as puzzle, Ch 23 as completion). She is never named.
 6. **The defensive vocabulary** — accumulated chapter by chapter; collected in Ch 23. The reader notices it has been built only at the end.
+7. **The clearing-discipline arc** — a mode is a rule for when/whether the ledger must clear; money is the Value discipline given infrastructure. Seeded in Ch 2 (Fiske's four scale types — the modes count differently), stated in Ch 4, then: engines as mode-subsidies (Ch 6), thinness as discipline-choice (8A), the four mechanisms at societal scale (Ch 10), mode-blind tools as forced clearing (Chs 12, 16), collapse as fallback down the discipline stack (Ch 19), the Tally as the four-discipline ledger restored (Ch 22), credited to Fiske (22A), formalised (Epilogue A.9). This is the joint between the modes half and the money half of the book.
+8. **The push/pull arc — the book's hill.** The heresy 99% of the world rejects, delivered intuitively, not just formally: worth is pulled from the margin (the next trade), never pushed from behind. Installed in Ch 5 as three deckchair tests (the backing dial, 1971 both ways; the Zimbabwe note whose past is intact and worth is gone; the order a currency dies — savings → contracts → bread, the longest pull snaps first) + the push/pull vocabulary named. Lived in 8A (the rope), confirmed as autopsy in Ch 19 (value drains from the far future toward the present), weaponised in Ch 22 (the balance-as-silo interface is push's daily catechism; the Tally shows a *position*, pull-native), installed as the question beneath the six in Ch 23 and the Field Book, proven formally in Epilogue A.4/A.10 (the valuation recursion runs t → t+1; Mises runs t → t−1).
 
 ## File conventions
 

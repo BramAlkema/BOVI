@@ -6,11 +6,11 @@
 
 ## Opening scaffold
 
-A young European tourist's credit card transaction. €5 on the till. €23 on the statement. No warning, no negotiation, no recourse. Algorithmic Value-mode aimed at her specifically.
+A young European tourist's credit card transaction. €5 on the till. €16 on the statement. No warning, no negotiation, no recourse. Algorithmic Value-mode aimed at her specifically, stacked on the state's official-rate fiction.
 
 ## Structural beats
 
-1. The 4.7× scene.
+1. The 3× scene.
 2. Definition of Value mode.
 3. Where it works (apps, strangers, spot trades — Vinted, Uber, Spotify).
 4. The tell: *"is the price right?"*
@@ -32,7 +32,7 @@ A young European tourist's credit card transaction. €5 on the till. €23 on t
 ## Subarcs
 
 - First serious appearance of the "adversarial mode forcing" subarc that returns in Chapter 16.
-- The 4.7× story (second of three uses) returns in Chapter 16 with different analytical work.
+- The 3× story (second of three uses) returns in Chapter 16 with different analytical work.
 - Defensive vocabulary: the chapter installs the question *"for what function?"*
 
 ## Closing scaffold
@@ -43,7 +43,7 @@ Value works for strangers. But strangers are not the only people we transact wit
 
 ## Draft
 
-She paid five euros for a coffee in Buenos Aires. The statement, three weeks later, said twenty-three.
+She paid five euros for a coffee in Buenos Aires. The statement, three weeks later, said sixteen.
 
 We have met this number already, as a piece of friction — the sediment of ledgers that would not agree. Now we meet it as something sharper: a transaction forced, without her knowledge or consent, into a single mode. She thought she was buying a coffee — a small, warm, near-Immediate thing, one person handing another a cup. The system around her thought otherwise. To her bank, her card network, and the dynamic-currency-conversion engine that quietly intercepted the sale, she was not a guest being handed a coffee. She was a pricing opportunity. They ran the sale in pure **Value** mode — *what is the most this particular person, in this particular place, can be made to pay?* — and she learned the answer on her statement.
 

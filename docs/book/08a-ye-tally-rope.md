@@ -117,6 +117,14 @@ With the economist temporarily satisfied, the machine can begin.
 
 Tie the rope around four pegs. One peg for Adam, one for Oz, one for Bea, one for Kai. Let the rope lie in the middle where everyone can see it.
 
+<figure class="sim-figure">
+  <video controls loop muted playsinline width="640">
+    <source src="figures/ye-tally-rope.mp4" type="video/mp4" />
+    <img src="figures/ye-tally-rope.jpg" alt="A rope tied around pegs on a shared surface, its arms meeting at a centre, marks tallied along each arm." />
+  </video>
+  <figcaption>The settlement rope: pegs around one surface the whole village can see, the marks its shared memory of unfinished trades.</figcaption>
+</figure>
+
 Then make a rule:
 
 When a trade does not settle neatly, the village marks the rope.
@@ -216,7 +224,7 @@ The axe has value because it helps someone chop, build, defend, or repair. The p
 
 Price is what lets the rope close. Value is what made anyone care enough to trade in the first place.
 
-This is why the rope is useful without pretending to be metaphysics. It does not tell the village what everything truly means. It gives the village one channel for settlement among many channels of human judgement. There will still be gifts. There will still be obligations. There will still be care, apology, insult, bridewealth, punishment, tax, feast, mourning, and status. The rope does not replace the modes. It handles the part of exchange that benefits from being made thin.
+This is why the rope is useful without pretending to be metaphysics. It does not tell the village what everything truly means. It gives the village one channel for settlement among many channels of human judgement. There will still be gifts. There will still be obligations. There will still be care, apology, insult, bridewealth, punishment, tax, feast, mourning, and status. The rope does not replace the modes. It handles the part of exchange that benefits from being made thin. Which is to say: the village has not adopted a new philosophy. It has chosen, trade by trade, which discipline of clearing each exchange belongs to — and built one channel, the clear-it-now channel, so that the small trades of neighbours and strangers no longer have to be carried by kinship, rank, or love.
 
 Thinness is a great achievement.
 
