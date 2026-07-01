@@ -631,6 +631,28 @@
   <div class="complexity-layers" id="complexity-layers">
     <div class="container">
       <h2>Choose Your Experience Level</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; margin: 0 0 22px;">
+        <div onclick="launchDirectionRoom()"
+             onmouseover="this.style.borderColor='#62c6a6'"
+             onmouseout="this.style.borderColor='#2f8f6f'"
+             style="background: rgba(98, 198, 166, 0.07); border: 1px solid #2f8f6f; border-radius: 14px;
+                    padding: 16px 20px; cursor: pointer; transition: border-color 0.2s ease;">
+          <strong style="color: #b8f3dd;">The Direction Room — the one question underneath all of them.</strong><br>
+          <span style="color: #a3b4d4;">Is money's worth <em>pushed</em> in from behind (gold, work, decree) — or <em>pulled</em> from the next trade? Two dials, three tests, ninety seconds.</span><br>
+          <span style="color: #62c6a6; font-weight: 700;">Enter →</span>
+        </div>
+        <div onclick="launchTallyRoom()"
+             onmouseover="this.style.borderColor='#a78bfa'"
+             onmouseout="this.style.borderColor='#6d5bb8'"
+             style="background: rgba(139, 92, 246, 0.07); border: 1px solid #6d5bb8; border-radius: 14px;
+                    padding: 16px 20px; cursor: pointer; transition: border-color 0.2s ease;">
+          <strong style="color: #ddd1ff;">The Tally — the rope with four buttons.</strong><br>
+          <span style="color: #a3b4d4;">A shared ledger that knows a gift from a debt. Mark the rope, watch the books lean, and see what Splitwise would have done to the same weekend.</span><br>
+          <span style="color: #a78bfa; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+
       <div class="layers-grid">
         
         <div class="layer-card" onclick="enterBOVI('m0')" id="m0-card">
@@ -3071,6 +3093,619 @@
 
       renderAll();
     }
+
+    // The Direction Room — the claim every money app avoids, playable.
+    // Worth is pulled from the next trade, never pushed from the backing.
+    function launchDirectionRoom() {
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-direction-room';
+      appContainer.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: #0b0e14;
+        z-index: 2000;
+        overflow: auto;
+      `;
+
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(98, 198, 166, 0.12);
+        border: 1px solid #62c6a6;
+        color: #b8f3dd;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        z-index: 2001;
+      `;
+      backButton.onclick = () => appContainer.remove();
+
+      const room = document.createElement('div');
+      room.innerHTML = `
+        <style>
+          .dir-wrap { font-family: system-ui, sans-serif; color: #e7eef9; padding: 72px 18px 48px; min-height: 100vh; }
+          .dir-shell { width: min(920px, 100%); margin: 0 auto; display: grid; gap: 20px; }
+          .dir-hero h2 { margin: 0 0 10px; font-size: clamp(28px, 5vw, 48px); line-height: 1.05; }
+          .dir-hero p { margin: 0; color: #aebbd0; max-width: 720px; }
+          .dir-card { background: #121826; border: 1px solid #232c40; border-radius: 14px; padding: 20px 22px; }
+          .dir-card h3 { margin: 0 0 10px; color: #b8f3dd; font-size: 18px; }
+          .dir-card p { color: #c6d2e4; line-height: 1.55; }
+          .dir-dials { display: grid; gap: 16px; margin: 14px 0; }
+          .dir-dials label { display: grid; gap: 6px; font-weight: 600; color: #e7eef9; }
+          .dir-dials input[type=range] { width: 100%; accent-color: #62c6a6; }
+          .dir-dials .dial-read { color: #62c6a6; font-variant-numeric: tabular-nums; }
+          .dir-meter { margin: 16px 0 6px; }
+          .dir-meter-label { font-size: 13px; color: #aebbd0; margin-bottom: 6px; }
+          .dir-meter-bar { height: 26px; border-radius: 8px; background: #0b0e14; border: 1px solid #232c40; overflow: hidden; }
+          #value-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #2f8f6f, #62c6a6); transition: width 0.25s ease; }
+          #value-read { margin-top: 8px; font-weight: 700; }
+          .dir-note { color: #9fb0c8; font-style: italic; min-height: 2.6em; }
+          .dir-check { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 6px; color: #c6d2e4; }
+          .dir-check li::before { content: ''; }
+          .dir-check .dir-missing { color: #ff9d8a; font-weight: 700; }
+          .dir-btn { background: rgba(98, 198, 166, 0.14); border: 1px solid #62c6a6; color: #b8f3dd; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-right: 8px; }
+          .dir-btn-ghost { background: transparent; border-color: #3a4763; color: #aebbd0; }
+          .dir-bars { display: grid; gap: 10px; margin: 16px 0 8px; }
+          .dir-bar-row { display: grid; grid-template-columns: 220px 1fr; align-items: center; gap: 12px; }
+          .dir-bar-row span { font-size: 14px; }
+          .dir-bar-row small { color: #8fa0b8; }
+          .dir-bar { height: 18px; border-radius: 6px; background: #0b0e14; border: 1px solid #232c40; overflow: hidden; }
+          .dir-bar > div { height: 100%; width: 100%; background: #4f7fd9; transition: width 0.12s linear; }
+          #bar-tax { background: #b08d4f; }
+          .dir-two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0; }
+          @media (max-width: 640px) { .dir-two { grid-template-columns: 1fr; } .dir-bar-row { grid-template-columns: 130px 1fr; } }
+          .dir-push, .dir-pull { border-radius: 10px; padding: 14px 16px; }
+          .dir-push { background: rgba(255, 157, 138, 0.06); border: 1px solid #6b4a44; }
+          .dir-pull { background: rgba(98, 198, 166, 0.07); border: 1px solid #2f8f6f; }
+          .dir-push h4, .dir-pull h4 { margin: 0 0 6px; }
+          .dir-push h4 { color: #ff9d8a; } .dir-pull h4 { color: #62c6a6; }
+          .dir-question { font-size: 17px; color: #e7eef9; }
+        </style>
+        <div class="dir-wrap">
+          <div class="dir-shell">
+            <div class="dir-hero">
+              <h2>Which way does the worth flow?</h2>
+              <p>Nearly everyone believes money's value is <strong>pushed</strong> in from behind — by the gold, the work, the decree.
+              Every banking app quietly agrees: it shows your money as a stock of stuff in a silo.
+              This room has the dials. Turn them, and watch which one is wired to the machine.</p>
+            </div>
+
+            <section class="dir-card">
+              <h3>Test 1 · The two dials</h3>
+              <div class="dir-dials">
+                <label>Backing — gold in the vault behind each note
+                  <input type="range" id="dial-backing" min="0" max="100" value="100">
+                  <span class="dial-read" id="backing-read">100%</span>
+                </label>
+                <label>The next trade — who will accept this tomorrow
+                  <input type="range" id="dial-accept" min="0" max="100" value="0">
+                  <span class="dial-read" id="accept-read">0%</span>
+                </label>
+              </div>
+              <div class="dir-meter">
+                <div class="dir-meter-label">What one note buys</div>
+                <div class="dir-meter-bar"><div id="value-fill"></div></div>
+                <div id="value-read"></div>
+              </div>
+              <p class="dir-note" id="dial-caption"></p>
+            </section>
+
+            <section class="dir-card">
+              <h3>Test 2 · Where did the past go?</h3>
+              <p>A one-hundred-trillion-dollar note from Zimbabwe. Check what still stands behind it:</p>
+              <ul class="dir-check">
+                <li>✓ the decrees that ordered it accepted — still on the books</li>
+                <li>✓ the labour of the economy that traded in it — all performed</li>
+                <li>✓ the state that issued it — still exists</li>
+                <li class="dir-missing">✗ the next trade — nobody will take it tomorrow</li>
+              </ul>
+              <p>The past is fully intact. The worth is fully gone. If value were pushed from the past,
+              this note could not be worthless — its past is all still there. Collectors do pay real money
+              for it now, as a souvenir: the one kind of value it kept is the kind that was never monetary.</p>
+            </section>
+
+            <section class="dir-card">
+              <h3>Test 3 · The order a currency dies</h3>
+              <p>Break the anchor and watch <em>which value dies first</em>. Nothing behind the money will change. Watch what happens ahead of it.</p>
+              <p>
+                <button id="break-anchor" class="dir-btn">Break the anchor</button>
+                <button id="reset-anchor" class="dir-btn dir-btn-ghost">Reset</button>
+              </p>
+              <div class="dir-bars">
+                <div class="dir-bar-row"><span>Savings <small>(held for next year)</small></span><div class="dir-bar"><div id="bar-savings"></div></div></div>
+                <div class="dir-bar-row"><span>Contracts <small>(next year's rent)</small></span><div class="dir-bar"><div id="bar-contracts"></div></div></div>
+                <div class="dir-bar-row"><span>Groceries <small>(today's bread)</small></span><div class="dir-bar"><div id="bar-bread"></div></div></div>
+                <div class="dir-bar-row"><span>Taxes <small>(the compelled floor)</small></span><div class="dir-bar"><div id="bar-tax"></div></div></div>
+              </div>
+              <p class="dir-note" id="death-caption">The bars show how much of each use the currency still carries.</p>
+            </section>
+
+            <section class="dir-card">
+              <h3>The verdict</h3>
+              <div class="dir-two">
+                <div class="dir-push">
+                  <h4>Push</h4>
+                  <p>Worth is loaded in from behind — metal, labour, decree — and carried inside the money like cargo in a hold. Feels natural. Fails all three tests.</p>
+                </div>
+                <div class="dir-pull">
+                  <h4>Pull</h4>
+                  <p>Worth is drawn in from ahead, at the margin, by the next trade — the exchange that happens only because this thing is accepted. Passes all three.</p>
+                </div>
+              </div>
+              <p>One honest concession: backing can help <em>start</em> acceptance — it is one of the four bootstrap engines.
+              It never becomes the worth. The vault can light the fire; it was never the heat.</p>
+              <p class="dir-question">The question beneath every money question: <strong>which way does the worth flow?</strong></p>
+            </section>
+          </div>
+        </div>
+      `;
+
+      appContainer.appendChild(room);
+      appContainer.appendChild(backButton);
+      document.body.appendChild(appContainer);
+
+      // --- Test 1: the two dials. Worth reads ONLY from acceptance. ---
+      const dialBacking = room.querySelector('#dial-backing');
+      const dialAccept = room.querySelector('#dial-accept');
+      function updateDials() {
+        const b = +dialBacking.value;
+        const a = +dialAccept.value;
+        room.querySelector('#backing-read').textContent = b + '%';
+        room.querySelector('#accept-read').textContent = a + '%';
+        const worth = Math.round(Math.pow(a / 100, 1.4) * 100);   // network convexity; backing absent on purpose
+        room.querySelector('#value-fill').style.width = worth + '%';
+        room.querySelector('#value-read').textContent =
+          worth === 0 ? 'Nothing. No one will take it.' : (worth / 10).toFixed(1) + ' loaves of bread';
+        let caption;
+        if (a < 10 && b > 80) {
+          caption = 'A full vault, no takers: the notes buy nothing. France ran this experiment in 1793 — the assignats were backed by land, and died.';
+        } else if (a > 70 && b === 0) {
+          caption = 'No vault at all: works fine. The dollar has been running this experiment since 1971.';
+        } else if (a > 70 && b > 80) {
+          caption = 'Backed AND accepted — gold coins in their prime. Now slide the backing to zero and watch what the worth does: nothing.';
+        } else {
+          caption = 'Move each dial in turn. One of them changes what the note buys. The other never does.';
+        }
+        room.querySelector('#dial-caption').textContent = caption;
+      }
+      dialBacking.addEventListener('input', updateDials);
+      dialAccept.addEventListener('input', updateDials);
+      updateDials();
+
+      // --- Test 3: the order of death. Longest pull snaps first. ---
+      let deathTimer = null;
+      const deathBars = {
+        savings: room.querySelector('#bar-savings'),
+        contracts: room.querySelector('#bar-contracts'),
+        bread: room.querySelector('#bar-bread'),
+        tax: room.querySelector('#bar-tax')
+      };
+      const deathCaption = room.querySelector('#death-caption');
+      function setDeathBars(s, c, br, tx) {
+        deathBars.savings.style.width = s + '%';
+        deathBars.contracts.style.width = c + '%';
+        deathBars.bread.style.width = br + '%';
+        deathBars.tax.style.width = tx + '%';
+      }
+      function resetDeath() {
+        if (deathTimer) { clearInterval(deathTimer); deathTimer = null; }
+        setDeathBars(100, 100, 100, 100);
+        deathCaption.textContent = 'The bars show how much of each use the currency still carries.';
+      }
+      room.querySelector('#reset-anchor').onclick = resetDeath;
+      room.querySelector('#break-anchor').onclick = () => {
+        resetDeath();
+        let t = 0;
+        deathTimer = setInterval(() => {
+          t += 1;
+          const savings = Math.max(0, 100 - t * 8);
+          const contracts = Math.max(0, 100 - Math.max(0, t - 8) * 7);
+          const bread = Math.max(25, 100 - Math.max(0, t - 20) * 4);
+          setDeathBars(savings, contracts, bread, 100);
+          if (t < 8) {
+            deathCaption.textContent = 'Savings flee first — nobody will hold it for next year.';
+          } else if (t < 20) {
+            deathCaption.textContent = 'Contracts flee second — nobody writes next year’s rent in it.';
+          } else {
+            deathCaption.textContent = 'The corner shop still takes it — it buys bread today even as it can no longer carry a promise to Tuesday. Taxes remain: the one use an authority can compel. Value drained from the far future toward the present. The longest pull snapped first.';
+          }
+          if (t > 42) { clearInterval(deathTimer); deathTimer = null; }
+        }, 120);
+      };
+    }
+
+    // The Tally — the rope with four buttons. A shared ledger that knows
+    // a gift from a debt: every entry carries its clearing discipline.
+    function launchTallyRoom() {
+      const STORE_KEY = 'bovi.tally.v1';
+      const MODES = {
+        V: { name: 'Value',     color: '#8b5cf6', rule: 'settles now',            ask: 'Is the price right?' },
+        B: { name: 'Balanced',  color: '#10b981', rule: 'nets over time',         ask: 'Are we even?' },
+        O: { name: 'Obligated', color: '#f59e0b', rule: 'due — with a deadline',  ask: 'Who decided this?' },
+        I: { name: 'Immediate', color: '#ef4444', rule: 'never settles',          ask: 'Are we okay?' }
+      };
+
+      let state = { members: [], entries: [] };
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORE_KEY));
+        if (saved && Array.isArray(saved.members)) state = saved;
+      } catch (e) { /* fresh tally */ }
+
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-tally-room';
+      appContainer.style.cssText = 'position: fixed; inset: 0; background: #0b0e14; z-index: 2000; overflow: auto;';
+
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed; top: 1rem; right: 1rem;
+        background: rgba(139, 92, 246, 0.12); border: 1px solid #8b5cf6; color: #ddd1ff;
+        padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; z-index: 2001;
+      `;
+      backButton.onclick = () => appContainer.remove();
+
+      const room = document.createElement('div');
+      room.innerHTML = `
+        <style>
+          .ty-wrap { font-family: system-ui, sans-serif; color: #e7eef9; padding: 72px 18px 48px; min-height: 100vh; }
+          .ty-shell { width: min(960px, 100%); margin: 0 auto; display: grid; gap: 18px; }
+          .ty-hero h2 { margin: 0 0 8px; font-size: clamp(26px, 5vw, 44px); line-height: 1.05; }
+          .ty-hero p { margin: 0; color: #aebbd0; max-width: 740px; }
+          .ty-card { background: #121826; border: 1px solid #232c40; border-radius: 14px; padding: 18px 20px; }
+          .ty-card h3 { margin: 0 0 8px; color: #ddd1ff; font-size: 17px; }
+          .ty-muted { color: #8fa0b8; font-size: 13px; }
+          .ty-positions { display: grid; gap: 8px; margin-top: 10px; }
+          .ty-pos-row { display: grid; grid-template-columns: 110px 1fr 150px; align-items: center; gap: 10px; }
+          .ty-pos-name { font-weight: 600; font-size: 14px; }
+          .ty-pos-track { position: relative; height: 16px; background: #0b0e14; border: 1px solid #232c40; border-radius: 6px; overflow: hidden; }
+          .ty-pos-mid { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #3a4763; }
+          .ty-pos-fill { position: absolute; top: 0; bottom: 0; }
+          .ty-pos-read { font-size: 13px; color: #aebbd0; text-align: right; }
+          .ty-gift-chip { color: #ef4444; }
+          .ty-rope-check { margin-top: 10px; font-size: 13px; color: #62c6a6; }
+          .ty-form { display: grid; gap: 10px; }
+          .ty-form-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+          .ty-form input, .ty-form select { background: #0b0e14; border: 1px solid #3a4763; color: #e7eef9; border-radius: 8px; padding: 7px 10px; font-size: 14px; }
+          .ty-form input[type=number] { width: 90px; }
+          .ty-mode-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+          .ty-mode-btn { border-radius: 10px; padding: 8px 14px; cursor: pointer; font-weight: 700; border: 2px solid transparent; background: #0b0e14; color: #e7eef9; }
+          .ty-mode-btn small { display: block; font-weight: 400; font-size: 11px; color: #8fa0b8; }
+          .ty-mode-btn.sel { border-color: currentColor; }
+          .ty-note { min-height: 1.4em; font-size: 13px; font-style: italic; color: #9fb0c8; }
+          .ty-add { background: rgba(139, 92, 246, 0.14); border: 1px solid #8b5cf6; color: #ddd1ff; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: 700; }
+          .ty-ledger { display: grid; gap: 6px; margin-top: 8px; }
+          .ty-entry { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #0e1420; border: 1px solid #1d2740; border-radius: 10px; padding: 8px 12px; font-size: 14px; }
+          .ty-entry.settled { opacity: 0.45; }
+          .ty-entry.overdue { border-color: #f59e0b; }
+          .ty-chip { font-weight: 800; border-radius: 6px; padding: 1px 8px; font-size: 12px; color: #0b0e14; }
+          .ty-what { flex: 1; min-width: 140px; }
+          .ty-small-btn { background: transparent; border: 1px solid #3a4763; color: #aebbd0; border-radius: 6px; padding: 3px 10px; cursor: pointer; font-size: 12px; }
+          .ty-never { font-size: 12px; color: #ef4444; }
+          .ty-toggle-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+          .ty-blind-warning { color: #ff9d8a; font-weight: 600; }
+          .ty-blind-row { color: #ff9d8a; }
+          .ty-demo-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+          @media (max-width: 620px) { .ty-pos-row { grid-template-columns: 80px 1fr 110px; } }
+        </style>
+        <div class="ty-wrap">
+          <div class="ty-shell">
+            <div class="ty-hero">
+              <h2>The Tally</h2>
+              <p>The village rope, with the one thing a modern group needs added: <strong>every entry carries its mode.</strong>
+              A dinner split is not a gift; a gift is not a loan; the rent is not up for negotiation.
+              Four buttons keep them apart — so the friendship survives the bookkeeping.</p>
+            </div>
+
+            <section class="ty-card">
+              <h3>The canvas — where everyone stands</h3>
+              <p class="ty-muted">Not a balance in a silo. A <em>position</em> in a small web of unfinished exchange:
+              what has flowed, what leans, what never settles. Nobody is "in debt" — the books just lean, and they are trusted to right themselves.</p>
+              <div class="ty-positions" id="ty-positions"></div>
+              <div class="ty-rope-check" id="ty-rope-check"></div>
+            </section>
+
+            <section class="ty-card">
+              <h3>Mark the rope</h3>
+              <div class="ty-form">
+                <div class="ty-form-row">
+                  <select id="ty-from"></select>
+                  <span>gave</span>
+                  <select id="ty-to"></select>
+                  <input type="text" id="ty-what" placeholder="what was given" size="22">
+                  <input type="number" id="ty-marks" placeholder="marks" min="1" value="10">
+                  <input type="date" id="ty-due" style="display:none" title="due date">
+                </div>
+                <div class="ty-mode-btns" id="ty-mode-btns"></div>
+                <div class="ty-note" id="ty-mode-note">Pick the mode when you make the entry — that is the whole trick.</div>
+                <div class="ty-form-row">
+                  <button class="ty-add" id="ty-add">Mark it</button>
+                  <input type="text" id="ty-new-member" placeholder="add a person" size="14">
+                  <button class="ty-small-btn" id="ty-add-member">Add</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="ty-card">
+              <h3>Cut the rope — share it</h3>
+              <p class="ty-muted">A fresh ledger with nobody on it is worth nothing — so the Tally borrows its network.
+              It travels as a message in the chat the group already has: the whole ledger rides inside the link.
+              No server, no account, no app to install. (A cut rope can be copied — so when slices disagree, the group lays out the newest one together, the way the village always did.)</p>
+              <div class="ty-form-row" style="margin-top:8px">
+                <button class="ty-small-btn" id="ty-copy-link">Copy rope link</button>
+                <button class="ty-small-btn" id="ty-share">Share to the group chat</button>
+                <span class="ty-muted" id="ty-share-status"></span>
+              </div>
+            </section>
+
+            <section class="ty-card">
+              <h3>The ledger</h3>
+              <div class="ty-toggle-row">
+                <label style="cursor:pointer"><input type="checkbox" id="ty-blind"> Mode-blind view <span class="ty-muted">(what Splitwise does)</span></label>
+                <span id="ty-blind-caption" class="ty-blind-warning"></span>
+              </div>
+              <div class="ty-ledger" id="ty-ledger"></div>
+              <p class="ty-muted" id="ty-compression"></p>
+              <div class="ty-demo-btns">
+                <button class="ty-small-btn" id="ty-demo">Load the bridal party</button>
+                <button class="ty-small-btn" id="ty-clear">Clear the rope</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      `;
+
+      appContainer.appendChild(room);
+      appContainer.appendChild(backButton);
+      document.body.appendChild(appContainer);
+
+      const $t = sel => room.querySelector(sel);
+      const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      let selectedMode = 'B';
+
+      function save() { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+
+      // Positions: giver +, receiver −. Gifts (I) and settled entries never count.
+      function positions(includeGifts) {
+        const pos = {};
+        state.members.forEach(m => pos[m] = 0);
+        state.entries.forEach(e => {
+          if (e.settled) return;
+          if (e.mode === 'I' && !includeGifts) return;
+          pos[e.from] = (pos[e.from] || 0) + e.marks;
+          pos[e.to] = (pos[e.to] || 0) - e.marks;
+        });
+        return pos;
+      }
+
+      function renderModeButtons() {
+        $t('#ty-mode-btns').innerHTML = Object.entries(MODES).map(([k, m]) =>
+          `<button class="ty-mode-btn${k === selectedMode ? ' sel' : ''}" data-mode="${k}" style="color:${m.color}">${k} · ${m.name}<small>${m.rule}</small></button>`
+        ).join('');
+        room.querySelectorAll('.ty-mode-btn').forEach(btn => {
+          btn.onclick = () => {
+            selectedMode = btn.dataset.mode;
+            $t('#ty-due').style.display = selectedMode === 'O' ? '' : 'none';
+            const notes = {
+              V: 'A spot trade: pay for what you had. Settles now.',
+              B: 'Reciprocity: the books lean and right themselves. No one is in debt.',
+              O: 'A due thing. Carries a date — and a consequence if it is missed.',
+              I: 'A gift never settles. The ledger records it only so no one mistakes it for a loan.'
+            };
+            $t('#ty-mode-note').textContent = notes[selectedMode];
+            renderModeButtons();
+          };
+        });
+      }
+
+      function renderMembers() {
+        const opts = state.members.map(m => `<option>${esc(m)}</option>`).join('');
+        $t('#ty-from').innerHTML = opts;
+        $t('#ty-to').innerHTML = opts;
+      }
+
+      function renderPositions() {
+        const blind = $t('#ty-blind').checked;
+        const pos = positions(blind);
+        const maxAbs = Math.max(10, ...Object.values(pos).map(Math.abs));
+        $t('#ty-positions').innerHTML = state.members.map(m => {
+          const p = pos[m] || 0;
+          const pct = Math.abs(p) / maxAbs * 50;
+          const side = p >= 0 ? 'left: 50%;' : 'right: 50%;';
+          const color = p >= 0 ? '#10b981' : '#4f7fd9';
+          const gifts = state.entries.filter(e => e.mode === 'I' && !e.settled && (e.from === m || e.to === m)).length;
+          const giftChip = (!blind && gifts) ? ` <span class="ty-gift-chip">♥×${gifts}</span>` : '';
+          const read = p === 0 ? 'even' : (p > 0 ? `leans your way +${p}` : `leans away ${p}`);
+          return `<div class="ty-pos-row"><span class="ty-pos-name">${esc(m)}${giftChip}</span>
+            <div class="ty-pos-track"><div class="ty-pos-mid"></div><div class="ty-pos-fill" style="${side} width:${pct}%; background:${color}"></div></div>
+            <span class="ty-pos-read">${read}</span></div>`;
+        }).join('') || '<p class="ty-muted">No one on the rope yet. Add people below, or load the bridal party.</p>';
+
+        const net = Object.values(pos).reduce((a, b) => a + b, 0);
+        $t('#ty-rope-check').textContent = state.members.length
+          ? `Lay out the rope: net = ${net} ${net === 0 ? '✓ (what leaves one peg arrives at another — nothing minted in passing)' : '✗ THE ROPE HAS BEEN CUT'}`
+          : '';
+      }
+
+      function renderLedger() {
+        const blind = $t('#ty-blind').checked;
+        $t('#ty-blind-caption').textContent = blind
+          ? 'Every entry is now a debt — including the gifts. This is the damage.'
+          : '';
+        const today = new Date().toISOString().slice(0, 10);
+        $t('#ty-ledger').innerHTML = state.entries.slice().reverse().map(e => {
+          const m = MODES[e.mode];
+          if (blind) {
+            const isGift = e.mode === 'I';
+            return `<div class="ty-entry${isGift ? ' ty-blind-row' : ''}${e.settled ? ' settled' : ''}">
+              <span class="ty-chip" style="background:#8fa0b8">OWES</span>
+              <span class="ty-what">${esc(e.to)} owes ${esc(e.from)} ${e.marks} — ${esc(e.what)}${isGift ? ' (this was a gift)' : ''}</span></div>`;
+          }
+          const overdue = e.mode === 'O' && !e.settled && e.due && e.due < today;
+          const due = e.mode === 'O' && e.due ? ` · due ${esc(e.due)}${overdue ? ' — OVERDUE' : ''}` : '';
+          const action = e.settled
+            ? '<span class="ty-muted">settled</span>'
+            : e.mode === 'I'
+              ? '<span class="ty-never">♥ untouchable — never settles</span>'
+              : `<button class="ty-small-btn" data-settle="${e.id}">${e.mode === 'B' ? 'evened out' : 'settle'}</button>`;
+          return `<div class="ty-entry${e.settled ? ' settled' : ''}${overdue ? ' overdue' : ''}">
+            <span class="ty-chip" style="background:${m.color}">${e.mode}</span>
+            <span class="ty-what">${esc(e.from)} → ${esc(e.to)}: ${esc(e.what)} (${e.marks})${due}</span>
+            ${action}</div>`;
+        }).join('') || '<p class="ty-muted">The rope is clean.</p>';
+
+        room.querySelectorAll('[data-settle]').forEach(btn => {
+          btn.onclick = () => {
+            const entry = state.entries.find(e => e.id === btn.dataset.settle);
+            if (entry) { entry.settled = true; save(); renderAll(); }
+          };
+        });
+
+        const live = state.entries.filter(e => !e.settled && e.mode !== 'I');
+        const gross = live.reduce((a, e) => a + e.marks, 0);
+        const pos = positions(false);
+        const netLean = Object.values(pos).reduce((a, b) => a + Math.abs(b), 0) / 2;
+        $t('#ty-compression').textContent = live.length >= 2
+          ? `The rope nets ${gross} marks of promises down to ${netLean} of lean. The circle you cannot see is the part it forgave.`
+          : '';
+      }
+
+      function renderAll() { renderMembers(); renderPositions(); renderLedger(); }
+
+      $t('#ty-add-member').onclick = () => {
+        const name = $t('#ty-new-member').value.trim();
+        if (name && !state.members.includes(name)) {
+          state.members.push(name);
+          $t('#ty-new-member').value = '';
+          save(); renderAll();
+        }
+      };
+
+      $t('#ty-add').onclick = () => {
+        const from = $t('#ty-from').value, to = $t('#ty-to').value;
+        const what = $t('#ty-what').value.trim() || 'something';
+        const marks = Math.max(1, parseInt($t('#ty-marks').value, 10) || 1);
+        if (!from || !to || from === to) return;
+        state.entries.push({
+          id: 'e' + Math.random().toString(36).slice(2, 9),
+          from, to, what, marks,
+          mode: selectedMode,
+          due: selectedMode === 'O' ? $t('#ty-due').value : undefined,
+          settled: selectedMode === 'V' ? false : false,
+          ts: Date.now()
+        });
+        $t('#ty-what').value = '';
+        save(); renderAll();
+      };
+
+      $t('#ty-blind').onchange = renderAll;
+
+      $t('#ty-demo').onclick = () => {
+        const soon = new Date(Date.now() + 7 * 86400e3).toISOString().slice(0, 10);
+        state = {
+          members: ['Bride', 'Sister', 'Teacher', 'Ana', 'Beth', 'Mum'],
+          entries: [
+            { id: 'd1', from: 'Sister', to: 'Teacher', what: 'villa deposit share', marks: 100, mode: 'O', due: soon },
+            { id: 'd2', from: 'Sister', to: 'Ana', what: 'villa deposit share', marks: 100, mode: 'O', due: soon },
+            { id: 'd3', from: 'Sister', to: 'Beth', what: 'villa deposit share', marks: 100, mode: 'O', due: soon },
+            { id: 'd4', from: 'Ana', to: 'Bride', what: 'airport pickup petrol', marks: 20, mode: 'B' },
+            { id: 'd5', from: 'Teacher', to: 'Beth', what: 'covered the brunch', marks: 35, mode: 'V' },
+            { id: 'd6', from: 'Beth', to: 'Teacher', what: 'spa booking share', marks: 60, mode: 'B' },
+            { id: 'd7', from: 'Mum', to: 'Bride', what: 'the spa morning — my treat', marks: 150, mode: 'I' }
+          ]
+        };
+        save(); renderAll();
+      };
+
+      $t('#ty-clear').onclick = () => {
+        state = { members: [], entries: [] };
+        save(); renderAll();
+      };
+
+      // --- cut the rope: the ledger travels inside the link ---
+      function ropeLink() {
+        return location.origin + location.pathname + '#tally=' + encodeTallyState(state);
+      }
+      function ropeMessage() {
+        const pos = positions(false);
+        const leans = state.members
+          .map(m => `${m} ${pos[m] > 0 ? '+' + pos[m] : pos[m] === 0 ? 'even' : pos[m]}`)
+          .join(' · ');
+        const gifts = state.entries.filter(e => e.mode === 'I' && !e.settled).length;
+        return `🪢 The Tally\n${leans}\n${gifts ? `♥ ${gifts} gift${gifts > 1 ? 's' : ''} on the rope (never settle)\n` : ''}Lay it out: ${ropeLink()}`;
+      }
+      $t('#ty-copy-link').onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(ropeLink());
+          $t('#ty-share-status').textContent = 'Link copied — the whole ledger is inside it.';
+        } catch (e) {
+          $t('#ty-share-status').textContent = ropeLink().slice(0, 60) + '…';
+        }
+      };
+      $t('#ty-share').onclick = async () => {
+        const msg = ropeMessage();
+        if (navigator.share) {
+          try { await navigator.share({ text: msg }); return; } catch (e) { /* fall through */ }
+        }
+        try {
+          await navigator.clipboard.writeText(msg);
+          $t('#ty-share-status').textContent = 'Message copied — paste it into the group chat.';
+        } catch (e) {
+          $t('#ty-share-status').textContent = 'Could not copy — use the rope link instead.';
+        }
+      };
+
+      renderModeButtons();
+      renderAll();
+    }
+
+    // Rope-slice serialisation: compact arrays, unicode-safe base64url.
+    function encodeTallyState(s) {
+      const compact = {
+        m: s.members,
+        e: s.entries.map(e => [e.from, e.to, e.what, e.marks, e.mode, e.due || '', e.settled ? 1 : 0])
+      };
+      const bytes = new TextEncoder().encode(JSON.stringify(compact));
+      let bin = '';
+      bytes.forEach(b => bin += String.fromCharCode(b));
+      return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+    function decodeTallyState(str) {
+      const bin = atob(str.replace(/-/g, '+').replace(/_/g, '/'));
+      const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+      const compact = JSON.parse(new TextDecoder().decode(bytes));
+      return {
+        members: compact.m,
+        entries: compact.e.map((e, i) => ({
+          id: 'r' + i + '-' + e[0] + '-' + e[3],
+          from: e[0], to: e[1], what: e[2], marks: e[3], mode: e[4],
+          due: e[5] || undefined, settled: !!e[6], ts: 0
+        }))
+      };
+    }
+
+    // A rope slice arrived: someone opened a shared tally link.
+    (function receiveRopeSlice() {
+      if (!location.hash.startsWith('#tally=')) return;
+      let incoming;
+      try {
+        incoming = decodeTallyState(location.hash.slice(7));
+        if (!Array.isArray(incoming.members) || !Array.isArray(incoming.entries)) return;
+      } catch (e) { return; }
+      history.replaceState(null, '', location.pathname + location.search);
+      const marks = incoming.entries.reduce((a, e) => a + (e.marks || 0), 0);
+      const ok = confirm(
+        `A rope slice arrived: ${incoming.members.length} people, ` +
+        `${incoming.entries.length} entries, ${marks} marks.\n\n` +
+        `Lay it out? (It replaces the tally currently on this device.)`
+      );
+      if (!ok) return;
+      localStorage.setItem('bovi.tally.v1', JSON.stringify(incoming));
+      launchTallyRoom();
+    })();
 
     // Launch full BOVI app for M2-M4
     function launchFullBoviApp(level) {

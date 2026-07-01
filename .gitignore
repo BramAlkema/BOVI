@@ -41,3 +41,4 @@ temp/
 # Tooling / local agent state (never commit)
 .claude/
 .agent-os/
+.gstack/
