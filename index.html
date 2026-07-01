@@ -651,6 +651,15 @@
           <span style="color: #a3b4d4;">A shared ledger that knows a gift from a debt. Mark the rope, watch the books lean, and see what Splitwise would have done to the same weekend.</span><br>
           <span style="color: #a78bfa; font-weight: 700;">Open →</span>
         </div>
+        <div onclick="launchCollapseDrill()"
+             onmouseover="this.style.borderColor='#f59e0b'"
+             onmouseout="this.style.borderColor='#b07b26'"
+             style="background: rgba(245, 158, 11, 0.06); border: 1px solid #b07b26; border-radius: 14px;
+                    padding: 16px 20px; cursor: pointer; transition: border-color 0.2s ease;">
+          <strong style="color: #ffe1b0;">The Collapse Drill — ten days in five minutes.</strong><br>
+          <span style="color: #a3b4d4;">A fire drill for your money: survive the Republic of Valdoro's bad week. You get a countdown. Two billion people don't.</span><br>
+          <span style="color: #f59e0b; font-weight: 700;">Begin →</span>
+        </div>
       </div>
 
       <div class="layers-grid">
@@ -3660,6 +3669,291 @@
 
       renderModeButtons();
       renderAll();
+    }
+
+    // The Collapse Drill — ten days in five minutes. A fire drill for money:
+    // the Ch-19 collapse order, played. The country is invented; the mechanics are not.
+    function launchCollapseDrill() {
+      // price level and street rate (₣ per $) by day
+      const P = [0, 1.0, 1.1, 1.25, 1.4, 1.7, 2.0, 2.4, 2.9, 3.4, 4.0];
+      const RATE = [0, 10, 12, 14, 16, 20, 24, 28, 33, 38, 40];
+      const START_REAL = 1500;   // ₣1,200 at day-0 prices + the salary you had every right to expect
+
+      const S = { day: 1, cash: 200, bank: 1000, frozen: 0, usd: 0, goods: 0, favors: 0, rentDeferred: false, trueque: false };
+
+      const fmt = n => Math.round(n).toLocaleString('en');
+      const flTotal = () => S.cash + S.bank;
+      function spendFl(amount) { // take from cash first, then bank; returns what was actually spent
+        const fromCash = Math.min(S.cash, amount);
+        S.cash -= fromCash;
+        const fromBank = Math.min(S.bank, amount - fromCash);
+        S.bank -= fromBank;
+        return fromCash + fromBank;
+      }
+
+      const DAYS = [
+        null,
+        {
+          title: 'Day 1 — Payday',
+          text: 'Valdoro has had a bad decade. Your salary lands: ₣1,000 in the bank, ₣200 in your pocket. The news mentions “temporary pressure on the florin.” The street changes dollars at ₣10. The official rate insists on ₣8.',
+          choices: [
+            { label: 'Leave it in the bank — banks are safer than mattresses',
+              fb: 'The bank is safe. The florin inside it is another question.',
+              do: () => {} },
+            { label: 'Withdraw half to cash',
+              fb: 'Cash melts too — but it melts in your hand, spendable.',
+              do: () => { const m = Math.min(S.bank, 500); S.bank -= m; S.cash += m; } },
+            { label: 'Change ₣600 into dollars at the street rate',
+              fb: 'You paid the street rate. It will turn out to be the honest one.',
+              do: () => { const got = spendFl(600); S.usd += got / RATE[1]; } }
+          ]
+        },
+        {
+          title: 'Day 2 — The resignation',
+          text: 'The central bank governor resigns “for family reasons.” The street rate jumps to ₣12. The supermarket re-stickers the shelves by hand.',
+          choices: [
+            { label: 'Change another ₣400 (the changer now takes 5%)',
+              fb: 'A spread is the fee reality charges for lateness.',
+              do: () => { const got = spendFl(400); S.usd += (got * 0.95) / RATE[2]; } },
+            { label: 'Wait — this will blow over',
+              fb: 'Waiting is a position too. It is called “long the florin.”',
+              do: () => {} },
+            { label: 'Stock the pantry with ₣300 of rice, oil, flour',
+              fb: 'Rice does not devalue. It sits there, being rice.',
+              do: () => { const got = spendFl(300); S.goods += got / P[2]; } }
+          ]
+        },
+        {
+          title: 'Day 3 — The corralito',
+          text: 'The banks announce “temporary” withdrawal limits. Whatever is in your account, most of it is now behind glass. The queue outside the branch starts before dawn.',
+          choices: [
+            { label: 'Queue at dawn, every day, for the daily cap',
+              fb: 'Four mornings of queueing claws back ₣200. The rest waits behind the glass.',
+              do: () => { const f = S.bank * 0.7; const pulled = Math.min(200, f); S.frozen += f - pulled; S.cash += pulled; S.bank -= f; } },
+            { label: 'Accept it — the money is still yours, on paper',
+              fb: 'On paper. The paper is the problem.',
+              do: () => { const f = S.bank * 0.7; S.frozen += f; S.bank -= f; } },
+            { label: 'Join the pot-banging outside the bank',
+              fb: 'The pots change nothing tonight. The neighbours remember who came.',
+              do: () => { const f = S.bank * 0.7; S.frozen += f; S.bank -= f; S.favors += 1; } }
+          ]
+        },
+        {
+          title: 'Day 4 — The landlord',
+          text: 'Rent is due: ₣280 at today’s prices. Your landlord would rather have dollars. He is not being greedy; he is being early.',
+          choices: [
+            { label: 'Pay in dollars at the street rate (if you have them)',
+              fb: 'Dollars at the street rate: the cheapest rent in the building.',
+              do: () => { const need = 280 / RATE[4]; if (S.usd >= need) { S.usd -= need; } else { spendFl(308); } } },
+            { label: 'Pay florins — with the 10% “florin premium” he now charges',
+              fb: 'He knows what the florin will be worth by Friday. The premium is his index.',
+              do: () => { spendFl(308); } },
+            { label: 'Promise next month indexed to the street rate',
+              fb: 'You wrote a promise in a unit that holds its meaning. It will cost what it says.',
+              do: () => { S.rentDeferred = true; } }
+          ]
+        },
+        {
+          title: 'Day 5 — The shop',
+          text: 'Prices are up forty per cent overnight. The shopkeeper apologises to everyone and to no one. A neighbour’s kid needs schoolbooks nobody can find florins for.',
+          choices: [
+            { label: 'Stock up — ₣300 more into the pantry',
+              fb: 'The pantry is a savings account the finance ministry cannot reach.',
+              do: () => { const got = spendFl(300); S.goods += got / P[5]; } },
+            { label: 'Hold your cash — prices might fall back',
+              fb: 'They might. They have never yet.',
+              do: () => {} },
+            { label: 'Buy the schoolbooks (₣100), say nothing',
+              fb: 'Not counted. Remember this on day nine.',
+              do: () => { spendFl(100); S.favors += 1; } }
+          ]
+        },
+        {
+          title: 'Day 6 — The back room',
+          text: 'The official exchange window is “temporarily closed to individuals.” Above the clothing shop, a door with no sign changes florins at the real rate, minus five per cent.',
+          choices: [
+            { label: 'Change every florin you can reach',
+              fb: 'The back room’s rate is unofficial, posted daily, and correct.',
+              do: () => { const got = spendFl(flTotal()); S.usd += (got * 0.95) / RATE[6]; } },
+            { label: 'Change half',
+              fb: 'Half in, half out. The books lean both ways.',
+              do: () => { const got = spendFl(flTotal() / 2); S.usd += (got * 0.95) / RATE[6]; } },
+            { label: 'Keep the florins',
+              fb: 'Loyalty noted. The florin does not reciprocate.',
+              do: () => {} }
+          ]
+        },
+        {
+          title: 'Day 7 — The raise',
+          text: 'Your employer, apologetic, offers a choice: a twenty per cent raise in florins, or the same salary with a slice paid in dollars.',
+          choices: [
+            { label: 'Take the raise — ₣1,200 this month',
+              fb: 'Twenty per cent more of a unit worth forty per cent less.',
+              do: () => { S.cash += 1200; } },
+            { label: 'Take ₣500 plus $20',
+              fb: 'A smaller number that stays the same size.',
+              do: () => { S.cash += 500; S.usd += 20; } }
+          ]
+        },
+        {
+          title: 'Day 8 — The neighbour',
+          text: 'The woman across the hall — the one whose kid has new schoolbooks — needs flour and insulin money before Friday. She does not ask twice.',
+          choices: [
+            { label: 'Help — from the pantry and the pocket (₣100 + some rice)',
+              fb: 'Not counted. Not forgotten.',
+              do: () => { spendFl(100); S.goods = Math.max(0, S.goods - 30); S.favors += 2; } },
+            { label: 'You can’t — you have your own Friday coming',
+              fb: 'The wallet is saved. Something else is spent.',
+              do: () => {} }
+          ]
+        },
+        {
+          title: 'Day 9 — The club',
+          text: 'The neighbourhood opens a trading club: a hall, a noticeboard, and its own paper points. No one calls it money. Everyone uses it. Flour changes hands for haircuts, tutoring for tomatoes.',
+          choices: [
+            { label: 'Join — bring what you have, and what you are owed',
+              fb: 'A population re-weaving the rope from scratch. The pull that made money does not stop when a money dies.',
+              do: () => { S.trueque = true; } },
+            { label: 'Stay out — paper points from a church hall?',
+              fb: 'The hall’s points buy flour tonight. The florin does not.',
+              do: () => {} }
+          ]
+        },
+        {
+          title: 'Day 10 — The plan',
+          text: 'A new finance minister announces the Plan: a new peg, one zero dropped, and the frozen deposits released — converted at a rate the queue outside the bank has opinions about.',
+          choices: [
+            { label: 'Lay out the rope — count what survived',
+              fb: '',
+              do: () => {} }
+          ]
+        }
+      ];
+
+      const appContainer = document.createElement('div');
+      appContainer.id = 'bovi-collapse-drill';
+      appContainer.style.cssText = 'position: fixed; inset: 0; background: #0b0e14; z-index: 2000; overflow: auto;';
+
+      const backButton = document.createElement('button');
+      backButton.innerHTML = '← Back to Home';
+      backButton.style.cssText = `
+        position: fixed; top: 1rem; right: 1rem;
+        background: rgba(245, 158, 11, 0.12); border: 1px solid #f59e0b; color: #ffe1b0;
+        padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; z-index: 2001;
+      `;
+      backButton.onclick = () => appContainer.remove();
+
+      const room = document.createElement('div');
+      room.innerHTML = `
+        <style>
+          .cd-wrap { font-family: system-ui, sans-serif; color: #e7eef9; padding: 72px 18px 48px; min-height: 100vh; }
+          .cd-shell { width: min(760px, 100%); margin: 0 auto; display: grid; gap: 16px; }
+          .cd-hero h2 { margin: 0 0 6px; font-size: clamp(26px, 5vw, 42px); }
+          .cd-hero p { margin: 0; color: #aebbd0; }
+          .cd-holdings { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: #c6d2e4; background: #121826; border: 1px solid #232c40; border-radius: 10px; padding: 10px 14px; }
+          .cd-holdings b { color: #ffe1b0; }
+          .cd-card { background: #121826; border: 1px solid #232c40; border-radius: 14px; padding: 20px 22px; }
+          .cd-card h3 { margin: 0 0 8px; color: #ffe1b0; }
+          .cd-card p { color: #c6d2e4; line-height: 1.55; }
+          .cd-choices { display: grid; gap: 8px; margin-top: 12px; }
+          .cd-choice { text-align: left; background: #0e1420; border: 1px solid #3a4763; color: #e7eef9; border-radius: 10px; padding: 10px 14px; cursor: pointer; font-size: 14px; }
+          .cd-choice:hover { border-color: #f59e0b; }
+          .cd-fb { margin-top: 12px; color: #9fb0c8; font-style: italic; }
+          .cd-next { margin-top: 10px; background: rgba(245, 158, 11, 0.14); border: 1px solid #f59e0b; color: #ffe1b0; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: 700; }
+          .cd-score { font-size: clamp(34px, 7vw, 56px); font-weight: 800; color: #ffe1b0; }
+          .cd-end p { color: #c6d2e4; line-height: 1.6; }
+          .cd-end .cd-invert { border-left: 3px solid #f59e0b; padding-left: 14px; }
+          .cd-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+        </style>
+        <div class="cd-wrap"><div class="cd-shell">
+          <div class="cd-hero">
+            <h2>The Collapse Drill</h2>
+            <p>Ten days in the Republic of Valdoro. You have a job, a flat, and ₣1,200 to your name.
+            Keep what you can. <em>The country is invented. Nothing else is.</em></p>
+          </div>
+          <div class="cd-holdings" id="cd-holdings"></div>
+          <div class="cd-card" id="cd-card"></div>
+        </div></div>
+      `;
+
+      appContainer.appendChild(room);
+      appContainer.appendChild(backButton);
+      document.body.appendChild(appContainer);
+
+      const $c = sel => room.querySelector(sel);
+
+      function renderHoldings() {
+        const d = Math.min(S.day, 10);
+        $c('#cd-holdings').innerHTML =
+          `<span>Pocket <b>₣${fmt(S.cash)}</b></span>` +
+          `<span>Bank <b>₣${fmt(S.bank)}</b>${S.frozen ? ` <span style="color:#8fa0b8">(+₣${fmt(S.frozen)} frozen)</span>` : ''}</span>` +
+          `<span>Dollars <b>$${S.usd.toFixed(1)}</b></span>` +
+          `<span>Pantry <b>${fmt(S.goods)}</b></span>` +
+          `<span>Web <b>♥${S.favors}</b></span>` +
+          `<span style="margin-left:auto">Prices <b>×${P[d].toFixed(2)}</b> · street <b>₣${RATE[d]}/$</b></span>`;
+      }
+
+      function realValue() {
+        const favorValue = S.favors * (S.trueque ? 35 : 15);
+        const goodsValue = S.goods * (S.trueque ? 1.1 : 1.0);
+        let real = S.cash / P[10] + S.bank / P[10] + (S.frozen * 0.35) / P[10] + (S.usd * RATE[10]) / P[10] + goodsValue + favorValue;
+        if (S.rentDeferred) real -= 220;
+        return real;
+      }
+
+      function renderDay() {
+        const day = DAYS[S.day];
+        renderHoldings();
+        $c('#cd-card').innerHTML = `
+          <h3>${day.title}</h3>
+          <p>${day.text}</p>
+          <div class="cd-choices">${day.choices.map((c, i) => `<button class="cd-choice" data-i="${i}">${c.label}</button>`).join('')}</div>
+          <div class="cd-fb" id="cd-fb"></div>
+        `;
+        room.querySelectorAll('.cd-choice').forEach(btn => {
+          btn.onclick = () => {
+            const choice = day.choices[+btn.dataset.i];
+            choice.do();
+            renderHoldings();
+            room.querySelectorAll('.cd-choice').forEach(b => {
+              b.disabled = true;
+              b.style.opacity = b === btn ? '1' : '0.35';
+              b.style.cursor = 'default';
+            });
+            $c('#cd-fb').innerHTML = (choice.fb ? esc2(choice.fb) + '<br>' : '') +
+              `<button class="cd-next" id="cd-next">${S.day === 10 ? 'The accounting' : 'Next day'} →</button>`;
+            $c('#cd-next').onclick = () => { S.day += 1; S.day > 10 ? renderEnd() : renderDay(); };
+          };
+        });
+      }
+      const esc2 = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+      function renderEnd() {
+        renderHoldings();
+        const kept = Math.max(0, Math.min(100, Math.round(realValue() / START_REAL * 100)));
+        const grade = kept >= 70 ? 'You unbundled early and the collapse mostly missed you.'
+          : kept >= 45 ? 'You unbundled late, but you unbundled. Most of the damage landed on what stayed bundled.'
+          : 'The florin was asked to do four jobs, and you let it. It failed at all four on the same day.';
+        $c('#cd-card').innerHTML = `
+          <div class="cd-end">
+            <h3>Day 11 — What survived</h3>
+            <div class="cd-score">${kept}%</div>
+            <p>${grade}</p>
+            <p>The moves you just made have names. Spending the florin fast and holding it briefly — the <strong>medium</strong>. The pantry and the dollars — the <strong>store</strong>, kept off the rail. Reading prices at the street rate, not the official one — the <strong>unit</strong>, kept in your head. The schoolbooks, the insulin money, the club in the church hall — the <strong>web</strong>: the books that lean, the rope re-woven when a money dies.</p>
+            <p class="cd-invert">You played this knowing the collapse was coming, in five minutes, with nothing at stake. That is easy mode.
+            Around two billion people run this stack with real money, no countdown, and school fees on Friday.
+            The most sophisticated monetary architecture in this game was not invented by a finance ministry — it is what ordinary people build when the official one fails them.</p>
+            <div class="cd-actions">
+              <button class="cd-next" id="cd-tally">Build the rope — open the Tally</button>
+              <button class="cd-next" id="cd-again" style="background:transparent">Run it again</button>
+            </div>
+          </div>
+        `;
+        $c('#cd-tally').onclick = () => { appContainer.remove(); launchTallyRoom(); };
+        $c('#cd-again').onclick = () => { appContainer.remove(); launchCollapseDrill(); };
+      }
+
+      renderDay();
     }
 
     // Rope-slice serialisation: compact arrays, unicode-safe base64url.
