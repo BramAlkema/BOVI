@@ -1,0 +1,2283 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A BOVI extraction X-ray for seeing the full exchange behind an ordinary platform receipt."
+    />
+    <title>BOVI — Extraction X-Ray</title>
+    <style>
+      :root {
+        --paper: #f2eee3;
+        --paper-deep: #e5dfd1;
+        --ink: #151817;
+        --muted: #626762;
+        --night: #101615;
+        --night-soft: #18201e;
+        --night-line: #33403c;
+        --white: #fffdf7;
+        --mint: #a9f4d0;
+        --mint-deep: #146647;
+        --coral: #ff6657;
+        --amber: #f3c35b;
+        --blue: #75a7ff;
+        --violet: #c39aff;
+        --shadow: 0 24px 70px rgba(30, 34, 30, 0.14);
+        --radius: 22px;
+        --pressure: 0.88;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 100;
+        top: 12px;
+        left: 12px;
+        padding: 0.7rem 1rem;
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--ink);
+        transform: translateY(-150%);
+        transition: transform 160ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 22px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        color: var(--ink);
+        font-size: 0.84rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        font-size: 0.7rem;
+        letter-spacing: 0;
+      }
+
+      .topbar-note {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .hero {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: clamp(56px, 10vw, 120px) 0 70px;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin: 0 0 1.1rem;
+        color: var(--mint-deep);
+        font-size: 0.76rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 28px;
+        height: 2px;
+        background: currentColor;
+        content: "";
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 940px;
+        margin-bottom: 1.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3.4rem, 9.4vw, 8.2rem);
+        font-weight: 500;
+        letter-spacing: -0.067em;
+        line-height: 0.87;
+      }
+
+      h1 em {
+        color: var(--coral);
+        font-weight: 500;
+      }
+
+      .hero-copy {
+        max-width: 700px;
+        margin-bottom: 2rem;
+        color: #3f4541;
+        font-size: clamp(1.05rem, 2vw, 1.38rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0.8rem 1.1rem;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--white);
+        cursor: pointer;
+        font-weight: 760;
+        text-decoration: none;
+        transition:
+          transform 160ms ease,
+          background 160ms ease,
+          color 160ms ease,
+          border-color 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button.secondary {
+        border-color: #aaa596;
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .button.xray {
+        background: var(--mint);
+        color: #0e2c21;
+      }
+
+      .prototype .button.secondary {
+        border-color: #66746f;
+        color: #d7dfdb;
+      }
+
+      .prototype .button.secondary:hover {
+        border-color: var(--mint);
+        color: var(--mint);
+      }
+
+      .button.small {
+        min-height: 40px;
+        padding: 0.58rem 0.86rem;
+        font-size: 0.86rem;
+      }
+
+      .prototype {
+        background: var(--night);
+        color: var(--white);
+        padding: 26px 0 clamp(70px, 8vw, 110px);
+      }
+
+      .prototype-shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .progress {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .progress-button {
+        position: relative;
+        min-height: 68px;
+        padding: 0.75rem;
+        overflow: hidden;
+        border: 1px solid var(--night-line);
+        border-radius: 13px;
+        background: transparent;
+        color: #89928e;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .progress-button::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background: var(--mint);
+        content: "";
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 180ms ease;
+      }
+
+      .progress-button.active {
+        border-color: #71817b;
+        color: var(--white);
+      }
+
+      .progress-button.active::after,
+      .progress-button.complete::after {
+        transform: scaleX(1);
+      }
+
+      .progress-button.complete {
+        color: #bdc8c3;
+      }
+
+      .progress-number {
+        display: block;
+        margin-bottom: 0.15rem;
+        color: var(--mint);
+        font-size: 0.7rem;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+      }
+
+      .progress-label {
+        font-size: 0.88rem;
+        font-weight: 730;
+      }
+
+      .step {
+        display: none;
+        animation: enter 280ms ease both;
+      }
+
+      .step.active {
+        display: block;
+      }
+
+      @keyframes enter {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .step-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+        gap: clamp(20px, 5vw, 70px);
+        align-items: end;
+        margin: 50px 0 34px;
+      }
+
+      .step-kicker {
+        margin-bottom: 0.65rem;
+        color: var(--mint);
+        font-size: 0.76rem;
+        font-weight: 850;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .step-heading h2 {
+        margin-bottom: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.3rem, 5vw, 5rem);
+        font-weight: 500;
+        letter-spacing: -0.05em;
+        line-height: 0.96;
+      }
+
+      .step-heading p {
+        margin-bottom: 0;
+        color: #aeb9b4;
+        font-size: 1rem;
+      }
+
+      .receipt-stage {
+        display: grid;
+        grid-template-columns: minmax(300px, 0.78fr) minmax(320px, 1.22fr);
+        gap: clamp(24px, 7vw, 90px);
+        align-items: center;
+        min-height: 590px;
+      }
+
+      .receipt {
+        position: relative;
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 34px 30px 38px;
+        background: var(--white);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.32);
+        color: var(--ink);
+        transform: rotate(-1deg);
+      }
+
+      .receipt::after {
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+        left: 0;
+        height: 12px;
+        background:
+          linear-gradient(135deg, var(--white) 8px, transparent 0) 0 0 / 16px 12px repeat-x,
+          linear-gradient(225deg, var(--white) 8px, transparent 0) 0 0 / 16px 12px repeat-x;
+        content: "";
+      }
+
+      .receipt-logo {
+        margin-bottom: 0.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.55rem;
+        text-align: center;
+      }
+
+      .receipt-meta {
+        margin-bottom: 1.8rem;
+        color: #70746f;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.73rem;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .receipt-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px dotted #c8c4b8;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.84rem;
+      }
+
+      .receipt-line.muted {
+        color: #72766f;
+      }
+
+      .receipt-line.total {
+        margin-top: 1rem;
+        padding: 0.9rem 0;
+        border-top: 2px solid var(--ink);
+        border-bottom: 2px solid var(--ink);
+        font-size: 1rem;
+        font-weight: 850;
+      }
+
+      .receipt-stamp {
+        width: max-content;
+        margin: 1.6rem auto 0;
+        padding: 0.3rem 0.65rem;
+        border: 2px solid #177554;
+        color: #177554;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.76rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transform: rotate(2deg);
+      }
+
+      .ordinary-copy {
+        max-width: 520px;
+      }
+
+      .ordinary-copy .big-question {
+        margin-bottom: 1.5rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2rem, 4.8vw, 4.5rem);
+        letter-spacing: -0.045em;
+        line-height: 1;
+      }
+
+      .ordinary-copy p {
+        max-width: 460px;
+        color: #aeb9b4;
+      }
+
+      .ordinary-copy .button {
+        margin-top: 1rem;
+      }
+
+      .model-note {
+        display: inline-flex;
+        gap: 0.5rem;
+        align-items: center;
+        margin-top: 1rem;
+        color: #8e9994;
+        font-size: 0.78rem;
+      }
+
+      .model-note::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--amber);
+        content: "";
+      }
+
+      .network-wrap {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--night-line);
+        border-radius: var(--radius);
+        background:
+          radial-gradient(circle at 50% 48%, rgba(169, 244, 208, 0.07), transparent 25%),
+          linear-gradient(rgba(169, 244, 208, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(169, 244, 208, 0.035) 1px, transparent 1px), #111917;
+        background-size:
+          auto,
+          34px 34px,
+          34px 34px,
+          auto;
+      }
+
+      .network-canvas {
+        position: relative;
+        min-height: 480px;
+      }
+
+      .network-lines {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+      }
+
+      .network-line {
+        fill: none;
+        stroke-linecap: round;
+        stroke-width: 5;
+      }
+
+      .network-line.money {
+        stroke: var(--coral);
+      }
+
+      .network-line.data {
+        stroke: var(--mint);
+        stroke-dasharray: 4 12;
+        stroke-width: 3;
+      }
+
+      .network-line.risk {
+        stroke: var(--amber);
+        stroke-dasharray: 14 9;
+        stroke-width: 3;
+      }
+
+      .actor {
+        position: absolute;
+        z-index: 2;
+        width: 184px;
+        padding: 0.85rem 0.9rem;
+        border: 1px solid #52605b;
+        border-radius: 14px;
+        background: rgba(16, 22, 21, 0.94);
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.22);
+      }
+
+      .actor strong {
+        display: block;
+        margin-bottom: 0.18rem;
+        font-size: 0.92rem;
+      }
+
+      .actor > span {
+        display: block;
+        color: #aeb9b4;
+        font-size: 0.75rem;
+      }
+
+      .actor.buyer {
+        top: 34px;
+        left: 30px;
+      }
+
+      .actor.restaurant {
+        bottom: 30px;
+        left: 30px;
+      }
+
+      .actor.courier {
+        right: 30px;
+        bottom: 30px;
+      }
+
+      .platform-core {
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        display: grid;
+        width: calc(125px + (65px * var(--pressure)));
+        height: calc(125px + (65px * var(--pressure)));
+        padding: 1rem;
+        place-items: center;
+        border: 1px solid rgba(169, 244, 208, 0.85);
+        border-radius: 50%;
+        background: #162a23;
+        box-shadow:
+          0 0 calc(20px + (55px * var(--pressure)))
+            rgba(169, 244, 208, calc(0.08 + (0.2 * var(--pressure)))),
+          inset 0 0 30px rgba(169, 244, 208, 0.08);
+        text-align: center;
+        transform: translate(-50%, -50%);
+        transition:
+          width 240ms ease,
+          height 240ms ease,
+          box-shadow 240ms ease;
+      }
+
+      .platform-core strong {
+        display: block;
+        margin-bottom: 0.2rem;
+        color: var(--mint);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+
+      .platform-core span {
+        display: block;
+        color: #c3cec9;
+        font-size: 0.72rem;
+        line-height: 1.3;
+      }
+
+      .flow-label {
+        position: absolute;
+        z-index: 4;
+        padding: 0.32rem 0.52rem;
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        background: #111917;
+        font-size: 0.69rem;
+        font-weight: 780;
+        white-space: nowrap;
+      }
+
+      .flow-label.incoming {
+        top: 118px;
+        left: 26%;
+        color: var(--coral);
+      }
+
+      .flow-label.merchant-flow {
+        bottom: 108px;
+        left: 27%;
+        color: var(--coral);
+      }
+
+      .flow-label.courier-flow {
+        right: 25%;
+        bottom: 108px;
+        color: var(--coral);
+      }
+
+      .flow-label.other-flow {
+        top: 98px;
+        right: 25%;
+        color: var(--mint);
+      }
+
+      .flow-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        padding: 1rem;
+        border-top: 1px solid var(--night-line);
+        color: #aeb9b4;
+        font-size: 0.76rem;
+      }
+
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .legend-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .legend-item.money {
+        color: var(--coral);
+      }
+
+      .legend-item.data {
+        color: var(--mint);
+      }
+
+      .legend-item.risk {
+        color: var(--amber);
+      }
+
+      .exchange-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.38fr) minmax(310px, 0.62fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .ledger {
+        border: 1px solid var(--night-line);
+        border-radius: var(--radius);
+        background: var(--night-soft);
+      }
+
+      .ledger-header {
+        padding: 1.2rem 1.25rem;
+        border-bottom: 1px solid var(--night-line);
+      }
+
+      .ledger-header h3 {
+        margin-bottom: 0.2rem;
+        font-size: 1rem;
+      }
+
+      .ledger-header p {
+        margin-bottom: 0;
+        color: #98a39e;
+        font-size: 0.78rem;
+      }
+
+      .ledger-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1rem;
+        padding: 0.9rem 1.25rem;
+        border-bottom: 1px solid #2a3532;
+      }
+
+      .ledger-row:last-child {
+        border-bottom: 0;
+      }
+
+      .ledger-row span {
+        color: #aeb9b4;
+        font-size: 0.82rem;
+      }
+
+      .ledger-row strong {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.86rem;
+      }
+
+      .ledger-row.result {
+        background: rgba(255, 102, 87, 0.08);
+      }
+
+      .ledger-row.result span,
+      .ledger-row.result strong {
+        color: #ff9e94;
+      }
+
+      .dimension-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .dimension {
+        display: grid;
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 0.75rem;
+        padding: 0.85rem;
+        border: 1px solid var(--night-line);
+        border-radius: 14px;
+        background: #121a18;
+      }
+
+      .dimension-icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 11px;
+        background: #25302d;
+        color: var(--mint);
+        font-weight: 850;
+      }
+
+      .dimension strong {
+        display: block;
+        font-size: 0.82rem;
+      }
+
+      .dimension p {
+        margin-bottom: 0;
+        color: #98a39e;
+        font-size: 0.74rem;
+      }
+
+      details.assumptions {
+        margin-top: 18px;
+        border: 1px solid var(--night-line);
+        border-radius: 14px;
+        background: #121a18;
+      }
+
+      details.assumptions summary {
+        padding: 0.9rem 1rem;
+        color: #c9d2ce;
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 740;
+      }
+
+      .sliders {
+        display: grid;
+        gap: 1.2rem;
+        padding: 0 1rem 1rem;
+      }
+
+      .slider-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.35rem 1rem;
+      }
+
+      .slider-row label {
+        color: #aeb9b4;
+        font-size: 0.76rem;
+      }
+
+      .slider-row output {
+        color: var(--mint);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.76rem;
+      }
+
+      .slider-row input {
+        grid-column: 1 / -1;
+        width: 100%;
+        accent-color: var(--mint);
+      }
+
+      .mode-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .mode-card {
+        position: relative;
+        min-height: 295px;
+        overflow: hidden;
+        padding: 1.3rem;
+        border: 1px solid var(--night-line);
+        border-radius: var(--radius);
+        background: #131b19;
+        color: var(--white);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .mode-card:hover {
+        border-color: #62706b;
+      }
+
+      .mode-card.revealed {
+        border-color: var(--mode-colour);
+      }
+
+      .mode-card.value {
+        --mode-colour: var(--coral);
+      }
+
+      .mode-card.balanced {
+        --mode-colour: var(--blue);
+      }
+
+      .mode-card.obligated {
+        --mode-colour: var(--amber);
+      }
+
+      .mode-card.immediate {
+        --mode-colour: var(--violet);
+      }
+
+      .mode-id {
+        display: inline-grid;
+        width: 36px;
+        height: 36px;
+        margin-bottom: 1.2rem;
+        place-items: center;
+        border: 1px solid var(--mode-colour);
+        border-radius: 50%;
+        color: var(--mode-colour);
+        font-weight: 900;
+      }
+
+      .mode-name {
+        margin-bottom: 0.35rem;
+        color: var(--mode-colour);
+        font-size: 0.7rem;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .mode-story,
+      .mode-translation {
+        margin-bottom: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.35rem, 2.8vw, 2rem);
+        letter-spacing: -0.025em;
+        line-height: 1.12;
+      }
+
+      .mode-translation {
+        display: none;
+        color: var(--white);
+      }
+
+      .mode-card.revealed .mode-story {
+        display: none;
+      }
+
+      .mode-card.revealed .mode-translation {
+        display: block;
+      }
+
+      .mode-action {
+        position: absolute;
+        right: 1.3rem;
+        bottom: 1.2rem;
+        left: 1.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: #919c97;
+        font-size: 0.73rem;
+      }
+
+      .mode-card.revealed .mode-action {
+        color: var(--mode-colour);
+      }
+
+      .reveal-status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 18px;
+        padding: 1rem 1.1rem;
+        border: 1px solid var(--night-line);
+        border-radius: 14px;
+        color: #9ba6a1;
+        font-size: 0.82rem;
+      }
+
+      .reveal-meter {
+        width: min(260px, 42vw);
+        height: 7px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #2a3532;
+      }
+
+      .reveal-meter span {
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--mint);
+        transition: width 180ms ease;
+      }
+
+      .diagnostic-grid {
+        display: grid;
+        grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.1fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .pressure-panel,
+      .reform-panel {
+        border: 1px solid var(--night-line);
+        border-radius: var(--radius);
+        background: var(--night-soft);
+      }
+
+      .pressure-panel {
+        display: grid;
+        min-height: 550px;
+        padding: clamp(24px, 5vw, 50px);
+        place-items: center;
+        text-align: center;
+      }
+
+      .pressure-orb {
+        display: grid;
+        width: calc(180px + (80px * var(--pressure)));
+        height: calc(180px + (80px * var(--pressure)));
+        place-items: center;
+        border: 1px solid rgba(255, 102, 87, 0.8);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 102, 87, 0.2),
+          rgba(255, 102, 87, 0.03) 62%,
+          transparent 63%
+        );
+        box-shadow: 0 0 calc(20px + (70px * var(--pressure)))
+          rgba(255, 102, 87, calc(0.08 + (0.22 * var(--pressure))));
+        transition:
+          width 240ms ease,
+          height 240ms ease,
+          box-shadow 240ms ease;
+      }
+
+      .pressure-score {
+        display: block;
+        color: #ff9e94;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3.5rem, 7vw, 6rem);
+        letter-spacing: -0.07em;
+        line-height: 0.85;
+      }
+
+      .pressure-label {
+        display: block;
+        margin-top: 0.6rem;
+        color: #d1d8d5;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .pressure-panel h3 {
+        margin: 1.7rem 0 0.5rem;
+        font-size: 1.05rem;
+      }
+
+      .pressure-panel p {
+        max-width: 420px;
+        margin-bottom: 0;
+        color: #9da8a3;
+        font-size: 0.85rem;
+      }
+
+      .reform-panel {
+        overflow: hidden;
+      }
+
+      .reform-header {
+        padding: 1.25rem 1.35rem;
+        border-bottom: 1px solid var(--night-line);
+      }
+
+      .reform-header h3 {
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+      }
+
+      .reform-header p {
+        margin-bottom: 0;
+        color: #98a39e;
+        font-size: 0.78rem;
+      }
+
+      .reform {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.65rem 1rem;
+        align-items: center;
+        padding: 1.05rem 1.35rem;
+        border-bottom: 1px solid #2a3532;
+        cursor: pointer;
+      }
+
+      .reform:last-of-type {
+        border-bottom: 0;
+      }
+
+      .reform strong {
+        display: block;
+        margin-bottom: 0.18rem;
+        font-size: 0.86rem;
+      }
+
+      .reform small {
+        display: block;
+        max-width: 520px;
+        color: #96a19c;
+        font-size: 0.74rem;
+      }
+
+      .switch {
+        position: relative;
+        width: 48px;
+        height: 28px;
+      }
+
+      .switch input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+      }
+
+      .switch-ui {
+        position: absolute;
+        border: 1px solid #55615d;
+        border-radius: 999px;
+        background: #222c29;
+        inset: 0;
+        transition:
+          background 160ms ease,
+          border-color 160ms ease;
+      }
+
+      .switch-ui::after {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #9ba6a1;
+        content: "";
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
+      }
+
+      .switch input:checked + .switch-ui {
+        border-color: var(--mint);
+        background: #163e30;
+      }
+
+      .switch input:checked + .switch-ui::after {
+        background: var(--mint);
+        transform: translateX(20px);
+      }
+
+      .switch input:focus-visible + .switch-ui {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+
+      .diagnostic-note {
+        margin: 1rem 1.35rem 1.35rem;
+        padding: 0.9rem 1rem;
+        border-left: 3px solid var(--amber);
+        background: rgba(243, 195, 91, 0.07);
+        color: #c7c0ad;
+        font-size: 0.76rem;
+      }
+
+      .step-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.8rem;
+        margin-top: 24px;
+      }
+
+      .step-actions .right-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-left: auto;
+      }
+
+      .principle {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: clamp(70px, 10vw, 130px) 0;
+      }
+
+      .principle-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+        gap: clamp(30px, 8vw, 100px);
+        align-items: start;
+      }
+
+      .principle h2 {
+        margin-bottom: 1.2rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.5rem, 6vw, 5.8rem);
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 0.95;
+      }
+
+      .principle-copy {
+        max-width: 700px;
+        color: #454a46;
+        font-size: 1.05rem;
+      }
+
+      .question-card {
+        padding: 1.35rem;
+        border: 1px solid #bdb7a8;
+        border-radius: var(--radius);
+        background: rgba(255, 253, 247, 0.55);
+        box-shadow: var(--shadow);
+      }
+
+      .question-card h3 {
+        margin-bottom: 1rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .question-card ol {
+        display: grid;
+        gap: 0.75rem;
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      .question-card li {
+        padding-left: 0.3rem;
+        color: #3d423e;
+      }
+
+      .fine-print {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 46px;
+        border-top: 1px solid #c9c2b3;
+        color: #686c68;
+        font-size: 0.75rem;
+      }
+
+      .fine-print a {
+        color: var(--ink);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 900px) {
+        .step-heading,
+        .receipt-stage,
+        .exchange-grid,
+        .diagnostic-grid,
+        .principle-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .receipt-stage {
+          padding: 34px 0;
+        }
+
+        .receipt {
+          width: min(100%, 420px);
+        }
+
+        .network-canvas {
+          min-height: 560px;
+        }
+
+        .actor.buyer {
+          top: 24px;
+        }
+
+        .actor.restaurant,
+        .actor.courier {
+          bottom: 24px;
+        }
+
+        .flow-label.incoming {
+          top: 122px;
+          left: 24%;
+        }
+
+        .flow-label.other-flow {
+          top: 116px;
+          right: 19%;
+        }
+
+        .flow-label.merchant-flow,
+        .flow-label.courier-flow {
+          bottom: 116px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .topbar-note {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 44px;
+        }
+
+        h1 {
+          font-size: clamp(3.25rem, 17vw, 5.4rem);
+        }
+
+        .progress {
+          display: flex;
+          overflow-x: auto;
+          padding-bottom: 6px;
+          scroll-snap-type: x mandatory;
+        }
+
+        .progress-button {
+          min-width: 150px;
+          scroll-snap-align: start;
+        }
+
+        .step-heading {
+          margin-top: 34px;
+        }
+
+        .receipt {
+          padding-right: 22px;
+          padding-left: 22px;
+        }
+
+        .network-canvas {
+          display: grid;
+          min-height: auto;
+          gap: 10px;
+          padding: 16px;
+        }
+
+        .network-lines,
+        .flow-label {
+          display: none;
+        }
+
+        .actor,
+        .platform-core {
+          position: static;
+          width: 100%;
+          height: auto;
+          transform: none;
+        }
+
+        .platform-core {
+          min-height: 130px;
+          border-radius: 18px;
+        }
+
+        .actor.buyer,
+        .actor.restaurant,
+        .actor.courier {
+          inset: auto;
+        }
+
+        .actor.buyer {
+          order: 1;
+        }
+
+        .platform-core {
+          order: 2;
+        }
+
+        .actor.restaurant {
+          order: 3;
+        }
+
+        .actor.courier {
+          order: 4;
+        }
+
+        .mode-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .mode-card {
+          min-height: 270px;
+        }
+
+        .reveal-status {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .reveal-meter {
+          width: 100%;
+        }
+
+        .diagnostic-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .pressure-panel {
+          min-height: 460px;
+        }
+
+        .step-actions,
+        .step-actions .right-actions {
+          display: grid;
+          width: 100%;
+        }
+
+        .step-actions .right-actions {
+          margin-left: 0;
+        }
+
+        .step-actions .button {
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#prototype">Skip to the X-ray</a>
+
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="BOVI home">
+        <span class="brand-mark" aria-hidden="true">B</span>
+        BOVI
+      </a>
+      <span class="topbar-note">Working prototype · illustrative figures</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Extraction X-ray</p>
+        <h1 id="page-title">Every transaction has <em>two receipts.</em></h1>
+        <p class="hero-copy">
+          One records what you paid. The other records the money, time, data and risk the system
+          pulled from everyone around the exchange—and the story that made the taking feel normal.
+        </p>
+        <div class="hero-actions">
+          <button class="button" type="button" data-start>
+            Open the ordinary receipt <span aria-hidden="true">↓</span>
+          </button>
+          <a class="button secondary" href="#principle">What counts as extraction?</a>
+        </div>
+      </section>
+
+      <section class="prototype" id="prototype" aria-label="Interactive extraction X-ray">
+        <div class="prototype-shell">
+          <nav class="progress" aria-label="X-ray stages">
+            <button
+              class="progress-button active"
+              type="button"
+              data-step-button="0"
+              aria-current="step"
+            >
+              <span class="progress-number">01</span>
+              <span class="progress-label">The receipt</span>
+            </button>
+            <button class="progress-button" type="button" data-step-button="1">
+              <span class="progress-number">02</span>
+              <span class="progress-label">The full exchange</span>
+            </button>
+            <button class="progress-button" type="button" data-step-button="2">
+              <span class="progress-number">03</span>
+              <span class="progress-label">The cover stories</span>
+            </button>
+            <button class="progress-button" type="button" data-step-button="3">
+              <span class="progress-number">04</span>
+              <span class="progress-label">The power test</span>
+            </button>
+          </nav>
+
+          <section class="step active" data-step="0" aria-labelledby="step-0-title">
+            <div class="step-heading">
+              <div>
+                <p class="step-kicker">Case 01 · Dinner, delivered</p>
+                <h2 id="step-0-title">The transaction as presented.</h2>
+              </div>
+              <p>
+                Start where the platform wants you to start: a purchase, a total, and a promise that
+                the difficult parts have disappeared.
+              </p>
+            </div>
+
+            <div class="receipt-stage">
+              <div class="receipt" aria-label="Illustrative delivery receipt">
+                <div class="receipt-logo">Rosa's Kitchen</div>
+                <div class="receipt-meta">Order 8F31 · 19:42 · delivered</div>
+                <div class="receipt-line">
+                  <span>Dinner</span>
+                  <span>€28.00</span>
+                </div>
+                <div class="receipt-line muted">
+                  <span>Delivery</span>
+                  <span>€0.00</span>
+                </div>
+                <div class="receipt-line">
+                  <span>Busy-area fee</span>
+                  <span>€<span data-demand-fee>2.40</span></span>
+                </div>
+                <div class="receipt-line">
+                  <span>Service fee</span>
+                  <span>€<span data-service-fee>2.79</span></span>
+                </div>
+                <div class="receipt-line total">
+                  <span>Total</span>
+                  <span>€<span data-total>33.19</span></span>
+                </div>
+                <div class="receipt-stamp">Paid · no surprises</div>
+              </div>
+
+              <div class="ordinary-copy">
+                <p class="big-question">Is €<span data-total>33.19</span> the whole exchange?</p>
+                <p>
+                  The receipt contains only transfers the platform chose to price and disclose. It
+                  says nothing about merchant access, courier waiting, behavioural data, shifted
+                  risk, or who controlled the terms.
+                </p>
+                <button class="button xray" type="button" data-next>
+                  Turn on the X-ray <span aria-hidden="true">→</span>
+                </button>
+                <span class="model-note"
+                  >Illustrative case, not a claim about one named platform</span
+                >
+              </div>
+            </div>
+          </section>
+
+          <section class="step" data-step="1" aria-labelledby="step-1-title" hidden>
+            <div class="step-heading">
+              <div>
+                <p class="step-kicker">The second receipt</p>
+                <h2 id="step-1-title">Follow every kind of value.</h2>
+              </div>
+              <p>
+                Cash is only one column. The centre also gains information, control and optionality
+                while costs and risk can be pushed to the edges.
+              </p>
+            </div>
+
+            <div class="exchange-grid">
+              <div class="network-wrap">
+                <div
+                  class="network-canvas"
+                  aria-label="Value-flow map centred on the delivery platform"
+                >
+                  <svg
+                    class="network-lines"
+                    viewBox="0 0 900 480"
+                    role="img"
+                    aria-label="Money, data, and risk flows between buyer, platform, restaurant, and courier"
+                  >
+                    <defs>
+                      <marker
+                        id="arrow-money"
+                        markerWidth="9"
+                        markerHeight="9"
+                        refX="7"
+                        refY="3"
+                        orient="auto"
+                        markerUnits="strokeWidth"
+                      >
+                        <path d="M0,0 L0,6 L8,3 z" fill="#ff6657"></path>
+                      </marker>
+                      <marker
+                        id="arrow-data"
+                        markerWidth="9"
+                        markerHeight="9"
+                        refX="7"
+                        refY="3"
+                        orient="auto"
+                        markerUnits="strokeWidth"
+                      >
+                        <path d="M0,0 L0,6 L8,3 z" fill="#a9f4d0"></path>
+                      </marker>
+                      <marker
+                        id="arrow-risk"
+                        markerWidth="9"
+                        markerHeight="9"
+                        refX="7"
+                        refY="3"
+                        orient="auto"
+                        markerUnits="strokeWidth"
+                      >
+                        <path d="M0,0 L0,6 L8,3 z" fill="#f3c35b"></path>
+                      </marker>
+                    </defs>
+                    <path
+                      class="network-line money"
+                      d="M190 80 C300 85 320 180 395 215"
+                      marker-end="url(#arrow-money)"
+                    ></path>
+                    <path
+                      class="network-line data"
+                      d="M190 105 C330 125 340 195 405 225"
+                      marker-end="url(#arrow-data)"
+                    ></path>
+                    <path
+                      class="network-line money"
+                      d="M405 285 C345 310 300 380 190 390"
+                      marker-end="url(#arrow-money)"
+                    ></path>
+                    <path
+                      class="network-line data"
+                      d="M195 365 C305 340 340 290 407 266"
+                      marker-end="url(#arrow-data)"
+                    ></path>
+                    <path
+                      class="network-line money"
+                      d="M505 285 C570 325 620 375 710 390"
+                      marker-end="url(#arrow-money)"
+                    ></path>
+                    <path
+                      class="network-line risk"
+                      d="M505 255 C570 280 610 330 710 360"
+                      marker-end="url(#arrow-risk)"
+                    ></path>
+                  </svg>
+
+                  <div class="actor buyer">
+                    <strong>Buyer</strong>
+                    <span
+                      >Pays €<span data-total>33.19</span>; supplies address, timing and demand
+                      signals.</span
+                    >
+                  </div>
+                  <div class="actor restaurant">
+                    <strong>Restaurant</strong>
+                    <span
+                      >Receives €<span data-restaurant-net>20.16</span>; gives up
+                      <span data-commission>28</span>% for access.</span
+                    >
+                  </div>
+                  <div class="actor courier">
+                    <strong>Courier</strong>
+                    <span
+                      >Receives €<span data-courier-pay>4.90</span>; carries waiting, vehicle and
+                      incident risk.</span
+                    >
+                  </div>
+                  <div class="platform-core" aria-label="Platform controls the junction">
+                    <div>
+                      <strong>Platform</strong>
+                      <span>controls discovery,<br />terms and settlement</span>
+                    </div>
+                  </div>
+
+                  <span class="flow-label incoming"
+                    >€<span data-total>33.19</span> + demand data</span
+                  >
+                  <span class="flow-label merchant-flow"
+                    >€<span data-restaurant-net>20.16</span> out</span
+                  >
+                  <span class="flow-label courier-flow"
+                    >€<span data-courier-pay>4.90</span> out</span
+                  >
+                  <span class="flow-label other-flow">behavioural history in</span>
+                </div>
+                <div class="flow-legend" aria-label="Flow legend">
+                  <span class="legend-item money"><span class="legend-dot"></span>money</span>
+                  <span class="legend-item data"
+                    ><span class="legend-dot"></span>data and access</span
+                  >
+                  <span class="legend-item risk"
+                    ><span class="legend-dot"></span>time and risk</span
+                  >
+                </div>
+              </div>
+
+              <aside>
+                <div class="ledger">
+                  <div class="ledger-header">
+                    <h3>The money column</h3>
+                    <p>
+                      The platform's claim is not automatically profit—or automatically extraction.
+                    </p>
+                  </div>
+                  <div class="ledger-row">
+                    <span>Buyer fees</span>
+                    <strong>€<span data-buyer-fees>5.19</span></strong>
+                  </div>
+                  <div class="ledger-row">
+                    <span>Restaurant commission</span>
+                    <strong>€<span data-commission-euros>7.84</span></strong>
+                  </div>
+                  <div class="ledger-row">
+                    <span>Platform-controlled claim</span>
+                    <strong>€<span data-platform-claim>13.03</span></strong>
+                  </div>
+                  <div class="ledger-row">
+                    <span>Courier payment</span>
+                    <strong>− €<span data-courier-pay>4.90</span></strong>
+                  </div>
+                  <div class="ledger-row result">
+                    <span>Held at centre before operating costs and tax</span>
+                    <strong>€<span data-centre-balance>8.13</span></strong>
+                  </div>
+                </div>
+
+                <div class="dimension-list" aria-label="Non-money columns">
+                  <div class="dimension">
+                    <span class="dimension-icon" aria-hidden="true">D</span>
+                    <div>
+                      <strong>Data</strong>
+                      <p>Precise location, routine, preferences and price sensitivity.</p>
+                    </div>
+                  </div>
+                  <div class="dimension">
+                    <span class="dimension-icon" aria-hidden="true">T</span>
+                    <div>
+                      <strong>Time</strong>
+                      <p>
+                        <span data-wait-minutes>11</span> minutes of courier waiting has no receipt
+                        line.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="dimension">
+                    <span class="dimension-icon" aria-hidden="true">R</span>
+                    <div>
+                      <strong>Risk</strong>
+                      <p>Vehicle, injury and demand volatility sit away from the centre.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <details class="assumptions">
+                  <summary>Change the illustrative assumptions</summary>
+                  <div class="sliders">
+                    <div class="slider-row">
+                      <label for="commission">Restaurant commission</label>
+                      <output for="commission" data-commission-output>28%</output>
+                      <input
+                        id="commission"
+                        data-model-input="commission"
+                        type="range"
+                        min="10"
+                        max="38"
+                        value="28"
+                      />
+                    </div>
+                    <div class="slider-row">
+                      <label for="service-fee">Service fee</label>
+                      <output for="service-fee" data-service-output>€2.79</output>
+                      <input
+                        id="service-fee"
+                        data-model-input="serviceFee"
+                        type="range"
+                        min="0"
+                        max="6"
+                        value="2.79"
+                        step="0.1"
+                      />
+                    </div>
+                    <div class="slider-row">
+                      <label for="demand-fee">Busy-area fee</label>
+                      <output for="demand-fee" data-demand-output>€2.40</output>
+                      <input
+                        id="demand-fee"
+                        data-model-input="demandFee"
+                        type="range"
+                        min="0"
+                        max="8"
+                        value="2.4"
+                        step="0.1"
+                      />
+                    </div>
+                    <div class="slider-row">
+                      <label for="courier-pay">Courier payment</label>
+                      <output for="courier-pay" data-courier-output>€4.90</output>
+                      <input
+                        id="courier-pay"
+                        data-model-input="courierPay"
+                        type="range"
+                        min="3"
+                        max="12"
+                        value="4.9"
+                        step="0.1"
+                      />
+                    </div>
+                    <div class="slider-row">
+                      <label for="wait-minutes">Unpriced waiting</label>
+                      <output for="wait-minutes" data-wait-output>11 min</output>
+                      <input
+                        id="wait-minutes"
+                        data-model-input="waitMinutes"
+                        type="range"
+                        min="0"
+                        max="30"
+                        value="11"
+                      />
+                    </div>
+                  </div>
+                </details>
+              </aside>
+            </div>
+
+            <div class="step-actions">
+              <button class="button secondary small" type="button" data-prev>
+                ← Ordinary receipt
+              </button>
+              <div class="right-actions">
+                <button class="button xray" type="button" data-next>
+                  Strip the cover stories →
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="step" data-step="2" aria-labelledby="step-2-title" hidden>
+            <div class="step-heading">
+              <div>
+                <p class="step-kicker">The grammar of disguise</p>
+                <h2 id="step-2-title">The taking arrives dressed as fairness.</h2>
+              </div>
+              <p>
+                Tap each statement to translate its legitimising story. The modes do not prove
+                extraction; they show how a contested transfer can be made to feel owed, efficient,
+                reciprocal or loving.
+              </p>
+            </div>
+
+            <div class="mode-grid">
+              <button class="mode-card value" type="button" data-mode-card aria-pressed="false">
+                <span class="mode-id" aria-hidden="true">V</span>
+                <span class="mode-name">Value · market</span>
+                <span class="mode-story">“Demand is high. That is simply today's price.”</span>
+                <span class="mode-translation"
+                  >“The junction can observe urgency and widen its claim.”</span
+                >
+                <span class="mode-action"
+                  ><span data-mode-action>Remove the story</span
+                  ><span aria-hidden="true">↗</span></span
+                >
+              </button>
+
+              <button class="mode-card balanced" type="button" data-mode-card aria-pressed="false">
+                <span class="mode-id" aria-hidden="true">B</span>
+                <span class="mode-name">Balanced · reciprocity</span>
+                <span class="mode-story">“The restaurant and courier agreed to the terms.”</span>
+                <span class="mode-translation"
+                  >“Formal assent is standing in for equal bargaining power.”</span
+                >
+                <span class="mode-action"
+                  ><span data-mode-action>Remove the story</span
+                  ><span aria-hidden="true">↗</span></span
+                >
+              </button>
+
+              <button class="mode-card obligated" type="button" data-mode-card aria-pressed="false">
+                <span class="mode-id" aria-hidden="true">O</span>
+                <span class="mode-name">Obligated · authority</span>
+                <span class="mode-story">“Those are the platform rules.”</span>
+                <span class="mode-translation"
+                  >“One party sets, interprets and enforces the rule.”</span
+                >
+                <span class="mode-action"
+                  ><span data-mode-action>Remove the story</span
+                  ><span aria-hidden="true">↗</span></span
+                >
+              </button>
+
+              <button class="mode-card immediate" type="button" data-mode-card aria-pressed="false">
+                <span class="mode-id" aria-hidden="true">I</span>
+                <span class="mode-name">Immediate · belonging</span>
+                <span class="mode-story">“Show your courier some love. Add a tip.”</span>
+                <span class="mode-translation"
+                  >“Pay adequacy is being reframed as your private generosity.”</span
+                >
+                <span class="mode-action"
+                  ><span data-mode-action>Remove the story</span
+                  ><span aria-hidden="true">↗</span></span
+                >
+              </button>
+            </div>
+
+            <div class="reveal-status" aria-live="polite">
+              <span><strong data-reveal-count>0</strong> of 4 cover stories removed</span>
+              <span class="reveal-meter" aria-hidden="true"><span data-reveal-meter></span></span>
+            </div>
+
+            <div class="step-actions">
+              <button class="button secondary small" type="button" data-prev>
+                ← Full exchange
+              </button>
+              <div class="right-actions">
+                <button class="button secondary small" type="button" data-reveal-all>
+                  Remove all stories
+                </button>
+                <button class="button xray" type="button" data-next>
+                  Test the power underneath →
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="step" data-step="3" aria-labelledby="step-3-title" hidden>
+            <div class="step-heading">
+              <div>
+                <p class="step-kicker">The contestability test</p>
+                <h2 id="step-3-title">A large fee is not yet a verdict.</h2>
+              </div>
+              <p>
+                Coordination costs money. Extraction pressure rises when a central claim is opaque,
+                asymmetric, difficult to refuse and impossible to challenge. Change the power
+                conditions without changing the order.
+              </p>
+            </div>
+
+            <div class="diagnostic-grid">
+              <div class="pressure-panel">
+                <div>
+                  <div class="pressure-orb" aria-hidden="true">
+                    <div>
+                      <span class="pressure-score" data-pressure-score>88</span>
+                      <span class="pressure-label">pressure / 100</span>
+                    </div>
+                  </div>
+                  <h3 data-pressure-title>High extraction pressure</h3>
+                  <p data-pressure-copy>
+                    The centre sets, sees and judges the terms while each edge sees only its own
+                    fragment of the exchange.
+                  </p>
+                </div>
+              </div>
+
+              <div class="reform-panel">
+                <div class="reform-header">
+                  <h3>Make the surface contestable</h3>
+                  <p>These switches alter power, not the €<span data-total>33.19</span> order.</p>
+                </div>
+
+                <label class="reform">
+                  <span>
+                    <strong>Full split before commitment</strong>
+                    <small
+                      >Buyer, restaurant and courier all see every money flow and pricing
+                      rule.</small
+                    >
+                  </span>
+                  <span class="switch">
+                    <input type="checkbox" data-reform="transparency" />
+                    <span class="switch-ui" aria-hidden="true"></span>
+                  </span>
+                </label>
+
+                <label class="reform">
+                  <span>
+                    <strong>Real exit and portability</strong>
+                    <small
+                      >Reputation, order history and customer relationships can move
+                      elsewhere.</small
+                    >
+                  </span>
+                  <span class="switch">
+                    <input type="checkbox" data-reform="exit" />
+                    <span class="switch-ui" aria-hidden="true"></span>
+                  </span>
+                </label>
+
+                <label class="reform">
+                  <span>
+                    <strong>Independent recourse</strong>
+                    <small
+                      >Pricing, suspensions and disputed settlements can be challenged outside the
+                      platform.</small
+                    >
+                  </span>
+                  <span class="switch">
+                    <input type="checkbox" data-reform="recourse" />
+                    <span class="switch-ui" aria-hidden="true"></span>
+                  </span>
+                </label>
+
+                <label class="reform">
+                  <span>
+                    <strong>Shared rule-making</strong>
+                    <small
+                      >Merchants and couriers bargain over commissions, risk and algorithm
+                      changes.</small
+                    >
+                  </span>
+                  <span class="switch">
+                    <input type="checkbox" data-reform="voice" />
+                    <span class="switch-ui" aria-hidden="true"></span>
+                  </span>
+                </label>
+
+                <div class="diagnostic-note">
+                  The pressure index is a teaching device, not an empirical finding. Its point is
+                  the direction: transparency, exit, voice and recourse make a central claim easier
+                  to contest.
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button class="button secondary small" type="button" data-prev>
+                ← Cover stories
+              </button>
+              <div class="right-actions">
+                <button class="button secondary small" type="button" data-reset>Reset case</button>
+                <a class="button xray" href="#principle">Keep the five questions ↓</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="principle" id="principle" aria-labelledby="principle-title">
+        <p class="eyebrow">The boundary</p>
+        <div class="principle-grid">
+          <div>
+            <h2 id="principle-title">Expense and extraction are not synonyms.</h2>
+            <p class="principle-copy">
+              A platform may create real value and incur real costs. BOVI's X-ray asks what part of
+              its claim is protected by informational advantage, concentrated control, weak exit and
+              absent recourse. The point is not to pronounce every margin immoral. It is to make the
+              power underneath a price visible enough to contest.
+            </p>
+          </div>
+          <aside class="question-card">
+            <h3>Ask of any exchange</h3>
+            <ol>
+              <li>Who controls the junction?</li>
+              <li>What leaves each person besides money?</li>
+              <li>Which fairness story legitimises the transfer?</li>
+              <li>Could each person meaningfully refuse or leave?</li>
+              <li>Who can challenge the rule—and who judges?</li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="fine-print">
+      <p>
+        BOVI Extraction X-ray · Local interactive prototype · All figures are illustrative and
+        adjustable. <a href="index.html">Return to the existing Exchange Lens</a>.
+      </p>
+    </footer>
+
+    <div class="sr-only" aria-live="polite" data-announcer></div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        var FOOD_SUBTOTAL = 28;
+        var currentStep = 0;
+        var model = {
+          commission: 28,
+          serviceFee: 2.79,
+          demandFee: 2.4,
+          courierPay: 4.9,
+          waitMinutes: 11,
+        };
+
+        var steps = Array.from(document.querySelectorAll("[data-step]"));
+        var stepButtons = Array.from(document.querySelectorAll("[data-step-button]"));
+        var announcer = document.querySelector("[data-announcer]");
+
+        function money(value) {
+          return value.toFixed(2);
+        }
+
+        function setText(selector, value) {
+          document.querySelectorAll(selector).forEach(function (element) {
+            element.textContent = value;
+          });
+        }
+
+        function renderModel() {
+          var commissionEuros = FOOD_SUBTOTAL * (model.commission / 100);
+          var buyerFees = model.serviceFee + model.demandFee;
+          var total = FOOD_SUBTOTAL + buyerFees;
+          var restaurantNet = FOOD_SUBTOTAL - commissionEuros;
+          var platformClaim = buyerFees + commissionEuros;
+          var centreBalance = platformClaim - model.courierPay;
+
+          setText("[data-commission]", String(Math.round(model.commission)));
+          setText("[data-service-fee]", money(model.serviceFee));
+          setText("[data-demand-fee]", money(model.demandFee));
+          setText("[data-courier-pay]", money(model.courierPay));
+          setText("[data-wait-minutes]", String(Math.round(model.waitMinutes)));
+          setText("[data-total]", money(total));
+          setText("[data-restaurant-net]", money(restaurantNet));
+          setText("[data-buyer-fees]", money(buyerFees));
+          setText("[data-commission-euros]", money(commissionEuros));
+          setText("[data-platform-claim]", money(platformClaim));
+          setText("[data-centre-balance]", money(centreBalance));
+
+          setText("[data-commission-output]", Math.round(model.commission) + "%");
+          setText("[data-service-output]", "€" + money(model.serviceFee));
+          setText("[data-demand-output]", "€" + money(model.demandFee));
+          setText("[data-courier-output]", "€" + money(model.courierPay));
+          setText("[data-wait-output]", Math.round(model.waitMinutes) + " min");
+        }
+
+        function showStep(index, options) {
+          var settings = options || {};
+          currentStep = Math.max(0, Math.min(index, steps.length - 1));
+
+          steps.forEach(function (step, stepIndex) {
+            var active = stepIndex === currentStep;
+            step.classList.toggle("active", active);
+            step.hidden = !active;
+          });
+
+          stepButtons.forEach(function (button, buttonIndex) {
+            var active = buttonIndex === currentStep;
+            button.classList.toggle("active", active);
+            button.classList.toggle("complete", buttonIndex < currentStep);
+            if (active) {
+              button.setAttribute("aria-current", "step");
+            } else {
+              button.removeAttribute("aria-current");
+            }
+          });
+
+          if (announcer) {
+            announcer.textContent =
+              "Stage " +
+              (currentStep + 1) +
+              " of " +
+              steps.length +
+              ": " +
+              stepButtons[currentStep].querySelector(".progress-label").textContent;
+          }
+
+          if (settings.scroll !== false) {
+            document
+              .getElementById("prototype")
+              .scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+
+        function renderRevealStatus() {
+          var cards = Array.from(document.querySelectorAll("[data-mode-card]"));
+          var revealed = cards.filter(function (card) {
+            return card.classList.contains("revealed");
+          }).length;
+
+          setText("[data-reveal-count]", String(revealed));
+          var meter = document.querySelector("[data-reveal-meter]");
+          if (meter) {
+            meter.style.width = (revealed / cards.length) * 100 + "%";
+          }
+        }
+
+        function setCardRevealed(card, reveal) {
+          card.classList.toggle("revealed", reveal);
+          card.setAttribute("aria-pressed", String(reveal));
+          var action = card.querySelector("[data-mode-action]");
+          if (action) {
+            action.textContent = reveal ? "Restore the story" : "Remove the story";
+          }
+        }
+
+        function renderPressure() {
+          var activeReforms = document.querySelectorAll("[data-reform]:checked").length;
+          var score = Math.max(16, 88 - activeReforms * 18);
+          var title = "High extraction pressure";
+          var copy =
+            "The centre sets, sees and judges the terms while each edge sees only its own fragment of the exchange.";
+
+          if (score < 40) {
+            title = "The claim is contestable";
+            copy =
+              "The exchange may still be expensive, but every party can see, refuse and challenge the central claim.";
+          } else if (score < 70) {
+            title = "Power is becoming visible";
+            copy =
+              "Some protections now constrain the centre, while important dependencies and asymmetries remain.";
+          }
+
+          document.documentElement.style.setProperty("--pressure", String(score / 100));
+          setText("[data-pressure-score]", String(score));
+          setText("[data-pressure-title]", title);
+          setText("[data-pressure-copy]", copy);
+
+          if (announcer) {
+            announcer.textContent = title + ". Diagnostic pressure " + score + " out of 100.";
+          }
+        }
+
+        function resetCase() {
+          model = {
+            commission: 28,
+            serviceFee: 2.79,
+            demandFee: 2.4,
+            courierPay: 4.9,
+            waitMinutes: 11,
+          };
+
+          document.querySelectorAll("[data-model-input]").forEach(function (input) {
+            input.value = String(model[input.getAttribute("data-model-input")]);
+          });
+
+          document.querySelectorAll("[data-mode-card]").forEach(function (card) {
+            setCardRevealed(card, false);
+          });
+
+          document.querySelectorAll("[data-reform]").forEach(function (input) {
+            input.checked = false;
+          });
+
+          renderModel();
+          renderRevealStatus();
+          renderPressure();
+          showStep(0);
+        }
+
+        document.querySelectorAll("[data-start]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            showStep(0);
+          });
+        });
+
+        stepButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            showStep(Number(button.getAttribute("data-step-button")));
+          });
+        });
+
+        document.querySelectorAll("[data-next]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            showStep(currentStep + 1);
+          });
+        });
+
+        document.querySelectorAll("[data-prev]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            showStep(currentStep - 1);
+          });
+        });
+
+        document.querySelectorAll("[data-model-input]").forEach(function (input) {
+          input.addEventListener("input", function () {
+            var key = input.getAttribute("data-model-input");
+            model[key] = Number(input.value);
+            renderModel();
+          });
+        });
+
+        document.querySelectorAll("[data-mode-card]").forEach(function (card) {
+          card.addEventListener("click", function () {
+            setCardRevealed(card, !card.classList.contains("revealed"));
+            renderRevealStatus();
+          });
+        });
+
+        var revealAllButton = document.querySelector("[data-reveal-all]");
+        if (revealAllButton) {
+          revealAllButton.addEventListener("click", function () {
+            document.querySelectorAll("[data-mode-card]").forEach(function (card) {
+              setCardRevealed(card, true);
+            });
+            renderRevealStatus();
+          });
+        }
+
+        document.querySelectorAll("[data-reform]").forEach(function (input) {
+          input.addEventListener("change", renderPressure);
+        });
+
+        var resetButton = document.querySelector("[data-reset]");
+        if (resetButton) {
+          resetButton.addEventListener("click", resetCase);
+        }
+
+        renderModel();
+        renderRevealStatus();
+        renderPressure();
+        var requestedStep = Number(new URLSearchParams(window.location.search).get("step"));
+        var initialStep =
+          Number.isInteger(requestedStep) && requestedStep >= 0 && requestedStep < steps.length
+            ? requestedStep
+            : 0;
+        showStep(initialStep, { scroll: false });
+      })();
+    </script>
+  </body>
+</html>
