@@ -10,9 +10,10 @@ build/
 coverage/
 *.tsbuildinfo
 
-# Generated document exports — the .md beside them is the source of truth
-docs/*.docx
-docs/*.pdf
+# Generated pitch exports — the .md beside them is the source of truth.
+# Deliberately narrow: a book PDF built into docs/ should NOT vanish silently.
+docs/PITCH-*.docx
+docs/PITCH-*.pdf
 
 # Development
 .DS_Store
