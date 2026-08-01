@@ -7,8 +7,10 @@ pragma solidity ^0.8.20;
  * Executes: Avner Greif — reputation institutions that let strangers trade
  * (the Maghribi coalition). This is the enforcement Kocherlakota's theorem
  * needs: a record's power over a token is that it can reward and punish
- * individually. Authorized reporters (the other contracts — e.g. Schumpeter on
- * default) adjust reputation; low standing excludes you. Governance = Friedman.
+ * individually. Authorized reporters adjust reputation; another system may use
+ * `inGoodStanding` as an exclusion gate. The current Schumpeter contract does
+ * not report defaults here. Governance can be transferred to Friedman; this is
+ * done for Greif in CoreE2E but is not enforced by Greif itself.
  *
  * ⚠ Two residuals, deliberately out of scope here (flagged, not solved):
  *   - PRIVACY: a public reputation registry is a panopticon. A real version
@@ -39,7 +41,7 @@ contract Greif {
     function deregister(address who) external onlyGov { registered[who] = false; emit Deregistered(who); }
     function setReporter(address who, bool ok) external onlyGov { isReporter[who] = ok; emit ReporterSet(who, ok); }
 
-    // the teeth: authorized contracts adjust standing (e.g. Schumpeter on default)
+    // the teeth primitive: an authorized reporter adjusts standing without evidence or appeal
     function report(address who, int256 delta) external {
         require(isReporter[msg.sender], "not reporter");
         require(registered[who], "unknown");

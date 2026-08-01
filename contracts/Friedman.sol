@@ -4,10 +4,11 @@ pragma solidity ^0.8.20;
 /**
  * @title Friedman — governance of the dials (the DialDAO)
  *
- * Executes: Milton Friedman — rules over discretion. Governance acts ONLY
- * through public, voted, time-locked proposals; never by fiat. Non-plutocratic:
- * one member, one vote (not stake-weighted). The timelock is the EXIT WINDOW —
- * a bad change is visible before it lands, so the minority can leave or fork.
+ * Executes: Milton Friedman — rules over discretion. Calls relayed by this
+ * contract pass through public, yes-voted, time-locked proposals. An attached
+ * target is protected only after its own authority is transferred here.
+ * One member, one vote is not stake-weighted. The timelock is a notice window;
+ * whether a minority can actually leave or fork is outside this contract.
  *
  * This becomes the `steward`/`governance` of the other contracts (point theirs
  * at this address). Smallest possible surface: it can only relay a call the

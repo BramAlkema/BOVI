@@ -9,9 +9,10 @@ pragma solidity ^0.8.20;
  * → the value is truthful and the bond returns. Disputed → an arbiter resolves
  * and the loser's bond is slashed to the winner.
  *
- * This is the horizontal that turns "detectable" into "punished" — the teeth
- * Kocherlakota's theorem needs, and that Hayek / Schumpeter / Greif depend on.
- * Truth is cheap to assert; a lie is expensive to maintain.
+ * This is a horizontal that turns "detectable" into "punished" — one possible
+ * source of teeth for the wider stack. Hayek has an implemented finalize path;
+ * Schumpeter and Greif are not wired to it in the current demonstrator.
+ * "Truthful" here means undisputed or arbiter-upheld, not objectively true.
  *
  * (Demonstrator: `arbiter` is a single resolver — point it at Friedman. A
  *  production version replaces it with a decentralised vote / DVM.)

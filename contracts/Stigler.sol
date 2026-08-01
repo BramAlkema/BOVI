@@ -6,9 +6,9 @@ pragma solidity ^0.8.20;
  *
  * Executes: George Stigler, "The Economics of Information" (1961) — price
  * dispersion exists because search is costly; a buyer who can search cheaply
- * collapses the dispersion and finds the true price. The PDA (personal discovery
- * agent) is search-cost-→-0: it discovers the real price and CHECKS any quote
- * against it, exposing the Value-mode "it's just the price" skim.
+ * can narrow that dispersion. The PDA (personal discovery agent) lowers search
+ * cost and CHECKS a quote against a declared reference; it does not discover an
+ * objective or metaphysically "true" price.
  *
  * Division of labour (on-chain rules / off-chain data):
  *   - OFF-CHAIN: the user's agent searches sellers and feeds observed prices.
@@ -20,7 +20,14 @@ pragma solidity ^0.8.20;
  * Cantillon X-rays the MONETARY skim (who gets new money first); Stigler X-rays
  * the MARKET skim (are you overpaying for this good). Two channels, one X-ray.
  *
- * Teeth: publishers can be gated through ChallengeBond, exactly as Hayek.
+ * A ChallengeBond publishing path is a proposed extension. Unlike Hayek, this
+ * contract does not currently implement one.
+ *
+ * NOT EVENTED, deliberately (judgement register §0.1): `check` stays a free view,
+ * so asking is costless and unlogged — use `checkAndRecord` when the finding
+ * should become public fact. Off-chain search by the PDA is invisible here by
+ * construction; only what a provider publishes ever reaches the record, and WHICH
+ * goods get published is an unrecorded editorial choice.
  */
 contract Stigler {
     address public governance;
@@ -35,13 +42,15 @@ contract Stigler {
     event ProviderAdmitted(address indexed p);
     event ProviderRemoved(address indexed p);
     event Published(address indexed provider, bytes32 indexed good, uint256 price);
+    event MaxStaleSet(uint64 maxStale);
+    event Checked(address indexed by, bytes32 indexed good, uint256 quoted, uint256 refPrice, uint256 deviationBps, bool overcharge);
 
     modifier onlyGov() { require(msg.sender == governance, "not gov"); _; }
 
     constructor(uint64 _maxStale) { governance = msg.sender; maxStale = _maxStale; emit GovernanceChanged(msg.sender); }
 
     function setGovernance(address to) external onlyGov { governance = to; emit GovernanceChanged(to); }
-    function setMaxStale(uint64 s) external onlyGov { maxStale = s; }
+    function setMaxStale(uint64 s) external onlyGov { maxStale = s; emit MaxStaleSet(s); }
     function admitProvider(address p) external onlyGov { require(!isProvider[p], "exists"); isProvider[p]=true; providers.push(p); emit ProviderAdmitted(p); }
     function removeProvider(address p) external onlyGov {
         require(isProvider[p], "unknown"); isProvider[p]=false;
@@ -75,6 +84,21 @@ contract Stigler {
         uint256 diff = quoted > ref ? quoted - ref : ref - quoted;
         deviationBps = (diff * 10000) / ref;
         overcharge = quoted > ref && deviationBps > fairBandBps;
+    }
+
+    /// The same computation, RECORDED. `check` is a view: it tells the asker and
+    /// no one else, so a contract built to X-ray the skim leaves no image when it
+    /// finds one (judgement register §0.1). This path events the finding, so a
+    /// pattern of overcharging accumulates as public fact rather than private
+    /// knowledge. Still an observer — it computes and exposes, it controls nothing.
+    function checkAndRecord(bytes32 good, uint256 quoted, uint256 fairBandBps)
+        external returns (uint256 deviationBps, bool overcharge)
+    {
+        uint256 ref = referencePrice(good);
+        uint256 diff = quoted > ref ? quoted - ref : ref - quoted;
+        deviationBps = (diff * 10000) / ref;
+        overcharge = quoted > ref && deviationBps > fairBandBps;
+        emit Checked(msg.sender, good, quoted, ref, deviationBps, overcharge);
     }
 
     function _fresh(bytes32 good) internal view returns (uint256[] memory out) {

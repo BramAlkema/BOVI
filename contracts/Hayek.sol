@@ -16,10 +16,9 @@ pragma solidity ^0.8.20;
  * you cannot fully privatise the unit without killing coordination. Zelizer
  * (PrivateBasket) rides on top as a personal overlay, not a replacement.
  *
- *  ANTI-LIBOR        providers COMPUTE from the clearing system's OBSERVABLE
- *                    settlements and publish a number anyone can re-derive — not
- *                    self-reported estimates (how LIBOR was gamed). Observable
- *                    inputs → lies detectable.
+ *  ANTI-LIBOR AIM    providers are intended to compute from observable
+ *                    settlements. This contract receives only their final
+ *                    number: provenance and re-derivability are not enforced.
  *  ROBUST            the numeraire is the MEDIAN of fresh provider values, so a
  *                    minority of gamed providers cannot move it.
  *  DISCIPLINED BOTH  top-down: `deviationBps` exposes strays; bottom-up: Zelizer
@@ -30,9 +29,9 @@ pragma solidity ^0.8.20;
  *
  *  TWO PATHS: `publish` is the TRUSTING path (what most oracles and flatcoins
  *  do — gameable, the LIBOR risk). `finalize` is the TEETH path: it only admits
- *  a value that survived a ChallengeBond assertion (bond + dispute window), so a
- *  lie costs the liar its bond. Production uses `finalize`; `publish` is kept to
- *  show the contrast.
+ *  a value that survived a ChallengeBond assertion (bond + dispute window).
+ *  This demonstrator leaves both paths open even after a challenge is set; a
+ *  hardened design must disable or separately govern the trusting bypass.
  */
 interface IChallengeBond {
     function result(uint256 id) external view returns (bool truthful, address asserter, bytes32 topic, uint256 value);

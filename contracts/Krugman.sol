@@ -20,8 +20,8 @@ pragma solidity ^0.8.20;
  *  CANON GUARDS:
  *   - adjusts QUANTITY (elasticity), never PEGS the unit. The currency still
  *     floats and melts; we steady ACTIVITY, not the currency's value.
- *   - expansion turns the dial toward extraction (Cantillon). So it is
- *     rule-bound and fully evented — the skim, if any, is visible and contestable.
+ *   - expansion may have Cantillon effects. Rule changes and reports are evented;
+ *     downstream recipients and incidence still require a separate tracer.
  *
  *  ⚠ The hardest, most fragile layer, and a demonstrator of the missing steering
  *    wheel — NOT a claim to drive. The activity reading is an ORACLE problem

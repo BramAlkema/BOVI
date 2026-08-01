@@ -30,7 +30,7 @@ contract Fiske {
     mapping(bytes32 => Mode) internal _mode;   // relationship → declared mode (an oracle input)
 
     event ModeDeclared(bytes32 indexed rel, Mode mode, address by);
-    event Taboo(bytes32 indexed rel, string violation);   // the disguise, detected
+    event Taboo(bytes32 indexed rel, string violation);   // caller-supplied violation label
 
     function relId(address a, address b) public pure returns (bytes32) {
         return a < b ? keccak256(abi.encodePacked(a, b)) : keccak256(abi.encodePacked(b, a));
@@ -51,7 +51,7 @@ contract Fiske {
         require(_mode[relId(a, b)] != Mode.Immediate, "Immediate: keep it off-chain");
     }
 
-    // the DISGUISE X-ray: extraction flowing in an Immediate relationship is a taboo
+    // the DISGUISE flag: caller labels a suspected taboo; no evidence or remedy here
     function flagIfTaboo(address a, address b, string calldata kind) external {
         if (_mode[relId(a, b)] == Mode.Immediate) emit Taboo(relId(a, b), kind);  // e.g. "interest","price","fee"
     }

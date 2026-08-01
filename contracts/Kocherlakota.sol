@@ -17,21 +17,29 @@ pragma solidity ^0.8.20;
  * hierarchy of money). Memory, credit, balance-sheet: one ledger, three honest names.
  *
  * Demurrage overlay executes: Silvio Gesell, "Die natürliche Wirtschaftsordnung"
- * (1916) — Freigeld / stamp scrip. A holding fee on idle positive balances, so
- * a good medium is a deliberately bad store: it circulates, it does not get
- * hoarded, and wealth is pushed off the rail into the proper store. We do NOT
- * want the currency stable.
+ * (1916) — Freigeld / stamp scrip. A time-proportional fee on positive balances,
+ * so a good medium can be a deliberately bad store. This demonstrator does not
+ * infer whether a holder is "idle"; it charges elapsed holding time when accrued.
  *
  * Design choices, each a session conclusion:
  *  - NO BASE TOKEN; signed balances sum to zero (conservation at zero).
- *  - elastic by credit limit, not by minting (no inflation tax, no mint).
+ *  - elastic by credit limit, not by minting. Net stays zero; gross claim
+ *    allocation can still redistribute and must remain visible.
  *  - interest-free (no usury, no debt-spiral, no jubilee-or-bust).
  *  - settlement is forgetting (`jubilee` socialises a default across creditors).
- *  - the steward governs the dial but cannot mint or skim — rule, not ruler.
- *    (Should be a DialDAO / Friedman contract. Residual vector: credit-limit
- *    discretion — exposed by events, defended by governance.)
+ *  - the steward cannot break paired-write conservation, but can redistribute
+ *    through limits, demurrage, and jubilee. Point it at Friedman so those
+ *    powers are evented, voted, and delayed.
  *  - Balanced/Value/Obligated only. Never put Immediate-mode (gifts, care) on
  *    an immutable public ledger.
+ *
+ * NOT EVENTED, deliberately (judgement register §0.1 — the author, not the chain,
+ * decides what is inspectable): demurrage that has ACCRUED but not been charged
+ * emits nothing, because no transaction occurs until someone touches the holder.
+ * `balance` is therefore knowably stale between touches — read `pendingDemurrage`
+ * alongside it. Nothing in here can act on its own (§0.2): `poke` exists because
+ * the melt needs a caller, and `setPokeReward` exists because a caller needs a
+ * reason. Whoever runs that keeper is a load-bearing party the cast does not name.
  */
 interface IKrugman {
     function elasticityFactorBps() external view returns (uint256);
@@ -53,7 +61,8 @@ contract Kocherlakota {
     mapping(address => mapping(address => bool)) public operatorApproved; // owner → operator → ok
 
     // --- Gesell demurrage overlay ---
-    uint256 public demurrageBps;            // fee on idle positive balance per period (0 = off)
+    uint256 public pokeRewardBps;           // share of a collected fee paid to a third-party poker (0 = off)
+    uint256 public demurrageBps;            // fee on any accrued positive balance per period (0 = off)
     uint64  public demurragePeriod;         // e.g. 365 days
     address public commons;                 // where demurrage flows (a knight; e.g. the jubilee pool)
     mapping(address => uint64) public lastAccrued;
@@ -67,7 +76,10 @@ contract Kocherlakota {
     event FiskeSet(address indexed fiske);
     event Jubilee(address indexed debtor, uint256 forgiven);
     event DemurrageSet(uint256 bps, uint64 period, address commons);
+    event DemurrageChanged(uint256 fromBps, uint64 fromPeriod, uint256 toBps, uint64 toPeriod);
     event Demurrage(address indexed holder, uint256 fee);
+    event PokeRewardSet(uint256 bps);
+    event Poked(address indexed holder, address indexed poker, uint256 fee, uint256 reward);
 
     modifier onlySteward() { require(msg.sender == steward, "not steward"); _; }
 
@@ -108,10 +120,27 @@ contract Kocherlakota {
     function setDemurrage(uint256 bps, uint64 period, address commons_) external onlySteward {
         require(period > 0, "period");
         require(isKnight[commons_], "commons not a knight");
+        // ⚠ RETROACTIVE, and now evented as such. `_accrue` applies the CURRENT rate
+        // to the whole un-accrued span, so raising the rate charges it backwards over
+        // time that elapsed under the old one, and setting it to 0 makes the early
+        // return in `_accrue` stamp lastAccrued without charging — erasing every
+        // holder's pending liability. Two steward redistribution levers over PAST
+        // periods. Not fixed here (a rate-epoch ledger is out of demonstrator scope);
+        // made visible, and this is the call to point at Friedman first.
+        emit DemurrageChanged(demurrageBps, demurragePeriod, bps, period);
         demurrageBps = bps;
         demurragePeriod = period;
         commons = commons_;
         emit DemurrageSet(bps, period, commons_);
+    }
+
+    /// Reward paid to a third party who pokes an idle holder, as a share of the fee
+    /// collected. 0 = off. Without this nobody is paid to charge the idle, so the
+    /// commons receives late and `balance` overstates the holder meanwhile (§0.2).
+    function setPokeReward(uint256 bps) external onlySteward {
+        require(bps <= 10000, "bps");
+        pokeRewardBps = bps;
+        emit PokeRewardSet(bps);
     }
 
     // --- the wire: a payment slides pegs, conserved at zero ---
@@ -158,8 +187,35 @@ contract Kocherlakota {
         emit Settled(from, to, amount);
     }
 
-    // --- Gesell: charge idle positive balances; fee flows to the commons (net preserved) ---
-    function poke(address holder) external { _accrue(holder); }
+    // --- Gesell: charge positive balances over elapsed time; transfer to commons ---
+
+    /// What `balance[a]` currently overstates by: the fee that would be charged if
+    /// `a` were accrued right now. `balance` alone is knowably stale between touches,
+    /// so never read it without this (§0.1 — the author decides what is inspectable).
+    function pendingDemurrage(address a) public view returns (uint256) {
+        if (demurrageBps == 0 || commons == address(0) || a == commons) return 0;
+        int256 b = balance[a];
+        uint64 last = lastAccrued[a];
+        if (b <= 0 || last == 0) return 0;
+        return (uint256(b) * demurrageBps * (block.timestamp - last)) / (10000 * demurragePeriod);
+    }
+
+    /// Anyone may charge an idle holder. With `pokeRewardBps` set, the poker keeps a
+    /// share — the incentive that makes the melt land without a volunteer. Paired
+    /// write commons → poker, so conservation at zero still holds.
+    function poke(address holder) external {
+        uint256 fee = pendingDemurrage(holder);
+        _accrue(holder);
+        uint256 reward;
+        if (fee > 0 && pokeRewardBps > 0 && msg.sender != holder && isKnight[msg.sender] && msg.sender != commons) {
+            reward = (fee * pokeRewardBps) / 10000;
+            if (reward > 0) {
+                balance[commons]    -= int256(reward);
+                balance[msg.sender] += int256(reward);
+            }
+        }
+        emit Poked(holder, msg.sender, fee, reward);
+    }
 
     function _accrue(address a) internal {
         if (demurrageBps == 0 || commons == address(0) || a == commons) { lastAccrued[a] = uint64(block.timestamp); return; }

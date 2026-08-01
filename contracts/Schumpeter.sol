@@ -6,30 +6,30 @@ interface IERC20 { function transferFrom(address from, address to, uint256 amoun
 /**
  * @title Schumpeter — priced productive credit (formerly "ProductiveCredit")
  *
- * Executes: Joseph Schumpeter, "Theorie der wirtschaftlichen Entwicklung" (1911)
- * — credit creation funds the entrepreneur; the banker is the *Ephor* who
- * allocates purchasing power to future production. Pairs with Kocherlakota:
- * the rope CLEARS, this ALLOCATES CAPITAL — the thing the rope alone cannot do
- * (fund comparative-advantage specialisation).
+ * Executes a narrow slice of Joseph Schumpeter, "Theorie der wirtschaftlichen
+ * Entwicklung" (1911): a lender allocates an EXISTING ERC-20 balance to a
+ * proposed productive use. It does not yet create bank money. Pairs conceptually
+ * with Kocherlakota, but the current demonstrator does not wire the two.
  *
  * Avoids the two errors we caught:
  *  - interest is RESTORED — it is the price of capital, the allocation signal
  *    (Hayek's knowledge problem; Aristotle was wrong that money is barren).
- *  - rates are MARKET-DISCOVERED, not steward-rationed: borrower posts a ceiling,
- *    lenders compete down. Pull funded, push flagged.
+ *  - the borrower posts a rate ceiling and the first acceptable lender funds.
+ *    A competitive bid window / lender auction is still required before the
+ *    rate can honestly be called market-discovered.
  *
  *  PULL vs PUSH, SCORED   does it fund production (pull) or extract rent (push)?
  *                         The `attestor` scores it (the hard oracle); governance
  *                         sets the floor; push is gated, survivors flagged.
  *  EXTRACTION VISIBLE     rate, the principal/interest split, defaults — all events.
- *  DEFAULT IS HONEST      the lender bears the loss, in the open. No stealth
- *                         socialisation (that's how Terra/CDOs detonate).
+ *  DEFAULT IS VISIBLE     the lender has already transferred the principal;
+ *                         default emits the loss. Recovery and restructuring
+ *                         are not implemented.
  *  VALUE INCIDENTAL       settles in any IERC20 (a Kocherlakota-wrapper, a
  *                         stablecoin, whatever).
- *  HARD PART NAMED        the attestor is the trust point; unsecured productive
- *                         credit can't be fully collateralised, so enforcement
- *                         leans on reputation (Greif) / legal teeth, not escrow.
- *                         TODO: a Graeber clean-slate (restructuring), not just default.
+ *  HARD PART NAMED        the attestor is the trust point. Greif, legal teeth,
+ *                         a bid process, and restructuring remain proposed
+ *                         integrations, not current state transitions.
  */
 contract Schumpeter {
     enum Status { Requested, Funded, Repaid, Defaulted }

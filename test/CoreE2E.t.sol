@@ -23,8 +23,8 @@ contract MockERC20 {
 }
 
 /**
- * The bench engine, proven to turn over. Each test is one lesson; each assert is
- * one observable from the run-sheet.
+ * The bench-engine specification. Each test is one lesson; each assertion is
+ * one observable from the run-sheet. This file is not a security audit.
  */
 contract CoreE2E is Test {
     Friedman     friedman;
@@ -120,7 +120,7 @@ contract CoreE2E is Test {
     }
 
     // ── Lesson 4a: a good medium is a bad store (Gesell) ─────────────────────
-    function test_Gesell_IdleBalanceMeltsIntoCommons() public {
+    function test_Gesell_PositiveBalanceTransfersToCommons() public {
         vm.prank(employer); rope.approveOperator(address(fisher), true);
         vm.prank(employer); uint256 oid = fisher.create(worker, 100 * ONE, 30 days);
         vm.warp(block.timestamp + 30 days + 1);
@@ -132,7 +132,7 @@ contract CoreE2E is Test {
 
         int256 start = rope.balance(worker);
         vm.warp(block.timestamp + 365 days);
-        rope.poke(worker);                                  // charge the idle hoard
+        rope.poke(worker);                                  // accrue the holding charge
 
         assertLt(rope.balance(worker), start);              // it melted...
         assertGt(rope.balance(commons), int256(0));         // ...into the commons
@@ -157,12 +157,12 @@ contract CoreE2E is Test {
         Schumpeter bank  = new Schumpeter(ICash(address(cash)), attestor);
 
         cash.mint(lender, 1_000 * ONE);
-        cash.mint(borrower, 5 * ONE);                       // borrower earns the interest from production
+        cash.mint(borrower, 5 * ONE);                       // test supplies interest; production is not modelled
 
         vm.prank(borrower); uint256 id = bank.requestLoan(100 * ONE, 30 days, 1000, keccak256("loom"));
         vm.prank(attestor); bank.attest(id, 8000);          // scored productive (pull)
         vm.prank(lender);   cash.approve(address(bank), type(uint256).max);
-        vm.prank(lender);   bank.fund(id, 500);             // lender competes to 5% ≤ borrower's 10% ceiling
+        vm.prank(lender);   bank.fund(id, 500);             // first acceptable lender funds at 5% ≤ 10% ceiling
         assertEq(cash.balanceOf(borrower), 105 * ONE);      // disbursed
 
         vm.warp(block.timestamp + 30 days);
