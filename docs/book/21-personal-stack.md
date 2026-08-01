@@ -16,21 +16,25 @@ A young European tourist pulls a notebook out of her backpack at a café in Buen
 4. The multi-pot wealth allocation (transaction pot, store pot, contract pot, gift pot).
 5. Just-in-time conversion at point of purchase.
 6. What this beats — anchoring, social proof, recency bias, every cognitive trick a price tag can use against you.
+7. **What the notebook does not reach.** Rung one of three, named as such. The chapters just behind us decided things at continental scale and nothing here touches them; what the stack gives is not leverage but *standing* — the ability to state what happened to you in terms that are yours and checkable. Point forward rather than apologise: Ch 22 is the group rung, Ch 23 is the one that reaches the rest, and it is an aim, not a mechanism.
 
 ## Themes
 
 - Defensive vocabulary becomes defensive practice.
 - The minimum-viable unbundled stack is much smaller than the fintech industry would have you believe.
 - You do not need permission, capital, or expertise to start — only attention.
+- The tools are domestic and the problems they answer are not all domestic. Say so.
 
 ## Twists
 
 - The chapter expects the reader to assume "this requires apps and accounts and complexity."
 - Instead, the answer is a notebook. The technology is optional. The discipline is the thing.
+- The second, quieter twist: having armed the reader, the chapter admits the range of the weapon.
 
 ## Subarcs
 
 - The personal-PDA thread from Chapter 18 (Big Mac chapter) gets its full workout.
+- **Governance-debt arc (10):** the arc's first stop in Part VII, and the bottom rung of its ladder. Chs 17 and 19 showed a distributional choice placed beyond refusal; this chapter establishes the reader's own standing and states its range, then hands upward — Ch 22 gives the asymmetry its concrete case, Ch 23 gives the aim. The chapter does not carry the answer to a continental problem and should not be written as though it might.
 - Foreshadows Chapter 22 — the personal stack handles you alone; the Tally handles you with others.
 - The unnamed European tourist returns once more in Chapter 23, completing her arc.
 
@@ -58,10 +62,16 @@ The second piece is the wealth stack, and it is just as humble. Doña Elena's ge
 
 A **transaction pot** — a current account, a little cash, the money for this week — kept deliberately small, because its only job is to be spent and you do not want your wealth sitting in the one place that loses value and is most exposed. A **store pot** — wherever your savings can hold their worth: index funds, a pension, property, for some a stablecoin or gold — kept *out* of the spending currency, because the medium and the store, as we have seen, are enemies inside one instrument. A **contract pot** of thinking — the promises you make in stable units: rent, salary, loans tied to something that holds its meaning. And a **gift pot** — the part of your life you have decided, on purpose, will not be tracked at all: the lunches you pay for, the help you give, the Immediate-mode warmth you protect by refusing to account for it. The art is not in the instruments. It is in knowing which pot a given pound belongs to, and not letting one pot's logic leak into another's.
 
-The final move is the smallest and most powerful: *convert just in time.* You need not live in the store currency or the spending currency. You hold your wealth where it holds, and move only what you need, only when you need it, into the thing you are about to spend. Doña Elena does this without naming it — pesos for the week, the rest held elsewhere, converted at the last sensible moment. It is the whole unbundle, performed by hand, available to anyone willing to pay a little attention where they used to pay none.
+The final move is the smallest and most powerful, and it is the one Chapter 7 promised: *convert just in time.* Cheap conversion is how you stop asking one instrument to be both. You need not live in the store currency or the spending currency. You hold your wealth where it holds, and move only what you need, only when you need it, into the thing you are about to spend. Doña Elena does this without naming it — pesos for the week, the rest held elsewhere, converted at the last sensible moment. It is the whole unbundle, performed by hand, available to anyone willing to pay a little attention where they used to pay none.
 
 ### Attention, not apps
 
 The twist of this chapter is how *little* technology any of it requires, against everything the fintech industry would have you believe. You were perhaps expecting an app to download, a platform to join, a subscription to manage your subscriptions. The answer is a notebook and a habit. Technology is optional; some of it even helps. But the load-bearing thing is the *discipline* — the decision to know what things cost, to keep the four jobs in four places, and to convert at the last moment. None of that needs a venture-funded application. It needs the attention that smooth money trained you not to spend, spent again, on purpose.
+
+### What the notebook does not reach
+
+An honest chapter says what it does not do. The chapters just behind us were about decisions taken far above the notebook — a continent's adjustment channel, a shock absorbed in wages and departures rather than in prices, a distributional choice placed deliberately beyond the reach of an election. Nothing in this chapter touches any of that. No index, however carefully kept, moves a mandate.
+
+What the notebook gives is not leverage. It is *standing* — the ability to say what happened to you in terms that are yours and checkable, rather than in terms handed down by whoever made the decision. That is the smaller claim and it is the true one. It is also the first of three. This chapter is what one person can do; the next is what a group can do; and the answer to the thing you are still holding — the decision taken at a scale you will never sit at — is the last chapter of this book, and it is an aim rather than a mechanism. Keep the question that long.
 
 This is the personal stack: you, alone, defended. But money is not only personal. Most of its friction happens *between* people — the housemates, the friend group, the bridal party — and for that we need a tool the notebook cannot be: one that holds a shared ledger without flattening the relationships it records. That is the next chapter, and the one place in this book where we allow ourselves to design something.

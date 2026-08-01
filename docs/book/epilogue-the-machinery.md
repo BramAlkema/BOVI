@@ -1,10 +1,10 @@
 # Epilogue: The Machinery
 
-> *The body of this book carried no equations and no code, on purpose — the rope, Doña Elena, and the Big Mac did the work. This epilogue is for the reader who wants to see the machinery underneath: the claims as mathematics, and the framework as buildable contracts. Nothing here is required to understand the book. It is here to show the prose was load-bearing, not hand-waving — that "floorless but fruitful" is an inequality, that "nothing needs to back it" is a result with existence proofs, and that "money is a ledger" is something you could deploy.*
+> *The body of this book carried no equations and no code, on purpose — the rope, Doña Elena, and the Big Mac did the work. This epilogue is for the reader who wants to see the mathematical machinery underneath. The appendix that follows makes the framework executable. Neither is required to understand the book. They are here to show that the prose was load-bearing, not hand-waving — that "floorless but fruitful" is an inequality, that "nothing needs to back it" is a result with existence proofs, and that "money is a ledger" can be stated as operations precise enough to run.*
 
-**Part VIII — The Machinery** · [Index](README.md) · Prev: [Chapter 23](23-defensive-vocabulary.md) · Next: [The Field Book](fieldbook-the-money-tool.md)
+**Part VIII — The Machinery** · [Index](README.md) · Prev: [Chapter 23](23-defensive-vocabulary.md) · Next: [Appendix](appendix-executable-canon.md)
 
-The framework lives in three registers. The body of the book is the **seeing** — the way of looking the questions install. This epilogue adds the other two: the **mathematics** (the claims made formal enough to be wrong) and the **contracts** (the claims made concrete enough to run). They are one object viewed three ways.
+The framework lives in three registers. The body of the book is the **seeing** — the way of looking the questions install. This epilogue supplies the **mathematics**: the claims made formal enough to be wrong. The appendix supplies the **contracts**: the claims made concrete enough to run. They are one object viewed three ways.
 
 ---
 
@@ -127,74 +127,54 @@ The body asserted that money never needed to be *worth something* underneath. He
 
 ---
 
-## Part B — The Contracts (the executable canon)
+## Part B — From proof to construction
 
-The second register is code. Each load-bearing idea in this book is instantiated as a smart contract named after its populariser; the suite *is* the lineage, made buildable. Read top to bottom and it is the intellectual history of money as a cascade you could deploy. **It is an educational device, not a currency** — a proof that the minimal money is *consistent enough to run*, not a thing to put your savings in. And an honest ledger of the ledger: the core of the cast — the memory ledger and its guards — is written and running today; the rest of the table is specified and named, blueprint rather than building. The table below marks no distinction, so we mark it here.
+The mathematics can show that intrinsic backing is unnecessary, that acceptance and availability are separate gates, and that the value recursion points forward. It cannot tell us who may debit whom, who controls a credit limit, how an index enters a wage, or what happens when an assertion is challenged. For that, the nouns must become verbs.
 
-### B.1 The cast (condensed)
+The appendix that follows is the full executable canon: eleven implemented Solidity contracts, the Gesell overlay inside the memory ledger, the seven modules exercised by the current end-to-end file, the four implemented modules not yet integrated there, and the named rooms still waiting to be built. It is an educational demonstrator, not a currency or an audit.
 
-| Contract | The idea | In the book |
-|---|---|---|
-| *Kocherlakota* | money is memory — the ledger IS the money | Ch 4, 8A |
-| *Mitchell-Innes* | money is credit (two sides of one thing) | Ch 4 |
-| *Mehrling* | the money view — banking is a swap of IOUs | Ch 4 |
-| *Gesell* (overlay) | demurrage — a good medium is a bad store | Ch 7, 21 |
-| *Kiyotaki-Wright* | emergence — acceptance *selects* the ledger-like good | Ch 5, A.2 |
-| *Schumpeter* | credit funds the entrepreneur | Ch 6 |
-| *Hayek* | competing private issuers; the cold-start's famous failure | Ch 6 |
-| *Krugman* | countercyclical stabiliser; rule-bound elasticity | Ch 18 |
-| *Stigler* | price-discovery; the *market*-skim X-ray | Ch 16, 21 |
-| *Fiske* | the four modes as a permission layer | Ch 2, 11–14 |
-| *Bohannan* | spheres of exchange; general-purpose money collapses them | Ch 2, 7 |
-| *Zelizer* | earmarking / special monies | Ch 12, 14, 22 |
-| *Cantillon* | who gets new money first; the *monetary*-skim X-ray | Ch 18, A.7 |
-| *Greif* | reputation teeth — the enforcement residual | A.7, B.3 |
-| *Lietaer* | complementary currencies; the melt at community scale | Ch 7, 22 |
-| *Friedman* | rules over discretion | Ch 18 |
-| *ChallengeBond* | optimistic fraud-proof — an enforcement primitive | B.3 |
-| *Minsky* | the instability hypothesis — the *memento-mori* | — |
+Its centre remains two paired writes: one balance down, one balance up, net zero. Around that centre the code separates what ordinary money bundles—settlement, unit, deferred obligation, productive credit, price discovery, governance, enforcement, relational permission, emergence, and stabilisation. Every dossier states not only what the mechanism claims, but what the present code actually executes and where the aspiration still outruns the implementation.
 
-*(The wider cast continues — Fisher, Baumol, Bagehot, Galbraith, Keynes, Brunnermeier — each carrying one more idea. The patron-spirits — Menger, Simmel, Patinkin, Graeber, Polanyi, Mauss, Sahlins, Ingham, Martin — get no contract, because a premise cannot be instantiated.)*
+That last distinction is the reason for giving the contracts their own appendix. A seven-page catalogue made the building look finished and the hard parts look like footnotes. They are neither. Identity, privacy, Sybil resistance, oracle truth, governance legitimacy, legal enforcement, adoption, and agent ownership are the building's open walls. The code is useful because it lets us point to them.
 
-### B.2 The core
+---
 
-The whole of money is two lines — the heart of the *Kocherlakota* contract's payment step:
+## Part C — Where the machine hands back
 
-```solidity
-balance[from] -= amount;   // one mark down
-balance[to]   += amount;   // one mark up
-```
+The most dangerous question this book can be asked arrives at about this point, and it is usually asked kindly: *so your system is trustless too?*
 
-— signed balances summing to zero, a mutual-credit ledger with no base token: the `τ→1` limit of A.3, the village rope of 8A made executable. The two-family axioms of A.7 are not *described* in the code; they are *enforced*, each by a specific line:
+It is dangerous because the honest answer is no, and because every project that has answered yes has been wrong in the same way. Trust was not abolished. It was relocated to somewhere less visible and then described as absent — which is the oldest move in this book, performed by people who believed they were its opposite.
 
-- **Conservation (B1)** is the paired write above — nothing is minted in passing, ever, because there is no third line.
-- **Resolution and elasticity (A1, known ≠ fixed)** live in the credit limit: a payment must satisfy `newBalance >= -creditLimit[payer]`, and the limits are the *dial* — gross circulation grows and shrinks by visible rule, while nothing is ever printed.
-- **Symmetric knowledge (B3)** is two public view functions, which between them settle a century of monetary-aggregate argument:
+So the answer is no, and the claim is smaller and more useful. What the machinery buys is not the removal of human judgement but its **enumeration**. Every point where the code stops and a person decides can be named, counted, and guarded. A mechanism whose judgement points are listed is a different object from one whose judgement points have been dispersed into the phrase *the system* — not because the first has fewer of them, but because you can argue about a list.
 
-```solidity
-function netSupply()          // Σ balances — MUST be 0, always: an invariant
-function grossInCirculation() // Σ positive balances — the dial, elastic by rule
-```
+And the list has a structure, because judgement is not one substance. The guard that fits one kind is a category error applied to another. There are four.
 
-The *net* is physics; the *gross* is policy. A money whose net is an invariant and whose gross is a published number has nothing left to debase in secret.
+**Adjudicative** — *this claim is disputed; who decides?* It needs an arbiter, an appeals path, a verifier who is not a party to the outcome. The wrong guard is a majority with a stake in the answer.
 
-Around the core, the overlays: the **Gesell demurrage** (the melt of Stone 6 — a holding fee on idle positive balances that bites hoarders, spares transactors, and flows to a commons account, so even the melt conserves: one balance down, the commons up, net still zero). **Settlement-is-forgetting** (the jubilee: a default is socialised pro-rata across creditors and forgiven *exactly to the amount absorbed* — net still zero). Interest-free by construction. And the mode guard of A.9: before any payment records, the *Fiske* contract can refuse the entry entirely — the one thing the ledger is forbidden to hold is an Immediate-mode bond, because the clearing discipline that never settles must never sit on a surface built to settle.
+**Epistemic** — *what is the state of the world?* It needs a measurement body with a published, re-derivable method. The wrong guard is a vote. You cannot ballot a fact, and a mechanism that puts the inflation reading to a poll of the people it will pay out to has not decentralised a measurement; it has auctioned one.
 
-### B.3 The two honest absences
+**Normative** — *who bears this, and who gets that?* It needs the affected parties, voting, with real exit. Here the wrong guard is the expert — a technocrat with an objective-looking formula, settling a question that was never technical. This is Chapter 17 in miniature, and the machinery reproduces the error as readily as a parliament does.
 
-- **No *Mises* contract, on purpose.** His regression theorem (value must trace to a prior commodity) is the one thing the framework refuses to build — and A.10 is the argument for the refusal, carried out in full. The empty room is the most precise statement of the project.
-- **The residuals are relocated, not dissolved.** *Why a debtor settles* (enforcement — the *Greif* reputation teeth) and *decentralised Sybil-resistance* remain genuinely hard. The contracts de-fang them; they do not abolish them. The honesty is in the named gap.
+**Constitutive** — *who counts as a member at all?* It is prior to the other three, because each of them presumes an answer to it. We do not have one. Every working system borrows it from whoever issues real-world credentials, which is to say from a state or a platform. It is an open wall, and naming it is the most we can currently do.
 
-### B.4 The drop-test, executable
+Two of those take a vote. Two are ruined by one. When we audited our own machinery against this list we found it routing almost everything to a ballot — the reflex of a design culture that has learned to read *voting* as *legitimacy* — and the finding was not that the votes were rigged but that half of them were being asked questions a vote cannot answer.
 
-Chapter 4's tower — knock the decorative properties off and the ledger stands; pull a load-bearing stone and it falls — is not only an image. It is a test suite, and the *Kocherlakota* contract is its fixture.
+Then the reading that turns the list from an accounting exercise into something worth publishing. **A register of judgement points is a register of capture points.** They are the same list read with a different intention. Anyone wishing to bend the mechanism does not attack the arithmetic, which is the part that cannot be bent; they attack the arbiter, the measurement, the membership roll. So the register is simultaneously the honest disclosure and the attack surface — and publishing it is still right, because the alternative is a system whose capture points are known only to whoever finds them first.
 
-Run it downward first: everything the textbook calls essential is *absent from the code by construction*, and the ledger clears trades anyway. There is no backing — no reserve field exists to put it in. There is no token — no total supply, only signed balances. There is no scarcity — the gross is elastic by rule. There is no intrinsic anything — the contract's own bytes are as worthless as the rope's fibre. A full trading day nets to zero across the pegs with none of the "essentials" present. This is A.10's existence proof made runnable: if the no-floor claim were wrong — if something *had* to stand behind a money — a minimal ledger with nothing behind it would fail to clear. It clears.
+**And nothing in it can act.** Every clearing in the machinery waits for someone to call it. The code can enforce *whether* a clearing is valid; it can never bring about *that one happens*. Which means the clearing-discipline claim — the spine running from the rope through the modes to the Tally — is only half executable. The half that says *this settlement is well-formed* is machinery. The half that says *settle now* is a person, standing outside the mechanism, unnamed anywhere in it and load-bearing everywhere. We would rather state that than let a reader discover it.
 
-Then run it upward: each axiom, removed, breaks the ledger *visibly and differently*, which is the independence claim of A.7 in executable form. Delete one of the two paired writes and phantom value enters on every payment — conservation gone. Let anyone write to any balance and forgery is a transaction — authentication gone. Hide the two view functions and the steward can dilute in the dark — symmetric knowledge gone. The bolt-ons are absent and nothing breaks; the axioms are absent and everything does. That asymmetry, run on a machine that cannot be charmed by rhetoric, is the cleanest statement the framework has: the load-bearing properties of money are exactly the ledger properties, and nothing else survives the drop.
+Last, and least visible: **the record's resolution is an authoring decision.** What a mechanism makes inspectable is not a property of the ledger it runs on; it is what its builders chose to write down. Anything that happens without being recorded leaves no trace to audit, and the granularity of that recording is set quietly, by us, in advance, for a reader who was not consulted. For a framework whose whole demand is that extraction be made visible, this is the master judgement point — because a machine that concealed its own choices about visibility would be running the book's central trick one level down, in better clothes.
+
+**And there is a second register, which this one implies and does not contain.** Everything above enumerates where the *code* hands back to a **person**. It says nothing about where a *model* hands back to an **assumption** — and those are different lists. That a population's preferences are stable, that a mechanism reaches the equilibrium ascribed to it, that agents know what the model says they know: none of these is a judgement anybody makes. They are places a theory quietly stops being mechanical, and standard notation is not obliged to mention them.
+
+They could be held the same way, and this is the one proposal in this book that runs ahead of what is built. Not by computing them — nothing computes whether preferences are stable. By **contracting** them: each assumption stated with a scope, a stake, and a named observation that would refute it; each result declaring which assumptions it rests on; and refutation *propagating*, so that killing an assumption marks everything downstream unsupported without anyone having to decide it should. The primitive for that is the enforcement bond already in the canon. What is missing is the graph.
+
+Follow it far enough and it stops being a register and becomes a notation — one specification of an economic claim that can be proved, simulated with heterogeneous agents, and deployed to people, with the disagreements between those three treated as findings rather than errors. Modes would be **types** in it: A.9's table is a typing rule, and averaging entries that never clear is a category error a compiler could catch, which is more than prose has ever managed. That is a programme, not a result, and it is written up separately. Two things stay irreducible inside it, and they are the two this section already named — who may enter a claim at all, and the fact that nothing moves until somebody calls it.
+
+That is why this section is in the book rather than in the code's own documentation. The framework asks who holds the pen. It would be a poor thing if it declined to answer the question about itself.
 
 ---
 
 ## Coda
 
-Three registers, one object. The body is the **seeing** — what you carry out the door. The mathematics is the proof the seeing is *consistent* — that the claims survive being made formal. The contracts are the proof the seeing is *buildable* — that the minimal money is not a daydream but a thing that runs. You need only the first. The other two are here so that, if you ever doubt the prose was honest, you can check.
+Three registers, one object. The body is the **seeing** — what you carry out the door. The mathematics asks whether the seeing is *consistent* — whether the claims survive being made formal. The contracts ask whether it is *operational* — whether every trusted noun can be turned into a visible act. And the register of judgement asks the question the other two cannot: where the operational thing *stops*, and who is standing there when it does. You need only the first. The others are here so that, if you ever doubt the prose was honest, you can check — including against the places it admits it runs out.

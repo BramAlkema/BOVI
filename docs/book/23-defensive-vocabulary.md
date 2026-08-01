@@ -16,6 +16,7 @@ A Berlin coffee shop. €4.20. Card tap. Done. The young European tourist from C
 4. What changes once you see the bundle (you do not necessarily *do* anything different — you see differently).
 5. The system is not broken in the rich-country case; you have been given the means to recognise that it is *one configuration* and not a natural state.
 6. The framework does not liberate you from the bundle — it just stops the lies from working invisibly.
+7. **The one instruction — where to point the light (subarc 10 closes).** Sight is a defence and a defence can be turned the wrong way round; legibility has always been easiest to aim at those with least room to refuse. So: at whoever holds the pen — issuer, platform, employer, the one who sets the fee and the rule and the deadline and can rewrite the record you are scored against. Never at whoever merely holds a balance. **Watch the writer, not the spender.** The asymmetry is the difference between a defence and a scoring system, and it is not a caveat — it follows from everything above, because the people money is done *to* were never the ones who needed watching.
 
 ## Themes
 
@@ -26,6 +27,7 @@ A Berlin coffee shop. €4.20. Card tap. Done. The young European tourist from C
 ## Twists
 
 - The expected closing move would be "and now go change the world." The chapter refuses.
+- Having refused all instruction, the book gives exactly one — and it is about *aim*, not action. The reader who was braced for a call to arms gets a direction to look in.
 - The reader has been changed; that is the change. They may use a Tally with friends or build a personal PDA or move some savings, or they may not — what they cannot now do is *unsee* what they have been shown.
 
 ## Subarcs
@@ -33,6 +35,7 @@ A Berlin coffee shop. €4.20. Card tap. Done. The young European tourist from C
 - Closes the Doña Elena / Berlin barista frame from Chapter 1, completing the book's structural arc.
 - The defensive vocabulary that has been built chapter by chapter is collected and packaged for use.
 - The "we" voice softens into the second person at the very end — handing the framework over.
+- **The governance debt (subarc 10) closes here.** Incurred in Ch 5 — *then what stops them?* — and answered across Part VII not with a mechanism but with an aim: watch the writer, not the spender. It forecloses the hostile reading (the framework as a surveillance instrument) at the last moment it could still be taken, and it makes "watch what they hide" in the final paragraph land as instruction rather than sentiment.
 
 ## Closing scaffold
 
@@ -64,7 +67,7 @@ We never handed you a doctrine. We handed you, one chapter at a time, a small se
 
 *What is the bootstrap, and who pays for it?* — because every money is paid for by someone, and the first question about any new one is always: who, and how?
 
-And beneath all six, the one question the book was written to install: *which way does the worth flow?* Pushed in from behind — by the metal, the labour, the decree? Or pulled in from ahead, by the next trade this thing lets someone close? You have the tests in your hands now: turn the backing dial and nothing moves; take away the next trade and everything does. Everything that will ever be sold to you as holding value *by nature* — a coin, a token, a flag, a bloodline — is the first answer wearing a costume. Everything you have watched actually work, from the rope to the dollar in a Lima market, is the second.
+And beneath all six, the one question the book was written to install: *where has this explanation located value, and which way does the worth flow?* Is value being placed inside the token and pushed in from behind — by the metal, the labour, the decree? Or does it remain with the people, while worth is pulled in from ahead by the next trade this ledger lets someone close? You have the tests in your hands now: turn the backing dial and nothing moves; take away the next trade and everything does. Everything that will ever be sold to you as holding value *by nature* — a coin, a token, a flag, a bloodline — is the first answer wearing a costume. Everything you have watched actually work, from the rope to the dollar in a Lima market, is the second. The inherited curriculum installed the first picture without arguing for it. This question breaks the habit.
 
 Six questions, one direction. You can ask them of a banknote, a crypto token, a gift card, a subscription, a salary, a wedding, a workplace that calls itself a family, a government that calls a fine a fee. They do not tell you what to do. They tell you what is happening. And once installed they cannot be uninstalled — which is the only kind of education worth the name.
 
@@ -77,6 +80,10 @@ The framework does not liberate you from the bundle. The Berlin barista still li
 That is enough. It is, in fact, a great deal — because almost everything money does *to* people, it does by not being seen. The skim hides in the smoothness; the extraction hides in the warmth; the bundle hides in the convenience. Sight is the whole defence, and sight is what you have now.
 
 So we will not tell you what to do with it. You may build the personal stack or you may not; you may start a Tally with your friends or carry on with the awkwardness; you may move your savings or leave them exactly where they are. What you cannot do, ever again, is *unsee* what you have been shown. The coffee in Berlin costs four euros twenty, exactly as it always did. The only thing that has changed is that you now know what you are holding when you pay for it — and what it is holding of yours.
+
+One exception, and it is the only instruction in this book. Sight is a defence, and a defence can be turned the wrong way round. Everything we have handed you works by making conduct legible — and legibility has always been easiest to aim at the people with the least room to refuse. So aim it the other way. Point it at whoever holds the pen: the issuer, the platform, the employer, the one who sets the fee and the rule and the deadline, the one who can rewrite the record you are scored against. Never at whoever merely holds a balance.
+
+Watch the writer, not the spender. That asymmetry is the whole difference between a defence and a scoring system, and it is not a caveat bolted on at the end — it follows from everything above. Almost everything money does to people, it does by not being seen. And the people it is done to were never the ones who needed watching.
 
 The framework was never ours to give. We took it from the giants who thought it, and from the millions like Doña Elena who lived it, and we only carried it into one room and turned on a light. Now it is yours. Use it gently — on the world, and on yourself. Watch what they hide. Ask what mode this is. Ask which way the worth flows. Refuse to be confused.
 

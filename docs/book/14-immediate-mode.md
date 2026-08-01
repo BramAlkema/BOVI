@@ -17,6 +17,7 @@ Doña Elena, three hours into Sunday lunch, refuses to let anyone pay. The same 
 5. Trap one — fake families (workplaces, "communities", influencer extractive culture).
 6. Trap two — silent ledgers (the friend who always needs help, the relative who stops calling).
 7. Trap three — structural extraction (emotional labour, household management).
+7b. **Pricing the gift — Titmuss, handled honestly.** Blood: Britain asked, America partly bought; Titmuss (1970) argued the gift system produced more and safer blood. **The empirical verdict has gone against the simple version** — his own survey faulted on method, later field experiments finding incentives generally raise donation, partly by displacing unpaid drives. Do not claim the evidence vindicates him. Claim only what never depended on supply: *paying gets you a **different thing***. Donation and sale can put an identical bag on an identical shelf and remain two different acts, and a society that converts the first into the second stops doing the first without noticing, because the shelf looks the same. Ch 14's second case, sibling to Ch 13's hut tax — and the chapter where the book models its own calibration discipline in public.
 8. Defence — *"can I refuse without changing the relationship?"*
 
 ## Themes
@@ -61,6 +62,18 @@ But Immediate mode has a terrible vulnerability, and it is the same property tha
 This is why *not counting* is also the weakness, and the abuses cluster around it. The first is the **fake family**: the workplace, the "community," the influencer, the institution that flies the Immediate banner — *we're a family here, we're all in this together* — in order to extract Immediate-mode generosity (unpaid overtime, emotional labour, loyalty, the extra mile) while operating, on payday, in unmistakable Value mode. It is the most lucrative confusion of modern work, because Immediate mode's own defence — *we don't count* — is exactly what stops the exploited person from counting what is being taken.
 
 The second is the **silent ledger**: the friend always in need and never reciprocating, the relative who only calls when something is required, the partner who has quietly decided the relationship runs one way. Immediate mode assumes mutual non-counting; it breaks when one party stops giving and keeps taking, and because no one is supposed to be keeping score, the imbalance can run for years before anyone names it. The third is **structural**: the household management, the emotional labour, the remembering of birthdays and booking of appointments and absorbing of everyone's moods — real work, made invisible precisely because *not counting* is its medium, and therefore unpaid, unshared, unthanked.
+
+### What happens if you price it
+
+There is one case where a whole society ran the experiment, and the argument it started has never quite finished.
+
+In 1970 the social scientist Richard Titmuss compared two ways of getting blood into hospitals. Britain asked for it: unpaid, voluntary, a gift to a stranger you would never meet. America, in part, bought it. Titmuss argued that the gift system produced more blood and safer blood, and that paying for it had corroded something that giving depended on.
+
+The claim launched fifty years of testing, and the honest report is that the empirical verdict has gone against the simple version. Titmuss's own survey has been faulted on method. Later field experiments — including large ones across American blood drives — find that incentives generally *raise* donation, though partly by pulling donors away from unpaid drives nearby rather than creating new ones. Anyone who tells you the evidence cleanly vindicates him is not describing the literature.
+
+Take, then, what survives, because it is the part this book actually needs and it never depended on the supply question. Titmuss's durable observation is not *paying gets you less blood.* It is that **paying gets you a different thing.** A donation and a sale can put an identical bag on an identical shelf and still be two different acts — one of them an unrepayable gift to a stranger, the other a transaction complete at the counter. The blood is the same. What was done is not. And a society that quietly converts the first into the second has not made a market more efficient; it has stopped doing the first thing, and it will not necessarily notice, because the shelf looks the same.
+
+That is Immediate mode's real claim on our attention. It is not sentimentality parked outside the economy. It does work — the unpriced hours, the unbilled care, the blood — that pricing does not replicate so much as replace. The moment you price it, you have changed what was being done, and the accounts will not show you what you lost.
 
 ### The defence
 

@@ -16,6 +16,7 @@ A young European tourist's credit card transaction. €5 on the till. €16 on t
 4. The tell: *"is the price right?"*
 5. The trap: contagion — Value drives out other modes.
 6. Modern weaponisation (surge pricing, dating-app pricing, dynamic pricing, postcode price discrimination).
+6b. **Contagion at the scale of a society — Bohannan and the Tiv.** Three ranked spheres (subsistence / prestige goods / rights in people), conversion upward an achievement and downward a shame; general-purpose money arrives, makes everything commensurable, and the tiers dissolve — not by argument but because a common denominator was laid underneath them. The tell was *moral disquiet*, which is the bridesmaid's feeling at a different scale. **Care:** Bohannan's spheres have been argued over since and were likely less rigid than his first telling; say so, and let the mechanism carry it. This is Ch 11's second case, the sibling of Ch 13's hut tax — the mode taken beyond one anecdote.
 7. Defence: refuse the basis when forced.
 
 ## Themes
@@ -57,9 +58,19 @@ And it is genuinely, enormously good — at the thing it is for. When you sell a
 
 The danger of Value mode is not that it is bad. It is that it does not know its place. Of the four modes it is the most *imperial* — the most prone to spread into territory that belongs to the others and quietly convert it.
 
-That is what happened to the tourist: a relationship that should have run near Immediate (a coffee, a small hospitality) was annexed by Value and priced to the maximum the system could extract. And the same annexation runs through modern life wherever the technology allows. Surge pricing turns an emergency — a ride home, now, in the rain — into a Value-mode auction at the moment you can least refuse. Dating apps have been caught charging older users more for the same subscription, because their willingness to pay is higher. Retailers vary a price by your postcode, your device, your browsing history. Each is Value mode doing what Value mode does — finding the price you will bear — applied to a domain where you did not agree to be priced, and often where you cannot tell it is happening.
+That is what happened to the tourist: a relationship that should have run near Immediate (a coffee, a small hospitality) was annexed by Value and priced to the maximum the system could extract. And the same annexation runs through modern life wherever the technology allows. Surge pricing turns an emergency — a ride home, now, in the rain — into a Value-mode auction at the moment you can least refuse. Dating apps have been caught charging older users more for the same subscription, because their willingness to pay is higher — a practice that has drawn regulators and class actions on two continents. Retailers vary a price by your postcode, your device, your browsing history. Each is Value mode doing what Value mode does — finding the price you will bear — applied to a domain where you did not agree to be priced, and often where you cannot tell it is happening.
 
 Notice the link to the consent axis. Forced Value mode is *coerced* Value, and it carries the same illegitimacy as a coerced obligation. The tourist did not consent to a pricing event; it was imposed by a system that knew things about her she did not know it knew. We return to this — the deliberate, algorithmic forcing of Value mode onto unconsenting buyers — in its own chapter, because it is becoming one of the central conflicts of the digital economy.
+
+### When it annexed a whole society
+
+The tourist lost eleven euros. Run the same imperialism at the scale of a people and you can watch it rearrange what a life is for.
+
+In the 1950s the anthropologist Paul Bohannan lived among the Tiv of central Nigeria and found an economy deliberately built in tiers. One sphere held ordinary subsistence goods — yams, chickens, household stuff — traded freely and without ceremony. A second held prestige goods: cloth, cattle, brass rods, the things a man's standing was made of. A third and highest held rights in people: marriage, and the obligations between kin that organised everything else. Movement between the tiers was not a matter of price. Converting upward was an achievement a man might work a lifetime for and be honoured for reaching. Converting downward was shameful. The tiers were not a market failure; they were the moral architecture of the society, and keeping them apart was the point.
+
+Then general-purpose money arrived with the colonial administration, and it did the one thing it always does: it made everything commensurable. A single unit now spanned all three spheres, so yams could become brass rods and brass rods could become bridewealth, by arithmetic, without anyone achieving anything. The tiers did not fall to an argument. They dissolved, because a common denominator had been laid underneath them and there was no longer any way to say *this is not the kind of thing that converts.*
+
+What the Tiv reported was not primarily an economic complaint. It was moral disquiet — the sense that something which used to be difficult and meaningful had been made easy and hollow. (Bohannan's account has been argued over since, and the spheres were probably less rigid and more historically contingent than his first telling suggested; the mechanism has outlasted the details.) Hold that disquiet next to the bridesmaid watching her friend's wedding become a spreadsheet. It is the same feeling, at a different scale, with the same cause: Value mode arriving in a domain that was being kept, on purpose, out of its reach.
 
 ### The defence
 

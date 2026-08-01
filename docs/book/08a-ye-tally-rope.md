@@ -73,6 +73,8 @@ Thirty-eight hours have appeared.
 
 No new mine was discovered. No god handed down a machine. The gain is not hiding inside the axe or spear. It is in the pattern. The same people, with the same hands and the same daylight, have become richer because their work is arranged differently.
 
+The assignment has changed footing, which a reader keeping score will notice. Adam and Oz needed the *comparative* argument — Oz was faster at both jobs and specialising still paid. Here each villager happens to take the thing they are *absolutely* fastest at, which is the easy case. The comparative point still runs underneath, guaranteeing the gain even when one villager is slower at everything; it is simply not what this table is showing.
+
 This is the first thing you want the village to feel in its bones: exchange is not decoration around production. Exchange changes what production can be.
 
 But now the problem arrives.
@@ -200,7 +202,7 @@ Imagine the village has three possible arrangements.
 
 | Arrangement | What happens | Cost |
 |---|---|---:|
-| No shared record | People trade only when swaps are clean or trust is personal | 66h bundle cost |
+| No shared record | No unfinished trade can be carried, so only a perfectly clean swap works; in the limit each household makes one of everything | 66h bundle cost |
 | Private IOUs | More trade happens, but memory, dispute, and enforcement are expensive | 48h effective cost |
 | Public rope | Trade nets across the village before most debts become personal | 32h effective cost |
 
@@ -250,7 +252,7 @@ When the rope is whole, the village can know its length. When the rope is cut in
 
 The portable version lowers one cost and raises another.
 
-That is monetary design in miniature. A central ledger is legible but local. A portable token travels but must be protected against forgery, over-issue, and confusion. A commodity token solves some cheating problems but imports the problem of intrinsic scarcity. A state token solves some acceptance problems but imports political power. A cryptographic token brings back the public rope without the village, making supply and transfer visible to strangers, but it cannot bring back the village's social context. Each design moves the burden. None abolishes it.
+That is monetary design in miniature. A central ledger is legible but local. A portable token travels but must be protected against forgery, over-issue, and confusion. A commodity token solves some cheating problems by making issuance physically costly, but imports the limits of mining-constrained supply. A state token solves some acceptance problems but imports political power. A cryptographic token brings back the public rope without the village, making supply and transfer visible to strangers, but it cannot bring back the village's social context. Each design moves the burden. None abolishes it.
 
 The rope also lets us see why "money as debt" can mislead.
 

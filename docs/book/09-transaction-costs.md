@@ -6,7 +6,7 @@
 
 ## Opening scaffold
 
-A young migrant wants to send €100 home for a sibling's birthday. Western Union: 12% + bad rate ≈ €15 in fees. Bank: five days. USDT: 30 cents and 3 minutes. A working-week's wage in fees vs. half a coffee.
+A young migrant wants to send €100 home for a sibling's birthday. Western Union: ~8% plus a bad rate ≈ €15 gone. Bank: five days and a form. USDT: 30 cents and 3 minutes. Most of a day's wage in fees vs. half a coffee. *(Keep these figures in step with the draft — they drifted once.)*
 
 ## Structural beats
 
@@ -14,7 +14,7 @@ A young migrant wants to send €100 home for a sibling's birthday. Western Unio
 2. Coase 1937 — why firms exist (to internalise transaction costs).
 3. Williamson's typology.
 4. Wallis & North on measuring the transaction sector.
-5. M-Pesa adding ~2% to Kenyan GDP just by lowering friction.
+5. Suri & Jack (2016) on M-Pesa: ~194,000 Kenyan households (≈2% of households) out of poverty, and ~185,000 women shifted out of farming — *households, not GDP*; the figure is contested, so attribute it and claim no more than the paper does.
 6. What fintech actually is — ongoing transaction-cost reduction.
 7. Why "high finance" and "remittance corridors" are the same problem at different scales.
 
@@ -47,7 +47,7 @@ A man in London wants to send a hundred euros to his sister in Lagos for her bir
 
 He has options. Western Union will do it today, for a fee of around eight per cent and an exchange rate quietly worse than the real one — call it fifteen euros gone by the time it lands, a sixth of the gift, most of a day's wage where he works. His bank will do it for less, if he is willing to wait five working days and fill in a form asking the purpose of the transfer. Or he can buy a hundred euros of a dollar-stablecoin on his phone, send it to his sister's wallet, and have her convert it to naira at the street rate — total cost about thirty cents, total time about three minutes.
 
-The gift is the same hundred euros in every case. What differs — by a factor of fifty, between half a coffee and a week's wage — is the *transaction cost*: the price of moving value from one person to another. And that price, nearly invisible to a comfortable reader who pays it without noticing, is one of the largest single facts about the economy.
+The gift is the same hundred euros in every case. What differs — by a factor of fifty, between half a coffee and most of a day's pay — is the *transaction cost*: the price of moving value from one person to another. And that price, nearly invisible to a comfortable reader who pays it without noticing, is one of the largest single facts about the economy.
 
 ### The cost nobody counts
 
@@ -55,7 +55,7 @@ In 1937 a young Ronald Coase asked a question that sounds trivial and is not: if
 
 Once you hold the concept you start seeing it everywhere, and then someone measures it. When the economists Wallis and North tried to add up the "transaction sector" of the American economy — everyone whose job is not to make things but to *coordinate* the making and moving and trading of them: the bankers, lawyers, insurers, wholesalers, clerks, managers, the whole apparatus of getting deals done — they found it was on the order of half of GDP. Half. The majority of a rich economy's activity is not production. It is the cost of coordinating production.
 
-Which means that lowering that cost is among the most powerful things anyone can do, and it rarely looks dramatic. When M-Pesa let Kenyans send money by text message, later studies estimated it lifted Kenyan GDP by around two per cent and pulled hundreds of thousands of households out of poverty — not by producing anything, but by making it cheap to move small sums, so that more trades simply happened. That is what "fintech" actually is, beneath the branding: the ongoing reduction of the cost of moving and recording value. Every basis point shaved off a transaction is a trade that could not happen before and now can.
+Which means that lowering that cost is among the most powerful things anyone can do, and it rarely looks dramatic. When M-Pesa let Kenyans send money by text message, the economists Tavneet Suri and William Jack followed the effect for a decade and estimated that access to it had lifted some hundred and ninety thousand households — about two per cent of Kenyan households — out of poverty, and moved nearly as many women out of subsistence farming into business and retail. Not by producing anything: by making it cheap to move small sums, so that more trades simply happened. That is what "fintech" actually is, beneath the branding: the ongoing reduction of the cost of moving and recording value. Every basis point shaved off a transaction is a trade that could not happen before and now can.
 
 ### The real economy is the invisible one
 

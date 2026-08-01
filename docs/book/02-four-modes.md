@@ -96,6 +96,6 @@ We want to propose something gentler, and we think more accurate. None of these 
 
 Which, in the end, is all this chapter has handed you: four words, and the suggestion that most exchange is one of them. It does not feel like much. But watch what it does. Before the words, the bridal party fight is a swamp of hurt feelings and unfair maths. After the words, it is legible — you can point at each speaker, name her mode, and ask the one question that actually dissolves the fight: *which mode is this weekend supposed to be?* That question has an answer the group can negotiate. *Who's being unreasonable?* does not.
 
-We will meet this bridal party again — twice more, each time with sharper tools — and by the last time we will know exactly what would have helped them. For now it is enough to have watched them fight, and to hold the four words that explain why.
+We will meet this bridal party again — three times more, each with sharper tools — and by the last time we will know exactly what would have helped them. For now it is enough to have watched them fight, and to hold the four words that explain why.
 
 We have the modes. But the modes describe the *shape* of an exchange, not whether it is *right*. A gift and an extortion can wear the same mode; an authority can be one you chose or one you cannot leave. Shape is not legitimacy. The next chapter adds the second axis — the one that tells a wanted obligation from an imposed one — and with it the framework is complete enough to turn loose on the world.

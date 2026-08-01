@@ -17,6 +17,7 @@ Six bridesmaids fighting over a Splitwise tab three weeks before the wedding. Th
 5. Trap one — weaponised score-keeping ("I did X for you, you owe me Y").
 6. Trap two — unequal capacity hidden inside equal split.
 7. How Splitwise corrupts Immediate by enforcing Balanced everywhere.
+7b. **Balanced mode working, at scale — the rotating savings club.** Tanda, chama, susu, committee, hui, gam'iya: fixed group, equal contribution, the whole pot to one member each round until all have taken it. No interest, no collateral, no institution; the enforcement is standing, not law. Hundreds of millions of users, older than central banks. The point is the contrast — everything that broke in the bridal party is present here and intact, because the group agreed the mode and the ledger openly. *The pathology is not Balanced mode; it is Balanced mode without an agreement.* Forward-ref Ch 20, which surveys these as part of the stack rather than explaining the mechanism. Ch 12's second case, sibling to Ch 13's hut tax.
 8. Defence — name the ledger out loud, watch for secret scores.
 
 ## Themes
@@ -67,6 +68,16 @@ The second is **equal-split-as-false-balance** — the bridesmaids' real problem
 There is a deeper culprit in the fight, and it is sitting on all their phones. Splitwise — the friendly little app that tracks who owes whom — does something quietly radical: it runs *everything* through Balanced mode. Every shared dinner, every gift, every round becomes a line item, a debt, a number to be squared. And in doing so it silently converts the other modes into Balanced ones. A gift (Immediate — *I wanted to treat you*) becomes a debt you now owe. A moment of communal generosity becomes an entry to be settled. The friction the app removes — the awkwardness of money among friends — turns out to be the friction of *what kind of relationship the friends are having.* By making everything even, it makes everything counted, and some things are damaged by being counted.
 
 This is the trap of the tool that does not know about modes. Splitwise is not malicious; it is mode-blind, and a mode-blind tool imposes one mode by default. In the terms of Chapter 4: it keeps only one kind of books, and forces every entry to clear on the ledger's schedule — now, or nagged until squared — including the entries that were never supposed to clear at all. We will come back to this in the final part of the book, because it points straight at what a *better* tool would do — one that knew a gift from a debt, and let the Immediate things stay uncounted. (We will call it the Tally, and this bridal party is its reason for existing.)
+
+### The mode that banks half the world
+
+It would be easy, after a chapter of pathologies, to file Balanced mode as the awkward one — the mode of resentment and unspoken scores. So it is worth seeing it doing serious work, at a scale that dwarfs anything in this chapter so far.
+
+Across most of the world there is an arrangement with a different name in every language and the same shape everywhere. A *tanda* in Mexico. A *chama* in Kenya. A *susu* in West Africa and the Caribbean. A *committee* in Pakistan, a *hui* in China, a *gam'iya* in Egypt. A fixed group of people — neighbours, market traders, colleagues, women who have known each other for years — each puts in the same amount on the same day, and the whole pot goes to one member. Next round, the next member. Round it goes until everyone has taken the pot once, and then, very often, it begins again.
+
+Look at what is not there. No interest. No collateral. No institution, no application, no credit score. Nobody is in debt, exactly; the books simply lean, and are trusted to right themselves by the end of the cycle — which is the definition of Balanced mode, running as financial infrastructure for hundreds of millions of people, and older by centuries than any central bank. The enforcement is not legal. It is the standing you would lose. Take your pot in the second round and vanish, and you have not defaulted on a loan; you have stopped being someone these people will do anything with, in a town where that matters more than a credit file.
+
+Which is the same mechanism as the bridal party, working. Everything that broke in the spreadsheet fight is present here and intact: the group agrees what mode this is, agrees the ledger openly, and knows what happens if the evenness is not honoured. The pathology is not Balanced mode. It is Balanced mode without an agreement. We will meet these clubs again when we survey the world's unbundled stacks, where they sit alongside mobile money and foreign currency as ordinary furniture.
 
 ### The defence
 

@@ -17,6 +17,7 @@ The bridal party fight, fourth analytical use. This time we ask: what tool would
 5. The visualisation — one canvas, everyone's net position, circular debts auto-net.
 6. Use cases (flatshare, friend group, couple, festival squad, band).
 7. Entering a Tally with someone is a relationship-defining commitment.
+7b. **What kind of visibility this is (subarc 10's guardrail, in its concrete case).** A shared ledger is not automatically a kindness. The Tally works because everyone on it is on it the same way — all can see the whole rope, all write to it, any can walk without losing a home or a wage. Visibility among equals who chose each other and can leave is a tool; the same surface run by someone outside the group — landlord, employer, platform — is an instrument. The question of any offered ledger: not *how much does it show*, but *who can see whom, and which of us is free to leave.*
 
 ## Themes
 
@@ -34,6 +35,7 @@ The bridal party fight, fourth analytical use. This time we ask: what tool would
 - Clearing-discipline arc closes here: the four buttons ARE the four disciplines from Ch 4; the Tally is the four-resolution ledger of which money was only ever the V channel.
 - The bridal party fight's fourth use closes its arc.
 - The "modern tally rope" thread from Chapter 6's historical material lands here.
+- **Governance-debt arc (10):** the Tally is the arc's one *symmetric* case — mutual visibility, consented, exit available — which is precisely why it does not generalise. That boundary is the rung, not a dead end: the **artifact** stops at the group, the **question** in beat 7b does not. *Who can see whom, and which of us is free to leave* is asked the same way of a flatshare and of an issuer. Sets up Ch 23's single instruction: aim the light at whoever holds the pen.
 - The cold-start problem returns: the Tally inherits its network from existing chat infrastructure (WhatsApp, iMessage, Signal) — explicit acknowledgement of platform leverage as bootstrap.
 
 ## Closing scaffold
@@ -59,6 +61,8 @@ Say it the way Chapter 4 would. The four buttons are the four clearing disciplin
 ### A tool that respects relationships
 
 This is more than a feature list, because of what the modes carry. A tool that strips mode information does not merely lose data; it strip-mines relationships, quietly converting gifts into debts and friendships into accounts — exactly the damage Splitwise does, exactly the damage the bridal party suffered. A tool that *keeps* mode information does the opposite: it lets a group be honest about what kind of exchange each thing was, and so lets the friendship survive the bookkeeping. To enter a Tally with someone — a flatmate, a friend group, a partner, a festival squad, a band splitting its takings — is therefore not a small act. It is a small relationship-defining commitment: an agreement to keep a shared, mode-aware ledger, and to be honest, together, about which mode each thing belonged to.
+
+It is worth being exact about what kind of visibility this is, because a shared ledger is not automatically a kindness. The Tally works because everyone on it is on it the same way: each of them can see the whole rope, each of them writes to it, and any of them can leave the group without losing a home or a wage. Visibility among equals who chose each other, and can walk, is a tool. The identical surface operated by someone who is *not* in the group — a landlord, an employer, a platform, anyone whose position lets them watch without being watched — is not the same object at all, whatever the screen looks like. It has become an instrument. So the question to ask of any ledger somebody offers you is not *how much does it show*, but **who can see whom, and which of us is free to leave.**
 
 And — because we have not forgotten the hardest problem in money — the Tally does not pretend to escape the cold-start. A new shared ledger with no one on it is worth nothing, the same trap that killed Hayek's perfect currency. So the Tally does not try to be a network of its own. It inherits one. It lives on top of the chat apps where the groups already are — the WhatsApp threads, the iMessage groups, the Signal chats — so the bridal party can start a Tally inside the conversation they are already having. The bootstrap is borrowed, honestly, from the platforms that already solved it. That is the whole trick, and we named it chapters ago.
 

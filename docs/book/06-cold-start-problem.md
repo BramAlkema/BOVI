@@ -23,6 +23,7 @@ Hayek's *Denationalisation of Money* (1976). Airtight argument. Nobel laureate. 
 
 - Technical excellence is not adoption.
 - Bootstrapping is the central engineering problem economics ignores.
+- A bootstrap creates the first demand and coordinates selection; it does not inject objective value into the money.
 - Speculation funds infrastructure that non-speculators free-ride on.
 - The "real miners" of any monetary network are the early holders, not the protocol workers.
 
@@ -34,6 +35,7 @@ Hayek's *Denationalisation of Money* (1976). Airtight argument. Nobel laureate. 
 ## Subarcs
 
 - Clearing-discipline arc: the four engines are mode-subsidies — coercion = Obligated pays, commodity = prestige-sphere (B/O/I) demand pays, platform = existing relational networks lend theirs, speculation = Value funding itself. "Bundled at bootstrap" is a mode-bundle, not only a function-bundle.
+- Money-exception arc: the goldbug appears not as an enemy of economics but as a literal reader of its commodity-money lesson. The correction is to distinguish pre-existing demand as bootstrap from value as the cooperation the working ledger unlocks.
 - First appearance of the bootstrap-vs-use-layer distinction that organises Parts III through VII.
 - Foreshadows Chapter 22 (the Tally), which will be examined as a use-layer construction needing to inherit network from somewhere else.
 - Bitcoin re-evaluation arc reaches its inflection point here.
@@ -56,11 +58,13 @@ That problem — the reason elegant money designs do not become actual moneys �
 
 ### The math is brutal
 
-A money network's value to any one user is roughly the number of *other* users they can transact with. Metcalfe's law: value scales with the square of the user count. A network of two has one possible exchange relationship. A network of ten has 45. A network of a million has half a trillion.
+A money network's value to any one user is roughly the number of *other* users they can transact with — so the possible trading relationships grow much faster than the membership does. A network of two has one. A network of ten has forty-five. A network of a million has half a trillion. (There is a famous law about this and a long, unfinished argument about its exact exponent. The argument does not matter here. What matters is the shape at the bottom of the curve, and every version of the law agrees about that.)
 
 Run that in reverse and we get the cold-start problem. A network of one has zero relationships. A network of two has one. The early users of a new money get almost no value from it, because there is almost no one to transact with. Their willingness to hold or accept it depends entirely on the *expectation* that other users will arrive — an expectation that, at t=0, has no evidence behind it.
 
 Pure utility cannot solve this. A new payment rail might be 100× faster, 10× cheaper, and infinitely more elegant than the existing options. None of that matters if we cannot pay anyone with it. The first thousand users get effectively nothing for their adoption costs. Without a non-utility reason to hold, they never appear, and the network never crosses the threshold where utility starts to compound.
+
+Hayek's own case, to be fair to it, never got a clean test. Legal tender rules, taxes payable only in the state's unit, banking licences and later anti-laundering law between them made a competing currency hard to launch and easy to prosecute; his design was not defeated in an open contest so much as kept out of one. But the law only explains the proposals that were never run. Where the field has been open — local and community currencies nobody needed permission to start, mutual-credit schemes, thirty years of cryptocurrencies launched in deliberate indifference to the licensing regime — the same thing happened anyway, to designs that were free to succeed. Elegant, genuinely better than the incumbent on some axis, and almost nobody willing to go first.
 
 Every working money in human history has solved this problem somehow. The solutions are not subtle. There are essentially four.
 
@@ -70,9 +74,11 @@ Every working money in human history has solved this problem somehow. The soluti
 
 The cleanest historical mechanism. A king (or a modern state) demands taxes denominated in a specific token. Citizens must obtain that token to avoid jail. Sellers begin accepting it because their customers have it. The network bootstraps outward from the coercive demand pulse.
 
-This is the chartalist insight: state-issued money is not valuable because we agreed to use it; it is valuable because we are *required* to. Agreement comes after, as the network thickens.
+This is the chartalist insight, stated carefully: a tax obligation creates compulsory demand for the state's chosen unit. It gives people a non-optional reason to obtain and accept that ledger before a voluntary network is thick enough to sustain itself. Agreement comes after, as the network spreads outward from the demand pulse.
 
-The historical evidence is overwhelming. Lydia, the first state to mint coins (around 600 BCE), did so to pay soldiers. Rome's denarius spread through tax demands and legionary pay. The British pound, the dollar, the euro — every modern fiat currency we use is bootstrapped by the coercive demand for its own units in tax payment. This is not a footnote. It is the engine.
+The requirement does not inject value into the currency. It bootstraps and selects the ledger. The worth still lies in the cooperation, settlement, and specialisation the working network unlocks. Tax answers *why this money gets its first users*, not *what those users ultimately find worth having*.
+
+The historical evidence is broad. Lydia struck the first state coinage around 600 BCE — for state payments, plausibly soldiers' pay, though what the coins were actually *for* is still argued among people who have spent careers on it. Rome's denarius spread through tax demands and legionary pay. The British pound, the dollar, the euro — every modern fiat currency we use is bootstrapped by the coercive demand for its own units in tax payment. This is not a footnote. It is the engine.
 
 **Who pays**: citizens, by compulsion. **What it buys**: one of the most efficient transaction rails ever invented.
 
@@ -86,13 +92,19 @@ The "real miners" of Bitcoin are not the people running ASICs. They are the peop
 
 **Who pays**: speculators, voluntarily, mostly through losses. **What it buys**: a globally distributed, censorship-resistant transaction infrastructure usable by anyone — including the people who do not share the speculative theology.
 
-#### 3. Industrial or ornamental use value
+#### 3. Pre-existing industrial or ornamental demand
 
-A commodity has *intrinsic* demand for non-monetary purposes — gold for jewellery and electrical contacts, salt for food preservation, cattle for milk and labour, cowries as decorative items. That underlying demand creates a baseline of holders. The commodity then accumulates monetary functions on top of its primary use.
+A commodity may already be demanded for non-monetary purposes — gold for jewellery and electrical contacts, salt for food preservation, cattle for milk and labour, cowries as decorative items. Those uses are not value sitting inside the commodity. They are reasons people already have for wanting it. The resulting demand creates a baseline of holders, and the commodity can accumulate monetary functions on top of that existing network.
 
-Gold did not become money because we decided it would be useful. Gold became money because enough people already wanted it for *other reasons* that the cold-start was solved before the monetary function had to bootstrap on its own. The same is true of cattle in much of the ancient world, salt in the Roman *salarium*, and cowries across the Indian Ocean trade.
+Gold's existing networks of demand helped it cross the monetary cold start before monetary use had to bootstrap on its own. The same mechanism supported cattle in much of the ancient world, salt in the Roman *salarium*, and cowries across the Indian Ocean trade.
 
 **Who pays**: the original industrial or ornamental users, through demand they would have had anyway. **What it buys**: a money function as a free side-benefit on top of an existing market.
+
+The distinction is the whole chapter in miniature. Pre-existing demand can pay for a bootstrap without becoming an objective floor beneath the resulting money. Call that demand "intrinsic value" and the old causal reversal returns.
+
+This is where the goldbug stops reading. The textbook first teaches that a commodity's intrinsic value made money trustworthy, then removes the commodity and asks law or faith to perform the same magic. The goldbug refuses the switch. **Goldbugs are not flat-earthers. They are Econ 101 literalists.** Their logic preserves the lesson; our correction rejects its premise. Gold's prior uses helped it cross the cold start. They did not manufacture the monetary worth that emerged once the ledger began unlocking exchange.
+
+And since we are being fair to him, let us be fair the whole way. Underneath the goldbug's ontology there is a *governance* demand, and it is a good one: **do not let whoever holds the pen quietly write more.** That demand is correct. It is the same demand this book will keep making in other words for the rest of its length, and nothing in our argument answers it — a ledger can be debased exactly as a coinage can, and rather more easily. What we refuse is only the inference bolted on top: that because the discipline is necessary, the worth must live in the metal. Concede the demand; refuse the label. Most of what follows is about what meets that demand once the metal is gone.
 
 This mechanism is largely unavailable to us as modern designers. We do not have new commodities with universal pre-existing demand. The closest modern analogue is *attention*, but no one has yet figured out how to anchor a token to attention in a way that survives the friction.
 

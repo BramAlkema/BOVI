@@ -2,7 +2,7 @@
 
 > *The body of this book is a way of seeing. This is a way of doing — a short, practical manual for the unbundled life and for the mode-aware tool that makes it social. Keep it in a back pocket. Use what helps; ignore what does not.*
 
-**Part IX — The Field Book** · [Index](README.md) · Prev: [Epilogue](epilogue-the-machinery.md)
+**Part IX — The Field Book** · [Index](README.md) · Prev: [Appendix](appendix-executable-canon.md)
 
 Three things travel out of this book into ordinary life: a *practice* you run alone, a *tool* you run with others, and a *checklist* you run on anything. Here is how each one works in the hand.
 
@@ -62,7 +62,7 @@ A flatshare (rent **O**, the shared shop **B**, the night someone cooked for eve
 
 ### Honest status
 
-The Tally is a **product proposal**, not a finished, shipped app, and the book has been clear about that throughout. A prototype of the wider system — the *Exchange Lens*, an interactive teacher for these ideas — exists and is live, and it now includes a working Tally you can try: the four buttons, the leaning canvas, the gift marked untouchable, and a mode-blind toggle that shows what the ordinary tools would have done to the same weekend. It borrows its network the honest way: the whole ledger travels *inside a link* — cut the rope, paste it into the group chat, and whoever opens it lays the same rope out on their own device, no server or account involved. The fully chat-native product this section describes — the Tally living inside the conversation itself — remains a *direction* rather than a download. Treat this section as a spec you could hand a builder — which is exactly what it is.
+The Tally is a **product proposal**, not a finished, shipped app, and the book has been clear about that throughout. A prototype of the wider system — the *Exchange Lens*, an interactive teacher for these ideas — has been built, and it includes a working Tally: the four buttons, the leaning canvas, the gift marked untouchable, and a mode-blind toggle that shows what the ordinary tools would have done to the same weekend. It borrows its network the honest way: the whole ledger travels *inside a link* — cut the rope, paste it into the group chat, and whoever opens it lays the same rope out on their own device, no server or account involved. The fully chat-native product this section describes — the Tally living inside the conversation itself — remains a *direction* rather than a download. Treat this section as a spec you could hand a builder — which is exactly what it is.
 
 ---
 
@@ -79,10 +79,12 @@ When something lands in front of you — a banknote, a token, a gift card, a sub
 
 And beneath all six: **which way does the worth flow** — pushed from what stands behind it, or pulled by the next trade it unlocks? If the sales pitch answers "pushed," you have found the essentialism; every other line on this card follows from refusing it.
 
+And one rule about where to point the card: **at whoever holds the pen.** The issuer, the platform, the landlord, the employer, the one who writes the rule and the fee and the deadline and can rewrite the record you are scored against. Not at whoever holds a balance. Run these questions on the party with the power over the record, never on the person trying to get through the month. Aimed the first way, this is a defence. Aimed the second, it is a credit score with a better vocabulary.
+
 You will not always act on the answers. But you will always *see* — and seeing, as the last chapter said, is the whole defence.
 
 ---
 
 ## Coda
 
-The practice is Doña Elena's, made teachable. The tool is the rope, made social and given screens. The checklist is the book, folded small enough to carry. None of it asks you to leave the system you live in. All of it ensures that, from here on, the system has to operate where you can see it.
+The practice is Doña Elena's, made teachable. The tool is the rope, made social and given screens. The checklist is the book, folded small enough to carry. None of it asks you to leave the system you live in. All of it ensures that, from here on, the system has to operate where you can see it — with the light pointed, always, at the part of it that does the writing.

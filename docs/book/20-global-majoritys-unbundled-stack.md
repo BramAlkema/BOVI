@@ -42,6 +42,7 @@ Doña Elena revisited at full depth — what every layer does, where it came fro
 
 - Doña Elena's fifth and final revisitation in this analytical-case form. From here on, the book is about what we do with this knowledge.
 - The "anthropology of exchange" thesis from Part I lands fully — we are now reading the global majority as our anthropologists.
+- **Governance-debt arc (10):** the conduct reading at its widest. Every stack surveyed here was assembled by people adapting to a decision someone else made and they could not refuse — which is the arc stated as demography rather than as grievance. It also sets the limit Ch 21 must admit: these are defences, not remedies, and they are built by the people with the least say in what they are defending against.
 - Closes Part VI by transitioning from "what breaks" to "what we build."
 
 ## Closing scaffold
