@@ -47,7 +47,7 @@ Twenty distinguishing positions, each stated as: **[standard default] → [frame
 ### Quirk 2 — The barter myth is empirically false
 
 - **Default**: money emerged from barter to solve the double-coincidence-of-wants problem (Adam Smith, every Econ 101)
-- **Framework**: anthropologists have spent a century looking and **never found a barter-only society as a transitional stage**. Credit and gift predate currency by millennia. Mesopotamian debt tablets (~5000 BCE) precede coinage by ~4000 years.
+- **Framework**: anthropologists have spent a century looking and **never found a barter-only society as a transitional stage**. Credit and gift predate currency by millennia. Mesopotamian accounting tablets (proto-cuneiform, Uruk IV, ~3400–3100 BCE) precede coinage by ~2,400 years.
 - **Why**: Adam Smith made the story up. It survives because it makes markets look natural. Believing it leads to wrong conclusions about banks, the state, and crypto. See Graeber, *Debt: The First 5,000 Years*.
 
 ### Quirk 3 — Chartalism is partial, not exclusive
@@ -56,6 +56,20 @@ Twenty distinguishing positions, each stated as: **[standard default] → [frame
 - **Default 2 (chartalist correction)**: money has value because the state demands it for tax
 - **Framework**: state coercion is **one of three anchor types** (legal, natural, mathematical) and **one of four bootstrap engines** (state coercion, speculation, industrial use, platform leverage). The dollar works abroad in places where you owe no US tax — the network is global, the anchor is Fed credibility, the coercion is irrelevant to the foreign holder.
 - **Why**: Both standard defaults pick one mechanism and treat it as exclusive. Both are partial. The single value axiom is **common knowledge of future acceptance**, fed by three inputs (anchor, network, credibility). Anchor type does not matter; only that the axiom is satisfied. *(Refined in `FOUNDATIONS.md`: this is the **selection** axiom — why *this* money is held — not the **value-source**, which is floorless-but-fruitful, Stone 3; and acceptance is one of two legs — **availability** is the other.)*
+
+**Operational rider — what this Quirk does *not* deny.** Quirk 3 fires at the *value* claim only. The chartalist and MMT literatures also make **operational** claims about issuance, and those are a different matter: the framework grants most of them, and a reader applying this Quirk indiscriminately will reject things Stone 2 already implies. Popular compressions — *"the deficit creates the money to pay for itself"* — fuse three claims of very different standing, so separate them:
+
+| Claim | Status in this framework |
+|---|---|
+| **Ordering** — the issuer must issue before its unit can be remitted back to it | **Granted, near-trivially.** Once money is a ledger (Stone 2), entries are made, not found; nothing can be paid in a unit that has not been created. An issuer's own liability cannot be a prerequisite for its own issuance |
+| **Sectoral identity** — a deficit puts net financial assets into the non-government sector | **Granted**, given the sector definitions. It is double-entry, not a theory. Note what it is an identity *over*: nominal balances |
+| **"It owns its central bank, so it lends to itself"** — bonds as balance-sheet tidying, not funding | **Conditional — borrowed coupling.** This is an institutional arrangement, not an identity, and it holds only under **monetary sovereignty** — in MMT's own formulation: its own currency and central bank, a floating exchange rate, and no significant foreign-currency debt |
+
+MMT draws that boundary itself, and loudly: on its own criteria eurozone members are *not* monetary sovereigns — they do not issue the currency they owe — and the school treats this as a structural defect of the euro's design rather than an awkward exception. Bill Mitchell is the specialist here (*Eurozone Dystopia*, 2015); Wray and Mosler make the same argument, and Kelton runs it through Greece. So the condition is not a refutation of MMT; it is MMT's own, and it is what popular restatements drop. The canon's habit applies: record the coupling as **borrowed**, not derived, and name what it rests on.
+
+And the identity's silence is where this framework does its work. *"The deficit makes the money to pay for itself"* is true of the **entries** and says nothing about whether they clear at unchanged purchasing power. Nominal self-consistency is not sufficiency — MMT proper foregrounds the resource and inflation constraint, and it is the slogan that reads as if it did not. In the canon's own terms this is a **B3** question (symmetrically-known supply), and the skim lives in the gap: who receives the new entries first, and who holds the diluted ones (Quirk 12, Cantillon).
+
+*Q2 assessment of the chartalist pole — MMT graded on the same three axes as metallism: `THE-THEORY-OF-MONEY-RECENSION.md` §8.*
 
 ### Quirk 4 — Scarcity is not what makes money work
 
@@ -392,7 +406,7 @@ The framework lives in the substantivist tradition of economic anthropology: **M
 
 When using the framework — for writing, conversation, analysis — the most common drift patterns to catch:
 
-1. **Reverting to chartalism**: claiming money has value "because the state demands it" without immediately noting that this is one of three anchors. Quirk 3 violation.
+1. **Reverting to chartalism**: claiming money has value "because the state demands it" without immediately noting that this is one of three anchors. Quirk 3 violation. *Scope: the **value** claim only. Do not fire this on an* operational *claim (issuance precedes remittance; a deficit adds net financial assets) — those are granted, and rejecting them is the opposite-direction error. Sorted by standing in the Quirk 3 operational rider.*
 
 2. **Treating Value mode as default**: presenting market-based answers as the standard against which other modes are deviations. Quirk 6 violation. Watch for the word "rational" doing covert work.
 

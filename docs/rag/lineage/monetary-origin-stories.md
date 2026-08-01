@@ -33,10 +33,12 @@ The story persists because it makes money look private, neutral, and market-y. B
 > "Money started as units of account for tracking who owes whom."
 
 - **Source tradition**: Innes (1913) → Keynes → Graeber → Hudson → modern monetary anthropology
-- **The claim**: in Mesopotamia ~5,000 years ago, temples and palaces tracked who owed grain to whom on clay tablets. The *unit of account* came first; the *coin* came thousands of years later. Money started as **bookkeeping**.
+- **The claim**: in Mesopotamia, temples and palaces tracked who owed grain to whom on clay tablets — proto-cuneiform, Uruk IV, ~3400–3100 BCE. The *unit of account* came first; the *coin* came thousands of years later. Money started as **bookkeeping**.
 - **BOVI mode**: **Balanced** mode origin (ledgers first)
 
-This is anthropologically the best-supported story for any one origin. Cuneiform debt tablets predate coinage by 2,000+ years.
+This is anthropologically the best-supported story for any one origin. Mesopotamian **accounting** tablets precede coinage by ~2,400 years.
+
+*Two corrections worth holding, both recorded in `CANON.md` (Quirk 2) and applied here late.* **Accounting**, not **debt**: the earliest tablets are overwhelmingly temple and palace administration rather than debt instruments specifically, and calling them debt tablets assumes the thing this section is trying to show. And the gap is ~2,400 years, not the vaguer "2,000+" — precise enough to be checkable, which matters because the looser version invites the slip of reading Graeber's *5,000 Years* as a BCE date. None of which rescues barter: 2,400 years is still not close.
 
 ### 3. The state story (Obligated mode origin — chartalism)
 

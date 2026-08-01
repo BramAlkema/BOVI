@@ -71,7 +71,7 @@ Periodically zoom out: even ledgers can hide unequal capacity.
 
 ## Historical examples (from theory.md)
 
-- Mesopotamian cuneiform debt tablets
+- Mesopotamian proto-cuneiform accounting tablets
 - Medieval English tally sticks
 - Modern double-entry bookkeeping
 - Blockchain distributed ledgers

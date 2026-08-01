@@ -56,7 +56,7 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 - Symmetry demands equal treatment
 
 **Historical Examples:**
-- Mesopotamian cuneiform debt tablets
+- Mesopotamian proto-cuneiform accounting tablets
 - Medieval English tally sticks
 - Modern double-entry bookkeeping
 - Blockchain distributed ledgers

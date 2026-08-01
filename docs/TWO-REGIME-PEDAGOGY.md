@@ -1,67 +1,59 @@
-# The Two-Regime Pedagogy
+# The Interface Is Not the Theory
 
-*What BOVI wants to teach, and why it does not need to rip the everyday intuition away to do it.*
+*Supersedes the earlier "two-regime" framing. Stable money may hide its machinery; that does not make the backing picture approximately true.*
 
 ## The claim in one line
 
-> Money has no backing-force. Its value is forward acceptance under known supply. The **backing picture** ("it's worth what stands behind it") is a fine *approximation* in calm, high-trust conditions — use it to buy bread. But to run a country, read a crisis, or design a money, you need the **subjective / pull theory**, because the backing picture predicts *wrong* exactly there. The literacy BOVI installs is knowing **which regime you are in**.
+> Money's worth is the cooperation and settlement its accepted ledger unlocks. Acceptance and availability gate that worth; credible, symmetrically-known rules help select and sustain the ledger. Nothing underneath the token pushes value into it. A stable monetary system can make this machinery disappear from daily life, but operational invisibility is an interface achievement — not evidence for a substance theory of value.
 
-## Push is the weak-field limit of pull
+## Operational invisibility is not explanatory truth
 
-The folk picture — value pushed up from a commodity, or down from a sovereign's promise — is not simply *false*. It is the **limiting case** of the pull theory under a specific condition: when supply is known-and-trusted and acceptance is unquestioned, expected future acceptance is roughly constant, so you may treat value as a fixed stock sitting on a backing. "It's worth what's behind it" is the **calm-regime limit** of "it's worth what it will be accepted for."
+The Berlin barista does not need a theory of money to buy bread. She can tap, receive, save, and budget without knowing how bank deposits are created, how settlement occurs, or why the euro remains accepted. That is what good infrastructure does: it compresses complexity until ordinary action no longer requires conscious understanding.
 
-This is the canon's own already-stated logic, not a new metaphor. Stable money is
+But a black-box interface and a false explanation are different things.
 
-> "money good enough to make its own machinery disappear … an efficient compression system."
+The balance can be safely treated *operationally* as "what I have" while the system is stable. It does not follow that the balance is a stock of value sitting in a silo. A card can be safely treated as "moving my money" without establishing that money is a substance moving through a pipe. A euro can be accepted without inspecting its governance on every purchase. None of this makes gold, law, or confidence a source that injects value into the unit.
 
-and it deserves
+There is no calm domain in which value literally resides in the token. Push is therefore not a weak-field limit of pull. Newton survives Einstein as a genuine limiting case; monetary objectivism does not survive the subjective theory of value in that way. The everyday interface can be reliable while the folk ontology attached to it remains false.
 
-> "respect as infrastructure … not reverence as truth."
-
-The compression works until the field gets strong. Then it breaks — and it breaks precisely in the cases where someone actually has to operate the system:
-
-| Calm regime (backing picture works) | Strong regime (need the pull theory) |
+| A stable interface lets us ignore | It does not prove |
 |---|---|
-| buying bread, a household budget | running monetary policy |
-| a stable reserve currency at home | hyperinflation, currency collapse |
-| "the money just works" (M0) | Cantillon redistribution from new issuance |
-| treating cash as a stored stock | central banks running on negative equity |
-| one trusted national money | currency boards, dollarisation, Bitcoin, new-money design |
+| the ledgers clearing behind a card payment | that money is a transferable substance |
+| the institutions maintaining acceptance | that law or authority performs the valuing |
+| changes in supply and credit creation | that value is stored inside a fixed quantity |
+| conversion, index, and settlement machinery | that one currency naturally performs every monetary job |
 
-In the strong regime the backing picture gives *wrong instructions*: chase backing, fear "unbacked" money, read inflation as mere quantity, imagine a monetary sovereign can "run out" of its own unit. These are GPS-drift errors — the simple model is good enough for the kitchen and dangerous in the control room.
+The distinction becomes consequential when the invisible machinery changes: currency collapse, dollarisation, new issuance, Cantillon redistribution, bank failure, Bitcoin, a new monetary design, or an agent choosing instruments on somebody's behalf. In those cases the interface stops being enough. The backing picture does not merely lose precision; it points the causal arrows in the wrong direction.
 
 ## What this means for the mission
 
-BOVI's job is **not** to force everyone onto the full theory. You no more need subjective value theory to buy milk than you need tensors to throw a ball. The everyday backing intuition is the sanctioned **M0 layer** — "it just works." Leaving it intact for everyday use is correct.
+BOVI's job is not to require every user to understand the machinery before buying milk. M0 — "it just works" — remains a legitimate *operational layer*. What is withdrawn is the claim that its accompanying folk explanation is a sanctioned theory.
 
-The mission is three moves, walked up the M0–M4 ladder:
+The mission is three moves:
 
-1. **Hold the general theory.** Value is pulled forward by acceptance under known supply; nothing pushes it from below or behind.
-2. **Know your regime.** Recognise whether you are in the calm field (the approximation is safe) or the strong field (it isn't). The Berlin barista "can mistake convenience for truth"; the Argentinian running pesos-for-tax, dollars-for-rent, USDT-for-savings "is not waiting to be taught what money is" — they are already operating in the strong regime.
-3. **Never mistake your local limit for the law.** Every push theory is somebody's calm-regime approximation, mistaken for the foundation (see the recension's historical note: commodity theory, the state theory, the debt theory — each a weak-field limit hardened into an essence).
+1. **Let good infrastructure disappear in use.** A person may operate the interface without carrying the full ontology.
+2. **Do not mistake invisibility for truth.** Money is still a ledger, value is still subjective, and worth is still pulled from the cooperation the next exchange unlocks.
+3. **Install the diagnostic before it matters.** When the system breaks, extracts, or asks for political allegiance, ask where the explanation has located value, which way worth is supposed to flow, who governs the ledger, and who pays.
 
-This is the canon's stated deliverable in another voice: **"fairness-mode literacy … once installed, can never be un-installed,"** doing **"what sophisticated institutions have always done … made accessible to everyone."** Regime-literacy is the same kind of installed question — it cannot be uninstalled once you can see it.
+This preserves the canon's respect for stable money as an efficient compression system without granting reverence to its folk story. The distinction is **interface literacy**, not regime theory: use the compression; know that it is compression.
 
 ## Honest limit: ontology is not the stabilisation model
 
-A caution the project must state, or it overclaims. Knowing money is pull-not-push does **not**, by itself, tell you how to run monetary policy. Stabilisation — output gaps, the zero lower bound, sticky prices, demand shocks — runs on New-Keynesian / sticky-price macro, which is **largely orthogonal to the ontology of money.** The central bank does not consult the regression theorem; it watches the output gap. So "you need the subjective theory to run a country" is too strong. The honest version: *you need it to avoid the **push-picture errors** that sabotage running a country* — goldbug deflation, "the government is out of money" austerity, fixed-supply worship, debt-ceiling theatre. The subjective theory is an **inoculation against folk-physics demagoguery**, not a replacement for the stabilisation model. Its payoff is political and upstream of policy: a push-literate electorate is the precondition for sound stabilisation policy being *politically possible at all.* (Conceded to a Krugman-style critique; this is the honest scope of the two-regime claim. The same critique adds a third supply axis — **elasticity** — in the recension's §7: discretion is not only a betrayal vector but a shock absorber, which is why gold and Bitcoin's rigidity is a defect, not a virtue.)
+A caution the project must state, or it overclaims. Knowing money is pull-not-push does **not**, by itself, tell us how to run monetary policy. Stabilisation — output gaps, the zero lower bound, sticky prices, demand shocks — runs on New-Keynesian / sticky-price macro, which is **largely orthogonal to the ontology of money.** The central bank does not consult the regression theorem; it watches the output gap. So "the subjective theory tells us how to run a country" is too strong. The honest version: it helps us avoid the **push-picture errors** that sabotage policy — goldbug deflation, "the government is out of money" austerity, fixed-supply worship, debt-ceiling theatre. The subjective theory is an inoculation against folk-physics demagoguery, not a replacement for a stabilisation model. Its payoff is political and upstream of policy. The same critique adds a supply axis the hard-money story misses: **elasticity** can be a shock absorber as well as a betrayal vector.
 
-## Guardrail: the analogy is a ladder, not a foundation
+## Guardrail: no Newtonian rescue
 
-The Newton-and-Einstein framing (force-free gravity; the weak-field limit; the geodesic) is a **one-paragraph teaching device to be kicked away once it has done its work.** It is not a claim that money is literally curved spacetime.
+Do not describe the push picture as Newtonian and the relational picture as Einsteinian. That analogy grants the old ontology a legitimate domain it does not have.
 
-This guardrail is not optional. Canon **Failure Mode 10** already records the project burning itself on exactly this hazard:
+If a history-of-science analogy earns a sentence, the better one is harsher: value-as-substance is phlogiston, backing-as-carrier is ether, and undifferentiated "faith" is miasma — obsolete causal pictures surviving inside a discipline whose working machinery has already moved on. Then kick the analogy away and state the actual claim.
 
-> "Bloating the quantum metaphor: superposition / collapse is a useful one-paragraph teaching device. Extending it into an actual physics analogy is over-cooking. (This drift was caught in development.)"
+> **People value. Institutions govern. Prices settle. Money remembers.**
 
-So the discipline, every time the physics analogy is used:
-
-- **Use it to introduce the regimes, then cash it out immediately** into the load-bearing claim — *push is the weak-field limit of pull; know your regime.*
-- The real content is the **approximation / compression** logic the canon already owns ("convenience mistaken for truth"), not the physics.
-- If the analogy is allowed to go load-bearing, BOVI has merely re-dressed folk physics — the very push-picture it exists to dissolve. That is the failure, stated in advance so it cannot be reached by accident.
+The canon's broader physics-metaphor guardrail remains: a metaphor may open a door, but it cannot carry the theory.
 
 ## See also
 
 - `docs/THE-THEORY-OF-MONEY-RECENSION.md` — the general theory (Menger's money chapter rewritten on his own bones); §1a/§1b on the regression; historical note on the three push poles.
 - `docs/CANON.md` — Failure Mode 10 (physics-metaphor hazard); the M0–M4 layers; fairness-mode-literacy as deliverable.
+- `docs/book/05-why-it-has-value.md` — the money exception and the push/pull distinction in the book's body.
 - `docs/book/20-global-majoritys-unbundled-stack.md` — the compression-system / "respect not reverence" passage this doc formalises.
