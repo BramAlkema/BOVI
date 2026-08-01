@@ -7,7 +7,12 @@ yarn-error.log*
 # Build outputs
 dist/
 build/
+coverage/
 *.tsbuildinfo
+
+# Generated document exports — the .md beside them is the source of truth
+docs/*.docx
+docs/*.pdf
 
 # Development
 .DS_Store
@@ -42,3 +47,18 @@ temp/
 .claude/
 .agent-os/
 .gstack/
+
+# Blender intermediates — all regenerable by re-running the generator script
+# (blender --background --factory-startup --python blender/<script>.py -- anim).
+# The shipped stills/clips are tracked at docs/book/figures/ instead.
+blender/anim/
+blender/anim_landscape/
+blender/anim_tower/
+blender/preview/
+blender/preview_landscape/
+blender/preview_sim/
+blender/preview_tower/
+blender/render/
+blender/caption_*.png
+blender/.caption.txt
+*.blend1
