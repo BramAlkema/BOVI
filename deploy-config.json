@@ -7,17 +7,8 @@
       "keepVersions": 3
     },
     "validation": {
-      "required": [
-        "index.html",
-        "styles.min.css", 
-        "app.min.js"
-      ],
-      "healthChecks": [
-        "basicLoad",
-        "cssIntegrity", 
-        "jsIntegrity",
-        "navigationWorking"
-      ]
+      "required": ["index.html", "styles.min.css", "app.min.js"],
+      "healthChecks": ["basicLoad", "cssIntegrity", "jsIntegrity", "navigationWorking"]
     }
   },
   "build": {
@@ -25,7 +16,7 @@
       "html": "index.html",
       "css": [
         "src/styles/variables.css",
-        "src/styles/base.css", 
+        "src/styles/base.css",
         "src/styles/components.css",
         "src/styles/scenarios.css",
         "src/styles/kpi-dashboard.css"
@@ -53,10 +44,6 @@
       "src/scripts/app.ts",
       "lib/monitoring/kpi-dashboard.ts"
     ],
-    "flexible": [
-      "src/styles/*.css",
-      "lib/**/*.ts",
-      "flows/*.json"
-    ]
+    "flexible": ["src/styles/*.css", "lib/**/*.ts", "flows/*.json"]
   }
 }

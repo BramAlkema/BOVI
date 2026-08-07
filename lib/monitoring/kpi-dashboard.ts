@@ -77,7 +77,7 @@ export class KPIDashboard {
     greenCount: number;
     amberCount: number;
     redCount: number;
-    } {
+  } {
     const score = this.getHealthScore();
     const status = this.getHealthStatus();
 

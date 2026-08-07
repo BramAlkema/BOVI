@@ -6,9 +6,9 @@
 // Fiske's relational models as mode codes
 export enum BoviMode {
   BALANCED = "B",
-  OBLIGATED = "O", 
+  OBLIGATED = "O",
   VALUE = "V",
-  IMMEDIATE = "I"
+  IMMEDIATE = "I",
 }
 
 // System event names
@@ -27,7 +27,7 @@ export const BoviEvents = {
   COHORT_JOINED: "bovi.joinCohort",
   RECALCULATE_ALL: "bovi.recalculateAll",
   SHOW_DIGEST: "bovi.showDigest",
-  KPI_UPDATED: "bovi.kpi.updated"
+  KPI_UPDATED: "bovi.kpi.updated",
 } as const;
 
 // LocalStorage key prefixes
@@ -57,7 +57,7 @@ export const StorageKeys = {
   EPISODES_PLAYED: "bovi.episodes.played",
   LAST_WEEKLY_DIGEST: "bovi.lastWeeklyDigest",
   USER_INCOME: "bovi.userIncome",
-  USER_SAVINGS: "bovi.userSavings"
+  USER_SAVINGS: "bovi.userSavings",
 } as const;
 
 // Default values
@@ -66,9 +66,9 @@ export const Defaults = {
   BUTLER_ID: "bovi-default",
   USER_INCOME: "50000",
   USER_SAVINGS: "10000",
-  SUPPORT_EMAIL: "support@bovi.money"
+  SUPPORT_EMAIL: "support@bovi.money",
 } as const;
 
 // Type helpers
-export type BoviEventName = typeof BoviEvents[keyof typeof BoviEvents];
-export type StorageKey = typeof StorageKeys[keyof typeof StorageKeys];
+export type BoviEventName = (typeof BoviEvents)[keyof typeof BoviEvents];
+export type StorageKey = (typeof StorageKeys)[keyof typeof StorageKeys];

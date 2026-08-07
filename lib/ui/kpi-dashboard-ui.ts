@@ -13,19 +13,19 @@ import { BoviEvents } from "../core/constants.js";
  */
 export function setupKPIDashboardUI(): void {
   const dashboardContainer = createKPIDashboardContainer();
-  
+
   // Add to main dashboard if it doesn't exist
   const main = document.querySelector("main");
   if (main && !main.querySelector(".kpi-dashboard-panel")) {
     main.appendChild(dashboardContainer);
   }
-  
+
   // Initial render
   renderKPIDashboard();
-  
+
   // Update dashboard every 30 seconds
   setInterval(renderKPIDashboard, 30000);
-  
+
   // Listen for KPI updates
   window.addEventListener(BoviEvents.KPI_UPDATED, renderKPIDashboard);
 }
@@ -70,10 +70,10 @@ function createKPIDashboardContainer(): HTMLElement {
       <button class="btn ghost" id="kpi-export-btn">Export Data</button>
     </div>
   `;
-  
+
   // Add event listeners
   setupKPIDashboardEventListeners(container);
-  
+
   return container;
 }
 
@@ -83,12 +83,12 @@ function createKPIDashboardContainer(): HTMLElement {
 function setupKPIDashboardEventListeners(container: HTMLElement): void {
   const refreshBtn = container.querySelector("#kpi-refresh-btn");
   const exportBtn = container.querySelector("#kpi-export-btn");
-  
+
   refreshBtn?.addEventListener("click", () => {
     renderKPIDashboard();
     showKPINotification("Metrics refreshed", "info");
   });
-  
+
   exportBtn?.addEventListener("click", () => {
     exportKPIData();
   });
@@ -109,24 +109,24 @@ function renderKPIDashboard(): void {
 function renderOverallStatus(): void {
   const statusEl = document.querySelector("#kpi-overall-status");
   if (!statusEl) return;
-  
+
   const summary = dashboard.getHealthSummary();
   const statusIndicator = statusEl.querySelector(".status-indicator");
   const statusText = statusEl.querySelector(".status-text");
-  
+
   if (statusIndicator && statusText) {
     // Update indicator class
     statusIndicator.className = `status-indicator ${summary.status}`;
-    
+
     // Update status text
     const statusTexts = {
       healthy: "All Systems Operational",
-      degraded: "Some Issues Detected", 
-      unhealthy: "Critical Issues Present"
+      degraded: "Some Issues Detected",
+      unhealthy: "Critical Issues Present",
     };
-    
+
     statusText.textContent = statusTexts[summary.status];
-    
+
     // Add score tooltip
     statusEl.setAttribute("title", `Health Score: ${(summary.score * 100).toFixed(1)}%`);
   }
@@ -137,12 +137,12 @@ function renderOverallStatus(): void {
  */
 function renderKPISummary(): void {
   const summary = dashboard.getHealthSummary();
-  
+
   const updateCount = (id: string, count: number) => {
     const element = document.querySelector(id);
     if (element) element.textContent = count.toString();
   };
-  
+
   updateCount("#kpi-green-count", summary.greenCount);
   updateCount("#kpi-amber-count", summary.amberCount);
   updateCount("#kpi-red-count", summary.redCount);
@@ -154,19 +154,19 @@ function renderKPISummary(): void {
 function renderKPICategories(): void {
   const categoriesContainer = document.querySelector("#kpi-categories");
   if (!categoriesContainer) return;
-  
+
   const allMetrics = dashboard.getMetrics();
   const metricsByName = new Map(allMetrics.map(m => [m.name, m]));
-  
+
   let categoriesHTML = "";
-  
+
   Object.entries(KPI_CATEGORIES).forEach(([categoryName, kpiNames]) => {
     const categoryMetrics = kpiNames
       .map(name => metricsByName.get(name))
       .filter((metric): metric is KPIMetric => metric !== undefined);
-    
+
     if (categoryMetrics.length === 0) return;
-    
+
     categoriesHTML += `
       <div class="kpi-category">
         <h4 class="kpi-category-title">${categoryName}</h4>
@@ -176,8 +176,10 @@ function renderKPICategories(): void {
       </div>
     `;
   });
-  
-  categoriesContainer.innerHTML = categoriesHTML || `
+
+  categoriesContainer.innerHTML =
+    categoriesHTML ||
+    `
     <div class="kpi-empty">
       <p class="text-muted">No metrics available. System is initializing...</p>
     </div>
@@ -191,10 +193,10 @@ function renderKPIMetricCard(metric: KPIMetric): string {
   const definition = KPI_DEFINITIONS[metric.name];
   const unit = definition?.unit || "";
   const description = definition?.description || metric.name;
-  
+
   const displayValue = formatKPIValue(metric.value, unit);
   const trendIcon = getTrendIcon(metric.trend);
-  
+
   return `
     <div class="kpi-metric-card ${metric.status}" title="${description}">
       <div class="kpi-metric-header">
@@ -214,16 +216,16 @@ function renderKPIMetricCard(metric: KPIMetric): string {
  */
 function formatKPIValue(value: number, unit: string): string {
   switch (unit) {
-  case "%":
-    return `${(value * 100).toFixed(1)}%`;
-  case "ms":
-    return value < 1000 ? `${value.toFixed(0)}ms` : `${(value / 1000).toFixed(1)}s`;
-  case "ratio":
-    return value.toFixed(2);
-  case "per 1k":
-    return value.toFixed(1);
-  default:
-    return value.toFixed(2);
+    case "%":
+      return `${(value * 100).toFixed(1)}%`;
+    case "ms":
+      return value < 1000 ? `${value.toFixed(0)}ms` : `${(value / 1000).toFixed(1)}s`;
+    case "ratio":
+      return value.toFixed(2);
+    case "per 1k":
+      return value.toFixed(1);
+    default:
+      return value.toFixed(2);
   }
 }
 
@@ -231,9 +233,7 @@ function formatKPIValue(value: number, unit: string): string {
  * Format KPI name for display
  */
 function formatKPIName(name: string): string {
-  return name
-    .replace(/_/g, " ")
-    .replace(/\b\w/g, letter => letter.toUpperCase());
+  return name.replace(/_/g, " ").replace(/\b\w/g, letter => letter.toUpperCase());
 }
 
 /**
@@ -241,9 +241,12 @@ function formatKPIName(name: string): string {
  */
 function getTrendIcon(trend: "up" | "down" | "stable"): string {
   switch (trend) {
-  case "up": return "📈";
-  case "down": return "📉";
-  case "stable": return "➡️";
+    case "up":
+      return "📈";
+    case "down":
+      return "📉";
+    case "stable":
+      return "➡️";
   }
 }
 
@@ -255,17 +258,17 @@ function exportKPIData(): void {
     timestamp: new Date().toISOString(),
     summary: dashboard.getHealthSummary(),
     metrics: dashboard.exportMetrics(),
-    definitions: KPI_DEFINITIONS
+    definitions: KPI_DEFINITIONS,
   };
-  
+
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
-  
+
   const a = document.createElement("a");
   a.href = url;
   a.download = `bovi-kpi-export-${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
-  
+
   URL.revokeObjectURL(url);
   showKPINotification("KPI data exported successfully", "info");
 }
@@ -278,7 +281,7 @@ function showKPINotification(message: string, type: "info" | "success" | "error"
   notification.className = `kpi-notification ${type}`;
   notification.textContent = message;
   document.body.appendChild(notification);
-  
+
   setTimeout(() => notification.remove(), 3000);
 }
 
@@ -296,13 +299,15 @@ export function generateDemoKPIData(): void {
     createKPIMetric("cohort_satisfaction_rate", 0.96, "up"),
     createKPIMetric("storm_mode_activation_time", 4200, "stable"),
     createKPIMetric("system_uptime", 0.995, "stable"),
-    createKPIMetric("failed_payment_rate", 0.003, "down")
+    createKPIMetric("failed_payment_rate", 0.003, "down"),
   ];
-  
+
   // Emit KPI updates
   demoMetrics.forEach(metric => {
-    window.dispatchEvent(new CustomEvent(BoviEvents.KPI_UPDATED, {
-      detail: { kpi: metric.name, value: metric }
-    }));
+    window.dispatchEvent(
+      new CustomEvent(BoviEvents.KPI_UPDATED, {
+        detail: { kpi: metric.name, value: metric },
+      })
+    );
   });
 }

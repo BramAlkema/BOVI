@@ -241,7 +241,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -265,11 +266,11 @@
   .kpi-summary {
     grid-template-columns: 1fr;
   }
-  
+
   .kpi-metrics-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .kpi-actions {
     flex-direction: column;
   }

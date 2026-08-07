@@ -1,3 +1,5 @@
+import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
@@ -8,9 +10,12 @@ export default [
     output: {
       file: 'dist/app.min.js',
       format: 'es',
-      inlineDynamicImports: true
+      inlineDynamicImports: true,
+      sourcemap: true
     },
     plugins: [
+      nodeResolve({ browser: true }),
+      commonjs(),
       typescript({
         tsconfig: './tsconfig.json'
       }),
@@ -24,9 +29,10 @@ export default [
     output: {
       file: 'dist/lib/integration.min.js',
       format: 'es',
-      inlineDynamicImports: true
+      inlineDynamicImports: true,
+      sourcemap: true
     },
-    plugins: [terser()],
+    plugins: [nodeResolve({ browser: true }), commonjs(), terser()],
     external: []
   }
 ];

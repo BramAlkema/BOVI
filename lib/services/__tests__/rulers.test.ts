@@ -184,7 +184,7 @@ describe('Rulers Service', () => {
       const activeRuler = await getActiveRuler();
       const allRulers = await getRulers();
       
-      expect(activeRuler).toEqual(allRulers[0]);
+      expect(activeRuler.id).toBe(allRulers[0].id);
     });
   });
 

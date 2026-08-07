@@ -245,8 +245,9 @@ export async function auditRailSelection(
   }
   
   // Calculate fairness score (1 = perfectly fair, 0 = completely unfair)
-  const feeDifference = selectedQuote.fee - bestQuote.fee;
-  const fairnessScore = Math.max(0, 1 - (feeDifference / bestQuote.fee));
+  const fairnessScore = selectedQuote.fee === 0
+    ? 1
+    : Math.min(1, bestQuote.fee / selectedQuote.fee);
   
   return {
     selectedRail,

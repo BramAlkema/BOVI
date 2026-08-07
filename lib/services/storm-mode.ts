@@ -48,7 +48,9 @@ export async function activateStormMode(profileId: string): Promise<{
   changes: string[];
   revertTime: string;
 }> {
-  const profiles: StormProfile[] = JSON.parse(localStorage.getItem(StorageKeys.STORM_PROFILES) || "[]");
+  const profiles: StormProfile[] = JSON.parse(
+    localStorage.getItem(StorageKeys.STORM_PROFILES) || "[]"
+  );
   const profile = profiles.find(p => p.id === profileId);
 
   if (!profile) {

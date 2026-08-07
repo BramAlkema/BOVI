@@ -93,7 +93,7 @@ export class SystemInitializer {
     apiReady: boolean;
     monitoringActive: boolean;
     healthScore: number;
-    } {
+  } {
     return {
       initialized: this.initialized,
       apiReady: this.initialized,

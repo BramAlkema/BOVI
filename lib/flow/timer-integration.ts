@@ -107,18 +107,18 @@ export class FlowTimerService {
 
     // Create handlers based on mode
     switch (mode) {
-    case "I":
-      createHandlers("I.default");
-      break;
-    case "B":
-      createHandlers("B.default");
-      break;
-    case "O":
-      createHandlers("O.default");
-      break;
-    case "V":
-      createHandlers("V.default");
-      break;
+      case "I":
+        createHandlers("I.default");
+        break;
+      case "B":
+        createHandlers("B.default");
+        break;
+      case "O":
+        createHandlers("O.default");
+        break;
+      case "V":
+        createHandlers("V.default");
+        break;
     }
   }
 }

@@ -92,11 +92,11 @@ function setupHamburgerEventHandlers(container: HTMLElement): void {
     const itemInputs = container.querySelectorAll(".basket-item");
     const items = Array.from(itemInputs)
       .map(itemEl => {
-        const nameInput = itemEl.querySelector("[name=\"item-name\"]") as HTMLInputElement;
-        const brandInput = itemEl.querySelector("[name=\"item-brand\"]") as HTMLInputElement;
-        const sizeInput = itemEl.querySelector("[name=\"item-size\"]") as HTMLInputElement;
-        const priceInput = itemEl.querySelector("[name=\"item-price\"]") as HTMLInputElement;
-        const usualInput = itemEl.querySelector("[name=\"item-usual\"]") as HTMLInputElement;
+        const nameInput = itemEl.querySelector('[name="item-name"]') as HTMLInputElement;
+        const brandInput = itemEl.querySelector('[name="item-brand"]') as HTMLInputElement;
+        const sizeInput = itemEl.querySelector('[name="item-size"]') as HTMLInputElement;
+        const priceInput = itemEl.querySelector('[name="item-price"]') as HTMLInputElement;
+        const usualInput = itemEl.querySelector('[name="item-usual"]') as HTMLInputElement;
 
         return {
           name: nameInput?.value || "",
@@ -160,7 +160,7 @@ async function loadHamburgerBaskets(): Promise<void> {
     const baskets = getStoredBaskets();
 
     if (baskets.length === 0) {
-      container.innerHTML = "<div class=\"empty\">No baskets created yet</div>";
+      container.innerHTML = '<div class="empty">No baskets created yet</div>';
       return;
     }
 
@@ -175,10 +175,10 @@ async function loadHamburgerBaskets(): Promise<void> {
               <h4>${basket.name}</h4>
               <div class="basket-actions">
                 ${
-  basket.public
-    ? "<span class=\"status public\">Public</span>"
-    : "<button class=\"publish-btn btn secondary small\">Publish</button>"
-}
+                  basket.public
+                    ? '<span class="status public">Public</span>'
+                    : '<button class="publish-btn btn secondary small">Publish</button>'
+                }
                 <button class="share-btn btn secondary small">Share</button>
               </div>
             </div>
@@ -209,7 +209,7 @@ async function loadHamburgerBaskets(): Promise<void> {
     container.innerHTML = basketsHTML.join("");
   } catch (error) {
     console.error("Failed to load baskets:", error);
-    container.innerHTML = "<div class=\"error\">Failed to load baskets</div>";
+    container.innerHTML = '<div class="error">Failed to load baskets</div>';
   }
 }
 

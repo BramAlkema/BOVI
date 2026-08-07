@@ -101,7 +101,7 @@ export class PluginManager {
     totalPlugins: number;
     activePlugins: number;
     pluginsByCategory: Record<PluginCategory, number>;
-    } {
+  } {
     const plugins = pluginRegistry.list();
     const activePlugins = pluginRegistry.getActive();
 
@@ -218,7 +218,6 @@ export class PluginManager {
     // 1. Scan for plugin files in specific directories
     // 2. Load plugin manifests
     // 3. Register discovered plugins
-
     // Example built-in plugins that could be registered:
     // - UI components (ruler switcher, money veil card, etc.)
     // - Service integrations (notification service, etc.)

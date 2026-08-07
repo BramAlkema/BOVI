@@ -4,26 +4,17 @@
     "es2022": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended"
-  ],
+  "extends": ["eslint:recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module"
   },
   "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "no-console": ["warn", { "allow": ["warn", "error", "log"] }],
     "prefer-const": "error",
     "no-var": "error",
-    "arrow-spacing": "error",
-    "object-shorthand": "error",
-    "eol-last": ["error", "always"],
-    "max-len": ["error", { "code": 100, "ignoreStrings": true, "ignoreUrls": true, "ignoreTemplateLiterals": true }]
+    "object-shorthand": "error"
   },
   "overrides": [
     {

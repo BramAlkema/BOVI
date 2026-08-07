@@ -249,7 +249,8 @@ main {
 }
 
 /* Contract Modal Enhancements */
-.contract-modal, .contract-result-modal {
+.contract-modal,
+.contract-result-modal {
   max-width: 600px;
 }
 
@@ -323,11 +324,11 @@ main {
     top: 0;
     height: auto;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
   }
-  
+
   .contract-actions {
     flex-direction: column;
   }
@@ -454,11 +455,11 @@ main {
   .benchmark-controls {
     flex-direction: column;
   }
-  
+
   .summary-metrics {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .result-metrics {
     grid-template-columns: 1fr;
   }

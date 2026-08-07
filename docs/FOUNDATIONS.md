@@ -54,6 +54,14 @@ The minimal object that holds "who has given and not received" is a list of net 
 
 **Flow, not stock:** value is realised only while the ledger circulates. A floor (store-value loaded into the medium) chokes circulation → delivers *less* value. No-floor is therefore *functionally optimal*, not merely honest.
 
+**Complete intersubjectivist refinement:** remove the remaining temptation to treat “social value” as one shared valuation. Acceptance is recursively intersubjective: each participant partly accepts the ledger because they expect other participants and their counterparties to accept it. The resulting price is not the sum of everyone’s beliefs and not an intrinsic social substance. It is a socially stabilised exchange ratio reflecting the holder’s expected **marginal net service**—direct trades, network access, specialisation options, and uncertainty protection—less transaction costs, monetary-layer costs, risk, and extraction. Public benefits and harms may remain outside the price unless they feed back into acceptance, availability, credibility, supply expectations, or the holder’s marginal position. Thus **intersubjectivity explains the loop; marginal surplus explains the price; power explains the distribution.**
+
+In schematic form:
+
+`money price ≈ PV(expected marginal monetary benefits − marginal costs − risk − extraction)`
+
+This is a decomposition, not a claim that agents perform the calculation explicitly. “Price” remains relational: money has no absolute price apart from an exchange ratio against goods, labour, assets, or another monetary unit. Material scarcity, production, time, technology, law, and institutional capacity constrain the relation without supplying an intrinsic monetary floor.
+
 *Drop-test (both ways):* drop *fruitful* → a pure bubble (can't explain selection or specialisation); drop *floorless* → essentialism + a choked flow.
 
 *Lineage (borrowed = strength):* Simmel (value = relation/distance-overcome) + Patinkin (marginal utility of holding) + Lagos–Wright (microfoundation), with Samuelson/Tirole the consistency proof and the contrast.

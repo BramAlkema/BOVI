@@ -53,6 +53,3 @@ global.Blob = class MockBlob {
     this.type = options?.type || '';
   }
 };
-
-// Mock setTimeout/setInterval for timer tests
-jest.useFakeTimers();
