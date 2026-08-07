@@ -77,6 +77,25 @@ Object.defineProperty(global, "indexedDB", {
   writable: true,
 });
 
+function successfulIDBRequest<T>(result: T) {
+  let successHandler: ((event: { target: unknown }) => void) | null = null;
+
+  const request = {
+    error: null,
+    result,
+    onerror: null,
+    get onsuccess() {
+      return successHandler;
+    },
+    set onsuccess(handler: ((event: { target: unknown }) => void) | null) {
+      successHandler = handler;
+      handler?.({ target: request });
+    },
+  };
+
+  return request;
+}
+
 describe("Rulers API", () => {
   beforeEach(() => {
     mockLocalStorage.clear();
@@ -115,14 +134,9 @@ describe("Index Commons Store", () => {
     // Mock successful IndexedDB operations
     const mockTransaction = {
       objectStore: jest.fn().mockReturnValue({
-        put: jest.fn().mockReturnValue({
-          onsuccess: null,
-          onerror: null,
-        }),
-        getAll: jest.fn().mockReturnValue({
-          onsuccess: null,
-          onerror: null,
-          result: [
+        put: jest.fn().mockReturnValue(successfulIDBRequest(undefined)),
+        getAll: jest.fn().mockReturnValue(
+          successfulIDBRequest([
             {
               id: "test",
               timestamp: new Date().toISOString(),
@@ -132,18 +146,16 @@ describe("Index Commons Store", () => {
               quality: 0.8,
               notes: "test entry",
             },
-          ],
-        }),
+          ])
+        ),
       }),
     };
 
-    mockIndexedDB.open.mockReturnValue({
-      onsuccess: null,
-      onerror: null,
-      result: {
+    mockIndexedDB.open.mockReturnValue(
+      successfulIDBRequest({
         transaction: jest.fn().mockReturnValue(mockTransaction),
-      },
-    });
+      }) as never
+    );
 
     const entry = {
       id: "test-entry",

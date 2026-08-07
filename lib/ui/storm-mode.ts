@@ -210,7 +210,7 @@ async function loadStormProfiles(): Promise<void> {
     const activeProfileId = localStorage.getItem(StorageKeys.STORM_MODE_PROFILE);
 
     if (profiles.length === 0) {
-      container.innerHTML = "<div class=\"empty\">No storm profiles created yet</div>";
+      container.innerHTML = '<div class="empty">No storm profiles created yet</div>';
       return;
     }
 
@@ -222,7 +222,7 @@ async function loadStormProfiles(): Promise<void> {
           <div class="profile-header">
             <h4>${profile.name}</h4>
             <div class="profile-status">
-              ${isActive ? "<span class=\"status-badge active\">Active</span>" : ""}
+              ${isActive ? '<span class="status-badge active">Active</span>' : ""}
             </div>
           </div>
           <div class="profile-triggers">
@@ -231,11 +231,11 @@ async function loadStormProfiles(): Promise<void> {
           <div class="profile-adjustments">
             <strong>Budget Changes:</strong>
             ${Object.entries(profile.changes.pots)
-    .filter(([_, value]) => (value as number) !== 0)
-    .map(
-      ([category, value]) => `${category}: ${(value as number) > 0 ? "+" : ""}${value}%`
-    )
-    .join(", ")}
+              .filter(([_, value]) => (value as number) !== 0)
+              .map(
+                ([category, value]) => `${category}: ${(value as number) > 0 ? "+" : ""}${value}%`
+              )
+              .join(", ")}
           </div>
           <div class="profile-actions">
             <button class="select-profile-btn btn secondary small" ${isActive ? "disabled" : ""}>
@@ -278,7 +278,7 @@ async function loadStormProfiles(): Promise<void> {
             localStorage.setItem(StorageKeys.STORM_PROFILES, JSON.stringify(updatedProfiles));
             await loadStormProfiles();
             showNotification("Storm profile deleted");
-          } catch (error) {
+          } catch {
             showNotification("Failed to delete profile", "error");
           }
         }
@@ -286,7 +286,7 @@ async function loadStormProfiles(): Promise<void> {
     });
   } catch (error) {
     console.error("Failed to load storm profiles:", error);
-    container.innerHTML = "<div class=\"error\">Failed to load storm profiles</div>";
+    container.innerHTML = '<div class="error">Failed to load storm profiles</div>';
   }
 }
 

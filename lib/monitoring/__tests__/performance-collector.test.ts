@@ -6,9 +6,21 @@ import { performanceCollector } from '../performance-collector.js';
 
 describe('Performance Collector', () => {
   beforeEach(() => {
+    jest.restoreAllMocks();
     jest.clearAllMocks();
+    if (typeof performance.getEntriesByType !== 'function') {
+      Object.defineProperty(performance, 'getEntriesByType', {
+        value: jest.fn(() => []),
+        configurable: true
+      });
+    }
     // Reset collector state
     performanceCollector.reset();
+  });
+
+  afterEach(() => {
+    performanceCollector.stopSystemMonitoring();
+    jest.restoreAllMocks();
   });
 
   describe('KPI tracking', () => {
@@ -112,10 +124,11 @@ describe('Performance Collector', () => {
         {
           name: 'navigation',
           loadEventEnd: 1500,
-          navigationStart: 1000,
+          startTime: 1000,
+          requestStart: 1100,
           domContentLoadedEventEnd: 1300,
           responseEnd: 1200
-        } as PerformanceNavigationTiming
+        } as unknown as PerformanceNavigationTiming
       ]);
 
       performanceCollector.collectSystemMetrics();
@@ -240,7 +253,7 @@ describe('Performance Collector', () => {
           loadEventEnd: 1500,
           startTime: 1000,
           duration: 500
-        } as PerformanceResourceTiming
+        } as unknown as PerformanceResourceTiming
       ]);
 
       performanceCollector.collectResourceMetrics();
@@ -256,7 +269,7 @@ describe('Performance Collector', () => {
           loadEventEnd: 3000,
           startTime: 1000,
           duration: 2000
-        } as PerformanceResourceTiming
+        } as unknown as PerformanceResourceTiming
       ]);
 
       const slowResources = performanceCollector.getSlowResources(1000);

@@ -31,31 +31,31 @@ export class NodeExecutorService {
     const [mode, nodeType] = node.type.split(".");
 
     switch (`${mode}.${nodeType}`) {
-    case "V.PDA":
-      return this.executePDANode(node, context);
+      case "V.PDA":
+        return this.executePDANode(node, context);
 
-    case "V.Calculate":
-      return this.executeCalculateNode(node, context);
+      case "V.Calculate":
+        return this.executeCalculateNode(node, context);
 
-    case "V.Assess":
-      return this.executeAssessNode(node, context);
+      case "V.Assess":
+        return this.executeAssessNode(node, context);
 
-    case "I.Detect":
-      return this.executeDetectNode(node, context);
+      case "I.Detect":
+        return this.executeDetectNode(node, context);
 
-    case "I.Default":
-    case "B.Default":
-    case "O.Default":
-      return this.executeDefaultNode(node, context);
+      case "I.Default":
+      case "B.Default":
+      case "O.Default":
+        return this.executeDefaultNode(node, context);
 
-    case "B.Sweep":
-      return this.executeSweepNode(node, context);
+      case "B.Sweep":
+        return this.executeSweepNode(node, context);
 
-    case "B.Learn":
-      return this.executeLearnNode(node, context);
+      case "B.Learn":
+        return this.executeLearnNode(node, context);
 
-    default:
-      throw new Error(`Unknown node type: ${node.type}`);
+      default:
+        throw new Error(`Unknown node type: ${node.type}`);
     }
   }
 

@@ -3,10 +3,7 @@
  * Interface for joining and managing cohort auctions
  */
 
-import {
-  createCohortAuction,
-  joinCohortAuction,
-} from "../services/cohort-auctions.js";
+import { createCohortAuction, joinCohortAuction } from "../services/cohort-auctions.js";
 
 export function setupCohortEngine(): void {
   // Add cohort opportunities to relevant sections
@@ -269,18 +266,18 @@ function showCohortResult(result: any): void {
       <div class="modal-body">
         <div class="result-summary">
           ${
-  result.joined
-    ? `
+            result.joined
+              ? `
             <p class="success">Successfully joined the cohort!</p>
             <div class="savings-highlight">
               <span class="label">Projected Savings:</span>
               <span class="value">£${result.projectedSavings.toFixed(2)}</span>
             </div>
           `
-    : `
+              : `
             <p class="info">Cohort not joined based on current conditions.</p>
           `
-}
+          }
           
           <div class="guarantee-statement">
             <h4>BOVI Guarantee:</h4>
@@ -312,9 +309,9 @@ function updateCohortDisplays(): void {
   const opportunities = document.querySelectorAll(".cohort-opportunity");
   opportunities.forEach(opportunity => {
     // Mock data update - in production, would fetch real auction data
-    const participantsEl = opportunity.querySelector("[data-stat=\"participants\"]");
-    const savingsEl = opportunity.querySelector("[data-stat=\"savings\"]");
-    const deadlineEl = opportunity.querySelector("[data-stat=\"deadline\"]");
+    const participantsEl = opportunity.querySelector('[data-stat="participants"]');
+    const savingsEl = opportunity.querySelector('[data-stat="savings"]');
+    const deadlineEl = opportunity.querySelector('[data-stat="deadline"]');
 
     if (participantsEl)
       participantsEl.textContent = Math.floor(Math.random() * 100 + 20).toString();

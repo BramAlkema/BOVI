@@ -9,6 +9,7 @@ describe('BOVI Timers', () => {
   let timerManager: TimerManager;
 
   beforeEach(() => {
+    jest.useFakeTimers();
     // Create fresh timer manager for each test
     timerManager = new TimerManager();
     jest.clearAllTimers();
@@ -17,6 +18,7 @@ describe('BOVI Timers', () => {
   afterEach(() => {
     jest.runOnlyPendingTimers();
     jest.clearAllTimers();
+    jest.useRealTimers();
   });
 
   describe('timer start functionality', () => {

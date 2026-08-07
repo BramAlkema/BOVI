@@ -71,6 +71,8 @@ And the identity's silence is where this framework does its work. *"The deficit 
 
 *Q2 assessment of the chartalist pole — MMT graded on the same three axes as metallism: `THE-THEORY-OF-MONEY-RECENSION.md` §8.*
 
+**Complete intersubjectivist refinement.** Acceptance is a recursively expected relation, not one shared social valuation: I accept partly because I expect your counterparties to accept, and they expect theirs to do so. This explains how a monetary network circulates, but it is not by itself the source or level of value. The price of money is the socially stabilised exchange ratio of expected **marginal net monetary service**—the direct trades, network access, specialisation options, and uncertainty protection a unit enables—less transaction costs, monetary-layer costs, risk, and extraction. Public benefits and harms may not enter the price unless they feed back into acceptance, availability, credibility, supply expectations, or the holder's marginal position. The result is **floorless but fruitful**: no intrinsic monetary floor, real surplus inside the relation. Material conditions constrain the relation; power determines much of its incidence. See [`INTERSUBJECTIVE-MONEY-RESEARCH.md`](INTERSUBJECTIVE-MONEY-RESEARCH.md) for the scholarly synthesis.
+
 ### Quirk 4 — Scarcity is not what makes money work
 
 - **Default**: scarcity is a defining property of good money

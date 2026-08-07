@@ -2,294 +2,160 @@
  * KPI Dashboard UI Tests
  */
 
-import { 
-  setupKPIDashboardUI, 
-  generateDemoKPIData 
-} from '../kpi-dashboard-ui.js';
+import { dashboard } from "../../monitoring/kpi-dashboard.js";
+import { createKPIMetric } from "../../monitoring/kpi-definitions.js";
+import { generateDemoKPIData, setupKPIDashboardUI } from "../kpi-dashboard-ui.js";
 
-// Mock the dependencies
-jest.mock('../../monitoring/kpi-dashboard.js', () => ({
+jest.mock("../../monitoring/kpi-dashboard.js", () => ({
   dashboard: {
     getMetrics: jest.fn(() => []),
     getHealthSummary: jest.fn(() => ({
-      status: 'healthy',
+      status: "healthy",
       score: 0.95,
       issues: [],
       greenCount: 5,
       amberCount: 1,
-      redCount: 0
+      redCount: 0,
     })),
-    exportMetrics: jest.fn(() => ({}))
-  }
+    exportMetrics: jest.fn(() => ({})),
+  },
 }));
 
-jest.mock('../../monitoring/kpi-definitions.js', () => ({
+jest.mock("../../monitoring/kpi-definitions.js", () => ({
   KPI_DEFINITIONS: {
-    'ruler_switch_time': {
-      unit: 'ms',
-      description: 'Time to switch between rulers'
+    ruler_switch_time: {
+      unit: "ms",
+      description: "Time to switch between rulers",
     },
-    'system_uptime': {
-      unit: '%', 
-      description: 'System availability'
-    }
+    system_uptime: {
+      unit: "%",
+      description: "System availability",
+    },
   },
   KPI_CATEGORIES: {
-    'Performance': ['ruler_switch_time'],
-    'System Quality': ['system_uptime']
+    Performance: ["ruler_switch_time"],
+    "System Quality": ["system_uptime"],
   },
   createKPIMetric: jest.fn((name, value, trend) => ({
     name,
     value,
     threshold: value * 1.1,
-    status: 'green',
-    trend
-  }))
+    status: "green",
+    trend,
+  })),
 }));
 
-jest.mock('../../core/constants.js', () => ({
+jest.mock("../../core/constants.js", () => ({
   BoviEvents: {
-    KPI_UPDATED: 'ui.kpi.updated'
-  }
+    KPI_UPDATED: "ui.kpi.updated",
+  },
 }));
 
-// Mock DOM
-const mockElement = {
-  appendChild: jest.fn(),
-  querySelector: jest.fn(),
-  addEventListener: jest.fn(),
-  remove: jest.fn(),
-  setAttribute: jest.fn(),
-  style: {},
-  textContent: '',
-  innerHTML: '',
-  className: ''
-};
-
-const mockDocument = {
-  createElement: jest.fn(() => mockElement),
-  querySelector: jest.fn(() => mockElement),
-  body: mockElement
-};
-
-Object.defineProperty(global, 'document', {
-  value: mockDocument,
-  writable: true
-});
-
-Object.defineProperty(global, 'window', {
-  value: {
-    addEventListener: jest.fn(),
-    dispatchEvent: jest.fn()
-  },
-  writable: true
-});
-
-describe('KPI Dashboard UI', () => {
+describe("KPI Dashboard UI", () => {
   beforeEach(() => {
+    jest.useFakeTimers();
     jest.clearAllMocks();
-    mockDocument.querySelector.mockReturnValue(mockElement);
-    mockElement.querySelector.mockReturnValue(mockElement);
+    document.body.innerHTML = "<main></main>";
   });
 
-  describe('setupKPIDashboardUI', () => {
-    it('creates dashboard container when main element exists', () => {
-      mockDocument.querySelector.mockReturnValueOnce(mockElement); // main element
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.useRealTimers();
+    jest.restoreAllMocks();
+  });
 
+  describe("setupKPIDashboardUI", () => {
+    it("mounts the dashboard in main", () => {
       setupKPIDashboardUI();
 
-      expect(mockDocument.createElement).toHaveBeenCalledWith('div');
-      expect(mockElement.appendChild).toHaveBeenCalled();
+      const panel = document.querySelector(".kpi-dashboard-panel");
+      expect(panel).not.toBeNull();
+      expect(panel?.textContent).toContain("System Health Dashboard");
+      expect(panel?.querySelector(".kpi-summary")).not.toBeNull();
+      expect(panel?.querySelector(".kpi-categories")).not.toBeNull();
     });
 
-    it('does not crash when main element is missing', () => {
-      mockDocument.querySelector.mockReturnValueOnce(null); // no main element
+    it("does not crash when main is missing", () => {
+      document.body.innerHTML = "";
 
       expect(() => setupKPIDashboardUI()).not.toThrow();
+      expect(document.querySelector(".kpi-dashboard-panel")).toBeNull();
     });
 
-    it('sets up periodic dashboard updates', () => {
-      jest.useFakeTimers();
-      
+    it("schedules periodic dashboard updates", () => {
+      const intervalSpy = jest.spyOn(global, "setInterval");
+
       setupKPIDashboardUI();
-      
-      // Should set up interval for updates
-      expect(setTimeout).toHaveBeenCalled();
-      
-      jest.useRealTimers();
+
+      expect(intervalSpy).toHaveBeenCalledWith(expect.any(Function), 30000);
     });
 
-    it('registers KPI update event listener', () => {
+    it("registers the KPI update listener", () => {
+      const listenerSpy = jest.spyOn(window, "addEventListener");
+
       setupKPIDashboardUI();
 
-      expect(window.addEventListener).toHaveBeenCalledWith(
-        'ui.kpi.updated',
-        expect.any(Function)
+      expect(listenerSpy).toHaveBeenCalledWith("ui.kpi.updated", expect.any(Function));
+    });
+
+    it("does not mount a duplicate panel", () => {
+      setupKPIDashboardUI();
+      setupKPIDashboardUI();
+
+      expect(document.querySelectorAll(".kpi-dashboard-panel")).toHaveLength(1);
+    });
+
+    it("renders the healthy summary and empty metrics state", () => {
+      setupKPIDashboardUI();
+
+      expect(document.querySelector("#kpi-overall-status")?.textContent).toContain(
+        "All Systems Operational",
       );
+      expect(document.querySelector("#kpi-green-count")?.textContent).toBe("5");
+      expect(document.querySelector(".kpi-empty")).not.toBeNull();
     });
 
-    it('prevents duplicate dashboard creation', () => {
-      // Mock existing dashboard panel
-      mockElement.querySelector.mockReturnValueOnce(mockElement); // existing panel
-      mockDocument.querySelector.mockReturnValueOnce(mockElement); // main element
-
+    it("refreshes when the action button is clicked", () => {
       setupKPIDashboardUI();
+      (dashboard.getHealthSummary as jest.Mock).mockClear();
 
-      expect(mockElement.appendChild).not.toHaveBeenCalled();
+      document.querySelector<HTMLButtonElement>("#kpi-refresh-btn")?.click();
+
+      expect(dashboard.getHealthSummary).toHaveBeenCalled();
+      expect(document.querySelector(".kpi-notification")?.textContent).toBe("Metrics refreshed");
     });
   });
 
-  describe('generateDemoKPIData', () => {
-    it('creates demo metrics with correct structure', () => {
+  describe("generateDemoKPIData", () => {
+    it("creates ten realistic metrics with varied trends", () => {
       generateDemoKPIData();
 
-      const { createKPIMetric } = require('../../monitoring/kpi-definitions.js');
-      
-      expect(createKPIMetric).toHaveBeenCalledWith('ruler_switch_time', 150, 'stable');
-      expect(createKPIMetric).toHaveBeenCalledWith('system_uptime', 0.995, 'stable');
-    });
-
-    it('emits KPI update events for demo data', () => {
-      generateDemoKPIData();
-
-      // Should dispatch events for each demo metric
-      expect(window.dispatchEvent).toHaveBeenCalledTimes(10); // 10 demo metrics
-    });
-
-    it('creates metrics with varied trends', () => {
-      generateDemoKPIData();
-
-      const { createKPIMetric } = require('../../monitoring/kpi-definitions.js');
-      const calls = createKPIMetric.mock.calls;
-      
-      // Should have different trend values
-      const trends = calls.map(call => call[2]);
-      expect(trends).toContain('up');
-      expect(trends).toContain('down');
-      expect(trends).toContain('stable');
-    });
-
-    it('generates realistic metric values', () => {
-      generateDemoKPIData();
-
-      const { createKPIMetric } = require('../../monitoring/kpi-definitions.js');
-      const calls = createKPIMetric.mock.calls;
-      
-      // Check that values are in reasonable ranges
-      calls.forEach(([name, value, trend]) => {
-        expect(typeof value).toBe('number');
+      const calls = (createKPIMetric as jest.Mock).mock.calls as Array<
+        [string, number, "up" | "down" | "stable"]
+      >;
+      expect(calls).toHaveLength(10);
+      expect(calls).toContainEqual(["ruler_switch_time", 150, "stable"]);
+      expect(calls.map(call => call[2])).toEqual(
+        expect.arrayContaining(["up", "down", "stable"]),
+      );
+      calls.forEach(([name, value]) => {
         expect(value).toBeGreaterThan(0);
-        
-        // Performance metrics should be reasonable
-        if (name.includes('time')) {
-          expect(value).toBeLessThan(10000); // Less than 10 seconds
-        }
-        
-        // Percentage metrics should be between 0 and 1
-        if (name.includes('rate') || name.includes('uptime')) {
+        if (name.includes("time")) expect(value).toBeLessThan(10000);
+        if (name.includes("rate") || name.includes("uptime")) {
           expect(value).toBeLessThanOrEqual(1);
         }
       });
     });
-  });
 
-  describe('dashboard rendering', () => {
-    it('handles missing DOM elements gracefully', () => {
-      mockDocument.querySelector.mockReturnValue(null);
-      mockElement.querySelector.mockReturnValue(null);
+    it("dispatches one KPI event per metric", () => {
+      const dispatchSpy = jest.spyOn(window, "dispatchEvent");
 
-      expect(() => setupKPIDashboardUI()).not.toThrow();
-    });
-
-    it('creates proper HTML structure', () => {
-      setupKPIDashboardUI();
-
-      expect(mockElement.innerHTML).toContain('System Health Dashboard');
-      expect(mockElement.innerHTML).toContain('kpi-summary');
-      expect(mockElement.innerHTML).toContain('kpi-categories');
-    });
-
-    it('sets up event listeners for dashboard actions', () => {
-      setupKPIDashboardUI();
-
-      // Should set up click handlers for refresh and export buttons
-      expect(mockElement.addEventListener).toHaveBeenCalledWith('click', expect.any(Function));
-    });
-  });
-
-  describe('data export functionality', () => {
-    it('includes timestamp in export data', () => {
-      // Mock URL.createObjectURL
-      global.URL.createObjectURL = jest.fn(() => 'mock-url');
-      global.URL.revokeObjectURL = jest.fn();
-
-      setupKPIDashboardUI();
       generateDemoKPIData();
 
-      // Export functionality should include timestamp
-      expect(mockDocument.createElement).toHaveBeenCalledWith('div');
-    });
-
-    it('handles export button click', () => {
-      global.URL.createObjectURL = jest.fn(() => 'mock-url');
-      global.URL.revokeObjectURL = jest.fn();
-
-      setupKPIDashboardUI();
-
-      // Should not throw when export is triggered
-      expect(() => setupKPIDashboardUI()).not.toThrow();
-    });
-  });
-
-  describe('responsive behavior', () => {
-    it('updates dashboard content periodically', () => {
-      jest.useFakeTimers();
-      
-      setupKPIDashboardUI();
-      
-      // Fast-forward time
-      jest.advanceTimersByTime(30000); // 30 seconds
-      
-      // Should have updated dashboard content
-      expect(mockElement.querySelector).toHaveBeenCalled();
-      
-      jest.useRealTimers();
-    });
-
-    it('handles KPI update events', () => {
-      const mockEventListener = jest.fn();
-      window.addEventListener = mockEventListener;
-
-      setupKPIDashboardUI();
-
-      // Should register event listener
-      expect(mockEventListener).toHaveBeenCalledWith('ui.kpi.updated', expect.any(Function));
-    });
-  });
-
-  describe('error handling', () => {
-    it('handles dashboard setup errors gracefully', () => {
-      mockDocument.createElement.mockImplementation(() => {
-        throw new Error('DOM error');
-      });
-
-      // Should not crash the app
-      expect(() => setupKPIDashboardUI()).not.toThrow();
-    });
-
-    it('handles missing KPI data gracefully', () => {
-      const { dashboard } = require('../../monitoring/kpi-dashboard.js');
-      dashboard.getMetrics.mockReturnValue([]);
-      dashboard.getHealthSummary.mockReturnValue({
-        status: 'healthy',
-        score: 1,
-        issues: [],
-        greenCount: 0,
-        amberCount: 0,
-        redCount: 0
-      });
-
-      expect(() => setupKPIDashboardUI()).not.toThrow();
+      expect(dispatchSpy).toHaveBeenCalledTimes(10);
+      expect(dispatchSpy.mock.calls[0][0]).toEqual(
+        expect.objectContaining({ type: "ui.kpi.updated" }),
+      );
     });
   });
 });

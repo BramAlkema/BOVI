@@ -3,20 +3,20 @@
  */
 
 import { mountUI, switchUI } from '../host.js';
-import { registerUIPlugin, setActiveUIPluginId } from '../registry.js';
+import { __clearRegistryForTesting, registerUIPlugin, setActiveUIPluginId } from '../registry.js';
 import type { UIComponentPlugin, UIContext, UIInstance } from '../types.js';
 
 // Mock the dependencies
-jest.mock('../../../lib/core/bus.js', () => ({
+jest.mock('../../../core/bus.js', () => ({
   Bus: { emit: jest.fn(), on: jest.fn() }
 }));
 
-jest.mock('../../../lib/core/timers.js', () => ({
+jest.mock('../../../core/timers.js', () => ({
   Timers: { setTimeout: jest.fn(), clearTimeout: jest.fn() }
 }));
 
-jest.mock('../../../lib/core/capabilities.js', () => ({
-  getProfile: jest.fn(() => ({ level: 'L1', features: [] }))
+jest.mock('../../../core/capabilities.js', () => ({
+  getProfile: jest.fn(() => 'L1')
 }));
 
 describe('UI Plugin Host', () => {
@@ -25,12 +25,14 @@ describe('UI Plugin Host', () => {
   let mockPlugin: UIComponentPlugin;
 
   beforeEach(() => {
+    __clearRegistryForTesting();
     // Create mock DOM element
     mockRoot = document.createElement('div');
     
     // Create mock UI instance
     mockInstance = {
-      unmount: jest.fn()
+      unmount: jest.fn(),
+      onProfileChange: jest.fn()
     };
 
     // Create mock plugin
@@ -69,7 +71,7 @@ describe('UI Plugin Host', () => {
           root: mockRoot,
           bus: expect.any(Object),
           timers: expect.any(Object),
-          profile: expect.objectContaining({ level: 'L1' }),
+          profile: 'L1',
           navigate: expect.any(Function),
           openOverlay: expect.any(Function),
           closeOverlay: expect.any(Function)
@@ -181,7 +183,8 @@ describe('UI Plugin Host', () => {
     });
 
     it('uses fallback id when no active plugin set', async () => {
-      setActiveUIPluginId(null as any); // Clear active plugin
+      __clearRegistryForTesting();
+      registerUIPlugin(mockPlugin);
       
       await mountUI(mockRoot, 'test-plugin');
 
@@ -189,28 +192,25 @@ describe('UI Plugin Host', () => {
     });
 
     it('handles profile change events', async () => {
+      const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
       await switchUI(mockRoot, 'test-plugin');
 
       // Mock profile change event
       const profileChangeEvent = new CustomEvent('profile:changed', {
-        detail: { level: 'L2', features: ['advanced'] }
+        detail: 'L2'
       });
 
       // Simulate the event listener that was added
-      const addEventListener = window.addEventListener as jest.Mock;
-      if (addEventListener.mock.calls.length > 0) {
-        const handler = addEventListener.mock.calls.find(call => call[0] === 'profile:changed')?.[1];
-        if (handler) {
+      if (addEventListenerSpy.mock.calls.length > 0) {
+        const handler = addEventListenerSpy.mock.calls.find(call => call[0] === 'profile:changed')?.[1];
+        if (typeof handler === 'function') {
           handler(profileChangeEvent);
         }
       }
 
       // Test would depend on mockInstance having onProfileChange method
       if (mockInstance.onProfileChange) {
-        expect(mockInstance.onProfileChange).toHaveBeenCalledWith({
-          level: 'L2',
-          features: ['advanced']
-        });
+        expect(mockInstance.onProfileChange).toHaveBeenCalledWith('L2');
       }
     });
   });

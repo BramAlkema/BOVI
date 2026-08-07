@@ -93,7 +93,7 @@ export class HybridSystemOrchestrator {
     flowsLoaded: number;
     studiosActive: number;
     aiButlerEnabled: boolean;
-    } {
+  } {
     const flowSpecs = flowLoader.getAllFlowSpecs();
     const studios = studioManager.getAllStudios();
 
@@ -111,7 +111,7 @@ export class HybridSystemOrchestrator {
   getComponents(): {
     flowSpecs: Record<string, any>;
     studios: Record<string, any>;
-    } {
+  } {
     return {
       flowSpecs: flowLoader.getAllFlowSpecs(),
       studios: studioManager.getAllStudios(),

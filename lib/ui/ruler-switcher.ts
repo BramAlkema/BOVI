@@ -16,14 +16,14 @@ export function setupRulerSwitcher(): void {
         <label for="ruler-select">Inflation Ruler:</label>
         <select id="ruler-select" class="ruler-select">
           ${rulers
-    .map(
-      ruler => `
+            .map(
+              ruler => `
             <option value="${ruler.id}" ${ruler.id === activeRuler ? "selected" : ""}>
               ${ruler.name} (${ruler.bpDrift > 0 ? "+" : ""}${ruler.bpDrift}bp)
             </option>
           `
-    )
-    .join("")}
+            )
+            .join("")}
         </select>
         <div class="ruler-method">
           <small>Method: <span id="ruler-method">${rulers.find(r => r.id === activeRuler)?.method || "Unknown"}</span></small>
@@ -100,14 +100,14 @@ export function addRulerSwitcherTo(container: HTMLElement): void {
           <label for="ruler-select-${Date.now()}">Inflation Ruler:</label>
           <select id="ruler-select-${Date.now()}" class="ruler-select">
             ${rulers
-    .map(
-      ruler => `
+              .map(
+                ruler => `
               <option value="${ruler.id}" ${ruler.id === activeRuler ? "selected" : ""}>
                 ${ruler.name} (${ruler.bpDrift > 0 ? "+" : ""}${ruler.bpDrift}bp)
               </option>
             `
-    )
-    .join("")}
+              )
+              .join("")}
           </select>
         </div>
       `;

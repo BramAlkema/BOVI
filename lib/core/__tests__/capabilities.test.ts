@@ -2,163 +2,76 @@
  * Capabilities System Tests
  */
 
-import { getProfile, setProfile, hasCapability } from '../capabilities.js';
+import { can, getProfile, PROFILES, setProfile } from "../capabilities.js";
 
-describe('Capabilities System', () => {
+describe("Capabilities System", () => {
   beforeEach(() => {
-    // Reset profile before each test
+    jest.clearAllMocks();
     localStorage.clear();
+    setProfile("L1");
   });
 
-  describe('profile management', () => {
-    it('returns default profile when none set', () => {
-      const profile = getProfile();
-      expect(profile).toMatchObject({
-        level: expect.any(String),
-        features: expect.any(Array)
-      });
+  describe("profile management", () => {
+    it("uses a valid default profile", () => {
+      expect(PROFILES).toHaveProperty(getProfile());
     });
 
-    it('sets and retrieves profile', () => {
-      const testProfile = {
-        level: 'L2',
-        features: ['advanced', 'experimental']
-      };
+    it("sets and retrieves a profile", () => {
+      setProfile("L2");
 
-      setProfile(testProfile);
-      const retrieved = getProfile();
-      
-      expect(retrieved).toEqual(testProfile);
+      expect(getProfile()).toBe("L2");
     });
 
-    it('persists profile in localStorage', () => {
-      const testProfile = {
-        level: 'L1',
-        features: ['basic']
-      };
+    it("persists the profile identifier", () => {
+      setProfile("L3R");
 
-      setProfile(testProfile);
-      
-      // Verify localStorage was updated
-      const stored = localStorage.getItem('bovi.profile');
-      expect(stored).toBeDefined();
-      expect(JSON.parse(stored)).toEqual(testProfile);
-    });
-
-    it('loads profile from localStorage on startup', () => {
-      const testProfile = {
-        level: 'L3',
-        features: ['expert', 'debug']
-      };
-
-      localStorage.setItem('bovi.profile', JSON.stringify(testProfile));
-      
-      const profile = getProfile();
-      expect(profile).toEqual(testProfile);
+      expect(localStorage.getItem("profile")).toBe("L3R");
     });
   });
 
-  describe('capability checking', () => {
-    beforeEach(() => {
-      setProfile({
-        level: 'L2',
-        features: ['advanced', 'charts']
-      });
+  describe("capability checking", () => {
+    it("checks direct profile capabilities", () => {
+      expect(can("SAFE_CTA", "L0")).toBe(true);
+      expect(can("PDA", "L1")).toBe(false);
+      expect(can("PDA", "L2")).toBe(true);
+      expect(can("RULES", "L5")).toBe(true);
     });
 
-    it('checks feature capabilities', () => {
-      expect(hasCapability('advanced')).toBe(true);
-      expect(hasCapability('charts')).toBe(true);
-      expect(hasCapability('nonexistent')).toBe(false);
+    it("allows L3R to inherit L2 capabilities", () => {
+      expect(can("PDA", "L3R")).toBe(true);
+      expect(can("STUDIO", "L3R")).toBe(true);
+      expect(can("RULES", "L3R")).toBe(false);
     });
 
-    it('checks level capabilities', () => {
-      expect(hasCapability('L1')).toBe(true);  // L2 includes L1
-      expect(hasCapability('L2')).toBe(true);
-      expect(hasCapability('L3')).toBe(false); // L2 doesn't include L3
-    });
+    it("uses the current profile when none is supplied", () => {
+      setProfile("L5");
 
-    it('handles empty features gracefully', () => {
-      setProfile({
-        level: 'L1',
-        features: []
-      });
-
-      expect(hasCapability('advanced')).toBe(false);
-      expect(hasCapability('L1')).toBe(true);
+      expect(can("EXPORT")).toBe(true);
+      expect(can("PDA")).toBe(false);
     });
   });
 
-  describe('profile validation', () => {
-    it('validates profile levels', () => {
-      const validLevels = ['L0', 'L1', 'L2', 'L3'];
-      
-      validLevels.forEach(level => {
-        setProfile({ level, features: [] });
-        expect(getProfile().level).toBe(level);
-      });
+  describe("profile transitions", () => {
+    it("supports upgrades and downgrades", () => {
+      setProfile("L2");
+      expect(can("COHORT")).toBe(true);
+
+      setProfile("L1");
+      expect(getProfile()).toBe("L1");
+      expect(can("COHORT")).toBe(false);
     });
 
-    it('handles invalid profile gracefully', () => {
-      // Store invalid JSON
-      localStorage.setItem('bovi.profile', 'invalid json');
-      
-      const profile = getProfile();
-      expect(profile).toMatchObject({
-        level: expect.any(String),
-        features: expect.any(Array)
-      });
-    });
+    it("emits the changed profile identifier", () => {
+      const eventSpy = jest.spyOn(window, "dispatchEvent");
 
-    it('normalizes feature names', () => {
-      setProfile({
-        level: 'L1',
-        features: ['ADVANCED', 'charts', 'Debug']
-      });
+      setProfile("L2");
 
-      expect(hasCapability('advanced')).toBe(true);
-      expect(hasCapability('CHARTS')).toBe(true);
-      expect(hasCapability('debug')).toBe(true);
-    });
-  });
-
-  describe('profile transitions', () => {
-    it('handles profile upgrades', () => {
-      setProfile({ level: 'L1', features: ['basic'] });
-      
-      setProfile({ level: 'L2', features: ['basic', 'advanced'] });
-      
-      const profile = getProfile();
-      expect(profile.level).toBe('L2');
-      expect(profile.features).toContain('advanced');
-    });
-
-    it('handles profile downgrades', () => {
-      setProfile({ level: 'L3', features: ['expert', 'debug'] });
-      
-      setProfile({ level: 'L1', features: ['basic'] });
-      
-      const profile = getProfile();
-      expect(profile.level).toBe('L1');
-      expect(hasCapability('expert')).toBe(false);
-    });
-
-    it('emits profile change events', () => {
-      const eventSpy = jest.spyOn(window, 'dispatchEvent');
-      
-      setProfile({ level: 'L2', features: ['advanced'] });
-      
       expect(eventSpy).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'profile:changed',
-          detail: expect.objectContaining({
-            level: 'L2',
-            features: ['advanced']
-          })
-        })
+          type: "profile:changed",
+          detail: "L2",
+        }),
       );
-      
-      eventSpy.mockRestore();
     });
   });
 });

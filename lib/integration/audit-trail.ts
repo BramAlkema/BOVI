@@ -67,8 +67,8 @@ export class AuditTrailService {
             </div>
             <div id="logs">
               ${logs
-    .map(
-      log => `
+                .map(
+                  log => `
                 <div class="log-entry">
                   <span class="timestamp">${new Date(log.timestamp).toISOString()}</span>
                   <span class="event-type">${log.event_type}</span>
@@ -77,8 +77,8 @@ export class AuditTrailService {
                   <pre>${JSON.stringify(log.detail, null, 2)}</pre>
                 </div>
               `
-    )
-    .join("")}
+                )
+                .join("")}
             </div>
             <script>
               function exportLogs() {
@@ -131,7 +131,7 @@ export class AuditTrailService {
     eventTypes: Record<string, number>;
     flows: Record<string, number>;
     timeRange: { start: string; end: string } | null;
-    } {
+  } {
     const logs = AuditLog.getLogs();
 
     if (logs.length === 0) {

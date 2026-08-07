@@ -51,7 +51,7 @@ export class FlowEditor {
       height: 600,
       gridSize: 20,
       snapToGrid: true,
-      ...config
+      ...config,
     };
 
     this.container = config.container;
@@ -120,7 +120,7 @@ export class FlowEditor {
     const node: VisualNode = {
       id: `node_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       position: this.config.snapToGrid ? this.snapToGrid(position) : position,
-      ...nodeData
+      ...nodeData,
     };
 
     this.nodes.set(node.id, node);
@@ -134,7 +134,7 @@ export class FlowEditor {
       nodeElement.remove();
     }
     this.nodes.delete(nodeId);
-    
+
     // Remove connections involving this node
     this.connections = this.connections.filter(
       conn => conn.from.nodeId !== nodeId && conn.to.nodeId !== nodeId
@@ -143,7 +143,7 @@ export class FlowEditor {
   }
 
   public addConnection(
-    from: { nodeId: string; port: string }, 
+    from: { nodeId: string; port: string },
     to: { nodeId: string; port: string }
   ): void {
     const connection: Connection = { from, to };
@@ -264,22 +264,23 @@ export class FlowEditor {
   private renderConnection(connection: Connection): void {
     const fromNode = this.nodes.get(connection.from.nodeId);
     const toNode = this.nodes.get(connection.to.nodeId);
-    
+
     if (!fromNode || !toNode) return;
 
     const fromPos = {
       x: fromNode.position.x + 160, // node width
-      y: fromNode.position.y + 40   // node height / 2
+      y: fromNode.position.y + 40, // node height / 2
     };
 
     const toPos = {
       x: toNode.position.x,
-      y: toNode.position.y + 40
+      y: toNode.position.y + 40,
     };
 
     // Create curved path
     const midX = (fromPos.x + toPos.x) / 2;
-    const path = `M ${fromPos.x} ${fromPos.y} ` +
+    const path =
+      `M ${fromPos.x} ${fromPos.y} ` +
       `C ${midX} ${fromPos.y} ${midX} ${toPos.y} ${toPos.x} ${toPos.y}`;
 
     const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -302,7 +303,7 @@ export class FlowEditor {
   private handleMouseDown(event: MouseEvent): void {
     const target = event.target as HTMLElement;
     const nodeElement = target.closest(".flow-node") as HTMLElement;
-    
+
     if (nodeElement) {
       const nodeId = nodeElement.dataset.nodeId!;
       const rect = nodeElement.getBoundingClientRect();
@@ -313,8 +314,8 @@ export class FlowEditor {
         startPos: { x: event.clientX, y: event.clientY },
         offset: {
           x: event.clientX - rect.left,
-          y: event.clientY - rect.top
-        }
+          y: event.clientY - rect.top,
+        },
       };
 
       this.selectNode(nodeId);
@@ -330,30 +331,32 @@ export class FlowEditor {
     const x = event.clientX - containerRect.left - this.dragState.offset.x;
     const y = event.clientY - containerRect.top - this.dragState.offset.y;
 
-    const newPos = this.config.snapToGrid 
+    const newPos = this.config.snapToGrid
       ? this.snapToGrid({ x, y })
-      : { 
-        x: Math.max(0, Math.min(x, this.config.width - 160)), 
-        y: Math.max(0, Math.min(y, this.config.height - 80))
-      };
+      : {
+          x: Math.max(0, Math.min(x, this.config.width - 160)),
+          y: Math.max(0, Math.min(y, this.config.height - 80)),
+        };
 
     this.updateNodePosition(this.dragState.nodeId, newPos);
   }
 
   private handleMouseUp(): void {
     if (this.dragState.nodeId) {
-      const nodeElement = this.container.querySelector(`[data-node-id="${this.dragState.nodeId}"]`) as HTMLElement;
+      const nodeElement = this.container.querySelector(
+        `[data-node-id="${this.dragState.nodeId}"]`
+      ) as HTMLElement;
       if (nodeElement) {
         nodeElement.style.cursor = "grab";
         nodeElement.style.zIndex = "2";
       }
     }
 
-    this.dragState = { 
-      isDragging: false, 
-      nodeId: null, 
-      startPos: { x: 0, y: 0 }, 
-      offset: { x: 0, y: 0 } 
+    this.dragState = {
+      isDragging: false,
+      nodeId: null,
+      startPos: { x: 0, y: 0 },
+      offset: { x: 0, y: 0 },
     };
   }
 
@@ -363,7 +366,7 @@ export class FlowEditor {
       this.handleMouseDown({
         clientX: touch.clientX,
         clientY: touch.clientY,
-        target: touch.target
+        target: touch.target,
       } as any);
     }
   }
@@ -374,7 +377,7 @@ export class FlowEditor {
       const touch = event.touches[0];
       this.handleMouseMove({
         clientX: touch.clientX,
-        clientY: touch.clientY
+        clientY: touch.clientY,
       } as any);
     }
   }
@@ -400,7 +403,9 @@ export class FlowEditor {
   private selectNode(nodeId: string): void {
     // Deselect previous
     if (this.selectedNode) {
-      const prevElement = this.container.querySelector(`[data-node-id="${this.selectedNode}"]`) as HTMLElement;
+      const prevElement = this.container.querySelector(
+        `[data-node-id="${this.selectedNode}"]`
+      ) as HTMLElement;
       if (prevElement) {
         prevElement.style.borderColor = this.getNodeColor(this.nodes.get(this.selectedNode)!.type);
       }
@@ -417,47 +422,83 @@ export class FlowEditor {
   private snapToGrid(position: NodePosition): NodePosition {
     return {
       x: Math.round(position.x / this.config.gridSize) * this.config.gridSize,
-      y: Math.round(position.y / this.config.gridSize) * this.config.gridSize
+      y: Math.round(position.y / this.config.gridSize) * this.config.gridSize,
     };
   }
 
   private getNodeColor(nodeType: string): string {
     const [mode] = nodeType.split(".");
     switch (mode) {
-    case "B": return "#4cc9f0"; // Balanced - Blue
-    case "O": return "#ff6b6b"; // Obligated - Red  
-    case "V": return "#a1ffb5"; // Value - Green
-    case "I": return "#ffd166"; // Immediate - Yellow
-    default: return "#8b949e";
+      case "B":
+        return "#4cc9f0"; // Balanced - Blue
+      case "O":
+        return "#ff6b6b"; // Obligated - Red
+      case "V":
+        return "#a1ffb5"; // Value - Green
+      case "I":
+        return "#ffd166"; // Immediate - Yellow
+      default:
+        return "#8b949e";
     }
   }
 
   private getNodeIcon(nodeType: string): string {
     switch (nodeType) {
-    case "V.PDA": return "📊";
-    case "V.Calculate": return "🔢";
-    case "V.Assess": return "⚖️";
-    case "I.Detect": return "🔍";
-    case "I.Default":
-    case "B.Default":
-    case "O.Default": return "⚙️";
-    case "B.Sweep": return "🧹";
-    case "B.Learn": return "📚";
-    default: return "📦";
+      case "V.PDA":
+        return "📊";
+      case "V.Calculate":
+        return "🔢";
+      case "V.Assess":
+        return "⚖️";
+      case "I.Detect":
+        return "🔍";
+      case "I.Default":
+      case "B.Default":
+      case "O.Default":
+        return "⚙️";
+      case "B.Sweep":
+        return "🧹";
+      case "B.Learn":
+        return "📚";
+      default:
+        return "📦";
     }
   }
 
   private hexToRgb(hex: string): string {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? 
-      `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : 
-      "76, 201, 240";
+    return result
+      ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
+      : "76, 201, 240";
   }
 
   public exportAsPNG(): void {
     // Simple implementation - take screenshot of container
-    import("html2canvas").then((html2canvas) => {
-      html2canvas.default(this.container).then(canvas => {
+    import("html2canvas")
+      .then(html2canvas => {
+        html2canvas.default(this.container).then(canvas => {
+          canvas.toBlob(blob => {
+            if (blob) {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.download = "bovi-flow.png";
+              link.href = url;
+              link.click();
+              URL.revokeObjectURL(url);
+            }
+          });
+        });
+      })
+      .catch(() => {
+        // Fallback: create simple canvas export
+        const canvas = document.createElement("canvas");
+        canvas.width = this.config.width;
+        canvas.height = this.config.height;
+        const ctx = canvas.getContext("2d")!;
+
+        ctx.fillStyle = "#1a1d24";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
         canvas.toBlob(blob => {
           if (blob) {
             const url = URL.createObjectURL(blob);
@@ -469,27 +510,6 @@ export class FlowEditor {
           }
         });
       });
-    }).catch(() => {
-      // Fallback: create simple canvas export
-      const canvas = document.createElement("canvas");
-      canvas.width = this.config.width;
-      canvas.height = this.config.height;
-      const ctx = canvas.getContext("2d")!;
-      
-      ctx.fillStyle = "#1a1d24";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      canvas.toBlob(blob => {
-        if (blob) {
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.download = "bovi-flow.png";
-          link.href = url;
-          link.click();
-          URL.revokeObjectURL(url);
-        }
-      });
-    });
   }
 
   public clear(): void {
@@ -507,14 +527,14 @@ export class FlowEditor {
       label: node.label,
       description: node.description,
       config: node.config,
-      outputs: node.outputs
+      outputs: node.outputs,
     }));
 
     const edges: FlowEdge[] = this.connections.map((conn, index) => ({
       from: conn.from.nodeId,
       to: conn.to.nodeId,
       label: `edge_${index}`,
-      condition: "always"
+      condition: "always",
     }));
 
     return {
@@ -529,8 +549,8 @@ export class FlowEditor {
         bovi_modes: ["B", "O", "V", "I"],
         primary_mode: "V",
         created: new Date().toISOString(),
-        tags: ["visual", "custom"]
-      }
+        tags: ["visual", "custom"],
+      },
     };
   }
 }

@@ -3,7 +3,11 @@
  * Provides user interface for running and viewing compute benchmarks
  */
 
-import { computeBenchmark, benchmarkBoviOperations, type BenchmarkResult } from "../monitoring/compute-benchmarks.js";
+import {
+  computeBenchmark,
+  benchmarkBoviOperations,
+  type BenchmarkResult,
+} from "../monitoring/compute-benchmarks.js";
 // import { performanceCollector } from '../monitoring/performance-collector.js';
 
 export function setupBenchmarkPanel(): void {
@@ -13,7 +17,7 @@ export function setupBenchmarkPanel(): void {
 function addBenchmarkPanelToPage(): void {
   // Find a suitable container (bundle or scenarios section)
   const targetContainer = document.querySelector("#bundle") || document.querySelector("#scenarios");
-  
+
   if (targetContainer && !targetContainer.querySelector(".benchmark-panel")) {
     const panel = document.createElement("div");
     panel.className = "panel benchmark-panel";
@@ -34,7 +38,7 @@ function addBenchmarkPanelToPage(): void {
         <!-- Results will be populated here -->
       </div>
     `;
-    
+
     targetContainer.appendChild(panel);
     setupBenchmarkEventListeners(panel);
   }
@@ -63,10 +67,10 @@ function setupBenchmarkEventListeners(panel: Element): void {
       }, 200);
 
       const suiteResult = await benchmarkBoviOperations();
-      
+
       clearInterval(progressInterval);
       progressFill.style.width = "100%";
-      
+
       setTimeout(() => {
         statusDiv.style.display = "none";
         displayBenchmarkResults(resultsDiv, suiteResult.results);
@@ -74,7 +78,6 @@ function setupBenchmarkEventListeners(panel: Element): void {
       }, 500);
 
       showNotification("Benchmarks completed successfully!", "success");
-      
     } catch (error) {
       console.error("Benchmark failed:", error);
       statusDiv.style.display = "none";
@@ -89,14 +92,14 @@ function setupBenchmarkEventListeners(panel: Element): void {
     const data = computeBenchmark.exportBenchmarkData();
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    
+
     const link = document.createElement("a");
     link.href = url;
     link.download = `bovi-benchmarks-${new Date().toISOString().split("T")[0]}.json`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     URL.revokeObjectURL(url);
     showNotification("Benchmark data exported!", "info");
   });
@@ -111,11 +114,12 @@ function setupBenchmarkEventListeners(panel: Element): void {
 }
 
 function displayBenchmarkResults(container: HTMLElement, results: BenchmarkResult[]): void {
-  const resultsHTML = results.map(result => {
-    const throughputColor = getThroughputColor(result.throughput);
-    const avgDurationMs = result.averagePerIteration.toFixed(2);
-    
-    return `
+  const resultsHTML = results
+    .map(result => {
+      const throughputColor = getThroughputColor(result.throughput);
+      const avgDurationMs = result.averagePerIteration.toFixed(2);
+
+      return `
       <div class="benchmark-result-item">
         <div class="result-header">
           <h4>${result.operationName.replace(/.*_/, "").replace(/-/g, " ")}</h4>
@@ -140,22 +144,27 @@ function displayBenchmarkResults(container: HTMLElement, results: BenchmarkResul
             <label>P95:</label>
             <span>${result.metrics.p95.toFixed(2)}ms</span>
           </div>
-          ${result.memoryUsage ? `
+          ${
+            result.memoryUsage
+              ? `
             <div class="metric">
               <label>Memory:</label>
               <span>${formatBytes(result.memoryUsage.peak - result.memoryUsage.before)}</span>
             </div>
-          ` : ""}
+          `
+              : ""
+          }
         </div>
       </div>
     `;
-  }).join("");
+    })
+    .join("");
 
   // Calculate suite summary
   const totalOperations = results.length;
   const avgThroughput = results.reduce((sum, r) => sum + r.throughput, 0) / totalOperations;
   const totalDuration = results.reduce((sum, r) => sum + r.duration, 0);
-  
+
   container.innerHTML = `
     <div class="benchmark-summary">
       <h4>Benchmark Results</h4>
@@ -182,17 +191,17 @@ function displayBenchmarkResults(container: HTMLElement, results: BenchmarkResul
 
 function getThroughputColor(throughput: number): string {
   if (throughput > 1000) return "#22c55e"; // Green
-  if (throughput > 100) return "#eab308";  // Yellow
+  if (throughput > 100) return "#eab308"; // Yellow
   return "#ef4444"; // Red
 }
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return "0 B";
-  
+
   const k = 1024;
   const sizes = ["B", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  
+
   return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
 }
 
@@ -201,7 +210,7 @@ function showNotification(message: string, type: "info" | "success" | "error" = 
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
   toast.textContent = message;
-  
+
   // Position toast
   toast.style.position = "fixed";
   toast.style.top = "20px";
@@ -211,18 +220,18 @@ function showNotification(message: string, type: "info" | "success" | "error" = 
   toast.style.color = "white";
   toast.style.fontWeight = "600";
   toast.style.zIndex = "1000";
-  
+
   // Set background color based on type
   const colors = {
     info: "#3b82f6",
     success: "#22c55e",
-    error: "#ef4444"
+    error: "#ef4444",
   };
   toast.style.background = colors[type];
-  
+
   // Add to DOM
   document.body.appendChild(toast);
-  
+
   // Auto-remove after 3 seconds
   setTimeout(() => {
     if (toast.parentNode) {

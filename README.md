@@ -2,7 +2,7 @@
 
 **Balanced • Obligated • Value • Immediate** — A modular educational framework for understanding the four fairness modes of money
 
-[![Build Status](https://github.com/BramAlkema/BOVI/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/BramAlkema/BOVI/actions)
+[![Build Status](https://github.com/BramAlkema/BOVI/actions/workflows/deploy.yml/badge.svg)](https://github.com/BramAlkema/BOVI/actions/workflows/deploy.yml)
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://bramalkema.github.io/BOVI/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -13,12 +13,12 @@ BOVI explains that money isn't a single invention—it's a **bundle of four fair
 
 ### The Four Modes
 
-| Mode | Symbol | Relational Model | Core Principle | Examples |
-|------|--------|------------------|----------------|----------|
-| **🔵 Balanced** | `B` | Equality Matching | Fairness as symmetry | Ledgers, tallies, turn-taking |
-| **🔴 Obligated** | `O` | Authority Ranking | Fairness as compliance | Taxes, rent, hierarchical duties |
-| **🟢 Value** | `V` | Market Pricing | Fairness as proportionality | Price discovery, transferable units |
-| **🟡 Immediate** | `I` | Communal Sharing | Fairness as direct equivalence | Tit-for-tat, visceral fairness |
+| Mode             | Symbol | Relational Model  | Core Principle                 | Examples                            |
+| ---------------- | ------ | ----------------- | ------------------------------ | ----------------------------------- |
+| **🔵 Balanced**  | `B`    | Equality Matching | Fairness as symmetry           | Ledgers, tallies, turn-taking       |
+| **🔴 Obligated** | `O`    | Authority Ranking | Fairness as compliance         | Taxes, rent, hierarchical duties    |
+| **🟢 Value**     | `V`    | Market Pricing    | Fairness as proportionality    | Price discovery, transferable units |
+| **🟡 Immediate** | `I`    | Communal Sharing  | Fairness as direct equivalence | Tit-for-tat, visceral fairness      |
 
 ## 🚀 Live Demo
 
@@ -38,7 +38,7 @@ The BOVI Framework is built as **37 focused modules** with clear separation of c
 ```
 lib/
 ├── core/           # Constants, bus, receipts, rulers
-├── monitoring/     # KPI dashboard, performance tracking  
+├── monitoring/     # KPI dashboard, performance tracking
 ├── services/       # Business logic (rulers, contracts, storm-mode)
 ├── ui/            # Interactive components and dashboards
 ├── integration/   # System orchestration and initialization
@@ -94,40 +94,46 @@ The project features a **deployment-resilient architecture** that survives major
 The KPI dashboard monitors:
 
 ### Performance Metrics
+
 - **Ruler Switch Time**: <200ms (green), 200-1000ms (amber), >1000ms (red)
 - **Money-veil Calculation**: <500ms target
 - **API Response Time**: <500ms average
 - **System Uptime**: >99% target
 
 ### User Engagement
+
 - **Ruler Adoption Rate**: >60% try non-default rulers
 - **Contract Completion Rate**: >90% signed
 - **Cohort Satisfaction**: >95% no-one-worse-off guarantee
 
-### System Quality  
-- **Failed Payment Rate**: <0.5% 
+### System Quality
+
+- **Failed Payment Rate**: <0.5%
 - **Rule Compliance**: >90% using latest rules
 - **Appeal Resolution**: <3 days average
 
 ## 🎓 Educational Applications
 
 ### Interactive Learning
+
 - **Mode Deep-dives** - Hands-on exploration of each fairness mode
 - **Real-world Scenarios** - Navigate grocery inflation, rent negotiation, energy switching
 - **Bundle Understanding** - See how all four modes work together
 
 ### Target Audiences
+
 - **📚 Students** - Economics, psychology, anthropology courses
-- **💼 Professionals** - FinTech, policy makers, financial advisors  
+- **💼 Professionals** - FinTech, policy makers, financial advisors
 - **🌍 General Public** - Understanding money's moral dimensions
 - **👩‍💻 Developers** - Example of modular educational architecture
 
 ## 🔧 Technical Highlights
 
 ### TypeScript-First
+
 ```typescript
 // Centralized constants with type safety
-import { BoviMode, BoviEvents } from './lib/core/constants.js';
+import { BoviMode, BoviEvents } from "./lib/core/constants.js";
 
 // KPI tracking with automatic status determination
 const metric = createKPIMetric("ruler_switch_time", 150, "stable");
@@ -137,16 +143,18 @@ Bus.emit(BoviEvents.RULER_CHANGED, { ruler: "LTS", performance: 145 });
 ```
 
 ### Modular Plugin System
+
 ```typescript
 // Extensible architecture
-import { PluginManager } from './lib/plugins/plugin-manager.js';
-import { KPIDashboard } from './lib/monitoring/kpi-dashboard.js';
+import { PluginManager } from "./lib/plugins/plugin-manager.js";
+import { KPIDashboard } from "./lib/monitoring/kpi-dashboard.js";
 
 const dashboard = new KPIDashboard();
-PluginManager.register('monitoring', dashboard);
+PluginManager.register("monitoring", dashboard);
 ```
 
 ### Performance Optimization
+
 - **Lazy Loading** - Components load on demand
 - **Bundle Splitting** - Separate app.min.js and lib bundles
 - **CSS Optimization** - Minified styles with auto-discovery
@@ -155,14 +163,16 @@ PluginManager.register('monitoring', dashboard);
 ## 🚀 Deployment
 
 ### GitHub Actions Pipeline
+
 1. **TypeScript Compilation** - Full type checking
-2. **Code Quality** - ESLint validation  
+2. **Code Quality** - ESLint validation
 3. **Resilient Build** - Auto-discovery and validation
 4. **Pre-deployment Checks** - Content and asset validation
 5. **GitHub Pages Deploy** - Automatic publication
 6. **Backup Creation** - Rollback capability
 
 ### Production Features
+
 - **Zero-downtime deploys** - Validated before going live
 - **Automatic rollback** - Emergency recovery in seconds
 - **Performance monitoring** - Real-time KPI tracking
@@ -171,6 +181,7 @@ PluginManager.register('monitoring', dashboard);
 ## 📈 Project Status
 
 ### ✅ Completed Features
+
 - [x] Modular architecture with 37 focused modules
 - [x] Real-time KPI dashboard with 16 metrics
 - [x] Performance monitoring and trend analysis
@@ -180,15 +191,18 @@ PluginManager.register('monitoring', dashboard);
 - [x] Automated CI/CD with validation gates
 
 ### 🚧 In Progress
+
 - [ ] PDF receipt generation for smart contracts
 - [ ] Expanded test coverage (>80% target)
 - [ ] Performance benchmarking suite
 - [ ] Multi-language support
 
 ### 📋 Backlog Compliance
+
 **90% implementation completeness** against [developer backlog requirements](docs/developer-backlog.md)
+
 - **Phase 1** (Personal BOVI): ✅ 100% Complete
-- **Phase 2** (Social BOVI): ⚠️ 85% Complete  
+- **Phase 2** (Social BOVI): ⚠️ 85% Complete
 - **Phase 3** (Advanced BOVI): ✅ 100% Complete
 
 ## 🤝 Contributing
@@ -196,14 +210,16 @@ PluginManager.register('monitoring', dashboard);
 We welcome contributions to the BOVI Framework:
 
 ### Areas for Contribution
+
 1. **Educational Content** - New scenarios, historical examples
 2. **Technical Enhancements** - Performance optimization, new features
 3. **Accessibility** - Multi-language support, improved a11y
 4. **Documentation** - User guides, developer documentation
 
 ### Development Guidelines
+
 - Follow TypeScript best practices with strict typing
-- Maintain modular architecture principles  
+- Maintain modular architecture principles
 - Include KPI metrics for new features
 - Add comprehensive tests for new functionality
 - Update documentation for API changes
@@ -218,6 +234,7 @@ We welcome contributions to the BOVI Framework:
 ## 🎖️ Recognition
 
 The BOVI Framework demonstrates:
+
 - **🏗️ Modular Architecture** - Clean separation with 37 focused modules
 - **📊 Production Monitoring** - Comprehensive KPI dashboard
 - **🛡️ Deployment Resilience** - Survives structural changes

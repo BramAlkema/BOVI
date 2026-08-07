@@ -79,7 +79,7 @@ export class ComputeBenchmark {
       warmupIterations = 10,
       timeout = 30000,
       memoryProfiling = true,
-      collectGC = false
+      collectGC = false,
     } = config;
 
     // Warmup phase
@@ -109,7 +109,7 @@ export class ComputeBenchmark {
       }
 
       const iterationStart = performance.now();
-      
+
       try {
         await operation();
       } catch (error) {
@@ -129,7 +129,7 @@ export class ComputeBenchmark {
     }
 
     const memoryAfter = this.getMemoryUsage();
-    
+
     // Calculate statistics
     const sortedDurations = durations.sort((a, b) => a - b);
     const mean = totalDuration / durations.length;
@@ -146,18 +146,20 @@ export class ComputeBenchmark {
       minDuration: Math.min(...durations),
       maxDuration: Math.max(...durations),
       throughput: (durations.length / totalDuration) * 1000, // ops per second
-      memoryUsage: memoryProfiling ? {
-        before: memoryBefore,
-        after: memoryAfter,
-        peak: memoryPeak
-      } : undefined,
+      memoryUsage: memoryProfiling
+        ? {
+            before: memoryBefore,
+            after: memoryAfter,
+            peak: memoryPeak,
+          }
+        : undefined,
       metrics: {
         mean,
         median,
         p95,
         p99,
-        stdDev
-      }
+        stdDev,
+      },
     };
 
     // Store result
@@ -196,15 +198,13 @@ export class ComputeBenchmark {
 
     // Calculate suite summary
     const throughputs = results.map(r => r.throughput);
-    const memoryUsages = results
-      .map(r => r.memoryUsage?.peak || 0)
-      .filter(m => m > 0);
+    const memoryUsages = results.map(r => r.memoryUsage?.peak || 0).filter(m => m > 0);
 
-    const fastest = results.reduce((min, r) => 
+    const fastest = results.reduce((min, r) =>
       r.averagePerIteration < min.averagePerIteration ? r : min
     );
-    
-    const slowest = results.reduce((max, r) => 
+
+    const slowest = results.reduce((max, r) =>
       r.averagePerIteration > max.averagePerIteration ? r : max
     );
 
@@ -216,8 +216,8 @@ export class ComputeBenchmark {
         fastestOperation: fastest.operationName,
         slowestOperation: slowest.operationName,
         averageThroughput: throughputs.reduce((sum, t) => sum + t, 0) / throughputs.length,
-        totalMemoryUsed: memoryUsages.reduce((sum, m) => sum + m, 0)
-      }
+        totalMemoryUsed: memoryUsages.reduce((sum, m) => sum + m, 0),
+      },
     };
 
     console.log(`Completed benchmark suite: ${suiteName} in ${totalDuration.toFixed(2)}ms`);
@@ -243,7 +243,7 @@ export class ComputeBenchmark {
     const performanceChange = ((baselineAvg - currentAvg) / baselineAvg) * 100;
     const improvement = Math.max(0, performanceChange);
     const regression = Math.max(0, -performanceChange);
-    
+
     // Statistical significance test (simple threshold-based)
     const significant = Math.abs(performanceChange) > 5; // 5% threshold
 
@@ -253,8 +253,8 @@ export class ComputeBenchmark {
       performance: {
         improvement,
         regression,
-        significant
-      }
+        significant,
+      },
     };
   }
 
@@ -291,7 +291,7 @@ export class ComputeBenchmark {
       totalBenchmarks: number;
       averagePerformance: number;
     };
-    } {
+  } {
     const resultsObj: Record<string, BenchmarkResult[]> = {};
     this.results.forEach((results, name) => {
       resultsObj[name] = results;
@@ -303,9 +303,10 @@ export class ComputeBenchmark {
     });
 
     const totalBenchmarks = Array.from(this.results.values()).flat().length;
-    const averagePerformance = Array.from(this.results.values())
-      .flat()
-      .reduce((sum, r) => sum + r.throughput, 0) / Math.max(1, totalBenchmarks);
+    const averagePerformance =
+      Array.from(this.results.values())
+        .flat()
+        .reduce((sum, r) => sum + r.throughput, 0) / Math.max(1, totalBenchmarks);
 
     return {
       timestamp: new Date().toISOString(),
@@ -314,8 +315,8 @@ export class ComputeBenchmark {
       summary: {
         totalOperations: this.results.size,
         totalBenchmarks,
-        averagePerformance
-      }
+        averagePerformance,
+      },
     };
   }
 
@@ -360,7 +361,7 @@ export function benchmark(name?: string) {
       // Handle case where descriptor is not provided (property decorator)
       return;
     }
-    
+
     const method = descriptor.value;
     const benchmarkName = name || `${target.constructor.name}.${propertyName}`;
 
@@ -381,9 +382,8 @@ export async function benchmarkBoviOperations(): Promise<BenchmarkSuite> {
   const { switchButler } = await import("../friedman-apis.js");
 
   return computeBenchmark.benchmarkSuite("bovi-compute-ops", {
-    "local-index-calculation": () => computeLocalIndex([
-      { price: 2.5 }, { price: 1.2 }, { price: 3.8 }, { price: 0.9 }
-    ]),
+    "local-index-calculation": () =>
+      computeLocalIndex([{ price: 2.5 }, { price: 1.2 }, { price: 3.8 }, { price: 0.9 }]),
     "butler-switching": () => switchButler("bovi-default"),
     "json-processing": () => {
       const data = { complex: "data", with: ["arrays", 1, 2, 3], and: { nested: "objects" } };
@@ -399,6 +399,6 @@ export async function benchmarkBoviOperations(): Promise<BenchmarkSuite> {
         result += Math.sqrt(i * Math.PI) / Math.log(i + 1);
       }
       return result;
-    }
+    },
   });
 }

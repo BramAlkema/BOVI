@@ -8,11 +8,11 @@ import type { FlowSpec } from "../flow/types.js";
 
 export function setupFlowEditorPanel(): void {
   console.log("🎛️ Setting up Flow Editor Panel...");
-  
+
   // Find a suitable container (bundle or scenarios section)
   const targetContainer = document.querySelector("#bundle") || document.querySelector("#scenarios");
   console.log("Target container found:", targetContainer);
-  
+
   if (targetContainer && !targetContainer.querySelector(".flow-editor-panel")) {
     console.log("Adding flow editor panel to:", targetContainer.id);
     const panel = document.createElement("div");
@@ -41,7 +41,7 @@ export function setupFlowEditorPanel(): void {
         <button id="execute-flow" class="btn brand">▶️ Execute Flow</button>
       </div>
     `;
-    
+
     targetContainer.appendChild(panel);
     initializeFlowEditor();
   }
@@ -57,47 +57,59 @@ function initializeFlowEditor(): void {
     width: 800,
     height: 500,
     gridSize: 20,
-    snapToGrid: true
+    snapToGrid: true,
   });
 
   // Node creation buttons
   document.getElementById("add-pda-node")?.addEventListener("click", () => {
-    flowEditor.addNode({
-      type: "V.PDA",
-      label: "Personal Data Assessment",
-      description: "Calculate nominal vs real prices",
-      config: { items: [] }
-    }, getRandomPosition());
+    flowEditor.addNode(
+      {
+        type: "V.PDA",
+        label: "Personal Data Assessment",
+        description: "Calculate nominal vs real prices",
+        config: { items: [] },
+      },
+      getRandomPosition()
+    );
     updateFlowInfo(flowEditor);
   });
 
   document.getElementById("add-calculate-node")?.addEventListener("click", () => {
-    flowEditor.addNode({
-      type: "V.Calculate", 
-      label: "Calculate",
-      description: "Perform mathematical operations",
-      config: { formula: "sum", inputs: [] }
-    }, getRandomPosition());
+    flowEditor.addNode(
+      {
+        type: "V.Calculate",
+        label: "Calculate",
+        description: "Perform mathematical operations",
+        config: { formula: "sum", inputs: [] },
+      },
+      getRandomPosition()
+    );
     updateFlowInfo(flowEditor);
   });
 
   document.getElementById("add-detect-node")?.addEventListener("click", () => {
-    flowEditor.addNode({
-      type: "I.Detect",
-      label: "Violation Detector", 
-      description: "Detect fairness violations",
-      config: { triggers: ["shrink"] }
-    }, getRandomPosition());
+    flowEditor.addNode(
+      {
+        type: "I.Detect",
+        label: "Violation Detector",
+        description: "Detect fairness violations",
+        config: { triggers: ["shrink"] },
+      },
+      getRandomPosition()
+    );
     updateFlowInfo(flowEditor);
   });
 
   document.getElementById("add-sweep-node")?.addEventListener("click", () => {
-    flowEditor.addNode({
-      type: "B.Sweep",
-      label: "KPI Sweep",
-      description: "Collect performance metrics", 
-      config: { kpis: {} }
-    }, getRandomPosition());
+    flowEditor.addNode(
+      {
+        type: "B.Sweep",
+        label: "KPI Sweep",
+        description: "Collect performance metrics",
+        config: { kpis: {} },
+      },
+      getRandomPosition()
+    );
     updateFlowInfo(flowEditor);
   });
 
@@ -126,42 +138,51 @@ function initializeFlowEditor(): void {
 function getRandomPosition() {
   return {
     x: Math.random() * 600 + 100,
-    y: Math.random() * 300 + 100
+    y: Math.random() * 300 + 100,
   };
 }
 
 function addDemoNodes(flowEditor: FlowEditor): void {
   // Add a demo flow
-  const pdaNode = flowEditor.addNode({
-    type: "V.PDA",
-    label: "Grocery Assessment",
-    description: "Analyze grocery price changes",
-    config: { 
-      items: [
-        { name: "Bread", price: 2.50, usual: 2.00, shrink: false },
-        { name: "Milk", price: 1.80, usual: 1.60, shrink: true }
-      ]
-    }
-  }, { x: 100, y: 150 });
+  const pdaNode = flowEditor.addNode(
+    {
+      type: "V.PDA",
+      label: "Grocery Assessment",
+      description: "Analyze grocery price changes",
+      config: {
+        items: [
+          { name: "Bread", price: 2.5, usual: 2.0, shrink: false },
+          { name: "Milk", price: 1.8, usual: 1.6, shrink: true },
+        ],
+      },
+    },
+    { x: 100, y: 150 }
+  );
 
-  const detectNode = flowEditor.addNode({
-    type: "I.Detect",
-    label: "Shrinkflation Detector",
-    description: "Find hidden price increases", 
-    config: { triggers: ["shrink"] }
-  }, { x: 350, y: 150 });
+  const detectNode = flowEditor.addNode(
+    {
+      type: "I.Detect",
+      label: "Shrinkflation Detector",
+      description: "Find hidden price increases",
+      config: { triggers: ["shrink"] },
+    },
+    { x: 350, y: 150 }
+  );
 
-  const sweepNode = flowEditor.addNode({
-    type: "B.Sweep", 
-    label: "Price KPIs",
-    description: "Track inflation metrics",
-    config: { 
-      kpis: {
-        "avg_price_change": "last(pda.nominal)",
-        "violation_count": "count(detect.violations)"
-      }
-    }
-  }, { x: 600, y: 150 });
+  const sweepNode = flowEditor.addNode(
+    {
+      type: "B.Sweep",
+      label: "Price KPIs",
+      description: "Track inflation metrics",
+      config: {
+        kpis: {
+          avg_price_change: "last(pda.nominal)",
+          violation_count: "count(detect.violations)",
+        },
+      },
+    },
+    { x: 600, y: 150 }
+  );
 
   // Connect the nodes
   flowEditor.addConnection(
@@ -179,11 +200,11 @@ function updateFlowInfo(flowEditor: FlowEditor): void {
   const flowSpec = flowEditor.getFlowSpec();
   const nodeCountEl = document.getElementById("node-count");
   const connectionCountEl = document.getElementById("connection-count");
-  
+
   if (nodeCountEl) {
     nodeCountEl.textContent = `${flowSpec.nodes.length} nodes`;
   }
-  
+
   if (connectionCountEl) {
     connectionCountEl.textContent = `${flowSpec.edges.length} connections`;
   }
@@ -192,18 +213,20 @@ function updateFlowInfo(flowEditor: FlowEditor): void {
 async function executeCustomFlow(flowSpec: FlowSpec): Promise<void> {
   try {
     console.log("🎛️ Executing custom flow:", flowSpec);
-    
+
     // Import flow execution engine
     const { FlowRunner } = await import("../flow/runner.js");
     const runner = new FlowRunner();
-    
+
     // Execute the flow
     const result = await runner.executeFlow(flowSpec);
-    
+
     // Show results
-    showNotification(`Flow executed successfully! Processed ${flowSpec.nodes.length} nodes.`, "success");
+    showNotification(
+      `Flow executed successfully! Processed ${flowSpec.nodes.length} nodes.`,
+      "success"
+    );
     console.log("Flow execution result:", result);
-    
   } catch (error) {
     console.error("Flow execution failed:", error);
     showNotification("Flow execution failed. Check console for details.", "error");

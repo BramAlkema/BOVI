@@ -13,8 +13,6 @@ export interface Ruler {
   bpDrift: number; // Basis points of drift from baseline
 }
 
-let activeRulerId = localStorage.getItem(StorageKeys.ACTIVE_RULER) || Defaults.RULER_ID;
-
 /**
  * Get all available rulers with drift metrics
  */
@@ -64,7 +62,6 @@ export async function switchRuler(rulerId: string): Promise<void> {
     throw new Error(`Unknown ruler: ${rulerId}`);
   }
 
-  activeRulerId = rulerId;
   localStorage.setItem(StorageKeys.ACTIVE_RULER, rulerId);
 
   // Emit event for UI updates
@@ -80,6 +77,7 @@ export async function switchRuler(rulerId: string): Promise<void> {
  */
 export async function getActiveRuler(): Promise<Ruler> {
   const rulers = await getRulers();
+  const activeRulerId = getActiveRulerId();
   return rulers.find(r => r.id === activeRulerId) || rulers[0];
 }
 
@@ -87,7 +85,7 @@ export async function getActiveRuler(): Promise<Ruler> {
  * Get active ruler ID
  */
 export function getActiveRulerId(): string {
-  return activeRulerId;
+  return localStorage.getItem(StorageKeys.ACTIVE_RULER) || Defaults.RULER_ID;
 }
 
 // Private calculation functions

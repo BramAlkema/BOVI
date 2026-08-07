@@ -78,24 +78,26 @@ export class PerformanceCollector {
     if (!this.metrics.has(kpiName)) {
       this.metrics.set(kpiName, []);
     }
-    
+
     const values = this.metrics.get(kpiName)!;
     values.push(value);
-    
+
     // Keep only last 10 measurements for rolling average
     if (values.length > 10) {
       values.shift();
     }
-    
+
     // Calculate average and emit KPI update
     const average = values.reduce((sum, v) => sum + v, 0) / values.length;
     const trend = this.calculateTrend(values);
-    
+
     const kpiMetric = createKPIMetric(kpiName, average, trend);
-    
-    window.dispatchEvent(new CustomEvent(BoviEvents.KPI_UPDATED, {
-      detail: { kpi: kpiName, value: kpiMetric }
-    }));
+
+    window.dispatchEvent(
+      new CustomEvent(BoviEvents.KPI_UPDATED, {
+        detail: { kpi: kpiName, value: kpiMetric },
+      })
+    );
   }
 
   /**
@@ -103,38 +105,37 @@ export class PerformanceCollector {
    */
   private calculateTrend(values: number[]): "up" | "down" | "stable" {
     if (values.length < 3) return "stable";
-    
+
     const recent = values.slice(-3);
     const older = values.slice(-6, -3);
-    
+
     if (older.length === 0) return "stable";
-    
+
     const recentAvg = recent.reduce((sum, v) => sum + v, 0) / recent.length;
     const olderAvg = older.reduce((sum, v) => sum + v, 0) / older.length;
-    
+
     const change = (recentAvg - olderAvg) / olderAvg;
-    
+
     if (change > 0.05) return "up";
     if (change < -0.05) return "down";
     return "stable";
   }
-
 
   /**
    * Monitor fetch request performance
    */
   private monitorFetchRequests(): void {
     const originalFetch = window.fetch;
-    
+
     window.fetch = async (...args) => {
       const start = performance.now();
-      
+
       try {
         const response = await originalFetch(...args);
         const duration = performance.now() - start;
-        
+
         this.recordMetric("api_response_time", duration);
-        
+
         return response;
       } catch (error) {
         const duration = performance.now() - start;
@@ -154,7 +155,6 @@ export class PerformanceCollector {
       this.recordMetric("ruler_switch_time", simulatedTime);
     });
   }
-
 
   /**
    * Track KPI values with comprehensive statistics
@@ -176,7 +176,7 @@ export class PerformanceCollector {
     if (typeof value === "number") {
       data.min = data.min === undefined ? value : Math.min(data.min, value);
       data.max = data.max === undefined ? value : Math.max(data.max, value);
-      
+
       // Calculate running average
       if (data.average === undefined) {
         data.average = value;
@@ -222,7 +222,7 @@ export class PerformanceCollector {
   getThresholdStatus(metric: string): "green" | "amber" | "red" {
     const data = this.kpiData.get(metric);
     const threshold = this.thresholds.get(metric);
-    
+
     if (!data || !threshold || typeof data.current !== "number") {
       return "green";
     }
@@ -256,7 +256,7 @@ export class PerformanceCollector {
         metric,
         value,
         threshold: alertLevel,
-        message: `Metric ${metric} exceeded ${alertLevel} threshold (${value} >= ${alertLevel === "red" ? threshold.red : threshold.amber})`
+        message: `Metric ${metric} exceeded ${alertLevel} threshold (${value} >= ${alertLevel === "red" ? threshold.red : threshold.amber})`,
       };
 
       this.alertCallbacks.forEach(callback => callback(alert));
@@ -310,7 +310,7 @@ export class PerformanceCollector {
       collectionStart: number;
       sampleCount: number;
     };
-    } {
+  } {
     const metrics = this.getMetrics();
     const sampleCount = Object.values(metrics).reduce((sum, data) => sum + data.samples, 0);
 
@@ -319,8 +319,8 @@ export class PerformanceCollector {
       timestamp: new Date().toISOString(),
       metadata: {
         collectionStart: performance.timeOrigin,
-        sampleCount
-      }
+        sampleCount,
+      },
     };
   }
 
@@ -337,7 +337,10 @@ export class PerformanceCollector {
     }
 
     // Navigation timing (if available)
-    const navigationEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
+    const navigationEntries =
+      typeof performance.getEntriesByType === "function"
+        ? (performance.getEntriesByType("navigation") as PerformanceNavigationTiming[])
+        : [];
     if (navigationEntries.length > 0) {
       const nav = navigationEntries[0];
       const pageLoadTime = nav.loadEventEnd - nav.startTime;
@@ -357,8 +360,11 @@ export class PerformanceCollector {
    * Collect resource timing metrics
    */
   collectResourceMetrics(): void {
-    const resourceEntries = performance.getEntriesByType("resource") as PerformanceResourceTiming[];
-    
+    const resourceEntries =
+      typeof performance.getEntriesByType === "function"
+        ? (performance.getEntriesByType("resource") as PerformanceResourceTiming[])
+        : [];
+
     resourceEntries.forEach(resource => {
       const duration = resource.duration;
       this.trackKPI("resource_load_time", duration);
@@ -369,13 +375,16 @@ export class PerformanceCollector {
    * Get slow resources above threshold
    */
   getSlowResources(thresholdMs: number): SlowResource[] {
-    const resourceEntries = performance.getEntriesByType("resource") as PerformanceResourceTiming[];
-    
+    const resourceEntries =
+      typeof performance.getEntriesByType === "function"
+        ? (performance.getEntriesByType("resource") as PerformanceResourceTiming[])
+        : [];
+
     return resourceEntries
       .filter(resource => resource.duration > thresholdMs)
       .map(resource => ({
         name: resource.name,
-        duration: resource.duration
+        duration: resource.duration,
       }))
       .sort((a, b) => b.duration - a.duration);
   }
@@ -399,8 +408,13 @@ export class PerformanceCollector {
   getTimingStats(operationName: string): TimingStats | undefined {
     const durationKey = `${operationName}_duration`;
     const data = this.kpiData.get(durationKey);
-    
-    if (!data || typeof data.average !== "number" || data.min === undefined || data.max === undefined) {
+
+    if (
+      !data ||
+      typeof data.average !== "number" ||
+      data.min === undefined ||
+      data.max === undefined
+    ) {
       return undefined;
     }
 
@@ -409,7 +423,7 @@ export class PerformanceCollector {
       total: data.average * data.samples, // Approximation
       average: data.average,
       min: data.min,
-      max: data.max
+      max: data.max,
     };
   }
 
@@ -429,13 +443,13 @@ export class PerformanceCollector {
   startSystemMonitoring(): void {
     // Stop existing monitoring
     this.stopSystemMonitoring();
-    
+
     // Monitor API response times
     this.monitorFetchRequests();
-    
+
     // Monitor ruler switching performance
     this.monitorRulerSwitching();
-    
+
     // Periodic system health checks with interval tracking
     this.systemMonitoringInterval = setInterval(() => {
       this.collectSystemMetrics();
@@ -451,7 +465,7 @@ export class PerformanceCollector {
     const now = Date.now();
     const uptime = (now - sessionStart) / (1000 * 60 * 60); // hours
     const uptimePercent = Math.min(0.999, 0.95 + uptime / 1000); // Improve over time
-    
+
     this.trackKPI("system_uptime", uptimePercent);
 
     // Simulate other metrics with realistic values
@@ -462,7 +476,7 @@ export class PerformanceCollector {
     this.trackKPI("contract_completion_rate", Math.random() * 0.15 + 0.85); // 85-100%
     this.trackKPI("cohort_satisfaction_rate", Math.random() * 0.08 + 0.92); // 92-100%
     this.trackKPI("failed_payment_rate", Math.random() * 0.005); // 0-0.5%
-    
+
     // Storm mode metrics (if active)
     const stormActive = localStorage.getItem("bovi.stormMode.active") === "true";
     if (stormActive) {
