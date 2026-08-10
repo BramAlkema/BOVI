@@ -4,25 +4,25 @@ import type { UIComponentPlugin } from "./types.js";
 const REG = new Map<string, UIComponentPlugin>();
 let activeId: string | null = null;
 
-export function registerUIPlugin(p: UIComponentPlugin) { 
-  REG.set(p.manifest.id, p); 
+export function registerUIPlugin(p: UIComponentPlugin) {
+  REG.set(p.manifest.id, p);
 }
 
-export function listUIPlugins() { 
-  return [...REG.values()].map(p => p.manifest); 
+export function listUIPlugins() {
+  return [...REG.values()].map(p => p.manifest);
 }
 
-export function getUIPlugin(id: string) { 
-  return REG.get(id) || null; 
+export function getUIPlugin(id: string) {
+  return REG.get(id) || null;
 }
 
-export function getActiveUIPluginId() { 
-  return activeId || localStorage.getItem("ui:active") || null; 
+export function getActiveUIPluginId() {
+  return activeId || localStorage.getItem("ui:active") || null;
 }
 
-export function setActiveUIPluginId(id: string) { 
-  activeId = id; 
-  localStorage.setItem("ui:active", id); 
+export function setActiveUIPluginId(id: string) {
+  activeId = id;
+  localStorage.setItem("ui:active", id);
 }
 
 export function getAllUIPlugins() {

@@ -7,16 +7,16 @@ export const RoomsChoresPlugin: UIComponentPlugin = {
     id: "ui-rooms-chores",
     name: "Rooms & Chores",
     version: "1.0.0",
-    targets: ["L1","L2"],
-    provides: ["appShell","home"],
-    cssScoped: true
+    targets: ["L1", "L2"],
+    provides: ["appShell", "home"],
+    cssScoped: true,
   },
   async mount(ctx: UIContext): Promise<UIInstance> {
     const host = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : ctx.root;
     const shell = document.createElement("div");
-    host.innerHTML = ""; 
+    host.innerHTML = "";
     host.appendChild(shell);
-    
+
     shell.innerHTML = `
       <style>
         :host, .wrap { font-family: system-ui, sans-serif; color:#e7eef9; background: #0a0e1a; }
@@ -43,12 +43,12 @@ export const RoomsChoresPlugin: UIComponentPlugin = {
         </div>
       </div>
     `;
-    
+
     const choreBtn = shell.querySelector<HTMLButtonElement>("#do-today")!;
     choreBtn.onclick = async () => {
       choreBtn.disabled = true;
       choreBtn.textContent = "Doing chores...";
-      
+
       try {
         const applied = await applyAllPendingDefaults();
         choreBtn.textContent = applied > 0 ? `Completed ${applied} chores` : "No chores today";
@@ -69,7 +69,7 @@ export const RoomsChoresPlugin: UIComponentPlugin = {
         const [roof, food, power] = await Promise.all([
           getBillsSafe(),
           getBestDeal(),
-          getEnergyStatus()
+          getEnergyStatus(),
         ]);
 
         const roofChip = shell.querySelector("#c-roof")!;
@@ -109,12 +109,16 @@ export const RoomsChoresPlugin: UIComponentPlugin = {
     };
 
     addRoomHandler("#roof", "room:roof");
-    addRoomHandler("#kitchen", "room:kitchen"); 
+    addRoomHandler("#kitchen", "room:kitchen");
     addRoomHandler("#meter", "room:meter");
 
-    return { 
-      unmount() { host.innerHTML = ""; },
-      onProfileChange(p) { console.log("Rooms & Chores: profile changed to", p); }
+    return {
+      unmount() {
+        host.innerHTML = "";
+      },
+      onProfileChange(p) {
+        console.log("Rooms & Chores: profile changed to", p);
+      },
     };
-  }
+  },
 };

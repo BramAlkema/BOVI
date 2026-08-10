@@ -23,11 +23,11 @@ export const debounce = <T extends (...args: any[]) => any>(func: T, wait: numbe
  */
 export const throttle = <T extends (...args: any[]) => any>(func: T, limit: number): T => {
   let inThrottle: boolean;
-  return function(this: any, ...args: Parameters<T>) {
+  return function (this: any, ...args: Parameters<T>) {
     if (!inThrottle) {
       func.apply(this, args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      setTimeout(() => (inThrottle = false), limit);
     }
   } as T;
 };

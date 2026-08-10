@@ -8,16 +8,16 @@ export const RoutesLightsPlugin: UIComponentPlugin = {
     id: "ui-routes-lights",
     name: "Routes & Lights",
     version: "1.0.0",
-    targets: ["L1","L2"],
-    provides: ["appShell","home"],
-    cssScoped: true
+    targets: ["L1", "L2"],
+    provides: ["appShell", "home"],
+    cssScoped: true,
   },
   async mount(ctx: UIContext): Promise<UIInstance> {
     const host = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : ctx.root;
     const shell = document.createElement("div");
-    host.innerHTML = ""; 
+    host.innerHTML = "";
     host.appendChild(shell);
-    
+
     shell.innerHTML = `
       <style>
         :host, .wrap { font-family: system-ui, sans-serif; color:#e7eef9; background: #0a0e1a; }
@@ -46,7 +46,7 @@ export const RoutesLightsPlugin: UIComponentPlugin = {
         <div class="card episode" id="episode">Episode: Loading…</div>
       </div>
     `;
-    
+
     const autoBtn = shell.querySelector<HTMLButtonElement>("#auto")!;
     autoBtn.onclick = async () => {
       autoBtn.disabled = true;
@@ -70,25 +70,29 @@ export const RoutesLightsPlugin: UIComponentPlugin = {
       try {
         const [roof, food, power] = await Promise.all([
           getBillsSafe(),
-          getBestDeal(), 
-          getEnergyStatus()
+          getBestDeal(),
+          getEnergyStatus(),
         ]);
 
-        const overall = roof === "OK" ? ["g","✅ All routes clear"] : ["y","⚠️ Route changes needed"];
-        shell.querySelector("#overall")!.innerHTML = `<span class="light ${overall[0]}"></span>${overall[1]}`;
+        const overall =
+          roof === "OK" ? ["g", "✅ All routes clear"] : ["y", "⚠️ Route changes needed"];
+        shell.querySelector("#overall")!.innerHTML =
+          `<span class="light ${overall[0]}"></span>${overall[1]}`;
 
         shell.querySelector("#r-shelter")!.innerHTML =
-          roof === "OK" ? `<span class="light g"></span>Route clear` :
-                          `<span class="light y"></span>Next: counter rent increase`;
+          roof === "OK"
+            ? `<span class="light g"></span>Route clear`
+            : `<span class="light y"></span>Next: counter rent increase`;
 
         shell.querySelector("#r-food")!.innerHTML =
-          `<span class="light ${food.delta < 0 ? "g":"y"}"></span>${food.label}: €${food.delta.toFixed(2)}`;
+          `<span class="light ${food.delta < 0 ? "g" : "y"}"></span>${food.label}: €${food.delta.toFixed(2)}`;
 
         shell.querySelector("#r-power")!.innerHTML =
-          `<span class="light ${power==="OK"?"g":(power==="Switching"?"y":"r")}"></span>${power}`;
+          `<span class="light ${power === "OK" ? "g" : power === "Switching" ? "y" : "r"}"></span>${power}`;
       } catch (error) {
         console.error("Failed to load route status:", error);
-        shell.querySelector("#overall")!.innerHTML = `<span class="light r"></span>⚠️ Route data error`;
+        shell.querySelector("#overall")!.innerHTML =
+          `<span class="light r"></span>⚠️ Route data error`;
       }
     })();
 
@@ -97,22 +101,22 @@ export const RoutesLightsPlugin: UIComponentPlugin = {
       try {
         const [ep] = await nextEpisodes(1);
         const episodeEl = shell.querySelector("#episode")!;
-        
-        if (!ep) { 
-          episodeEl.textContent = "Episode: All episodes completed"; 
-          return; 
+
+        if (!ep) {
+          episodeEl.textContent = "Episode: All episodes completed";
+          return;
         }
-        
+
         episodeEl.innerHTML = `
           <div>Episode: ${ep.title} • ${ep.lengthMin}m</div>
           <button id="play">Play</button>
         `;
-        
+
         const playBtn = episodeEl.querySelector<HTMLButtonElement>("#play")!;
-        playBtn.onclick = async () => { 
+        playBtn.onclick = async () => {
           playBtn.disabled = true;
           playBtn.textContent = "Playing...";
-          
+
           try {
             await markPlayed(ep.id);
             ctx.bus.emit("ui.toast", { kind: "info", msg: `Played: ${ep.title}` });
@@ -129,9 +133,13 @@ export const RoutesLightsPlugin: UIComponentPlugin = {
       }
     })();
 
-    return { 
-      unmount() { host.innerHTML = ""; },
-      onProfileChange(p) { console.log("Routes & Lights: profile changed to", p); }
+    return {
+      unmount() {
+        host.innerHTML = "";
+      },
+      onProfileChange(p) {
+        console.log("Routes & Lights: profile changed to", p);
+      },
     };
-  }
+  },
 };

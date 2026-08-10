@@ -5,11 +5,13 @@
 In BOVI, **"bundling" means that money always serves all four fairness modes simultaneously, whether we acknowledge it or not.**
 
 This is NOT about:
+
 - Product bundling (cable packages)
-- Service bundling (phone + internet)  
+- Service bundling (phone + internet)
 - Economic bundling (complementary goods)
 
 This IS about:
+
 - **Every monetary system inevitably combines all four fairness logics**
 - **You can't have money that serves only one mode**
 - **The question isn't WHETHER to bundle, but HOW**
@@ -20,7 +22,7 @@ This IS about:
 
 1. **Balanced** (Equality Matching): Keeping accounts fair and even
 2. **Obligated** (Authority Ranking): Hierarchical duties and extraction
-3. **Value** (Market Pricing): Supply/demand price discovery  
+3. **Value** (Market Pricing): Supply/demand price discovery
 4. **Immediate** (Communal Sharing): Direct reciprocity and care
 
 **Key Insight**: You literally cannot create a monetary system that doesn't include all four, even if you try.
@@ -32,9 +34,10 @@ This IS about:
 **Bitcoin's Intention**: Pure Value mode (trustless, market-based, algorithmic)
 
 **Bitcoin's Actual Bundle**:
+
 - **Value**: ✅ Price discovery through exchanges
 - **Balanced**: ✅ Blockchain ledger tracking every satoshi
-- **Obligated**: ✅ Mining pools create authority hierarchies  
+- **Obligated**: ✅ Mining pools create authority hierarchies
 - **Immediate**: ✅ Community culture ("HODL together")
 
 **The Lesson**: Even when trying to create pure Value mode money, the other modes emerged anyway.
@@ -42,6 +45,7 @@ This IS about:
 ### **Example 2: US Dollar Bundle**
 
 The dollar simultaneously serves:
+
 - **Value**: Market exchange and price signals
 - **Balanced**: Accounting and debt tracking
 - **Obligated**: Tax payments and legal tender laws
@@ -52,6 +56,7 @@ The dollar simultaneously serves:
 ### **Example 3: Local Currency Bundle**
 
 Community currencies try to emphasize Immediate mode but still bundle:
+
 - **Immediate**: ✅ Community solidarity (intended)
 - **Balanced**: ✅ Still need accounting systems
 - **Value**: ✅ Still has exchange rates to dollars
@@ -60,6 +65,7 @@ Community currencies try to emphasize Immediate mode but still bundle:
 ## 💡 Conscious vs. Unconscious Bundling
 
 ### **Unconscious Bundling** (What Usually Happens)
+
 - Designers optimize for one mode
 - Other modes emerge chaotically
 - Conflicts and contradictions arise
@@ -68,12 +74,14 @@ Community currencies try to emphasize Immediate mode but still bundle:
 **Example**: Uber optimizes for Value mode (surge pricing) but faces backlash from other modes demanding fairness.
 
 ### **Conscious Bundling** (BOVI's Goal)
+
 - Acknowledge all four modes upfront
 - Deliberately design the proportions
 - Make trade-offs explicit
 - Give users agency in the mix
 
 **Example**: An airline could consciously allocate:
+
 - 60% seats to Value mode (yield management)
 - 20% to Balanced mode (fixed fair price)
 - 10% to Obligated mode (loyalty rewards)
@@ -82,18 +90,21 @@ Community currencies try to emphasize Immediate mode but still bundle:
 ## 🎨 Bundling Proportions Vary by Context
 
 ### **Family Context Bundle**
+
 - Immediate: 70% (love and care primary)
 - Balanced: 20% (taking turns, fairness)
 - Obligated: 10% (parental authority)
 - Value: 0% (market logic feels wrong)
 
-### **Workplace Context Bundle**  
+### **Workplace Context Bundle**
+
 - Value: 40% (performance = compensation)
 - Obligated: 40% (hierarchy and duties)
 - Balanced: 15% (equal treatment expectations)
 - Immediate: 5% (workplace "family" culture)
 
 ### **Marketplace Context Bundle**
+
 - Value: 70% (price discovery dominant)
 - Balanced: 20% (same price for same product)
 - Obligated: 10% (regulations and taxes)
@@ -111,6 +122,7 @@ Community currencies try to emphasize Immediate mode but still bundle:
 ### **Historical Proof**
 
 Every attempt to create "pure" monetary systems failed to escape bundling:
+
 - Soviet communism (tried pure Obligated) → black markets emerged (Value)
 - Gold standard (tried pure Value) → government controls emerged (Obligated)
 - Barter systems (tried pure Balanced) → credit relationships emerged (Immediate)
@@ -120,6 +132,7 @@ Every attempt to create "pure" monetary systems failed to escape bundling:
 ### **The Educational Mission**
 
 BOVI teaches that:
+
 1. **Bundling is not a bug, it's a feature** - Money must serve multiple fairness modes
 2. **Conflicts arise from bundle mismatches** - Different people expect different proportions
 3. **Reform fails when it ignores bundling** - You can't optimize just one mode
@@ -130,7 +143,7 @@ BOVI teaches that:
 Instead of asking: "What's the right monetary system?"
 BOVI asks: "What bundle of fairness modes serves this context best?"
 
-Instead of: "How do we eliminate unfairness?"  
+Instead of: "How do we eliminate unfairness?"
 BOVI asks: "Which fairness modes should we emphasize here?"
 
 ## 📊 Visual Metaphor
@@ -139,7 +152,7 @@ Think of money like a **graphic equalizer** with four frequency bands:
 
 ```
 BALANCED    [||||||||||||░░░░░░]  60%
-OBLIGATED   [||||||░░░░░░░░░░░░]  30%  
+OBLIGATED   [||||||░░░░░░░░░░░░]  30%
 VALUE       [||||░░░░░░░░░░░░░░]  20%
 IMMEDIATE   [||░░░░░░░░░░░░░░░░]  10%
 ```
@@ -155,6 +168,7 @@ Different contexts need different "EQ settings" but you always need some of each
 ## 💭 The Bottom Line
 
 **"Bundling" in BOVI means:**
+
 1. Money inherently serves multiple, sometimes conflicting, fairness functions
 2. You can't create money that serves only one fairness mode
 3. The question is not WHETHER to bundle but WHAT PROPORTIONS

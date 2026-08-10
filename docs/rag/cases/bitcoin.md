@@ -22,7 +22,7 @@ Bitcoin replaces the issuer with three things working together:
 2. **The blockchain** — every transaction on a public ledger, anyone can audit, count the coins from your laptop
 3. **Miners and nodes** — distributed actors enforce the rules through computational work; no single one has authority
 
-Together these produce **publicly verifiable supply** without anyone in charge. That is the actual 2008 breakthrough. Public-key cryptography, distributed databases, and digital cash all existed before; what was new was wiring them together to make the *anchor itself issuer-less*.
+Together these produce **publicly verifiable supply** without anyone in charge. That is the actual 2008 breakthrough. Public-key cryptography, distributed databases, and digital cash all existed before; what was new was wiring them together to make the _anchor itself issuer-less_.
 
 ## Bootstrap engine: speculation
 
@@ -45,30 +45,30 @@ Bitcoin's intention was pure Value mode. Its actual bundle (per `BUNDLING-EXPLAI
 
 ## Bitcoin overdoes axiom 4
 
-Bitcoin's hard cap is more than the minimal-money axiom requires. The axiom requires *symmetrically known supply*, not *fixed* supply. A token with a knowable inflation schedule satisfies the axiom equally.
+Bitcoin's hard cap is more than the minimal-money axiom requires. The axiom requires _symmetrically known supply_, not _fixed_ supply. A token with a knowable inflation schedule satisfies the axiom equally.
 
 The hard cap is doing different work — it's the **bootstrap engine** (speculation requires the appreciation thesis, which requires scarcity). Without the cap, no number-go-up; without number-go-up, no infrastructure; without infrastructure, no working transaction rail.
 
-So the hard cap is goldbug ideology *deployed as a bootstrap*, which then funds infrastructure that lets non-goldbugs free-ride. It is bundled-as-design at the bootstrap layer (Bitcoin is both store-of-value-flavoured AND medium-of-exchange-flavoured because the speculation needed the SoV bundling). At the use layer, sophisticated users unbundle: hold BTC for appreciation, transact in stablecoins on the rails BTC paid for.
+So the hard cap is goldbug ideology _deployed as a bootstrap_, which then funds infrastructure that lets non-goldbugs free-ride. It is bundled-as-design at the bootstrap layer (Bitcoin is both store-of-value-flavoured AND medium-of-exchange-flavoured because the speculation needed the SoV bundling). At the use layer, sophisticated users unbundle: hold BTC for appreciation, transact in stablecoins on the rails BTC paid for.
 
 ## The two-layer pattern in Bitcoin
 
-| Layer | What's happening |
-|---|---|
-| **Bootstrap (bundled)** | Hard cap conflates store-of-value into medium-of-exchange to attract speculative capital |
-| **Use (unbundled)** | Holders use BTC as appreciation play; transact in stablecoins on the infrastructure BTC paid for |
+| Layer                   | What's happening                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| **Bootstrap (bundled)** | Hard cap conflates store-of-value into medium-of-exchange to attract speculative capital         |
+| **Use (unbundled)**     | Holders use BTC as appreciation play; transact in stablecoins on the infrastructure BTC paid for |
 
 This is the [two-layer pattern](../architecture/two-layer-pattern.md) in action. The bundling at the foundation funded the unbundling at the application.
 
 ## What Bitcoin is and is not
 
-| Often claimed | Framework view |
-|---|---|
-| "Decentralised — no institutions needed" | False. Speculation IS the institution. Mining pools, exchanges, custodians are real institutions. |
-| "Trustless" | Misleading. Trust-minimised, not trust-free. You trust protocol, miners' incentives, developers, exchanges, your own key management. |
-| "Too volatile to be money" | Category error. Volatility doesn't matter for the transaction-rail function if you don't *hold* it (just convert through it). |
-| "Just speculation, no real use case" | Half-true. Most of it IS speculation. But speculation funded the rails that have real use (remittance corridors, dollarised-country usage, censorship-resistant transfers). |
-| "Going to replace fiat" | Almost certainly not. Fiat has tax-bootstrap that Bitcoin can't match. They coexist. |
+| Often claimed                            | Framework view                                                                                                                                                              |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "Decentralised — no institutions needed" | False. Speculation IS the institution. Mining pools, exchanges, custodians are real institutions.                                                                           |
+| "Trustless"                              | Misleading. Trust-minimised, not trust-free. You trust protocol, miners' incentives, developers, exchanges, your own key management.                                        |
+| "Too volatile to be money"               | Category error. Volatility doesn't matter for the transaction-rail function if you don't _hold_ it (just convert through it).                                               |
+| "Just speculation, no real use case"     | Half-true. Most of it IS speculation. But speculation funded the rails that have real use (remittance corridors, dollarised-country usage, censorship-resistant transfers). |
+| "Going to replace fiat"                  | Almost certainly not. Fiat has tax-bootstrap that Bitcoin can't match. They coexist.                                                                                        |
 
 ## Where Bitcoin actually works
 
@@ -79,7 +79,7 @@ Empirically, Bitcoin's transaction-layer use cases are concentrated in:
 - **Censorship-resistant transfers** — sanctioned regions, NGOs in restricted environments
 - **Speculative trading** (the largest use, monetarily)
 
-Stablecoins (especially USDT) running on Bitcoin/Lightning infrastructure handle most of the *transactional* use; Bitcoin itself is mostly held.
+Stablecoins (especially USDT) running on Bitcoin/Lightning infrastructure handle most of the _transactional_ use; Bitcoin itself is mostly held.
 
 ## See also
 

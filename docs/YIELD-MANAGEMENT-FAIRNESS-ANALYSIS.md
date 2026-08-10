@@ -9,6 +9,7 @@
 ### **The Mode Collision**
 
 Yield management is **pure Value mode** (Market Pricing) optimization:
+
 - Supply and demand determine price
 - Maximize revenue per available unit
 - Perfect price discrimination
@@ -17,18 +18,21 @@ Yield management is **pure Value mode** (Market Pricing) optimization:
 But it **violates** the other three fairness modes simultaneously:
 
 ### **❌ Violates Balanced Mode (Equality Matching)**
+
 **Expectation**: "Same product = same price"
 **Violation**: Two people in adjacent airplane seats paid wildly different amounts
 **Feeling**: "That's not fair! We're getting the exact same thing!"
 **Visceral Response**: Sense of being cheated, even if you got the lower price
 
 ### **❌ Violates Obligated Mode (Authority Ranking)**
+
 **Expectation**: "Companies should show restraint and social responsibility"
 **Violation**: Extracting maximum possible price feels predatory
 **Feeling**: "They're abusing their power over essential services"
 **Visceral Response**: Anger at corporate greed, desire for regulation
 
 ### **❌ Violates Immediate Mode (Communal Sharing)**
+
 **Expectation**: "In times of need, we help each other"
 **Violation**: Surge pricing during emergencies (hurricane evacuations, terrorist attacks)
 **Feeling**: "They're profiting from human suffering!"
@@ -38,12 +42,14 @@ But it **violates** the other three fairness modes simultaneously:
 
 ### **Uber Surge Pricing During Emergencies**
 
-**Value Mode Perspective**: 
+**Value Mode Perspective**:
+
 - Increases supply when most needed
 - Ensures cars available for true emergencies
 - Market efficiently allocates scarce resources
 
 **Other Modes' Reactions**:
+
 - **Balanced**: "Everyone fleeing danger should pay the same"
 - **Obligated**: "Uber has social responsibility during crises"
 - **Immediate**: "We should help each other, not profit from disaster"
@@ -53,12 +59,14 @@ But it **violates** the other three fairness modes simultaneously:
 ### **Airline Pricing**
 
 **The Same Seat Problem**:
+
 - Person A books 3 months early: $200
 - Person B books day before: $800
 - Person C with corporate account: $400
 - Person D with miles upgrade: $0
 
 **Mode Conflicts**:
+
 - **Value Mode Says**: This is optimal revenue management
 - **Balanced Mode Says**: Same seat should cost the same
 - **Obligated Mode Says**: Loyalty should be rewarded consistently
@@ -69,11 +77,13 @@ But it **violates** the other three fairness modes simultaneously:
 ### **Concert/Event Ticket Pricing**
 
 **Taylor Swift Ticketmaster Disaster**:
+
 - Dynamic pricing pushed tickets to $5000+
 - Fans who waited in queue for hours got nothing
 - Resellers using bots captured inventory
 
 **Fairness Violations**:
+
 - **Balanced**: "First come, first served is fair"
 - **Obligated**: "True fans deserve access over scalpers"
 - **Immediate**: "This is about community and shared experience"
@@ -95,6 +105,7 @@ Yield management is the **perfect teaching example** because:
 ### **The Algorithmic Amplification**
 
 Modern AI makes yield management more "perfect" and thus more unfair-feeling:
+
 - Personalized pricing based on browsing history
 - Micro-segmentation of customer willingness to pay
 - Real-time optimization across thousands of variables
@@ -118,6 +129,7 @@ Interactive scenario where users experience the same concert ticket purchase thr
 ### **Experience: "Design Your Own Airline Pricing"**
 
 Users must balance:
+
 - Economic sustainability (Value)
 - Equal access (Balanced)
 - Loyalty rewards (Obligated)
@@ -130,6 +142,7 @@ Users must balance:
 ### **The Coming AI Pricing Wars**
 
 As AI enables perfect price discrimination:
+
 - Every purchase could be individually priced
 - Your willingness to pay calculated in real-time
 - Different prices for different people becomes norm

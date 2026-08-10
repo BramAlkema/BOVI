@@ -3,7 +3,8 @@ title: Ithaca HOURS & Local Currencies
 type: case
 tags: [ithaca-hours, local-currency, community, mutualist, immediate-mode]
 sources: [examples.md]
-related: [../modes/immediate-mode.md, ../modes/balanced-mode.md, ../architecture/four-bootstrap-engines.md]
+related:
+  [../modes/immediate-mode.md, ../modes/balanced-mode.md, ../architecture/four-bootstrap-engines.md]
 ---
 
 # Ithaca HOURS & Local Currency Movements
@@ -26,24 +27,28 @@ Other examples: BerkShares (Massachusetts), Bristol Pound (UK), Brixton Pound (U
 ## BOVI mode profile
 
 ### Immediate mode (I) foundation
+
 - "Time is money" made literal and visceral
 - Community directory created personal connection to transactions
 - Local businesses participated in mutual support network
 - The intent was Immediate-mode primary
 
 ### Balanced mode (B) structure
+
 - Fixed exchange rate maintained accounting simplicity
 - Member directory tracked participation symmetrically
 - Periodic rebalancing prevented accumulation
 - Democratic governance ensured equal voice
 
 ### Value mode (V) limitations
+
 - Limited transferability outside community boundaries
 - No network effects beyond local area
 - Price discovery remained informal
 - Merchants needed dual pricing systems (HOURS + USD)
 
 ### Obligated mode (O) weakness
+
 - **No tax acceptance requirement created weak demand**
 - Voluntary participation limited enforcement
 - Competition with legal tender reduced necessity
@@ -74,11 +79,11 @@ Ithaca HOURS effectively dissolved by 2012. Some local currencies persist in mod
 
 Some systems achieve scale with I+B mode dominance:
 
-- **Susu / chit funds / rotating savings clubs** in West Africa, India, China — operate at family/clan scale, never city-wide; succeed *because* they stay scoped
+- **Susu / chit funds / rotating savings clubs** in West Africa, India, China — operate at family/clan scale, never city-wide; succeed _because_ they stay scoped
 - **Hawala** networks in Middle East and South Asia — Trust networks that have operated for centuries; cross-cultural and trans-national, but require deep cultural embedding
 - **Mutual-aid networks** during emergencies — emerge spontaneously, work brilliantly, dissolve when the emergency passes
 
-These succeed because they accept the *scale ceiling* of I+B mode and operate within it. Ithaca HOURS tried to scale up to a city economy and hit the ceiling.
+These succeed because they accept the _scale ceiling_ of I+B mode and operate within it. Ithaca HOURS tried to scale up to a city economy and hit the ceiling.
 
 ## The Wörgl experiment (1932-3) parallel
 

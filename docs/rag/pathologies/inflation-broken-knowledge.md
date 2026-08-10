@@ -3,26 +3,31 @@ title: Inflation as Broken Common Knowledge
 type: pathology
 tags: [inflation, hyperinflation, currency-collapse, big-mac-index, common-knowledge]
 sources: [conversation-derived]
-related: [../core/common-knowledge-of-acceptance.md, ../cases/argentina-bigmac-dollarisation.md, ../cases/weimar-hyperinflation.md]
+related:
+  [
+    ../core/common-knowledge-of-acceptance.md,
+    ../cases/argentina-bigmac-dollarisation.md,
+    ../cases/weimar-hyperinflation.md,
+  ]
 ---
 
 # Inflation as Broken Common Knowledge
 
 ## Definition
 
-**Inflation is not a price phenomenon — it is a coordination failure.** The supply-knowledge pillar of money's value (axiom 4) cracks; common knowledge collapses; prices rise as a *symptom*.
+**Inflation is not a price phenomenon — it is a coordination failure.** The supply-knowledge pillar of money's value (axiom 4) cracks; common knowledge collapses; prices rise as a _symptom_.
 
 Standard pedagogy gets cause and effect backwards. The textbook teaches "more money chasing the same goods → prices rise." The framework reframes: **broken common knowledge of supply → users lose confidence → coordination on price collapses → measured prices oscillate or run.**
 
 ## Why this reframing matters
 
-If inflation is "just" a price phenomenon, central-bank tools can address it (raise rates, drain reserves). If inflation is a *coordination failure*, the fix has to restore common knowledge — which often requires institutional credibility that has been destroyed.
+If inflation is "just" a price phenomenon, central-bank tools can address it (raise rates, drain reserves). If inflation is a _coordination failure_, the fix has to restore common knowledge — which often requires institutional credibility that has been destroyed.
 
 The reframe explains why some currencies recover from price runs (when credibility is restored quickly) and why others spiral irrecoverably (when credibility is gone for a generation, e.g. Weimar, Zimbabwe).
 
 ## The diagnostic: indices vs headline statistics
 
-When the supply pillar cracks, headline CPI tends to *understate* lived inflation, because:
+When the supply pillar cracks, headline CPI tends to _understate_ lived inflation, because:
 
 - Governments suppress index components they cannot afford to admit (food, fuel, housing)
 - Statistical methodology gets adjusted to favour the official number
@@ -37,15 +42,16 @@ In 2011, the Argentine government ordered McDonald's to sell the Big Mac at half
 
 The state cared so much about a stupid burger index that they ordered a multinational corporation to lose money on every sale. **Why? Because they couldn't afford for people to be able to compare prices honestly. The index was dangerous to them precisely because it worked.**
 
-After *The New York Times* and *The Economist* exposed the suppression in June 2012, the price jumped 26% in one day. The whole charade collapsed.
+After _The New York Times_ and _The Economist_ exposed the suppression in June 2012, the price jumped 26% in one day. The whole charade collapsed.
 
-In 2026, under Milei's crawling-peg policy, Argentina has flipped to the *opposite* extreme — second-most-expensive Big Mac in the world (~$7.37). Same currency, same country, opposite distortion. Both directions are tells of currency manipulation. See [Argentina case](../cases/argentina-bigmac-dollarisation.md).
+In 2026, under Milei's crawling-peg policy, Argentina has flipped to the _opposite_ extreme — second-most-expensive Big Mac in the world (~$7.37). Same currency, same country, opposite distortion. Both directions are tells of currency manipulation. See [Argentina case](../cases/argentina-bigmac-dollarisation.md).
 
 ## Why governments suppress indices
 
 Suppression of a measurement system is itself a more reliable signal than the measurement. If a state cares enough about an index to suppress it, the index was telling something the state could not afford to admit.
 
 This is why the framework's defensive vocabulary includes:
+
 - **Trust your own measurements over headline statistics**
 - **Personal PDA beats CPI**
 - **Look at what the state suppresses, not what it publishes**
@@ -65,7 +71,7 @@ This is the **dollarisation pattern**, and it has played out in Weimar, Zimbabwe
 
 Standard Gresham: "Bad money drives out good" (people hoard the better money, spend the worse).
 
-Inverted Gresham (under broken-currency conditions): when the *bad* money is *forced* (Obligated floor — must pay tax in it), the good money becomes the *savings vehicle*. People keep just enough local currency to satisfy the state and store everything else in better instruments.
+Inverted Gresham (under broken-currency conditions): when the _bad_ money is _forced_ (Obligated floor — must pay tax in it), the good money becomes the _savings vehicle_. People keep just enough local currency to satisfy the state and store everything else in better instruments.
 
 This is what the dollarisation pattern is. It's not Gresham's prediction violated — it's Gresham's logic operating under different constraints (forced demand for the bad money via tax).
 
@@ -79,6 +85,7 @@ If yes: the currency is functional, even if individual prices are noisy.
 If no: the currency is failing, regardless of what the headline statistics say.
 
 The leading indicators of "no":
+
 - Personal indices diverging from official CPI
 - Capital controls
 - Multiple exchange rates (official vs blue vs MEP)

@@ -12,11 +12,11 @@ related: [personal-pda.md, unbundled-personal-stack.md, ../cases/argentina-bigma
 
 A **personal index** is a basket of items you actually buy, used as your own measure of what your money is worth.
 
-The state has CPI. The Economist has the Big Mac Index. You have your own index, in a notebook, more honest than either because it cannot be politically manipulated and it tracks what *you* actually consume.
+The state has CPI. The Economist has the Big Mac Index. You have your own index, in a notebook, more honest than either because it cannot be politically manipulated and it tracks what _you_ actually consume.
 
 ## The Big Mac Index as model
 
-*The Economist* has published the Big Mac Index for 40 years. Same burger, same recipe, same company, sold in 100 countries. The price difference *is* the real exchange rate — what your currency actually buys, not what the official rate pretends.
+_The Economist_ has published the Big Mac Index for 40 years. Same burger, same recipe, same company, sold in 100 countries. The price difference _is_ the real exchange rate — what your currency actually buys, not what the official rate pretends.
 
 You can't easily fake a one-burger index. You'd have to fake the burger.
 
@@ -41,20 +41,20 @@ That's your index. It moves with your actual purchasing power, not the governmen
 
 ## Why this beats CPI
 
-| Headline CPI | Personal index |
-|---|---|
-| Aggregated across population | Specific to your consumption |
-| Politically manipulable | Cannot be politically reached at your scale |
+| Headline CPI                                                | Personal index                                                   |
+| ----------------------------------------------------------- | ---------------------------------------------------------------- |
+| Aggregated across population                                | Specific to your consumption                                     |
+| Politically manipulable                                     | Cannot be politically reached at your scale                      |
 | Methodology often opaque (substitution, hedonic adjustment) | Methodology trivially transparent (you write down what you paid) |
-| Lags by months | Real-time |
-| Doesn't include things that matter to you | Does, by construction |
-| You have to trust the issuer | You have to trust your own notebook |
+| Lags by months                                              | Real-time                                                        |
+| Doesn't include things that matter to you                   | Does, by construction                                            |
+| You have to trust the issuer                                | You have to trust your own notebook                              |
 
 CPI is a useful aggregate. It is not your purchasing power.
 
 ## Why governments fear honest indices
 
-Because they work. The Argentine state ordering McDonald's to lose money on every Big Mac in 2011 to fake the index ranking is the canonical example. *The state cared so much about a stupid burger index that they ordered a multinational to lose money on every sale, just to make the headline number look better.*
+Because they work. The Argentine state ordering McDonald's to lose money on every Big Mac in 2011 to fake the index ranking is the canonical example. _The state cared so much about a stupid burger index that they ordered a multinational to lose money on every sale, just to make the headline number look better._
 
 Suppression of an index is itself a tell. **A government that cares enough to suppress is admitting the suppressed measurement was telling something they could not afford to admit.**
 
@@ -62,27 +62,28 @@ Trust your own measurements over headline statistics.
 
 ## What an index reveals that prices don't
 
-A single price you pay tells you nothing in isolation. *Was €4.20 expensive for a coffee?*
+A single price you pay tells you nothing in isolation. _Was €4.20 expensive for a coffee?_
 
 A personal index over time tells you everything:
-- *€4.20 is up 30% from this time last year* → currency losing value (or local market shift)
-- *€4.20 is the same as last year* → stable
-- *€4.20 here, €2.80 across town* → location-based price discrimination
-- *€4.20 with my card, €3.50 cash for the next person* → personal price discrimination
-- *€4.20 today, €4.20 yesterday, €4.20 last month* → reliably stable
+
+- _€4.20 is up 30% from this time last year_ → currency losing value (or local market shift)
+- _€4.20 is the same as last year_ → stable
+- _€4.20 here, €2.80 across town_ → location-based price discrimination
+- _€4.20 with my card, €3.50 cash for the next person_ → personal price discrimination
+- _€4.20 today, €4.20 yesterday, €4.20 last month_ → reliably stable
 
 You cannot detect any of this without a record.
 
 ## The "personal" matters
 
-Aggregated indices average across populations who consume different things. A personal index averages across what *you* consume. The two diverge:
+Aggregated indices average across populations who consume different things. A personal index averages across what _you_ consume. The two diverge:
 
 - A retiree's basket has more healthcare and less rent
 - A student's basket has more transport and entertainment, less housing
 - A parent's basket has childcare, school, more food
 - An expat's basket has remittances, currency conversion fees
 
-Your inflation rate is *not* the headline inflation rate. It is your own.
+Your inflation rate is _not_ the headline inflation rate. It is your own.
 
 ## What the practice gives you
 

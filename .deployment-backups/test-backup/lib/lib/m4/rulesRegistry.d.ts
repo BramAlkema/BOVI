@@ -1,9 +1,9 @@
 export interface M4RuleVersion {
-    id: string;
-    semver: string;
-    summary: string;
-    effectiveFrom: string;
-    deprecates?: string;
+  id: string;
+  semver: string;
+  summary: string;
+  effectiveFrom: string;
+  deprecates?: string;
 }
 export declare function loadRules(): M4RuleVersion[];
 export declare function getRules(): M4RuleVersion[];

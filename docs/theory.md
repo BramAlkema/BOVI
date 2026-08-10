@@ -13,24 +13,28 @@ The BOVI framework (Balanced, Obligated, Value, Immediate) maps Alan Fiske's fou
 Alan Page Fiske (1991) identified four elementary forms of sociality that appear universally across human cultures:
 
 ### 1. Communal Sharing (CS)
+
 - **Principle:** Resources flow according to need and availability within the group
 - **Fairness Logic:** "What's mine is yours" / "From each according to ability"
 - **Emotional Signature:** Unity, belonging, shared identity
 - **Violations Feel:** Selfish, exclusionary
 
-### 2. Authority Ranking (AR)  
+### 2. Authority Ranking (AR)
+
 - **Principle:** Resources flow according to hierarchical position
 - **Fairness Logic:** "Rank determines privilege" / "Noblesse oblige"
 - **Emotional Signature:** Respect, deference, legitimate authority
 - **Violations Feel:** Insubordinate, presumptuous
 
 ### 3. Equality Matching (EM)
+
 - **Principle:** Resources flow to maintain balance and reciprocity
 - **Fairness Logic:** "Tit-for-tat" / "Equal treatment"
 - **Emotional Signature:** Justice, symmetry, turn-taking
 - **Violations Feel:** Unfair, unbalanced
 
 ### 4. Market Pricing (MP)
+
 - **Principle:** Resources flow proportional to some ratio or rate
 - **Fairness Logic:** "Value for value" / "Proportional contribution"
 - **Emotional Signature:** Efficiency, rationality, optimization
@@ -38,24 +42,26 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 
 ## BOVI Mapping to Monetary Functions
 
-| Fiske Model | BOVI Mode | Monetary Function | Key Insight |
-|-------------|-----------|------------------|-------------|
-| EM | **Balanced** | Unit of account, store of value | Money as distributed ledger |
-| AR | **Obligated** | Required payment medium | Money as political control |
-| MP | **Value** | Medium of exchange | Money as coordination tool |
-| CS | **Immediate** | Direct reciprocity anchor | Money as fairness intuition |
+| Fiske Model | BOVI Mode     | Monetary Function               | Key Insight                 |
+| ----------- | ------------- | ------------------------------- | --------------------------- |
+| EM          | **Balanced**  | Unit of account, store of value | Money as distributed ledger |
+| AR          | **Obligated** | Required payment medium         | Money as political control  |
+| MP          | **Value**     | Medium of exchange              | Money as coordination tool  |
+| CS          | **Immediate** | Direct reciprocity anchor       | Money as fairness intuition |
 
 ### Balanced Mode (Equality Matching → EM)
 
 **Core Function:** Money as society's distributed ledger for tracking obligations across time.
 
-**Mechanism:** 
+**Mechanism:**
+
 - Known money supply functions as shared memory
-- Counterfeiting violates record integrity  
+- Counterfeiting violates record integrity
 - Periodic settlement reduces transaction costs
 - Symmetry demands equal treatment
 
 **Historical Examples:**
+
 - Mesopotamian proto-cuneiform accounting tablets
 - Medieval English tally sticks
 - Modern double-entry bookkeeping
@@ -68,12 +74,14 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 **Core Function:** Money as enforcement mechanism for hierarchical relationships.
 
 **Mechanism:**
+
 - Authority creates compulsory demand
 - Compliance becomes survival necessity
 - Extraction legitimized through hierarchy
 - Resistance meets coercive power
 
 **Historical Examples:**
+
 - Egyptian pharaonic grain collection
 - Roman taxation in imperial coins
 - Medieval corvée labor obligations
@@ -86,12 +94,14 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 **Core Function:** Money as minimal coordination mechanism for proportional exchange.
 
 **Mechanism:**
+
 - Transferable tokens solve double-coincidence
 - Units become interchangeable abstractions
 - Proportional fairness through price ratios
 - Network effects drive adoption
 
 **Historical Examples:**
+
 - Mesopotamian silver by weight
 - Chinese Song dynasty paper money
 - Modern foreign exchange markets
@@ -104,12 +114,14 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 **Core Function:** Money as anchor for visceral fairness intuitions.
 
 **Mechanism:**
+
 - Direct reciprocity creates moral baseline
 - "Eye for an eye" equivalence logic
 - Community boundaries define scope
 - Personal relationships over abstractions
 
 **Historical Examples:**
+
 - Village mutual aid systems
 - Indigenous gift economy networks
 - Modern local currency projects
@@ -122,35 +134,42 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 ### Mode Interaction Effects
 
 **Reinforcement:** When modes align, monetary systems feel stable:
+
 - Gold standard (V+B): Value mode scarcity reinforces Balanced mode accounting
 - Tax-driven fiat (O+B): Obligated demand supports Balanced ledger integrity
 
 **Tension:** When modes conflict, systems feel unstable:
+
 - Inflation (O vs I): Authority extraction violates Immediate fairness intuitions
 - Deflation (V vs O): Value mode appreciation conflicts with Obligated spending needs
 
 **Switching Costs:** Moving between modes creates psychological friction:
+
 - Commercial to personal: Market pricing feels cold in family contexts
 - Personal to institutional: Communal sharing feels naive in business contexts
 
 ### Historical Bundle Evolution
 
 **Ancient World (3000 BCE - 500 CE):**
+
 - Dominant: B+O (temple/palace accounting + tribute systems)
 - Emerging: V (merchant weight standards)
 - Background: I (village reciprocity)
 
 **Medieval Period (500 - 1500 CE):**
+
 - Dominant: O+I (feudal obligations + local community)
 - Emerging: B+V (merchant banking + portable wealth)
 - Declining: Large-scale coordination
 
 **Modern Era (1500 - Present):**
+
 - Dominant: V+O (market systems + state authority)
 - Supporting: B (accounting standards)
 - Residual: I (family/friend networks)
 
 **Digital Transition (2008 - Present):**
+
 - Experimental: V-only (Bitcoin maximalism)
 - Reactive: O+B (CBDC development)
 - Nostalgic: I+B (local currency movements)
@@ -170,12 +189,13 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 **Cognitive Bias Reinterpretation:** Many "biases" represent appropriate responses within non-Market Pricing fairness modes.
 
 **Loss Aversion:** Immediate mode protection against exploitation
-**Status Quo Bias:** Authority mode respect for existing hierarchies  
+**Status Quo Bias:** Authority mode respect for existing hierarchies
 **Fairness Preferences:** Balanced mode demand for reciprocity
 
 ### Institutional Analysis
 
 **Design Principles:**
+
 1. **Mode Explicit:** Make fairness assumptions visible
 2. **Context Appropriate:** Match modes to relationship types
 3. **Transition Management:** Reduce switching costs between modes
@@ -205,16 +225,16 @@ This approach suggests that successful monetary reform requires not just economi
 
 ## References
 
-Fiske, A. P. (1991). *Structures of Social Life: The Four Elementary Forms of Human Relations*. Free Press.
+Fiske, A. P. (1991). _Structures of Social Life: The Four Elementary Forms of Human Relations_. Free Press.
 
-Fiske, A. P. (2004). Four modes of constituting relationships: Consubstantial assimilation; space, magnitude, time, and force; concrete procedures; abstract symbolism. In N. Haslam (Ed.), *Relational Models Theory: A Contemporary Overview* (pp. 61-146). Lawrence Erlbaum.
+Fiske, A. P. (2004). Four modes of constituting relationships: Consubstantial assimilation; space, magnitude, time, and force; concrete procedures; abstract symbolism. In N. Haslam (Ed.), _Relational Models Theory: A Contemporary Overview_ (pp. 61-146). Lawrence Erlbaum.
 
-Graeber, D. (2011). *Debt: The First 5,000 Years*. Melville House.
+Graeber, D. (2011). _Debt: The First 5,000 Years_. Melville House.
 
-Ingham, G. (2004). *The Nature of Money*. Polity Press.
+Ingham, G. (2004). _The Nature of Money_. Polity Press.
 
-Wray, L. R. (2012). *Modern Money Theory: A Primer on Macroeconomics for Sovereign Monetary Systems*. Palgrave Macmillan.
+Wray, L. R. (2012). _Modern Money Theory: A Primer on Macroeconomics for Sovereign Monetary Systems_. Palgrave Macmillan.
 
 ---
 
-*"Understanding BOVI means seeing monetary policy not just as economics but as moral psychology expressed through institutional design."*
+_"Understanding BOVI means seeing monetary policy not just as economics but as moral psychology expressed through institutional design."_

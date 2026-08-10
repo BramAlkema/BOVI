@@ -16,10 +16,16 @@
       "description": "Price discovery aggregation from basket items",
       "config": {
         "items": [
-          {"name": "Coffee 500g", "price": 5.49, "usual": 5.10, "category": "food"},
-          {"name": "Pasta 450g (was 500g)", "price": 1.40, "usual": 1.30, "category": "food", "shrink": true},
-          {"name": "Olive oil 750ml", "price": 6.99, "usual": 7.20, "category": "food"},
-          {"name": "Shampoo 250ml", "price": 2.15, "usual": 2.50, "category": "other"}
+          { "name": "Coffee 500g", "price": 5.49, "usual": 5.1, "category": "food" },
+          {
+            "name": "Pasta 450g (was 500g)",
+            "price": 1.4,
+            "usual": 1.3,
+            "category": "food",
+            "shrink": true
+          },
+          { "name": "Olive oil 750ml", "price": 6.99, "usual": 7.2, "category": "food" },
+          { "name": "Shampoo 250ml", "price": 2.15, "usual": 2.5, "category": "other" }
         ]
       },
       "outputs": ["nominal_total", "real_total", "deal_quality"]
@@ -37,7 +43,7 @@
     },
     {
       "id": "suggest_swap",
-      "type": "I.Default", 
+      "type": "I.Default",
       "label": "Swap back to usual brand",
       "description": "Default action to maintain fairness expectations",
       "config": {
@@ -51,7 +57,7 @@
     {
       "id": "update_kpis",
       "type": "B.Sweep",
-      "label": "Update grocery KPIs", 
+      "label": "Update grocery KPIs",
       "description": "Balanced mode tracking of fairness interventions",
       "config": {
         "kpis": {
@@ -83,21 +89,21 @@
       "condition": "items.length > 0"
     },
     {
-      "from": "detect_shrinkflation", 
+      "from": "detect_shrinkflation",
       "to": "suggest_swap",
       "label": "violation_found",
       "condition": "violation_detected == true"
     },
     {
       "from": "suggest_swap",
-      "to": "update_kpis", 
+      "to": "update_kpis",
       "label": "action_completed",
       "condition": "always"
     },
     {
       "from": "suggest_swap",
       "to": "trigger_episode",
-      "label": "swap_applied", 
+      "label": "swap_applied",
       "condition": "action_applied == true"
     }
   ],

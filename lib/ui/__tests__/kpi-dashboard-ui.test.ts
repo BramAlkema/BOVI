@@ -109,7 +109,7 @@ describe("KPI Dashboard UI", () => {
       setupKPIDashboardUI();
 
       expect(document.querySelector("#kpi-overall-status")?.textContent).toContain(
-        "All Systems Operational",
+        "All Systems Operational"
       );
       expect(document.querySelector("#kpi-green-count")?.textContent).toBe("5");
       expect(document.querySelector(".kpi-empty")).not.toBeNull();
@@ -135,9 +135,7 @@ describe("KPI Dashboard UI", () => {
       >;
       expect(calls).toHaveLength(10);
       expect(calls).toContainEqual(["ruler_switch_time", 150, "stable"]);
-      expect(calls.map(call => call[2])).toEqual(
-        expect.arrayContaining(["up", "down", "stable"]),
-      );
+      expect(calls.map(call => call[2])).toEqual(expect.arrayContaining(["up", "down", "stable"]));
       calls.forEach(([name, value]) => {
         expect(value).toBeGreaterThan(0);
         if (name.includes("time")) expect(value).toBeLessThan(10000);
@@ -154,7 +152,7 @@ describe("KPI Dashboard UI", () => {
 
       expect(dispatchSpy).toHaveBeenCalledTimes(10);
       expect(dispatchSpy.mock.calls[0][0]).toEqual(
-        expect.objectContaining({ type: "ui.kpi.updated" }),
+        expect.objectContaining({ type: "ui.kpi.updated" })
       );
     });
   });

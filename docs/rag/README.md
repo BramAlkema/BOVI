@@ -29,6 +29,7 @@ Each file has YAML frontmatter with `tags` and `type`. For embedding-based RAG, 
 ## Full index
 
 ### Core concepts
+
 - [Portable Forgetful Ledger](core/portable-forgetful-ledger.md) — what money minimally is
 - [Five Axioms of Money](core/five-axioms.md) — the cleaned-up minimum spec
 - [Common Knowledge of Acceptance](core/common-knowledge-of-acceptance.md) — the single value axiom
@@ -39,12 +40,14 @@ Each file has YAML frontmatter with `tags` and `type`. For embedding-based RAG, 
 - [The Unbundling Thesis](core/unbundling-thesis.md) — functions belong in different tools
 
 ### Modes
+
 - [Value Mode](modes/value-mode.md)
 - [Balanced Mode](modes/balanced-mode.md)
 - [Obligated Mode](modes/obligated-mode.md)
 - [Immediate Mode](modes/immediate-mode.md)
 
 ### Architecture
+
 - [The Four Functions of Money](architecture/four-functions.md)
 - [The Five-Layer Financial Stack](architecture/five-layer-stack.md)
 - [The Cold-Start Problem](architecture/cold-start-problem.md)
@@ -53,23 +56,27 @@ Each file has YAML frontmatter with `tags` and `type`. For embedding-based RAG, 
 - [Mode Collision](architecture/mode-collision.md)
 
 ### Pathologies
+
 - [Adversarial Mode Forcing](pathologies/adversarial-mode-forcing.md)
 - [The Buyer-Obfuscation Arms Race](pathologies/buyer-obfuscation-arms-race.md)
 - [Yield Management as Mode Violation](pathologies/yield-management.md)
 - [Inflation as Broken Common Knowledge](pathologies/inflation-broken-knowledge.md)
 
 ### Practice
+
 - [The Personal PDA](practice/personal-pda.md)
 - [Personal Indices](practice/personal-indices.md)
 - [The Unbundled Personal Stack](practice/unbundled-personal-stack.md)
 - [The Tally — Modern Tally Rope Product](practice/the-tally-product.md)
 
 ### Lineage
+
 - [Fiske's Relational Models Theory](lineage/fiske-relational-models.md)
 - [Substantivist Anthropology](lineage/substantivist-anthropology.md)
 - [The Four Origin Stories of Money](lineage/monetary-origin-stories.md)
 
 ### Cases
+
 - [The 2008 Financial Crisis](cases/2008-financial-crisis.md)
 - [Weimar Hyperinflation](cases/weimar-hyperinflation.md)
 - [Bitcoin](cases/bitcoin.md)
@@ -80,6 +87,7 @@ Each file has YAML frontmatter with `tags` and `type`. For embedding-based RAG, 
 - [Gold Standard Era](cases/gold-standard-era.md)
 
 ### Pedagogy
+
 - [Five Insights to Unlearn](pedagogy/insights-to-unlearn.md)
 - [Five Insights to Grasp](pedagogy/insights-to-grasp.md)
 - [The $20 Bill Revelation](pedagogy/twenty-dollar-revelation.md)
@@ -87,6 +95,7 @@ Each file has YAML frontmatter with `tags` and `type`. For embedding-based RAG, 
 - [The Personal Money Audit](pedagogy/personal-money-audit.md)
 
 ### Reference
+
 - [Glossary](glossary.md)
 - [Source Map](source-map.md)
 

@@ -1,13 +1,18 @@
 import { Demo, registerDemo } from "./demo-engine.js";
 class TallyDemo extends Demo {
-    constructor() {
-        super("tally", "Village Tally Network", "balanced", "Experience how medieval villagers used split sticks to track debts and maintain fairness over time");
-    }
-    async run(container) {
-        const content = `
+  constructor() {
+    super(
+      "tally",
+      "Village Tally Network",
+      "balanced",
+      "Experience how medieval villagers used split sticks to track debts and maintain fairness over time"
+    );
+  }
+  async run(container) {
+    const content = `
       <div class="demo-scenario">
         <p><strong>Scenario:</strong> Alice owes Bob 3 chickens for winter grain. They create a tally stick to record the debt.</p>
-        
+
         <div class="tally-visualization">
           <div class="tally-stick">
             <div class="stock">📋 Alice's Stock</div>
@@ -15,7 +20,7 @@ class TallyDemo extends Demo {
             <div class="foil">📋 Bob's Foil</div>
           </div>
         </div>
-        
+
         <div class="demo-steps">
           <div class="step">
             <span class="step-number">1</span>
@@ -36,7 +41,7 @@ class TallyDemo extends Demo {
             </div>
           </div>
         </div>
-        
+
         <div class="balanced-features">
           <h5>Balanced Mode Features:</h5>
           <ul>
@@ -47,23 +52,24 @@ class TallyDemo extends Demo {
           </ul>
         </div>
       </div>
-      
+
       ${this.createModeAnalysis({
-            balanced: "Primary mode - tally creates symmetric record-keeping system where both parties maintain proof of obligation",
-            obligated: "Village customs and social pressure enforce the tally system's legitimacy",
-            value: "Standard notch system allows proportional representation of different debt amounts",
-            immediate: "Physical splitting feels viscerally fair - \"you get half, I get half\""
-        })}
+        balanced:
+          "Primary mode - tally creates symmetric record-keeping system where both parties maintain proof of obligation",
+        obligated: "Village customs and social pressure enforce the tally system's legitimacy",
+        value: "Standard notch system allows proportional representation of different debt amounts",
+        immediate: 'Physical splitting feels viscerally fair - "you get half, I get half"',
+      })}
     `;
-        this.createDemoStructure(container, content);
-        const style = document.createElement("style");
-        style.textContent = `
+    this.createDemoStructure(container, content);
+    const style = document.createElement("style");
+    style.textContent = `
       .tally-visualization {
         display: flex;
         justify-content: center;
         margin: 20px 0;
       }
-      
+
       .tally-stick {
         display: flex;
         align-items: center;
@@ -73,36 +79,36 @@ class TallyDemo extends Demo {
         border-radius: 12px;
         border: 2px solid var(--balanced);
       }
-      
+
       .stock, .foil {
         padding: 10px 15px;
         background: rgba(76,201,240,.15);
         border-radius: 8px;
         font-size: 14px;
       }
-      
+
       .split-line {
         font-size: 20px;
         animation: pulse 2s infinite;
       }
-      
+
       @keyframes pulse {
         0%, 100% { opacity: 1; }
         50% { opacity: 0.5; }
       }
-      
+
       .demo-steps {
         display: grid;
         gap: 15px;
         margin: 20px 0;
       }
-      
+
       .step {
         display: flex;
         gap: 15px;
         align-items: flex-start;
       }
-      
+
       .step-number {
         display: flex;
         align-items: center;
@@ -115,7 +121,7 @@ class TallyDemo extends Demo {
         font-weight: 600;
         flex-shrink: 0;
       }
-      
+
       .balanced-features {
         margin-top: 20px;
         padding: 15px;
@@ -123,20 +129,20 @@ class TallyDemo extends Demo {
         border-radius: 8px;
         border-left: 4px solid var(--balanced);
       }
-      
+
       .balanced-features ul {
         margin: 10px 0 0 0;
         padding-left: 0;
         list-style: none;
       }
-      
+
       .balanced-features li {
         margin: 8px 0;
         font-size: 14px;
       }
     `;
-        document.head.appendChild(style);
-    }
+    document.head.appendChild(style);
+  }
 }
 registerDemo(new TallyDemo());
 //# sourceMappingURL=tally-demo.js.map

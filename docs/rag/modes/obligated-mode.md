@@ -12,7 +12,7 @@ related: [../core/four-modes-overview.md, ../core/consent-axis.md]
 
 **"Because they said so."** The mode of authority, hierarchy, and rule-imposed exchange — voluntary or coerced. Mapped from Fiske's **Authority Ranking**.
 
-The amount isn't negotiated, it's *imposed* — by a parent, a landlord, a council, a school, an employer, a state. Fairness here = the authority is legitimate and applies to everyone in your position.
+The amount isn't negotiated, it's _imposed_ — by a parent, a landlord, a council, a school, an employer, a state. Fairness here = the authority is legitimate and applies to everyone in your position.
 
 ## Where it lives
 
@@ -29,7 +29,7 @@ When the school keeps your deposit — Obligated.
 
 ## Where it works
 
-When something genuinely *can't* be done individually — hospitals, roads, fire brigade, sewers. Letting people opt out destroys the thing, so everyone in the relevant group has to pay, regardless of preference. The fairness comes from universal application: same rule for all of us, not whatever the market would extract from each of us.
+When something genuinely _can't_ be done individually — hospitals, roads, fire brigade, sewers. Letting people opt out destroys the thing, so everyone in the relevant group has to pay, regardless of preference. The fairness comes from universal application: same rule for all of us, not whatever the market would extract from each of us.
 
 ## The tell you're in Obligated mode
 
@@ -37,7 +37,7 @@ The question stops being "is the price right?" and becomes **"is the authority l
 
 ## The trap: penalties dressed as prices
 
-A huge amount of what *feels* like a price is actually a penalty:
+A huge amount of what _feels_ like a price is actually a penalty:
 
 - A €35 overdraft fee isn't the cost of an overdraft — it's a fine for noncompliance
 - Library late fees, "convenience charges," cancellation fees, auto-renewing subscriptions you forgot about
@@ -45,8 +45,9 @@ A huge amount of what *feels* like a price is actually a penalty:
 These all dress up as Value mode but operate as Obligated mode. You think you're paying a price; you're paying a punishment.
 
 This distinction matters because:
-- You can *negotiate prices*
-- You can only *challenge authority*
+
+- You can _negotiate prices_
+- You can only _challenge authority_
 - Mistaking one for the other leaves you defenceless
 
 ## The deeper trap: invented authority
@@ -63,15 +64,15 @@ Legitimate authority can usually answer cleanly — there's a law, a vote, a con
 
 This mode shows the consent axis most clearly. Authority can be wanted.
 
-| Voluntary | Coerced |
-|---|---|
-| BDSM with safe words and aftercare | State tax / draft |
-| Monastic vows of obedience | Arranged marriage with no consent |
-| Volunteer military enlistment | Conscription |
-| Apprenticeship under a master | Indentured servitude |
-| Joining a strict gym/dojo | Bonded labour |
-| Twelve-step programme submission | Predatory landlord |
-| Strict employer with hierarchy | Subscription dark pattern lock-in |
+| Voluntary                          | Coerced                           |
+| ---------------------------------- | --------------------------------- |
+| BDSM with safe words and aftercare | State tax / draft                 |
+| Monastic vows of obedience         | Arranged marriage with no consent |
+| Volunteer military enlistment      | Conscription                      |
+| Apprenticeship under a master      | Indentured servitude              |
+| Joining a strict gym/dojo          | Bonded labour                     |
+| Twelve-step programme submission   | Predatory landlord                |
+| Strict employer with hierarchy     | Subscription dark pattern lock-in |
 
 Same mode shape (compliance with authority), opposite consent profiles. Legitimacy depends on the consent axis, not on the mode classification. See [consent](../core/consent-axis.md).
 

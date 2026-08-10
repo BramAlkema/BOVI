@@ -7,16 +7,16 @@ export const MissionDeckPlugin: UIComponentPlugin = {
     id: "ui-mission-deck",
     name: "Mission Deck",
     version: "1.0.0",
-    targets: ["L1","L2"],
-    provides: ["appShell","home"],
-    cssScoped: true
+    targets: ["L1", "L2"],
+    provides: ["appShell", "home"],
+    cssScoped: true,
   },
   async mount(ctx: UIContext): Promise<UIInstance> {
     const host = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : ctx.root;
     const shell = document.createElement("div");
-    host.innerHTML = ""; 
+    host.innerHTML = "";
     host.appendChild(shell);
-    
+
     shell.innerHTML = `
       <style>
         :host, .wrap { font-family: system-ui, sans-serif; color:#e7eef9; background: #0a0e1a; }
@@ -43,15 +43,16 @@ export const MissionDeckPlugin: UIComponentPlugin = {
         </div>
       </div>
     `;
-    
+
     const runAllBtn = shell.querySelector<HTMLButtonElement>("#runall")!;
     runAllBtn.onclick = async () => {
       runAllBtn.disabled = true;
       runAllBtn.textContent = "Running missions...";
-      
+
       try {
         const applied = await applyAllPendingDefaults();
-        runAllBtn.textContent = applied > 0 ? `${applied} missions completed` : "No missions to run";
+        runAllBtn.textContent =
+          applied > 0 ? `${applied} missions completed` : "No missions to run";
         setTimeout(() => {
           runAllBtn.disabled = false;
           runAllBtn.textContent = "🚀 Let all missions run";
@@ -69,30 +70,32 @@ export const MissionDeckPlugin: UIComponentPlugin = {
         const [roof, food, power] = await Promise.all([
           getBillsSafe(),
           getBestDeal(),
-          getEnergyStatus()
+          getEnergyStatus(),
         ]);
-        
+
         const stack = shell.querySelector("#stack")!;
 
         stack.innerHTML = [
           missionCard(
-            "Keep Roof Fair", 
-            roof === "OK" ? "Mission complete - standing down" : "Counter rent increase - auto engage in 10s", 
+            "Keep Roof Fair",
+            roof === "OK"
+              ? "Mission complete - standing down"
+              : "Counter rent increase - auto engage in 10s",
             why("roof"),
             roof !== "OK"
           ),
           missionCard(
-            "Fix Food Price", 
-            `Swap opportunity: ${food.label} (€${food.delta.toFixed(2)} impact)`, 
+            "Fix Food Price",
+            `Swap opportunity: ${food.label} (€${food.delta.toFixed(2)} impact)`,
             why("kitchen"),
             food.delta < 0
           ),
           missionCard(
-            "Lower Power Bill", 
-            power === "OK" ? "Mission complete - standing down" : `Action required: ${power}`, 
+            "Lower Power Bill",
+            power === "OK" ? "Mission complete - standing down" : `Action required: ${power}`,
             why("meter"),
             power !== "OK"
-          )
+          ),
         ].join("");
 
         // Wire individual mission buttons
@@ -101,7 +104,7 @@ export const MissionDeckPlugin: UIComponentPlugin = {
             btn.disabled = true;
             const originalText = btn.textContent;
             btn.textContent = "Running...";
-            
+
             try {
               await applyAllPendingDefaults();
               btn.textContent = "Mission complete";
@@ -147,8 +150,8 @@ export const MissionDeckPlugin: UIComponentPlugin = {
           <div class="why">${whyText}</div>
           <div class="status">${status}</div>
           <div class="actions">
-            <button class="btn primary" ${!actionRequired ? 'disabled' : ''}>
-              ${actionRequired ? 'Let it run' : 'Standing by'}
+            <button class="btn primary" ${!actionRequired ? "disabled" : ""}>
+              ${actionRequired ? "Let it run" : "Standing by"}
             </button>
             <button class="btn">Change parameters</button>
           </div>
@@ -158,20 +161,24 @@ export const MissionDeckPlugin: UIComponentPlugin = {
 
     function why(domain: string): string {
       switch (domain) {
-        case "roof": 
+        case "roof":
           return "Your personal inflation basket rose faster than official CPI. The counter keeps your housing purchasing power stable by proposing fair rent adjustments.";
-        case "kitchen": 
+        case "kitchen":
           return "Unit price analysis shows this swap beats your usual choice after normalizing for shrinkflation. The PDA system ensures you get genuine value.";
-        case "meter": 
+        case "meter":
           return "Cohort buying power secured a rate below your baseline. The no-worse-off guarantee ensures you save money while supporting group negotiation.";
-        default: 
+        default:
           return "We protect fairness using your configured rules and the BOVI framework principles.";
       }
     }
 
-    return { 
-      unmount() { host.innerHTML = ""; },
-      onProfileChange(p) { console.log("Mission Deck: profile changed to", p); }
+    return {
+      unmount() {
+        host.innerHTML = "";
+      },
+      onProfileChange(p) {
+        console.log("Mission Deck: profile changed to", p);
+      },
     };
-  }
+  },
 };

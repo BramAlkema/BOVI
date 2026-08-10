@@ -2,20 +2,20 @@ import { applyAllPendingDefaults } from "../../m1/safeCta.js";
 import { getBillsSafe, getBestDeal, getEnergyStatus } from "../../api/tiles.js";
 import { nextEpisodes, markPlayed } from "../../api/episodes.js";
 export const RoutesLightsPlugin = {
-    manifest: {
-        id: "ui-routes-lights",
-        name: "Routes & Lights",
-        version: "1.0.0",
-        targets: ["L1", "L2"],
-        provides: ["appShell", "home"],
-        cssScoped: true
-    },
-    async mount(ctx) {
-        const host = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : ctx.root;
-        const shell = document.createElement("div");
-        host.innerHTML = "";
-        host.appendChild(shell);
-        shell.innerHTML = `
+  manifest: {
+    id: "ui-routes-lights",
+    name: "Routes & Lights",
+    version: "1.0.0",
+    targets: ["L1", "L2"],
+    provides: ["appShell", "home"],
+    cssScoped: true,
+  },
+  async mount(ctx) {
+    const host = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : ctx.root;
+    const shell = document.createElement("div");
+    host.innerHTML = "";
+    host.appendChild(shell);
+    shell.innerHTML = `
       <style>
         :host, .wrap { font-family: system-ui, sans-serif; color:#e7eef9; background: #0a0e1a; }
         .wrap { padding:16px; display:grid; gap:12px; min-height: 100vh; }
@@ -43,83 +43,87 @@ export const RoutesLightsPlugin = {
         <div class="card episode" id="episode">Episode: Loading…</div>
       </div>
     `;
-        const autoBtn = shell.querySelector("#auto");
-        autoBtn.onclick = async () => {
-            autoBtn.disabled = true;
-            autoBtn.textContent = "Driving...";
-            try {
-                await applyAllPendingDefaults();
-                autoBtn.textContent = "Routes updated";
-                setTimeout(() => {
-                    autoBtn.disabled = false;
-                    autoBtn.textContent = "🚗 Auto-drive";
-                }, 2000);
-            }
-            catch (error) {
-                console.error("Auto-drive failed:", error);
-                autoBtn.textContent = "Error - try again";
-                autoBtn.disabled = false;
-            }
-        };
-        (async () => {
-            try {
-                const [roof, food, power] = await Promise.all([
-                    getBillsSafe(),
-                    getBestDeal(),
-                    getEnergyStatus()
-                ]);
-                const overall = roof === "OK" ? ["g", "✅ All routes clear"] : ["y", "⚠️ Route changes needed"];
-                shell.querySelector("#overall").innerHTML = `<span class="light ${overall[0]}"></span>${overall[1]}`;
-                shell.querySelector("#r-shelter").innerHTML =
-                    roof === "OK" ? `<span class="light g"></span>Route clear` :
-                        `<span class="light y"></span>Next: counter rent increase`;
-                shell.querySelector("#r-food").innerHTML =
-                    `<span class="light ${food.delta < 0 ? "g" : "y"}"></span>${food.label}: €${food.delta.toFixed(2)}`;
-                shell.querySelector("#r-power").innerHTML =
-                    `<span class="light ${power === "OK" ? "g" : (power === "Switching" ? "y" : "r")}"></span>${power}`;
-            }
-            catch (error) {
-                console.error("Failed to load route status:", error);
-                shell.querySelector("#overall").innerHTML = `<span class="light r"></span>⚠️ Route data error`;
-            }
-        })();
-        (async () => {
-            try {
-                const [ep] = await nextEpisodes(1);
-                const episodeEl = shell.querySelector("#episode");
-                if (!ep) {
-                    episodeEl.textContent = "Episode: All episodes completed";
-                    return;
-                }
-                episodeEl.innerHTML = `
+    const autoBtn = shell.querySelector("#auto");
+    autoBtn.onclick = async () => {
+      autoBtn.disabled = true;
+      autoBtn.textContent = "Driving...";
+      try {
+        await applyAllPendingDefaults();
+        autoBtn.textContent = "Routes updated";
+        setTimeout(() => {
+          autoBtn.disabled = false;
+          autoBtn.textContent = "🚗 Auto-drive";
+        }, 2000);
+      } catch (error) {
+        console.error("Auto-drive failed:", error);
+        autoBtn.textContent = "Error - try again";
+        autoBtn.disabled = false;
+      }
+    };
+    (async () => {
+      try {
+        const [roof, food, power] = await Promise.all([
+          getBillsSafe(),
+          getBestDeal(),
+          getEnergyStatus(),
+        ]);
+        const overall =
+          roof === "OK" ? ["g", "✅ All routes clear"] : ["y", "⚠️ Route changes needed"];
+        shell.querySelector("#overall").innerHTML =
+          `<span class="light ${overall[0]}"></span>${overall[1]}`;
+        shell.querySelector("#r-shelter").innerHTML =
+          roof === "OK"
+            ? `<span class="light g"></span>Route clear`
+            : `<span class="light y"></span>Next: counter rent increase`;
+        shell.querySelector("#r-food").innerHTML =
+          `<span class="light ${food.delta < 0 ? "g" : "y"}"></span>${food.label}: €${food.delta.toFixed(2)}`;
+        shell.querySelector("#r-power").innerHTML =
+          `<span class="light ${power === "OK" ? "g" : power === "Switching" ? "y" : "r"}"></span>${power}`;
+      } catch (error) {
+        console.error("Failed to load route status:", error);
+        shell.querySelector("#overall").innerHTML =
+          `<span class="light r"></span>⚠️ Route data error`;
+      }
+    })();
+    (async () => {
+      try {
+        const [ep] = await nextEpisodes(1);
+        const episodeEl = shell.querySelector("#episode");
+        if (!ep) {
+          episodeEl.textContent = "Episode: All episodes completed";
+          return;
+        }
+        episodeEl.innerHTML = `
           <div>Episode: ${ep.title} • ${ep.lengthMin}m</div>
           <button id="play">Play</button>
         `;
-                const playBtn = episodeEl.querySelector("#play");
-                playBtn.onclick = async () => {
-                    playBtn.disabled = true;
-                    playBtn.textContent = "Playing...";
-                    try {
-                        await markPlayed(ep.id);
-                        ctx.bus.emit("ui.toast", { kind: "info", msg: `Played: ${ep.title}` });
-                        episodeEl.innerHTML = `<div>Episode played: ${ep.title}</div><div>✓ Complete</div>`;
-                    }
-                    catch (error) {
-                        console.error("Failed to mark episode played:", error);
-                        playBtn.textContent = "Error";
-                        playBtn.disabled = false;
-                    }
-                };
-            }
-            catch (error) {
-                console.error("Failed to load episode:", error);
-                shell.querySelector("#episode").textContent = "Episode: Error loading";
-            }
-        })();
-        return {
-            unmount() { host.innerHTML = ""; },
-            onProfileChange(p) { console.log("Routes & Lights: profile changed to", p); }
+        const playBtn = episodeEl.querySelector("#play");
+        playBtn.onclick = async () => {
+          playBtn.disabled = true;
+          playBtn.textContent = "Playing...";
+          try {
+            await markPlayed(ep.id);
+            ctx.bus.emit("ui.toast", { kind: "info", msg: `Played: ${ep.title}` });
+            episodeEl.innerHTML = `<div>Episode played: ${ep.title}</div><div>✓ Complete</div>`;
+          } catch (error) {
+            console.error("Failed to mark episode played:", error);
+            playBtn.textContent = "Error";
+            playBtn.disabled = false;
+          }
         };
-    }
+      } catch (error) {
+        console.error("Failed to load episode:", error);
+        shell.querySelector("#episode").textContent = "Episode: Error loading";
+      }
+    })();
+    return {
+      unmount() {
+        host.innerHTML = "";
+      },
+      onProfileChange(p) {
+        console.log("Routes & Lights: profile changed to", p);
+      },
+    };
+  },
 };
 //# sourceMappingURL=routes-lights.plugin.js.map

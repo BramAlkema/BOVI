@@ -2,24 +2,24 @@
  * UI Plugin Host System Tests
  */
 
-import { mountUI, switchUI } from '../host.js';
-import { __clearRegistryForTesting, registerUIPlugin, setActiveUIPluginId } from '../registry.js';
-import type { UIComponentPlugin, UIContext, UIInstance } from '../types.js';
+import { mountUI, switchUI } from "../host.js";
+import { __clearRegistryForTesting, registerUIPlugin, setActiveUIPluginId } from "../registry.js";
+import type { UIComponentPlugin, UIContext, UIInstance } from "../types.js";
 
 // Mock the dependencies
-jest.mock('../../../core/bus.js', () => ({
-  Bus: { emit: jest.fn(), on: jest.fn() }
+jest.mock("../../../core/bus.js", () => ({
+  Bus: { emit: jest.fn(), on: jest.fn() },
 }));
 
-jest.mock('../../../core/timers.js', () => ({
-  Timers: { setTimeout: jest.fn(), clearTimeout: jest.fn() }
+jest.mock("../../../core/timers.js", () => ({
+  Timers: { setTimeout: jest.fn(), clearTimeout: jest.fn() },
 }));
 
-jest.mock('../../../core/capabilities.js', () => ({
-  getProfile: jest.fn(() => 'L1')
+jest.mock("../../../core/capabilities.js", () => ({
+  getProfile: jest.fn(() => "L1"),
 }));
 
-describe('UI Plugin Host', () => {
+describe("UI Plugin Host", () => {
   let mockRoot: HTMLElement;
   let mockInstance: UIInstance;
   let mockPlugin: UIComponentPlugin;
@@ -27,34 +27,34 @@ describe('UI Plugin Host', () => {
   beforeEach(() => {
     __clearRegistryForTesting();
     // Create mock DOM element
-    mockRoot = document.createElement('div');
-    
+    mockRoot = document.createElement("div");
+
     // Create mock UI instance
     mockInstance = {
       unmount: jest.fn(),
-      onProfileChange: jest.fn()
+      onProfileChange: jest.fn(),
     };
 
     // Create mock plugin
     mockPlugin = {
       manifest: {
-        id: 'test-plugin',
-        name: 'Test Plugin',
-        version: '1.0.0',
-        targets: ['L1'],
-        provides: ['home'],
-        cssScoped: true
+        id: "test-plugin",
+        name: "Test Plugin",
+        version: "1.0.0",
+        targets: ["L1"],
+        provides: ["home"],
+        cssScoped: true,
       },
-      mount: jest.fn().mockResolvedValue(mockInstance)
+      mount: jest.fn().mockResolvedValue(mockInstance),
     };
 
     // Register the mock plugin
     registerUIPlugin(mockPlugin);
 
     // Mock window events
-    Object.defineProperty(window, 'dispatchEvent', {
+    Object.defineProperty(window, "dispatchEvent", {
       value: jest.fn(),
-      writable: true
+      writable: true,
     });
   });
 
@@ -62,155 +62,157 @@ describe('UI Plugin Host', () => {
     jest.clearAllMocks();
   });
 
-  describe('switchUI', () => {
-    it('mounts plugin successfully', async () => {
-      await switchUI(mockRoot, 'test-plugin');
+  describe("switchUI", () => {
+    it("mounts plugin successfully", async () => {
+      await switchUI(mockRoot, "test-plugin");
 
       expect(mockPlugin.mount).toHaveBeenCalledWith(
         expect.objectContaining({
           root: mockRoot,
           bus: expect.any(Object),
           timers: expect.any(Object),
-          profile: 'L1',
+          profile: "L1",
           navigate: expect.any(Function),
           openOverlay: expect.any(Function),
-          closeOverlay: expect.any(Function)
+          closeOverlay: expect.any(Function),
         })
       );
     });
 
-    it('provides correct context to plugin', async () => {
-      await switchUI(mockRoot, 'test-plugin');
+    it("provides correct context to plugin", async () => {
+      await switchUI(mockRoot, "test-plugin");
 
       const context: UIContext = (mockPlugin.mount as jest.Mock).mock.calls[0][0];
-      
+
       expect(context.root).toBe(mockRoot);
       expect(context.navigate).toBeInstanceOf(Function);
       expect(context.openOverlay).toBeInstanceOf(Function);
       expect(context.closeOverlay).toBeInstanceOf(Function);
     });
 
-    it('sets active plugin id', async () => {
-      await switchUI(mockRoot, 'test-plugin');
+    it("sets active plugin id", async () => {
+      await switchUI(mockRoot, "test-plugin");
 
       // Note: We can't easily test this without exposing internal state
       // But the function should call setActiveUIPluginId internally
     });
 
-    it('throws error for non-registered plugin', async () => {
-      await expect(switchUI(mockRoot, 'non-existent')).rejects.toThrow(
-        'UI plugin non-existent not registered'
+    it("throws error for non-registered plugin", async () => {
+      await expect(switchUI(mockRoot, "non-existent")).rejects.toThrow(
+        "UI plugin non-existent not registered"
       );
     });
 
-    it('unmounts previous instance before mounting new one', async () => {
+    it("unmounts previous instance before mounting new one", async () => {
       // First mount
-      await switchUI(mockRoot, 'test-plugin');
+      await switchUI(mockRoot, "test-plugin");
       const firstInstance = mockInstance;
 
       // Create second plugin
       const mockPlugin2: UIComponentPlugin = {
         manifest: {
-          id: 'test-plugin-2',
-          name: 'Test Plugin 2',
-          version: '1.0.0',
-          targets: ['L1'],
-          provides: ['home'],
-          cssScoped: true
+          id: "test-plugin-2",
+          name: "Test Plugin 2",
+          version: "1.0.0",
+          targets: ["L1"],
+          provides: ["home"],
+          cssScoped: true,
         },
         mount: jest.fn().mockResolvedValue({
-          unmount: jest.fn()
-        })
+          unmount: jest.fn(),
+        }),
       };
-      
+
       registerUIPlugin(mockPlugin2);
 
       // Second mount
-      await switchUI(mockRoot, 'test-plugin-2');
+      await switchUI(mockRoot, "test-plugin-2");
 
       expect(firstInstance.unmount).toHaveBeenCalled();
     });
 
-    it('context navigate function dispatches correct event', async () => {
-      await switchUI(mockRoot, 'test-plugin');
+    it("context navigate function dispatches correct event", async () => {
+      await switchUI(mockRoot, "test-plugin");
 
       const context: UIContext = (mockPlugin.mount as jest.Mock).mock.calls[0][0];
-      context.navigate('/test-route');
+      context.navigate("/test-route");
 
       expect(window.dispatchEvent).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'nav:go',
-          detail: '/test-route'
+          type: "nav:go",
+          detail: "/test-route",
         })
       );
     });
 
-    it('context openOverlay function dispatches correct event', async () => {
-      await switchUI(mockRoot, 'test-plugin');
+    it("context openOverlay function dispatches correct event", async () => {
+      await switchUI(mockRoot, "test-plugin");
 
       const context: UIContext = (mockPlugin.mount as jest.Mock).mock.calls[0][0];
-      context.openOverlay('overlay-id', { prop: 'value' });
+      context.openOverlay("overlay-id", { prop: "value" });
 
       expect(window.dispatchEvent).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'overlay:open',
-          detail: { id: 'overlay-id', props: { prop: 'value' } }
+          type: "overlay:open",
+          detail: { id: "overlay-id", props: { prop: "value" } },
         })
       );
     });
 
-    it('context closeOverlay function dispatches correct event', async () => {
-      await switchUI(mockRoot, 'test-plugin');
+    it("context closeOverlay function dispatches correct event", async () => {
+      await switchUI(mockRoot, "test-plugin");
 
       const context: UIContext = (mockPlugin.mount as jest.Mock).mock.calls[0][0];
       context.closeOverlay();
 
       expect(window.dispatchEvent).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'overlay:close'
+          type: "overlay:close",
         })
       );
     });
   });
 
-  describe('mountUI', () => {
-    it('uses active plugin id when available', async () => {
-      setActiveUIPluginId('test-plugin');
-      
-      await mountUI(mockRoot, 'fallback-plugin');
+  describe("mountUI", () => {
+    it("uses active plugin id when available", async () => {
+      setActiveUIPluginId("test-plugin");
+
+      await mountUI(mockRoot, "fallback-plugin");
 
       expect(mockPlugin.mount).toHaveBeenCalled();
     });
 
-    it('uses fallback id when no active plugin set', async () => {
+    it("uses fallback id when no active plugin set", async () => {
       __clearRegistryForTesting();
       registerUIPlugin(mockPlugin);
-      
-      await mountUI(mockRoot, 'test-plugin');
+
+      await mountUI(mockRoot, "test-plugin");
 
       expect(mockPlugin.mount).toHaveBeenCalled();
     });
 
-    it('handles profile change events', async () => {
-      const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
-      await switchUI(mockRoot, 'test-plugin');
+    it("handles profile change events", async () => {
+      const addEventListenerSpy = jest.spyOn(window, "addEventListener");
+      await switchUI(mockRoot, "test-plugin");
 
       // Mock profile change event
-      const profileChangeEvent = new CustomEvent('profile:changed', {
-        detail: 'L2'
+      const profileChangeEvent = new CustomEvent("profile:changed", {
+        detail: "L2",
       });
 
       // Simulate the event listener that was added
       if (addEventListenerSpy.mock.calls.length > 0) {
-        const handler = addEventListenerSpy.mock.calls.find(call => call[0] === 'profile:changed')?.[1];
-        if (typeof handler === 'function') {
+        const handler = addEventListenerSpy.mock.calls.find(
+          call => call[0] === "profile:changed"
+        )?.[1];
+        if (typeof handler === "function") {
           handler(profileChangeEvent);
         }
       }
 
       // Test would depend on mockInstance having onProfileChange method
       if (mockInstance.onProfileChange) {
-        expect(mockInstance.onProfileChange).toHaveBeenCalledWith('L2');
+        expect(mockInstance.onProfileChange).toHaveBeenCalledWith("L2");
       }
     });
   });

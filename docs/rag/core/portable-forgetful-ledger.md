@@ -3,16 +3,17 @@ title: Portable Forgetful Ledger
 type: core
 tags: [definition, money, minimal-money, ledger]
 sources: [MINIMAL-MONEY-THEORY.md]
-related: [five-axioms.md, common-knowledge-of-acceptance.md, three-anchor-types.md, unbundling-thesis.md]
+related:
+  [five-axioms.md, common-knowledge-of-acceptance.md, three-anchor-types.md, unbundling-thesis.md]
 ---
 
 # Portable Forgetful Ledger
 
 ## Definition
 
-**Minimal money is a portable forgetful ledger** — a transferable record of *who has what now*, with no memory of how they got it.
+**Minimal money is a portable forgetful ledger** — a transferable record of _who has what now_, with no memory of how they got it.
 
-The "portable" part: tokens move between parties; the tokens *are* the ledger.
+The "portable" part: tokens move between parties; the tokens _are_ the ledger.
 The "forgetful" part: history is not retained; each token is fungible with every other.
 
 This is the simplest possible system that enables exchange by unlocking otherwise-impossible trades.
@@ -21,9 +22,9 @@ This is the simplest possible system that enables exchange by unlocking otherwis
 
 It distinguishes minimal money from:
 
-- **Debt ledgers** (Balanced mode primitives): track *history of obligations*, who owes whom; *not* forgetful
-- **Reputation systems**: track *identity-tied* records; *not* forgetful
-- **Surveillance money**: digital systems that retain transaction history; only *pretend* to be forgetful
+- **Debt ledgers** (Balanced mode primitives): track _history of obligations_, who owes whom; _not_ forgetful
+- **Reputation systems**: track _identity-tied_ records; _not_ forgetful
+- **Surveillance money**: digital systems that retain transaction history; only _pretend_ to be forgetful
 
 The forgetful property is what allows anonymous spot trade between strangers without a relational substrate.
 
@@ -45,9 +46,9 @@ Not all trades — just the ones that were blocked without a medium of exchange.
 
 ## Caveat: digital forgetfulness is increasingly fictional
 
-Physical shells, coins, cash are anonymous by default — they really are forgetful. Digital tokens, mobile money, blockchain — every conversion, sweep, and balance is logged. The forgetfulness becomes a *design choice* (mixers, privacy coins, deliberate amnesia) rather than a free property.
+Physical shells, coins, cash are anonymous by default — they really are forgetful. Digital tokens, mobile money, blockchain — every conversion, sweep, and balance is logged. The forgetfulness becomes a _design choice_ (mixers, privacy coins, deliberate amnesia) rather than a free property.
 
-For the unbundling project to preserve forgetfulness in digital form, *engineered* forgetfulness has to be a load-bearing requirement, not assumed.
+For the unbundling project to preserve forgetfulness in digital form, _engineered_ forgetfulness has to be a load-bearing requirement, not assumed.
 
 ## Source quote
 

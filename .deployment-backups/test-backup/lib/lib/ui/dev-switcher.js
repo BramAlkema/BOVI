@@ -1,13 +1,11 @@
 import { listUIPlugins, getActiveUIPluginId } from "./plugins/registry.js";
 export function addDevSwitcher() {
-    if (process.env.NODE_ENV === "production")
-        return;
-    const plugins = listUIPlugins();
-    if (plugins.length <= 1)
-        return;
-    const activeId = getActiveUIPluginId();
-    const panel = document.createElement("div");
-    panel.innerHTML = `
+  if (process.env.NODE_ENV === "production") return;
+  const plugins = listUIPlugins();
+  if (plugins.length <= 1) return;
+  const activeId = getActiveUIPluginId();
+  const panel = document.createElement("div");
+  panel.innerHTML = `
     <style>
       .bovi-dev-switcher {
         position: fixed;
@@ -88,30 +86,28 @@ export function addDevSwitcher() {
       </div>
     </div>
   `;
-    document.body.appendChild(panel);
-    const pluginList = panel.querySelector("#pluginList");
-    plugins.forEach(plugin => {
-        const btn = document.createElement("button");
-        btn.textContent = `${plugin.name} (${plugin.version})`;
-        btn.className = plugin.id === activeId ? "active" : "";
-        btn.onclick = async () => {
-            if (plugin.id === activeId)
-                return;
-            pluginList.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            try {
-                await window.switchUI(plugin.id);
-                console.log(`Switched to ${plugin.name}`);
-            }
-            catch (error) {
-                console.error(`Failed to switch to ${plugin.name}:`, error);
-                btn.classList.remove("active");
-                pluginList.querySelector(`button[data-id="${activeId}"]`)?.classList.add("active");
-            }
-        };
-        btn.setAttribute("data-id", plugin.id);
-        pluginList.appendChild(btn);
-    });
-    console.log("Dev UI switcher added (top-right corner)");
+  document.body.appendChild(panel);
+  const pluginList = panel.querySelector("#pluginList");
+  plugins.forEach(plugin => {
+    const btn = document.createElement("button");
+    btn.textContent = `${plugin.name} (${plugin.version})`;
+    btn.className = plugin.id === activeId ? "active" : "";
+    btn.onclick = async () => {
+      if (plugin.id === activeId) return;
+      pluginList.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      try {
+        await window.switchUI(plugin.id);
+        console.log(`Switched to ${plugin.name}`);
+      } catch (error) {
+        console.error(`Failed to switch to ${plugin.name}:`, error);
+        btn.classList.remove("active");
+        pluginList.querySelector(`button[data-id="${activeId}"]`)?.classList.add("active");
+      }
+    };
+    btn.setAttribute("data-id", plugin.id);
+    pluginList.appendChild(btn);
+  });
+  console.log("Dev UI switcher added (top-right corner)");
 }
 //# sourceMappingURL=dev-switcher.js.map

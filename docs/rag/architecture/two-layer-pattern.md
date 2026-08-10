@@ -3,7 +3,13 @@ title: The Two-Layer Pattern
 type: architecture
 tags: [bootstrap, use-layer, bundling, unbundling, design-pattern]
 sources: [conversation-derived]
-related: [cold-start-problem.md, four-bootstrap-engines.md, ../core/money-as-bundle.md, ../core/unbundling-thesis.md]
+related:
+  [
+    cold-start-problem.md,
+    four-bootstrap-engines.md,
+    ../core/money-as-bundle.md,
+    ../core/unbundling-thesis.md,
+  ]
 ---
 
 # The Two-Layer Pattern
@@ -12,7 +18,7 @@ related: [cold-start-problem.md, four-bootstrap-engines.md, ../core/money-as-bun
 
 **Every working money is bundled at the bootstrap layer and unbundled at the use layer.**
 
-This pattern is present in most working money systems but rarely named. Once you see it, the apparent contradiction between the bundling thesis ("money is always bundled") and the unbundling thesis ("functions belong in different tools") dissolves: they describe different *layers*.
+This pattern is present in most working money systems but rarely named. Once you see it, the apparent contradiction between the bundling thesis ("money is always bundled") and the unbundling thesis ("functions belong in different tools") dissolves: they describe different _layers_.
 
 ## The pattern, three examples
 
@@ -37,15 +43,15 @@ The bundling at the foundation funded the unbundling at the application.
 
 ## Why the pattern is robust
 
-Pure unbundling at the *bootstrap* layer has no working precedent. There is no such thing as a pure-utility money network. Pure utility is the *eventual* state of mature networks; it is never the bootstrapping state.
+Pure unbundling at the _bootstrap_ layer has no working precedent. There is no such thing as a pure-utility money network. Pure utility is the _eventual_ state of mature networks; it is never the bootstrapping state.
 
-Pure bundling at the *use* layer is also rare among sophisticated users. Once a network is mature enough that you can route around it, anyone competent does.
+Pure bundling at the _use_ layer is also rare among sophisticated users. Once a network is mature enough that you can route around it, anyone competent does.
 
 So the pattern emerges by necessity: bootstrap requires bundling (or some non-utility incentive); use rewards unbundling.
 
 ## Implication: the unbundling project is a use-layer project
 
-The minimal-money framework calls for unbundling. This conflicts with the empirical fact that money is always bundled — *only at the bootstrap layer*. The framework's actual operational claim:
+The minimal-money framework calls for unbundling. This conflicts with the empirical fact that money is always bundled — _only at the bootstrap layer_. The framework's actual operational claim:
 
 **Users in mature systems should consciously unbundle the functions in their own portfolio, even though the underlying infrastructure remains impure at the bootstrap layer.**
 
@@ -56,7 +62,7 @@ Doña Elena does this. Most of the framework's practical chapters teach how to d
 Before this pattern was named, the framework risked picking on specific instruments for being bundled at the protocol level (e.g., criticising Bitcoin's hard cap as "design flaw"). The two-layer pattern corrects this:
 
 - The hard cap is the bootstrap engine. Without it, no infrastructure.
-- The bundled bootstrap *funds the unbundling at the use layer*.
+- The bundled bootstrap _funds the unbundling at the use layer_.
 - The right question is not "is this token unbundled?" but "can a user, given the existing instruments, build an unbundled portfolio?"
 
 The answer is yes, and Bitcoin (along with other bundled-at-bootstrap instruments) is part of how that becomes possible — not an obstacle to it.
@@ -72,7 +78,7 @@ Any new money proposal needs to answer:
 
 ## The honest framing
 
-The framework's purity is a description of the *end state*, not the *bootstrap*. New monies *must* bundle to ignite. Mature monies *can* unbundle once the network is dense enough to sustain itself on transaction utility alone.
+The framework's purity is a description of the _end state_, not the _bootstrap_. New monies _must_ bundle to ignite. Mature monies _can_ unbundle once the network is dense enough to sustain itself on transaction utility alone.
 
 Pure unbundling at the bootstrap layer is a maturity criterion, not a design criterion. The bootstrap requires bundling, in some form, to overcome the cold-start problem.
 

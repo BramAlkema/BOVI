@@ -1,6 +1,6 @@
 # The Interface Is Not the Theory
 
-*Supersedes the earlier "two-regime" framing. Stable money may hide its machinery; that does not make the backing picture approximately true.*
+_Supersedes the earlier "two-regime" framing. Stable money may hide its machinery; that does not make the backing picture approximately true._
 
 ## The claim in one line
 
@@ -12,22 +12,22 @@ The Berlin barista does not need a theory of money to buy bread. She can tap, re
 
 But a black-box interface and a false explanation are different things.
 
-The balance can be safely treated *operationally* as "what I have" while the system is stable. It does not follow that the balance is a stock of value sitting in a silo. A card can be safely treated as "moving my money" without establishing that money is a substance moving through a pipe. A euro can be accepted without inspecting its governance on every purchase. None of this makes gold, law, or confidence a source that injects value into the unit.
+The balance can be safely treated _operationally_ as "what I have" while the system is stable. It does not follow that the balance is a stock of value sitting in a silo. A card can be safely treated as "moving my money" without establishing that money is a substance moving through a pipe. A euro can be accepted without inspecting its governance on every purchase. None of this makes gold, law, or confidence a source that injects value into the unit.
 
 There is no calm domain in which value literally resides in the token. Push is therefore not a weak-field limit of pull. Newton survives Einstein as a genuine limiting case; monetary objectivism does not survive the subjective theory of value in that way. The everyday interface can be reliable while the folk ontology attached to it remains false.
 
-| A stable interface lets us ignore | It does not prove |
-|---|---|
-| the ledgers clearing behind a card payment | that money is a transferable substance |
-| the institutions maintaining acceptance | that law or authority performs the valuing |
-| changes in supply and credit creation | that value is stored inside a fixed quantity |
+| A stable interface lets us ignore           | It does not prove                                       |
+| ------------------------------------------- | ------------------------------------------------------- |
+| the ledgers clearing behind a card payment  | that money is a transferable substance                  |
+| the institutions maintaining acceptance     | that law or authority performs the valuing              |
+| changes in supply and credit creation       | that value is stored inside a fixed quantity            |
 | conversion, index, and settlement machinery | that one currency naturally performs every monetary job |
 
 The distinction becomes consequential when the invisible machinery changes: currency collapse, dollarisation, new issuance, Cantillon redistribution, bank failure, Bitcoin, a new monetary design, or an agent choosing instruments on somebody's behalf. In those cases the interface stops being enough. The backing picture does not merely lose precision; it points the causal arrows in the wrong direction.
 
 ## What this means for the mission
 
-BOVI's job is not to require every user to understand the machinery before buying milk. M0 — "it just works" — remains a legitimate *operational layer*. What is withdrawn is the claim that its accompanying folk explanation is a sanctioned theory.
+BOVI's job is not to require every user to understand the machinery before buying milk. M0 — "it just works" — remains a legitimate _operational layer_. What is withdrawn is the claim that its accompanying folk explanation is a sanctioned theory.
 
 The mission is three moves:
 

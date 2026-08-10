@@ -1,19 +1,19 @@
 # Chapter 1: Two Coffees
 
-> *Most of humanity lives the second story; economics has been the discipline of the exception pretending to be universal.*
+> _Most of humanity lives the second story; economics has been the discipline of the exception pretending to be universal._
 
 **Part I — The Anthropology of Exchange** · [Index](README.md) · Next: [Chapter 2](02-four-modes.md)
 
 ## Opening scaffold
 
-*In medias res*. We start mid-action with Doña Elena moving money on her phone — no introduction, no setup. The reader is dropped into someone else's competence before we name what they are competent at.
+_In medias res_. We start mid-action with Doña Elena moving money on her phone — no introduction, no setup. The reader is dropped into someone else's competence before we name what they are competent at.
 
 ## Structural beats
 
 1. Doña Elena's Sunday operations described without commentary.
 2. Her biographical context: 2001 crisis, no MBA, survival not strategy.
 3. Hard cut to the Berlin barista, contactless tap, money-as-invisible.
-4. The inversion paragraph — *"one of these women is doing what the textbooks describe; the other is the actual condition of most of humanity."*
+4. The inversion paragraph — _"one of these women is doing what the textbooks describe; the other is the actual condition of most of humanity."_
 5. The thesis paragraph stating what the book is for.
 
 ## Themes
@@ -24,7 +24,7 @@
 
 ## Twists
 
-- The reader expects to be told *"look at how poor people manage"* and discovers instead that they themselves are the case study.
+- The reader expects to be told _"look at how poor people manage"_ and discovers instead that they themselves are the case study.
 - The Berlin barista is presented as the puzzle, not the standard.
 
 ## Subarcs
@@ -35,7 +35,7 @@
 
 ## Closing scaffold
 
-A short paragraph promising vocabulary. *"To say what is happening here, we need words we do not yet have. The next chapter gives us four."*
+A short paragraph promising vocabulary. _"To say what is happening here, we need words we do not yet have. The next chapter gives us four."_
 
 ---
 
@@ -47,11 +47,11 @@ Doña Elena, 58, is on her phone moving money. The rent has come in this morning
 
 She is not a financial professional. She has no MBA. She lived through Argentina's 2001 crisis and learned what happens when one currency is asked to do too many jobs. The five layers running on her iPhone are not a strategy. They are survival.
 
-Now consider a 23-year-old in Berlin — she pulls shots for a living, and this is her day off — paying €4.20 for a coffee somebody else made. Card tap, done. She has not thought about her money once today. She does not know what her bank does with it overnight. She does not know what €4.20 *means* beyond what it buys. The money is invisible to her, and we have been taught that this invisibility is what money is *supposed* to feel like.
+Now consider a 23-year-old in Berlin — she pulls shots for a living, and this is her day off — paying €4.20 for a coffee somebody else made. Card tap, done. She has not thought about her money once today. She does not know what her bank does with it overnight. She does not know what €4.20 _means_ beyond what it buys. The money is invisible to her, and we have been taught that this invisibility is what money is _supposed_ to feel like.
 
 One of these women is doing what the textbooks describe. The other is the actual condition of most of humanity. The textbooks have been describing the wrong one.
 
-The mistake runs deeper than geography. The textbooks have mistaken a successful interface for an account of what money *is*. Berlin's money works so smoothly that its machinery disappears; the disappearance is then taught as the nature of the machine.
+The mistake runs deeper than geography. The textbooks have mistaken a successful interface for an account of what money _is_. Berlin's money works so smoothly that its machinery disappears; the disappearance is then taught as the nature of the machine.
 
 This book is about why those two coffees are the same act in different economic systems, why most of humanity lives closer to Doña Elena than to the Berlin barista, and why economics has spent two centuries teaching the second story as if it were universal.
 

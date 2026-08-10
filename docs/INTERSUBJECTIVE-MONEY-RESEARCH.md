@@ -51,7 +51,7 @@ but:
 
 ### Simmel: value as relation
 
-Georg Simmel provides the philosophical backbone. In *The Philosophy of Money*, value is not a substance residing in objects. It is produced through distance, sacrifice, desire, and exchange. Exchange makes private valuations socially comparable without turning them into one private or collective mind.
+Georg Simmel provides the philosophical backbone. In _The Philosophy of Money_, value is not a substance residing in objects. It is produced through distance, sacrifice, desire, and exchange. Exchange makes private valuations socially comparable without turning them into one private or collective mind.
 
 Money is therefore not an exception to subjectivism. It is the clearest case of value as relation because its usefulness consists largely in connecting one person’s present position to another person’s future willingness to transact.
 
@@ -83,14 +83,14 @@ No single author in this lineage states the entire proposition developed here. T
 
 The “blind men and the elephant” metaphor maps cleanly onto the monetary schools:
 
-| School or tradition | What it sees correctly | What it risks mistaking for the whole |
-|---|---|---|
-| Metallism / Mises | impersonal supply, credible anti-dilution, resistance to issuer discretion | governance conditions for the source of value |
-| Chartalism / Knapp / MMT | legal demand, fiscal capacity, elasticity, the issuer’s authority | an acceptance engine for the source of value |
-| Credit and debt theory | obligation, ledger, memory, settlement | the residue of the relation for money’s entire essence |
-| New Monetarism | liquidity, friction, bilateral exchange, welfare gains | direct transactional surplus for all monetary value |
-| Simmel and intersubjective economics | relational valuation, convention, recursive expectation | social form for the entire price determination |
-| BOVI synthesis | value, selection, mechanism, governance, and incidence as separate layers | no single layer is sufficient |
+| School or tradition                  | What it sees correctly                                                     | What it risks mistaking for the whole                  |
+| ------------------------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Metallism / Mises                    | impersonal supply, credible anti-dilution, resistance to issuer discretion | governance conditions for the source of value          |
+| Chartalism / Knapp / MMT             | legal demand, fiscal capacity, elasticity, the issuer’s authority          | an acceptance engine for the source of value           |
+| Credit and debt theory               | obligation, ledger, memory, settlement                                     | the residue of the relation for money’s entire essence |
+| New Monetarism                       | liquidity, friction, bilateral exchange, welfare gains                     | direct transactional surplus for all monetary value    |
+| Simmel and intersubjective economics | relational valuation, convention, recursive expectation                    | social form for the entire price determination         |
+| BOVI synthesis                       | value, selection, mechanism, governance, and incidence as separate layers  | no single layer is sufficient                          |
 
 The schools disagree partly because they are measuring different fields. A metallist may count discretionary dilution as a cost. A chartalist may count elasticity under shock as a benefit. A New Monetarist may count trades that clear. A political economist may ask who receives the first claim and who bears the adjustment. These are not necessarily mutually exclusive observations; they use different counterfactuals, boundaries, and incidence rules.
 
@@ -102,10 +102,11 @@ For a holder (i), an intentionally schematic expression is:
 
 \[
 P^m_i \approx \operatorname{PV}\left[
-MB^{direct}_i + MB^{network}_i + MB^{option}_i
- - MC^{transaction}_i - MC^{monetary}_i - Risk_i - Extraction_i
-\right]
-\]
+MB^{direct}\_i + MB^{network}\_i + MB^{option}\_i
+
+- MC^{transaction}\_i - MC^{monetary}\_i - Risk_i - Extraction_i
+  \right]
+  \]
 
 where:
 
@@ -169,16 +170,16 @@ Or more briefly:
 
 - [Simmel, “A Chapter in the Philosophy of Value” (1900)](https://www.journals.uchicago.edu/doi/10.1086/210919).
 - [Levy, “Intersubjective Economics, Theory of Production, and the Transformation Problem” (1997)](https://link.springer.com/article/10.1007/BF02294999).
-- [Fullbrook, “An Intersubjective Theory of Value”](https://www.paecon.net/Fullbrook/IntersubjectiveTheoryofValue.pdf); see also [*Intersubjectivity in Economics*](https://www.routledge.com/Intersubjectivity-in-Economics-Agents-and-Structures-1st-Edition/Fullbrook/p/book/9780203116661).
-- [Orléan, *The Empire of Value*](https://academic.oup.com/mit-press-scholarship-online/book/22746) and [“Individual Judgments, Social Values, and Mimetic Interactions”](https://www.ineteconomics.org/uploads/papers/Orlean-Paper.pdf).
-- [Ingham, *The Nature of Money*](https://www.wiley-vch.de/en/areas-interest/humanities-social-sciences/sociology-12so/sociology-of-economics-12soe/the-nature-of-money-978-0-7456-0996-6).
+- [Fullbrook, “An Intersubjective Theory of Value”](https://www.paecon.net/Fullbrook/IntersubjectiveTheoryofValue.pdf); see also [_Intersubjectivity in Economics_](https://www.routledge.com/Intersubjectivity-in-Economics-Agents-and-Structures-1st-Edition/Fullbrook/p/book/9780203116661).
+- [Orléan, _The Empire of Value_](https://academic.oup.com/mit-press-scholarship-online/book/22746) and [“Individual Judgments, Social Values, and Mimetic Interactions”](https://www.ineteconomics.org/uploads/papers/Orlean-Paper.pdf).
+- [Ingham, _The Nature of Money_](https://www.wiley-vch.de/en/areas-interest/humanities-social-sciences/sociology-12so/sociology-of-economics-12soe/the-nature-of-money-978-0-7456-0996-6).
 - [Mäki, “Reflections on the Ontology of Money”](https://doaj.org/article/0246494b0b844209a1d42a816aa94f5d).
 - [Samuelson, “An Exact Consumption-Loan Model of Interest with or without the Social Contrivance of Money” (1958)](https://www.journals.uchicago.edu/doi/10.1086/258100).
 - [Kiyotaki and Wright, “On Money as a Medium of Exchange” (1989)](https://www.journals.uchicago.edu/doi/10.1086/261634).
 - [Lagos and Wright, “A Unified Framework for Monetary Theory and Policy Analysis” (2005)](https://www.journals.uchicago.edu/doi/pdf/10.1086/429804).
 - [Lagos, Rocheteau, and Wright, “Liquidity: A New Monetarist Perspective” (2017)](https://pubs.aeaweb.org/doi/abs/10.1257/jel.20141195).
 - [Kocherlakota, “Money Is Memory” (1998)](https://www.sciencedirect.com/science/article/pii/S0022053197923577).
-- Ostroy and Starr, “The Transactions Role of Money,” in the *Handbook of Monetary Economics*; [working-paper version](https://econweb.ucsd.edu/~rstarr/Handbook.pdf).
+- Ostroy and Starr, “The Transactions Role of Money,” in the _Handbook of Monetary Economics_; [working-paper version](https://econweb.ucsd.edu/~rstarr/Handbook.pdf).
 - [Rysman, “The Economics of Two-Sided Markets” (2009)](https://www.aeaweb.org/articles?id=10.1257%2Fjep.23.3.125).
 
 The canonical BOVI formulation is developed in [`docs/FOUNDATIONS.md`](FOUNDATIONS.md), [`docs/CANON.md`](CANON.md), and [`docs/VALUE-LINEAGE.md`](VALUE-LINEAGE.md).

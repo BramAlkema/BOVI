@@ -3,7 +3,8 @@ title: The Personal PDA
 type: practice
 tags: [PDA, price-discovery, notebook, personal-data-assistant, defensive-practice]
 sources: [WEALTH-TRANSACTION-SEPARATION.md, conversation-derived]
-related: [personal-indices.md, unbundled-personal-stack.md, ../pathologies/inflation-broken-knowledge.md]
+related:
+  [personal-indices.md, unbundled-personal-stack.md, ../pathologies/inflation-broken-knowledge.md]
 ---
 
 # The Personal PDA
@@ -16,9 +17,10 @@ The minimum viable PDA: **a notebook**. The technology is optional. The discipli
 
 ## What the PDA does
 
-The minimum function: *"What did I pay for this last time?"*
+The minimum function: _"What did I pay for this last time?"_
 
 That single question, asked consistently, defeats:
+
 - **Anchoring** — sellers framing a high reference to make their offer look reasonable
 - **Social proof** — "everyone's buying it"
 - **Decoy effects** — the €40 option that exists to make €25 feel cheap
@@ -35,7 +37,7 @@ Your own data, indexed by you, useful to you. No surveillance. No centralised or
 
 ## The Spotify analogy
 
-Optional sharing/recommendation features are *upgrades*, not the base case. The base case is "my own data, indexed by me, useful to me." Social features (compare prices with friends, see trends in your area, get warnings about overcharges) are opt-in.
+Optional sharing/recommendation features are _upgrades_, not the base case. The base case is "my own data, indexed by me, useful to me." Social features (compare prices with friends, see trends in your area, get warnings about overcharges) are opt-in.
 
 The base PDA cannot be commandeered by the state, the platform, or anyone else. The state can pressure McDonald's to lie about the Big Mac price; it cannot pressure your notebook.
 
@@ -48,6 +50,7 @@ A minimum-viable PDA tracks:
 - Optional: vendor, payment method, conversion rate if cross-currency
 
 That's enough to detect:
+
 - Inflation in your actual basket (not the official CPI's basket)
 - Surveillance pricing (when one merchant charges you more than another for the same thing)
 - Shrinkflation (price stable, package smaller)
@@ -56,9 +59,9 @@ That's enough to detect:
 
 ## Why this beats every cognitive bias
 
-Anchoring, social proof, decoy effects — these all exploit the fact that humans cannot reliably remember prices. They assume you have to *guess* whether a price is fair.
+Anchoring, social proof, decoy effects — these all exploit the fact that humans cannot reliably remember prices. They assume you have to _guess_ whether a price is fair.
 
-A PDA *answers* the question, instead of guessing. The seller's framing strategies stop working when you can check the actual number.
+A PDA _answers_ the question, instead of guessing. The seller's framing strategies stop working when you can check the actual number.
 
 ## The minimum viable PDA in five steps
 

@@ -1,8 +1,8 @@
 export interface DistPoint {
-    segment: string;
-    winners: number;
-    losers: number;
-    delta: number;
+  segment: string;
+  winners: number;
+  losers: number;
+  delta: number;
 }
 export declare function pushDist(dp: DistPoint): void;
 export declare function getDist(): DistPoint[];

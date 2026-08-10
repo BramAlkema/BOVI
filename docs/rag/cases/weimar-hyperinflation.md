@@ -15,6 +15,7 @@ German currency collapse following WWI reparations and fiscal crisis. The mark l
 ## BOVI dynamics
 
 ### Obligated mode (O) dominance
+
 - War reparations imposed external obligation hierarchy
 - Government printing to meet fixed nominal obligations
 - Citizens caught between domestic and international authority claims
@@ -22,6 +23,7 @@ German currency collapse following WWI reparations and fiscal crisis. The mark l
 - The state had Obligated-mode authority but no real Value-mode tool
 
 ### Value mode (V) collapse
+
 - Marks ceased functioning as transferable medium
 - Price discovery broke down completely (prices changed by the hour)
 - Barter networks emerged as V-mode alternative
@@ -29,6 +31,7 @@ German currency collapse following WWI reparations and fiscal crisis. The mark l
 - Common knowledge of supply was destroyed by uncontrolled printing
 
 ### Balanced mode (B) chaos
+
 - Wages/prices repriced daily, breaking accounting systems
 - No stable unit for tracking obligations across time
 - Contracts became impossible to maintain
@@ -36,6 +39,7 @@ German currency collapse following WWI reparations and fiscal crisis. The mark l
 - Inter-generational wealth transfers obliterated
 
 ### Immediate mode (I) survival
+
 - Communities reverted to direct reciprocity
 - Food more valuable than financial assets
 - Personal relationships replaced institutional trust
@@ -50,6 +54,7 @@ This is the canonical case of **inflation as broken common knowledge**. Once sup
 ## Pattern repetition
 
 The Weimar pattern has repeated in:
+
 - Hungary (1946 — fastest hyperinflation in recorded history)
 - Yugoslavia (1992-1994)
 - Zimbabwe (2007-2008)
@@ -58,6 +63,7 @@ The Weimar pattern has repeated in:
 - Argentina (multiple times, ongoing — see [Argentina case](argentina-bigmac-dollarisation.md))
 
 In each, the same sequence:
+
 1. **Anchor wobble** — official numbers diverge from lived experience
 2. **Network fray** — sellers stop accepting local currency for big items
 3. **Function migration** — store-of-value escapes first, unit-of-account follows, medium-of-exchange last

@@ -12,19 +12,19 @@ related: [five-axioms.md, three-anchor-types.md, portable-forgetful-ledger.md]
 
 Money has value because of **symmetrical common knowledge that enough counterparties will keep accepting it at roughly known terms**.
 
-This is the load-bearing axiom that underwrites monetary value. It is a *Schelling point* — money works because everyone believes everyone else will keep accepting it, and that belief is self-fulfilling once established.
+This is the load-bearing axiom that underwrites monetary value. It is a _Schelling point_ — money works because everyone believes everyone else will keep accepting it, and that belief is self-fulfilling once established.
 
 ## The single axiom, three inputs
 
 The earlier framing split this into two pillars (anchored supply + network acceptance). Conversation-derived synthesis collapses them into one axiom with three inputs:
 
-| Input | What it provides |
-|---|---|
-| **Anchored supply** | Credible answer to "how many of these are there?" — legal, natural, or mathematical (see [anchor types](three-anchor-types.md)) |
-| **Network depth** | Enough current holders/acceptors that the next counterparty will likely take it |
-| **Issuer/protocol credibility** | Track record that the answer to the supply question won't suddenly change |
+| Input                           | What it provides                                                                                                                |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Anchored supply**             | Credible answer to "how many of these are there?" — legal, natural, or mathematical (see [anchor types](three-anchor-types.md)) |
+| **Network depth**               | Enough current holders/acceptors that the next counterparty will likely take it                                                 |
+| **Issuer/protocol credibility** | Track record that the answer to the supply question won't suddenly change                                                       |
 
-All three feed the single property: *belief that future acceptance will continue at known terms*.
+All three feed the single property: _belief that future acceptance will continue at known terms_.
 
 ## Why this collapses the old two-pillar model
 
@@ -33,7 +33,7 @@ You cannot have one without the other for money to function:
 - Known supply without acceptance = perfectly anchored local scrip nobody wants
 - Acceptance without known supply = loyalty points whose issuer can dilute freely without disclosure
 
-Both fail axiom 4. So they're really facets of one underlying property — *predictable continued acceptability*.
+Both fail axiom 4. So they're really facets of one underlying property — _predictable continued acceptability_.
 
 ## Failure modes (diagnostic)
 
@@ -57,6 +57,7 @@ Same axiom satisfied by different supplier configurations. None is privileged; t
 ## The Schelling-point property
 
 Once common knowledge is established, the equilibrium is self-reinforcing:
+
 - I will accept this because I expect others to
 - They will accept it because they expect me to
 - Everybody's expectation depends on everybody else's expectation

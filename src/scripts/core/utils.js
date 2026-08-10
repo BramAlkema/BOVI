@@ -3,40 +3,40 @@
  * Common helper functions and DOM utilities
  */
 
-export const $ = (selector) => document.querySelector(selector);
-export const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+export const $ = selector => document.querySelector(selector);
+export const $$ = selector => Array.from(document.querySelectorAll(selector));
 
 /**
  * Formatting utilities
  */
 export const fmt = {
-  currency: (n) => `€${n.toFixed(2)}`,
-  lts: (n) => `€LTS ${n.toFixed(2)}`,
-  percentage: (n) => `${n.toFixed(1)}%`,
-  number: (n) => n.toLocaleString()
+  currency: n => `€${n.toFixed(2)}`,
+  lts: n => `€LTS ${n.toFixed(2)}`,
+  percentage: n => `${n.toFixed(1)}%`,
+  number: n => n.toLocaleString(),
 };
 
 /**
  * DOM manipulation utilities
  */
 export const dom = {
-  show: (element) => element.hidden = false,
-  hide: (element) => element.hidden = true,
-  toggle: (element) => element.hidden = !element.hidden,
-  
+  show: element => (element.hidden = false),
+  hide: element => (element.hidden = true),
+  toggle: element => (element.hidden = !element.hidden),
+
   addClass: (element, className) => element.classList.add(className),
   removeClass: (element, className) => element.classList.remove(className),
   toggleClass: (element, className) => element.classList.toggle(className),
-  
-  setContent: (element, content) => element.innerHTML = content,
-  setText: (element, text) => element.textContent = text,
-  
+
+  setContent: (element, content) => (element.innerHTML = content),
+  setText: (element, text) => (element.textContent = text),
+
   createElement: (tag, className = "", content = "") => {
     const element = document.createElement(tag);
     if (className) element.className = className;
     if (content) element.innerHTML = content;
     return element;
-  }
+  },
 };
 
 /**
@@ -46,14 +46,14 @@ export const events = {
   on: (element, event, handler) => element.addEventListener(event, handler),
   off: (element, event, handler) => element.removeEventListener(event, handler),
   once: (element, event, handler) => element.addEventListener(event, handler, { once: true }),
-  
+
   delegate: (parent, selector, event, handler) => {
-    parent.addEventListener(event, (e) => {
+    parent.addEventListener(event, e => {
       if (e.target.matches(selector)) {
         handler.call(e.target, e);
       }
     });
-  }
+  },
 };
 
 /**
@@ -64,16 +64,16 @@ export const animate = {
     element.style.opacity = "0";
     element.style.transition = `opacity ${duration}ms ease`;
     element.hidden = false;
-    
+
     requestAnimationFrame(() => {
       element.style.opacity = "1";
     });
   },
-  
+
   fadeOut: (element, duration = 300) => {
     element.style.opacity = "1";
     element.style.transition = `opacity ${duration}ms ease`;
-    
+
     requestAnimationFrame(() => {
       element.style.opacity = "0";
       setTimeout(() => {
@@ -81,25 +81,25 @@ export const animate = {
       }, duration);
     });
   },
-  
+
   slideIn: (element, direction = "down", duration = 300) => {
     const transforms = {
       down: "translateY(-10px)",
       up: "translateY(10px)",
       left: "translateX(10px)",
-      right: "translateX(-10px)"
+      right: "translateX(-10px)",
     };
-    
+
     element.style.transform = transforms[direction];
     element.style.opacity = "0";
     element.style.transition = `transform ${duration}ms ease, opacity ${duration}ms ease`;
     element.hidden = false;
-    
+
     requestAnimationFrame(() => {
       element.style.transform = "translate(0)";
       element.style.opacity = "1";
     });
-  }
+  },
 };
 
 /**
@@ -109,25 +109,25 @@ export const state = {
   create: (initialState = {}) => {
     const _state = { ...initialState };
     const listeners = new Set();
-    
+
     return {
-      get: (key) => key ? _state[key] : { ..._state },
+      get: key => (key ? _state[key] : { ..._state }),
       set: (key, value) => {
         const oldValue = _state[key];
         _state[key] = value;
         listeners.forEach(fn => fn(key, value, oldValue));
       },
-      update: (updates) => {
+      update: updates => {
         Object.entries(updates).forEach(([key, value]) => {
           this.set(key, value);
         });
       },
-      subscribe: (fn) => {
+      subscribe: fn => {
         listeners.add(fn);
         return () => listeners.delete(fn);
-      }
+      },
     };
-  }
+  },
 };
 
 /**
@@ -150,13 +150,13 @@ export const debounce = (func, wait) => {
  */
 export const throttle = (func, limit) => {
   let inThrottle;
-  return function() {
+  return function () {
     const args = arguments;
     const context = this;
     if (!inThrottle) {
       func.apply(context, args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
 };

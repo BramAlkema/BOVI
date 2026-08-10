@@ -2,21 +2,21 @@ import { applyAllPendingDefaults } from "../../m1/safeCta.js";
 import { getBillsSafe, getBestDeal, getEnergyStatus } from "../../api/tiles.js";
 import { nextEpisodes, markPlayed } from "../../api/episodes.js";
 export const SatnavPlugin = {
-    manifest: {
-        id: "ui-satnav",
-        name: "Satnav (M0/M1)",
-        version: "1.0.0",
-        targets: ["L0", "L1", "L2"],
-        provides: ["appShell", "home"],
-        cssScoped: true
-    },
-    async mount(ctx) {
-        const shell = document.createElement("div");
-        const shadow = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : null;
-        const host = shadow ?? ctx.root;
-        host.innerHTML = "";
-        host.appendChild(shell);
-        shell.innerHTML = `
+  manifest: {
+    id: "ui-satnav",
+    name: "Satnav (M0/M1)",
+    version: "1.0.0",
+    targets: ["L0", "L1", "L2"],
+    provides: ["appShell", "home"],
+    cssScoped: true,
+  },
+  async mount(ctx) {
+    const shell = document.createElement("div");
+    const shadow = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : null;
+    const host = shadow ?? ctx.root;
+    host.innerHTML = "";
+    host.appendChild(shell);
+    shell.innerHTML = `
       <style>
         :host, .wrap { font-family: system-ui, sans-serif; color: #e7eef9; background: #0a0e1a; }
         .wrap { display: grid; gap: 12px; padding: 16px; min-height: 100vh; }
@@ -59,101 +59,100 @@ export const SatnavPlugin = {
         </div>
       </div>
     `;
-        const safeBtn = shell.querySelector("#safe");
-        safeBtn.onclick = async () => {
-            safeBtn.disabled = true;
-            safeBtn.textContent = "Applying...";
-            try {
-                const applied = await applyAllPendingDefaults();
-                safeBtn.textContent = applied > 0 ? `Applied ${applied} defaults` : "No defaults to apply";
-                setTimeout(() => {
-                    safeBtn.disabled = false;
-                    safeBtn.textContent = "🚗 Auto-drive: Keep me safe";
-                }, 2000);
-            }
-            catch (error) {
-                safeBtn.textContent = "Error - try again";
-                safeBtn.disabled = false;
-                console.error("Safe CTA failed:", error);
-            }
-        };
-        (async () => {
-            try {
-                const [roof, food, power] = await Promise.all([
-                    getBillsSafe(),
-                    getBestDeal(),
-                    getEnergyStatus()
-                ]);
-                shell.querySelector("#overall").textContent = roof === "OK" ? "✅ All systems clear" : "⚠️ Attention needed";
-                shell.querySelector("#tile-roof").textContent = roof === "OK" ? "Bills covered" : "Bills need attention";
-                shell.querySelector("#tile-food").textContent = `${food.label}: €${food.delta.toFixed(2)}`;
-                shell.querySelector("#tile-power").textContent = power === "OK" ? "Contract OK" : power;
-            }
-            catch (error) {
-                console.error("Failed to load tiles:", error);
-                shell.querySelector("#overall").textContent = "⚠️ Error loading status";
-            }
-        })();
-        (async () => {
-            try {
-                const episodes = await nextEpisodes(1);
-                const ep = episodes[0];
-                if (!ep) {
-                    shell.querySelector("#ep").textContent = "All episodes played";
-                    return;
-                }
-                shell.querySelector("#ep").textContent = ep.title;
-                shell.querySelector("#ep-mode").textContent = `${ep.mode} mode • ${ep.lengthMin} min`;
-                const playBtn = shell.querySelector("#play");
+    const safeBtn = shell.querySelector("#safe");
+    safeBtn.onclick = async () => {
+      safeBtn.disabled = true;
+      safeBtn.textContent = "Applying...";
+      try {
+        const applied = await applyAllPendingDefaults();
+        safeBtn.textContent = applied > 0 ? `Applied ${applied} defaults` : "No defaults to apply";
+        setTimeout(() => {
+          safeBtn.disabled = false;
+          safeBtn.textContent = "🚗 Auto-drive: Keep me safe";
+        }, 2000);
+      } catch (error) {
+        safeBtn.textContent = "Error - try again";
+        safeBtn.disabled = false;
+        console.error("Safe CTA failed:", error);
+      }
+    };
+    (async () => {
+      try {
+        const [roof, food, power] = await Promise.all([
+          getBillsSafe(),
+          getBestDeal(),
+          getEnergyStatus(),
+        ]);
+        shell.querySelector("#overall").textContent =
+          roof === "OK" ? "✅ All systems clear" : "⚠️ Attention needed";
+        shell.querySelector("#tile-roof").textContent =
+          roof === "OK" ? "Bills covered" : "Bills need attention";
+        shell.querySelector("#tile-food").textContent = `${food.label}: €${food.delta.toFixed(2)}`;
+        shell.querySelector("#tile-power").textContent = power === "OK" ? "Contract OK" : power;
+      } catch (error) {
+        console.error("Failed to load tiles:", error);
+        shell.querySelector("#overall").textContent = "⚠️ Error loading status";
+      }
+    })();
+    (async () => {
+      try {
+        const episodes = await nextEpisodes(1);
+        const ep = episodes[0];
+        if (!ep) {
+          shell.querySelector("#ep").textContent = "All episodes played";
+          return;
+        }
+        shell.querySelector("#ep").textContent = ep.title;
+        shell.querySelector("#ep-mode").textContent = `${ep.mode} mode • ${ep.lengthMin} min`;
+        const playBtn = shell.querySelector("#play");
+        playBtn.disabled = false;
+        playBtn.onclick = async () => {
+          playBtn.disabled = true;
+          playBtn.textContent = "Playing...";
+          try {
+            await markPlayed(ep.id);
+            ctx.bus.emit("ui.toast", { kind: "info", msg: `Played: ${ep.title}` });
+            playBtn.textContent = "Played ✓";
+            setTimeout(async () => {
+              const nextEps = await nextEpisodes(1);
+              if (nextEps[0]) {
+                const nextEp = nextEps[0];
+                shell.querySelector("#ep").textContent = nextEp.title;
+                shell.querySelector("#ep-mode").textContent =
+                  `${nextEp.mode} mode • ${nextEp.lengthMin} min`;
+                playBtn.textContent = "Play";
                 playBtn.disabled = false;
                 playBtn.onclick = async () => {
-                    playBtn.disabled = true;
-                    playBtn.textContent = "Playing...";
-                    try {
-                        await markPlayed(ep.id);
-                        ctx.bus.emit("ui.toast", { kind: "info", msg: `Played: ${ep.title}` });
-                        playBtn.textContent = "Played ✓";
-                        setTimeout(async () => {
-                            const nextEps = await nextEpisodes(1);
-                            if (nextEps[0]) {
-                                const nextEp = nextEps[0];
-                                shell.querySelector("#ep").textContent = nextEp.title;
-                                shell.querySelector("#ep-mode").textContent = `${nextEp.mode} mode • ${nextEp.lengthMin} min`;
-                                playBtn.textContent = "Play";
-                                playBtn.disabled = false;
-                                playBtn.onclick = async () => { await markPlayed(nextEp.id); };
-                            }
-                            else {
-                                shell.querySelector("#ep").textContent = "All episodes played";
-                                shell.querySelector("#ep-mode").textContent = "Check back later";
-                            }
-                        }, 1000);
-                    }
-                    catch (error) {
-                        console.error("Failed to mark episode played:", error);
-                        playBtn.textContent = "Error";
-                        playBtn.disabled = false;
-                    }
+                  await markPlayed(nextEp.id);
                 };
-            }
-            catch (error) {
-                console.error("Failed to load episodes:", error);
-                shell.querySelector("#ep").textContent = "Error loading episode";
-            }
-        })();
-        return {
-            unmount() {
-                if (shadow) {
-                    shadow.innerHTML = "";
-                }
-                else {
-                    ctx.root.innerHTML = "";
-                }
-            },
-            onProfileChange(p) {
-                console.log("Profile changed to:", p);
-            }
+              } else {
+                shell.querySelector("#ep").textContent = "All episodes played";
+                shell.querySelector("#ep-mode").textContent = "Check back later";
+              }
+            }, 1000);
+          } catch (error) {
+            console.error("Failed to mark episode played:", error);
+            playBtn.textContent = "Error";
+            playBtn.disabled = false;
+          }
         };
-    }
+      } catch (error) {
+        console.error("Failed to load episodes:", error);
+        shell.querySelector("#ep").textContent = "Error loading episode";
+      }
+    })();
+    return {
+      unmount() {
+        if (shadow) {
+          shadow.innerHTML = "";
+        } else {
+          ctx.root.innerHTML = "";
+        }
+      },
+      onProfileChange(p) {
+        console.log("Profile changed to:", p);
+      },
+    };
+  },
 };
 //# sourceMappingURL=m0-satnav.plugin.js.map

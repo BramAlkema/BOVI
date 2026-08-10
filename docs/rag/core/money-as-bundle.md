@@ -13,10 +13,12 @@ related: [unbundling-thesis.md, four-modes-overview.md, ../architecture/two-laye
 **Money always serves all four fairness modes simultaneously, whether we acknowledge it or not.** This is BOVI's central empirical claim about money.
 
 "Bundling" in BOVI does NOT mean:
+
 - Product bundling (cable packages)
 - Service bundling (phone + internet)
 
 "Bundling" in BOVI DOES mean:
+
 - Every monetary system inevitably combines all four fairness logics
 - You cannot have money that serves only one mode
 - The question is not WHETHER to bundle but HOW
@@ -40,20 +42,25 @@ Every attempt to create "pure" monetary systems failed to escape bundling:
 ## Concrete bundling examples
 
 ### Bitcoin's unintended bundle
+
 - **Value**: Price discovery through exchanges ✅ (intended)
 - **Balanced**: Blockchain ledger tracking every satoshi ✅ (emergent)
 - **Obligated**: Mining pools create authority hierarchies ✅ (emergent)
 - **Immediate**: Community culture, "HODL together" ✅ (emergent)
 
 ### US dollar bundle
+
 The same $20 bill simultaneously serves:
+
 - **Value**: Market exchange and price signals
 - **Balanced**: Accounting and debt tracking
 - **Obligated**: Tax payments and legal tender laws
 - **Immediate**: Family gifts and community support
 
 ### Local currency bundle
+
 Community currencies try to emphasise Immediate but still bundle:
+
 - **Immediate**: Community solidarity (intended)
 - **Balanced**: Still need accounting systems
 - **Value**: Still has exchange rates to dollars
@@ -61,24 +68,24 @@ Community currencies try to emphasise Immediate but still bundle:
 
 ## Conscious vs unconscious bundling
 
-| Unconscious bundling (default) | Conscious bundling (BOVI's goal) |
-|---|---|
-| Designers optimise for one mode | Acknowledge all four modes upfront |
-| Other modes emerge chaotically | Deliberately design the proportions |
-| Conflicts and contradictions arise | Make trade-offs explicit |
-| People feel unfairness without naming it | Give users agency in the mix |
+| Unconscious bundling (default)           | Conscious bundling (BOVI's goal)    |
+| ---------------------------------------- | ----------------------------------- |
+| Designers optimise for one mode          | Acknowledge all four modes upfront  |
+| Other modes emerge chaotically           | Deliberately design the proportions |
+| Conflicts and contradictions arise       | Make trade-offs explicit            |
+| People feel unfairness without naming it | Give users agency in the mix        |
 
 ## Bundling proportions vary by context
 
 Different domains need different mode proportions. Examples:
 
-| Context | V | B | O | I |
-|---|---|---|---|---|
-| **Family** | 0% | 20% | 10% | 70% |
-| **Workplace** | 40% | 15% | 40% | 5% |
-| **Marketplace** | 70% | 20% | 10% | 0% |
-| **Healthcare (UK)** | low | low | high | medium |
-| **Healthcare (US)** | high | low | medium | low |
+| Context             | V    | B   | O      | I      |
+| ------------------- | ---- | --- | ------ | ------ |
+| **Family**          | 0%   | 20% | 10%    | 70%    |
+| **Workplace**       | 40%  | 15% | 40%    | 5%     |
+| **Marketplace**     | 70%  | 20% | 10%    | 0%     |
+| **Healthcare (UK)** | low  | low | high   | medium |
+| **Healthcare (US)** | high | low | medium | low    |
 
 When people say a system "feels unfair," they are usually detecting a **bundle mismatch** — the system's mode proportions don't match their context expectations.
 

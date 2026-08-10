@@ -3,23 +3,20 @@ export default {
   testEnvironment: "jsdom",
   extensionsToTreatAsEsm: [".ts"],
   transform: {
-    "^.+\\.ts$": ["ts-jest", {
-      useESM: true
-    }]
+    "^.+\\.ts$": [
+      "ts-jest",
+      {
+        useESM: true,
+      },
+    ],
   },
   moduleNameMapper: {
-    "^(\\.{1,2}/.*)\\.js$": "$1"
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
-  testMatch: [
-    "<rootDir>/lib/**/__tests__/**/*.test.ts"
-  ],
-  collectCoverageFrom: [
-    "lib/**/*.ts",
-    "!lib/**/__tests__/**",
-    "!lib/**/*.d.ts"
-  ],
+  testMatch: ["<rootDir>/lib/**/__tests__/**/*.test.ts"],
+  collectCoverageFrom: ["lib/**/*.ts", "!lib/**/__tests__/**", "!lib/**/*.d.ts"],
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov", "html"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
-  testTimeout: 10000
+  testTimeout: 10000,
 };

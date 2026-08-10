@@ -23,7 +23,7 @@
     },
     {
       "id": "assess_gap",
-      "type": "V.Assess", 
+      "type": "V.Assess",
       "label": "Assess negotiation gap",
       "description": "Value mode: proportional fairness evaluation",
       "config": {
@@ -36,7 +36,7 @@
       "id": "submit_counter",
       "type": "B.Default",
       "label": "Submit counter-offer",
-      "description": "Default to balanced fairness unless overridden", 
+      "description": "Default to balanced fairness unless overridden",
       "config": {
         "timeout_s": 10,
         "episode": "ep-lts",
@@ -65,7 +65,7 @@
       "label": "Queue LTS education",
       "description": "Explain real vs nominal money concepts",
       "config": {
-        "episode_id": "ep-lts", 
+        "episode_id": "ep-lts",
         "trigger": "on_counter_submitted",
         "priority": "medium"
       },
@@ -81,7 +81,7 @@
     },
     {
       "from": "assess_gap",
-      "to": "submit_counter", 
+      "to": "submit_counter",
       "label": "gap_significant",
       "condition": "negotiation_recommended == true"
     },
@@ -101,7 +101,7 @@
   "meta": {
     "version": "1.0.0",
     "bovi_modes": ["B", "V"],
-    "primary_mode": "B", 
+    "primary_mode": "B",
     "created": "2024-08-24",
     "tags": ["rent", "negotiation", "balanced_fairness", "indexation"]
   }

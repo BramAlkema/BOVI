@@ -199,7 +199,7 @@ export class BoviAPIError extends Error {
     public details?: any
   ) {
     super(message);
-    this.name = 'BoviAPIError';
+    this.name = "BoviAPIError";
   }
 }
 

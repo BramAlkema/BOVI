@@ -16,7 +16,7 @@ The BOVI educational mission requires **fundamental mental model transformation*
 
 **Educational Approach**: Interactive scenarios where users see the **same transaction** interpreted through four different fairness lenses, revealing the "bundle" nature.
 
-### **❌ Unlearn #2: "My Money Preferences are Rational"**  
+### **❌ Unlearn #2: "My Money Preferences are Rational"**
 
 **Current Mental Model**: "I prefer Bitcoin/cash/credit cards because they're objectively better for X reason."
 
@@ -100,28 +100,38 @@ The BOVI educational mission requires **fundamental mental model transformation*
 
 ## 🎓 Pedagogical Sequence for Mental Model Change
 
-### **Stage 1: Recognition** 
+### **Stage 1: Recognition**
+
 "I already use multiple fairness modes instinctively"
+
 - Family vs. workplace money scenarios
 - Help users see they naturally mode-switch
 
-### **Stage 2: Expansion**  
+### **Stage 2: Expansion**
+
 "Other people's money reactions make sense from their fairness mode"
+
 - Case study analysis: Bitcoin vs. MMT through fairness lens
 - Build empathy for different perspectives
 
 ### **Stage 3: Analysis**
-"All monetary systems bundle the modes differently"  
+
+"All monetary systems bundle the modes differently"
+
 - Historical comparison: See how different eras bundled modes
 - Current system analysis: Where do you see each mode today?
 
 ### **Stage 4: Agency**
+
 "I can make conscious bundling choices"
+
 - Personal money audit: Which modes dominate your current approach?
 - Tool selection: Choose financial tools that align with your values
 
-### **Stage 5: Application**  
+### **Stage 5: Application**
+
 "I can navigate money debates with more wisdom"
+
 - Policy analysis through BOVI lens
 - Design thinking for better systems
 

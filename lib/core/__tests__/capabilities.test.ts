@@ -70,7 +70,7 @@ describe("Capabilities System", () => {
         expect.objectContaining({
           type: "profile:changed",
           detail: "L2",
-        }),
+        })
       );
     });
   });

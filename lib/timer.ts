@@ -3,14 +3,14 @@
  * Vanilla JavaScript timer system for Flow DSL timeouts
  */
 
-import { Bus, emit } from './bus.js';
+import { Bus, emit } from "./bus.js";
 
 export interface TimerConfig {
   flow: string;
   node: string;
   timeout_s: number;
   action: string;
-  mode: 'V' | 'I' | 'B' | 'O';
+  mode: "V" | "I" | "B" | "O";
 }
 
 export interface ActiveTimer {
@@ -29,13 +29,13 @@ class TimerManager {
   start(config: TimerConfig): string {
     const id = `${config.flow}-${config.node}-${++this.idCounter}`;
     const startTime = Date.now();
-    
+
     // Emit timer started event
-    emit(`${config.mode}.default.started` as keyof import('./bus.js').BoviEventMap, {
+    emit(`${config.mode}.default.started` as keyof import("./bus.js").BoviEventMap, {
       flow: config.flow,
       node: config.node,
       timeout_s: config.timeout_s,
-      action: config.action
+      action: config.action,
     });
 
     // Set up timeout for default action
@@ -47,13 +47,13 @@ class TimerManager {
     const intervalHandle = window.setInterval(() => {
       const elapsed = (Date.now() - startTime) / 1000;
       const remaining = Math.max(0, config.timeout_s - elapsed);
-      
-      emit('ui.countdown.tick', {
+
+      emit("ui.countdown.tick", {
         flow: config.flow,
         node: config.node,
-        remaining: Math.ceil(remaining)
+        remaining: Math.ceil(remaining),
       });
-      
+
       // Stop ticking when we reach zero
       if (remaining <= 0) {
         const timer = this.timers.get(id);
@@ -69,14 +69,14 @@ class TimerManager {
       startTime,
       timeoutHandle,
       intervalHandle,
-      cancelled: false
+      cancelled: false,
     };
 
     this.timers.set(id, timer);
     return id;
   }
 
-  cancel(timerId: string, reason: string = 'user_action'): boolean {
+  cancel(timerId: string, reason: string = "user_action"): boolean {
     const timer = this.timers.get(timerId);
     if (!timer || timer.cancelled) {
       return false;
@@ -92,10 +92,10 @@ class TimerManager {
     timer.cancelled = true;
 
     // Emit cancellation event
-    emit(`${timer.config.mode}.default.cancelled` as keyof import('./bus.js').BoviEventMap, {
+    emit(`${timer.config.mode}.default.cancelled` as keyof import("./bus.js").BoviEventMap, {
       flow: timer.config.flow,
       node: timer.config.node,
-      reason
+      reason,
     });
 
     return true;
@@ -116,11 +116,11 @@ class TimerManager {
     const result = this.performAction(timer.config.action, timer.config);
 
     // Emit completion event
-    emit(`${timer.config.mode}.default.applied` as keyof import('./bus.js').BoviEventMap, {
+    emit(`${timer.config.mode}.default.applied` as keyof import("./bus.js").BoviEventMap, {
       flow: timer.config.flow,
       node: timer.config.node,
       action: timer.config.action,
-      result
+      result,
     });
 
     // Clean up
@@ -130,53 +130,53 @@ class TimerManager {
   private performAction(action: string, config: TimerConfig): any {
     // Parse and execute the action
     // This is where Flow DSL actions get translated to actual operations
-    
+
     switch (action) {
-      case 'I.Fallback.high':
-        return this.executeImmediateFallback('high', config);
-        
-      case 'I.Fallback.usual':
-        return this.executeImmediateFallback('usual', config);
-        
-      case 'B.Fallback.fair':
+      case "I.Fallback.high":
+        return this.executeImmediateFallback("high", config);
+
+      case "I.Fallback.usual":
+        return this.executeImmediateFallback("usual", config);
+
+      case "B.Fallback.fair":
         return this.executeBalancedFallback(config);
-        
-      case 'O.Fallback.comply':
+
+      case "O.Fallback.comply":
         return this.executeObligatedFallback(config);
-        
+
       default:
         console.warn(`Unknown action: ${action}`);
-        return { action, status: 'unknown' };
+        return { action, status: "unknown" };
     }
   }
 
-  private executeImmediateFallback(level: 'high' | 'usual', config: TimerConfig): any {
+  private executeImmediateFallback(level: "high" | "usual", config: TimerConfig): any {
     // Immediate mode: choose best items based on level
     return {
-      mode: 'immediate',
+      mode: "immediate",
       level,
       message: `Selected ${level} quality items for immediate consumption`,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
   }
 
   private executeBalancedFallback(config: TimerConfig): any {
     // Balanced mode: calculate fair distribution
     return {
-      mode: 'balanced',
-      message: 'Applied fair counter-offer calculation',
-      calculation: 'based on market rates and personal circumstances',
-      timestamp: Date.now()
+      mode: "balanced",
+      message: "Applied fair counter-offer calculation",
+      calculation: "based on market rates and personal circumstances",
+      timestamp: Date.now(),
     };
   }
 
   private executeObligatedFallback(config: TimerConfig): any {
     // Obligated mode: follow authority/group decision
     return {
-      mode: 'obligated',
-      message: 'Complied with group/authority recommendation',
-      authority: 'collective decision',
-      timestamp: Date.now()
+      mode: "obligated",
+      message: "Complied with group/authority recommendation",
+      authority: "collective decision",
+      timestamp: Date.now(),
     };
   }
 
@@ -196,8 +196,8 @@ class TimerManager {
 
   // Cleanup method for when timers are no longer needed
   cleanup(): void {
-    this.timers.forEach((timer) => {
-      this.cancel(timer.id, 'cleanup');
+    this.timers.forEach(timer => {
+      this.cancel(timer.id, "cleanup");
     });
     this.timers.clear();
   }
@@ -208,6 +208,7 @@ export const Timer = new TimerManager();
 
 // Convenience functions
 export const startTimer = (config: TimerConfig): string => Timer.start(config);
-export const cancelTimer = (timerId: string, reason?: string): boolean => Timer.cancel(timerId, reason);
+export const cancelTimer = (timerId: string, reason?: string): boolean =>
+  Timer.cancel(timerId, reason);
 export const getRemainingTime = (timerId: string): number => Timer.getRemainingTime(timerId);
 export const getActiveTimers = (): ActiveTimer[] => Timer.getActiveTimers();

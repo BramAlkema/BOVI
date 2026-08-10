@@ -38,7 +38,7 @@ In each case, the same exchange is interpretable through any of the four modes, 
 
 ## Why the framework calls them "collisions"
 
-It's not just disagreement. It's structural mismatch. Two people can both be reasoning correctly *within* their assumed mode and still be in unresolvable conflict. There is no "right answer" inside the dispute — there is only the meta-question of which mode applies.
+It's not just disagreement. It's structural mismatch. Two people can both be reasoning correctly _within_ their assumed mode and still be in unresolvable conflict. There is no "right answer" inside the dispute — there is only the meta-question of which mode applies.
 
 Once the mode is named, the dispute usually dissolves: both parties realise they were arguing past each other rather than about an amount.
 
@@ -49,7 +49,7 @@ When in conflict over money, the diagnostic question is:
 > **"Which mode does each of us think this is?"**
 
 If you and the other party agree on the mode, you can proceed to negotiate the substance.
-If you don't, you have to *negotiate the mode first* before any amount-talk makes sense.
+If you don't, you have to _negotiate the mode first_ before any amount-talk makes sense.
 
 Most relational money pain is unnamed mode collision. Naming the mode is the intervention.
 
@@ -64,17 +64,18 @@ Don't extend the metaphor too far. It's a teaching aid, not a model.
 Mode collision and adversarial mode forcing are different:
 
 - **Mode collision**: two parties (peers, friends, family) assume different modes; the fight is symmetric and can be resolved by mutual naming.
-- **Adversarial mode forcing**: a system (algorithm, employer, platform) *imposes* a mode on a user without consent. Asymmetric. The user has no negotiating partner.
+- **Adversarial mode forcing**: a system (algorithm, employer, platform) _imposes_ a mode on a user without consent. Asymmetric. The user has no negotiating partner.
 
 See [adversarial mode forcing](../pathologies/adversarial-mode-forcing.md) for the asymmetric case.
 
 ## Mode collision in politics
 
 At societal scale, most political fights about institutions are mode-default disputes:
+
 - Healthcare: Value default (US) vs Obligated default (UK) vs Immediate (family-care cultures) vs Balanced (mutualist insurance)
 - Education: paid (Value) vs public (Obligated) vs community (Immediate) vs cooperative (Balanced)
 
-Political opponents talk past each other because each is asserting a different *appropriate mode* for the same domain without naming the assertion. The framework's contribution is to make the assertion legible.
+Political opponents talk past each other because each is asserting a different _appropriate mode_ for the same domain without naming the assertion. The framework's contribution is to make the assertion legible.
 
 ## See also
 

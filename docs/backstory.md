@@ -15,7 +15,7 @@ Every monetary reform movement tells a compelling origin story:
 - **Anthropologists:** "Gift economies preceded market exchange"
 - **Historians:** "Merchant tokens enabled long-distance trade"
 
-Each camp treats their story as *the* truth and dismisses others as wrong. But what if they're all right?
+Each camp treats their story as _the_ truth and dismisses others as wrong. But what if they're all right?
 
 ## The Breakthrough: Fiske's Fairness Modes
 
@@ -33,7 +33,7 @@ These aren't learned behaviors—they're cognitive primitives found across all c
 What if each monetary origin story reflects one of Fiske's fairness modes?
 
 - **Barter stories** → Market Pricing → **V**alue mode
-- **Tax stories** → Authority Ranking → **O**bligated mode  
+- **Tax stories** → Authority Ranking → **O**bligated mode
 - **Ledger stories** → Equality Matching → **B**alanced mode
 - **Gift stories** → Communal Sharing → **I**mmediate mode
 
@@ -44,18 +44,21 @@ This explains why money debates feel like moral fights. People aren't just argui
 Looking at monetary history through BOVI lens reveals the pattern:
 
 ### Ancient Mesopotamia (3000 BCE)
+
 - **Balanced:** Cuneiform tablets tracking debts between temples
 - **Obligated:** Silver payments required for temple taxes
 - **Immediate:** Barley rations for workers (direct provision)
 - **Value:** Standardized weights enabling trade
 
 ### Medieval England (1100-1800 CE)
+
 - **Balanced:** Tally sticks recording symmetric obligations
 - **Obligated:** Royal mints requiring tax payments in official coins
 - **Immediate:** Village commons and mutual aid systems
 - **Value:** Merchant credit networks spanning Europe
 
 ### Modern Crisis (2008-Present)
+
 - **Balanced:** "Fairness" demands for equal treatment
 - **Obligated:** Central bank authority questioned
 - **Immediate:** "This feels wrong" populist reactions
@@ -103,4 +106,4 @@ The goal isn't to solve money's contradictions but to navigate them with more wi
 
 ---
 
-*"The visceral roots of fairness explain why money reforms spark moral outrage—each mode plugs into deep fairness instincts that resist purely rational analysis."*
+_"The visceral roots of fairness explain why money reforms spark moral outrage—each mode plugs into deep fairness instincts that resist purely rational analysis."_
