@@ -1,12 +1,12 @@
 # Appendix: The Executable Canon
 
-> *A contract is an argument stripped of its adjectives. It cannot tell us that an institution is wise, fair, or legitimate. It can tell us who may do what, to whom, under which condition, and where the remainder goes. That is already a severe improvement in honesty.*
+> _A contract is an argument stripped of its adjectives. It cannot tell us that an institution is wise, fair, or legitimate. It can tell us who may do what, to whom, under which condition, and where the remainder goes. That is already a severe improvement in honesty._
 
 **Part VIII — The Machinery** · [Index](README.md) · Prev: [Epilogue](epilogue-the-machinery.md) · Next: [The Field Book](fieldbook-the-money-tool.md)
 
 The body of this book made a claim about money in ordinary language. The Epilogue made the same claim in mathematics. Here we make it one last time in code.
 
-That progression matters. Prose can slide between *money is memory* as a metaphor and *money is memory* as an institutional proposition. Mathematics stops some of the sliding by forcing us to state the relation. Code stops a different kind. It asks which address may change the memory, which line conserves the total, who supplies the index, what happens when a debtor fails, and whether the person supposedly constrained by a rule can simply call around it. A noun such as *trust*, *governance*, or *stability* must become a verb with a caller.
+That progression matters. Prose can slide between _money is memory_ as a metaphor and _money is memory_ as an institutional proposition. Mathematics stops some of the sliding by forcing us to state the relation. Code stops a different kind. It asks which address may change the memory, which line conserves the total, who supplies the index, what happens when a debtor fails, and whether the person supposedly constrained by a rule can simply call around it. A noun such as _trust_, _governance_, or _stability_ must become a verb with a caller.
 
 The result is not a proposed currency. It is not production software, an audit, a monetary constitution, or an empirical demonstration that people would want to live under these rules. It is an **executable canon**: a set of small Solidity contracts that translate the book's claims into operations precise enough to inspect and contest. The contracts do not prove that the theory is true. They prove that we have stopped hiding its verbs.
 
@@ -18,23 +18,23 @@ At the snapshot used for this edition, the repository contains eleven implemente
 
 The suite is easiest to understand as a building, not a chain of famous names. The memory ledger is the floor. Around it sit constitutional controls, measurement devices, enforcement devices, and tools that unbundle jobs ordinarily forced into one instrument.
 
-| Layer | Implemented module | The narrow job |
-|---|---|---|
-| Emergence | *Kiyotaki–Wright* | shows an acceptance score feeding on itself |
-| Settlement spine | *Kocherlakota* | records signed positions and clears at net zero |
-| Relational boundary | *Fiske* | keeps Immediate-mode bonds off the settlement rail |
-| Constitutional control | *Friedman* | makes changes pass through vote and delay |
-| Enforcement | *Greif*, *ChallengeBond* | attaches consequences to records and assertions |
+| Layer                  | Implemented module       | The narrow job                                     |
+| ---------------------- | ------------------------ | -------------------------------------------------- |
+| Emergence              | _Kiyotaki–Wright_        | shows an acceptance score feeding on itself        |
+| Settlement spine       | _Kocherlakota_           | records signed positions and clears at net zero    |
+| Relational boundary    | _Fiske_                  | keeps Immediate-mode bonds off the settlement rail |
+| Constitutional control | _Friedman_               | makes changes pass through vote and delay          |
+| Enforcement            | _Greif_, _ChallengeBond_ | attaches consequences to records and assertions    |
 
-| Layer | Implemented module | The narrow job |
-|---|---|---|
-| Unit of account | *Hayek* | derives a shared rod from competing fresh observations |
-| Deferred obligations | *Fisher* | indexes a contract to the rod and settles it on the ledger |
-| Productive credit | *Schumpeter* | exposes loan purpose, score, price, repayment, and default |
-| Price discovery | *Stigler* | compares a quote with a median observed price |
-| Stabilisation | *Krugman* | adjusts credit elasticity against an activity shortfall |
+| Layer                | Implemented module | The narrow job                                             |
+| -------------------- | ------------------ | ---------------------------------------------------------- |
+| Unit of account      | _Hayek_            | derives a shared rod from competing fresh observations     |
+| Deferred obligations | _Fisher_           | indexes a contract to the rod and settles it on the ledger |
+| Productive credit    | _Schumpeter_       | exposes loan purpose, score, price, repayment, and default |
+| Price discovery      | _Stigler_          | compares a quote with a median observed price              |
+| Stabilisation        | _Krugman_          | adjusts credit elasticity against an activity shortfall    |
 
-This is an unbundled monetary stack. No module is permitted to announce itself as *money* and thereby inherit all monetary functions. The ledger settles. The rod measures. The Fisher contract carries a promise through time. The Schumpeter contract prices a loan. Greif supplies a reputational primitive. Friedman can control attached dials. Kiyotaki–Wright abstracts one acceptance feedback. Each layer can therefore fail in its own name.
+This is an unbundled monetary stack. No module is permitted to announce itself as _money_ and thereby inherit all monetary functions. The ledger settles. The rod measures. The Fisher contract carries a promise through time. The Schumpeter contract prices a loan. Greif supplies a reputational primitive. Friedman can control attached dials. Kiyotaki–Wright abstracts one acceptance feedback. Each layer can therefore fail in its own name.
 
 The actual dependency path is narrower than the cast list suggests. In `CoreE2E`, Friedman governs Kocherlakota, Greif, and Hayek; Hayek supplies Fisher's rod; and Fisher settles through Kocherlakota. Krugman can scale Kocherlakota's limits but remains governed by the deployer in that setup. ChallengeBond and Fiske are optional paths, and the test attaches neither. Greif and ChallengeBond sit horizontally as different attempts to supply the enforcement that every elegant ledger quietly presupposes. Stigler observes prices beside the rail. Schumpeter allocates an existing settlement asset in an isolated scene. Kiyotaki–Wright stands alone as a threshold demonstrator.
 
@@ -64,7 +64,7 @@ balance[from] = balance[from] - int256(amount);
 balance[to]   = balance[to]   + int256(amount);
 ```
 
-One position moves down, another moves up. There is no mint, reserve vault, commodity field, redemption promise, or total-token supply. The balances *are* the monetary record. If an employer buys one hundred units of work, the employer moves to minus one hundred and the worker to plus one hundred. The pair records one unfinished social fact from opposite sides.
+One position moves down, another moves up. There is no mint, reserve vault, commodity field, redemption promise, or total-token supply. The balances _are_ the monetary record. If an employer buys one hundred units of work, the employer moves to minus one hundred and the worker to plus one hundred. The pair records one unfinished social fact from opposite sides.
 
 ### Net is an invariant; gross is a condition
 
@@ -83,7 +83,7 @@ This is the rope from Chapter 8A rendered in state variables. The length of rope
 
 ### Admission, authentication, and the credit dial
 
-The ledger is not permissionless. A steward admits members—called `knights` in the code—and assigns each a credit limit. A payment can push a payer no lower than the negative of that effective limit. Membership answers *whose marks count*. The limit answers *how far the group will let this member pull purchasing power forward*.
+The ledger is not permissionless. A steward admits members—called `knights` in the code—and assigns each a credit limit. A payment can push a payer no lower than the negative of that effective limit. Membership answers _whose marks count_. The limit answers _how far the group will let this member pull purchasing power forward_.
 
 That is the contract's authentication and risk boundary. It is also an extraction boundary. Whoever controls admission and credit limits controls whose promises become spendable and on what scale. The contract does not disguise that authority as neutral monetary plumbing. Every admission and limit change emits an event, and the steward can be transferred to the Friedman governance contract so that the dial cannot be moved by an administrator's private call.
 
@@ -101,7 +101,7 @@ fee = positive balance × rate × elapsed time / period
 
 The holder moves down by the fee and the commons moves up by the same amount. Net remains zero. Nothing is burned and nothing is created. The rule redistributes a positive position from holder to commons.
 
-This makes the book's medium–store conflict visible. A settlement rail can be engineered to circulate precisely because it is unattractive as a long-term silo. Wealth storage can then migrate to a tool designed for that job. But the code also prevents us from romanticising the mechanism. Demurrage is a tax schedule administered by whoever governs the rate, period, and destination. The word *melt* sounds natural; the state transition is political. The fee is only legitimate to the degree that the rule, commons, exit, and governing process are legitimate.
+This makes the book's medium–store conflict visible. A settlement rail can be engineered to circulate precisely because it is unattractive as a long-term silo. Wealth storage can then migrate to a tool designed for that job. But the code also prevents us from romanticising the mechanism. Demurrage is a tax schedule administered by whoever governs the rate, period, and destination. The word _melt_ sounds natural; the state transition is political. The fee is only legitimate to the degree that the rule, commons, exit, and governing process are legitimate.
 
 Nor does the implementation literally distinguish a virtuous transactor from an idle hoarder. It accrues against elapsed time on a positive balance. Movement causes accrual to be calculated; it does not erase it. “Idle” is therefore an interpretation of the economic design, not a behavioural fact detected by the contract.
 
@@ -149,9 +149,9 @@ The Fiske contract asks the question every accounting system is tempted to skip:
 
 It defines five states: Unset, Immediate, Balanced, Obligated, and Value. A relationship identifier is symmetric, so the pair Alice–Bob is the same pair as Bob–Alice. Another contract can ask whether that pair is Immediate and, if so, refuse to record or price the interaction.
 
-Only one mode currently has mechanical force. `requireTouchable` rejects an Immediate relationship. This is intentional. The other three clearing disciplines describe *how* an entry should settle; Immediate says that compulsory settlement is the category error. Its first protection is exclusion.
+Only one mode currently has mechanical force. `requireTouchable` rejects an Immediate relationship. This is intentional. The other three clearing disciplines describe _how_ an entry should settle; Immediate says that compulsory settlement is the category error. Its first protection is exclusion.
 
-The irony is visible in the design. To defend a gift from accounting, the contract records a minimal fact about the relationship: *do not account for this*. Even that may be too much. The cleanest Immediate ledger is often no ledger at all. The tag is therefore best read as a defensive opt-out at the edge of an otherwise hungry system, not as a digital description of intimacy.
+The irony is visible in the design. To defend a gift from accounting, the contract records a minimal fact about the relationship: _do not account for this_. Even that may be too much. The cleanest Immediate ledger is often no ledger at all. The tag is therefore best read as a defensive opt-out at the edge of an otherwise hungry system, not as a digital description of intimacy.
 
 The second operation, `flagIfTaboo`, emits an event when a fee, interest charge, price, or other extraction appears inside an Immediate relationship. It does not reverse the charge or punish the caller. It turns a disguised mode switch into an observable. This is the executable version of the book's defensive vocabulary: first name what happened; then decide what institution should follow.
 
@@ -217,7 +217,7 @@ That is enough to demonstrate individual punishment. It is nowhere near enough t
 
 The contract comments name the two largest residuals: privacy and Sybil resistance. A more serious implementation might use selective disclosure so someone can prove “standing above threshold” without revealing identity or history. It would still need a defensible answer to one-human-many-addresses, shared devices, lost keys, contested identity, and legitimate rebirth. The code does not pretend those questions are software details.
 
-One integration gap also matters. Schumpeter emits a default event and describes it as a hook for Greif, but the present contracts do not wire that hook. The end-to-end test uses a separate reporter. The institutional sentence—*default lowers future standing*—exists as two clauses awaiting a conjunction.
+One integration gap also matters. Schumpeter emits a default event and describes it as a hook for Greif, but the present contracts do not wire that hook. The end-to-end test uses a separate reporter. The institutional sentence—_default lowers future standing_—exists as two clauses awaiting a conjunction.
 
 #### Protocol card — `Greif`
 
@@ -512,19 +512,19 @@ The file contains six test functions because the indexed-wage function carries t
 
 The names in the cast can create a false sense of completeness, so the status deserves its own ledger.
 
-| Module | Compiles with 0.8.20 | In `CoreE2E` | Present connection |
-|---|---:|---:|---|
-| Kocherlakota | yes | yes | settlement spine |
-| Fiske | yes | no | optional gate exists but is not attached |
-| Friedman | yes | yes | governs Kocherlakota, Greif, and Hayek |
-| Greif | yes | yes | standalone reporter exercises one score change |
-| ChallengeBond | yes | no | Hayek can read a settled assertion; trusting bypass remains |
-| Hayek | yes | yes | supplies Fisher's rod through trusting publication |
-| Fisher | yes | yes | settles through Kocherlakota |
-| Schumpeter | yes | yes | isolated scene with a mock ERC-20 |
-| Stigler | yes | no | standalone observer |
-| Kiyotaki–Wright | yes | no | standalone threshold model |
-| Krugman | yes | yes | scales limits; governance remains the deployer |
+| Module          | Compiles with 0.8.20 | In `CoreE2E` | Present connection                                          |
+| --------------- | -------------------: | -----------: | ----------------------------------------------------------- |
+| Kocherlakota    |                  yes |          yes | settlement spine                                            |
+| Fiske           |                  yes |           no | optional gate exists but is not attached                    |
+| Friedman        |                  yes |          yes | governs Kocherlakota, Greif, and Hayek                      |
+| Greif           |                  yes |          yes | standalone reporter exercises one score change              |
+| ChallengeBond   |                  yes |           no | Hayek can read a settled assertion; trusting bypass remains |
+| Hayek           |                  yes |          yes | supplies Fisher's rod through trusting publication          |
+| Fisher          |                  yes |          yes | settles through Kocherlakota                                |
+| Schumpeter      |                  yes |          yes | isolated scene with a mock ERC-20                           |
+| Stigler         |                  yes |           no | standalone observer                                         |
+| Kiyotaki–Wright |                  yes |           no | standalone threshold model                                  |
+| Krugman         |                  yes |          yes | scales limits; governance remains the deployer              |
 
 The gaps between those columns are where the next honest work lives. “Compiles” means the compiler accepted the types and control flow. “In the test” means at least one selected path appears in the run-sheet. “Connected” means one module's output currently reaches another. None of the three means the path was adversarially tested, audited, production-ready, or socially legitimate.
 
@@ -774,13 +774,13 @@ A fair objection to everything above is that it is self-contained: a framework a
 
 What survives is short, and three of the survivors the reader has already met as chapters.
 
-**Clark (1973): the discount rate that makes extinction rational.** For a regenerating stock — a fishery, a forest, a herd — there is a threshold at which liquidating the whole thing and banking the proceeds beats harvesting it forever. Above roughly twice the stock's growth rate, extermination is the profit-maximising policy *for a secure sole owner with no competitors and perfect property rights.* This is the cleanest demonstration in the tier, because it defeats the standard consolation. We are used to blaming the commons: the fish die because nobody owns them. Clark's owner owns them completely and kills them anyway, on arithmetic, because the money's rate of return outran the animal's. A dial that monetary policy sets is visible here as a policy on a population, and the Gesell overlay in the memory ledger is interesting for exactly this reason — a carry cost pushes the same dial the other way.
+**Clark (1973): the discount rate that makes extinction rational.** For a regenerating stock — a fishery, a forest, a herd — there is a threshold at which liquidating the whole thing and banking the proceeds beats harvesting it forever. Above roughly twice the stock's growth rate, extermination is the profit-maximising policy _for a secure sole owner with no competitors and perfect property rights._ This is the cleanest demonstration in the tier, because it defeats the standard consolation. We are used to blaming the commons: the fish die because nobody owns them. Clark's owner owns them completely and kills them anyway, on arithmetic, because the money's rate of return outran the animal's. A dial that monetary policy sets is visible here as a policy on a population, and the Gesell overlay in the memory ledger is interesting for exactly this reason — a carry cost pushes the same dial the other way.
 
 **Sen (1981): famine at unchanged supply.** The entitlement collapse of Chapter 18, stated formally: aggregate availability adequate, claims on it failed, people died. In this tier it is the micro-over-aggregate position entire.
 
 **Forstater and Bundy: the tax that made a labour force.** Chapter 13's hut tax as a mechanism — an obligation denominated in a currency obtainable only by wage labour, producing a migrant-labour system and a rural social structure that outlived it. It is the book's own claim about where demand for a record comes from, running at the scale of a region.
 
-**Mundell (1961), Bernanke (1983), Eichengreen and Sachs (1985).** One unit across divergent regions, so shocks are absorbed in unemployment and emigration rather than the exchange rate (Chapters 17 and 19). The destruction of the credit *record* as a real cost, distinct from the quantity of money — the ledger claim tested by its own negation. And recovery timing off gold, which is the anchor-rigidity axis with a date attached.
+**Mundell (1961), Bernanke (1983), Eichengreen and Sachs (1985).** One unit across divergent regions, so shocks are absorbed in unemployment and emigration rather than the exchange rate (Chapters 17 and 19). The destruction of the credit _record_ as a real cost, distinct from the quantity of money — the ledger claim tested by its own negation. And recovery timing off gold, which is the anchor-rigidity axis with a date attached.
 
 The point of the tier is reach, not coverage. Six entries that survive a rule are worth more than sixty that survive a preference.
 
@@ -788,11 +788,11 @@ The point of the tier is reach, not coverage. Six entries that survive a rule ar
 
 We can now make the book's minimality claim by measurement rather than by assertion.
 
-The whole of money, in the ledger that carries it, is **two lines**: one balance down, one balance up, summing to zero, on a record both parties trust. Around those two sit about twenty more — is the payer admitted, is the payee admitted, is this within the credit limit, has carry cost accrued, is this a relationship the ledger has been told never to record. And around *those* sit some fourteen hundred lines of everything else: governance of the dials, index construction and competing providers, purpose-scored credit, price discovery, reputation, enforcement bonds, stabilisation, jubilee, the modes as a permission layer.
+The whole of money, in the ledger that carries it, is **two lines**: one balance down, one balance up, summing to zero, on a record both parties trust. Around those two sit about twenty more — is the payer admitted, is the payee admitted, is this within the credit limit, has carry cost accrued, is this a relationship the ledger has been told never to record. And around _those_ sit some fourteen hundred lines of everything else: governance of the dials, index construction and competing providers, purpose-scored credit, price discovery, reputation, enforcement bonds, stabilisation, jubilee, the modes as a permission layer.
 
-Two lines against fourteen hundred. That proportion is the argument of this entire book rendered as a count. The monetary act is nearly nothing — a stone-age band could weave it in an evening, and one did, on a rope. Everything else is **governance and repair**: not what money *is*, but what has to be true around it before people will use it, and what has to be rebuilt each time they stop.
+Two lines against fourteen hundred. That proportion is the argument of this entire book rendered as a count. The monetary act is nearly nothing — a stone-age band could weave it in an evening, and one did, on a rope. Everything else is **governance and repair**: not what money _is_, but what has to be true around it before people will use it, and what has to be rebuilt each time they stop.
 
-Which is why the question *what is money, really?* has always disappointed the people who asked it. They were pointing at the two lines and expecting the fourteen hundred to be inside.
+Which is why the question _what is money, really?_ has always disappointed the people who asked it. They were pointing at the two lines and expecting the fourteen hundred to be inside.
 
 ---
 

@@ -13,7 +13,10 @@ import { registerUIPlugin } from "../../lib/ui/plugins/registry.js";
 import { mountUI } from "../../lib/ui/plugins/host.js";
 import { SatnavPlugin } from "../../lib/ui/plugins/m0-satnav.plugin.js";
 import { setupSmartContractUI } from "../../lib/ui/smart-contracts.js";
-import { computeBenchmark, benchmarkBoviOperations } from "../../lib/monitoring/compute-benchmarks.js";
+import {
+  computeBenchmark,
+  benchmarkBoviOperations,
+} from "../../lib/monitoring/compute-benchmarks.js";
 import { setupBenchmarkPanel } from "../../lib/ui/benchmark-panel.js";
 import { setupFlowEditorPanel } from "../../lib/ui/flow-editor-panel.js";
 
@@ -45,22 +48,22 @@ class BoviApp {
 
       // Initialize KPI dashboard
       setupKPIDashboardUI();
-      
+
       // Initialize smart contract system
       setupSmartContractUI();
-      
+
       // Start performance monitoring
       performanceCollector.startSystemMonitoring();
-      
+
       // Initialize compute benchmarking
       this.initializeComputeBenchmarking();
-      
+
       // Set up benchmark panel UI
       setupBenchmarkPanel();
-      
+
       // Set up visual flow editor
       setupFlowEditorPanel();
-      
+
       // Generate demo KPI data for demonstration
       setTimeout(() => {
         generateDemoKPIData();
@@ -274,44 +277,49 @@ class BoviApp {
   private async initializeComputeBenchmarking(): Promise<void> {
     try {
       // Set up performance thresholds for compute operations
-      performanceCollector.setThreshold('compute_local_index_duration', { red: 1000, amber: 500 });
-      performanceCollector.setThreshold('butler_switching_duration', { red: 2000, amber: 1000 });
-      performanceCollector.setThreshold('json_processing_duration', { red: 100, amber: 50 });
-      
+      performanceCollector.setThreshold("compute_local_index_duration", { red: 1000, amber: 500 });
+      performanceCollector.setThreshold("butler_switching_duration", { red: 2000, amber: 1000 });
+      performanceCollector.setThreshold("json_processing_duration", { red: 100, amber: 50 });
+
       // Run initial benchmark suite to establish baselines (background task)
       setTimeout(async () => {
         try {
-          console.log('Running initial compute benchmarks...');
+          console.log("Running initial compute benchmarks...");
           const suiteResult = await benchmarkBoviOperations();
-          
+
           // Set baselines for future comparisons
           suiteResult.results.forEach(result => {
             computeBenchmark.setBaseline(result.operationName, result);
           });
-          
-          console.log(`Benchmarking complete: ${suiteResult.results.length} operations benchmarked`);
-          
+
+          console.log(
+            `Benchmarking complete: ${suiteResult.results.length} operations benchmarked`
+          );
+
           // Track overall benchmark metrics
-          performanceCollector.trackKPI('benchmark_suite_duration', suiteResult.totalDuration);
-          performanceCollector.trackKPI('benchmark_suite_throughput', suiteResult.summary.averageThroughput);
-          
+          performanceCollector.trackKPI("benchmark_suite_duration", suiteResult.totalDuration);
+          performanceCollector.trackKPI(
+            "benchmark_suite_throughput",
+            suiteResult.summary.averageThroughput
+          );
         } catch (error) {
-          console.warn('Initial benchmarking failed:', error);
+          console.warn("Initial benchmarking failed:", error);
         }
       }, 5000); // Run after app initialization is complete
-      
+
       // Set up performance alerts
-      performanceCollector.onAlert((alert) => {
+      performanceCollector.onAlert(alert => {
         console.warn(`Performance Alert: ${alert.message}`);
-        
+
         // Could emit UI toast notification
-        window.dispatchEvent(new CustomEvent('bovi:performance-alert', {
-          detail: alert
-        }));
+        window.dispatchEvent(
+          new CustomEvent("bovi:performance-alert", {
+            detail: alert,
+          })
+        );
       });
-      
     } catch (error) {
-      console.warn('Failed to initialize compute benchmarking:', error);
+      console.warn("Failed to initialize compute benchmarking:", error);
     }
   }
 }

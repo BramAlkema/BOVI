@@ -1,6 +1,6 @@
 # Chapter 7: The Four Functions Are Four Problems
 
-> *The textbook list of "functions of money" is not a description of money — it is a description of forced bundling. Each function wants different properties.*
+> _The textbook list of "functions of money" is not a description of money — it is a description of forced bundling. Each function wants different properties._
 
 **Part II — Money as Coordination Infrastructure** · [Index](README.md) · Prev: [Chapter 6](06-cold-start-problem.md) · Next: [Chapter 8](08-specialisation-gains.md)
 
@@ -12,9 +12,9 @@ Doña Elena's Sunday afternoon, examined function-by-function instead of as a si
 
 1. Decomposition of Doña Elena's stack by function.
 2. The textbook's four functions named and listed (medium of exchange, unit of account, store of value, standard of deferred payment).
-2b. The bundle as the engineering shadow of the substance picture: once money is imagined as a vessel containing value, it seems natural to ask the same vessel to measure, carry, preserve, and deliver it.
+   2b. The bundle as the engineering shadow of the substance picture: once money is imagined as a vessel containing value, it seems natural to ask the same vessel to measure, carry, preserve, and deliver it.
 3. Each function's actual requirements (table of conflicting wants).
-4. Why bundling them creates impossible trade-offs. The sharpest conflict is **medium vs store**: a thing good to *save* gets held onto, which makes it bad to *spend* — so medium-quality and store-quality pull against each other and cannot be co-optimised in one instrument. This is the deepest reason the bundle fails; the central bank's impossible-trinity problems are downstream of it.
+4. Why bundling them creates impossible trade-offs. The sharpest conflict is **medium vs store**: a thing good to _save_ gets held onto, which makes it bad to _spend_ — so medium-quality and store-quality pull against each other and cannot be co-optimised in one instrument. This is the deepest reason the bundle fails; the central bank's impossible-trinity problems are downstream of it.
 5. The unbundled stack as the natural answer.
 6. Why "is X really money" debates are category errors.
 
@@ -43,11 +43,11 @@ Now that we have the money frame, we can apply it to the rest of economics.
 
 ## Draft
 
-Go back to Doña Elena's Sunday, the one we watched in the first pages, and slow it down. Watch not *that* she moves money but *which job* each move is doing.
+Go back to Doña Elena's Sunday, the one we watched in the first pages, and slow it down. Watch not _that_ she moves money but _which job_ each move is doing.
 
 The pesos she keeps for the week's groceries: money as a **medium of exchange** — a thing to spend, today, on bread. The prices she carries in her head — coffee about this, a haircut about that, the cueva rate this morning — money as a **unit of account**, a common scale in which she quotes and compares prices. The USDT she holds as her real savings: money as a **store of value**, wealth parked where it will not rot. And the rent her tenant owes her in dollars next month, agreed weeks ago: money as a **standard of deferred payment**, a promise carried forward across time.
 
-The textbook lists these four — medium, unit, store, deferred payment — as the functions of money, and it is right that they exist. Its error is the next sentence, the one that says they therefore belong in a single instrument. Doña Elena has just shown us they do not. She performs all four functions expertly, and she uses *a different tool for each.* What a Berlin reader sees as her bewildering complexity is the opposite: it is unbundled *correctness.* She is doing exactly what the textbook says money should do — she has merely declined to make one thing do all of it.
+The textbook lists these four — medium, unit, store, deferred payment — as the functions of money, and it is right that they exist. Its error is the next sentence, the one that says they therefore belong in a single instrument. Doña Elena has just shown us they do not. She performs all four functions expertly, and she uses _a different tool for each._ What a Berlin reader sees as her bewildering complexity is the opposite: it is unbundled _correctness._ She is doing exactly what the textbook says money should do — she has merely declined to make one thing do all of it.
 
 This bundle is not a separate textbook accident. It is the engineering shadow of the substance picture from Chapter 5. Once money is imagined as a vessel containing value, it seems obvious that the same vessel should measure value, carry it between people, preserve it through time, and deliver it at the end of a contract. Four distinct coordination problems become four powers of one object. Reject the container and the natural bundle disappears with it.
 
@@ -55,9 +55,9 @@ This bundle is not a separate textbook accident. It is the engineering shadow of
 
 The reason is not preference. It is that the four functions want incompatible properties, and one incompatibility is sharp enough to be fatal.
 
-A good **medium of exchange** wants to move — to be spent freely, to circulate, to keep changing hands. A good **store of value** wants to be held — to sit still and not lose worth. And here is the trap: *the better something is to hold, the more people hold it instead of spending it* — which is exactly what makes it a worse medium. Medium-quality and store-quality pull against each other on the same axis. Optimise for holding and the thing gets hoarded out of circulation; optimise for spending and it makes a poor place to keep wealth. This is the deepest reason the bundle fails, and every "impossible trinity" a central bank wrestles with is downstream of it. The unit of account adds its own conflict — it wants to be *stable*, a fixed ruler, while a good medium can happily float — and the deferred-payment function wants contract-grade stability across years that no live transaction currency can promise.
+A good **medium of exchange** wants to move — to be spent freely, to circulate, to keep changing hands. A good **store of value** wants to be held — to sit still and not lose worth. And here is the trap: _the better something is to hold, the more people hold it instead of spending it_ — which is exactly what makes it a worse medium. Medium-quality and store-quality pull against each other on the same axis. Optimise for holding and the thing gets hoarded out of circulation; optimise for spending and it makes a poor place to keep wealth. This is the deepest reason the bundle fails, and every "impossible trinity" a central bank wrestles with is downstream of it. The unit of account adds its own conflict — it wants to be _stable_, a fixed ruler, while a good medium can happily float — and the deferred-payment function wants contract-grade stability across years that no live transaction currency can promise.
 
-The conflict bites *inside a single instrument*, and that is the whole of its force. What relieves it is not a cleverer coin but a cheap exit: keep your wealth in the store, convert into the medium at the moment you spend, and the two jobs stop competing for the same object. That is precisely what Doña Elena does, and it is why the unbundled stack is a practice rather than a proposal. The bundle held for centuries because conversion was slow, dear and manual; it is coming apart now because conversion has become fast and nearly free. So this is a *friction* fact, not a law of nature — which is good news, because friction is the kind of thing that can be engineered away, and near the end of the book we will hand the reader the manoeuvre itself.
+The conflict bites _inside a single instrument_, and that is the whole of its force. What relieves it is not a cleverer coin but a cheap exit: keep your wealth in the store, convert into the medium at the moment you spend, and the two jobs stop competing for the same object. That is precisely what Doña Elena does, and it is why the unbundled stack is a practice rather than a proposal. The bundle held for centuries because conversion was slow, dear and manual; it is coming apart now because conversion has become fast and nearly free. So this is a _friction_ fact, not a law of nature — which is good news, because friction is the kind of thing that can be engineered away, and near the end of the book we will hand the reader the manoeuvre itself.
 
 Four functions, four sets of wants, at least one of them flatly opposed to another. Forced into one currency, they produce exactly the trade-offs that fill the financial pages. Given their own tools, the conflict simply dissolves: let the medium be fluid and even a little perishable, let the unit be a stable index, let the store appreciate in productive assets, let deferred payments be written in an index that holds its meaning. Each tool gets to be good at its one job. This is the whole engineering case for unbundling, and Doña Elena built it on her phone without a theory.
 
@@ -65,6 +65,6 @@ Four functions, four sets of wants, at least one of them flatly opposed to anoth
 
 One more thing falls out, almost as a bonus: a whole genre of argument turns out to be confused.
 
-*Is Bitcoin really money? Is a gift card money? Is an air mile money?* These debates feel substantive and are not, because "money" in the question is the bundle, and the bundle was never one thing. Ask instead *for which function?* and the fog lifts. Bitcoin is a poor medium and, for some, a serious store; a gift card is a narrow medium and a terrible store; an air mile is a store the issuer can quietly debase. None of them is "really money" or "not really money." Each is good at some of the four jobs and bad at others — which is all anything has ever been. Once the functions are unbundled in our heads, *is X really money* stops being a question at all.
+_Is Bitcoin really money? Is a gift card money? Is an air mile money?_ These debates feel substantive and are not, because "money" in the question is the bundle, and the bundle was never one thing. Ask instead _for which function?_ and the fog lifts. Bitcoin is a poor medium and, for some, a serious store; a gift card is a narrow medium and a terrible store; an air mile is a store the issuer can quietly debase. None of them is "really money" or "not really money." Each is good at some of the four jobs and bad at others — which is all anything has ever been. Once the functions are unbundled in our heads, _is X really money_ stops being a question at all.
 
 We have the money frame now — what money is, why it has value, why its functions split. We can turn it on the rest of economics, which turns out to be mostly the management of a single cost we have not yet named.

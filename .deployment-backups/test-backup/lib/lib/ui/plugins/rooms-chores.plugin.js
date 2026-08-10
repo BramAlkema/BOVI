@@ -1,20 +1,20 @@
 import { applyAllPendingDefaults } from "../../m1/safeCta.js";
 import { getBillsSafe, getBestDeal, getEnergyStatus } from "../../api/tiles.js";
 export const RoomsChoresPlugin = {
-    manifest: {
-        id: "ui-rooms-chores",
-        name: "Rooms & Chores",
-        version: "1.0.0",
-        targets: ["L1", "L2"],
-        provides: ["appShell", "home"],
-        cssScoped: true
-    },
-    async mount(ctx) {
-        const host = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : ctx.root;
-        const shell = document.createElement("div");
-        host.innerHTML = "";
-        host.appendChild(shell);
-        shell.innerHTML = `
+  manifest: {
+    id: "ui-rooms-chores",
+    name: "Rooms & Chores",
+    version: "1.0.0",
+    targets: ["L1", "L2"],
+    provides: ["appShell", "home"],
+    cssScoped: true,
+  },
+  async mount(ctx) {
+    const host = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : ctx.root;
+    const shell = document.createElement("div");
+    host.innerHTML = "";
+    host.appendChild(shell);
+    shell.innerHTML = `
       <style>
         :host, .wrap { font-family: system-ui, sans-serif; color:#e7eef9; background: #0a0e1a; }
         .wrap { padding:16px; display:grid; gap:16px; min-height: 100vh; }
@@ -40,70 +40,71 @@ export const RoomsChoresPlugin = {
         </div>
       </div>
     `;
-        const choreBtn = shell.querySelector("#do-today");
-        choreBtn.onclick = async () => {
-            choreBtn.disabled = true;
-            choreBtn.textContent = "Doing chores...";
-            try {
-                const applied = await applyAllPendingDefaults();
-                choreBtn.textContent = applied > 0 ? `Completed ${applied} chores` : "No chores today";
-                setTimeout(() => {
-                    choreBtn.disabled = false;
-                    choreBtn.textContent = "🏠 Do Today's Chores";
-                }, 2000);
-            }
-            catch (error) {
-                console.error("Chores failed:", error);
-                choreBtn.textContent = "Error - try again";
-                choreBtn.disabled = false;
-            }
-        };
-        (async () => {
-            try {
-                const [roof, food, power] = await Promise.all([
-                    getBillsSafe(),
-                    getBestDeal(),
-                    getEnergyStatus()
-                ]);
-                const roofChip = shell.querySelector("#c-roof");
-                const kitchenChip = shell.querySelector("#c-kitchen");
-                const meterChip = shell.querySelector("#c-meter");
-                roofChip.textContent = roof === "OK" ? "All tidy" : "Counter rent increase";
-                roofChip.className = roof === "OK" ? "chip" : "chip active";
-                kitchenChip.textContent = `${food.label} (€${food.delta.toFixed(2)})`;
-                kitchenChip.className = food.delta < 0 ? "chip active" : "chip";
-                meterChip.textContent = power === "OK" ? "Bills OK" : power;
-                meterChip.className = power === "OK" ? "chip" : "chip active";
-            }
-            catch (error) {
-                console.error("Failed to load room status:", error);
-                ["#c-roof", "#c-kitchen", "#c-meter"].forEach(id => {
-                    const chip = shell.querySelector(id);
-                    chip.textContent = "Error loading";
-                    chip.className = "chip";
-                });
-            }
-        })();
-        const addRoomHandler = (selector, overlayId) => {
-            const room = shell.querySelector(selector);
-            if (room) {
-                room.addEventListener("click", () => {
-                    if (ctx.openOverlay) {
-                        ctx.openOverlay(overlayId);
-                    }
-                    else {
-                        console.log(`Would open overlay: ${overlayId}`);
-                    }
-                });
-            }
-        };
-        addRoomHandler("#roof", "room:roof");
-        addRoomHandler("#kitchen", "room:kitchen");
-        addRoomHandler("#meter", "room:meter");
-        return {
-            unmount() { host.innerHTML = ""; },
-            onProfileChange(p) { console.log("Rooms & Chores: profile changed to", p); }
-        };
-    }
+    const choreBtn = shell.querySelector("#do-today");
+    choreBtn.onclick = async () => {
+      choreBtn.disabled = true;
+      choreBtn.textContent = "Doing chores...";
+      try {
+        const applied = await applyAllPendingDefaults();
+        choreBtn.textContent = applied > 0 ? `Completed ${applied} chores` : "No chores today";
+        setTimeout(() => {
+          choreBtn.disabled = false;
+          choreBtn.textContent = "🏠 Do Today's Chores";
+        }, 2000);
+      } catch (error) {
+        console.error("Chores failed:", error);
+        choreBtn.textContent = "Error - try again";
+        choreBtn.disabled = false;
+      }
+    };
+    (async () => {
+      try {
+        const [roof, food, power] = await Promise.all([
+          getBillsSafe(),
+          getBestDeal(),
+          getEnergyStatus(),
+        ]);
+        const roofChip = shell.querySelector("#c-roof");
+        const kitchenChip = shell.querySelector("#c-kitchen");
+        const meterChip = shell.querySelector("#c-meter");
+        roofChip.textContent = roof === "OK" ? "All tidy" : "Counter rent increase";
+        roofChip.className = roof === "OK" ? "chip" : "chip active";
+        kitchenChip.textContent = `${food.label} (€${food.delta.toFixed(2)})`;
+        kitchenChip.className = food.delta < 0 ? "chip active" : "chip";
+        meterChip.textContent = power === "OK" ? "Bills OK" : power;
+        meterChip.className = power === "OK" ? "chip" : "chip active";
+      } catch (error) {
+        console.error("Failed to load room status:", error);
+        ["#c-roof", "#c-kitchen", "#c-meter"].forEach(id => {
+          const chip = shell.querySelector(id);
+          chip.textContent = "Error loading";
+          chip.className = "chip";
+        });
+      }
+    })();
+    const addRoomHandler = (selector, overlayId) => {
+      const room = shell.querySelector(selector);
+      if (room) {
+        room.addEventListener("click", () => {
+          if (ctx.openOverlay) {
+            ctx.openOverlay(overlayId);
+          } else {
+            console.log(`Would open overlay: ${overlayId}`);
+          }
+        });
+      }
+    };
+    addRoomHandler("#roof", "room:roof");
+    addRoomHandler("#kitchen", "room:kitchen");
+    addRoomHandler("#meter", "room:meter");
+    return {
+      unmount() {
+        host.innerHTML = "";
+      },
+      onProfileChange(p) {
+        console.log("Rooms & Chores: profile changed to", p);
+      },
+    };
+  },
 };
 //# sourceMappingURL=rooms-chores.plugin.js.map

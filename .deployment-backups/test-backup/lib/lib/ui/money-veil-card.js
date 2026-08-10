@@ -2,23 +2,23 @@ import { calculateMoneyVeil } from "../services/money-veil.js";
 import { generateWeeklyDigest } from "../services/weekly-digest.js";
 import { StorageKeys, Defaults } from "../core/constants.js";
 export function setupMoneyVeilCard() {
-    const dashboard = document.querySelector("main");
-    if (dashboard && !dashboard.querySelector(".money-veil-card")) {
-        const card = createMoneyVeilCard();
-        dashboard.appendChild(card);
-        const digestBtn = card.querySelector("#weekly-digest-btn");
-        digestBtn?.addEventListener("click", async () => {
-            const digest = await generateWeeklyDigest();
-            showDigestModal(digest);
-        });
-    }
-    updateMoneyVeilData();
-    setInterval(updateMoneyVeilData, 5 * 60 * 1000);
+  const dashboard = document.querySelector("main");
+  if (dashboard && !dashboard.querySelector(".money-veil-card")) {
+    const card = createMoneyVeilCard();
+    dashboard.appendChild(card);
+    const digestBtn = card.querySelector("#weekly-digest-btn");
+    digestBtn?.addEventListener("click", async () => {
+      const digest = await generateWeeklyDigest();
+      showDigestModal(digest);
+    });
+  }
+  updateMoneyVeilData();
+  setInterval(updateMoneyVeilData, 5 * 60 * 1000);
 }
 function createMoneyVeilCard() {
-    const card = document.createElement("div");
-    card.className = "money-veil-card panel";
-    card.innerHTML = `
+  const card = document.createElement("div");
+  card.className = "money-veil-card panel";
+  card.innerHTML = `
     <h3>💰 Personal Money Veil</h3>
     <div class="veil-metrics">
       <div class="metric">
@@ -43,44 +43,45 @@ function createMoneyVeilCard() {
       <button id="recalculate-btn" class="btn brand">Recalculate</button>
     </div>
   `;
-    const recalculateBtn = card.querySelector("#recalculate-btn");
-    recalculateBtn?.addEventListener("click", updateMoneyVeilData);
-    return card;
+  const recalculateBtn = card.querySelector("#recalculate-btn");
+  recalculateBtn?.addEventListener("click", updateMoneyVeilData);
+  return card;
 }
 async function updateMoneyVeilData() {
-    try {
-        const income = parseFloat(localStorage.getItem(StorageKeys.USER_INCOME) || Defaults.USER_INCOME);
-        const savings = parseFloat(localStorage.getItem(StorageKeys.USER_SAVINGS) || Defaults.USER_SAVINGS);
-        const interestRate = 0.04;
-        const veilData = await calculateMoneyVeil(income, savings, interestRate);
-        const inflationDrift = document.querySelector("#inflation-drift");
-        const bracketCreep = document.querySelector("#bracket-creep");
-        const realRate = document.querySelector("#real-rate");
-        const netImpact = document.querySelector("#net-impact");
-        if (inflationDrift) {
-            const driftValue = veilData.inflationDrift * 100;
-            const drift = driftValue.toFixed(2);
-            inflationDrift.textContent = `${driftValue > 0 ? "+" : ""}${drift}%`;
-            inflationDrift.className = `metric-value ${driftValue > 0 ? "negative" : "positive"}`;
-        }
-        if (bracketCreep)
-            bracketCreep.textContent = `£${Math.abs(veilData.bracketCreep).toFixed(2)}`;
-        if (realRate)
-            realRate.textContent = `£${veilData.realRate.toFixed(2)}`;
-        if (netImpact) {
-            netImpact.textContent = `£${veilData.netImpact.toFixed(2)}`;
-            netImpact.className = `metric-value ${veilData.netImpact < 0 ? "negative" : "positive"}`;
-        }
+  try {
+    const income = parseFloat(
+      localStorage.getItem(StorageKeys.USER_INCOME) || Defaults.USER_INCOME
+    );
+    const savings = parseFloat(
+      localStorage.getItem(StorageKeys.USER_SAVINGS) || Defaults.USER_SAVINGS
+    );
+    const interestRate = 0.04;
+    const veilData = await calculateMoneyVeil(income, savings, interestRate);
+    const inflationDrift = document.querySelector("#inflation-drift");
+    const bracketCreep = document.querySelector("#bracket-creep");
+    const realRate = document.querySelector("#real-rate");
+    const netImpact = document.querySelector("#net-impact");
+    if (inflationDrift) {
+      const driftValue = veilData.inflationDrift * 100;
+      const drift = driftValue.toFixed(2);
+      inflationDrift.textContent = `${driftValue > 0 ? "+" : ""}${drift}%`;
+      inflationDrift.className = `metric-value ${driftValue > 0 ? "negative" : "positive"}`;
     }
-    catch (error) {
-        console.error("Money veil calculation error:", error);
-        showError("Failed to calculate money veil impact");
+    if (bracketCreep) bracketCreep.textContent = `£${Math.abs(veilData.bracketCreep).toFixed(2)}`;
+    if (realRate) realRate.textContent = `£${veilData.realRate.toFixed(2)}`;
+    if (netImpact) {
+      netImpact.textContent = `£${veilData.netImpact.toFixed(2)}`;
+      netImpact.className = `metric-value ${veilData.netImpact < 0 ? "negative" : "positive"}`;
     }
+  } catch (error) {
+    console.error("Money veil calculation error:", error);
+    showError("Failed to calculate money veil impact");
+  }
 }
 function showDigestModal(digest) {
-    const modal = document.createElement("div");
-    modal.className = "modal-overlay";
-    modal.innerHTML = `
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay";
+  modal.innerHTML = `
     <div class="modal money-veil-modal">
       <div class="modal-header">
         <h3>📊 Weekly Money-Veil Digest</h3>
@@ -88,43 +89,42 @@ function showDigestModal(digest) {
       </div>
       <div class="modal-body">
         <div class="digest-period">${digest.period}</div>
-        
+
         <div class="digest-section">
           <h4>Highlights</h4>
           <ul>
-            ${digest.highlights.map((h) => `<li>${h}</li>`).join("")}
+            ${digest.highlights.map(h => `<li>${h}</li>`).join("")}
           </ul>
         </div>
-        
+
         <div class="digest-section">
           <h4>Net Change</h4>
           <div class="net-change ${digest.netChange < 0 ? "negative" : "positive"}">
             £${Math.abs(digest.netChange).toFixed(2)} ${digest.netChange < 0 ? "worse off" : "better off"}
           </div>
         </div>
-        
+
         <div class="digest-section">
           <h4>Recommendations</h4>
           <ul>
-            ${digest.recommendations.map((r) => `<li>${r}</li>`).join("")}
+            ${digest.recommendations.map(r => `<li>${r}</li>`).join("")}
           </ul>
         </div>
       </div>
     </div>
   `;
-    document.body.appendChild(modal);
-    const closeBtn = modal.querySelector(".modal-close");
-    closeBtn?.addEventListener("click", () => modal.remove());
-    modal.addEventListener("click", e => {
-        if (e.target === modal)
-            modal.remove();
-    });
+  document.body.appendChild(modal);
+  const closeBtn = modal.querySelector(".modal-close");
+  closeBtn?.addEventListener("click", () => modal.remove());
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.remove();
+  });
 }
 function showError(message) {
-    const errorEl = document.createElement("div");
-    errorEl.className = "toast error";
-    errorEl.textContent = message;
-    document.body.appendChild(errorEl);
-    setTimeout(() => errorEl.remove(), 3000);
+  const errorEl = document.createElement("div");
+  errorEl.className = "toast error";
+  errorEl.textContent = message;
+  document.body.appendChild(errorEl);
+  setTimeout(() => errorEl.remove(), 3000);
 }
 //# sourceMappingURL=money-veil-card.js.map

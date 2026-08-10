@@ -1,6 +1,6 @@
 # Intermezzo 8A: Ye Tally Rope
 
-> *If you had to explain money to your ancestors, you would not begin with coins. You would begin with all the trades that do not quite settle.*
+> _If you had to explain money to your ancestors, you would not begin with coins. You would begin with all the trades that do not quite settle._
 
 **Part III — Trade, Coordination, Production** · [Index](README.md) · Prev: [Chapter 8](08-specialisation-gains.md) · Next: [Chapter 9](09-transaction-costs.md)
 
@@ -59,11 +59,11 @@ Adam and Oz can trade because there are only two of them, two goods, and a neat 
 Let us add Bea and Kai. The village now needs axes, spears, hides, and fish. Each person can make each thing, but not with the same ease.
 
 | Person | Axe | Spear | Hide | Fish | One of each |
-|---|---:|---:|---:|---:|---:|
-| Adam | 3h | 4h | 8h | 6h | 21h |
-| Oz | 2h | 1h | 5h | 4h | 12h |
-| Bea | 5h | 6h | 2h | 4h | 17h |
-| Kai | 6h | 5h | 4h | 1h | 16h |
+| ------ | --: | ----: | ---: | ---: | ----------: |
+| Adam   |  3h |    4h |   8h |   6h |         21h |
+| Oz     |  2h |    1h |   5h |   4h |         12h |
+| Bea    |  5h |    6h |   2h |   4h |         17h |
+| Kai    |  6h |    5h |   4h |   1h |         16h |
 
 If everyone makes one of everything alone, the village spends sixty-six hours.
 
@@ -73,7 +73,7 @@ Thirty-eight hours have appeared.
 
 No new mine was discovered. No god handed down a machine. The gain is not hiding inside the axe or spear. It is in the pattern. The same people, with the same hands and the same daylight, have become richer because their work is arranged differently.
 
-The assignment has changed footing, which a reader keeping score will notice. Adam and Oz needed the *comparative* argument — Oz was faster at both jobs and specialising still paid. Here each villager happens to take the thing they are *absolutely* fastest at, which is the easy case. The comparative point still runs underneath, guaranteeing the gain even when one villager is slower at everything; it is simply not what this table is showing.
+The assignment has changed footing, which a reader keeping score will notice. Adam and Oz needed the _comparative_ argument — Oz was faster at both jobs and specialising still paid. Here each villager happens to take the thing they are _absolutely_ fastest at, which is the easy case. The comparative point still runs underneath, guaranteeing the gain even when one villager is slower at everything; it is simply not what this table is showing.
 
 This is the first thing you want the village to feel in its bones: exchange is not decoration around production. Exchange changes what production can be.
 
@@ -107,7 +107,7 @@ It survives a sick chief. The rope's memory sits in the rope, not in any one hea
 
 Then the economist asks the harder question. Who weaves it?
 
-The honest answer is that nobody sat down one morning to invent money. The rope-maker was already weaving. The village makes baskets, nets, snares, slings, carrying cords. The hands that do this work make rope continually as part of doing everything else. The first settlement rope is almost certainly a length set aside from a basket someone was making anyway — a piece of fibre that already existed for another reason, repurposed because someone said one evening, *let us keep track on this*.
+The honest answer is that nobody sat down one morning to invent money. The rope-maker was already weaving. The village makes baskets, nets, snares, slings, carrying cords. The hands that do this work make rope continually as part of doing everything else. The first settlement rope is almost certainly a length set aside from a basket someone was making anyway — a piece of fibre that already existed for another reason, repurposed because someone said one evening, _let us keep track on this_.
 
 That detail matters. The rope did not require a heroic founder. It required someone already weaving, someone with the time of an evening to set a length aside, and a village willing to try a ritual.
 
@@ -153,23 +153,23 @@ The rope absorbs the leftover.
 
 Now run one market day through it.
 
-| Trade | Rope movement |
-|---|---:|
-| Adam gives Oz an axe | Adam +6, Oz -6 |
-| Oz gives Bea a spear | Oz +4, Bea -4 |
-| Bea gives Kai a hide | Bea +5, Kai -5 |
-| Kai gives Adam fish | Kai +3, Adam -3 |
+| Trade                |   Rope movement |
+| -------------------- | --------------: |
+| Adam gives Oz an axe |  Adam +6, Oz -6 |
+| Oz gives Bea a spear |   Oz +4, Bea -4 |
+| Bea gives Kai a hide |  Bea +5, Kai -5 |
+| Kai gives Adam fish  | Kai +3, Adam -3 |
 
 If you wrote these as separate IOUs, the village would have eighteen marks of gross promises running around. Adam would remember Oz. Oz would remember Bea. Bea would remember Kai. Kai would remember Adam. The circle looks friendly from above and annoying from inside.
 
 But the rope nets them.
 
 | Person | Gave | Received | Net |
-|---|---:|---:|---:|
-| Adam | 6 | 3 | +3 |
-| Oz | 4 | 6 | -2 |
-| Bea | 5 | 4 | +1 |
-| Kai | 3 | 5 | -2 |
+| ------ | ---: | -------: | --: |
+| Adam   |    6 |        3 |  +3 |
+| Oz     |    4 |        6 |  -2 |
+| Bea    |    5 |        4 |  +1 |
+| Kai    |    3 |        5 |  -2 |
 
 After four trades, only four marks need attention: Adam is up three, Bea is up one, Oz is down two, Kai is down two.
 
@@ -180,11 +180,11 @@ Then the day continues.
 Oz repairs Adam's spear for two marks. Kai gives Adam an extra fish for one. Kai gives Bea an extra fish share for one. Now the net clears.
 
 | Person | Earlier net | Later trades | Final net |
-|---|---:|---:|---:|
-| Adam | +3 | -3 | 0 |
-| Oz | -2 | +2 | 0 |
-| Bea | +1 | -1 | 0 |
-| Kai | -2 | +2 | 0 |
+| ------ | ----------: | -----------: | --------: |
+| Adam   |          +3 |           -3 |         0 |
+| Oz     |          -2 |           +2 |         0 |
+| Bea    |          +1 |           -1 |         0 |
+| Kai    |          -2 |           +2 |         0 |
 
 Twenty-two marks of exchange have happened. Final settlement is zero.
 
@@ -200,11 +200,11 @@ The value of the rope is the value of the trades it unlocks compared with the ne
 
 Imagine the village has three possible arrangements.
 
-| Arrangement | What happens | Cost |
-|---|---|---:|
-| No shared record | No unfinished trade can be carried, so only a perfectly clean swap works; in the limit each household makes one of everything | 66h bundle cost |
-| Private IOUs | More trade happens, but memory, dispute, and enforcement are expensive | 48h effective cost |
-| Public rope | Trade nets across the village before most debts become personal | 32h effective cost |
+| Arrangement      | What happens                                                                                                                  |               Cost |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- | -----------------: |
+| No shared record | No unfinished trade can be carried, so only a perfectly clean swap works; in the limit each household makes one of everything |    66h bundle cost |
+| Private IOUs     | More trade happens, but memory, dispute, and enforcement are expensive                                                        | 48h effective cost |
+| Public rope      | Trade nets across the village before most debts become personal                                                               | 32h effective cost |
 
 Do not worship the numbers. They are there to make the shape visible. The rope is worth sixteen hours against private IOUs and thirty-four hours against isolated household production.
 
@@ -292,7 +292,7 @@ The third storm is cheating. Someone shaves a mark. Someone denies one. Someone 
 
 The fourth storm is the outsider. A trader from another valley arrives with shells and asks: what is this rope? If the village hands him a mark in return for goods, the rope has just left the village. It now travels in heads that cannot inspect it. That first cross-village mark is a quiet revolution. It is the moment the rope becomes portable on credibility rather than presence.
 
-The fifth storm is issuance. The village wants more trade and so needs more marks. Someone has to lay more rope. Who decides? In a small village the answer is *everyone, in public, when the rope is laid out*. The ritual of inspecting the rope in full at each moon, almost invisible on a quiet day, is in fact the village's monetary policy committee. That is its enormous virtue. Everyone present. Nothing hidden. Issue too much and the next inspection will notice. Issue too little and trades will visibly fail to clear. The feedback is in the room.
+The fifth storm is issuance. The village wants more trade and so needs more marks. Someone has to lay more rope. Who decides? In a small village the answer is _everyone, in public, when the rope is laid out_. The ritual of inspecting the rope in full at each moon, almost invisible on a quiet day, is in fact the village's monetary policy committee. That is its enormous virtue. Everyone present. Nothing hidden. Issue too much and the next inspection will notice. Issue too little and trades will visibly fail to clear. The feedback is in the room.
 
 The list does not end at five. Hoarding will arrive — one careful hand removing marks from circulation until trades cannot clear, because the marks needed to clear them are sitting in a basket. Factions will arrive — two parts of the village disagreeing about whose net is whose, where the numbers on the rope do not include why. Both are real storms. Both will eventually need answers. But they are the same lesson the first five teach, made larger: the rope records, but it does not adjudicate, produce, or decide.
 

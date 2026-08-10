@@ -9,16 +9,16 @@ export const SatnavPlugin: UIComponentPlugin = {
     id: "ui-satnav",
     name: "Satnav (M0/M1)",
     version: "1.0.0",
-    targets: ["L0","L1","L2"],
-    provides: ["appShell","home"],
-    cssScoped: true
+    targets: ["L0", "L1", "L2"],
+    provides: ["appShell", "home"],
+    cssScoped: true,
   },
   async mount(ctx: UIContext): Promise<UIInstance> {
     // Shadow root for CSS isolation if desired
     const shell = document.createElement("div");
     const shadow = ctx.root.attachShadow ? ctx.root.attachShadow({ mode: "open" }) : null;
     const host = shadow ?? ctx.root;
-    host.innerHTML = ""; 
+    host.innerHTML = "";
     host.appendChild(shell);
 
     // Simple shell
@@ -90,12 +90,14 @@ export const SatnavPlugin: UIComponentPlugin = {
       try {
         const [roof, food, power] = await Promise.all([
           getBillsSafe(),
-          getBestDeal(), 
-          getEnergyStatus()
+          getBestDeal(),
+          getEnergyStatus(),
         ]);
-        
-        shell.querySelector("#overall")!.textContent = roof === "OK" ? "✅ All systems clear" : "⚠️ Attention needed";
-        shell.querySelector("#tile-roof")!.textContent = roof === "OK" ? "Bills covered" : "Bills need attention";
+
+        shell.querySelector("#overall")!.textContent =
+          roof === "OK" ? "✅ All systems clear" : "⚠️ Attention needed";
+        shell.querySelector("#tile-roof")!.textContent =
+          roof === "OK" ? "Bills covered" : "Bills need attention";
         shell.querySelector("#tile-food")!.textContent = `${food.label}: €${food.delta.toFixed(2)}`;
         shell.querySelector("#tile-power")!.textContent = power === "OK" ? "Contract OK" : power;
       } catch (error) {
@@ -109,36 +111,39 @@ export const SatnavPlugin: UIComponentPlugin = {
       try {
         const episodes = await nextEpisodes(1);
         const ep = episodes[0];
-        
-        if (!ep) { 
-          shell.querySelector("#ep")!.textContent = "All episodes played"; 
-          return; 
+
+        if (!ep) {
+          shell.querySelector("#ep")!.textContent = "All episodes played";
+          return;
         }
-        
+
         shell.querySelector("#ep")!.textContent = ep.title;
         shell.querySelector("#ep-mode")!.textContent = `${ep.mode} mode • ${ep.lengthMin} min`;
-        
+
         const playBtn = shell.querySelector<HTMLButtonElement>("#play")!;
         playBtn.disabled = false;
-        playBtn.onclick = async () => { 
+        playBtn.onclick = async () => {
           playBtn.disabled = true;
           playBtn.textContent = "Playing...";
-          
+
           try {
-            await markPlayed(ep.id); 
+            await markPlayed(ep.id);
             ctx.bus.emit("ui.toast", { kind: "info", msg: `Played: ${ep.title}` });
             playBtn.textContent = "Played ✓";
-            
+
             // Refresh episode list
             setTimeout(async () => {
               const nextEps = await nextEpisodes(1);
               if (nextEps[0]) {
                 const nextEp = nextEps[0];
                 shell.querySelector("#ep")!.textContent = nextEp.title;
-                shell.querySelector("#ep-mode")!.textContent = `${nextEp.mode} mode • ${nextEp.lengthMin} min`;
+                shell.querySelector("#ep-mode")!.textContent =
+                  `${nextEp.mode} mode • ${nextEp.lengthMin} min`;
                 playBtn.textContent = "Play";
                 playBtn.disabled = false;
-                playBtn.onclick = async () => { await markPlayed(nextEp.id); };
+                playBtn.onclick = async () => {
+                  await markPlayed(nextEp.id);
+                };
               } else {
                 shell.querySelector("#ep")!.textContent = "All episodes played";
                 shell.querySelector("#ep-mode")!.textContent = "Check back later";
@@ -157,17 +162,17 @@ export const SatnavPlugin: UIComponentPlugin = {
     })();
 
     return {
-      unmount() { 
-        if (shadow) { 
-          shadow.innerHTML = ""; 
-        } else { 
-          ctx.root.innerHTML = ""; 
-        } 
+      unmount() {
+        if (shadow) {
+          shadow.innerHTML = "";
+        } else {
+          ctx.root.innerHTML = "";
+        }
       },
-      onProfileChange(p) { 
+      onProfileChange(p) {
         // Could simplify UI for L0 vs L2 if needed
         console.log("Profile changed to:", p);
-      }
+      },
     };
-  }
+  },
 };

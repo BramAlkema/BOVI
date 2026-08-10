@@ -17,14 +17,14 @@ export interface DemoInterface {
 class DemoEngine {
   private demos = new Map<string, DemoInterface>();
   private activeDemo: DemoInterface | null = null;
-  
+
   /**
    * Register a new demo
    */
   registerDemo(id: string, demo: DemoInterface): void {
     this.demos.set(id, demo);
   }
-  
+
   /**
    * Run a demo by ID
    */
@@ -34,31 +34,30 @@ class DemoEngine {
       console.warn(`Demo '${demoId}' not found`);
       return;
     }
-    
+
     const container = $(containerSelector) as HTMLElement;
     if (!container) {
       console.warn(`Container '${containerSelector}' not found`);
       return;
     }
-    
+
     this.activeDemo = demo;
-    
+
     try {
       // Clear previous content
       dom.setContent(container, "");
-      
+
       // Run the demo
       await demo.run(container);
-      
+
       // Show the container with animation
       animate.slideIn(container);
-      
     } catch (error) {
       console.error(`Error running demo '${demoId}':`, error);
-      dom.setContent(container, "<p class=\"text-muted\">Demo failed to load</p>");
+      dom.setContent(container, '<p class="text-muted">Demo failed to load</p>');
     }
   }
-  
+
   /**
    * Get available demos
    */
@@ -77,12 +76,12 @@ export abstract class Demo implements DemoInterface {
     public readonly mode: string, // 'balanced', 'obligated', 'value', 'immediate'
     public readonly description: string
   ) {}
-  
+
   /**
    * Override this method in concrete demos
    */
   abstract run(container: HTMLElement): Promise<void>;
-  
+
   /**
    * Helper to create demo content structure
    */
@@ -95,7 +94,7 @@ export abstract class Demo implements DemoInterface {
     container.appendChild(demoEl);
     return demoEl;
   }
-  
+
   /**
    * Helper to create mode analysis
    */
@@ -103,15 +102,16 @@ export abstract class Demo implements DemoInterface {
     const modes = ["balanced", "obligated", "value", "immediate"];
     const modeNames: Record<string, string> = {
       balanced: "Balanced (Equality Matching)",
-      obligated: "Obligated (Authority Ranking)", 
+      obligated: "Obligated (Authority Ranking)",
       value: "Value (Market Pricing)",
-      immediate: "Immediate (Communal Sharing)"
+      immediate: "Immediate (Communal Sharing)",
     };
-    
-    const analysisHtml = modes.map(mode => {
-      if (!analysis[mode]) return "";
-      
-      return `
+
+    const analysisHtml = modes
+      .map(mode => {
+        if (!analysis[mode]) return "";
+
+        return `
         <div class="mode-item">
           <span class="mode-badge ${mode}">${mode[0].toUpperCase()}</span>
           <div>
@@ -120,8 +120,9 @@ export abstract class Demo implements DemoInterface {
           </div>
         </div>
       `;
-    }).join("");
-    
+      })
+      .join("");
+
     return `<div class="mode-analysis">${analysisHtml}</div>`;
   }
 }

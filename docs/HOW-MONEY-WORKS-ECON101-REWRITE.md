@@ -2,7 +2,7 @@
 
 ## A shared ledger for unfinished exchange
 
-> **Adaptation note.** This is a critical rewrite of [Chapter 24, “The Nature and Creation of Money,” in *Economics Principles* v2.0](https://2012books.lardbucket.org/books/economics-principles-v2.0/s27-the-nature-and-creation-of-mon.html). The preserved source omits its customary author and publisher attribution at the publisher’s request and is licensed under [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/). This adaptation is shared under the same license. It retains the source chapter’s introductory teaching tasks, but its argument, examples, structure, and wording have been substantially rewritten. Banking mechanics have been updated using central-bank sources listed under Further reading.
+> **Adaptation note.** This is a critical rewrite of [Chapter 24, “The Nature and Creation of Money,” in _Economics Principles_ v2.0](https://2012books.lardbucket.org/books/economics-principles-v2.0/s27-the-nature-and-creation-of-mon.html). The preserved source omits its customary author and publisher attribution at the publisher’s request and is licensed under [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/). This adaptation is shared under the same license. It retains the source chapter’s introductory teaching tasks, but its argument, examples, structure, and wording have been substantially rewritten. Banking mechanics have been updated using central-bank sources listed under Further reading.
 
 ## Learning objectives
 
@@ -29,12 +29,12 @@ Place a rope in the middle of the market and give each person an arm of it. Ever
 
 When Adam gives Oz an axe and receives nothing immediately, the group records the agreed settlement price: Adam receives six marks and Oz gives up six. When Oz later repairs Bea’s spear, Oz receives four and Bea gives up four. The balances after four trades might look like this:
 
-| Trade | Adam | Oz | Bea | Kai |
-|---|---:|---:|---:|---:|
-| Adam gives Oz an axe for 6 | +6 | -6 | 0 | 0 |
-| Oz repairs Bea’s spear for 4 | +6 | -2 | -4 | 0 |
-| Bea gives Kai a hide for 5 | +6 | -2 | +1 | -5 |
-| Kai gives Adam fish for 3 | +3 | -2 | +1 | -2 |
+| Trade                        | Adam |  Oz | Bea | Kai |
+| ---------------------------- | ---: | --: | --: | --: |
+| Adam gives Oz an axe for 6   |   +6 |  -6 |   0 |   0 |
+| Oz repairs Bea’s spear for 4 |   +6 |  -2 |  -4 |   0 |
+| Bea gives Kai a hide for 5   |   +6 |  -2 |  +1 |  -5 |
+| Kai gives Adam fish for 3    |   +3 |  -2 |  +1 |  -2 |
 
 Eighteen marks of exchange have occurred, but the group need only carry four net positions. Adam has given three more marks’ worth than he has received. Bea has given one more. Oz and Kai have received more than they have given. The entries sum to zero.
 
@@ -68,11 +68,11 @@ The €60 is a **price**: a public record of the exchange ratio at which these t
 
 This gives us three distinct concepts:
 
-| Concept | What it is | What it is not |
-|---|---|---|
-| **Value** | A person’s context-dependent ranking of one option against another | A substance inside an object |
-| **Price** | A recorded settlement ratio agreed in a particular exchange | A measurement of everyone’s value |
-| **Money** | The accepted ledger used to carry settlement positions between exchanges | The value being measured |
+| Concept   | What it is                                                               | What it is not                    |
+| --------- | ------------------------------------------------------------------------ | --------------------------------- |
+| **Value** | A person’s context-dependent ranking of one option against another       | A substance inside an object      |
+| **Price** | A recorded settlement ratio agreed in a particular exchange              | A measurement of everyone’s value |
+| **Money** | The accepted ledger used to carry settlement positions between exchanges | The value being measured          |
 
 A monetary unit standardizes the language in which offers and accounts are expressed. It makes prices comparable as numbers. It does not turn the experiences, needs, constraints, or preferences behind those numbers into one common quantity.
 
@@ -98,7 +98,7 @@ The distinction is crucial:
 - Monetary acceptance is intersubjectively coordinated.
 - A price is a public settlement result.
 
-Money therefore resembles language. The word *tree* works because speakers use it according to sufficiently shared conventions. That does not make the sound intrinsically tree-like, nor does it make every speaker feel the same way about trees. Likewise, a monetary unit works because enough participants recognize the ledger and its rules. That does not put value inside the token.
+Money therefore resembles language. The word _tree_ works because speakers use it according to sufficiently shared conventions. That does not make the sound intrinsically tree-like, nor does it make every speaker feel the same way about trees. Likewise, a monetary unit works because enough participants recognize the ledger and its rules. That does not put value inside the token.
 
 This is why a purely physical inspection cannot determine whether something is money. A gold coin on an uninhabited island has the same mass and chemistry as one in a busy port, but not the same monetary role. A perfectly valid Bitcoin key is not useful at a shop that will not accept Bitcoin. A banknote from a dead currency may retain paper, ink, and collector interest while losing its monetary network.
 
@@ -187,11 +187,11 @@ The same distinction applies to every monetary system. The substrate and its rul
 
 A more useful comparison asks how each system governs the ledger and its supply:
 
-| System | Ledger substrate | Supply-governance technology | Institutions that keep it working |
-|---|---|---|---|
-| **Gold money** | Assayed bearer pieces and custodial records | Geology, mining technology, refining, weighing, and minting | Miners, assayers, mints, merchants, vaults, courts, and states |
-| **Fiat money** | Public cash, central-bank reserves, and commercial-bank deposits | Law, bank charters, monetary policy, regulation, taxation, accounting, and payment rules | Legislatures, treasuries, central banks, commercial banks, courts, supervisors, and payment networks |
-| **Bitcoin** | A distributed transaction ledger controlled by cryptographic keys | Protocol rules, proof-of-work, network consensus, and software governance | Developers, miners, node operators, exchanges, custodians, holders, and surrounding legal systems |
+| System         | Ledger substrate                                                  | Supply-governance technology                                                             | Institutions that keep it working                                                                    |
+| -------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Gold money** | Assayed bearer pieces and custodial records                       | Geology, mining technology, refining, weighing, and minting                              | Miners, assayers, mints, merchants, vaults, courts, and states                                       |
+| **Fiat money** | Public cash, central-bank reserves, and commercial-bank deposits  | Law, bank charters, monetary policy, regulation, taxation, accounting, and payment rules | Legislatures, treasuries, central banks, commercial banks, courts, supervisors, and payment networks |
+| **Bitcoin**    | A distributed transaction ledger controlled by cryptographic keys | Protocol rules, proof-of-work, network consensus, and software governance                | Developers, miners, node operators, exchanges, custodians, holders, and surrounding legal systems    |
 
 Gold outsources part of supply governance to mining technology. Bitcoin outsources part to cryptographic protocol and mining economics. Fiat administers supply and settlement primarily through law and legally constituted institutions.
 
@@ -228,12 +228,12 @@ Most textbooks say money has three or four functions:
 
 These are real jobs. It does not follow that one instrument should perform all of them.
 
-| Job | What it needs | A suitable tool might be |
-|---|---|---|
-| **Settlement medium** | Broad acceptance, low friction, speed, security, sufficient resolution | Cash, deposits, or a transaction token |
-| **Unit or index** | A transparent and relevant comparison rule | A currency unit, wage index, price basket, or personal cost index |
-| **Store of wealth** | A chosen mix of liquidity, risk, expected return, and resilience | A diversified portfolio, productive assets, insurance, or safe claims |
-| **Deferred contract standard** | Explicit timing, indexation, risk allocation, and enforcement | A contract tied to an agreed index and settled through a payment rail |
+| Job                            | What it needs                                                          | A suitable tool might be                                              |
+| ------------------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **Settlement medium**          | Broad acceptance, low friction, speed, security, sufficient resolution | Cash, deposits, or a transaction token                                |
+| **Unit or index**              | A transparent and relevant comparison rule                             | A currency unit, wage index, price basket, or personal cost index     |
+| **Store of wealth**            | A chosen mix of liquidity, risk, expected return, and resilience       | A diversified portfolio, productive assets, insurance, or safe claims |
+| **Deferred contract standard** | Explicit timing, indexation, risk allocation, and enforcement          | A contract tied to an agreed index and settled through a payment rail |
 
 Bundling the jobs creates conflicts.
 
@@ -268,15 +268,15 @@ Agent ownership matters. An agent owned by a lender, marketplace, or advertising
 
 Money is not identical to the device used to move it, and wealth is not identical to money.
 
-| Item | Is it money? | Why? |
-|---|---|---|
-| **Notes and coins** | Usually, within their acceptance network | They are portable bearer records recognized for settlement |
-| **A checking-account deposit** | Yes | It is a bank liability the customer can transfer in payment |
-| **A debit card or check** | No | It is an instruction for moving a deposit |
-| **A credit card** | No | It is a payment instruction joined to a short-term credit facility |
-| **A government bond** | Usually not transaction money | It is a financial claim that normally must be sold or pledged before spending |
-| **A house or share portfolio** | No | It is wealth, but not ordinarily accepted in settlement |
-| **Gold or Bitcoin** | Context-dependent | It functions as money where people actually use and accept it as a settlement medium; elsewhere it functions mainly as an asset |
+| Item                           | Is it money?                             | Why?                                                                                                                            |
+| ------------------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Notes and coins**            | Usually, within their acceptance network | They are portable bearer records recognized for settlement                                                                      |
+| **A checking-account deposit** | Yes                                      | It is a bank liability the customer can transfer in payment                                                                     |
+| **A debit card or check**      | No                                       | It is an instruction for moving a deposit                                                                                       |
+| **A credit card**              | No                                       | It is a payment instruction joined to a short-term credit facility                                                              |
+| **A government bond**          | Usually not transaction money            | It is a financial claim that normally must be sold or pledged before spending                                                   |
+| **A house or share portfolio** | No                                       | It is wealth, but not ordinarily accepted in settlement                                                                         |
+| **Gold or Bitcoin**            | Context-dependent                        | It functions as money where people actually use and accept it as a settlement medium; elsewhere it functions mainly as an asset |
 
 ### Liquidity is a spectrum
 
@@ -303,17 +303,17 @@ Most money used by households and firms in modern economies consists of commerci
 
 Suppose a bank approves a €1,000 loan. At origination, the bank records:
 
-| Commercial bank | Assets | Liabilities |
-|---|---:|---:|
-| New borrower loan | +€1,000 |  |
-| New borrower deposit |  | +€1,000 |
+| Commercial bank      |  Assets | Liabilities |
+| -------------------- | ------: | ----------: |
+| New borrower loan    | +€1,000 |             |
+| New borrower deposit |         |     +€1,000 |
 
 The borrower records the mirror image:
 
-| Borrower | Assets | Liabilities |
-|---|---:|---:|
-| New bank deposit | +€1,000 |  |
-| New bank loan |  | +€1,000 |
+| Borrower         |  Assets | Liabilities |
+| ---------------- | ------: | ----------: |
+| New bank deposit | +€1,000 |             |
+| New bank loan    |         |     +€1,000 |
 
 The bank did not move €1,000 from a particular saver’s account into the borrower’s account. It created a new deposit liability and acquired a matching loan asset. Both balance sheets expanded.
 
@@ -482,12 +482,12 @@ A single national average can hide these effects. The same inflation rate, fee s
 
 ## Further reading and source checks
 
-- [*Economics Principles* v2.0, Chapter 24: “The Nature and Creation of Money”](https://2012books.lardbucket.org/books/economics-principles-v2.0/s27-the-nature-and-creation-of-mon.html) — the openly licensed control chapter rewritten here.
+- [_Economics Principles_ v2.0, Chapter 24: “The Nature and Creation of Money”](https://2012books.lardbucket.org/books/economics-principles-v2.0/s27-the-nature-and-creation-of-mon.html) — the openly licensed control chapter rewritten here.
 - [BOVI Foundations](FOUNDATIONS.md) — the ledger identity, floorless-but-fruitful account, substrate requirements, and acceptance–availability distinction used in the rewrite.
 - [“Ye Tally Rope”](book/08a-ye-tally-rope.md) — the full teaching model behind the opening example.
-- Narayana R. Kocherlakota, [“Money Is Memory”](https://ideas.repec.org/p/fip/fedmsr/218.html), Federal Reserve Bank of Minneapolis Staff Report 218 and *Journal of Economic Theory* 81(2), 1998.
+- Narayana R. Kocherlakota, [“Money Is Memory”](https://ideas.repec.org/p/fip/fedmsr/218.html), Federal Reserve Bank of Minneapolis Staff Report 218 and _Journal of Economic Theory_ 81(2), 1998.
 - Michael McLeay, Amar Radia, and Ryland Thomas, [“Money Creation in the Modern Economy”](https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy), Bank of England Quarterly Bulletin, 2014 Q1.
 - Jane E. Ihrig, Gretchen Weinbach, and Scott A. Wolla, [“Teaching the Linkage Between Banks and the Fed: R.I.P. Money Multiplier”](https://www.stlouisfed.org/publications/page-one-economics/2021/09/17/teaching-the-linkage-between-banks-and-the-fed-r-i-p-money-multiplier), Federal Reserve Bank of St. Louis, 2021.
 - Federal Reserve Board, [Money Stock Measures (H.6)](https://www.federalreserve.gov/releases/h6/current/default.htm) — current definitions of U.S. M1 and M2.
 - Federal Reserve Board, [Reserve Requirements](https://www.federalreserve.gov/monetarypolicy/reservereq.htm) — current and historical U.S. reserve-requirement ratios.
-- Caroline Humphrey, [“Barter and Economic Disintegration”](https://www.jstor.org/stable/2802221), *Man* 20(1), 1985, pp. 48–72.
+- Caroline Humphrey, [“Barter and Economic Disintegration”](https://www.jstor.org/stable/2802221), _Man_ 20(1), 1985, pp. 48–72.

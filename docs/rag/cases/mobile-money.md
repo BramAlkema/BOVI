@@ -1,7 +1,18 @@
 ---
 title: Mobile Money — M-Pesa, Pix, GCash
 type: case
-tags: [mobile-money, m-pesa, pix, gcash, kenya, brazil, philippines, financial-inclusion, platform-leverage]
+tags:
+  [
+    mobile-money,
+    m-pesa,
+    pix,
+    gcash,
+    kenya,
+    brazil,
+    philippines,
+    financial-inclusion,
+    platform-leverage,
+  ]
 sources: [examples.md, conversation-derived]
 related: [../architecture/four-bootstrap-engines.md, ../core/unbundling-thesis.md]
 ---
@@ -17,6 +28,7 @@ In the BOVI framework, mobile money is the canonical example of **platform-lever
 ## The major examples
 
 ### M-Pesa (Kenya, 2007)
+
 - Launched by Safaricom (Vodafone's Kenyan operator)
 - Built on existing SMS infrastructure — works on basic feature phones
 - Reached 50 million users faster than any other payment network in African history
@@ -24,6 +36,7 @@ In the BOVI framework, mobile money is the canonical example of **platform-lever
 - Now operates in multiple African and Asian countries
 
 ### Pix (Brazil, 2020)
+
 - Launched by Brazil's central bank
 - Mandated all licensed banks to integrate (state-bootstrap variant of platform leverage)
 - Reached **150 million users in three years**
@@ -31,11 +44,13 @@ In the BOVI framework, mobile money is the canonical example of **platform-lever
 - Has substantially reduced cash usage and informal-economy friction
 
 ### GCash (Philippines)
+
 - Built by Globe Telecom on existing mobile/telco platform
 - Particularly important for diaspora remittances (~10% of Philippine GDP)
 - Combines payment, savings, micro-investment
 
 ### WeChat Pay / Alipay (China)
+
 - Bootstrapped on dominant social and commerce platforms (WeChat, Alibaba)
 - Now constitute the dominant payment infrastructure in China
 - Cashless adoption rate among the highest in the world
@@ -64,28 +79,28 @@ This multi-mode legitimacy is part of why mobile money has succeeded where pure-
 
 ## The two-layer pattern
 
-| Layer | What's happening |
-|---|---|
+| Layer                   | What's happening                                                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | **Bootstrap (bundled)** | Telco/platform/state provides the network and infrastructure; users adopt because they're already on the host platform |
-| **Use (unbundled)** | Users hold wealth in cattle, real estate, gold, USD; mobile money serves only as a transaction rail |
+| **Use (unbundled)**     | Users hold wealth in cattle, real estate, gold, USD; mobile money serves only as a transaction rail                    |
 
-This is the [two-layer pattern](../architecture/two-layer-pattern.md) in action. Mobile money is unbundled at the use layer (it's a transaction rail, not a savings vehicle) precisely *because* the platform-leverage bootstrap allowed the network to exist without needing speculation.
+This is the [two-layer pattern](../architecture/two-layer-pattern.md) in action. Mobile money is unbundled at the use layer (it's a transaction rail, not a savings vehicle) precisely _because_ the platform-leverage bootstrap allowed the network to exist without needing speculation.
 
 ## Why the "underbanked" framing is misleading
 
-Mainstream financial-inclusion discourse calls populations using mobile money "underbanked" — as if they are *outside* the financial system and need to be brought *in*.
+Mainstream financial-inclusion discourse calls populations using mobile money "underbanked" — as if they are _outside_ the financial system and need to be brought _in_.
 
-The framework reframes: they are inside *different* systems with their own coherent logic, and those systems often work better for their users than the formal-banking alternative would.
+The framework reframes: they are inside _different_ systems with their own coherent logic, and those systems often work better for their users than the formal-banking alternative would.
 
 A Kenyan with M-Pesa, cattle, gold, and a rotating savings club is not "underbanked." They are running an unbundled stack — exactly the architecture the framework recommends. Mobile money is one layer of that stack (the transaction rail), not a substitute for the whole.
 
-This matters for policy: "financial inclusion" projects that try to bring mobile-money users into formal banking often *worsen* their position by adding fees, surveillance, and credit risks they didn't have before.
+This matters for policy: "financial inclusion" projects that try to bring mobile-money users into formal banking often _worsen_ their position by adding fees, surveillance, and credit risks they didn't have before.
 
 ## The implication for the framework
 
 What rich-country tech crowds call "the future of money" — frictionless payments, mobile-first wallets, instant settlement — is **the global majority's present**. Mobile money has been doing this since 2007.
 
-The framework's job is to make the architecture *visible* so it can be taught, evaluated, and improved — not to invent it. The architecture already exists in everyday Kenyan, Brazilian, Filipino, and Chinese practice.
+The framework's job is to make the architecture _visible_ so it can be taught, evaluated, and improved — not to invent it. The architecture already exists in everyday Kenyan, Brazilian, Filipino, and Chinese practice.
 
 ## What this case teaches the framework
 

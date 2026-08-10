@@ -1,8 +1,8 @@
 export interface M4ButlerManifest {
-    id: string;
-    name: string;
-    version: string;
-    caps: string[];
+  id: string;
+  name: string;
+  version: string;
+  caps: string[];
 }
 export declare function installButler(_pkgUrl: string): Promise<void>;
 export declare function listButlers(): Promise<M4ButlerManifest[]>;

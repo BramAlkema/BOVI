@@ -3,8 +3,8 @@
  * Production-ready features for immediate deployment
  */
 
-import { emit, on } from './bus.js';
-import { BoviAPIError } from './api-types.js';
+import { emit, on } from "./bus.js";
+import { BoviAPIError } from "./api-types.js";
 
 // =============================================================================
 // RULERS API
@@ -23,36 +23,36 @@ export interface Ruler {
  */
 export async function getRulers(): Promise<Ruler[]> {
   const baseline = 0.03; // 3% baseline inflation
-  
+
   return [
     {
-      id: 'bovi-local',
-      name: 'BOVI Local LTS',
-      method: 'Personal basket tracking',
+      id: "bovi-local",
+      name: "BOVI Local LTS",
+      method: "Personal basket tracking",
       lastUpdated: new Date().toISOString(),
-      bpDrift: Math.round((await calculateLocalLTS() - baseline) * 10000)
+      bpDrift: Math.round(((await calculateLocalLTS()) - baseline) * 10000),
     },
     {
-      id: 'bovi-cohort',
-      name: 'BOVI Cohort LTS', 
-      method: 'Community aggregated',
+      id: "bovi-cohort",
+      name: "BOVI Cohort LTS",
+      method: "Community aggregated",
       lastUpdated: new Date().toISOString(),
-      bpDrift: Math.round((await calculateCohortLTS() - baseline) * 10000)
+      bpDrift: Math.round(((await calculateCohortLTS()) - baseline) * 10000),
     },
     {
-      id: 'ons-cpi',
-      name: 'ONS Official CPI',
-      method: 'Government published',
-      lastUpdated: '2024-01-15T09:30:00Z',
-      bpDrift: Math.round((0.032 - baseline) * 10000) // +20bp
+      id: "ons-cpi",
+      name: "ONS Official CPI",
+      method: "Government published",
+      lastUpdated: "2024-01-15T09:30:00Z",
+      bpDrift: Math.round((0.032 - baseline) * 10000), // +20bp
     },
     {
-      id: 'truflation',
-      name: 'Truflation Real-time',
-      method: 'Blockchain oracle',
+      id: "truflation",
+      name: "Truflation Real-time",
+      method: "Blockchain oracle",
       lastUpdated: new Date().toISOString(),
-      bpDrift: Math.round((0.0285 - baseline) * 10000) // -15bp
-    }
+      bpDrift: Math.round((0.0285 - baseline) * 10000), // -15bp
+    },
   ];
 }
 
@@ -62,23 +62,25 @@ export async function getRulers(): Promise<Ruler[]> {
 export async function switchRuler(rulerId: string): Promise<void> {
   const rulers = await getRulers();
   const ruler = rulers.find(r => r.id === rulerId);
-  
+
   if (!ruler) {
-    throw new BoviAPIError('RULER_NOT_FOUND', `Ruler ${rulerId} not found`);
+    throw new BoviAPIError("RULER_NOT_FOUND", `Ruler ${rulerId} not found`);
   }
-  
-  localStorage.setItem('bovi.activeRuler', rulerId);
-  
-  emit('ui.kpi.updated', {
-    flow: 'system',
-    kpi: 'active_ruler',
-    value: ruler
+
+  localStorage.setItem("bovi.activeRuler", rulerId);
+
+  emit("ui.kpi.updated", {
+    flow: "system",
+    kpi: "active_ruler",
+    value: ruler,
   });
-  
+
   // Recalculate all displays with new ruler
-  window.dispatchEvent(new CustomEvent('bovi.rulerChanged', { 
-    detail: { ruler, previousDrift: 0 }
-  }));
+  window.dispatchEvent(
+    new CustomEvent("bovi.rulerChanged", {
+      detail: { ruler, previousDrift: 0 },
+    })
+  );
 }
 
 // =============================================================================
@@ -97,27 +99,27 @@ export interface IndexCommonsEntry {
 }
 
 class IndexCommonsStore {
-  private dbName = 'bovi-index-commons';
+  private dbName = "bovi-index-commons";
   private version = 1;
   private db: IDBDatabase | null = null;
 
   async init(): Promise<void> {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.dbName, this.version);
-      
+
       request.onerror = () => reject(request.error);
       request.onsuccess = () => {
         this.db = request.result;
         resolve();
       };
-      
-      request.onupgradeneeded = (event) => {
+
+      request.onupgradeneeded = event => {
         const db = (event.target as IDBOpenDBRequest).result;
-        
-        if (!db.objectStoreNames.contains('entries')) {
-          const store = db.createObjectStore('entries', { keyPath: 'id' });
-          store.createIndex('timestamp', 'timestamp');
-          store.createIndex('quality', 'quality');
+
+        if (!db.objectStoreNames.contains("entries")) {
+          const store = db.createObjectStore("entries", { keyPath: "id" });
+          store.createIndex("timestamp", "timestamp");
+          store.createIndex("quality", "quality");
         }
       };
     });
@@ -125,16 +127,16 @@ class IndexCommonsStore {
 
   async store(entry: IndexCommonsEntry): Promise<void> {
     if (!this.db) await this.init();
-    
+
     return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction(['entries'], 'readwrite');
-      const store = transaction.objectStore('entries');
-      
+      const transaction = this.db!.transaction(["entries"], "readwrite");
+      const store = transaction.objectStore("entries");
+
       const request = store.put({
         ...entry,
-        id: entry.id || `entry_${Date.now()}_${Math.random().toString(36).slice(2)}`
+        id: entry.id || `entry_${Date.now()}_${Math.random().toString(36).slice(2)}`,
       });
-      
+
       request.onsuccess = () => resolve();
       request.onerror = () => reject(request.error);
     });
@@ -142,11 +144,11 @@ class IndexCommonsStore {
 
   async getAll(): Promise<IndexCommonsEntry[]> {
     if (!this.db) await this.init();
-    
+
     return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction(['entries'], 'readonly');
-      const store = transaction.objectStore('entries');
-      
+      const transaction = this.db!.transaction(["entries"], "readonly");
+      const store = transaction.objectStore("entries");
+
       const request = store.getAll();
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);
@@ -155,11 +157,15 @@ class IndexCommonsStore {
 
   async exportJSON(): Promise<string> {
     const entries = await this.getAll();
-    return JSON.stringify({
-      version: '1.0.0',
-      exported: new Date().toISOString(),
-      entries
-    }, null, 2);
+    return JSON.stringify(
+      {
+        version: "1.0.0",
+        exported: new Date().toISOString(),
+        entries,
+      },
+      null,
+      2
+    );
   }
 }
 
@@ -190,21 +196,24 @@ export interface HamburgerBasket {
 /**
  * Create a fixed hamburger basket for tracking
  */
-export async function createHamburgerBasket(name: string, items: HamburgerBasket['items']): Promise<HamburgerBasket> {
+export async function createHamburgerBasket(
+  name: string,
+  items: HamburgerBasket["items"]
+): Promise<HamburgerBasket> {
   const basket: HamburgerBasket = {
     id: `hamburger_${Date.now()}`,
     name,
     items,
     created: new Date().toISOString(),
     lastUpdated: new Date().toISOString(),
-    public: false
+    public: false,
   };
-  
+
   // Store locally
   const baskets = getStoredBaskets();
   baskets.push(basket);
-  localStorage.setItem('bovi.hamburgerBaskets', JSON.stringify(baskets));
-  
+  localStorage.setItem("bovi.hamburgerBaskets", JSON.stringify(baskets));
+
   return basket;
 }
 
@@ -214,17 +223,17 @@ export async function createHamburgerBasket(name: string, items: HamburgerBasket
 export async function publishBasket(basketId: string): Promise<string> {
   const baskets = getStoredBaskets();
   const basket = baskets.find(b => b.id === basketId);
-  
+
   if (!basket) {
-    throw new BoviAPIError('BASKET_NOT_FOUND', `Basket ${basketId} not found`);
+    throw new BoviAPIError("BASKET_NOT_FOUND", `Basket ${basketId} not found`);
   }
-  
+
   basket.public = true;
   basket.shareUrl = `${window.location.origin}/basket/${basketId}`;
-  
+
   // Store updated basket
-  localStorage.setItem('bovi.hamburgerBaskets', JSON.stringify(baskets));
-  
+  localStorage.setItem("bovi.hamburgerBaskets", JSON.stringify(baskets));
+
   // In production, would sync to server for public sharing
   return basket.shareUrl;
 }
@@ -240,21 +249,21 @@ export async function calculateHamburgerInflation(basketId: string): Promise<{
 }> {
   const baskets = getStoredBaskets();
   const basket = baskets.find(b => b.id === basketId);
-  
+
   if (!basket) {
-    throw new BoviAPIError('BASKET_NOT_FOUND', `Basket ${basketId} not found`);
+    throw new BoviAPIError("BASKET_NOT_FOUND", `Basket ${basketId} not found`);
   }
-  
+
   const current = basket.items.reduce((sum, item) => sum + item.price, 0);
   const previous = basket.items.reduce((sum, item) => sum + item.usual, 0);
   const change = current - previous;
   const changePercent = change / previous;
-  
+
   return { current, previous, change, changePercent };
 }
 
 function getStoredBaskets(): HamburgerBasket[] {
-  return JSON.parse(localStorage.getItem('bovi.hamburgerBaskets') || '[]');
+  return JSON.parse(localStorage.getItem("bovi.hamburgerBaskets") || "[]");
 }
 
 // =============================================================================
@@ -265,7 +274,7 @@ export interface MoneyVeilData {
   userId: string;
   inflationDrift: number; // Personal vs official inflation
   bracketCreep: number; // Tax bracket creep impact
-  realRate: number; // Real interest rate impact  
+  realRate: number; // Real interest rate impact
   netImpact: number; // Combined impact in £
   lastCalculated: string;
 }
@@ -278,30 +287,29 @@ export async function calculateMoneyVeil(
   savings: number,
   interestRate: number
 ): Promise<MoneyVeilData> {
-  
   // Get personal inflation rate
   const personalInflation = await calculateLocalLTS();
   const officialInflation = 0.032; // ONS CPI
   const inflationDrift = personalInflation - officialInflation;
-  
+
   // Calculate bracket creep (simplified)
   const bracketCreep = Math.max(0, inflationDrift * income * 0.2); // 20% tax rate assumption
-  
+
   // Calculate real rate impact on savings
   const nominalReturn = savings * interestRate;
   const realReturn = savings * (interestRate - personalInflation);
   const realRate = realReturn - nominalReturn;
-  
+
   // Net impact (negative = money losing value faster than expected)
   const netImpact = bracketCreep + realRate;
-  
+
   return {
-    userId: 'current-user',
+    userId: "current-user",
     inflationDrift,
     bracketCreep,
     realRate,
     netImpact,
-    lastCalculated: new Date().toISOString()
+    lastCalculated: new Date().toISOString(),
   };
 }
 
@@ -316,20 +324,20 @@ export async function generateWeeklyDigest(): Promise<{
 }> {
   const endDate = new Date();
   const startDate = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
-  
+
   return {
-    period: `${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`,
+    period: `${startDate.toISOString().split("T")[0]} to ${endDate.toISOString().split("T")[0]}`,
     highlights: [
-      'Personal inflation ran 0.15% higher than official CPI',
-      'Grocery basket increased 2.3% week-over-week',  
-      'Energy costs stable despite cold weather'
+      "Personal inflation ran 0.15% higher than official CPI",
+      "Grocery basket increased 2.3% week-over-week",
+      "Energy costs stable despite cold weather",
     ],
     netChange: -12.45, // £12.45 worse off this week
     recommendations: [
-      'Consider switching to Tesco own-brand cereals (saving: £3.20/week)',
-      'Your mortgage rate beats inflation by 1.2% - good position',
-      'Council tax increase kicks in next month - budget +£8/week'
-    ]
+      "Consider switching to Tesco own-brand cereals (saving: £3.20/week)",
+      "Your mortgage rate beats inflation by 1.2% - good position",
+      "Council tax increase kicks in next month - budget +£8/week",
+    ],
   };
 }
 
@@ -361,46 +369,45 @@ export interface SmartContract {
  * Create contract from template with LTS indexation
  */
 export async function createSmartContract(
-  templateId: 'rent' | 'salary' | 'loan',
+  templateId: "rent" | "salary" | "loan",
   parties: string[],
   clause: ContractClause
 ): Promise<{ contract: SmartContract; receipt: { pdf: Blob; json: string } }> {
-  
   const templates = {
-    rent: 'Annual rent adjustment shall be the lesser of LTS inflation or {cap}%, with a floor of {floor}% decrease.',
-    salary: 'Annual salary review based on LTS inflation, capped at {cap}% increase.',
-    loan: 'Variable rate tied to LTS inflation + {margin}%, with {floor}% minimum rate.'
+    rent: "Annual rent adjustment shall be the lesser of LTS inflation or {cap}%, with a floor of {floor}% decrease.",
+    salary: "Annual salary review based on LTS inflation, capped at {cap}% increase.",
+    loan: "Variable rate tied to LTS inflation + {margin}%, with {floor}% minimum rate.",
   };
-  
+
   const contract: SmartContract = {
     id: `contract_${Date.now()}`,
     templateId,
     parties,
     clause,
     humanReadable: templates[templateId]
-      .replace('{cap}', ((clause.capBp || 0) / 100).toString())
-      .replace('{floor}', ((clause.floorBp || 0) / 100).toString()),
+      .replace("{cap}", ((clause.capBp || 0) / 100).toString())
+      .replace("{floor}", ((clause.floorBp || 0) / 100).toString()),
     created: new Date().toISOString(),
     effectiveFrom: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Tomorrow
     undoDeadline: new Date(Date.now() + clause.undoWindowHours * 60 * 60 * 1000).toISOString(),
-    signed: false
+    signed: false,
   };
-  
+
   // Generate receipts
   const pdfReceipt = await generatePDFReceipt(contract);
   const jsonReceipt = JSON.stringify(contract, null, 2);
-  
+
   // Store contract
-  const contracts = JSON.parse(localStorage.getItem('bovi.smartContracts') || '[]');
+  const contracts = JSON.parse(localStorage.getItem("bovi.smartContracts") || "[]");
   contracts.push(contract);
-  localStorage.setItem('bovi.smartContracts', JSON.stringify(contracts));
-  
+  localStorage.setItem("bovi.smartContracts", JSON.stringify(contracts));
+
   return {
     contract,
     receipt: {
       pdf: pdfReceipt,
-      json: jsonReceipt
-    }
+      json: jsonReceipt,
+    },
   };
 }
 
@@ -414,7 +421,7 @@ BOVI Smart Contract Receipt
 
 Contract ID: ${contract.id}
 Template: ${contract.templateId}
-Parties: ${contract.parties.join(', ')}
+Parties: ${contract.parties.join(", ")}
 
 Terms:
 ${contract.humanReadable}
@@ -422,15 +429,15 @@ ${contract.humanReadable}
 LTS Index: ${contract.clause.ltsIndex}
 Cap: ${contract.clause.capBp}bp
 Floor: ${contract.clause.floorBp}bp
-Carryover: ${contract.clause.carry ? 'Yes' : 'No'}
+Carryover: ${contract.clause.carry ? "Yes" : "No"}
 
 Effective: ${contract.effectiveFrom}
 Undo until: ${contract.undoDeadline}
 
 Generated: ${new Date().toISOString()}
   `;
-  
-  return new Blob([content], { type: 'application/pdf' });
+
+  return new Blob([content], { type: "application/pdf" });
 }
 
 // =============================================================================
@@ -445,7 +452,7 @@ export interface CohortAuction {
   improvement: number; // % improvement vs individual
   noWorseOffCheck: boolean; // Guarantee nobody worse off
   joinDeadline: string;
-  status: 'forming' | 'active' | 'completed';
+  status: "forming" | "active" | "completed";
 }
 
 /**
@@ -455,7 +462,6 @@ export async function createCohortAuction(
   category: string,
   targetSize: number = 50
 ): Promise<CohortAuction> {
-  
   const auction: CohortAuction = {
     id: `cohort_${Date.now()}`,
     category,
@@ -464,14 +470,14 @@ export async function createCohortAuction(
     improvement: 0,
     noWorseOffCheck: true, // BOVI guarantee
     joinDeadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 1 week
-    status: 'forming'
+    status: "forming",
   };
-  
+
   // Store auction
-  const auctions = JSON.parse(localStorage.getItem('bovi.cohortAuctions') || '[]');
+  const auctions = JSON.parse(localStorage.getItem("bovi.cohortAuctions") || "[]");
   auctions.push(auction);
-  localStorage.setItem('bovi.cohortAuctions', JSON.stringify(auctions));
-  
+  localStorage.setItem("bovi.cohortAuctions", JSON.stringify(auctions));
+
   return auction;
 }
 
@@ -483,43 +489,45 @@ export async function joinCohortAuction(auctionId: string): Promise<{
   projectedSavings: number;
   guarantee: string;
 }> {
-  
-  const auctions: CohortAuction[] = JSON.parse(localStorage.getItem('bovi.cohortAuctions') || '[]');
+  const auctions: CohortAuction[] = JSON.parse(localStorage.getItem("bovi.cohortAuctions") || "[]");
   const auction = auctions.find(a => a.id === auctionId);
-  
+
   if (!auction) {
-    throw new BoviAPIError('AUCTION_NOT_FOUND', `Auction ${auctionId} not found`);
+    throw new BoviAPIError("AUCTION_NOT_FOUND", `Auction ${auctionId} not found`);
   }
-  
-  if (auction.status !== 'forming') {
-    throw new BoviAPIError('AUCTION_CLOSED', 'Auction no longer accepting participants');
+
+  if (auction.status !== "forming") {
+    throw new BoviAPIError("AUCTION_CLOSED", "Auction no longer accepting participants");
   }
-  
+
   // Calculate if user would benefit
   const currentUserCost = 100; // Mock current cost
   const cohortCost = 95; // Mock cohort negotiated price
   const projectedSavings = currentUserCost - cohortCost;
-  
+
   if (projectedSavings < 0) {
     // BOVI no-worse-off guarantee triggers
     return {
       joined: false,
       projectedSavings: 0,
-      guarantee: 'BOVI guarantee: You would not benefit from this cohort. No action taken.'
+      guarantee: "BOVI guarantee: You would not benefit from this cohort. No action taken.",
     };
   }
-  
+
   // Join the cohort
   auction.participants += 1;
   auction.improvement = (projectedSavings / currentUserCost) * 100;
-  
+
   // Update storage
-  localStorage.setItem('bovi.cohortAuctions', JSON.stringify(auctions));
-  
+  localStorage.setItem("bovi.cohortAuctions", JSON.stringify(auctions));
+
   return {
     joined: true,
     projectedSavings,
-    guarantee: 'BOVI guarantee: You will save at least £' + projectedSavings.toFixed(2) + ' or pay nothing extra.'
+    guarantee:
+      "BOVI guarantee: You will save at least £" +
+      projectedSavings.toFixed(2) +
+      " or pay nothing extra.",
   };
 }
 
@@ -536,7 +544,7 @@ export interface StormProfile {
     contracts: string[]; // Contracts to activate/pause
     rails: string[]; // Preferred payment methods
     notifications: {
-      frequency: 'high' | 'medium' | 'low';
+      frequency: "high" | "medium" | "low";
       channels: string[];
     };
   };
@@ -546,17 +554,17 @@ export interface StormProfile {
 /**
  * Create Storm Mode profile for crisis management
  */
-export async function createStormProfile(profile: Omit<StormProfile, 'id'>): Promise<StormProfile> {
+export async function createStormProfile(profile: Omit<StormProfile, "id">): Promise<StormProfile> {
   const stormProfile: StormProfile = {
     id: `storm_${Date.now()}`,
-    ...profile
+    ...profile,
   };
-  
+
   // Store profile
-  const profiles = JSON.parse(localStorage.getItem('bovi.stormProfiles') || '[]');
+  const profiles = JSON.parse(localStorage.getItem("bovi.stormProfiles") || "[]");
   profiles.push(stormProfile);
-  localStorage.setItem('bovi.stormProfiles', JSON.stringify(profiles));
-  
+  localStorage.setItem("bovi.stormProfiles", JSON.stringify(profiles));
+
   return stormProfile;
 }
 
@@ -568,41 +576,45 @@ export async function activateStormMode(profileId: string): Promise<{
   changes: string[];
   revertTime: string;
 }> {
-  
-  const profiles: StormProfile[] = JSON.parse(localStorage.getItem('bovi.stormProfiles') || '[]');
+  const profiles: StormProfile[] = JSON.parse(localStorage.getItem("bovi.stormProfiles") || "[]");
   const profile = profiles.find(p => p.id === profileId);
-  
+
   if (!profile) {
-    throw new BoviAPIError('PROFILE_NOT_FOUND', `Storm profile ${profileId} not found`);
+    throw new BoviAPIError("PROFILE_NOT_FOUND", `Storm profile ${profileId} not found`);
   }
-  
+
   const changes: string[] = [];
-  
+
   // Apply pot changes
   Object.entries(profile.changes.pots).forEach(([pot, adjustment]) => {
-    changes.push(`${pot} budget ${adjustment > 0 ? 'increased' : 'decreased'} by £${Math.abs(adjustment)}`);
+    changes.push(
+      `${pot} budget ${adjustment > 0 ? "increased" : "decreased"} by £${Math.abs(adjustment)}`
+    );
   });
-  
+
   // Update notification settings
-  localStorage.setItem('bovi.stormMode.notifications', JSON.stringify(profile.changes.notifications));
+  localStorage.setItem(
+    "bovi.stormMode.notifications",
+    JSON.stringify(profile.changes.notifications)
+  );
   changes.push(`Notifications set to ${profile.changes.notifications.frequency} frequency`);
-  
+
   // Set revert timer (24 hours default)
   const revertTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-  localStorage.setItem('bovi.stormMode.revertTime', revertTime);
-  localStorage.setItem('bovi.stormMode.active', profileId);
-  
+  localStorage.setItem("bovi.stormMode.revertTime", revertTime);
+  localStorage.setItem("bovi.stormMode.active", profileId);
+
   // Emit storm mode activation event
-  emit('ui.kpi.updated', {
-    flow: 'system',
-    kpi: 'storm_mode',
-    value: { active: true, profile: profile.name }
+  emit("ui.kpi.updated", {
+    flow: "system",
+    kpi: "storm_mode",
+    value: { active: true, profile: profile.name },
   });
-  
+
   return {
     activated: true,
     changes,
-    revertTime
+    revertTime,
   };
 }
 

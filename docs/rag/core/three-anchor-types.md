@@ -12,28 +12,30 @@ related: [common-knowledge-of-acceptance.md, five-axioms.md, cases/bitcoin.md]
 
 The **anchor** is the mechanism that produces common knowledge of supply for a money. There are three known types, and **the type does not matter** — only that an anchor exists and is credible.
 
-| Anchor type | Mechanism | Examples |
-|---|---|---|
-| **Legal** | The state declares the supply | Fiat: USD, EUR, JPY, GBP |
-| **Natural** | Physics caps the supply | Gold, silver, salt, cattle, cowries, land |
-| **Mathematical** | An algorithm declares the supply | Bitcoin, fixed-supply crypto |
+| Anchor type      | Mechanism                        | Examples                                  |
+| ---------------- | -------------------------------- | ----------------------------------------- |
+| **Legal**        | The state declares the supply    | Fiat: USD, EUR, JPY, GBP                  |
+| **Natural**      | Physics caps the supply          | Gold, silver, salt, cattle, cowries, land |
+| **Mathematical** | An algorithm declares the supply | Bitcoin, fixed-supply crypto              |
 
 ## Why type does not matter
 
 This is the framework's key neutralising move. It dissolves three otherwise-eternal debates:
 
-- **Chartalism vs. commodity theory**: both correct that *an* anchor is needed; both wrong to claim only theirs counts. State coercion (legal) and intrinsic value (natural) are two of three known anchor types.
+- **Chartalism vs. commodity theory**: both correct that _an_ anchor is needed; both wrong to claim only theirs counts. State coercion (legal) and intrinsic value (natural) are two of three known anchor types.
 - **Goldbug vs. fiat-defender**: each defaults to one anchor type and treats it as the only legitimate one. The framework treats both as engineering choices.
 - **Crypto-evangelist vs. crypto-skeptic**: the algorithm-as-anchor is genuinely novel (2008 Bitcoin breakthrough) but it solves the same axiom requirement that legal and natural anchors solve. It is not magic; it is a third option on the menu.
 
 ## Concrete examples
 
 ### Legal anchor (fiat)
+
 - Central bank publishes balance sheets, controls issuance
 - Backed by state authority, courts, tax demand
 - Failure mode: state authority cracks → anchor fails (Weimar, Zimbabwe, Argentina)
 
 ### Natural anchor (commodity money)
+
 - Physics or biology limits the supply
 - Gold: hard to mine more, requires geological work
 - Cattle: reproduction is slow and constrained
@@ -41,13 +43,14 @@ This is the framework's key neutralising move. It dissolves three otherwise-eter
 - Special case: POW-camp cigarettes — supply known by Red Cross parcel deliveries, even though cigarettes are not "scarce"
 
 ### Mathematical anchor (cryptographic)
+
 - Protocol fixes supply schedule, enforced by distributed validators
 - Bitcoin: 21M cap on a halving schedule, audited by every full node
 - Failure mode: 51% attack, protocol governance capture, fork wars
 
 ## What "scarcity" gets wrong
 
-Scarcity is a *symptom* of the natural anchor, not a defining property of money. Bitcoin's hard cap is not load-bearing for axiom 4 — *publicly verifiable schedule* is. An inflationary token with transparent issuance can satisfy the axiom equally well.
+Scarcity is a _symptom_ of the natural anchor, not a defining property of money. Bitcoin's hard cap is not load-bearing for axiom 4 — _publicly verifiable schedule_ is. An inflationary token with transparent issuance can satisfy the axiom equally well.
 
 Goldbug confusion: defaults to natural-anchor case and mistakes the symptom (scarcity) for the requirement (common knowledge of supply). See [five axioms](five-axioms.md).
 

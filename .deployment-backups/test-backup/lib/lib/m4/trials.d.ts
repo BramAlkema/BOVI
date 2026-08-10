@@ -1,11 +1,11 @@
 export interface M4Trial {
-    id: string;
-    hypothesis: string;
-    start: string;
-    end?: string;
-    metrics: string[];
-    preregUrl?: string;
-    status: "planned" | "running" | "done";
+  id: string;
+  hypothesis: string;
+  start: string;
+  end?: string;
+  metrics: string[];
+  preregUrl?: string;
+  status: "planned" | "running" | "done";
 }
 export declare function loadTrials(): M4Trial[];
 export declare function listTrials(): M4Trial[];

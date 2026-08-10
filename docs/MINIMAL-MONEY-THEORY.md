@@ -9,25 +9,29 @@ It is fundamentally a **portable forgetful ledger** - a distributed record of wh
 ## The Four Requirements
 
 ### 1. Transferable Tokens
+
 - Can move between parties
 - Physical or digital
 - The tokens ARE the ledger
 
-### 2. Sufficient Divisibility  
+### 2. Sufficient Divisibility
+
 - Enough granularity to enable trades
 - Doesn't need to be infinite
 - Just "good enough" for the context
 
 ### 3. Sufficient Verifiability
+
 - Can distinguish real from fake
 - Doesn't need perfect anti-counterfeiting
 - Just "good enough" trust
 
 ### 4. Symmetrically Known Supply
+
 - Everyone knows roughly how many tokens exist
 - Anchored by:
   - **Legal**: "The law says X tokens exist"
-  - **Natural**: "Physics limits it to Y tokens"  
+  - **Natural**: "Physics limits it to Y tokens"
   - **Mathematical**: "Algorithm produces Z tokens"
 - The anchor type doesn't matter, only that it creates common knowledge
 
@@ -56,31 +60,37 @@ Not all trades - just the ones that were blocked without a medium of exchange. T
 Starting with truly minimal money creates immediate problems:
 
 ### Problem 1: No Price Memory
+
 - Values fluctuate constantly
 - Humans can't track prices in unstable units
 - **Forces Creation Of**: Personal Data Assistants (PDAs) for price tracking
 
 ### Problem 2: No Contract Stability
+
 - Can't promise future payments in fluctuating tokens
 - Long-term obligations become impossible
 - **Forces Creation Of**: Indexed contracts separate from money
 
 ### Problem 3: Opportunity Cost
+
 - Holding minimal money = missing returns
 - Every idle moment costs potential gains
 - **Forces Creation Of**: Wealth storage in productive assets
 
 ### Problem 4: No Time-Shifting
+
 - Only enables spot trades
 - Can't handle "pay me back later"
 - **Forces Creation Of**: Debt ledgers and credit systems (Balanced mode emerges)
 
 ### Problem 5: No Public Goods
+
 - Someone must maintain the supply anchor
 - They demand compensation
 - **Forces Creation Of**: Tax systems (Obligated mode emerges)
 
 ### Problem 6: No Social Cohesion
+
 - Everything becomes transactional
 - Families/communities need non-market flows
 - **Forces Creation Of**: Gift economies (Immediate mode emerges)
@@ -90,6 +100,7 @@ Starting with truly minimal money creates immediate problems:
 **Minimal money is so minimal it cannot bundle multiple functions.**
 
 This reveals that:
+
 1. Current money artificially bundles functions that should be separate
 2. The natural state is unbundled - one tool per function
 3. Money should ONLY be a medium of exchange
@@ -102,7 +113,7 @@ Instead of forcing money to do everything:
 ```
 Transaction Layer: Minimal money (portable forgetful ledger)
 Memory Layer: PDA (price tracking and comparison)
-Contract Layer: Indices (stable long-term obligations)  
+Contract Layer: Indices (stable long-term obligations)
 Storage Layer: Assets (stocks, bonds, real estate)
 Credit Layer: Debt ledgers (time-shifted obligations)
 Public Layer: Tax systems (collective goods funding)
@@ -113,12 +124,14 @@ Social Layer: Gift networks (non-market resource flows)
 
 This proves BOVI's core thesis: **Money isn't one thing but a bundle of different fairness modes.**
 
-**Correction (FOUNDATIONS.md, Stone 1).** An earlier draft started from *minimal money = pure Value mode* and had the other modes "emerge" from it. The rebuilt foundation fixes that: the pull toward a record of *who gave and has not yet received* is **general across all four modes from the start** — the double-coincidence / minimal-money case is the *acute Value-mode slice*, not the root. The modes are not spawned *by* Value-money; the need they answer was always plural. Read the mapping below as the **facets of that one plural need**, not a sequence unfolding out of Value:
+**Correction (FOUNDATIONS.md, Stone 1).** An earlier draft started from _minimal money = pure Value mode_ and had the other modes "emerge" from it. The rebuilt foundation fixes that: the pull toward a record of _who gave and has not yet received_ is **general across all four modes from the start** — the double-coincidence / minimal-money case is the _acute Value-mode slice_, not the root. The modes are not spawned _by_ Value-money; the need they answer was always plural. Read the mapping below as the **facets of that one plural need**, not a sequence unfolding out of Value:
+
 - Need for time-shifted trades → Balanced mode
-- Need for public goods → Obligated mode  
+- Need for public goods → Obligated mode
 - Need for social cohesion → Immediate mode
 
 **You cannot escape the bundle.** Even the most minimal money system spawns all four fairness modes. The only choice is whether to:
+
 1. Pretend one tool does everything (current approach)
 2. Consciously separate functions (BOVI approach)
 
@@ -142,4 +155,4 @@ The BOVI framework doesn't fight this reality - it makes it conscious and naviga
 
 ---
 
-*"Money is just a portable forgetful ledger. Everything else we've attached to it belongs somewhere else."*
+_"Money is just a portable forgetful ledger. Everything else we've attached to it belongs somewhere else."_

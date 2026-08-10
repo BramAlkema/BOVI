@@ -3,7 +3,8 @@ title: The Unbundling Thesis
 type: core
 tags: [unbundling, functions, stack, architecture, design]
 sources: [MINIMAL-MONEY-THEORY.md, UNBUNDLING-MONEY-FUNCTIONS.md, WEALTH-TRANSACTION-SEPARATION.md]
-related: [money-as-bundle.md, ../architecture/four-functions.md, ../architecture/five-layer-stack.md]
+related:
+  [money-as-bundle.md, ../architecture/four-functions.md, ../architecture/five-layer-stack.md]
 ---
 
 # The Unbundling Thesis
@@ -12,18 +13,18 @@ related: [money-as-bundle.md, ../architecture/four-functions.md, ../architecture
 
 **Money's functions don't need to be — and shouldn't be — bundled in the same instrument.** Each function has different optimal properties, and forcing one tool to do all four creates impossible trade-offs.
 
-This is the engineering response to the empirical fact that money is bundled (see [bundle](money-as-bundle.md)). Bundling is inevitable at the *bootstrap* layer; unbundling is achievable at the *use* layer (see [two-layer pattern](../architecture/two-layer-pattern.md)).
+This is the engineering response to the empirical fact that money is bundled (see [bundle](money-as-bundle.md)). Bundling is inevitable at the _bootstrap_ layer; unbundling is achievable at the _use_ layer (see [two-layer pattern](../architecture/two-layer-pattern.md)).
 
 ## The four functions, properly assigned
 
-| Function | Wants | Optimal tool |
-|---|---|---|
-| **Medium of exchange** | Low friction, divisible, abundant, fast circulation | Minimal money (cash, mobile money, BTC-as-rail, USDT) |
-| **Unit of account** | Stability, standardisation, memory | Indices and personal PDAs |
-| **Store of value** | Appreciation, scarcity, durability | Productive assets (real estate, equities, gold, BTC-as-asset) |
-| **Standard of deferred payment** | Contract-grade purchasing-power stability | Indexed contracts (rent tied to housing index, pensions tied to CPI) |
+| Function                         | Wants                                               | Optimal tool                                                         |
+| -------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------- |
+| **Medium of exchange**           | Low friction, divisible, abundant, fast circulation | Minimal money (cash, mobile money, BTC-as-rail, USDT)                |
+| **Unit of account**              | Stability, standardisation, memory                  | Indices and personal PDAs                                            |
+| **Store of value**               | Appreciation, scarcity, durability                  | Productive assets (real estate, equities, gold, BTC-as-asset)        |
+| **Standard of deferred payment** | Contract-grade purchasing-power stability           | Indexed contracts (rent tied to housing index, pensions tied to CPI) |
 
-These four functions *actively conflict* if forced into one instrument:
+These four functions _actively conflict_ if forced into one instrument:
 
 - Stability-for-contracts vs. flexibility-for-transactions (central bank balancing act)
 - Scarcity-for-store-of-value vs. abundance-for-circulation (Bitcoin's deflationary problem)
@@ -72,7 +73,7 @@ Once functions are unbundled, the question "is X money?" stops making sense. Bit
 
 Treasury departments, hedge funds, family offices, expatriates in dollarised countries — all run unbundled stacks. What's new is the proposal to make this accessible to everyone, not just institutions.
 
-The unbundled stack is not the future of money; it is the *current practice* of competent users that the textbook has been ignoring.
+The unbundled stack is not the future of money; it is the _current practice_ of competent users that the textbook has been ignoring.
 
 ## Source quote
 

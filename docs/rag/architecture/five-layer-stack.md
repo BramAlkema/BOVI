@@ -17,6 +17,7 @@ This is what Doña Elena (the framework's protagonist) actually does on her iPho
 ## The five layers
 
 ### 1. Long-term Contracting Layer
+
 - **Purpose**: Multi-year obligations (mortgages, pensions, insurance)
 - **Solution**: Personal indices denominated in relatable units
   - Housing contracts indexed to local construction costs
@@ -25,6 +26,7 @@ This is what Doña Elena (the framework's protagonist) actually does on her iPho
 - **Key**: Stability over decades, not daily price movements
 
 ### 2. Short-term Transaction Layer
+
 - **Purpose**: Daily purchases and immediate exchanges
 - **Solution**: Spot money or just-in-time currency conversion
   - Use whatever currency the merchant accepts
@@ -33,6 +35,7 @@ This is what Doña Elena (the framework's protagonist) actually does on her iPho
 - **Key**: Acceptance and convenience, not returns
 
 ### 3. Wealth Storage Layer
+
 - **Purpose**: Maximise returns on assets
 - **Solution**: Optimised investment allocation
   - Pension funds for long-term growth
@@ -42,6 +45,7 @@ This is what Doña Elena (the framework's protagonist) actually does on her iPho
 - **Key**: Never leave wealth sitting in transaction currency
 
 ### 4. Price Discovery Layer
+
 - **Purpose**: Know if you're getting a good deal
 - **Solution**: PDA (Personal Data Assistant) handles all comparisons
   - No reliance on human memory ("what did this cost yesterday?")
@@ -52,6 +56,7 @@ This is what Doña Elena (the framework's protagonist) actually does on her iPho
 - → see [personal PDA](../practice/personal-pda.md)
 
 ### 5. Account Sweeping Layer
+
 - **Purpose**: Never leave money idle
 - **Solution**: Automatic daily sweeps
   - Current accounts swept to optimal instruments nightly
@@ -83,17 +88,18 @@ This is what Doña Elena (the framework's protagonist) actually does on her iPho
 
 ## Why this beats the current path-dependent system
 
-| Current (bundled) | Separated (unbundled) |
-|---|---|
-| Keep savings in same currency you spend | Wealth always earning returns |
+| Current (bundled)                              | Separated (unbundled)                       |
+| ---------------------------------------------- | ------------------------------------------- |
+| Keep savings in same currency you spend        | Wealth always earning returns               |
 | Hold "emergency funds" in cash earning nothing | Convert only what you need when you need it |
-| Remember prices yourself | PDA handles all price intelligence |
-| Manual management of accounts | Automatic optimisation |
-| Wealth sits idle between uses | No idle capital |
+| Remember prices yourself                       | PDA handles all price intelligence          |
+| Manual management of accounts                  | Automatic optimisation                      |
+| Wealth sits idle between uses                  | No idle capital                             |
 
 ## Implementation requirements
 
 ### Technical infrastructure
+
 - Real-time conversion APIs between investment types and currencies
 - Personal indexing services for long-term contracts
 - PDA with comprehensive price data access
@@ -101,6 +107,7 @@ This is what Doña Elena (the framework's protagonist) actually does on her iPho
 - Smart liquidation algorithms to minimise conversion costs
 
 ### Behavioural changes
+
 - Stop thinking in one currency — think in purchasing power
 - Stop holding transaction balances — convert just-in-time
 - Stop remembering prices — let PDA handle it

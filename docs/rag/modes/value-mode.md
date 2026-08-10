@@ -3,7 +3,12 @@ title: Value Mode
 type: mode
 tags: [value, V, market-pricing, fiske-MP, spot-trade]
 sources: [theory.md, BUNDLING-EXPLAINED.md]
-related: [../core/four-modes-overview.md, ../pathologies/yield-management.md, ../pathologies/adversarial-mode-forcing.md]
+related:
+  [
+    ../core/four-modes-overview.md,
+    ../pathologies/yield-management.md,
+    ../pathologies/adversarial-mode-forcing.md,
+  ]
 ---
 
 # Value Mode (V)
@@ -20,9 +25,9 @@ Two strangers, one transaction, fairness = the number both agree on. No history,
 - Bus drivers, cashiers, anonymous merchants
 - Spot markets, exchanges, trading floors
 - Wholesale supply chains
-- Anywhere relationship is *not* part of what you want from the exchange
+- Anywhere relationship is _not_ part of what you want from the exchange
 
-It works *brilliantly* when you don't have or want a relationship with the other side. You don't want the bus driver to know your name and adjust the fare based on your mood.
+It works _brilliantly_ when you don't have or want a relationship with the other side. You don't want the bus driver to know your name and adjust the fare based on your mood.
 
 ## The tell you're in Value mode
 
@@ -36,19 +41,20 @@ Just the number.
 
 ## The trap: contagion
 
-Value mode is *contagious*. Once a transaction collapses into Value, everything else gets stripped out. That's the whole point — and the whole danger.
+Value mode is _contagious_. Once a transaction collapses into Value, everything else gets stripped out. That's the whole point — and the whole danger.
 
-This is why surge pricing feels different from regular pricing. Uber forces a Value-mode collapse on a moment (you, late at night, in the rain) that has features the algorithm reads off you. Dating apps charging more if you're older. Airline seats costing more from rich postcodes. "Personalised pricing" is just Value mode aimed at *you*, by something that knows things about you.
+This is why surge pricing feels different from regular pricing. Uber forces a Value-mode collapse on a moment (you, late at night, in the rain) that has features the algorithm reads off you. Dating apps charging more if you're older. Airline seats costing more from rich postcodes. "Personalised pricing" is just Value mode aimed at _you_, by something that knows things about you.
 
 ## The deeper trap: invasion of inappropriate domains
 
 Value mode invading places it doesn't belong:
+
 - Hospital bills priced like spot trades
 - Funeral costs
 - Childcare
 - Concert tickets after the algorithm gets hold of them
 
-Anywhere the old social contract said *"this is care, not commerce"* and the new system says *"no, this is a price."*
+Anywhere the old social contract said _"this is care, not commerce"_ and the new system says _"no, this is a price."_
 
 ## Modern weaponisation
 
@@ -61,17 +67,17 @@ Anywhere the old social contract said *"this is care, not commerce"* and the new
 
 ## The defence
 
-Notice when something's being forced into Value mode that you didn't agree should be there. *"It's just market price"* is usually a move to shut down a different conversation. **You're allowed to refuse the basis.**
+Notice when something's being forced into Value mode that you didn't agree should be there. _"It's just market price"_ is usually a move to shut down a different conversation. **You're allowed to refuse the basis.**
 
-When someone says *"X is too volatile to be money"* or *"that's just the market rate,"* ask back: **for what function?**
+When someone says _"X is too volatile to be money"_ or _"that's just the market rate,"_ ask back: **for what function?**
 
 ## Voluntary vs coerced Value mode
 
-| Voluntary | Coerced |
-|---|---|
-| Browsing Vinted to buy what you want | Forced to sell labour at any wage to survive |
-| Choosing to use surge-pricing rideshare | Hospital pricing in emergency |
-| Engaging with personalised-pricing site | Surveillance-pricing without disclosure |
+| Voluntary                               | Coerced                                      |
+| --------------------------------------- | -------------------------------------------- |
+| Browsing Vinted to buy what you want    | Forced to sell labour at any wage to survive |
+| Choosing to use surge-pricing rideshare | Hospital pricing in emergency                |
+| Engaging with personalised-pricing site | Surveillance-pricing without disclosure      |
 
 The mode is the same shape; the consent axis decides legitimacy. See [consent axis](../core/consent-axis.md).
 

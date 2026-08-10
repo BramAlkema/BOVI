@@ -1,38 +1,38 @@
-import commonjs from '@rollup/plugin-commonjs';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser';
-import typescript from '@rollup/plugin-typescript';
+import commonjs from "@rollup/plugin-commonjs";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import terser from "@rollup/plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 
 export default [
   // Main TypeScript app
   {
-    input: 'src/scripts/app.ts',
+    input: "src/scripts/app.ts",
     output: {
-      file: 'dist/app.min.js',
-      format: 'es',
+      file: "dist/app.min.js",
+      format: "es",
       inlineDynamicImports: true,
-      sourcemap: true
+      sourcemap: true,
     },
     plugins: [
       nodeResolve({ browser: true }),
       commonjs(),
       typescript({
-        tsconfig: './tsconfig.json'
+        tsconfig: "./tsconfig.json",
       }),
-      terser()
+      terser(),
     ],
-    external: []
+    external: [],
   },
   // BOVI TypeScript modules
   {
-    input: 'dist/lib/lib/integration.js', // TypeScript already compiled by tsc
+    input: "dist/lib/lib/integration.js", // TypeScript already compiled by tsc
     output: {
-      file: 'dist/lib/integration.min.js',
-      format: 'es',
+      file: "dist/lib/integration.min.js",
+      format: "es",
       inlineDynamicImports: true,
-      sourcemap: true
+      sourcemap: true,
     },
     plugins: [nodeResolve({ browser: true }), commonjs(), terser()],
-    external: []
-  }
+    external: [],
+  },
 ];

@@ -3,7 +3,14 @@ title: The Four Fairness Modes (Overview)
 type: core
 tags: [BOVI, fairness, modes, fiske, anthropology]
 sources: [theory.md, backstory.md, BUNDLING-EXPLAINED.md]
-related: [../modes/value-mode.md, ../modes/balanced-mode.md, ../modes/obligated-mode.md, ../modes/immediate-mode.md, ../lineage/fiske-relational-models.md]
+related:
+  [
+    ../modes/value-mode.md,
+    ../modes/balanced-mode.md,
+    ../modes/obligated-mode.md,
+    ../modes/immediate-mode.md,
+    ../lineage/fiske-relational-models.md,
+  ]
 ---
 
 # The Four Fairness Modes (BOVI Overview)
@@ -12,23 +19,23 @@ related: [../modes/value-mode.md, ../modes/balanced-mode.md, ../modes/obligated-
 
 **BOVI** = **B**alanced · **O**bligated · **V**alue · **I**mmediate.
 
-Four cognitive primitives humans use to structure exchange. Mapped from Alan Fiske's Relational Models Theory (1991). Universal across cultures; not learned behaviours but *cognitive primitives* found everywhere humans exchange anything.
+Four cognitive primitives humans use to structure exchange. Mapped from Alan Fiske's Relational Models Theory (1991). Universal across cultures; not learned behaviours but _cognitive primitives_ found everywhere humans exchange anything.
 
 ## The mapping
 
-| Mode | Symbol | Fiske model | Core principle | "Fairness as…" |
-|---|---|---|---|---|
-| **Balanced** | B | Equality Matching (EM) | Symmetric reciprocity | Symmetry over time |
-| **Obligated** | O | Authority Ranking (AR) | Hierarchical compliance | Compliance with authority |
-| **Value** | V | Market Pricing (MP) | Proportional exchange | Proportionality |
-| **Immediate** | I | Communal Sharing (CS) | Direct equivalence | Direct equivalence; care |
+| Mode          | Symbol | Fiske model            | Core principle          | "Fairness as…"            |
+| ------------- | ------ | ---------------------- | ----------------------- | ------------------------- |
+| **Balanced**  | B      | Equality Matching (EM) | Symmetric reciprocity   | Symmetry over time        |
+| **Obligated** | O      | Authority Ranking (AR) | Hierarchical compliance | Compliance with authority |
+| **Value**     | V      | Market Pricing (MP)    | Proportional exchange   | Proportionality           |
+| **Immediate** | I      | Communal Sharing (CS)  | Direct equivalence      | Direct equivalence; care  |
 
 ## Each mode in one line
 
-- **Value** — *"The price is the price."* Strangers, spot trade, anonymous market. → [V deep](../modes/value-mode.md)
-- **Balanced** — *"Are we even?"* Friends, peer ledgers, symmetric reciprocity over time. → [B deep](../modes/balanced-mode.md)
-- **Obligated** — *"Because they said so."* Authority-imposed exchange, voluntary or coerced. → [O deep](../modes/obligated-mode.md)
-- **Immediate** — *"We don't count, we just give."* Family, gift, care, no tracking. → [I deep](../modes/immediate-mode.md)
+- **Value** — _"The price is the price."_ Strangers, spot trade, anonymous market. → [V deep](../modes/value-mode.md)
+- **Balanced** — _"Are we even?"_ Friends, peer ledgers, symmetric reciprocity over time. → [B deep](../modes/balanced-mode.md)
+- **Obligated** — _"Because they said so."_ Authority-imposed exchange, voluntary or coerced. → [O deep](../modes/obligated-mode.md)
+- **Immediate** — _"We don't count, we just give."_ Family, gift, care, no tracking. → [I deep](../modes/immediate-mode.md)
 
 ## What the four-mode framework does
 
@@ -50,20 +57,20 @@ The question is not WHETHER to bundle but in WHAT PROPORTIONS.
 
 ## Modes are present in every domain
 
-| Domain | V | B | O | I |
-|---|---|---|---|---|
-| **Parking** | metered | valet/tip | blue zone | free public |
-| **Healthcare** | private | peer support | insurance/public | family care |
-| **Sex** | sex work | LTR reciprocity | conjugal duty / BDSM | love / gift |
-| **Education** | paid tutoring | study group | credentialed school | mentorship |
-| **Food** | restaurant | potluck | cafeteria/ration | home cooking |
-| **Work** | gig | partnership | employment | volunteer |
+| Domain         | V             | B               | O                    | I            |
+| -------------- | ------------- | --------------- | -------------------- | ------------ |
+| **Parking**    | metered       | valet/tip       | blue zone            | free public  |
+| **Healthcare** | private       | peer support    | insurance/public     | family care  |
+| **Sex**        | sex work      | LTR reciprocity | conjugal duty / BDSM | love / gift  |
+| **Education**  | paid tutoring | study group     | credentialed school  | mentorship   |
+| **Food**       | restaurant    | potluck         | cafeteria/ration     | home cooking |
+| **Work**       | gig           | partnership     | employment           | volunteer    |
 
-This is what makes BOVI an *anthropology of exchange* rather than just a money framework.
+This is what makes BOVI an _anthropology of exchange_ rather than just a money framework.
 
 ## Mode + Consent (orthogonal axis)
 
-Mode classification describes the *shape* of an exchange. Legitimacy depends on the *consent* axis (orthogonal). Same mode can be voluntary or coerced. See [consent axis](consent-axis.md).
+Mode classification describes the _shape_ of an exchange. Legitimacy depends on the _consent_ axis (orthogonal). Same mode can be voluntary or coerced. See [consent axis](consent-axis.md).
 
 ## Source quote
 

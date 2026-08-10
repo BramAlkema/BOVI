@@ -15,24 +15,28 @@ Global financial system collapse triggered by mortgage-backed securities and der
 ## Mode-by-mode analysis
 
 ### Value Mode (V) breakdown
+
 - Housing derivatives created price signals disconnected from underlying value
 - "Market Pricing" became circular and self-referential
 - Trust in transferable tokens (bank deposits, commercial paper) evaporated
 - **Solution attempted**: Central bank provided V-mode liquidity
 
 ### Balanced Mode (B) violations
+
 - Banks privatised gains but socialised losses (asymmetric accounting)
 - "Too big to fail" broke reciprocity expectations
 - Bailouts felt unfair because they violated Equality Matching intuitions
 - **Visible response**: Occupy Wall Street: "We are the 99%" = Balanced mode demand for symmetry
 
 ### Obligated Mode (O) responses
+
 - Government interventions reasserted Authority Ranking
 - Regulatory capture revealed illegitimate hierarchy (financial-industry-captured regulation)
 - Taxpayer bailouts enforced obligation upward to banks
 - **Backlash**: Tea Party rejection of imposed obligations
 
 ### Immediate Mode (I) outrage
+
 - "This feels wrong" populist reactions across political spectrum
 - Visceral unfairness of banker bonuses during recession
 - Foreclosures violated Communal Sharing expectations of home as sanctuary

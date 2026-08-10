@@ -19,25 +19,29 @@ This is the canonical case of **natural anchor + multi-mode legitimacy** produci
 The classical gold standard is unusual in achieving genuine multi-mode legitimacy:
 
 ### Value mode (V) anchor
+
 - Gold as universally transferable medium
 - Fixed conversion rates enabled international trade
 - Market pricing through gold arbitrage
 - Minimal institutional intermediation required
 
 ### Balanced mode (B) discipline
+
 - Gold reserves constrained money creation
 - Current account imbalances automatically corrected (deficit countries lost gold; surplus countries gained)
 - Symmetric adjustment required from deficit and surplus countries
 - Price level stability over long term (though not year-to-year)
 
 ### Obligated mode (O) delegation
+
 - Governments committed to gold convertibility as credible constraint
 - Central banks operated as gold exchange mechanisms
 - Authority ranking mediated through gold standard rules
 - Imperial powers enforced gold standard compliance internationally
 
 ### Immediate mode (I) legitimacy
-- Gold *felt* like "real money" to ordinary citizens
+
+- Gold _felt_ like "real money" to ordinary citizens
 - Intrinsic value intuitions supported system trust
 - Direct convertibility made government promises concrete
 - Cross-cultural acceptance based on shared gold appreciation
@@ -47,6 +51,7 @@ The classical gold standard is unusual in achieving genuine multi-mode legitimac
 **Successful V+B+O coalition anchored by I-mode psychological legitimacy.**
 
 The gold standard worked for ~40 years because all four modes were satisfied:
+
 - Markets had a credible price-discovery mechanism (V)
 - States had reciprocal discipline (B)
 - Authority structures were respected (O)
@@ -63,17 +68,19 @@ The framework's reading: when one mode (O) starts demanding things the other mod
 ## What goldbug ideology gets right and wrong
 
 ### What's right
-- The classical gold standard *did* achieve multi-mode legitimacy
-- Common knowledge of supply *was* anchored credibly
-- The system *did* discipline state spending
-- The era *did* see relative price stability over decades
+
+- The classical gold standard _did_ achieve multi-mode legitimacy
+- Common knowledge of supply _was_ anchored credibly
+- The system _did_ discipline state spending
+- The era _did_ see relative price stability over decades
 
 ### What's wrong
+
 - Mythologises the era — there were panics, depressions, social upheaval, and severe class costs
 - Ignores that the system depended on imperial enforcement
-- Treats the natural anchor as the *only* legitimate anchor (ignores [three anchor types](../core/three-anchor-types.md))
+- Treats the natural anchor as the _only_ legitimate anchor (ignores [three anchor types](../core/three-anchor-types.md))
 - Wants to revive the system without reviving the social and political conditions that made it work
-- Confuses the *symptom* (scarcity) with the *requirement* (common knowledge of supply)
+- Confuses the _symptom_ (scarcity) with the _requirement_ (common knowledge of supply)
 
 ## What this case teaches the framework
 
@@ -85,15 +92,15 @@ The framework's reading: when one mode (O) starts demanding things the other mod
 
 ## Comparison: gold standard era vs Bitcoin
 
-| Property | Gold standard | Bitcoin |
-|---|---|---|
-| Anchor type | Natural | Mathematical |
-| Anchor mechanism | Geological scarcity | Algorithmic cap |
-| Bootstrap engine | Pre-existing industrial/ornamental use | Speculation |
-| Multi-mode legitimacy | V+B+O+I coalition | V dominant; B/O/I emergent and contested |
-| Enforcement | Imperial powers + central banks | Distributed nodes + miners |
-| Politics | Disciplined state, suppressed labour | Disciplined state (intent), unclear labour position |
-| Failure mode | War finance broke it | Network collapse, governance capture, or 51% attack |
+| Property              | Gold standard                          | Bitcoin                                             |
+| --------------------- | -------------------------------------- | --------------------------------------------------- |
+| Anchor type           | Natural                                | Mathematical                                        |
+| Anchor mechanism      | Geological scarcity                    | Algorithmic cap                                     |
+| Bootstrap engine      | Pre-existing industrial/ornamental use | Speculation                                         |
+| Multi-mode legitimacy | V+B+O+I coalition                      | V dominant; B/O/I emergent and contested            |
+| Enforcement           | Imperial powers + central banks        | Distributed nodes + miners                          |
+| Politics              | Disciplined state, suppressed labour   | Disciplined state (intent), unclear labour position |
+| Failure mode          | War finance broke it                   | Network collapse, governance capture, or 51% attack |
 
 Both cases are about disciplining state spending through anchor choice. Both work for a while. Both face the same political pressure: when the bundle has to re-form, the anchor often loses.
 

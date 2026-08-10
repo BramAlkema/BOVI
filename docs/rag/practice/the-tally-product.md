@@ -19,6 +19,7 @@ What Splitwise gets wrong, the Tally fixes: by tagging each transaction with one
 The medieval coordination device after which the product is named: a central hub with spokes; each knight has a peg on a shared rope. Pegs slide toward what the knight wants; rope tensions reveal preferences instantly. A mechanical market combined with a public ledger.
 
 Properties:
+
 - **Mechanical conservation**: cannot fake the rope
 - **Public visibility**: everyone sees every peg
 - **Position-as-preference**: peg movement reveals intent
@@ -29,13 +30,14 @@ The historical rope was secretly a Balanced-mode primitive. The Tally extends it
 
 ## What Splitwise gets wrong
 
-Splitwise treats *everything* as Balanced. That's the whole problem. It silently converts:
+Splitwise treats _everything_ as Balanced. That's the whole problem. It silently converts:
+
 - Gifts → debts
 - Market trades → obligations
 - Rent payments → peer reciprocity
 - Care work → uncompensated invisible labour
 
-It strips mode information and applies one mode to everything — which is precisely the bundled-money mistake the framework is trying to undo. It makes friendships feel transactional because *every act becomes a ledger entry of the same kind*.
+It strips mode information and applies one mode to everything — which is precisely the bundled-money mistake the framework is trying to undo. It makes friendships feel transactional because _every act becomes a ledger entry of the same kind_.
 
 ## The Tally inversion
 
@@ -43,12 +45,13 @@ The Tally's design move: **the mode is the data, the transaction is the action.*
 
 Four colored buttons:
 
-- 🔴 **Obligated** — *"This is rent / bills / something we agreed to pay."* Sets up recurring. Auto-debits. Late is late, not negotiable.
-- 🟢 **Value** — *"Market transaction."* Settles immediately. Spot price. No memory beyond the receipt.
-- 🔵 **Balanced** — *"You owe me, we'll square up."* Adds to running ledger. Visible to both sides. Auto-nets if a circular debt emerges (A→B→C→A cancels with one tap).
-- 🟡 **Immediate** — *"This is a gift."* Recorded but doesn't count toward anyone's score. Visible as an act, not a debt.
+- 🔴 **Obligated** — _"This is rent / bills / something we agreed to pay."_ Sets up recurring. Auto-debits. Late is late, not negotiable.
+- 🟢 **Value** — _"Market transaction."_ Settles immediately. Spot price. No memory beyond the receipt.
+- 🔵 **Balanced** — _"You owe me, we'll square up."_ Adds to running ledger. Visible to both sides. Auto-nets if a circular debt emerges (A→B→C→A cancels with one tap).
+- 🟡 **Immediate** — _"This is a gift."_ Recorded but doesn't count toward anyone's score. Visible as an act, not a debt.
 
 The arithmetic is mode-specific:
+
 - Balanced math = running net + auto-netting
 - Value math = settle now, no memory
 - Obligated math = scheduled recurring
@@ -56,13 +59,13 @@ The arithmetic is mode-specific:
 
 ## The Immediate-mode button is the killer feature
 
-It lets you mark something as a gift *without it secretly converting to a debt in someone's head*. That's the warmth-preserving feature Splitwise structurally cannot offer.
+It lets you mark something as a gift _without it secretly converting to a debt in someone's head_. That's the warmth-preserving feature Splitwise structurally cannot offer.
 
 Splitwise can't add an "Immediate" tag without breaking its model. The Tally is built around the assumption that some exchanges should not become debts.
 
 ## The visualisation
 
-Inherits from the historical rope: one canvas, not per-user dashboards. Everyone's net position visible to everyone. Circular debts highlighted with a *"tap to net"* button. Gifts shown as warm marks with no number attached. Upcoming obligations shown as approaching pulses on a timeline.
+Inherits from the historical rope: one canvas, not per-user dashboards. Everyone's net position visible to everyone. Circular debts highlighted with a _"tap to net"_ button. Gifts shown as warm marks with no number attached. Upcoming obligations shown as approaching pulses on a timeline.
 
 ## Use cases
 
@@ -75,11 +78,11 @@ Every shared-money situation a 20-something has, with the modes made visible.
 
 ## Defensive vocabulary in product form
 
-Every transaction trains the reflex: *"What mode is this?"* becomes muscle memory because the app makes you answer it before anything else happens. The framework gets installed by use, not by reading. After three months in a Tally with flatmates, you're choosing modes in your head about transactions that have nothing to do with the app.
+Every transaction trains the reflex: _"What mode is this?"_ becomes muscle memory because the app makes you answer it before anything else happens. The framework gets installed by use, not by reading. After three months in a Tally with flatmates, you're choosing modes in your head about transactions that have nothing to do with the app.
 
 ## The relationship-defining commitment
 
-Forming a Tally with someone is heavier than downloading an app, lighter than signing a contract. **You don't just *use* a Tally — you *enter* one.** The act of forming it is the act of saying *"these are the four modes we agree are real between us."*
+Forming a Tally with someone is heavier than downloading an app, lighter than signing a contract. **You don't just _use_ a Tally — you _enter_ one.** The act of forming it is the act of saying _"these are the four modes we agree are real between us."_
 
 That social weight is exactly what Splitwise tries to avoid (because they want frictionless onboarding) and what the original tally rope embraced (because the commitment was the whole point).
 

@@ -17,6 +17,7 @@ One of the most perfect demonstrations of BOVI theory. Airlines charging differe
 ## The mode collision diagnosis
 
 Yield management is **pure Value mode** (Market Pricing) optimisation:
+
 - Supply and demand determine price
 - Maximise revenue per available unit
 - Perfect price discrimination
@@ -25,18 +26,21 @@ Yield management is **pure Value mode** (Market Pricing) optimisation:
 But it **violates** the other three fairness modes simultaneously.
 
 ### Violates Balanced mode (Equality Matching)
+
 - **Expectation**: "Same product = same price"
 - **Violation**: Two people in adjacent airplane seats paid wildly different amounts
 - **Feeling**: "That's not fair! We're getting the exact same thing!"
 - **Visceral response**: Sense of being cheated, even if you got the lower price
 
 ### Violates Obligated mode (Authority Ranking)
+
 - **Expectation**: "Companies should show restraint and social responsibility"
 - **Violation**: Extracting maximum possible price feels predatory
 - **Feeling**: "They're abusing their power over essential services"
 - **Visceral response**: Anger at corporate greed, desire for regulation
 
 ### Violates Immediate mode (Communal Sharing)
+
 - **Expectation**: "In times of need, we help each other"
 - **Violation**: Surge pricing during emergencies (hurricane evacuations, terrorist attacks)
 - **Feeling**: "They're profiting from human suffering!"
@@ -45,6 +49,7 @@ But it **violates** the other three fairness modes simultaneously.
 ## Case studies
 
 ### Uber surge pricing during emergencies
+
 - **Value mode**: increases supply when most needed; ensures cars available for true emergencies
 - **Balanced**: "Everyone fleeing danger should pay the same"
 - **Obligated**: "Uber has social responsibility during crises"
@@ -52,6 +57,7 @@ But it **violates** the other three fairness modes simultaneously.
 - **Result**: Massive backlash forcing Uber to cap surge during emergencies — a forced bundling of modes
 
 ### Airline pricing (the same-seat problem)
+
 - Person A books 3 months early: $200
 - Person B books day before: $800
 - Person C with corporate account: $400
@@ -64,6 +70,7 @@ But it **violates** the other three fairness modes simultaneously.
 - **Result**: Even people who benefit feel the system is "rigged"
 
 ### Concert/event ticket pricing (Taylor Swift Ticketmaster disaster)
+
 - Dynamic pricing pushed tickets to $5000+
 - Fans who waited in queue for hours got nothing
 - Resellers using bots captured inventory
@@ -86,6 +93,7 @@ Yield management is the perfect teaching example because:
 ## The algorithmic amplification
 
 Modern AI makes yield management more "perfect" and thus more unfair-feeling:
+
 - Personalised pricing based on browsing history
 - Micro-segmentation of customer willingness to pay
 - Real-time optimisation across thousands of variables
@@ -100,7 +108,7 @@ Using BOVI to design better systems:
 1. **Transparency** (Balanced) — show why prices vary
 2. **Caps** (Obligated) — limit maximum extraction
 3. **Community provisions** (Immediate) — reserve inventory for social good
-4. **Optimisation boundaries** (Value) — efficient *within* fairness constraints
+4. **Optimisation boundaries** (Value) — efficient _within_ fairness constraints
 
 ## The perfect tagline
 

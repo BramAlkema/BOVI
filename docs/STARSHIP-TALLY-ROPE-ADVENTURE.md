@@ -2,7 +2,7 @@
 
 ## 🚀 **THE SETUP**
 
-**Year 2187**: Colony ship *Prosperity* en route to Kepler-442b. Solar flare kills the Economic Management System. 12 crew members must coordinate resource allocation for 47 years with no computer tracking.
+**Year 2187**: Colony ship _Prosperity_ en route to Kepler-442b. Solar flare kills the Economic Management System. 12 crew members must coordinate resource allocation for 47 years with no computer tracking.
 
 **The Crisis**: Without price signals and allocation tracking, cooperation breaks down in 72 hours.
 
@@ -27,12 +27,15 @@ The ship's resource allocation is grinding to a halt. People are making bad trad
 **Echo (Communications)** pulls out some cable: "Wait, I found this in the old knight tale archives... something called 'Ye Tally Rope'..."
 
 ### **CHOICE 1A: "Show us this tally rope thing"**
+
 → Go to **CHAPTER 2A: The Ancient Mechanism**
 
-### **CHOICE 1B: "We need something high-tech, not medieval"**  
+### **CHOICE 1B: "We need something high-tech, not medieval"**
+
 → Go to **CHAPTER 2B: The Computer Rebuild**
 
 ### **CHOICE 1C: "Let's try a simple token system first"**
+
 → Go to **CHAPTER 2C: The Card Experiment**
 
 ---
@@ -45,7 +48,7 @@ Echo shows you the tally rope diagram from the archives.
 
 **Sage (Resource Allocation)**: "That's... actually brilliant. It's a mechanical market!"
 
-**The crew gets excited**: 
+**The crew gets excited**:
 
 **Iris (Systems)**: "We could build this! Use the ship's central hub with 12 spokes."
 
@@ -56,18 +59,22 @@ Echo shows you the tally rope diagram from the archives.
 ### **DESIGN CHOICE 1: How much rope?**
 
 ### **CHOICE 2A1: "Equal rope for everyone - 12 equal segments"**
+
 → Go to **CHAPTER 3A: The Equal Allocation**
 
-### **CHOICE 2A2: "Rope proportional to role importance"**  
+### **CHOICE 2A2: "Rope proportional to role importance"**
+
 → Go to **CHAPTER 3B: The Merit System**
 
 ### **CHOICE 2A3: "Long rope - abundance, not scarcity"**
+
 → Go to **CHAPTER 3C: The Abundance Experiment**
 
 ---
 
 ## 📱 **CHAPTER 3A: THE EQUAL ALLOCATION**
-*You chose equal rope segments for each crew member*
+
+_You chose equal rope segments for each crew member_
 
 **The Build**: Iris rigs up a central hub with 12 pulleys. Each crew member gets an equal 10-meter rope segment. Pegs slide on rails marked with measurements.
 
@@ -75,7 +82,7 @@ Echo shows you the tally rope diagram from the archives.
 STARSHIP TALLY ROPE v1.0
 ═══════════════════════════════════
       Zara  [━━━━━━━━━━] 10m
-     Phoenix[━━━━━━━━━━] 10m  
+     Phoenix[━━━━━━━━━━] 10m
       Rio   [━━━━━━━━━━] 10m
      Atlas  [━━━━━━━━━━] 10m
      Nova   [━━━━━━━━━━] 10m
@@ -86,8 +93,9 @@ STARSHIP TALLY ROPE v1.0
 **Day 1 Trial**: Zara desperately needs power for life support emergency.
 
 **The Rope Shows**:
+
 - Zara's peg slides toward Phoenix (wants power)
-- Phoenix's peg slides toward Kai (wants better food allocation)  
+- Phoenix's peg slides toward Kai (wants better food allocation)
 - Kai's peg slides toward Luna (wants repair work)
 - **Circular trade becomes visible!**
 
@@ -100,18 +108,22 @@ STARSHIP TALLY ROPE v1.0
 **Atlas**: "Zara's rope is at 2 meters - she's traded almost everything for past emergencies. But we need her for THIS emergency too!"
 
 ### **CHOICE 3A1: "Let's allow rope lending/borrowing"**
+
 → Go to **CHAPTER 4A: The Credit Innovation**
 
 ### **CHOICE 3A2: "Emergency situations override the rope"**
+
 → Go to **CHAPTER 4B: The Authority Override**
 
-### **CHOICE 3A3: "Let's redistribute rope periodically"**  
+### **CHOICE 3A3: "Let's redistribute rope periodically"**
+
 → Go to **CHAPTER 4C: The Reset System**
 
 ---
 
 ## 📱 **CHAPTER 3C: THE ABUNDANCE EXPERIMENT**
-*You chose long rope - lots of slack for everyone*
+
+_You chose long rope - lots of slack for everyone_
 
 **The Build**: 50 meters of rope per person. Plenty for everyone.
 
@@ -119,7 +131,7 @@ STARSHIP TALLY ROPE v1.0
 STARSHIP TALLY ROPE v2.0 (ABUNDANT)
 ═══════════════════════════════════
       Zara  [━━━━━━━━━━━━━━━━━━━━] 50m
-     Phoenix[━━━━━━━━━━━━━━━━━━━━] 50m  
+     Phoenix[━━━━━━━━━━━━━━━━━━━━] 50m
      Atlas  [━━━━━━━━━━━━━━━━━━━━] 50m
    Total Rope: 600 meters
 ```
@@ -143,30 +155,35 @@ But problems emerge...
 **Orion (Security)**: "Some people are hoarding rope 'just in case.' It's creating artificial inequality even with abundance."
 
 ### **CHOICE 3C1: "Add rope decay - use it or lose it"**
+
 → Go to **CHAPTER 4D: The Demurrage System**
 
 ### **CHOICE 3C2: "Track long-term vs short-term rope separately"**
+
 → Go to **CHAPTER 4E: The Time-Layered System**
 
 ### **CHOICE 3C3: "Abundance is working, keep it simple"**
+
 → Go to **CHAPTER 4F: The Pure Abundance Path**
 
 ---
 
 ## 📱 **CHAPTER 4A: THE CREDIT INNOVATION**
-*You chose to allow rope lending/borrowing*
+
+_You chose to allow rope lending/borrowing_
 
 **The Problem**: Zara has traded away most of her rope but is critical for ship survival.
 
 **Sage's Solution**: "What if we track rope IOUs separately from the main rope?"
 
-**The Innovation**: 
+**The Innovation**:
+
 ```
 TALLY ROPE CREDIT SYSTEM
 ═══════════════════════════════════
 Zara's Position:
 • Physical Rope: 2 meters
-• Borrowed from Phoenix: +8 meters  
+• Borrowed from Phoenix: +8 meters
 • Borrowed from Rio: +5 meters
 • Effective Rope: 15 meters
 • Debt Obligations: 13 meters
@@ -185,18 +202,22 @@ Zara's Position:
 The credit system is spawning the need for...
 
 ### **CHOICE 4A1: "Create indexed long-term obligations"**
+
 → Go to **CHAPTER 5A: The Time Indices**
 
-### **CHOICE 4A2: "Keep all debts in rope terms"**  
+### **CHOICE 4A2: "Keep all debts in rope terms"**
+
 → Go to **CHAPTER 5B: The Simple Debt System**
 
 ### **CHOICE 4A3: "Add interest/risk pricing to rope loans"**
+
 → Go to **CHAPTER 5C: The Market Credit System**
 
 ---
 
 ## 📱 **CHAPTER 5A: THE TIME INDICES**
-*You chose to create indexed long-term obligations*
+
+_You chose to create indexed long-term obligations_
 
 **The Problem**: "I owe you 10 meters of rope in 2 years" is meaningless if rope value changes.
 
@@ -226,8 +247,9 @@ Current Rate: 1 SSI = 20 meters rope
 But the crew notices something interesting...
 
 **Nova's Observation**: "Look at our system now:
+
 - Rope for spot trades (preference revelation)
-- SSI for contracts (time stability)  
+- SSI for contracts (time stability)
 - Credit tracking for debt (social obligations)
 - But also gift-sharing for emergencies (community bonds)"
 
@@ -237,24 +259,28 @@ But the crew notices something interesting...
 
 **Balanced Mode**: The rope IS balanced mode (symmetric, reciprocal)
 **Obligated Mode**: Ship authority needs override rope sometimes
-**Value Mode**: Rope reveals pure market preferences  
+**Value Mode**: Rope reveals pure market preferences
 **Immediate Mode**: Family-like bonds outside the rope system
 
 ### **FINAL CHOICE: How to integrate the modes?**
 
 ### **CHOICE 5A1: "Design one system that consciously handles all modes"**
+
 → Go to **ENDING A: The Integrated Tally System**
 
 ### **CHOICE 5A2: "Keep rope pure, let other modes exist separately"**
+
 → Go to **ENDING B: The Parallel Systems**
 
-### **CHOICE 5A3: "Make rope the master system that coordinates everything"**  
+### **CHOICE 5A3: "Make rope the master system that coordinates everything"**
+
 → Go to **ENDING C: The Rope Supremacy**
 
 ---
 
 ## 🎯 **ENDING A: THE INTEGRATED TALLY SYSTEM**
-*You chose to design one system handling all modes*
+
+_You chose to design one system handling all modes_
 
 **The Final Innovation**: The Universal Tally Rope System
 
@@ -269,12 +295,13 @@ MODE SELECTOR:
 
 ROPE DISPLAY:
 Physical Rope: [Current trading positions]
-Credit Rope: [Borrowing/lending positions]  
+Credit Rope: [Borrowing/lending positions]
 SSI Contracts: [Long-term stable obligations]
 Gift Pool: [Community sharing tracker]
 ```
 
 **The Result**: Crew consciously chooses modes for each situation:
+
 - **Daily trades**: Rope positions reveal preferences instantly
 - **Long-term deals**: SSI contracts provide stability
 - **Ship emergencies**: Authority can override rope constraints
@@ -286,13 +313,14 @@ Gift Pool: [Community sharing tracker]
 
 ---
 
-## 🎯 **ENDING B: THE PARALLEL SYSTEMS**  
-*You chose to keep rope pure with separate systems*
+## 🎯 **ENDING B: THE PARALLEL SYSTEMS**
+
+_You chose to keep rope pure with separate systems_
 
 **The Separation Strategy**: Keep the tally rope for pure price discovery, handle other needs separately.
 
 - **Tally Rope**: Spot trading and preference revelation
-- **Credit Ledger**: Debt tracking and time-shifted obligations  
+- **Credit Ledger**: Debt tracking and time-shifted obligations
 - **Authority System**: Ship safety overrides and resource allocation
 - **Community Care**: Informal gift economy for relationships
 
@@ -308,12 +336,13 @@ Gift Pool: [Community sharing tracker]
 ---
 
 ## 🎯 **ENDING C: THE ROPE SUPREMACY**
-*You chose to make rope the master coordination system*
+
+_You chose to make rope the master coordination system_
 
 **The Master System**: Everything flows through rope mechanics.
 
 - Authority allocations shown as rope positions
-- Gift giving tracked as rope transfers  
+- Gift giving tracked as rope transfers
 - Long-term contracts as rope commitments
 - Emergency overrides as rope redistributions
 
@@ -333,13 +362,14 @@ Gift Pool: [Community sharing tracker]
 ### **For BOVI App Implementation**
 
 **Real-Time Rope Simulator**:
+
 ```
     USER CONTROLS:
     • Drag your peg toward what you want
-    • See other pegs respond in real-time  
+    • See other pegs respond in real-time
     • Watch circular trades emerge
     • Try different rope lengths
-    
+
     LEARNING FEATURES:
     • "Preference Revelation" - see how peg positions show desires
     • "Price Discovery" - watch exchange rates emerge
@@ -348,6 +378,7 @@ Gift Pool: [Community sharing tracker]
 ```
 
 **Choose Your Rope Adventure**:
+
 - Users design their own tally rope system
 - Face the same crises as the starship crew
 - Experience how different choices lead to different social dynamics
@@ -362,6 +393,7 @@ Gift Pool: [Community sharing tracker]
 ## 🎯 **THE CORE LESSON**
 
 **The tally rope proves that minimal money can be:**
+
 - **Mechanically simple** (rope, pegs, pulleys)
 - **Informationally sophisticated** (reveals preferences, coordinates trades, tracks balances)
 - **Socially neutral** (no built-in hierarchy or authority)

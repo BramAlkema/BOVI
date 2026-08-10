@@ -21,7 +21,7 @@ export const state = {
   create: <T extends Record<string, any>>(initialState: T = {} as T): StateManager<T> => {
     const _state = { ...initialState };
     const listeners = new Set<(key: keyof T, value: any, oldValue: any) => void>();
-    
+
     const manager: StateManager<T> = {
       get: <K extends keyof T>(key?: K): any => {
         return key ? _state[key] : { ..._state };
@@ -38,12 +38,14 @@ export const state = {
           listeners.forEach(fn => fn(key as keyof T, value, oldValue));
         });
       },
-      subscribe: (fn: <K extends keyof T>(key: K, value: T[K], oldValue: T[K]) => void): (() => void) => {
+      subscribe: (
+        fn: <K extends keyof T>(key: K, value: T[K], oldValue: T[K]) => void
+      ): (() => void) => {
         listeners.add(fn);
         return () => listeners.delete(fn);
-      }
+      },
     };
-    
+
     return manager;
-  }
+  },
 };

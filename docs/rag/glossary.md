@@ -14,7 +14,7 @@ One-line definitions for retrieval. Each term links to the file that treats it i
 - **Fairness mode** — One of four cognitive primitives humans use to structure exchange (Fiske 1991). → [Fiske](lineage/fiske-relational-models.md)
 - **Bundle / bundling** — Money serves all four fairness modes simultaneously, whether designed for it or not. → [bundle](core/money-as-bundle.md)
 - **Unbundling** — Splitting money's functions into distinct tools optimised per function. → [unbundling](core/unbundling-thesis.md)
-- **Portable forgetful ledger** — Minimal money: transferable record of who has what *now*, with no memory of how they got it. → [definition](core/portable-forgetful-ledger.md)
+- **Portable forgetful ledger** — Minimal money: transferable record of who has what _now_, with no memory of how they got it. → [definition](core/portable-forgetful-ledger.md)
 - **Common knowledge of acceptance** — Single axiom underwriting money's value: enough counterparties will keep accepting it at roughly known terms. → [axiom](core/common-knowledge-of-acceptance.md)
 - **Anchor** — Mechanism producing common knowledge of supply: legal, natural, or mathematical. → [anchors](core/three-anchor-types.md)
 - **Network** — The user base that accepts a token; the second pillar of value. → [common knowledge](core/common-knowledge-of-acceptance.md)
@@ -27,10 +27,10 @@ One-line definitions for retrieval. Each term links to the file that treats it i
 
 ## Modes (one-line)
 
-- **Value (V)** — *"The price is the price."* Spot trade between strangers, market pricing, anonymous. → [V](modes/value-mode.md)
-- **Balanced (B)** — *"Are we even?"* Symmetric reciprocity over time, peer ledgers, friendship. → [B](modes/balanced-mode.md)
-- **Obligated (O)** — *"Because they said so."* Authority-imposed exchange, voluntary or coerced. → [O](modes/obligated-mode.md)
-- **Immediate (I)** — *"We don't count, we just give."* Gift, care, no tracking. → [I](modes/immediate-mode.md)
+- **Value (V)** — _"The price is the price."_ Spot trade between strangers, market pricing, anonymous. → [V](modes/value-mode.md)
+- **Balanced (B)** — _"Are we even?"_ Symmetric reciprocity over time, peer ledgers, friendship. → [B](modes/balanced-mode.md)
+- **Obligated (O)** — _"Because they said so."_ Authority-imposed exchange, voluntary or coerced. → [O](modes/obligated-mode.md)
+- **Immediate (I)** — _"We don't count, we just give."_ Gift, care, no tracking. → [I](modes/immediate-mode.md)
 
 ## Functions of money (textbook)
 

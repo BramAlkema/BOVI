@@ -20,20 +20,20 @@ The cleaned-up minimum requirements for a token to function as money. Reduced fr
 
 ## What is NOT in the axioms
 
-The standard textbook list adds properties that either reduce to one of the above or belong to a *different function* of money entirely:
+The standard textbook list adds properties that either reduce to one of the above or belong to a _different function_ of money entirely:
 
-| Textbook property | What it actually is |
-|---|---|
-| **Scarce** | Special case of *symmetrically known supply* (natural-anchor implementation). Not a separate requirement. |
-| **Durable** | Special case of *verifiability over time*. |
-| **Portable** | Special case of *transferable*. |
-| **Recognisable / fungible** | Special case of *verifiability*. |
-| **Acceptable** | The network pillar (axiom 4/5). |
-| **Stable in value** | **Does not belong to medium of exchange.** It's the unit-of-account function bleeding in (see [four functions](../architecture/four-functions.md)). |
+| Textbook property           | What it actually is                                                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Scarce**                  | Special case of _symmetrically known supply_ (natural-anchor implementation). Not a separate requirement.                                           |
+| **Durable**                 | Special case of _verifiability over time_.                                                                                                          |
+| **Portable**                | Special case of _transferable_.                                                                                                                     |
+| **Recognisable / fungible** | Special case of _verifiability_.                                                                                                                    |
+| **Acceptable**              | The network pillar (axiom 4/5).                                                                                                                     |
+| **Stable in value**         | **Does not belong to medium of exchange.** It's the unit-of-account function bleeding in (see [four functions](../architecture/four-functions.md)). |
 
 ## Why scarcity is not the requirement
 
-POW-camp cigarettes worked as money even though Red Cross parcels were arriving regularly — because supply was *symmetrically known*, not because cigarettes were scarce in any absolute sense. Bitcoin's hard cap is not what makes it satisfy axiom 4; the *publicly verifiable schedule* is. Inflationary tokens with transparent issuance can satisfy the axiom equally well.
+POW-camp cigarettes worked as money even though Red Cross parcels were arriving regularly — because supply was _symmetrically known_, not because cigarettes were scarce in any absolute sense. Bitcoin's hard cap is not what makes it satisfy axiom 4; the _publicly verifiable schedule_ is. Inflationary tokens with transparent issuance can satisfy the axiom equally well.
 
 Goldbug confusion: defaults to natural-anchor case and mistakes the symptom (scarcity) for the requirement (common knowledge).
 

@@ -1,6 +1,6 @@
 # Four Friends and the Rope
 
-*The standalone children's edition — the same village as Intermezzo 8A of* The Four Modes*, told for younger readers. A companion artifact, not a chapter of the main book.*
+_The standalone children's edition — the same village as Intermezzo 8A of_ The Four Modes*, told for younger readers. A companion artifact, not a chapter of the main book.*
 
 ---
 
@@ -12,13 +12,13 @@ At first, each friend makes everything they need themselves. It's slow. It's tir
 
 ## 2. How Fast Each One Is
 
-| Person | Axe | Spear | Hide | Fish | **Total** |
-|---|---:|---:|---:|---:|---:|
-| Adam | 3h | 4h | 8h | 6h | **21h** |
-| Oz | 2h | 1h | 5h | 4h | **12h** |
-| Bea | 5h | 6h | 2h | 4h | **17h** |
-| Kai | 6h | 5h | 4h | 1h | **16h** |
-| **Total** | **16h** | **16h** | **19h** | **15h** | **66h** |
+| Person    |     Axe |   Spear |    Hide |    Fish | **Total** |
+| --------- | ------: | ------: | ------: | ------: | --------: |
+| Adam      |      3h |      4h |      8h |      6h |   **21h** |
+| Oz        |      2h |      1h |      5h |      4h |   **12h** |
+| Bea       |      5h |      6h |      2h |      4h |   **17h** |
+| Kai       |      6h |      5h |      4h |      1h |   **16h** |
+| **Total** | **16h** | **16h** | **19h** | **15h** |   **66h** |
 
 If each one makes one of everything alone, the village works **66 hours**.
 
@@ -37,7 +37,7 @@ Oz's super-power is BIGGEST at spears. That's where his hour pays the most.
 
 So Oz should make only spears.
 
-And Adam should make axes — even though Oz is a bit faster there. Adam's hour is worth most at axes, because he's *much* slower at everything else.
+And Adam should make axes — even though Oz is a bit faster there. Adam's hour is worth most at axes, because he's _much_ slower at everything else.
 
 Bea is plainly best at hides. She should make hides.
 Kai is plainly best at fish. He should catch fish.
@@ -59,13 +59,13 @@ That's the trick. It's not about being best. It's about doing what your hour buy
 
 If each friend sticks to their job (4 of their thing each):
 
-| Person | Hours |
-|---|---:|
-| Adam (4 axes) | 12 |
-| Oz (4 spears) | 4 |
-| Bea (4 hides) | 8 |
-| Kai (4 fish) | 4 |
-| **Village** | **28** |
+| Person        |  Hours |
+| ------------- | -----: |
+| Adam (4 axes) |     12 |
+| Oz (4 spears) |      4 |
+| Bea (4 hides) |      8 |
+| Kai (4 fish)  |      4 |
+| **Village**   | **28** |
 
 The village now works **28 hours** instead of 66.
 
@@ -91,13 +91,13 @@ The 38 hours of saving are wasted.
 
 Without any help, Adam and Kai can still trade — 1 axe for 2 fish balances at the prices. They each save a few hours.
 
-| Person | Autarky | With Adam–Kai trade | Saved |
-|---|---:|---:|---:|
-| Adam | 21h | 18h | **3h** |
-| Kai | 16h | 12h | **4h** |
-| Oz | 12h | 12h | 0h |
-| Bea | 17h | 17h | 0h |
-| **Total** | **66h** | **59h** | **7h** |
+| Person    | Autarky | With Adam–Kai trade |  Saved |
+| --------- | ------: | ------------------: | -----: |
+| Adam      |     21h |                 18h | **3h** |
+| Kai       |     16h |                 12h | **4h** |
+| Oz        |     12h |                 12h |     0h |
+| Bea       |     17h |                 17h |     0h |
+| **Total** | **66h** |             **59h** | **7h** |
 
 Bare trade unlocks **7 hours**. Oz and Bea are stuck — their goods don't pair with anyone cleanly. Most of the 38 hours of possible saving stays locked up.
 
@@ -119,6 +119,7 @@ So they tie one long rope into a loop. They thread it through four pegs — one 
 > Kai gives Adam a fish (3 marks). Kai pulls 3.
 
 After the round:
+
 - Adam: +6 − 3 = **+3**
 - Oz: −6 + 4 = **−2**
 - Bea: −4 + 5 = **+1**
@@ -189,6 +190,7 @@ When trades happen on different ropes, they have different prices.
 A fish in summer is worth 3 marks (plenty). A promise to deliver fish in winter? That's worth 5 or 6 marks — winter is scarce.
 
 So an axe might trade at:
+
 - **6 marks** on the now rope (today)
 - **6.5 marks** on the next-moon rope (a month from now)
 - **8 marks** on the next-year rope (a year from now)
@@ -219,6 +221,7 @@ Each does the same job the rope did within the village: hold the residue, let tr
 Villages without ropes have to settle disputes one at a time, by chief's decision or feud. Grievances fade or distort. Claims die with the rememberer. Memory is biased — each side remembers their own version.
 
 The rope-based village can:
+
 - Settle disputes against accumulated history
 - Point to the rope — argument over before it escalates
 - Transfer claims to third parties (Adam's +1 can pass to Bea)
@@ -252,4 +255,4 @@ The value of any rope is the trades it unlocks, the conflicts it settles, the wo
 
 ---
 
-*The end.* — *the standalone children's edition.*
+_The end._ — _the standalone children's edition._

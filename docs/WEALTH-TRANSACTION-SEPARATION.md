@@ -7,52 +7,63 @@
 ## The Five-Layer Financial Stack
 
 ### 1. Long-term Contracting Layer
+
 **Purpose**: Multi-year obligations (mortgages, pensions, insurance)
 **Solution**: **Personal indices denominated in relatable units**
+
 - Housing contracts indexed to local construction costs
 - Pension obligations indexed to cost-of-living baskets
 - Insurance indexed to healthcare costs
-**Key**: Stability over decades, not daily price movements
+  **Key**: Stability over decades, not daily price movements
 
-### 2. Short-term Transaction Layer  
+### 2. Short-term Transaction Layer
+
 **Purpose**: Daily purchases and immediate exchanges
 **Solution**: **Spot money or just-in-time currency conversion**
+
 - Use whatever currency the merchant accepts
 - Convert at point of purchase from wealth storage
 - No need to hold transaction currency in advance
-**Key**: Acceptance and convenience, not returns
+  **Key**: Acceptance and convenience, not returns
 
 ### 3. Wealth Storage Layer
+
 **Purpose**: Maximize returns on assets
 **Solution**: **Optimized investment allocation**
+
 - Pension funds for long-term growth
 - Stock markets for appreciation
 - Currency spreads when advantageous
 - High-yield accounts when spreads justify
-**Key**: Never leave wealth sitting in transaction currency
+  **Key**: Never leave wealth sitting in transaction currency
 
 ### 4. Price Discovery Layer
+
 **Purpose**: Know if you're getting a good deal
 **Solution**: **PDA handles all comparisons**
+
 - No reliance on human memory ("what did this cost yesterday?")
 - Real-time price comparison across venues
 - Automatic inflation/shrinkflation adjustment
 - Context-aware recommendations
-**Key**: Outsource price memory to technology
+  **Key**: Outsource price memory to technology
 
 ### 5. Account Sweeping Layer
+
 **Purpose**: Never leave money idle
 **Solution**: **Automatic daily sweeps**
+
 - Current accounts swept to optimal instruments nightly
 - Just-in-time funding for anticipated transactions
 - No idle balances earning zero
-**Key**: Every dollar working every day
+  **Key**: Every dollar working every day
 
 ## The Flow in Practice
 
 ### Daily Transaction Example
+
 1. **Morning**: All wealth sits in optimized investments
-2. **Lunch purchase**: 
+2. **Lunch purchase**:
    - PDA identifies merchant accepts Euros
    - System pulls $15 from stock position
    - Converts to €14 at spot rate
@@ -60,8 +71,9 @@
 3. **Evening**: Any unspent currency swept back to investments
 
 ### Monthly Rent Example
+
 1. **Contract**: Rent indexed to local housing costs (denominated in dollars for familiarity)
-2. **Payment day**: 
+2. **Payment day**:
    - System calculates indexed amount
    - Liquidates optimal investment mix
    - Converts to landlord's preferred currency
@@ -71,6 +83,7 @@
 ## Why This Beats Current System
 
 ### Current Path-Dependent System
+
 - Keep savings in same currency you spend
 - Hold "emergency funds" in cash earning nothing
 - Remember prices yourself
@@ -78,6 +91,7 @@
 - Wealth sits idle between uses
 
 ### Separated System
+
 - Wealth always earning returns
 - Convert only what you need when you need it
 - PDA handles all price intelligence
@@ -87,6 +101,7 @@
 ## Implementation Requirements
 
 ### Technical Infrastructure
+
 - **Real-time conversion APIs** between all investment types and currencies
 - **Personal indexing services** for long-term contracts
 - **PDA with comprehensive price data** access
@@ -94,6 +109,7 @@
 - **Smart liquidation algorithms** to minimize conversion costs
 
 ### Behavioral Changes
+
 - **Stop thinking in one currency** - think in purchasing power
 - **Stop holding transaction balances** - convert just-in-time
 - **Stop remembering prices** - let PDA handle it

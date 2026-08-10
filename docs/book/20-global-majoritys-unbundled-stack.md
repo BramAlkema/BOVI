@@ -1,6 +1,6 @@
 # Chapter 20: The Global Majority's Unbundled Stack
 
-> *Most of humanity already runs an unbundled stack out of necessity. The Western "future of money" debate is the global majority's present.*
+> _Most of humanity already runs an unbundled stack out of necessity. The Western "future of money" debate is the global majority's present._
 
 **Part VI — Macro as Infrastructure Failure** · [Index](README.md) · Prev: [Chapter 19](19-currency-collapse-dollarisation.md) · Next: [Chapter 21](21-personal-stack.md)
 
@@ -18,7 +18,7 @@ Doña Elena revisited at full depth — what every layer does, where it came fro
 6. USDT and USD as imported credible anchors.
 7. Stable money as privileged compression: useful, but cognitively distorting.
 8. Volatile or manipulated money as forced decomposition: painful, but revealing.
-9. The "underbanked" framing is colonial — they are inside *different* systems, not outside our system.
+9. The "underbanked" framing is colonial — they are inside _different_ systems, not outside our system.
 
 ## Themes
 
@@ -33,7 +33,7 @@ Doña Elena revisited at full depth — what every layer does, where it came fro
 ## Twists
 
 - The reader, having met Doña Elena five times now, finally understands why she opened the book.
-- She is not an anecdote. She is a representative of *most of humanity*, and the textbook protagonist (Berlin barista) is the exception.
+- She is not an anecdote. She is a representative of _most of humanity_, and the textbook protagonist (Berlin barista) is the exception.
 - The book has spent twenty chapters earning this inversion.
 - Stable-currency intuition is not neutral common sense. It is a local habit produced by a rare institutional success, and it should not receive the reverence it does not deserve.
 - Hard-money intuition is not neutral common sense either. It is another attempt to turn one useful constraint into a total monetary philosophy.

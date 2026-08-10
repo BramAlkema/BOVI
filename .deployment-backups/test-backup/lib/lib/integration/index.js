@@ -6,11 +6,11 @@ export { AuditTrailService, auditTrail } from "./audit-trail.js";
 export { NotificationService, notificationService } from "./notification-service.js";
 export { HybridSystemOrchestrator, hybridOrchestrator } from "./hybrid-orchestrator.js";
 export const initBoviSystem = async () => {
-    const { hybridOrchestrator } = await import("./hybrid-orchestrator.js");
-    return hybridOrchestrator.initialize();
+  const { hybridOrchestrator } = await import("./hybrid-orchestrator.js");
+  return hybridOrchestrator.initialize();
 };
 export const showAuditTrail = () => {
-    const { auditTrail } = require("./audit-trail.js");
-    auditTrail.showAuditTrail();
+  const { auditTrail } = require("./audit-trail.js");
+  auditTrail.showAuditTrail();
 };
 //# sourceMappingURL=index.js.map
