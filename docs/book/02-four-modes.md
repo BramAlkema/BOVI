@@ -68,7 +68,7 @@ He gave them careful academic names. We will use plainer ones, and a one-line te
 | **Obligated** | *"Who decides — and is that legitimate?"* | Authority. One party ranks above another and the exchange follows the rank. |
 | **Immediate** | *"Are we okay?"* | Sharing without counting. Gift, care, the pooled life of people who do not keep score. |
 
-One regularity is worth flagging before we go on, because it will quietly turn out to be the hinge of the whole book. The four modes *count* in four different ways. Immediate does not count at all. Obligated counts rank — who stands above whom. Balanced counts one-for-one — turns and favours that should match. Value counts in ratios — prices, proportions, anything divided by anything. Fiske noticed this himself: his four patterns are, in order, the four classic scales of measurement — nominal, ordinal, interval, ratio. Four modes, four kinds of arithmetic. Two chapters from now, that observation will join the modes to money at the root.
+The table hides a regularity that will quietly turn out to be the hinge of the whole book: the four modes *count* in four different ways. Immediate does not count at all. Obligated counts rank — who stands above whom. Balanced counts one-for-one — turns and favours that should match. Value counts in ratios — prices, proportions, anything divided by anything. Fiske noticed this himself: his four patterns are, in order, the four classic scales of measurement — nominal, ordinal, interval, ratio. Four modes, four kinds of arithmetic. Two chapters from now, that observation will join the modes to money at the root.
 
 Now go back to the spreadsheet, and the fight decodes instantly.
 

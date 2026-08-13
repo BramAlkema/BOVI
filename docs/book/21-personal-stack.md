@@ -70,7 +70,7 @@ The twist of this chapter is how *little* technology any of it requires, against
 
 ### What the notebook does not reach
 
-An honest chapter says what it does not do. The chapters just behind us were about decisions taken far above the notebook — a continent's adjustment channel, a shock absorbed in wages and departures rather than in prices, a distributional choice placed deliberately beyond the reach of an election. Nothing in this chapter touches any of that. No index, however carefully kept, moves a mandate.
+The chapters just behind us were about decisions taken far above the notebook — a continent's adjustment channel, a shock absorbed in wages and departures rather than in prices, a distributional choice placed deliberately beyond the reach of an election. Nothing in this chapter touches any of that. No index, however carefully kept, moves a mandate.
 
 What the notebook gives is not leverage. It is *standing* — the ability to say what happened to you in terms that are yours and checkable, rather than in terms handed down by whoever made the decision. That is the smaller claim and it is the true one. It is also the first of three. This chapter is what one person can do; the next is what a group can do; and the answer to the thing you are still holding — the decision taken at a scale you will never sit at — is the last chapter of this book, and it is an aim rather than a mechanism. Keep the question that long.
 

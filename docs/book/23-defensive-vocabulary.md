@@ -11,7 +11,7 @@ A Berlin coffee shop. €4.20. Card tap. Done. The young European tourist from C
 ## Structural beats
 
 1. The Berlin coffee scene as inverse of Chapter 1.
-2. The questions the book has installed (anchor / network / function / mode / consent / bootstrap) — and beneath all six, the direction question: pushed from behind, or pulled by the next trade?
+2. The questions the book has installed (anchor / network / function / mode / consent / bootstrap / door) — and beneath all seven, the direction question: pushed from behind, or pulled by the next trade? The door question names the toll without issuing an instruction; the itemized-bill standard lives on the Field Book card, where ways-of-doing are licensed.
 3. How to ask each one.
 4. What changes once you see the bundle (you do not necessarily *do* anything different — you see differently).
 5. The system is not broken in the rich-country case; you have been given the means to recognise that it is *one configuration* and not a natural state.
@@ -67,9 +67,11 @@ We never handed you a doctrine. We handed you, one chapter at a time, a small se
 
 *What is the bootstrap, and who pays for it?* — because every money is paid for by someone, and the first question about any new one is always: who, and how?
 
-And beneath all six, the one question the book was written to install: *where has this explanation located value, and which way does the worth flow?* Is value being placed inside the token and pushed in from behind — by the metal, the labour, the decree? Or does it remain with the people, while worth is pulled in from ahead by the next trade this ledger lets someone close? You have the tests in your hands now: turn the backing dial and nothing moves; take away the next trade and everything does. Everything that will ever be sold to you as holding value *by nature* — a coin, a token, a flag, a bloodline — is the first answer wearing a costume. Everything you have watched actually work, from the rope to the dollar in a Lima market, is the second. The inherited curriculum installed the first picture without arguing for it. This question breaks the habit.
+*Who owns the door, and what do they charge?* — every working money keeps a guaranteed acceptor at its edge — the tax office that must take it, the loan desk that will call it home — and its owner collects for the service: the seigniorage, the spread, the deadline.
 
-Six questions, one direction. You can ask them of a banknote, a crypto token, a gift card, a subscription, a salary, a wedding, a workplace that calls itself a family, a government that calls a fine a fee. They do not tell you what to do. They tell you what is happening. And once installed they cannot be uninstalled — which is the only kind of education worth the name.
+And beneath all seven, the one question the book was written to install: *where has this explanation located value, and which way does the worth flow?* Is value being placed inside the token and pushed in from behind — by the metal, the labour, the decree? Or does it remain with the people, while worth is pulled in from ahead by the next trade this ledger lets someone close? You have the tests in your hands now: turn the backing dial and nothing moves; take away the next trade and everything does. Everything that will ever be sold to you as holding value *by nature* — a coin, a token, a flag, a bloodline — is the first answer wearing a costume. Everything you have watched actually work, from the rope to the dollar in a Lima market, is the second. The inherited curriculum installed the first picture without arguing for it. This question breaks the habit.
+
+Seven questions, one direction. You can ask them of a banknote, a crypto token, a gift card, a subscription, a salary, a wedding, a workplace that calls itself a family, a government that calls a fine a fee. They do not tell you what to do. They tell you what is happening. And once installed they cannot be uninstalled — which is the only kind of education worth the name.
 
 ### What the book refuses, one last time
 
@@ -81,7 +83,7 @@ That is enough. It is, in fact, a great deal — because almost everything money
 
 So we will not tell you what to do with it. You may build the personal stack or you may not; you may start a Tally with your friends or carry on with the awkwardness; you may move your savings or leave them exactly where they are. What you cannot do, ever again, is *unsee* what you have been shown. The coffee in Berlin costs four euros twenty, exactly as it always did. The only thing that has changed is that you now know what you are holding when you pay for it — and what it is holding of yours.
 
-One exception, and it is the only instruction in this book. Sight is a defence, and a defence can be turned the wrong way round. Everything we have handed you works by making conduct legible — and legibility has always been easiest to aim at the people with the least room to refuse. So aim it the other way. Point it at whoever holds the pen: the issuer, the platform, the employer, the one who sets the fee and the rule and the deadline, the one who can rewrite the record you are scored against. Never at whoever merely holds a balance.
+That refusal has a single exception — the only instruction in this book. Sight is a defence, and a defence can be turned the wrong way round. Everything we have handed you works by making conduct legible — and legibility has always been easiest to aim at the people with the least room to refuse. So aim it the other way. Point it at whoever holds the pen: the issuer, the platform, the employer, the one who sets the fee and the rule and the deadline, the one who can rewrite the record you are scored against. Never at whoever merely holds a balance.
 
 Watch the writer, not the spender. That asymmetry is the whole difference between a defence and a scoring system, and it is not a caveat bolted on at the end — it follows from everything above. Almost everything money does to people, it does by not being seen. And the people it is done to were never the ones who needed watching.
 

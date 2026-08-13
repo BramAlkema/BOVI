@@ -23,6 +23,9 @@ Hayek's *Denationalisation of Money* (1976). Airtight argument. Nobel laureate. 
 
 - Technical excellence is not adoption.
 - Bootstrapping is the central engineering problem economics ignores.
+- Token money in a finite world unravels from the end; an obligation blocks the unravelling — if it is big enough. An engine below its threshold is a decoration (Taiwan, 1895).
+- Both grand value theories are launch theories in borrowed clothes: engine three points behind the money, engine one ahead of it. Demote both, keep both.
+- Bank money is born pre-sold; the cold start belongs to orphan money.
 - A bootstrap creates the first demand and coordinates selection; it does not inject objective value into the money.
 - Speculation funds infrastructure that non-speculators free-ride on.
 - The "real miners" of any monetary network are the early holders, not the protocol workers.
@@ -64,7 +67,9 @@ Run that in reverse and we get the cold-start problem. A network of one has zero
 
 Pure utility cannot solve this. A new payment rail might be 100× faster, 10× cheaper, and infinitely more elegant than the existing options. None of that matters if we cannot pay anyone with it. The first thousand users get effectively nothing for their adoption costs. Without a non-utility reason to hold, they never appear, and the network never crosses the threshold where utility starts to compound.
 
-Hayek's own case, to be fair to it, never got a clean test. Legal tender rules, taxes payable only in the state's unit, banking licences and later anti-laundering law between them made a competing currency hard to launch and easy to prosecute; his design was not defeated in an open contest so much as kept out of one. But the law only explains the proposals that were never run. Where the field has been open — local and community currencies nobody needed permission to start, mutual-credit schemes, thirty years of cryptocurrencies launched in deliberate indifference to the licensing regime — the same thing happened anyway, to designs that were free to succeed. Elegant, genuinely better than the incumbent on some axis, and almost nobody willing to go first.
+Hayek's own case never got a clean test. Legal tender rules, taxes payable only in the state's unit, banking licences and later anti-laundering law between them made a competing currency hard to launch and easy to prosecute; his design was not defeated in an open contest so much as kept out of one. But the law only explains the proposals that were never run. Where the field has been open — local and community currencies nobody needed permission to start, mutual-credit schemes, thirty years of cryptocurrencies launched in deliberate indifference to the licensing regime — the same thing happened anyway, to designs that were free to succeed. Elegant, genuinely better than the incumbent on some axis, and almost nobody willing to go first.
+
+There is a second, sharper version of the problem, and it was proved rather than observed. Imagine any money with a last day — a horizon at which, everyone knows, the tokens will finally be useless. On that day nobody accepts them; knowing that, nobody accepts them the day before; and the refusal walks backward, day by day, all the way to now. Token money in a finite world unravels from the end. What blocks the unravelling is an obligation: someone who *must* take the token at a known date — a taxpayer with a bill due — whatever anyone believes. The proof carries a condition the slogans drop: the obligation has to be big enough. If the total bill is smaller than the stock of tokens, the demand it creates supports nothing at all — not a lower value; none. An engine below its threshold is not a smaller engine. It is a decoration.
 
 Every working money in human history has solved this problem somehow. The solutions are not subtle. There are essentially four.
 
@@ -79,6 +84,8 @@ This is the chartalist insight, stated carefully: a tax obligation creates compu
 The requirement does not inject value into the currency. It bootstraps and selects the ledger. The worth still lies in the cooperation, settlement, and specialisation the working network unlocks. Tax answers *why this money gets its first users*, not *what those users ultimately find worth having*.
 
 The historical evidence is broad. Lydia struck the first state coinage around 600 BCE — for state payments, plausibly soldiers' pay, though what the coins were actually *for* is still argued among people who have spent careers on it. Rome's denarius spread through tax demands and legionary pay. The British pound, the dollar, the euro — every modern fiat currency we use is bootstrapped by the coercive demand for its own units in tax payment. This is not a footnote. It is the engine.
+
+It is an engine with a threshold, and the record includes a clean failure that proves it. Around 1895 the incoming Japanese administration in Taiwan demanded taxes in Japanese money, precisely to install its currency in place of the copper coins in local use. People simply deferred their taxes; collections fell so far that the policy was abandoned. A decree is not a demand pulse. The pulse is only as strong as the state's actual weight in the economy's daily trade — and colonial Japan, in 1895, in a Taiwanese market town, weighed almost nothing. Coercion bootstraps when the coercer is big at the point of acceptance; the stamp alone moves nothing.
 
 **Who pays**: citizens, by compulsion. **What it buys**: one of the most efficient transaction rails ever invented.
 
@@ -104,7 +111,7 @@ The distinction is the whole chapter in miniature. Pre-existing demand can pay f
 
 This is where the goldbug stops reading. The textbook first teaches that a commodity's intrinsic value made money trustworthy, then removes the commodity and asks law or faith to perform the same magic. The goldbug refuses the switch. **Goldbugs are not flat-earthers. They are Econ 101 literalists.** Their logic preserves the lesson; our correction rejects its premise. Gold's prior uses helped it cross the cold start. They did not manufacture the monetary worth that emerged once the ledger began unlocking exchange.
 
-And since we are being fair to him, let us be fair the whole way. Underneath the goldbug's ontology there is a *governance* demand, and it is a good one: **do not let whoever holds the pen quietly write more.** That demand is correct. It is the same demand this book will keep making in other words for the rest of its length, and nothing in our argument answers it — a ledger can be debased exactly as a coinage can, and rather more easily. What we refuse is only the inference bolted on top: that because the discipline is necessary, the worth must live in the metal. Concede the demand; refuse the label. Most of what follows is about what meets that demand once the metal is gone.
+Underneath the goldbug's ontology there is a *governance* demand: **do not let whoever holds the pen quietly write more.** That demand is correct. It is the same demand this book will keep making in other words for the rest of its length, and nothing in our argument answers it — a ledger can be debased exactly as a coinage can, and rather more easily. What we refuse is only the inference bolted on top: that because the discipline is necessary, the worth must live in the metal. Concede the demand; refuse the label. Most of what follows is about what meets that demand once the metal is gone.
 
 This mechanism is largely unavailable to us as modern designers. We do not have new commodities with universal pre-existing demand. The closest modern analogue is *attention*, but no one has yet figured out how to anchor a token to attention in a way that survives the friction.
 
@@ -140,6 +147,8 @@ Naming the bootstrap is the most politically honest move in monetary theory.
 
 Standard economics pretends money emerges spontaneously from the inefficiencies of barter. (It does not. Barter economies do not exist as a transitional stage.) Crypto evangelism pretends that decentralised protocols escape the need for institutional bootstraps. (They do not. Speculation *is* the institutional bootstrap.) Anthropology describes the bootstraps that already worked in the past without theorising the design problem of *making a new one happen*.
 
+Two of these engines have been moonlighting in the literature for a century as theories of value. The oldest answer to what money is worth — trace acceptance backward until you reach a thing people wanted before it was money — is engine three, promoted: a perfectly good account of how a commodity crosses the cold start, dressed up as the source of the resulting worth. And the chartalist answer — money is valuable because the state demands it back in tax — is engine one in the same borrowed clothes. One points behind the money, one points ahead of it; both are launch mechanisms mistaken for cargo. The previous chapter demoted them one at a time. Here they can be demoted together, symmetrically, and *kept* — because engines are exactly what they are.
+
 The honest framing is that **every monetary network is paid for by someone**. The four known engines specify who pays and how:
 
 - State coercion: citizens pay through compulsion
@@ -152,6 +161,8 @@ When we encounter a new money — a new central bank digital currency, a new cry
 ### The design space for new money
 
 This chapter has been mostly diagnostic. Let us close with a brief sketch of where the design frontier actually is.
+
+One kind of money skips this chapter's problem altogether. A bank deposit is created in the very act of making a loan — born matched to the dated obligation that will one day extinguish it. Its first and its last acceptor signed up at birth; there is no stranger to convince. The cold start is a problem for *orphan* money — tokens spent into the world with no return path. Money issued on loan is born pre-sold. That is most of the money there is, and it is why the hard version of this chapter's problem is met mainly at foundings: new states, new protocols, new community ledgers — anywhere a token must go looking for its first believer.
 
 The unsolved problem of the next decade is whether we can bootstrap an *unbundled* medium-of-exchange. Every existing money is bundled at the bootstrap layer for one of the four reasons above. The minimal-money framework calls for unbundling. These two impulses conflict.
 
