@@ -141,7 +141,7 @@ flowchart TB
         KW[KiyotakiWright]:::gate
     end
 
-    subgraph METER["measurement — no return arrows"]
+    subgraph METER["measurement — publishes, does not govern"]
         CAN[Cantillon]:::meter
         STI[Stigler]:::meter
         STA[Starr]:::meter
@@ -154,7 +154,7 @@ flowchart TB
     ACC --> KW
     KW -.->|threshold| ACC
     PPL -->|reports| GRE
-    GRE -.->|B4 gate, unwired| BAL
+    GRE -.->|B4 gate, advisory by ruling| BAL
     PPL -->|prices| HAY
     HAY --> CAN
     HAY --> STI
