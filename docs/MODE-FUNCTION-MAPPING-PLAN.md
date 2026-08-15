@@ -4,6 +4,8 @@
 
 Remaining open, by design: the naming collision (below), and whether any true mode↔instrument correspondence exists — the plan removed a false one without asserting a replacement.
 
+**Update, same day, both gates resolved.** (1) The candidate correspondence was staked as `SCALE-LADDER.md` with pre-registered kill conditions and **killed** by its adversarial specimen pass — K1 fired three times (exchequer tallies, wergild, Nuer bridewealth), K2 on kula, K3 worse than specified; the open question above is closed **in the negative** (no scale law; portfolios and singularization, as the anthropology already said). The file stands as post-mortem. (2) Source retrieval: **Melitz 1970 obtained in full** (MPRA author deposit) — the "reinforces separability while destroying the dichotomy" reading is supported, recorded with the qualification that it is our inference from his affirmations, not his self-description; Goldberg 2005, Polanyi 1957/1968 and Dalton 1965 are exhausted on open routes and moved to the library-pull list. The "hoarding subordinate" gloss on Polanyi's uses was unverified and has been dropped from `special-purpose-money.md`. The naming collision was settled in the consolidation pass (settlement rope / knights' peg-rail).
+
 **Decision in one line:** retire the mode↔monetary-function mapping, which is uncredited and contradicted by Fiske, and reground the unbundling claim on Jevons's own separability passage plus the Polanyi–Dalton–Kuroda literature.
 
 ## The problem

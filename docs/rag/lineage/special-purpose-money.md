@@ -26,7 +26,7 @@ So the framework's position is a **recovery**, not a heresy. The welding of the 
 
 ## Polanyi's money-uses
 
-Karl Polanyi ("The Semantics of Money-Uses," 1957) treated money as quantifiable objects put to distinct **uses** — *payment*, *standard* (accounting), and *exchange*, with hoarding subordinate — and argued these were **separately institutionalised**. One object discharged payments (bridewealth, wergeld, fines, tribute), another served as standard, a third circulated in exchange. All-purpose money fuses them; that fusion is historically exceptional.
+Karl Polanyi ("The Semantics of Money-Uses," 1957) treated money as quantifiable objects put to distinct **uses** — *exchange*, *payment*, *hoarding*, and *standard* (the essay gives the four parallel sections, with an appendix titled "Independent Institutional Origins of Money Uses") — and argued these were **separately institutionalised**. One object discharged payments (bridewealth, wergeld, fines, tribute), another served as standard, a third circulated in exchange. All-purpose money fuses them; that fusion is historically exceptional. The one line of his that can be given verbatim rests on a traceable chain: *"different objects are, as a rule, employed in different monetary uses"* — Polanyi 1968: 191, as quoted approvingly by Melitz (1970), whose full text this project holds.
 
 George Dalton ("Primitive Money," *American Anthropologist* 1965) systematised the contrast and supplied the vocabulary still in use: **special-purpose** versus **general-purpose** money — objects performing monetary work only in circumscribed ways, restricted to particular people, occasions and relationships.
 
@@ -38,7 +38,7 @@ The framework should borrow this carefully, because parts of it were dismantled.
 
 **Abandoned:**
 - **The evolutionary story** — special-purpose money as a primitive stage superseded by all-purpose money.
-- **The primitive/modern dichotomy.** Jacques Melitz ("The Polanyi School of Anthropology on Money," *American Anthropologist* 1970) attacked it by arguing that **modern money is special-purpose too**. Note the direction: this *reinforces* separability while destroying the dichotomy.
+- **The primitive/modern dichotomy.** Jacques Melitz ("The Polanyi School of Anthropology on Money," *American Anthropologist* 1970) attacked it head-on, and his thesis is now verified verbatim: "**modern as well as primitive money is special purpose money**," and the Polanyists, had they applied their own criteria to the West, "could not have espoused their distinction between special-purpose and all-purpose money." His evidence is the circumscription of every modern instrument (coins for petty sums, cheques not generally accepted, money that "cannot buy some goods, such as political offices, children, and professorial chairs"). Note the direction: the dichotomy dies while separability stands — though *"reinforces separability"* is this framework's inference from his affirmations, not his self-description; his own positive cut differs from Polanyi's (money restricted to means of payment + media of exchange, the unit of account analytically distinct).
 - **Strong sphere-boundedness.** Jane Guyer (*Marginal Gains*, 2004) showed Tiv prestige goods circulated as currency outside the community; the restriction was a means of retaining control, not an incommensurability barrier. Akin & Robbins (*Money and Modernity*, 1999) found Melanesians did not collapse into a single sphere on contact with general-purpose money — they built *new* spheres to channel it.
 
 **Survived, and is now background rather than controversy:** the separability of the money-uses itself. Guyer's own later work proceeds from the premise that the classic four functions are disaggregated, in contemporary systems as much as historical ones.
@@ -51,7 +51,7 @@ Independently, Philip Grierson (*The Origins of Money*, 1977) derives the money 
 
 **Licensed:** that the four functions are separable; that unbundled monetary arrangements are historically normal; that asking *which use does this instrument serve* is a sounder question than *is this really money*.
 
-**Not licensed:** any claim that a given relational mode "owns" a given monetary function. Fiske's models and Polanyi's money-uses are two independent typologies — one partitions relationships, the other partitions uses of an instrument. A correspondence between them is available and interesting, but it is **the framework's own contribution**, not a finding in either literature. See [Fiske](fiske-relational-models.md) and `MODE-FUNCTION-MAPPING-PLAN.md`. The framework's candidate for that correspondence — required resolution per discipline, with pre-registered kill conditions — is `../../SCALE-LADDER.md`, currently under adversarial specimen test.
+**Not licensed:** any claim that a given relational mode "owns" a given monetary function. Fiske's models and Polanyi's money-uses are two independent typologies — one partitions relationships, the other partitions uses of an instrument. A correspondence between them is available and interesting, but it is **the framework's own contribution**, not a finding in either literature. See [Fiske](fiske-relational-models.md) and `MODE-FUNCTION-MAPPING-PLAN.md`. The framework staked a candidate for that correspondence — required resolution per discipline, with pre-registered kill conditions — and the adversarial specimen pass **killed it** (`../../SCALE-LADDER.md`, kept as post-mortem). The surviving content is the singularization line above, which this lineage already owns.
 
 ## The worked case
 
@@ -64,7 +64,7 @@ Legend: ✅ read directly · ⚠️ reached through secondary sources, verify be
 - ✅ Jevons, W. S. (1875). *Money and the Mechanism of Exchange*, ch. III.
 - ⚠️ Polanyi, K. (1957). "The Semantics of Money-Uses," in *Explorations*; repr. in Dalton (ed.), *Primitive, Archaic and Modern Economies* (1968), 175–203.
 - ⚠️ Dalton, G. (1965). "Primitive Money." *American Anthropologist* 67(1): 44–65.
-- ⚠️ Melitz, J. (1970). "The Polanyi School of Anthropology on Money: An Economist's View." *American Anthropologist* 72(5): 1020–1040.
+- ✅ Melitz, J. (1970). "The Polanyi School of Anthropology on Money: An Economist's View." *American Anthropologist* 72(5): 1020–1040. Read in full via the author-deposited MPRA copy (mpra.ub.uni-muenchen.de/84893). *Citation caution: the MPRA copy is re-set with its own pagination — cite MPRA internal pages, never AA page numbers.*
 - Bohannan, P. (1955), *American Anthropologist* 57: 60–70; (1959), *Journal of Economic History* 19(4): 491–503.
 - Guyer, J. (2004). *Marginal Gains*. Chicago UP; (2012) *PNAS* 109(7): 2214–2221.
 - Akin, D. & Robbins, J. (eds.) (1999). *Money and Modernity*. Pittsburgh UP.
