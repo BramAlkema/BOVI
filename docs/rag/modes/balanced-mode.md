@@ -69,14 +69,16 @@ Periodically zoom out: even ledgers can hide unequal capacity.
 | Splitting a meal evenly with peers | Forced "equal" split where one person can't afford it |
 | Joining a rotating savings club | Family pressure to participate in ledger you don't want |
 
-## Historical examples (from theory.md)
+## Historical and everyday examples
 
-- Mesopotamian proto-cuneiform accounting tablets
-- Medieval English tally sticks
-- Modern double-entry bookkeeping
-- Blockchain distributed ledgers
+- **Rotating savings clubs** — susu, chit funds, tandas: each member takes the pot in turn, and the obligation is to keep taking your turn. Turn-taking is Equality Matching in its purest institutional form.
+- **Favour ledgers between peers** — spotting a friend €5, covering a round, watching someone's children on the understanding it comes back
+- **Splitting a meal evenly among peers**
+- **Labour-exchange customs** — barn-raising, harvest rings, work parties where households owe each other days rather than money
 
-The historical tally rope (medieval coordination device with pegs on a shared rope) is the canonical Balanced-mode artifact. See [the Tally product](../practice/the-tally-product.md) for the modern equivalent.
+### Where the neighbouring artifacts sit
+
+Balanced mode is diagnosed by the exchange, not the equipment — [the diagnosis rule](../core/four-modes-overview.md): does a standing account stay open between peers, and is the amount a rough equivalence rather than a price? By that test: **proto-cuneiform tablets and English exchequer tallies sit in Obligated mode** — both record amounts prescribed by an authority (temple and palace dues; tax and tribute receipts). **Double-entry bookkeeping and distributed ledgers are mode-agnostic** record technologies, carrying whichever discipline is written into them; one ledger can hold all four disciplines at once, which is exactly what [the Tally](../practice/the-tally-product.md) is built to do. **The settlement rope sits in Value** — it prices and clears between strangers ([ruling](../practice/the-tally-product.md#mode-classification)). An earlier version of this file listed all five as Balanced-mode artifacts; the record of that misfiling and its root is `MODE-FUNCTION-MAPPING-PLAN.md`.
 
 ## Source quote
 

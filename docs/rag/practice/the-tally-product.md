@@ -14,9 +14,12 @@ related: [../modes/balanced-mode.md, ../modes/immediate-mode.md, ../architecture
 
 What Splitwise gets wrong, the Tally fixes: by tagging each transaction with one of the four BOVI modes, the math becomes mode-specific instead of forcibly converting all exchanges into Balanced-mode debts.
 
-## The historical tally rope (background)
+## The two ropes behind the name (background)
 
-The medieval coordination device after which the product is named: a central hub with spokes; each knight has a peg on a shared rope. Pegs slide toward what the knight wants; rope tensions reveal preferences instantly. A mechanical market combined with a public ledger.
+Two distinct teaching devices share the "tally rope" name, and neither is attested history:
+
+- **The knights' peg-rail** — the founding sketch (*Ye Tally Rope*): a central hub, five knights, ten pegs on a shared rope; pegs slide toward what each knight wants, and rope tensions reveal exchange rates instantly. A mechanical market combined with a public record.
+- **The settlement rope** — the village netting rope of the book's Intermezzo 8A: four pegs, marks for unsettled trades, residuals netting to zero. This is the canonical "tally rope" of the book and the device this product modernises.
 
 Properties:
 - **Mechanical conservation**: cannot fake the rope
@@ -25,7 +28,20 @@ Properties:
 - **Multilateral coordination**: circular trades become visually obvious
 - **Single coherent display**: not per-user dashboards
 
-The historical rope was secretly a Balanced-mode primitive. The Tally extends it to all four modes.
+## Mode classification
+
+**The tally rope — in both forms — is a Value-mode artifact.**
+
+The book settles it. Chapter 22: *"Money, we saw there, is what happened when one of the four — clear-it-now, between strangers — got its own infrastructure, and the other three stayed behind in memory, rank, and love. The Tally is the rest of the ledger coming home."* If the Tally is the rest of the ledger *coming home*, the rope was the channel already present, and Intermezzo 8A names it: the village "built one channel, the clear-it-now channel." Value is the discipline money got infrastructure for; the rope is that infrastructure in its earliest form.
+
+The supporting evidence points the same way. The rope prices goods in a common metric — an axe at six marks, a spear at four — and its stated purpose is to work *across kin lines without converting strangers into kin*: without it, every cross-kin trade "either becomes a personal debt, which feels intrusive, or a gift, which feels expensive. The rope is the third option." Avoiding the relational reading is the point.
+
+**Why it looked Balanced.** Two things misled, and both are worth naming because the same errors recur elsewhere:
+
+- *The running net is plumbing, not the discipline.* The rope defers numerical settlement — Adam +3, Oz −2 — which resembles a Balanced-mode standing account. But the relationship closes at the trade; what remains is, in 8A's words, "not you owing me in the thick sense" but "the public residue of a trade that the system can clear later." A card payment is Value mode even though the bank settles net two days later.
+- *Symmetric participation is governance, not mode.* Equal pegs, a record everyone can inspect, and freedom to leave describe who is protected, not which discipline runs. A market with equal access is still a market.
+
+The Tally extends the rope to all four modes. *(An earlier version classified the rope as "secretly a Balanced-mode primitive," and the classification propagated into the glossary and the Balanced-mode file; the record of the ruling is `MODE-FUNCTION-MAPPING-PLAN.md`.)*
 
 ## What Splitwise gets wrong
 

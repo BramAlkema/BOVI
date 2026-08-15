@@ -30,6 +30,20 @@ Four cognitive primitives humans use to structure exchange. Mapped from Alan Fis
 - **Obligated** — *"Because they said so."* Authority-imposed exchange, voluntary or coerced. → [O deep](../modes/obligated-mode.md)
 - **Immediate** — *"We don't count, we just give."* Family, gift, care, no tracking. → [I deep](../modes/immediate-mode.md)
 
+## How to diagnose a mode (and two ways it goes wrong)
+
+A mode is a rule for **when and whether the ledger must clear**. Diagnose it by asking two questions about the exchange, not about the equipment:
+
+1. **Does the relationship close?** If the exchange ends when the transfer is made and nothing personal is left outstanding, that is Value. If a standing account remains open between two named parties, that is Balanced.
+2. **Who sets the amount?** A price arrived at between the parties is Value. A figure prescribed by rank, office, occasion or rule is Obligated. Rough equivalence owed back over time is Balanced. No reckoning at all is Immediate.
+
+Two recurring misdiagnoses, both of which had taken root in this corpus:
+
+- **Mistaking settlement plumbing for the discipline.** A running net balance that squares later is *infrastructure*, not a mode. A card payment is Value mode even though the bank settles net two days afterwards; the relationship closed at the counter. Record-keeping technologies — double-entry bookkeeping, distributed ledgers — are mode-agnostic by construction, which is the whole point of a ledger that can carry all four disciplines.
+- **Mistaking symmetric participation for equality matching.** Everyone holding an equal peg, seeing the whole record and being free to leave is a *governance* property. It says who is protected, not which discipline is running. A market with equal access is still a market.
+
+The corollary, at case strength: **substrate features are fitted to the transfer's job.** Value must clear to an exact figure, so its instrument needs divisibility; rai's indivisibility suited whole-object discharge of prescribed obligations ([the worked case](../cases/rai-stones-yap.md)). This is fit, not law. The general form — one required resolution per discipline, read off Fiske's scale types — was staked as a hypothesis with pre-registered kill conditions and **killed** by the adversarial specimen pass (kula, Nuer bridewealth, exchequer tallies, wampum, wergild): a count of indivisible items is already ratio-scale arithmetic, and the predicted features do not co-vary with relationship type. Post-mortem: `../../SCALE-LADDER.md`. What survives is older and better owned — indivisible, singular instruments mark rank- and identity-preserving transfers (Bohannan's spheres; Weiner's inalienable possessions; Kopytoff's singularization).
+
 ## What the four-mode framework does
 
 1. **Replaces the textbook "money is one thing"** with a structurally plural account of how humans exchange.

@@ -19,6 +19,20 @@ The textbook list of "functions of money" — taught in every Econ 101 — is **
 3. **Store of value** — preserves purchasing power over time
 4. **Standard of deferred payment** — denominator of debts and contracts (sometimes folded into 3)
 
+## Jevons said they were separable — in the text that established the list
+
+The list is usually traced to W. S. Jevons, *Money and the Mechanism of Exchange* (1875), ch. III "The Functions of Money," which is its locus classicus. His four were medium of exchange, common measure of value, standard of value, and store of value — mapping onto the modern list once "measure" and "standard" are merged into unit of account.
+
+What is routinely dropped from the retelling is that Jevons immediately said the four need not share an instrument:
+
+> "We might certainly employ one substance as a medium of exchange, a second as a measure of value, a third as a standard of value, and a fourth as a store of value."
+
+He gave cases. In Elizabeth's reign silver was the common measure of value while gold was employed in large payments; and 18 Eliz. c. VI (1576) *required corn* to be the standard of value for college leases. He also described gold acquiring the functions at different times rather than all at once — ornamental commodity, then stored wealth, then medium of exchange, then measure.
+
+**This matters for how the framework positions itself.** Unbundling is not a heresy against the textbook list; it is a recovery of what the list's own author said, before the functions were welded together in teaching. The bundling is the later accretion, not the original claim.
+
+*(Related: the list is contested from several directions — Selgin argues the multi-function definition is an incoherent misreading of Jevons and that medium of exchange alone is definitive; Ingham and the chartalist line hold that money of account and means of payment are constitutive and medium of exchange derivative. The framework's position — that the list describes forced bundling — is in reputable company, though the specific unbundling prescription is its own.)*
+
 ## Each function's actual requirements (table of conflicting wants)
 
 | Function | Wants | Conflicts with |

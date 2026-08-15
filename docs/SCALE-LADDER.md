@@ -1,0 +1,43 @@
+# The Scale Ladder — a hypothesis, tested and killed
+
+**Status: dead.** Staked 15 Aug 2026 with pre-registered kill conditions; killed the same day by the adversarial specimen pass it was staked against. Kept as the post-mortem — the record of what was claimed, what killed it, and what survives. The full original text is in git (commit `889b796`).
+
+## What was claimed
+
+The framework's candidate for a mode↔instrument correspondence, replacing the retired function mapping (`MODE-FUNCTION-MAPPING-PLAN.md`). Three claims: **C1** — each clearing discipline requires of its discharge instrument the resolution of its Fiske scale (nominal identity marks for Immediate; ranked *indivisible* whole-object discharge for Obligated; equal-unit counters for Balanced; divisibility-with-zero for Value, making Stone 4 "the ratio row"). **C2** — capabilities nest (Stevens), so an all-discipline instrument must be ratio-capable, deriving why the bundle looks like the V-instrument. **C3** — protections don't nest, so mode-flattening is an unchecked downcast.
+
+## What killed it
+
+**Two root errors, one empirical failure.**
+
+1. **Granularity is not scale type.** A count of indivisible items is a *ratio* scale — forty cattle is twice twenty, and "nothing owed" is a meaningful zero. C1's ordinal row read "indivisible object" as "ordinal quantity"; those are orthogonal. The same point kills the interval row a priori: every real counter (pebbles, notches, turns, beads) has a true zero and is ratio or absolute — **there is no interval-scale money**. Fiske's scale terms describe the *relationship's* structure, not the instrument's arithmetic.
+2. **The predicted features do not co-vary with relationship type.** Indivisible whole-object discharge — assigned to Authority Ranking — turns up doing *Equality Matching* work in kula, and is *absent* from Authority Ranking at the Exchequer. Ratio arithmetic — assigned to Market Pricing — runs inside kin-prescribed bridewealth and royal taxation. The correlation the scheme depended on is not there.
+3. **Kill-condition record.**
+   - **K1 fired three times**, graded: *exchequer tallies* (cleanest — the *Dialogus de Scaccario* notch scale runs from £1,000 to a penny, Jenkinson's hoard to a **halfpenny**, on paradigm AR tribute, in a non-modern setting the K1 exclusion did not cover); *wergild* (ratio-graded injury tariffs — "30 shillings for a broken thigh" — plus fractional partition: *healsfang* 70/1200, kin shares by degree); *Nuer bridewealth* (exact head-counts, part-payments credited to a running total, "the number of cattle that are still owing," partial divorce refunds, and — the sharpest line — "the debtor does not deny the debt but puts forward a **counterbalancing claim**": set-off inside a kin-prescribed obligation).
+   - **K2 fired on the pre-registered hard case.** Kula is EM on Fiske's own diagnostics (*va'i* "marriage" of paired valuables; "fair and full value" demanded; violent complaint at imbalance) and runs on individually named, ordinally graded, unequal objects with **no netting**: Malinowski's *basi* is "avowedly not equivalent," leaves the principal intact, and creates its own parallel debt. Two of the interval row's three predicted features absent. The escape — reclassify kula as AR because its instrument looks ordinal — reads the relationship off the instrument, which is circular.
+   - **K3 fired worse than specified.** Saving four of five specimens needed **three mutually distinct rescues** (account/discharge split for tallies and wergild; "the beast is the atom" for the Nuer; reclassification for kula). Three escape mechanisms for four cases is the signature of an unfalsifiable frame. On wergild, the account/discharge rescue is also a concession: it hands the entire phenomenon to Grierson's unit-of-account thesis and leaves the instrument side unconstrained — the central claim collapsing, not surviving.
+4. **C2 is true but vacuous** — an all-discipline instrument being ratio-capable follows from what "general-purpose" means, not from the ladder. **C3's surviving content is already in canon without the ladder**: the CS protection ("recording it as clearable is the insult") is Fiske & Tetlock's taboo-trade-off result (Quirk 15), and the O-protection ("must not be part-payable") is dead — instalments are *normal* in prescribed obligations (healsfang *is* one). Modes-as-types (`SPECIFICATION-LANGUAGE.md`) keeps its motivation; the scale lattice was a false floor under it.
+
+## What survives
+
+- **The nominal insight, sharpened by wampum:** prescribed counts can be **configuration, not quantity**. The Great Law's thirteen strings are not "more than" twelve — twelve is simply not Hiawatha's wampum; varying the count voids the object rather than changing its value. The discriminating question: *can the obligation be discharged more or less fully by varying the number?*
+- **Wampum as the one clean support** of the weak claim that institutional discipline determines what the count *means*: the same shell beads were configuration in Haudenosaunee law and legislated ratio currency in the colonies (6 beads/penny, 1637; denominational strings of 8/24/96/480 in New Netherland).
+- **The granularity economics of the Rai case** — an instrument you cannot make change from is confined to the lumpy, high-value tier, with other media carrying the rest. That is about granularity, needs no scale law, and Yap's portfolio (ordinal-ranked rai beside arm-measured *yar* and counted shell strings) still shows it.
+- **The migration observation, demoted to needs-its-own-falsifier:** exchequer receipts entering circulation as tallies of assignment acquired a market *price* (discounts to 60% by the 1697 Bank engraftment). Supportive of "instruments acquire the destination discipline's features" — but as stated it absorbs every counterexample as a migration, so it may not be used until it names what would falsify it.
+- **The narrow salvageable claim, with its real owners:** indivisible, singular instruments mark rank- and identity-preserving transfers, and objects entering market circulation get displaced by, or acquire, a divisible shadow. That is Bohannan (spheres, conveyance vs conversion), Weiner (inalienable possessions), Kopytoff/Appadurai (singularization vs commoditization) — already partially in `rag/lineage/special-purpose-money.md`, and the measurement-theory dressing *subtracted* from it by forcing a co-variation the record refuses.
+- **A datum for Stone 2, unlooked-for:** netting shows up even inside cattle bridewealth (the Nuer counterclaim set-off). The ledger keeps turning out to be everyone's substrate, which is the canon's own claim.
+
+## Collateral repairs made with this kill
+
+The generalisation "an instrument's substrate is downstream of its discipline" is narrowed to case strength in `rag/core/four-modes-overview.md`; the Rai case's point 3 no longer states "O needs unmistakable identity rather than resolution" as a mechanism (Nuer bridewealth is the counterexample) and now places rai's indivisibility as design *fit* in the singularization line; inbound links describe this file as a post-mortem. One evidentiary chain is also made explicit: the German-subdivision episode is Fitzpatrick & McKeon (2020) citing Fitzpatrick's 2003 thesis, which no one in this project has read — the specimen pass could not corroborate it elsewhere.
+
+## Method note
+
+This is the fourth elegant structure this arc has killed on evidence (the third-arm table, provenance pricing, the C&R misread, now the ladder) — and the first killed by *pre-registered* conditions before it could reach canon. The quarantine-and-kill-conditions protocol did what the calibration record exists to enforce. Cost of the exercise: one day, two specimen gaps still open (Howell's Nuer bridewealth tables; Graeber 1996 on beads). Value: the mode↔instrument question is now *answered* — the answer is "no such law; portfolios and singularization, as the anthropology already said."
+
+## See also
+
+- `MODE-FUNCTION-MAPPING-PLAN.md` — the retired mapping this tried to replace; its open item is now closed in the negative
+- `rag/lineage/special-purpose-money.md` — where the surviving claim lives, with its owners
+- `rag/cases/rai-stones-yap.md` — the specimen that started this, its claims narrowed accordingly
+- `FOUNDATIONS.md` — untouched by the kill, as the drop-test promised

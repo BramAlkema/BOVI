@@ -105,3 +105,4 @@ Different contexts need different "EQ settings" but all systems need some of eac
 - [Two-Layer Pattern](../architecture/two-layer-pattern.md) — bundled at bootstrap, unbundled at use
 - [Four Modes Overview](four-modes-overview.md) — the modes themselves
 - [Yield Management](../pathologies/yield-management.md) — what mode mismatch feels like
+- [Special-Purpose Money](../lineage/special-purpose-money.md) — the instrument-side pedigree: Jevons, Polanyi, Dalton, Kuroda on separable money-uses

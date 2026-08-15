@@ -1,5 +1,7 @@
 # BOVI Theoretical Foundation
 
+> **Status: historical bridge document.** This was the founding statement of BOVI's Fiske footing. The load-bearing spine now lives in `FOUNDATIONS.md` (the stones), `CANON.md` (posture and quirks), and the RAG layer under `docs/rag/`; where this document and those disagree, they win. Two sections below were revised in August 2026 — the change record, with the reasoning and sources, is `MODE-FUNCTION-MAPPING-PLAN.md`.
+
 ## Abstract
 
 The BOVI framework (Balanced, Obligated, Value, Immediate) maps Alan Fiske's four relational models to monetary exchange, arguing that money functions as a bundle of fairness modes rather than a single invention. This theoretical document provides the academic foundation for understanding money as moral psychology expressed through institutional design.
@@ -36,32 +38,37 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 - **Emotional Signature:** Efficiency, rationality, optimization
 - **Violations Feel:** Irrational, wasteful
 
-## BOVI Mapping to Monetary Functions
+## BOVI Mapping to Fiske's Relational Models
 
-| Fiske Model | BOVI Mode | Monetary Function | Key Insight |
+| Fiske Model | BOVI Mode | Measurement scale (Fiske's own) | The clearing discipline |
 |-------------|-----------|------------------|-------------|
-| EM | **Balanced** | Unit of account, store of value | Money as distributed ledger |
-| AR | **Obligated** | Required payment medium | Money as political control |
-| MP | **Value** | Medium of exchange | Money as coordination tool |
-| CS | **Immediate** | Direct reciprocity anchor | Money as fairness intuition |
+| CS | **Immediate** | nominal | never clears; recording it as clearable is the insult |
+| AR | **Obligated** | ordinal | clears on schedule, in an amount prescribed by rank, office or occasion |
+| EM | **Balanced** | interval | nets over a window; rough equivalence owed back, not a price |
+| MP | **Value** | ratio | clears now, at a price, between strangers |
+
+The scale column is **Fiske's own** correspondence between the relational models and Stevens's levels of measurement (Fiske 1991; 1992, *Psychological Review*). Read against the ledger, it makes the modes the four **resolutions a ledger can keep**, and money the ratio/instant-clearing discipline made infrastructural. See `FOUNDATIONS.md` §"modes as clearing disciplines", which is the canonical statement; this table should not diverge from it.
+
+The instrument side is handled where it belongs — `rag/lineage/special-purpose-money.md` (Jevons, Polanyi, Dalton, Kuroda) and `rag/architecture/four-functions.md`. Fiske supplies the relationship typology; the substantivists supply the instrument typology; any correspondence between them is **this framework's own contribution**, claimed as such rather than attributed to Fiske. *(An earlier version of this table assigned each mode a textbook monetary function; that mapping is retired — full reasoning in `MODE-FUNCTION-MAPPING-PLAN.md`.)*
 
 ### Balanced Mode (Equality Matching → EM)
 
-**Core Function:** Money as society's distributed ledger for tracking obligations across time.
+**Core Function:** Reciprocity between peers, kept roughly even over time — "are we even?" A standing account stays open between two named parties, and the amount owed back is a rough equivalence rather than a price.
 
-**Mechanism:** 
-- Known money supply functions as shared memory
-- Counterfeiting violates record integrity  
-- Periodic settlement reduces transaction costs
+**Mechanism:**
 - Symmetry demands equal treatment
+- Obligations are tracked but not priced
+- Turn-taking and deferred return, not spot settlement
+- Violations register as a peer taking advantage, not as a rule broken
 
 **Historical Examples:**
-- Mesopotamian proto-cuneiform accounting tablets
-- Medieval English tally sticks
-- Modern double-entry bookkeeping
-- Blockchain distributed ledgers
+- Rotating savings clubs — susu, chit funds, tandas
+- Labour-exchange customs — barn-raising, harvest rings, work parties
+- Peer favour ledgers and evenly split costs among equals
 
 **Emotional Resonance:** Fairness violations feel like cheating the system
+
+The ledger itself belongs to no mode: `FOUNDATIONS.md` Stone 2 derives it as the substrate of *all* money, and the Tally is one ledger holding four disciplines — so "keeps a record" cannot diagnose a mode ([diagnosis rule](rag/core/four-modes-overview.md)). Proto-cuneiform tablets and English exchequer tallies record authority-prescribed amounts and sit in Obligated; double-entry bookkeeping and distributed ledgers are mode-agnostic technologies. *(An earlier version filed all of these under Balanced, via the step from "EM is the interval resolution" to "EM is the ledger" — record in `MODE-FUNCTION-MAPPING-PLAN.md`.)*
 
 ### Obligated Mode (Authority Ranking → AR)
 
