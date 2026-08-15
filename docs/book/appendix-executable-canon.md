@@ -137,7 +137,7 @@ The implementation is deliberately small and correspondingly unfit for scale. Se
 
 **Invariant.** Starting from zero, `Σ balance = 0` after `pay`, `payFrom`, demurrage, and jubilee—provided arithmetic stays inside the signed domain and every external overlay returns normally. Gross positive balances are elastic and are not an invariant.
 
-**Audit boundary.** The code does not bound `amount`, limits, stabiliser factors, or demurrage rates before signed casts and multiplication. An extreme amount can reverse sign; an extreme fee can push a positive holder below zero. A newly enabled or changed demurrage rule applies the current parameters to elapsed time since the account's last accrual, so policy can act retroactively. Operator approval is unlimited within the payer's effective credit limit. Jubilee and supply views are linear in membership; proportional integer rounding can make a small jubilee absorb nothing. There is no member removal, scoped operator allowance, policy epoch, or safe member-count getter.
+**Audit boundary.** The code does not bound `amount`, limits, stabiliser factors, or demurrage rates before signed casts and multiplication. An extreme amount can reverse sign; an extreme fee can push a positive holder below zero. A newly enabled or changed demurrage rule applies the current parameters to elapsed time since the account's last accrual, so policy can act retroactively—and because the erasure reaches only spans that have not yet been charged, the retroactive lever is not uniform across holders: its incidence is fixed by the order in which an unnamed caller happens to touch accounts. Operator approval is unlimited within the payer's effective credit limit. Jubilee and supply views are linear in membership; proportional integer rounding can make a small jubilee absorb nothing. There is no member removal, scoped operator allowance, policy epoch, or safe member-count getter.
 
 That is exactly what a useful demonstrator should do. A mechanism that names its residual teaches more than a complete-looking product that buries it.
 
@@ -454,7 +454,7 @@ The separation from Kiyotaki–Wright matters. A currency can be universally acc
 
 ---
 
-## 9 · The bench engine: seven tests, eight scenes
+## 9 · The bench engine: eight tests, nine scenes
 
 The repository's principal Foundry test file is called `CoreE2E.t.sol`; a second, smaller file covers the Clark threshold in isolation. Its setup deploys six modules: Friedman, Greif, Hayek, Kocherlakota, Fisher, and Krugman. It admits three ledger participants, registers identities, admits three index providers, and sets an employer's credit limit. It then gives Friedman authority over Kocherlakota, Greif, and Hayek. Fisher has immutable dependencies rather than a governor. Krugman's governance remains with the deployer. Schumpeter becomes the seventh implemented module exercised by the file, but it is deployed separately inside its own scene with a mock settlement token and its own deployer governance.
 
@@ -500,6 +500,14 @@ What is demonstrated: a holding charge can be a transparent redistribution insid
 
 What is not: that five per cent is fair, that the commons is representative, or that a positive balance reveals hoarding rather than prudence.
 
+### Scene 4b: the same charge, and only one of them pays it
+
+Two holders are given identical balances in the same block, under the same rate, and left for the same year. Both owe the same charge, and the ledger says so. One is poked; then governance sets the rate to zero; then the other is touched. The first has paid. The second pays nothing, and can no longer be made to. Net supply is zero at every step.
+
+What is demonstrated: the retroactive rate is described as erasing every holder's pending liability, and does not. It erases only the spans nobody has charged yet, so who bears a holding charge is settled by whoever chooses when to call a public function—a party with no name in the cast, no vote, and no obligation. Governance sets the rate; someone else decides who it lands on.
+
+What is not: that anyone profits by doing this. The poker's fee share pushes toward charging everyone, so this is a lever rather than a scheme. What makes a lever matter is that it can be bought, and that the person holding this one was never appointed.
+
 ### Scene 5: memory acquires teeth
 
 Friedman authorises a reporter in Greif. A registered borrower begins in good standing. The reporter records minus five. The borrower then fails a threshold of zero.
@@ -524,9 +532,9 @@ What is demonstrated: countercyclical elasticity can alter the feasibility of ex
 
 What is not: that the reported shortfall is real, that expansion reaches the right participants, that the rule improves welfare outside this constructed case, or that Friedman governs Krugman's oracle and rule in this setup.
 
-The file contains seven test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. There are no unit tests for Fiske, ChallengeBond, Stigler, Kiyotaki–Wright, Cantillon, Starr, or Bigoni–Camera–Casari in the current test directory; no invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All fifteen source contracts compile under Solidity 0.8.20, though two of them did not until this was checked rather than assumed: the newest pair had been written and reviewed but never once put through a compiler, and each carried a parse error that a single build would have caught—a reserved word used as a field name, and an em-dash inside a revert string. Both are now fixed. The lesson is smaller than the suite's subject and worth recording anyway: a contract that has been read carefully and never compiled is prose.
+The file contains eight test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. There are no unit tests for Fiske, ChallengeBond, Stigler, Kiyotaki–Wright, Cantillon, Starr, or Bigoni–Camera–Casari in the current test directory; no invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All fifteen source contracts compile under Solidity 0.8.20, though two of them did not until this was checked rather than assumed: the newest pair had been written and reviewed but never once put through a compiler, and each carried a parse error that a single build would have caught—a reserved word used as a field name, and an em-dash inside a revert string. Both are now fixed. The lesson is smaller than the suite's subject and worth recording anyway: a contract that has been read carefully and never compiled is prose.
 
-An earlier version of this appendix reported that the test suite had not been run, because the toolchain was unavailable. That was true of the machine and not of the repository, which had always carried the one line of setup required. The toolchain was installed and the suite was run: twelve tests across two files, all passing. The distinction is worth keeping in view, because it is the same distinction the appendix keeps making elsewhere—a thing documented as possible is not a thing anyone has done, and the gap between them stays invisible until someone closes it. A green run means only that these selected state transitions behaved as asserted. It does not mean the monetary constitution is safe.
+An earlier version of this appendix reported that the test suite had not been run, because the toolchain was unavailable. That was true of the machine and not of the repository, which had always carried the one line of setup required. The toolchain was installed and the suite was run: thirteen tests across two files, all passing. The distinction is worth keeping in view, because it is the same distinction the appendix keeps making elsewhere—a thing documented as possible is not a thing anyone has done, and the gap between them stays invisible until someone closes it. A green run means only that these selected state transitions behaved as asserted. It does not mean the monetary constitution is safe.
 
 ---
 

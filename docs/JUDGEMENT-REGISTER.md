@@ -45,6 +45,8 @@ Whoever runs the keeper is therefore a load-bearing party with no contract, no v
 **A — close it:** incentivise invocation (keeper rewards), and event *staleness* so a missed clearing is visible as a positive fact rather than an absence.
 **B — refer it:** the keeper. An institution must run it, and be accountable for running it. Naming this is the honest alternative to pretending the ledger is self-executing.
 
+**And a class this register does not have (added 2026-08).** The four-class table above sorts *decisions* and assigns each a guard. The keeper makes no decision in any of the four classes — they make a **timing choice**. That is why the register did not catch the case now recorded under `Kocherlakota`: when a retroactive rate change meets a caller who chooses whom to charge first, timing becomes distributional, and no row here covers it. The instrument built to enumerate the humans in this canon cannot see this one. Stated as a gap rather than patched, because adding a fifth class without a guard to put in it would only look like progress.
+
 ## The register (written contracts)
 
 ### `ChallengeBond` — the enforcement teeth
@@ -122,6 +124,7 @@ Whoever runs the keeper is therefore a load-bearing party with no contract, no v
 | Credit limits per member | **Normative** | Rule-bind the formula and event every change | The community. The most consequential distributional call in the system |
 | `jubilee` — whose debt is forgiven, whose claim is socialised | **Normative** | Require a `Friedman` proposal with timelock | The affected creditors |
 | Demurrage rate and destination | Normative | Point at `Friedman`, as the header says | — |
+| **Who the retroactive rate actually lands on** | **Normative** | Event *staleness*: make an un-poked span a positive fact rather than an absence, so the set of holders carrying an uncharged liability is public before the rate can move. (A rate-epoch ledger would close it properly and is out of demonstrator scope.) | **The keeper.** Setting the rate to zero is documented as erasing every holder's pending liability; it erases only the spans nobody has charged yet, so the timing of a public function call decides who paid. Demonstrated in `test_Gesell_WhoPaysTheMeltIsDecidedByWhoeverPokesFirst` — same balance, same elapsed time, same rate, different outcome |
 
 ### `Friedman` — governance of the dials
 | Judgement | Class | A — close it | B — refer it |
@@ -146,14 +149,16 @@ Ledger-likeness is "an externally supplied toy input." A demonstrator, not deplo
 
 ## The irreducible residue
 
-Six. The canon already named three; the audits added the rest, and the last two are the same problem at two grains:
+Five. The canon already named three; the audits added the rest, and what looked like two separate gaps turned out to be one seen from either side:
 
 1. **Constitutive membership / Sybil** (`Greif`, `Friedman`) — no code solves it.
 2. **The inter-community reserve floor** (`Keynes`, between truly trustless parties) — already listed in the README.
 3. **Moral force** (`Fiske`) — the contract flags; humans care.
 4. **Exit** (`Friedman`) — the canon implements voice and not exit, and should say so.
-5. **Duty and its clock** — the canon supplies capabilities and refers duties, but nothing anywhere states *who* owes an answer to a published finding, or *by when*. A finding can be recorded (four meters do it under discipline) and a proposal can now cite one, and still nobody is obliged to act. Added 2026-08 by the stock-and-flow audit; it is the general form of item 6.
-6. **The keeper** (§0.2) — no contract in the canon can act on its own. Every clearing discipline depends on an unnamed party choosing to invoke it. This one was not previously on any list.
+5. **Duty and its clock** — one residue with two faces, and they were logged separately before it was clear they were the same thing.
+   - *Nobody must act.* The canon supplies capabilities and refers duties. A finding can be recorded — four meters do it under declared discipline — and a proposal can now cite one, and still nobody owes an answer and no clock runs on one.
+   - *Whoever does act picks when.* No contract in the canon can act on its own (§0.2), so every clearing discipline waits on an unnamed party choosing to invoke it. Where a retroactive parameter is in play, that choice is not merely a delay: it decides who bears the charge (see `Kocherlakota`, and the test named there).
+   Governance's half of such an episode now has to state a reason on the record. The keeper's half does not. The asymmetry is the residue.
 
 ## The cost of every bend, stated against ourselves
 

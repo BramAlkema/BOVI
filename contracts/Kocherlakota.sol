@@ -65,7 +65,21 @@ pragma solidity ^0.8.20;
  *          over past periods; DemurrageChanged fires, but no holder's altered
  *          pending liability does.
  *      (iii) balance staleness, above.
- *    None of these break conservation. All three redistribute gross claims. That
+ *      (iv) THE PRODUCT OF (ii) AND THE KEEPER, which is worse than either. The
+ *          retroactive lever is documented above as uniform — set the rate to 0 and
+ *          "every holder's pending liability" is erased. It is not uniform. `_accrue`
+ *          erases only the span nobody has CHARGED yet, so the erasure reaches exactly
+ *          those holders no one happened to poke first. Two holders with the same
+ *          balance, the same elapsed time and the same rate can end the episode having
+ *          paid different amounts, and the only thing separating them is an unnamed
+ *          party's choice of when to call a public function. Governance sets the rate;
+ *          the keeper decides who it lands on. See
+ *          `test_Gesell_WhoPaysTheMeltIsDecidedByWhoeverPokesFirst`.
+ *          The poke reward pushes toward poking everyone, so this is a distributional
+ *          LEVER rather than a profitable attack on its own — but a lever held by an
+ *          unaccountable party is worth buying, and that is what makes it live.
+ *          Not fixed: a rate-epoch ledger is out of demonstrator scope, as (ii) says.
+ *    None of these break conservation. All four redistribute gross claims. That
  *    is the doctrine working, not failing: extraction pools in the known-ness gap.
  *
  * WHY THE CREDIT LIMIT IS NOT DECORATION. A token ledger's balances cannot go

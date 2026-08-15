@@ -157,6 +157,59 @@ contract CoreE2E is Test {
         assertEq(rope.netSupply(), int256(0));              // conserved throughout
     }
 
+    // ── Lesson 4a: who pays the melt is settled off-chain ────────────────────
+    // The header documents the retroactive rate as a STEWARD lever, and says
+    // setting it to zero erases "every holder's pending liability." Uniform, as
+    // written. It is not uniform. `_accrue` erases the un-charged span, so the
+    // erasure only reaches holders nobody has poked yet — and who those are is
+    // decided by an unnamed party choosing when to call a public function.
+    //
+    // Two holders, same balance, same elapsed time, same rate. One is poked
+    // before the rate falls to zero and pays; the other is touched after and
+    // pays nothing. No rule distinguishes them. Conservation holds throughout,
+    // which is the point: the ledger's invariant is untouched and the whole
+    // redistribution happens in gross claims — the known-ness gap, as a test.
+    function test_Gesell_WhoPaysTheMeltIsDecidedByWhoeverPokesFirst() public {
+        address twin = makeAddr("twin");
+        _gov(address(rope), abi.encodeWithSignature("admit(address)", twin),
+             "a second holder, identical to the first in every respect the rules can see");
+
+        _gov(address(rope), abi.encodeWithSignature(
+            "setDemurrage(uint256,uint64,address)", uint256(500), uint64(365 days), commons),
+            "Gesell overlay on: 5% a year on positive balances");
+
+        // identical positions, stamped in the same block
+        vm.prank(employer); rope.pay(worker, 100 * ONE);
+        vm.prank(employer); rope.pay(twin,   100 * ONE);
+        assertEq(rope.balance(worker), rope.balance(twin));
+        assertEq(rope.netSupply(), int256(0));
+
+        vm.warp(block.timestamp + 365 days);
+
+        // both owe the same, and the ledger says so
+        uint256 owedByWorker = rope.pendingDemurrage(worker);
+        uint256 owedByTwin   = rope.pendingDemurrage(twin);
+        assertEq(owedByWorker, owedByTwin);
+        assertGt(owedByTwin, 0);                            // a real liability, for both
+
+        rope.poke(worker);                                  // <- the only asymmetry in the run
+        assertEq(rope.netSupply(), int256(0));
+
+        _gov(address(rope), abi.encodeWithSignature(
+            "setDemurrage(uint256,uint64,address)", uint256(0), uint64(365 days), commons),
+            "Gesell overlay off");
+
+        rope.poke(twin);                                    // charges nothing: the span is gone
+
+        assertLt(rope.balance(worker), int256(100 * ONE));  // paid
+        assertEq(rope.balance(twin),   int256(100 * ONE));  // did not
+        assertEq(rope.pendingDemurrage(twin), 0);           // and cannot be made to
+        assertGt(rope.balance(commons), int256(0));
+
+        // the invariant the ledger actually guarantees never moved
+        assertEq(rope.netSupply(), int256(0));
+    }
+
     // ── Lesson 4b: the record has teeth (Greif) ──────────────────────────────
     function test_Greif_TeethExcludeADefaulter() public {
         address reporter = makeAddr("reporter");

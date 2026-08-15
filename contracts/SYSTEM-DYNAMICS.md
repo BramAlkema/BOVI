@@ -105,7 +105,35 @@ meter  →  a finding  →  ⟨JUDGEMENT-REGISTER: a person decides⟩  →  Fri
 
 **What is still open, stated as the gap it is.** The canon supplies *capabilities* and refers *duties*. A finding can now be published and a proposal can now cite it, but nothing obliges anyone to answer a finding, and nothing runs a clock on it. The register enumerates classes of judgement; it has no column for **whose duty, on what clock**. That is the honest residue, and it is the same shape as the keeper problem in §0.2 — an unnamed party whose non-action leaves no record.
 
-The loop closes **through a human, on purpose**. Every automatic-looking path in this building has a person standing in it, and the register names which decisions are theirs. That is the architecture's actual thesis, and this diagram is the proof: you can trace every loop and find the human.
+The loop closes **through a human, on purpose**. That is the architecture's thesis, and the diagram was offered as its proof: trace every loop, find the person.
+
+## The thesis is true. Its comfort is misplaced.
+
+The claim survives tracing — but tracing shows the people standing in these loops are not all the same kind of person, and the difference is the whole story.
+
+**Two roles, routinely conflated.** A **decider** supplies a judgement: what the index reads, what counts as a default, where the credit limit lands. A **trigger** supplies a clock: someone has to *call* the function, because nothing here wakes up (§0.2). Deciders are enumerated, classified and guarded by the register. Triggers are not in it at all.
+
+Sort the loops that way and the picture changes:
+
+| loop | decider | trigger | guarded? |
+|---|---|---|---|
+| B1 melt | — | whoever calls `pay` or `poke` | **no** |
+| B2 limit | governance, when it sets the dial | whoever calls `pay` | the dial is; the timing is not |
+| B3 stabiliser | the oracle, then governance | whoever reports | partly |
+| B4 reputation | a reporter | — (advisory) | ruled, not wired |
+| R2 composition | the members | a member | yes |
+
+**The two fully closed on-chain loops have no decider at all.** B1 and B2 run without anyone's judgement — and that was read as their virtue. It is, right up until you notice that a loop with no decider still has a trigger, and that in B1 the trigger's timing is *distributional*.
+
+**The demonstration, now a passing test.** `setDemurrage` is documented as a steward lever that, set to zero, erases *"every holder's pending liability."* Uniform, as written. It is not uniform: `_accrue` erases only the span nobody has charged yet, so the erasure reaches exactly the holders no one happened to poke first. `test_Gesell_WhoPaysTheMeltIsDecidedByWhoeverPokesFirst` puts two holders side by side with the same balance, the same elapsed time and the same rate, pokes one before the rate falls, and ends with one having paid and the other not. No rule distinguishes them. `netSupply()` reads zero at every step — which is the point, not a mitigation: the invariant the ledger actually guarantees never moves, and the entire redistribution happens in gross claims. *Extraction pools in the known-ness gap*, as an assertion rather than a slogan.
+
+Governance sets the rate. **The keeper decides who it lands on**, and nobody appointed the keeper.
+
+**Why the register missed it.** Its four-class table sorts *decisions* — adjudicative, epistemic, normative, constitutive — and assigns each a guard. The keeper makes no decision in any of the four. They make a **timing choice**, and the table has no row for timing. So the instrument built to enumerate the humans in this building cannot see one of them. That is not a gap beside the register; it is a gap *in* the register, and it is the same hole as residue item 5 seen from the other side — item 5 says *nobody is obliged to act*, this says *whoever does act picks when, and when is distributional*. One gap: **duty and its clock.**
+
+**The asymmetry worth sitting with.** Since `propose` began requiring a stated reason, the governance half of that episode — the call setting the rate to zero — has to say on the record what it answers. The keeper half still says nothing. The same distributional episode is now half-legible, and the half that stayed dark is the half nobody voted for.
+
+So: you can trace every loop and find a human. Some of them you find only by looking for who *isn't* in the register.
 
 ---
 
