@@ -10,10 +10,11 @@ related: [five-axioms.md, common-knowledge-of-acceptance.md, three-anchor-types.
 
 ## Definition
 
-**Minimal money is a portable forgetful ledger** — a transferable record of *who has what now*, with no memory of how they got it.
+**Minimal money is a portable forgetful ledger with a hard floor at zero** — a transferable record of *who has what now*, with no memory of how they got it and no balance below nothing.
 
 The "portable" part: tokens move between parties; the tokens *are* the ledger.
-The "forgetful" part: history is not retained; each token is fungible with every other.
+The "forgetful" part: history is not retained; each token is fungible with every other. The forgetting is a trade, not just a loss — a full record can condition on who you are and what you did (which is why, in Kocherlakota's theorem, memory can do everything money can and not conversely).
+The "floor" part: holdings cannot go negative, so this ledger extends no credit — and the floor is its enforcement. Possession is settlement; nobody can owe; free-riders cannot run deficits (experimentally confirmed: Bigoni, Camera & Casari, "Money is more than memory," *JME* 2020 — money outperforms a visible record precisely until the liquidity constraint is removed). Lifting the floor turns money back into credit and re-opens the enforcement question.
 
 This is the simplest possible system that enables exchange by unlocking otherwise-impossible trades.
 

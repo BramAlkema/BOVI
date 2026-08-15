@@ -5,11 +5,15 @@ pragma solidity ^0.8.20;
  * @title Kocherlakota — the memory ledger (formerly "TallyRope")
  *
  * Executes: Narayana Kocherlakota, "Money Is Memory," Journal of Economic
- * Theory 81 (1998). Money is equivalent to a public record of obligations;
- * valued because it is a record, not because it is worth anything. So we build
- * the record, not a token: a mutual-credit ledger where the balances ARE the
- * money. (The blockchain restores the very memory money was a substitute for,
- * so we use memory — credit — not the blunt second-best token.)
+ * Theory 81 (1998). Money is a PRIMITIVE FORM of a public record of obligations
+ * (his phrase; the theorem is an inclusion — anything the token achieves, the
+ * record achieves, and not conversely); valued because it is a record, not
+ * because it is worth anything. So we build the record, not a token: a
+ * mutual-credit ledger where the balances ARE the money. (The blockchain
+ * restores the very memory money was a substitute for, so we use memory —
+ * credit — not the blunt second-best token. Cost of the upgrade, carried
+ * knowingly: signed balances lift the token's floor at zero, which was its
+ * built-in enforcement — hence the creditLimit dial below, the teeth.)
  *
  * Lineage (one identity, named from three sides): Kocherlakota's *money is memory*,
  * Alfred Mitchell-Innes's *money is credit* (1913/1914 — the same record seen from

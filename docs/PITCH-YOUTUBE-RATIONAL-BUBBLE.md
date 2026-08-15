@@ -66,7 +66,7 @@ Bram
 - Menger (1871) — the flinching forerunner; Mises (1912) — the regression theorem as hardened flinch.
 - Simmel (1900) — all value is relational; money the purest case, not the exception. The floor-vs-bubble debate has a third position: floorless but fruitful.
 - Patinkin (1956) — the anti-regression move; Lagos–Wright — the liquidity service derived from frictions.
-- Kocherlakota (1998) — money is memory; the tally rope is this result made physical.
+- Kocherlakota (1998) — money as "a primitive form of memory" (his phrase; the theorem is an inclusion — anything money achieves, a communal record achieves); the tally rope is that record made physical.
 - Pedagogy: truth-sandwich rule throughout — state the fact, one flat clause for the myth, restate the fact with the clinching example. Never headline the misconception.
 - Governance beat: metallism as a mislabeled governance demand — concede the demand (discretion is a betrayal vector *and* a shock absorber), refuse the label. Grade anchors on impersonal × symmetrically-known × elastic.
 - Selection-by-simulation: Marimon–McGrattan–Sargent (1990, money emerging among classifier-system agents), Duffy (lab + computational Kiyotaki–Wright). Live literature: Hirano–Toda's rational-bubble revival program (arXiv 2407.14017 and companions) — the topic is active, not a museum piece.
