@@ -1,6 +1,8 @@
 # Plan — resolving the mode↔monetary-function mapping
 
-**Status:** diagnosis settled, recommendation pending one research input. Written after the tally-rope ruling (commit `668a167`), which fixed the symptoms this document addresses at the root.
+**Status:** diagnosis and decision settled; ready to execute. Written after the tally-rope ruling (commit `668a167`), which fixed at the root the symptoms this document addresses.
+
+**Decision in one line:** retire the mode↔monetary-function mapping, which is uncredited and contradicted by Fiske, and reground the unbundling claim on Jevons's own separability passage plus the Polanyi–Dalton–Kuroda literature.
 
 ## The problem
 
@@ -35,27 +37,54 @@ Note that the RAG layer's `architecture/four-functions.md` states Quirk 14 corre
 
 Already fixed at the symptom level in `668a167`: `rag/modes/balanced-mode.md`, `rag/glossary.md`, `rag/practice/the-tally-product.md`, plus the new diagnosis rule in `rag/core/four-modes-overview.md`.
 
-## The decision to make
+## What the literature says (research completed)
 
-**Fault 1 has an obvious fix** — retire the ledger-to-EM assignment, keep Footing A, state that all four modes are ledger resolutions. That is already half-done by the correction note in `theory.md` and the diagnosis rule in `four-modes-overview.md`.
+**The mapping is the project's own invention, and Fiske contradicts it.** [WELL-SOURCED]
 
-**Fault 2 is the real decision**, and there are three options:
+- Fiske, on his own UCLA relational-models page: *"Market Pricing (MP) relationships are oriented to socially meaningful ratios or rates such as prices, wages, interest, rents, tithes, or cost-benefit analyses.* **Money need not be the medium***."* MP is defined by proportionality — the ratio scale — not by money. His MP examples include cost-effectiveness standards, equity-in-proportion-to-contribution and spending time efficiently.
+- **The structural objection is decisive.** Fiske partitions *kinds of relationship*; the four functions partition *uses of one instrument*. These are orthogonal cuts, so a 1:1 assignment is not a refinement of Fiske — it is a different taxonomy wearing his labels.
+- Fiske already places prescribed transfers *inside* AR and EM ("offerings of filial piety," "restitution in kind"), which is precisely why he gives MP no monopoly on money.
+- **No published source makes this mapping.** Searched across Zelizer, Dodd, Ingham, Hart, Maurer, Haslam's RMT overview, and recent RMT literature. [NOT FOUND]
 
-1. **Retire Footing B entirely.** Keep only Fiske's scale mapping. Cleanest and most defensible; costs whatever explanatory work the function mapping was doing.
-2. **Reinterpret it as the bundling explanation.** Rewrite so the table no longer says *mode X = function Y* but instead: a general-purpose money must serve all four disciplines, and each discipline stresses different properties — which is *why* the four functions get forcibly bundled. This converts a Quirk 14 violation into a Quirk 14 derivation, and would make the table earn its place. Risk: the 1:1 reading creeps back unless the presentation forbids it.
-3. **Replace it with special-purpose money (Polanyi / Dalton).** If the anthropology supports the claim that monetary functions were historically carried by *different objects in the same society*, with all-purpose money the unusual modern fusion, then the framework's unbundling thesis gains a mid-century pedigree and the mode↔function question becomes empirical rather than taxonomic — *which discipline did each special-purpose money serve?* The Rai case is already a worked instance: rai carried prescribed O-mode obligations while pearl-shells carried V-mode small change.
+**Jevons asserted separability himself, in the founding text of the four-function list.** [WELL-SOURCED — this is the most important finding]
 
-**Pending input:** a research agent is checking (a) whether Fiske himself says anything about money or monetary functions, (b) whether anyone in economic anthropology or sociology has made the models→functions mapping, (c) the exact Polanyi/Dalton formulation of special-purpose money and whether the separability claim survived the substantivist/formalist criticism, and (d) the provenance of the four-function list itself (usually credited to Jevons 1875).
+*Money and the Mechanism of Exchange* (1875), ch. III: *"We might certainly employ one substance as a medium of exchange, a second as a measure of value, a third as a standard of value, and a fourth as a store of value."* With historical cases: Elizabethan silver as common measure, gold for large payments, and corn required by statute (18 Eliz. c. VI, 1576) as the standard of value for college leases.
 
-**Provisional recommendation, to be confirmed or dropped on that evidence: 2 + 3.** Reinterpret the table as an account of *why* bundling happens, with Polanyi/Dalton supplying the pedigree and the historical evidence that unbundled monies are the norm rather than the exception. This fits the framework's "borrowed = strength" posture, converts an uncredited invention into a sourced claim, and the Rai case already instantiates it. Fall back to option 1 if the separability claim turns out to be contested enough that leaning on it would overclaim.
+The framework's unbundling thesis therefore does not need heterodox licensing. It is a **recovery of what the list's own author said**, eighty years before Polanyi — which is a far stronger position than arguing against the list.
 
-## Execution, once the option is chosen
+**Polanyi/Dalton separability is uncontested.** [WELL-SOURCED] Polanyi's money-uses (payment, standard, exchange, with hoarding subordinate) were *separately institutionalised*, so different objects carried different uses in the same society and all-purpose money is the unusual case. Dalton's special- vs general-purpose vocabulary (1965) systematised it; Bohannan's Tiv spheres are the ethnographic exhibit. Crucially, **Melitz's 1970 attack reinforces separability rather than refuting it** — his argument is that modern money is special-purpose too. What was abandoned is the evolutionary story, the primitive/modern dichotomy, and strong sphere-boundedness (Guyer 2004 on the Tiv; Akin & Robbins 1999 on Melanesians building *new* spheres to channel general-purpose money). The successor without evolutionary baggage is Kuroda (2008) on concurrent complementary monies: "One money could do what another money could not."
 
-1. Rewrite `theory.md` §"BOVI Mapping to Monetary Functions" per the chosen option. Keep the existing correction note; fold it in rather than stacking a second one.
-2. Bring `rag/lineage/fiske-relational-models.md`'s table into line — it is the RAG mirror of the same claim and must not diverge again.
-3. Fix the one-line gloss in `twenty-dollar-revelation.md`; leave the teaching scenario untouched.
-4. State Footing A once, canonically, with its Fiske citation, and have the other sites reference it rather than restate it. Divergent restatement is what produced this.
-5. If option 3 is adopted, add `docs/rag/lineage/special-purpose-money.md` following the lineage-doc pattern, and cross-link it from `core/unbundling-thesis.md` and `cases/rai-stones-yap.md`.
+**Two further findings with direct consequences:**
+
+- **An equivocation is doing hidden work.** `theory.md` gives AR "required payment medium." That is *Polanyi's payment use* — bridewealth, wergeld, fines, tribute, tax, an amount prescribed by rank or occasion. The textbook fourth function is *Jevons's standard of deferred payment* — a unit for denominating future contracts. Fusing the two is where much of the table's apparent tidiness comes from. Separated, AR maps cleanly onto Polanyi's payment use, and **Grierson (1977)** — who derives the money of account from wergeld tariffs — is the citation for it.
+- **Quirk 15 has a pedigree the repo does not claim.** Fiske & Tetlock, "Taboo Trade-offs" (*Political Psychology* 1997) and McGraw & Tetlock (2005) are the real Fiske-meets-money literature: applying MP norms to CS/AR/EM relationships produces moral outrage and "constitutive incommensurability." That is the framework's mode-collision claim, and specifically Quirk 15 (Splitwise corrupting Immediate mode), with an established citation behind it.
+
+**One internal contradiction to resolve while here.** `theory.md`'s table says the $20 *is* MP's medium of exchange; `rag/core/money-as-bundle.md` says the same $20 *simultaneously serves* all four modes. Both cannot stand.
+
+## Decision — retire and reground
+
+**Retire the 1:1 mapping (option 1) and reground the claim on sourced material (option 3). Do not adopt option 2.** Reinterpreting the table as a bundling explanation was the provisional recommendation; it falls because the table's coherence depends on the AR equivocation above, and because Fiske cannot carry a function mapping in principle. The bundling *argument* survives and is worth keeping — but as prose grounded in Jevons and Polanyi, not as a 4×4 table presented as Fiske's.
+
+The replacement rests on three pillars, in descending order of strength:
+
+1. **Jevons 1875** — separability asserted by the author of the list. Makes unbundling a recovery, not a heresy.
+2. **Polanyi / Dalton / Kuroda** — different objects carried different uses in the same society; concurrent monies are the historical norm. The Rai case is a worked instance: rai carried prescribed O-mode obligations while pearl-shells carried V-mode small change.
+3. **Fiske & Tetlock / Zelizer** — the genuine relationship↔money literature, supporting mode collision and earmarking rather than a function mapping.
+
+**Honest positioning, to be stated in the docs:** Fiske supplies the relationship typology; Polanyi, Dalton and Kuroda supply the instrument typology; **the correspondence between them is the framework's own contribution.** That is defensible and citable. Claiming the mapping is *in* Fiske is not, and the repo currently implies it by placing the table under his name.
+
+## Execution
+
+1. **`theory.md` §"BOVI Mapping to Monetary Functions"** — drop the Monetary Function column. Keep the Fiske Model ↔ BOVI Mode correspondence, which is the defensible part, and retitle the section accordingly. Replace the function column with Fiske's scale types (Footing A), which is what the rest of the canon already uses. Fold the existing correction note in rather than stacking a second one.
+2. **`rag/lineage/fiske-relational-models.md:51–56`** — same change; it is the RAG mirror and must not diverge again. Add the "Money need not be the medium" quotation, since this doc's job is to represent Fiske accurately and it currently does the opposite.
+3. **`twenty-dollar-revelation.md:25`** — change the gloss "Equality Matching — the ledger function" to name the discipline, not a function. Leave the teaching scenario untouched; it is correct.
+4. **State Footing A once, canonically**, with its Fiske citation, and have the other sites reference rather than restate it. Divergent restatement is what produced this.
+5. **Add `docs/rag/lineage/special-purpose-money.md`** on the lineage-doc pattern: Jevons's separability passage and the 1576 corn statute, Polanyi's money-uses, Dalton's special-vs-general vocabulary, Bohannan's spheres, the Melitz correction, Guyer and Akin & Robbins on what was abandoned, Kuroda on concurrent monies. Cross-link from `core/unbundling-thesis.md`, `architecture/four-functions.md` and `cases/rai-stones-yap.md`.
+6. **Resolve the $20 contradiction** — reconcile `money-as-bundle.md` with whatever survives in `theory.md`. With the function column gone, the bundle claim stands unopposed, but check the wording.
+7. **Credit Quirk 15 properly** — add Fiske & Tetlock (1997) and McGraw & Tetlock (2005) to `CANON.md` Quirk 15 and to `rag/architecture/mode-collision.md`. This is free pedigree for a claim the framework currently presents as its own.
+8. **Add the Jevons passage to `architecture/four-functions.md`** — that doc argues the list is a bundling artefact, and the strongest evidence is that its author said the functions were separable. It belongs there.
+
+Items 7 and 8 are independent of the rest and can land first; they are pure additions with no risk.
 
 ## Second, smaller item — the naming collision
 
@@ -73,3 +102,11 @@ Both are Value-mode, so this does not disturb the ruling; it is a naming problem
 3. `theory.md` and `rag/lineage/fiske-relational-models.md` agree with each other and with `FOUNDATIONS.md:39`.
 4. Any surviving mode↔function statement passes failure mode #4 — it must not read as "these four functions belong together, one per mode."
 5. Re-run the `668a167` residual check: no stale "canonical Balanced-mode artifact" phrasing anywhere.
+6. No document implies the mode↔function mapping is Fiske's. Where a correspondence is asserted, it is labelled as the framework's own contribution.
+7. Sources actually obtained are marked as such. Of the material above, Fiske's relational-models page and the Jevons chapter were read directly; **Fiske 1991 and 1992, Dalton 1965, Polanyi 1957 and Melitz 1970 were not** — reached through secondaries only. Anything quoted from them must be verified against the original before it enters a canon doc, per the `FUTURE-OBLIGATIONS-LINEAGE.md` ✅/⚠️ convention.
+
+## Open items not resolved here
+
+- **The naming collision** (below) is a separate, low-priority fix.
+- **`theory.md`'s remaining EM row** maps Balanced to "unit of account, store of value" in the *Monetary Function* column being retired; if any function language survives elsewhere in that table, it needs the same scrutiny.
+- **Whether the four modes need any instrument-side correspondence at all** is left open. The plan removes a false one; it does not assert that a true one exists. The Rai case suggests correspondences are discoverable empirically, case by case, which may be the honest ceiling.
