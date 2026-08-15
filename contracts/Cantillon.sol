@@ -38,7 +38,9 @@ interface IHayekIndex { function current() external view returns (uint256); }
  * payer, beneficiary, and defensible counterfactual" — so `attribute` requires
  * all three, and reverts without them.
  *
- * THE MATHS (both channels, both zero-sum)
+ * THE MATHS (both channels, both zero-sum) — symbols: NOTATION.md#level
+ *   pi NOTATION.md#pi · NNP NOTATION.md#nnp · F NOTATION.md#F
+ *   T NOTATION.md#T · r NOTATION.md#r · d_t NOTATION.md#dt · f_t NOTATION.md#ft
  *
  *  1. STOCK — the Fisher channel (Doepke & Schneider; Auclert's decomposition).
  *     A net nominal position NNP revalues when the level moves by π:

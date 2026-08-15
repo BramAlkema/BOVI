@@ -36,12 +36,17 @@ pragma solidity ^0.8.20;
  * it opens the category the building lacked — contracts that MEASURE rather than
  * transact.
  *
- * THE MATHS
+ * THE MATHS — symbols defined in NOTATION.md#experiment
  *
- *   Cooperation rate in an arm:      p = helped / opportunities
- *   Binding frequency:               beta = blocked / attempted        (did the floor bite?)
- *   Treatment effect:                delta = p_constrained - p_unconstrained
+ *   Cooperation rate in an arm:      p = helped / opportunities        (NOTATION.md#p)
+ *   Binding frequency:               b = blocked / attempted           (NOTATION.md#b)
+ *                                        — did the floor ever bite?
+ *   Treatment effect:                Delta = p_constrained - p_unconstrained  (NOTATION.md#Delta)
  *   Rule-of-thumb noise band:
+ *
+ *   Symbols chosen to avoid collision: `b` not `beta`, `Delta` not `delta`,
+ *   because Epilogue A.4 already uses beta for the discount factor and delta for
+ *   the network-death hazard. See NOTATION.md#collisions.
  *
  *       se = sqrt( p1(1-p1)/n1 + p2(1-p2)/n2 )
  *
@@ -126,8 +131,8 @@ contract BigoniCameraCasari {
         return o.helped * BPS / o.opportunities;
     }
 
-    /// beta = blocked / attempted. If this is zero in the constrained arm, the
-    /// floor never bit, and any difference between arms is not about the floor.
+    /// b = blocked / attempted (NOTATION.md#b). If this is zero in the constrained
+    /// arm, the floor never bit, and any difference between arms is not about the floor.
     function bindingBps(Arm arm) public view returns (uint256) {
         Observations storage o = arms[uint8(arm)];
         if (o.attempted == 0) return 0;
@@ -146,8 +151,8 @@ contract BigoniCameraCasari {
         return _sqrt(v1 + v2);
     }
 
-    /// delta = p_constrained − p_unconstrained. Their result: positive, and it
-    /// collapses toward zero when the floor is lifted.
+    /// Delta = p_constrained − p_unconstrained (NOTATION.md#Delta). Their result:
+    /// positive, and it collapses toward zero when the floor is lifted.
     function treatmentEffectBps() public view returns (int256) {
         return int256(cooperationBps(Arm.Constrained)) - int256(cooperationBps(Arm.Unconstrained));
     }

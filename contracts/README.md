@@ -23,6 +23,7 @@ Each implemented contract carries the name of the thinker whose mechanism it att
 | `Friedman` | Milton Friedman | rules over discretion — governance of the dials (the DialDAO) | **written** |
 | `Cantillon` | Richard Cantillon | the nominal-exposure meter — who a moving *level* moves against: claims fixed in nominal terms with a remaining term (stock channel + Cantillon's own duration channel). **Not** "who gets new money first," which is a later gloss his own text refutes | **built** |
 | `Stigler` | George Stigler | *The Economics of Information* — the PDA price-discovery checker (the MARKET skim X-ray; the known-*terms* gap) | **written** |
+| [`NOTATION.md`](NOTATION.md) | — | **the symbol key**: every variable in the cast, its scale, range, defining equation and home contract — plus the collisions register | **reference** |
 | `Starr` | Ross M. Starr | the capacity condition — the take must cover the stock. Two size tests that fail independently: coverage (Starr 1974, Thms 2–3) and participation (Li & Wright 1998), with realised collection rather than statute entering the verdict | **built** |
 | `BigoniCameraCasari` | Bigoni, Camera & Casari | *Money is More than Memory* (ESI WP 14-17; *JME* 2020) — the paired treatment on the zero floor. **The cast's only experiment, and its only entry that found against the house** | **built** |
 | `Fiske` | Alan Fiske | Relational Models Theory — the four modes as a permission layer (the soul's manners: the gate + the disguise X-ray) | **written** |

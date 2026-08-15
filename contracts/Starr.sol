@@ -15,7 +15,9 @@ pragma solidity ^0.8.20;
  * far more often than it is checked. Here it is a function call with a threshold,
  * and it can return NO.
  *
- * TWO SIZE CONDITIONS, WHICH ARE NOT THE SAME CONDITION
+ * TWO SIZE CONDITIONS, WHICH ARE NOT THE SAME CONDITION — symbols: NOTATION.md#capacity
+ *   kappa NOTATION.md#kappa · M NOTATION.md#M · O_t NOTATION.md#Ot
+ *   H NOTATION.md#H · gamma NOTATION.md#gamma · gammaStar NOTATION.md#gammastar
  * The literature this cast draws on contains two, and conflating them is the
  * usual error — they fail independently and they failed separately in history.
  *
