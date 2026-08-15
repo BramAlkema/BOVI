@@ -1,6 +1,8 @@
 # Plan — resolving the mode↔monetary-function mapping
 
-**Status:** diagnosis and decision settled; ready to execute. Written after the tally-rope ruling (commit `668a167`), which fixed at the root the symptoms this document addresses.
+**Status: EXECUTED** in commit `e9326b9`. All eight steps landed; the verification below passed. Retained as the record of why the change was made and which sources were and were not read. Written after the tally-rope ruling (commit `668a167`), which fixed at the root the symptoms this document addresses.
+
+Remaining open, by design: the naming collision (below), and whether any true mode↔instrument correspondence exists — the plan removed a false one without asserting a replacement.
 
 **Decision in one line:** retire the mode↔monetary-function mapping, which is uncredited and contradicted by Fiske, and reground the unbundling claim on Jevons's own separability passage plus the Polanyi–Dalton–Kuroda literature.
 
