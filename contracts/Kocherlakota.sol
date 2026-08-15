@@ -75,6 +75,15 @@ pragma solidity ^0.8.20;
  * free-riding: Bigoni-Camera-Casari 2020). This ledger lifts the floor — signed
  * balances — and therefore MUST supply enforcement another way. `creditLimit` is
  * that way. Stone 4's "no floor, pay with teeth," instantiated.
+ *
+ * AND THE ROOM THAT TESTS THIS ONE. `BigoniCameraCasari.sol` is the controlled
+ * experiment on exactly the design decision above: run this ledger with the limit
+ * in force and again with it lifted, and their result says the advantage collapses
+ * when it is lifted. Set `creditLimit` to its maximum and you are running their
+ * Money Unconstrained arm against this implementation. If `bindingBps` there comes
+ * back at zero, the limit never bit and nothing in this contract's enforcement
+ * story was doing work in that run — which is a finding, and the reason that room
+ * exists.
  */
 interface IKrugman {
     function elasticityFactorBps() external view returns (uint256);
