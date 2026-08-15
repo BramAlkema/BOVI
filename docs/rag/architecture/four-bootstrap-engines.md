@@ -10,7 +10,7 @@ related: [cold-start-problem.md, two-layer-pattern.md, ../cases/bitcoin.md, ../c
 
 ## Definition
 
-The four known mechanisms that solve the [cold-start problem](cold-start-problem.md). Every working monetary network in human history was bootstrapped by one (or some combination) of these.
+The five known mechanisms that solve the [cold-start problem](cold-start-problem.md). Every large-scale general-purpose money was bootstrapped by one (or some combination) of the first four; the fifth is the documented exception class — real, recurring, and bounded.
 
 | Engine | Mechanism | Who pays | Examples |
 |---|---|---|---|
@@ -18,6 +18,7 @@ The four known mechanisms that solve the [cold-start problem](cold-start-problem
 | **Speculative appreciation** | Belief in future price → early holders fund infrastructure | Speculators, voluntarily, mostly through losses | Bitcoin, most crypto |
 | **Industrial / ornamental use value** | Pre-existing demand for the commodity | Original users (had demand anyway) | Gold, salt, cattle, cowries |
 | **Platform leverage** | Existing user base subsidises the payment rail | The host platform | M-Pesa, Pix, Apple Pay, WeChat Pay, GCash, PayPal |
+| **Incumbent-liquidity scarcity (brokered)** | Credit drought makes trade impossible in the incumbent money; paid brokers close clearing circuits on the incumbent unit | Members, in cash fees, for access to credit | WIR, Sardex, Bartercard/IRTA, Argentine *créditos* |
 
 ## Engine 1: State coercion (the cleanest historical mechanism)
 
@@ -64,6 +65,18 @@ This is, by some distance, the most *efficient* known bootstrap and the one most
 
 ## Mapping engines to anchor types
 
+## Engine 5: Incumbent-liquidity scarcity, brokered (the exception class, bounded)
+
+A credit-constrained trading population — SMEs in a bank crunch, households in a currency collapse — organised into a **closed clearing circuit** by paid intermediaries, denominated 1:1 on the incumbent unit. The scarcity of the incumbent money *is* the demand; the brokers do what diffuse utility cannot, converting a latent liquidity shortage into circuits that clear by construction.
+
+The record: **WIR** (Zurich, 1934 — 16 founders to over 1,000 active members in five months; banking licence 1936; ninety years, ~60,000 members, fee-funded throughout, and its Gesellian founding doctrine formally renounced in 1952 while growth continued); the **commercial trade-exchange industry** (1960s–present: ~400,000 firms, $12–14bn/yr per IRTA, built by commissioned sales forces); **Sardex** (Sardinia 2009–15: broker-led onboarding in the post-2008 credit collapse — clean on utility for its first six years, state-linked capital thereafter); **Argentina's *redes de trueque*** (up to two million members in the 2001–02 collapse, destroyed by *crédito* forgery — integrity, not bootstrap, was the binding constraint). The macro-evidence is peer-reviewed: WIR turnover is **countercyclical over 85+ years** (Stodder & Lietaer 2016) — circulation rises when legal tender is scarce and stalls when it is not.
+
+**The engine predicts its own failures**, which is what earns it the slot: the Bristol Pound died with £13,000/month running costs because **sterling was not scarce in Bristol** — ideology is not a liquidity drought; the *créditos* collapsed when the peso returned and welfare transfers landed; grant-funded community currencies (Sarafu) run on subsidy, not scarcity, and stall accordingly.
+
+**Built-in ceiling, which the framework should welcome:** Engine 5 produces a *complementary* money, never a general-purpose one — it borrows the incumbent unit (all of its instances do; none ever floated a numéraire), and it **shrinks when the incumbent money returns**. Which is why the four-engine story survives intact for general-purpose money, and why the honest quantifier is "every large-scale general-purpose money," not "every working money in human history."
+
+## Engines and anchors
+
 Engines and anchor types (legal/natural/mathematical) are different things, but they tend to pair:
 
 | Anchor | Typical bootstrap engine |
@@ -81,7 +94,7 @@ When evaluating any new money: *"What is the bootstrap, and who pays for it?"* I
 
 ## Implication for the unbundling project
 
-The unsolved problem of the next decade is whether we can bootstrap an *unbundled* medium-of-exchange. Every existing money is bundled at the bootstrap layer for one of the four reasons above. Pure unbundling at the bootstrap layer has no working precedent.
+The unsolved problem of the next decade is whether we can bootstrap an *unbundled* medium-of-exchange **at general-purpose scale**. Every general-purpose money is bundled at the bootstrap layer for one of the first four reasons above. At *complementary* scale the precedent now exists and is Engine 5: WIR and Sardex are unbundled media — no token, no appreciation, no store — bootstrapped on brokered scarcity; their ceiling (borrowed unit, countercyclical shrinkage) is the honest measure of how far that precedent reaches.
 
 The most plausible synthesis is the **two-token architecture**: a speculative governance/equity token funds infrastructure (bundled at bootstrap), paired with a clean transaction token (unbundled at use). MakerDAO and DAI are an early sketch.
 

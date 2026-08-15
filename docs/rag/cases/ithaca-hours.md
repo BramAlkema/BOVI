@@ -69,6 +69,7 @@ Ithaca HOURS effectively dissolved by 2012. Some local currencies persist in mod
 3. **Value-mode efficiency matters even for non-Value-primary currencies** — limited transferability is a real cost
 4. **The bootstrap engine and the dominant mode are different things** — Ithaca HOURS' dominant mode was Immediate, but its missing engine was Obligated
 5. **Community alone is not a bootstrap engine at scale** — it's powerful at small scale, brittle at medium scale, infeasible at large scale
+6. **The mutual-credit systems that did scale differ on exactly two ingredients** — an incumbent-liquidity drought and paid brokers closing circuits (WIR in the 1934 credit crunch; Sardex after 2008). Ithaca had neither: US dollars were not scarce in Ithaca, and enthusiasm is not a sales force. See [bootstrap engines](../architecture/four-bootstrap-engines.md), Engine 5.
 
 ## Comparison with successful I+B systems
 

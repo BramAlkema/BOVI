@@ -97,11 +97,11 @@ And the identity's silence is where this framework does its work. *"The deficit 
 - **Framework**: people use different fairness modes in different contexts. What looks like irrationality is appropriate context-sensitivity. Loss aversion = Immediate-mode protection. Status-quo bias = Authority-mode respect. Fairness preferences = Balanced-mode demand for reciprocity.
 - **Why**: Behavioural economics keeps cataloguing "biases" without explaining why they're appropriate. The four-mode frame explains them.
 
-### Quirk 8 — Pure utility never bootstraps a money network
+### Quirk 8 — Pure utility never bootstraps a new unit of account
 
 - **Default**: better technology will be adopted; the market will sort it out
-- **Framework**: every working money in human history was bootstrapped by **one of four engines**: state coercion, speculation, industrial use value, or platform leverage. **Pure utility has never bootstrapped a money network.** Hayek's *Denationalisation of Money* (1976) is the proof — airtight argument, Nobel laureate, never adopted.
-- **Why**: Metcalfe in reverse: early users get near-zero value because almost no one accepts the new token. Without a non-utility reason to hold, the cold-start cannot be crossed.
+- **Framework**: every large-scale general-purpose money was bootstrapped by **one of five engines**: state coercion, speculation, industrial use value, platform leverage, or brokered incumbent-liquidity scarcity. **Pure utility has never bootstrapped a new *unit of account***: the utility-bootstrapped networks that exist (WIR since 1934, the trade-exchange industry, Sardex) all arrived in liquidity droughts, were built by paid brokers, and **borrow the incumbent unit** — none ever floated a numéraire. Hayek's *Denationalisation of Money* (1976) is not the proof it is usually taken for: his floating-rate competitive issue was mostly never legal to attempt, so its non-adoption is evidence about law, not utility.
+- **Why**: Metcalfe in reverse: a new *unit* offers early users near-zero value because almost no one accepts it. Where the incumbent unit is kept and its liquidity is scarce, utility plus brokerage can carry a complementary network — which is exactly why nobody has ever needed to invent a numéraire to get one.
 
 ### Quirk 9 — "Decentralised crypto needs no institutions" is wrong
 
@@ -368,7 +368,7 @@ Six questions, installed across the book chapter by chapter. Once installed they
 3. **Which function am I using this tool for?** (medium of exchange, unit of account, store of value, deferred payment?)
 4. **Which mode did this transaction collapse into?** (Value, Balanced, Obligated, Immediate?)
 5. **Who decided that, and could I refuse it?** (consent axis)
-6. **What is the bootstrap, and who pays for it?** (which of the four engines?)
+6. **What is the bootstrap, and who pays for it?** (which of the five engines?)
 
 Apply to any monetary situation, instrument, policy, fight, or proposal. The framework's deliverable.
 

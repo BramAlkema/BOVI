@@ -42,6 +42,7 @@ One-line definitions for retrieval. Each term links to the file that treats it i
 
 ## Practice terms
 
+- **Money network** — A population clearing exchanges through a shared instrument and unit, where acceptance is mutual and balances or tokens interoperate. Includes tokenless mutual-credit ledgers (WIR: no token, signed balances summing to zero); excludes one-issuer gift cards (no lateral acceptance). The unit may be borrowed — the utility-bootstrapped networks all denominate 1:1 in the incumbent money. → [cold-start](architecture/cold-start-problem.md)
 - **PDA** — Personal Data Assistant: tool for tracking your own price history. Minimum viable: a notebook. → [PDA](practice/personal-pda.md)
 - **Personal index** — A basket of items you actually buy, used as your own measure of currency value. → [indices](practice/personal-indices.md)
 - **The Tally** — Mode-aware group ledger; the settlement rope, modernised to carry all four modes. → [Tally](practice/the-tally-product.md)
