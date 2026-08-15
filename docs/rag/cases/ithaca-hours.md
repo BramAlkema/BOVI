@@ -83,7 +83,7 @@ These succeed because they accept the *scale ceiling* of I+B mode and operate wi
 
 ## The Wörgl experiment (1932-3) parallel
 
-Austrian town Wörgl issued "stamped money" (Gesellian demurrage currency — value decays unless renewed by a stamp). Famously successful at the local level — unemployment fell, civic improvements completed during a depression. The Austrian National Bank shut it down within a year because they could not tolerate the precedent.
+Austrian town Wörgl issued "stamped money" (Gesellian demurrage scrip, 1% per month) in July 1932. The record, read against the primary sources rather than the retellings: about 12,000 of 32,000 printed schillings were ever issued, roughly 5,500–6,000 circulated on average in a town of ~4,250 (about 1.3 schillings a head); some 182,000 schillings of public works were funded by a provincial unemployment fund, a 12,000-schilling Tyrol credit, and 79,000 schillings of collected tax arrears, with the scrip as the payment medium; registered unemployment fell while the town hired the registered unemployed, which is close to tautological. The famous velocity multiples trace to the mayor's own report to the Tyrol government, relayed through Fisher's envoy — and the contemporaneous chronicler von Muralt wrote at the time that he could not verify them. What is solidly documented is the ending: the Austrian National Bank's note monopoly, upheld by the Administrative Court (VwGH A 504/33, 18 November 1933), which explicitly declined to weigh the economics.
 
 Same lesson: I+B mode innovation can work brilliantly at local scale, fails when it threatens an O-mode authority's monopoly, has no V-mode bootstrap engine to scale on its own.
 
