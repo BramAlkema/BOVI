@@ -73,7 +73,7 @@ Whoever runs the keeper is therefore a load-bearing party with no contract, no v
 |---|---|---|---|
 | The activity reading (an oracle, gameable — "this is *why* stabilisation is hard") | **Epistemic** | Median of competing providers, per `Hayek`; `ChallengeBond` on the report | The measurement body |
 | What counts as "activity", and what trend | **Epistemic** | — | A statistics institution with a published method. **Not** `Friedman`. This is the CPI-definition fight |
-| Cantillon incidence of expansion | Normative | The tracer the header already says is missing | Who bears the skim |
+| Cantillon incidence of expansion | **Epistemic** (reclassified 2026-08 — it was filed Normative) | The tracer the header already says is missing | There is a large identified empirical literature with an answer, so this is a question of fact before it is a question of values. The answer does not match the folk version: the mainstream decomposes monetary redistribution into earnings-heterogeneity, Fisher and interest-rate-exposure channels, tested the sequence-of-receipt story under the name *financial segmentation* and found it small and of the opposite sign (Coibion et al., *JME* 2017), and the best-identified study finding expansion widening inequality (Andersen et al., *J. Finance* 2023) locates it in **asset exposure**, not order of receipt. Whose values decide anything here is downstream of getting that right |
 
 ### `Schumpeter` — productive credit
 | Judgement | Class | A — close it | B — refer it |

@@ -92,10 +92,12 @@ Run the candidate properties through the independence test and they resolve into
 |---|---|---|
 | Resolution | spectrum | rounding / minimum-denomination |
 | Authentication | spectrum | counterfeiting + verification cost |
-| Known supply/terms | spectrum | **Cantillon (supply) + spreads/opacity (terms)** |
+| Known supply/terms | spectrum | **spreads / opacity (terms)** — see below for why *supply* moved out |
 | Conservation | binary invariant | — no gap |
 
-Extraction follows **information asymmetry**, so it pools in the **known-ness gap** — which is why the framework's skim X-rays (`Cantillon`, `Stigler`) are known-ness detectors. The requirements guarantee *function*, not *fairness*; the gaps are the fairness battleground.
+Extraction of the **terms** kind follows information asymmetry, so it pools in the known-ness gap — which is why `Stigler` is a known-ness detector: price dispersion under search cost is an information phenomenon through and through. **`Cantillon` is not, and this document had it misfiled** (audited 2026-08). Read his own text: the losers are *"les Propriétaires des terres, **pendant le terme de leurs Baux**"* and *"tous les ouvriers ou gens **à gages fixes**"* — landowners during the term of their leases, workers on fixed wages. The binding variable is a **fixed nominal claim meeting a moving price level**, not anybody's ignorance of the money supply; his own worked example, the Spanish American silver, was public knowledge. The framework's flagship modern instance says the same thing louder: **QE was pre-announced in size, pace and asset class** — perfect known-ness on B3 — and redistributed anyway. If this were a known-ness phenomenon it would have produced none.
+
+So the incidence belongs on the **unit-of-account / nominal-contract** axis, which this document already states correctly under Stone 6: inflation revalues the unit and with it *every nominal contract denominated in it*. That is where the well-evidenced literature lives too — inflation as a regressive consumption tax (Erosa–Ventura; Albanesi), and the redistribution of nominal wealth by unexpected inflation (Doepke–Schneider). What survives of the sequencing intuition survives under other names and with real identification: lagged price adjustment to monetary injections (Palma on the American treasure, *REStud* 2021) and network position determining who is reached first (Ozdagli–Weber). Cite those when evidentiary weight is wanted. The requirements guarantee *function*, not *fairness*; the gaps are the fairness battleground.
 
 **The anti-essentialist result, as a checklist:** the substrate requirements are exactly the **ledger** properties. Scarcity, durability, intrinsic worth, backing appear in *neither family* — everything the goldbug, cryptopoof, and nationalist point to as "what makes it real" fails to appear in the requirements at all.
 
@@ -135,7 +137,7 @@ Not a prescription ("money should melt") but an **unavoidable tradeoff** in the 
 
 The stones give the **design space**; *which* design gets built where is an **institutional/power contest**, not a technical gradient (Quirk 18 — the state is inside the model). Extraction has **two axes**:
 
-- **impersonal ↔ directed** — the structural skim-in-a-gap (Cantillon, spreads) vs the *aimed* lever (tariffs, devaluation, interest rates, sanctions): the **O-mode** wielding money as a weapon, **redistributive and punitive**. The reserve issuer taxes the whole world's holders; foreign holders have **zero recourse** — taxation without representation, coerced O-mode at global scale.
+- **impersonal ↔ directed** — the impersonal skim (spreads; and the nominal-contract incidence of inflation, *transitional* rather than structural — Cantillon's own account ends in the injecting state's impoverishment, not a standing rent) vs the *aimed* lever (tariffs, devaluation, interest rates, sanctions): the **O-mode** wielding money as a weapon, **redistributive and punitive**. The reserve issuer taxes the whole world's holders; foreign holders have **zero recourse** — taxation without representation, coerced O-mode at global scale.
 - **stabilising ↔ predatory** (the consent axis) — the *same* instruments are dual-use: shock-absorption (Krugman's stabiliser) *or* predation. The X-ray is *who bears it, did they consent, do they have recourse* — not "all policy is theft."
 
 *Pedigree:* exorbitant privilege (Eichengreen), Triffin dilemma, beggar-thy-neighbour (Robinson), weaponised interdependence (Farrell & Newman), Hirschman's *Exit, Voice, and Loyalty* (no voice + locked-in exit = maximally extractable), financial repression (Reinhart, McKinnon–Shaw), institutional economics (North, Acemoglu–Robinson, Ostrom).
