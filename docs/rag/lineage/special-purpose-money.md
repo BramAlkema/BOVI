@@ -51,7 +51,7 @@ Independently, Philip Grierson (*The Origins of Money*, 1977) derives the money 
 
 **Licensed:** that the four functions are separable; that unbundled monetary arrangements are historically normal; that asking *which use does this instrument serve* is a sounder question than *is this really money*.
 
-**Not licensed:** any claim that a given relational mode "owns" a given monetary function. Fiske's models and Polanyi's money-uses are two independent typologies — one partitions relationships, the other partitions uses of an instrument. A correspondence between them is available and interesting, but it is **the framework's own contribution**, not a finding in either literature. See [Fiske](fiske-relational-models.md) and `MODE-FUNCTION-MAPPING-PLAN.md`.
+**Not licensed:** any claim that a given relational mode "owns" a given monetary function. Fiske's models and Polanyi's money-uses are two independent typologies — one partitions relationships, the other partitions uses of an instrument. A correspondence between them is available and interesting, but it is **the framework's own contribution**, not a finding in either literature. See [Fiske](fiske-relational-models.md) and `MODE-FUNCTION-MAPPING-PLAN.md`. The framework's candidate for that correspondence — required resolution per discipline, with pre-registered kill conditions — is `../../SCALE-LADDER.md`, currently under adversarial specimen test.
 
 ## The worked case
 

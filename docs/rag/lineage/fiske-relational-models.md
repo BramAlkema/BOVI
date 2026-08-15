@@ -57,17 +57,15 @@ BOVI is the application of Fiske's RMT to monetary exchange.
 
 The scale column is Fiske's own correspondence to Stevens's levels of measurement (Fiske 1991; 1992). It makes the modes the four resolutions a ledger can keep — the canonical statement is `FOUNDATIONS.md` §"modes as clearing disciplines".
 
-## What Fiske does *not* say — money is not MP's property
+## Market Pricing is proportionality — money is one instance of it
 
-This is the most commonly mis-stated part of the correspondence, and it was previously mis-stated here. Fiske defines Market Pricing by **proportionality**, not by money:
+Fiske defines Market Pricing by the **ratio scale**, and says so directly:
 
 > "Market Pricing (MP) relationships are oriented to socially meaningful ratios or rates such as prices, wages, interest, rents, tithes, or cost-benefit analyses. **Money need not be the medium**, and MP relationships need not be selfish, competitive, maximizing, or materialistic."
 
-His MP examples include cost-effectiveness standards, utilitarian judgments, equity in proportion to contribution, and spending time efficiently — none of which involve money. He also places prescribed transfers *inside* the other models: "offerings of filial piety" under AR, "restitution in kind" under EM. Money-like transfers therefore already live across the models, which is precisely why MP has no monopoly on money.
+His MP examples include cost-effectiveness standards, utilitarian judgments, equity in proportion to contribution, and spending time efficiently — no money in any of them. Prescribed transfers, meanwhile, live *inside* the other models: "offerings of filial piety" under AR, "restitution in kind" under EM. Money-like transfers run across all four models; MP owns the *ratio relationship*, not the instrument.
 
-**The consequence for BOVI.** This table previously carried a fourth column assigning each model a monetary function — EM "distributed ledger," AR "required payment medium," MP "medium of exchange," CS "direct reciprocity anchor." No published source makes that mapping, and it cuts against Fiske twice: he denies MP owns money, and the two taxonomies are orthogonal — he partitions *kinds of relationship*, the four functions partition *uses of one instrument*. The mapping has been retired; see `../../MODE-FUNCTION-MAPPING-PLAN.md`.
-
-What the framework may legitimately claim is a correspondence between Fiske's relationship typology and the instrument typology of Polanyi, Dalton and Kuroda — **claimed as the framework's own contribution**, not as something found in Fiske. See [special-purpose money](special-purpose-money.md).
+**The consequence for BOVI.** Fiske partitions *kinds of relationship*; monetary functions partition *uses of one instrument*. Those are orthogonal cuts, so the modes map onto his scale types (the table above) and onto nothing instrument-shaped. What the framework may legitimately claim is a correspondence between Fiske's relationship typology and the instrument typology of Polanyi, Dalton and Kuroda — **claimed as the framework's own contribution**, not as something found in Fiske ([special-purpose money](special-purpose-money.md); the correspondence itself is an open hypothesis, [the scale ladder](../../SCALE-LADDER.md)). An earlier version of this file carried a fourth table column assigning each model a monetary function; no published source makes that mapping, and it is retired — record in `MODE-FUNCTION-MAPPING-PLAN.md`.
 
 ## Why this is the right intellectual foundation for BOVI
 

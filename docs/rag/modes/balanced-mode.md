@@ -76,13 +76,9 @@ Periodically zoom out: even ledgers can hide unequal capacity.
 - **Splitting a meal evenly among peers**
 - **Labour-exchange customs** — barn-raising, harvest rings, work parties where households owe each other days rather than money
 
-### Corrected: what does *not* belong here
+### Where the neighbouring artifacts sit
 
-This section previously listed proto-cuneiform tablets, medieval English tally sticks, double-entry bookkeeping, distributed ledgers, and the tally rope. All five were misfiled, for two different reasons — see [the diagnosis rule](../core/four-modes-overview.md).
-
-- **Proto-cuneiform tablets and English exchequer tallies are Obligated.** Both recorded amounts *prescribed by an authority* — temple and palace rations and dues in the first case, tax and tribute receipts in the second. The presence of a record says nothing; who set the figure says everything.
-- **Double-entry bookkeeping and distributed ledgers are mode-agnostic.** They are record-keeping technologies that carry whichever discipline is written into them. Treating "keeps a ledger" as diagnostic of Balanced mode contradicts the framework's own position that a single ledger can hold all four disciplines at once — which is exactly what [the Tally](../practice/the-tally-product.md) is built to do.
-- **The tally rope is Value.** See the ruling in [the Tally product](../practice/the-tally-product.md#mode-classification).
+Balanced mode is diagnosed by the exchange, not the equipment — [the diagnosis rule](../core/four-modes-overview.md): does a standing account stay open between peers, and is the amount a rough equivalence rather than a price? By that test: **proto-cuneiform tablets and English exchequer tallies sit in Obligated mode** — both record amounts prescribed by an authority (temple and palace dues; tax and tribute receipts). **Double-entry bookkeeping and distributed ledgers are mode-agnostic** record technologies, carrying whichever discipline is written into them; one ledger can hold all four disciplines at once, which is exactly what [the Tally](../practice/the-tally-product.md) is built to do. **The settlement rope sits in Value** — it prices and clears between strangers ([ruling](../practice/the-tally-product.md#mode-classification)). An earlier version of this file listed all five as Balanced-mode artifacts; the record of that misfiling and its root is `MODE-FUNCTION-MAPPING-PLAN.md`.
 
 ## Source quote
 

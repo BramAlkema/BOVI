@@ -69,6 +69,7 @@ Each file has YAML frontmatter with `tags` and `type`. For embedding-based RAG, 
 - [Substantivist Anthropology](lineage/substantivist-anthropology.md)
 - [The Four Origin Stories of Money](lineage/monetary-origin-stories.md)
 - [Special-Purpose Money](lineage/special-purpose-money.md)
+- [Yap in Economics](lineage/yap-in-economics.md)
 
 ### Cases
 - [The 2008 Financial Crisis](cases/2008-financial-crisis.md)

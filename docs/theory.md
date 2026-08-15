@@ -1,5 +1,7 @@
 # BOVI Theoretical Foundation
 
+> **Status: historical bridge document.** This was the founding statement of BOVI's Fiske footing. The load-bearing spine now lives in `FOUNDATIONS.md` (the stones), `CANON.md` (posture and quirks), and the RAG layer under `docs/rag/`; where this document and those disagree, they win. Two sections below were revised in August 2026 — the change record, with the reasoning and sources, is `MODE-FUNCTION-MAPPING-PLAN.md`.
+
 ## Abstract
 
 The BOVI framework (Balanced, Obligated, Value, Immediate) maps Alan Fiske's four relational models to monetary exchange, arguing that money functions as a bundle of fairness modes rather than a single invention. This theoretical document provides the academic foundation for understanding money as moral psychology expressed through institutional design.
@@ -47,13 +49,7 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 
 The scale column is **Fiske's own** correspondence between the relational models and Stevens's levels of measurement (Fiske 1991; 1992, *Psychological Review*). Read against the ledger, it makes the modes the four **resolutions a ledger can keep**, and money the ratio/instant-clearing discipline made infrastructural. See `FOUNDATIONS.md` §"modes as clearing disciplines", which is the canonical statement; this table should not diverge from it.
 
-> **Correction — this table previously mapped the modes to monetary functions.** It gave EM "unit of account, store of value," AR "required payment medium," MP "medium of exchange" and CS "direct reciprocity anchor." That mapping was retired for three reasons.
->
-> 1. **It is not Fiske's, and no published source makes it.** Fiske defines Market Pricing by proportionality and says explicitly that "money need not be the medium"; his MP examples include cost-effectiveness standards and equity-in-proportion-to-contribution. He also locates prescribed transfers inside AR and EM, so MP has no monopoly on money.
-> 2. **The two taxonomies cut orthogonally.** Fiske partitions *kinds of relationship*; the four functions partition *uses of one instrument*. A one-to-one assignment is therefore not a refinement of Fiske but a different taxonomy wearing his labels.
-> 3. **It violated Quirk 14.** Handing each mode one textbook function presents that list as a natural, exhaustive partition — the thing the framework denies. Much of the old table's tidiness also came from an equivocation: "required payment medium" is *Polanyi's payment use* (bridewealth, wergeld, fines, tribute), not *Jevons's standard of deferred payment*.
->
-> The instrument side is now handled where it belongs — see `rag/lineage/special-purpose-money.md` and `rag/architecture/four-functions.md`. Fiske supplies the relationship typology; Polanyi, Dalton and Kuroda supply the instrument typology; **the correspondence between them is this framework's own contribution**, and is claimed as such rather than attributed to Fiske.
+The instrument side is handled where it belongs — `rag/lineage/special-purpose-money.md` (Jevons, Polanyi, Dalton, Kuroda) and `rag/architecture/four-functions.md`. Fiske supplies the relationship typology; the substantivists supply the instrument typology; any correspondence between them is **this framework's own contribution**, claimed as such rather than attributed to Fiske. *(An earlier version of this table assigned each mode a textbook monetary function; that mapping is retired — full reasoning in `MODE-FUNCTION-MAPPING-PLAN.md`.)*
 
 ### Balanced Mode (Equality Matching → EM)
 
@@ -72,9 +68,7 @@ The scale column is **Fiske's own** correspondence between the relational models
 
 **Emotional Resonance:** Fairness violations feel like cheating the system
 
-> **Correction — the ledger was assigned to this mode, and is not any mode's property.** Balanced previously had the core function "money as society's distributed ledger," with proto-cuneiform tablets, medieval English tally sticks, double-entry bookkeeping and distributed ledgers as its examples. `FOUNDATIONS.md` Stone 2 derives the ledger as the substrate of *all* money, and the Tally is one ledger holding four disciplines — so "keeps a record" cannot diagnose a mode.
->
-> Reclassified: **proto-cuneiform tablets and English exchequer tallies are Obligated**, both recording amounts prescribed by an authority — temple and palace dues, tax and tribute receipts. **Double-entry bookkeeping and distributed ledgers are mode-agnostic**, carrying whichever discipline is written into them. Diagnosis rule: [four-modes-overview.md](rag/core/four-modes-overview.md). This error and the retired function mapping above share a root — the step from "EM is the *interval resolution*" to "EM *is* the ledger."
+The ledger itself belongs to no mode: `FOUNDATIONS.md` Stone 2 derives it as the substrate of *all* money, and the Tally is one ledger holding four disciplines — so "keeps a record" cannot diagnose a mode ([diagnosis rule](rag/core/four-modes-overview.md)). Proto-cuneiform tablets and English exchequer tallies record authority-prescribed amounts and sit in Obligated; double-entry bookkeeping and distributed ledgers are mode-agnostic technologies. *(An earlier version filed all of these under Balanced, via the step from "EM is the interval resolution" to "EM is the ledger" — record in `MODE-FUNCTION-MAPPING-PLAN.md`.)*
 
 ### Obligated Mode (Authority Ranking → AR)
 

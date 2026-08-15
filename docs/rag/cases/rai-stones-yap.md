@@ -58,9 +58,7 @@ Two readings should be handled with care. Rai is sometimes offered as an early i
 
 ## Notes on the received story
 
-Friedman's 1991 essay is the source of the case's fame, and its narrow thesis — that a monetary arrangement's operative content is shared convention — is defensible. Its details drifted: the sunken stone is Furness reporting a single informant ("my faithful old friend, Fatumak, assured me"), about a stone nobody had seen, two or three generations back; Furness placed it "a few hundred feet" offshore, Friedman "some 100 or so miles away." Keynes, who introduced the earmarking framing, placed the story on the wrong island and converted Furness's "without so much as a mark" into its opposite. The claim that stones brought by the trader O'Keefe were marked down as inferior is not supported — Furness cites his trade as proof that new stones were accepted on equal terms, and Kubary recorded prices holding. Furness's own thesis, seldom carried forward, was a labour theory of value.
-
-Popular accounts date rai to two millennia. The archaeology supports intensive quarrying over the last few centuries, with a tentative origin around AD 1400; the older radiocarbon dates at the quarry sites are, in the excavator's judgement, probably unrelated to stone money.
+How this case became everyone's parable — Furness's labour-theory original, Keynes's inverted earmarking, Friedman's drifted details, the textbook fabrications, and the blockchain retelling — is tracked separately in [Yap in Economics](../lineage/yap-in-economics.md). Two corrections carried there matter for reading this file's sources: popular accounts date rai to two millennia, while the archaeology supports intensive quarrying only over the last few centuries (tentative origin ~AD 1400); and the O'Keefe discount is folklore — the documented result is aggregate expansion and falling per-stone value, not a two-tier market.
 
 ## Sources
 
