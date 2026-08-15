@@ -40,6 +40,8 @@ In each case, the same exchange is interpretable through any of the four modes, 
 
 It's not just disagreement. It's structural mismatch. Two people can both be reasoning correctly *within* their assumed mode and still be in unresolvable conflict. There is no "right answer" inside the dispute — there is only the meta-question of which mode applies.
 
+The psychology is documented, and it is Fiske's own line of work: Fiske & Tetlock's taboo-trade-off experiments ("Taboo Trade-offs," *Political Psychology* 1997; McGraw & Tetlock 2005) show that proposing Market Pricing terms inside a Communal, Authority or Equality relationship provokes moral outrage rather than a counter-offer — *constitutive incommensurability*, because some relationships are partly constituted by the refusal to price them. That is why "just split it evenly, it's only money" makes the bridal-party fight *worse*: the proposal is itself the transgression. What the experiments establish is the reaction; the framework's own contributions are the claim that money's design bundles the four disciplines, and the diagnosis of mode-blind tools as the agent of the transfer ([Quirk 15](../../CANON.md)).
+
 Once the mode is named, the dispute usually dissolves: both parties realise they were arguing past each other rather than about an amount.
 
 ## The defensive vocabulary intervention
@@ -52,17 +54,6 @@ If you and the other party agree on the mode, you can proceed to negotiate the s
 If you don't, you have to *negotiate the mode first* before any amount-talk makes sense.
 
 Most relational money pain is unnamed mode collision. Naming the mode is the intervention.
-
-## Pedigree — this is a documented psychological result
-
-Mode collision is not the framework's invention. Fiske & Tetlock, "Taboo Trade-offs: Reactions to Transactions That Transgress the Spheres of Justice" (*Political Psychology* 18(2), 1997), and McGraw & Tetlock, "Taboo Trade-Offs, Relational Framing, and the Acceptability of Exchanges" (*J. Consumer Psychology* 15(1), 2005), show experimentally that applying **Market Pricing** norms to a Communal Sharing, Authority Ranking or Equality Matching relationship provokes moral outrage rather than mere disagreement — the offence is the mode transfer, not the amount. They call the underlying resistance *constitutive incommensurability*: certain relationships are partly constituted by the refusal to price them, so pricing them damages the relationship as such.
-
-This is the strongest external footing the mode material has, and it is Fiske's own line of work rather than an application of it. Two things follow:
-
-- It explains why "just split it evenly, it's only money" makes bridal-party fights *worse*. The proposal is itself the transgression.
-- It is the citation for [Quirk 15](../../CANON.md) — a mode-blind tool does not merely lose information; it performs the taboo trade-off on its users' behalf, at scale and by default.
-
-Note the boundary. This literature covers the *reaction* to mode transgression. The framework's own contributions are the claim that money's design bundles the four disciplines, and the diagnosis of consumer tools as the agent of the transfer.
 
 ## The quantum collapse frame (used sparingly)
 

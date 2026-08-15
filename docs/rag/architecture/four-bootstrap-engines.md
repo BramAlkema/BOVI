@@ -34,13 +34,11 @@ Not a footnote. The engine.
 
 ## Engine 2: Speculative appreciation
 
-A token is designed with credible scarcity. Early users buy in the belief that later users will buy at higher prices. Speculative capital pays for the infrastructure (exchanges, custody, wallets, payment processors, regulatory work) that eventually makes transaction utility real.
+A token is designed with credible scarcity. Early users buy in the belief that later users will buy at higher prices. Speculative capital pays for the infrastructure (exchanges, custody, wallets, payment processors, regulatory work) that eventually makes transaction utility real. The appreciation is structural, not a happy accident: in Choi & Rocheteau's mining model (2019), the value of a privately produced money *must* grow fast enough to out-bid ordinary production for the miners' time — the holding return is the wage that calls the supply into existence. It follows that this engine cannot be paired with demurrage: a negative holding return cannot induce costly production.
 
 Bitcoin is the textbook case. For its first several years, almost no one used it for transactions. People bought it because the price was rising. That belief was self-fulfilling for long enough to fund 16 years of infrastructure. By the time the network was mature enough for stablecoins, Lightning, and remittance corridors, the bootstrap had already been paid for by speculators whose theory was simply *number go up*.
 
 **The "real miners"** of Bitcoin are not the ASIC operators — they are the people who held through bear markets, built exchanges, integrated payment processors, convinced merchants. They are paid in capital appreciation. Their economic contribution to the network's existence is far larger than the proof-of-work miners'.
-
-**The appreciation is a requirement, not a windfall.** Choi and Rocheteau (2019) model privately mined money and find that its value "must appreciate over time in order to induce agents to mine" — mining competes with producing goods, so the expected holding return has to beat the foregone production profit. This upgrades the engine's account of itself: early holders are not merely enthusiasts who happened to subsidise the rail, and the appreciation is not incidental to the bootstrap but the price that calls the supply into existence. It also predicts the awkward corollary that this engine cannot be combined with demurrage, since a negative holding return cannot induce costly production. See [cold-start problem](cold-start-problem.md) for the fuller treatment.
 
 ## Engine 3: Industrial / ornamental use value
 

@@ -37,7 +37,7 @@ A mode is a rule for **when and whether the ledger must clear**. Diagnose it by 
 1. **Does the relationship close?** If the exchange ends when the transfer is made and nothing personal is left outstanding, that is Value. If a standing account remains open between two named parties, that is Balanced.
 2. **Who sets the amount?** A price arrived at between the parties is Value. A figure prescribed by rank, office, occasion or rule is Obligated. Rough equivalence owed back over time is Balanced. No reckoning at all is Immediate.
 
-Two recurring misdiagnoses, both of which had taken root in this corpus:
+Two recurring misdiagnoses:
 
 - **Mistaking settlement plumbing for the discipline.** A running net balance that squares later is *infrastructure*, not a mode. A card payment is Value mode even though the bank settles net two days afterwards; the relationship closed at the counter. Record-keeping technologies — double-entry bookkeeping, distributed ledgers — are mode-agnostic by construction, which is the whole point of a ledger that can carry all four disciplines.
 - **Mistaking symmetric participation for equality matching.** Everyone holding an equal peg, seeing the whole record and being free to leave is a *governance* property. It says who is protected, not which discipline is running. A market with equal access is still a market.

@@ -105,7 +105,7 @@ Extraction follows **information asymmetry**, so it pools in the **known-ness ga
 
 Run every "essential" that isn't an axiom through the double test — **neither necessary nor sufficient** — and sort by *why* it fails. Three fates:
 
-**Redundant** (crude over-satisfaction of an axiom): *scarcity* → B3 (rare stamps aren't money) · *durability* → B2-over-time (granite isn't money) · *portability* → transferability (bank money never moves).
+**Redundant** (crude over-satisfaction of an axiom): *scarcity* → B3 (rare stamps aren't money) · *durability* → B2-over-time (granite isn't money) · *portability* → transferability (bank money never moves; Yap's rai never did — multi-tonne stones changed owners by public acknowledgment alone).
 
 **Misplaced** (a real function, but it belongs unbundled in its own tool — Quirk 14): *store of value* → productive assets (gold in a vault doesn't circulate) · *unit of account* → an index/PDA (transact in pesos, account in USD) · *stability* → the unit (a price index is stable, not a medium).
 
@@ -170,7 +170,7 @@ The stones give the **design space**; *which* design gets built where is an **in
 
 ## Honest pedigree (the whole lineage, in one place)
 
-Simmel · Patinkin · Lagos–Wright · Menger · Gesell · Kiyotaki–Wright · Kocherlakota · Ostroy · Samuelson · Tirole · Cantillon · Graeber · Smith · Barro–Sala-i-Martin · Eichengreen · Triffin · Robinson · Farrell–Newman · Hirschman · Reinhart · McKinnon–Shaw · North · Acemoglu–Robinson · Ostrom. **No `Mises` — on purpose.** The contribution is the assembly, the explicit premises, and the teaching — not a new theorem.
+Simmel · Patinkin · Lagos–Wright · Menger · Jevons · Gesell · Kiyotaki–Wright · Kocherlakota · Ostroy · Samuelson · Tirole · Cantillon · Graeber · Smith · Barro–Sala-i-Martin · Eichengreen · Triffin · Robinson · Farrell–Newman · Hirschman · Reinhart · McKinnon–Shaw · North · Acemoglu–Robinson · Ostrom. **No `Mises` — on purpose.** The contribution is the assembly, the explicit premises, and the teaching — not a new theorem.
 
 ## See also
 - `docs/CANON.md` — the 20 Quirks (corrections to the standard treatment).
