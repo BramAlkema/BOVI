@@ -63,3 +63,8 @@ blender/render/
 blender/caption_*.png
 blender/.caption.txt
 *.blend1
+
+# Foundry build artifacts
+out/
+cache/
+foundry.lock

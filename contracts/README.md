@@ -74,6 +74,19 @@ Precedent for the tier's *shape*: `Fiske` is already a boundary contract — it 
 - **Exchange rates and deforestation.** Real depreciation → export agriculture → forest clearing. Tempting because it flatters an audience we would like to reach, which is precisely why it stays out until there is a citation worth defending. A lead, not an entry.
 - **Nordhaus / DICE.** An integrated assessment model, not an isolable mechanism. Out on the same grounds `KiyotakiWright` refuses to implement a search economy.
 
+## Running the suite
+
+`forge-std` is a git submodule, so a fresh clone needs it fetched before anything builds:
+
+```
+git submodule update --init --recursive
+forge test
+```
+
+Twelve tests across two files — `test/CoreE2E.t.sol` (the bench engine) and `test/Clark.t.sol` (the liquidation threshold in isolation). All fifteen contracts compile under solc 0.8.20.
+
+Worth saying once, because it cost two parse errors to learn: **a contract that has been read carefully and never compiled is prose.** `Cantillon` and `BigoniCameraCasari` were written, reviewed, cross-referenced in `NOTATION.md` and cited in the book before either was put through a compiler, and both were broken in ways one build would have caught. Build before you document.
+
 ## Notes
 
 - **Patron-spirits — honoured by the whole building, not a single room.** A premise cannot be instantiated, so the framework's deepest debts are named here rather than coded:
