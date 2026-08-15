@@ -86,7 +86,7 @@ Specialisation gains are Smith's (the pin factory: ~1 → ~4,800 pins per worker
 
 ### A.6 The real economy — transaction costs
 
-Coase (1937): firms exist to internalise transaction costs. Wallis–North: the measured *transaction sector* of a developed economy is on the order of half of GDP. So supply/demand/price are *downstream* of transaction-cost structure, and lowering that cost (M-Pesa, ≈2% of Kenyan GDP) is the master lever.
+Coase (1937): firms exist to internalise transaction costs. Wallis–North: the measured *transaction sector* of a developed economy is on the order of half of GDP. So supply/demand/price are *downstream* of transaction-cost structure, and lowering that cost is the master lever — M-Pesa's best-measured effect being distance to a financial access point, 9.2 km to a bank at launch and 1.4 km to an agent by 2015.
 
 ### A.7 The substrate — the axioms
 

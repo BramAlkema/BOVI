@@ -56,7 +56,7 @@ A pre-existing platform with a large user base introduces a payment function tha
 This is, by some distance, the most *efficient* known bootstrap and the one most actively building money networks today:
 
 - **Pix** (Brazil): launched 2020 by central bank, mandated all licensed banks to integrate. 150 million users in three years.
-- **M-Pesa** (Kenya): rode on Safaricom's existing telco network. Reached 50M users faster than any other African payment network.
+- **M-Pesa** (Kenya): rode on Safaricom's existing telco network — and specifically on its **prepaid-airtime dealer network**, which converted directly into the cash-in/cash-out agents. That conversion is the cleanest instance of this engine anywhere. Name the rest of the bootstrap too, though, because it was not platform leverage alone: a **£1m DFID grant** funded the original pilot, the Central Bank of Kenya ran a deliberate **"test and learn" forbearance** (e-money issued by the telco but fully backed in bank-held trust accounts, which is what made it lawful before the Banking Act covered it), and the product was **repurposed by users** — it launched as a microfinance repayment tool and became P2P transfer because that is what people did with it.
 - **GCash** (Philippines), **WeChat Pay / Alipay** (China): bootstrapped on dominant chat / commerce platforms.
 - **Apple Pay**: rode on iPhones that already existed.
 - **PayPal**: in its early years, rode on eBay's auction marketplace.
