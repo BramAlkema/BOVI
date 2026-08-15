@@ -60,6 +60,7 @@ Whoever runs the keeper is therefore a load-bearing party with no contract, no v
 | Who may report, and what counts as a default | Adjudicative | Route reports through `ChallengeBond`; require an evented reason | The default-definition standard |
 | A public registry is a panopticon | Normative | ZK selective disclosure — prove "standing ≥ X" without the history | What may be asked at all |
 | Sybil-resistance | **Constitutive** | — | Open problem. Named as irreducible in the README, correctly |
+| Whether `inGoodStanding` should gate `Kocherlakota._limitOf` | **Adjudicative → Normative** | **Not closable as a wire.** It would drive a normative output (credit capacity) from an adjudicative input (what counts as a default) with neither class's guard in the path — and `report` acts "without evidence or appeal." Prerequisites, in order: reports through `ChallengeBond` with a stated reason and a dispute window; a floor the gate cannot cut capacity below; a route back up | **Ruled advisory, 2026-08.** A caller that chooses to read the gate owns that decision and its sign: the loop is balancing in the system's exposure and reinforcing in the member's capacity, and picking the first label is picking the aggregate vantage |
 
 ### `Fiske` — the modes as a permission layer
 | Judgement | Class | A — close it | B — refer it |
@@ -88,6 +89,27 @@ Whoever runs the keeper is therefore a load-bearing party with no contract, no v
 | Who is a provider | Epistemic | The `ChallengeBond` publishing path (proposed, not built) | Admission standard |
 | Which goods are the same good | **Epistemic** | — | A comparability standard. Quietly the hardest input in the contract |
 
+### `Cantillon` — the nominal-exposure meter
+| Judgement | Class | A — close it | B — refer it |
+|---|---|---|---|
+| Whether an incidence finding may be recorded at all | **Epistemic** | Already closed: `attribute` reverts without a stated counterfactual, per the canon spec | See the `Krugman` row above for the underlying question of fact — it is not restated here |
+| Which counterfactual is the right one | **Epistemic** | — | Same guard as the incidence question: the identified literature, not a vote. The contract's default is the indexed alternative (`Fisher`), which is a *choice* and should be argued each time |
+| The refusal to accept an order-of-receipt input | **Epistemic** | — | Not a gap. The absent parameter is the contract's argument, and it tracks the evidence |
+
+### `Starr` — the capacity condition
+| Judgement | Class | A — close it | B — refer it |
+|---|---|---|---|
+| `gammaStar`, the participation threshold | **Epistemic** | Already gated: `verdict` returns `Undeclared` and `recordVerdict` reverts until a threshold is declared *with a justification* | Model-dependent. Belongs to whoever defends the model, not to governance |
+| The gap between decreed and realised collection | **Epistemic** | Both series are recorded and the shortfall is computed | Referred explicitly to `Greif` — enforcement is not this contract's residual to explain |
+| Whether a `Sufficient` verdict may act on the ledger | **Epistemic → Normative** | **Must not be wired.** `verdict` is gate-*shaped* (it returns an enum) and that shape is a lure: its input is epistemic and any ledger action is normative. The header already refuses to cross the line by declining to report a price | The affected members, via `Friedman`, citing the verdict |
+
+### `BigoniCameraCasari` — the experiment
+| Judgement | Class | A — close it | B — refer it |
+|---|---|---|---|
+| Minimum sample before a finding is available | **Epistemic** | Already closed: pre-declared with a justification, and `finding` reverts below it | Pre-registration practice |
+| What a `withinNoiseBand` result licenses | **Epistemic** | — | Statistical interpretation. The contract reports the band; it cannot stop anyone reading a null as a confirmation |
+| Whether `bindingBps == 0` invalidates the run's other claims | **Epistemic** | The quantity is computed and exposed | The reader. This is a meta-finding about the run, not about the world, and nothing in the cast can enforce that distinction |
+
 ### `Hayek` — the unit
 | Judgement | Class | A — close it | B — refer it |
 |---|---|---|---|
@@ -106,6 +128,8 @@ Whoever runs the keeper is therefore a load-bearing party with no contract, no v
 |---|---|---|---|
 | Membership — one member, one vote | **Constitutive** | — | Prior to the contract. "Capture it and you capture the system" |
 | Whether a minority can leave or fork | Normative | — | **Explicitly outside the contract.** Exit rights are institutional — this is Hirschman's *exit, voice, loyalty*, and the canon currently supplies only voice |
+| A dial that moves with no reason on the record | Normative | **Closed 2026-08.** `propose` requires a `rationale`, stored and evented. Every meter in the cast already gates publication behind a declared discipline; this contract, the only one that can act, recorded a target and a calldata blob and nothing about why | — |
+| Whether anyone must *answer* a published finding | Normative | Not closable in-contract. A duty needs an addressee and a clock, and this register enumerates classes of judgement without a column for either | The body that owes the answer. Same shape as the keeper in §0.2: an unnamed party whose non-action leaves no record |
 
 ### `Fisher` — indexed obligations
 Inherits `Hayek`'s basket judgement whole. No independent point.
@@ -122,13 +146,14 @@ Ledger-likeness is "an externally supplied toy input." A demonstrator, not deplo
 
 ## The irreducible residue
 
-Four, and the canon already names three of them:
+Six. The canon already named three; the audits added the rest, and the last two are the same problem at two grains:
 
 1. **Constitutive membership / Sybil** (`Greif`, `Friedman`) — no code solves it.
 2. **The inter-community reserve floor** (`Keynes`, between truly trustless parties) — already listed in the README.
 3. **Moral force** (`Fiske`) — the contract flags; humans care.
 4. **Exit** (`Friedman`) — the canon implements voice and not exit, and should say so.
-5. **The keeper** (§0.2) — no contract in the canon can act on its own. Every clearing discipline depends on an unnamed party choosing to invoke it. This one was not previously on any list.
+5. **Duty and its clock** — the canon supplies capabilities and refers duties, but nothing anywhere states *who* owes an answer to a published finding, or *by when*. A finding can be recorded (four meters do it under discipline) and a proposal can now cite one, and still nobody is obliged to act. Added 2026-08 by the stock-and-flow audit; it is the general form of item 6.
+6. **The keeper** (§0.2) — no contract in the canon can act on its own. Every clearing discipline depends on an unnamed party choosing to invoke it. This one was not previously on any list.
 
 ## The cost of every bend, stated against ourselves
 

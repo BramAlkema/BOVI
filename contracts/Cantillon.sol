@@ -97,7 +97,8 @@ contract Cantillon {
         uint256 flowPerPeriod;         // F, nominal
         uint256 remainingTerms;        // T
         uint256 discountBps;           // r
-        bool    indexed;               // true = on Fisher; exposure is zero by construction
+        bool    isIndexed;             // true = on Fisher; exposure is zero by construction
+                                       // (`indexed` is reserved in Solidity — it cannot name a field)
     }
 
     FixedClaim[] public claims;
@@ -160,7 +161,7 @@ contract Cantillon {
     /// Σ_{t=1..T} F·(1+r)^−t·(1 − (1+π)^−t). Zero if the claim is indexed, or if T = 0.
     function flowExposure(uint256 id, uint256 piBps) public view returns (uint256 loss) {
         FixedClaim memory c = claims[id];
-        if (c.indexed || c.remainingTerms == 0 || piBps == 0 || c.flowPerPeriod == 0) return 0;
+        if (c.isIndexed || c.remainingTerms == 0 || piBps == 0 || c.flowPerPeriod == 0) return 0;
 
         uint256 onePlusR  = WAD + c.discountBps * WAD / BPS;
         uint256 onePlusPi = WAD + piBps * WAD / BPS;
@@ -193,7 +194,7 @@ contract Cantillon {
     {
         require(bytes(counterfactual).length > 0, "counterfactual required");
         FixedClaim memory c = claims[id];
-        require(!c.indexed, "indexed claim bears no nominal exposure");
+        require(!c.isIndexed, "indexed claim bears no nominal exposure");
         uint256 amt = flowExposure(id, piBps);
         require(amt > 0, "no measurable transfer");
         realTransfer = int256(amt);

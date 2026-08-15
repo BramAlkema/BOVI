@@ -74,7 +74,11 @@ contract CoreE2E is Test {
 
     // a governance action, the only legitimate way: propose → vote → timelock → execute
     function _gov(address target, bytes memory data) internal {
-        vm.prank(alice); uint256 id = friedman.propose(target, data);
+        _gov(target, data, "e2e: exercising the governance path");
+    }
+
+    function _gov(address target, bytes memory data, string memory rationale) internal {
+        vm.prank(alice); uint256 id = friedman.propose(target, data, rationale);
         vm.prank(alice); friedman.vote(id);
         vm.prank(bob);   friedman.vote(id);                 // quorum 2 → queued
         vm.warp(block.timestamp + 2 days + 1);              // the exit window elapses
@@ -94,6 +98,20 @@ contract CoreE2E is Test {
 
         _gov(address(rope), abi.encodeWithSignature("setCreditLimit(address,uint256)", employer, 2_000 * ONE));
         assertEq(rope.creditLimit(employer), 2_000 * ONE);  // only the voted, timelocked path works
+    }
+
+    // ── Lesson 1b: a dial does not move without a reason on the record ───────
+    // Every meter in the cast refuses to publish a finding without a declared
+    // discipline. This is the same rule at the only point that can act.
+    function test_Friedman_ProposalMustCarryAReason() public {
+        bytes memory data = abi.encodeWithSignature("setCreditLimit(address,uint256)", employer, 1);
+
+        vm.prank(alice);
+        vm.expectRevert(bytes("state a reason"));
+        friedman.propose(address(rope), data, "");
+
+        _gov(address(rope), data, "Starr verdict #0 came back UnderCovered");
+        assertEq(friedman.rationaleOf(0), "Starr verdict #0 came back UnderCovered");
     }
 
     // ── Lessons 2+3: the rope clears; unstable currency, stable contract ─────

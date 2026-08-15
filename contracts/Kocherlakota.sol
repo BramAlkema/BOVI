@@ -155,6 +155,12 @@ contract Kocherlakota {
     function setStabiliser(address k) external onlySteward { stabiliser = k; emit StabiliserSet(k); }
     function setFiske(address f) external onlySteward { fiske = IFiske(f); emit FiskeSet(f); }
 
+    /// Reputation is deliberately NOT read here. `Greif.inGoodStanding` exists and would
+    /// slot in on the next line; the ruling in Greif's header is that it must not, because
+    /// a reporter who acts "without evidence or appeal" would then be setting credit
+    /// capacity — an adjudicative input driving a normative output, with neither class's
+    /// guard in the path. The stabiliser below is read instead, and its input is at least
+    /// epistemic and refutable. This absence is a decision, not an omission.
     function _limitOf(address k) internal view returns (uint256) {
         uint256 base = creditLimit[k];
         if (stabiliser == address(0)) return base;

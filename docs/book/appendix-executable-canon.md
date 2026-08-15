@@ -10,7 +10,7 @@ That progression matters. Prose can slide between *money is memory* as a metapho
 
 The result is not a proposed currency. It is not production software, an audit, a monetary constitution, or an empirical demonstration that people would want to live under these rules. It is an **executable canon**: a set of small Solidity contracts that translate the book's claims into operations precise enough to inspect and contest. The contracts do not prove that the theory is true. They prove that we have stopped hiding its verbs.
 
-At the snapshot used for this edition, the repository contains eleven implemented contracts. Seven appear in the end-to-end demonstration; four stand as separate mechanisms. Gesell's demurrage is an overlay inside the memory ledger rather than a twelfth contract. A further set of named rooms now exists as provisional protocol blueprints. That distinction—implemented, integrated, and specified—is part of the argument. A blueprint is not a building, and a building that compiles is not a city.
+At the snapshot used for this edition, the repository contains fifteen implemented contracts. Seven appear in the end-to-end demonstration, one has a test file of its own, and seven stand as separate mechanisms exercised by neither. Gesell's demurrage is an overlay inside the memory ledger rather than a sixteenth contract. A further set of named rooms now exists as provisional protocol blueprints. That distinction—implemented, integrated, and specified—is part of the argument. A blueprint is not a building, and a building that compiles is not a city.
 
 ---
 
@@ -177,7 +177,11 @@ Fiske is therefore less a mode engine than a permission primitive. It shows wher
 
 Once credit limits, provider lists, demurrage rates, reporters, and oracle parameters are visible, a harder question arrives: who may change them?
 
-The Friedman contract answers with a deliberately thin rule: one member, one vote; proposal; quorum; timelock; execution. A member proposes an arbitrary call to a target contract. Members cast yes-votes. When the required headcount is reached, the proposal is queued. Only after the delay may anyone execute the call.
+The Friedman contract answers with a deliberately thin rule: one member, one vote; proposal; quorum; timelock; execution. A member proposes an arbitrary call to a target contract, together with a stated reason for it. Members cast yes-votes. When the required headcount is reached, the proposal is queued. Only after the delay may anyone execute the call.
+
+The reason is required, and that requirement was added late, after an audit drew the suite as a system of stocks and flows and asked where each loop closes. Four contracts in the cast do nothing but measure, and three of them already refuse to publish a finding until a discipline has been declared first: an incidence claim needs a stated counterfactual, a capacity verdict needs a justified threshold, an experimental result needs a minimum sample fixed in advance. The measuring instruments were the most disciplined parts of the building. Governance — the single place where any of those findings could act on the world — recorded a target address and a blob of call data, and nothing whatever about why. A dial could move for a reason nobody wrote down, and the absence left no trace, because a thing that does not happen emits no record.
+
+The field does not automate anything and cannot. A person still writes the sentence and the members still vote, and the contract does not grade what the sentence says. It only refuses to move a dial that nobody was willing to explain. That is the same discipline the instruments keep, applied at the one point in the building that can act.
 
 The timelock is not decoration. It is an **exit window**. A minority cannot necessarily stop a decision, but it can see the decision before it lands and, where the surrounding institutions permit, leave or fork. The contract's promise is not benevolent rule. It is rule made slow and public enough to contest.
 
@@ -191,13 +195,13 @@ This is a recurring lesson in the suite: removing monetary mysticism does not re
 
 **State.** Current membership and headcount; timelock and quorum; proposals containing target, calldata, queue time, yes-count, and executed flag; one vote bit per proposal and address.
 
-**Roles and commands.** A current member calls `propose` and `vote`. Anyone calls `execute` after queueing and delay. Only a low-level call from Friedman to itself can call `addMember`, `removeMember`, or `setParams`.
+**Roles and commands.** A current member calls `propose`, supplying a target, call data, and a non-empty reason, and calls `vote`. Anyone calls `execute` after queueing and delay. Only a low-level call from Friedman to itself can call `addMember`, `removeMember`, or `setParams`.
 
 **Transition.** `propose` appends an open proposal. Each current member may add one yes-vote while it is open. The vote that brings `yes ≥ quorum` sets `eta = now + timelock` and closes voting. After `eta`, `execute` marks the proposal executed, calls the stored target with the stored bytes, and reverts the whole execution if that call fails.
 
-**Invariant.** A successfully governed target can reject every direct administrator call after its governance address is transferred to Friedman. The same proposal cannot execute twice.
+**Invariant.** A successfully governed target can reject every direct administrator call after its governance address is transferred to Friedman. The same proposal cannot execute twice. No proposal exists without a recorded reason.
 
-**Audit boundary.** The constructor and amendments permit zero addresses, zero or impossible quorum, and zero delay. There are no no-votes, cancellation, expiry, veto, delegation, emergency stop, or proposal-type restrictions. Votes are not snapshotted: removed members' old votes remain and new members may vote on old proposals. A queued proposal survives later membership or quorum changes. Any calldata may be relayed, so capture of the membership captures every attached module.
+**Audit boundary.** The reason is free text and is never checked, so it constrains the record and not the decision; nothing obliges anyone to answer a published finding, and no clock runs on one. The constructor and amendments permit zero addresses, zero or impossible quorum, and zero delay. There are no no-votes, cancellation, expiry, veto, delegation, emergency stop, or proposal-type restrictions. Votes are not snapshotted: removed members' old votes remain and new members may vote on old proposals. A queued proposal survives later membership or quorum changes. Any calldata may be relayed, so capture of the membership captures every attached module.
 
 ---
 
@@ -219,6 +223,14 @@ The contract comments name the two largest residuals: privacy and Sybil resistan
 
 One integration gap also matters. Schumpeter emits a default event and describes it as a hook for Greif, but the present contracts do not wire that hook. The end-to-end test uses a separate reporter. The institutional sentence—*default lowers future standing*—exists as two clauses awaiting a conjunction.
 
+A second gap looks identical and is not. Nothing consumes the standing check. The obvious completion is a single line inside the ledger, where each participant's credit ceiling is computed: read the standing, and shrink the ceiling when it falls. That line is refused, and the refusal is the more interesting artifact.
+
+Three reasons, in ascending order of force. A report is entered without evidence and cannot be appealed, so the line would hand a reporter an unanswerable lever over another person's capacity to trade. It would also fuse two decisions that want different guardians: what counts as a default is a question of adjudication, which wants an appeals path, while how much credit a member may carry is a question of distribution, which wants the affected members deciding. Wiring one straight into the other supplies neither guardian—not the wrong one, none.
+
+The third reason is the one that changes how the whole suite reads. Watch which way the loop turns. Someone defaults; their standing falls; their ceiling falls; they have less room to trade their way out of the hole; they default. From the ledger's side, that is a stabiliser—exposure to an unreliable member automatically declines. From the member's side, the identical arrows are a ratchet. It is one loop, damping in the system's exposure and amplifying in the person's capacity, and nothing in the arrows themselves says which name is right. The choice of name is a choice of vantage, and the vantage that calls it a stabiliser is the aggregate one—the view from the panel of levers, where the person who cannot get out is a number that has stopped moving.
+
+So the standing check stays advisory, and the ledger says in its own comments that the absence is a decision. If the gate is ever wired, three things must exist first: reports carrying a stated reason and open to dispute, a floor the gate cannot cut a ceiling below, and a route back up. Without the last two the amplifying arm has no bottom, and a reputation system with no bottom is a debt trap with a clean interface.
+
 #### Protocol card — `Greif`
 
 **State.** Governance address; registration bit and signed reputation per address; reporter-authorisation bit per address.
@@ -229,7 +241,7 @@ One integration gap also matters. Schumpeter emits a default event and describes
 
 **Invariant.** Unauthorised callers cannot change a score. `inGoodStanding` is true exactly when the subject is registered and its score meets the caller-supplied threshold.
 
-**Audit boundary.** A report contains no reason, evidence hash, affected contract, appeal state, expiry, or per-reporter limit. Governance can appoint the reporter that judges it. Scores are public; addresses are not people; Sybil resistance is absent. Schumpeter default does not call `report`.
+**Audit boundary.** A report contains no reason, evidence hash, affected contract, appeal state, expiry, or per-reporter limit. Governance can appoint the reporter that judges it. Scores are public; addresses are not people; Sybil resistance is absent. Schumpeter default does not call `report`. Nothing consumes `inGoodStanding`: it is advisory by ruling, and a caller that gates on it owns that decision and its direction.
 
 ### ChallengeBond: optimistic truth with collateral
 
@@ -442,9 +454,9 @@ The separation from Kiyotaki–Wright matters. A currency can be universally acc
 
 ---
 
-## 9 · The bench engine: six tests, seven scenes
+## 9 · The bench engine: seven tests, eight scenes
 
-The repository's single Foundry test file is called `CoreE2E.t.sol`. Its setup deploys six modules: Friedman, Greif, Hayek, Kocherlakota, Fisher, and Krugman. It admits three ledger participants, registers identities, admits three index providers, and sets an employer's credit limit. It then gives Friedman authority over Kocherlakota, Greif, and Hayek. Fisher has immutable dependencies rather than a governor. Krugman's governance remains with the deployer. Schumpeter becomes the seventh implemented module exercised by the file, but it is deployed separately inside its own scene with a mock settlement token and its own deployer governance.
+The repository's principal Foundry test file is called `CoreE2E.t.sol`; a second, smaller file covers the Clark threshold in isolation. Its setup deploys six modules: Friedman, Greif, Hayek, Kocherlakota, Fisher, and Krugman. It admits three ledger participants, registers identities, admits three index providers, and sets an employer's credit limit. It then gives Friedman authority over Kocherlakota, Greif, and Hayek. Fisher has immutable dependencies rather than a governor. Krugman's governance remains with the deployer. Schumpeter becomes the seventh implemented module exercised by the file, but it is deployed separately inside its own scene with a mock settlement token and its own deployer governance.
 
 The test is a bench engine. It does not take the system on the road. Each scene turns one conceptual joint far enough to see whether the neighbouring pieces move.
 
@@ -455,6 +467,14 @@ After Kocherlakota hands its steward role to Friedman, the original deployer tri
 What is demonstrated: administrative authority can be surrendered to a public procedure, and the target contract enforces the handover.
 
 What is not: that the membership is legitimate, the quorum is wise, the minority can actually exit, or the adopted policy is good.
+
+### Scene 1b: no dial moves without a reason
+
+Alice proposes the same credit-limit change with an empty reason. The call reverts. She proposes it again citing a capacity verdict that came back short, and the proposal carries that sentence on the record through vote, delay, and execution.
+
+What is demonstrated: the one contract in the suite that can act on the world will not act anonymously. The reason is stored with the proposal and emitted with it, so a later reader can ask what a dial move was answering.
+
+What is not: that the reason is true, relevant, or offered in good faith. The contract never reads it. It establishes only that somebody was willing to write one down beside their name—which is the difference between a record that can be audited and a record that cannot.
 
 ### Scene 2: the rope clears
 
@@ -504,7 +524,7 @@ What is demonstrated: countercyclical elasticity can alter the feasibility of ex
 
 What is not: that the reported shortfall is real, that expansion reaches the right participants, that the rule improves welfare outside this constructed case, or that Friedman governs Krugman's oracle and rule in this setup.
 
-The file contains six test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. There are no unit tests for Fiske, ChallengeBond, Stigler, or Kiyotaki–Wright in the current test directory; no invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All eleven source contracts compile under Solidity 0.8.20. The Foundry suite was not run during this audit because Forge and its test dependency were unavailable. Even a green run would mean only that these selected state transitions behaved as asserted; it would not mean the monetary constitution was safe.
+The file contains seven test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. There are no unit tests for Fiske, ChallengeBond, Stigler, Kiyotaki–Wright, Cantillon, Starr, or Bigoni–Camera–Casari in the current test directory; no invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All fifteen source contracts compile under Solidity 0.8.24, though two of them did not until this was checked rather than assumed: the newest pair had been written and reviewed but never once put through a compiler, and each carried a parse error that a single build would have caught—a reserved word used as a field name, and an em-dash inside a revert string. Both are now fixed. The lesson is smaller than the suite's subject and worth recording anyway: a contract that has been read carefully and never compiled is prose. The Foundry suite was not run during this audit because Forge and its test dependency were unavailable. Even a green run would mean only that these selected state transitions behaved as asserted; it would not mean the monetary constitution was safe.
 
 ---
 

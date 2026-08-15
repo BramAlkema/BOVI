@@ -164,7 +164,7 @@ contract BigoniCameraCasari {
         Observations storage a = arms[uint8(Arm.Constrained)];
         Observations storage b = arms[uint8(Arm.Unconstrained)];
         require(a.opportunities >= minSample, "constrained arm under-sampled");
-        require(b.opportunities >= minSample, "control arm under-sampled — one arm is an anecdote");
+        require(b.opportunities >= minSample, "control arm under-sampled");
 
         deltaBps = treatmentEffectBps();
         seBps    = standardErrorBps();

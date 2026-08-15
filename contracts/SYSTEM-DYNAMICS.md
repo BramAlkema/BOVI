@@ -57,12 +57,18 @@ activity  →  Krugman.report (oracle)  →  stance()  →  elasticityFactorBps(
 ```
 Everything up to `_limitOf` is on-chain. The return arrow — does credit capacity change activity? — closes **outside**, and `activity` re-enters through an oracle. This is the longest loop in the building and the only one that touches production.
 
-**B4 — enforcement (balancing).**
+**B4 — enforcement. Supported, not run — and ruled that way.**
 ```
 default  →  Greif.report by a reporter  →  reputation falls
         →  inGoodStanding() gate  →  reduced exposure  →  (loop)
 ```
-Note the gap: `inGoodStanding` is a **view**. Nothing consumes it automatically — a caller must wire it. So B4 is a loop the architecture *supports* rather than one it *runs*.
+`inGoodStanding` is a **view**, and nothing consumes it. The obvious repair is one line inside `Kocherlakota._limitOf`. It is refused, and the refusal is now written into both headers.
+
+**Read the classes, not the arrows.** The judgement register sorts every decision into four kinds with different correct guards. The *input* to this loop — what counts as a default — is **adjudicative**, and its guard is arbitration with an appeals path. The *output* — credit limits per member — is **normative**, and its guard is the affected members, voting; the register calls it the most consequential distributional call in the system. An automatic wire supplies neither. It is not the wrong guard. It is the **absence** of one, in a path that `Greif.report`'s own comment describes as acting *"without evidence or appeal."*
+
+**And the sign flips depending on who is reading.** Label it from the ledger's side and it is balancing: default → standing falls → exposure reduced → fewer defaults. Label it from the member's side and the same arrows are reinforcing: default → standing falls → limit falls → less room to trade out of the hole → default. One loop, balancing in the system's exposure and reinforcing in the member's capacity. Calling it "balancing" is not a reading of the arrows; it is a choice of vantage — and it is the aggregate vantage this framework exists to distrust. A reputation gate with no floor and no route back up is a debt trap with a clean interface.
+
+So: **reputation is advisory, said plainly.** What would have to exist before the gate is wired — reports through `ChallengeBond` with a stated reason and a dispute window (the register already prescribes it), a floor the gate cannot cut below, and a way back up.
 
 **R2 — composition (reinforcing, and the one to watch).**
 ```
@@ -74,15 +80,30 @@ The DAO sets its own membership. That is a reinforcing loop on *who decides*, an
 
 ---
 
-## The measurement tier — gauges, not governors
+## The measurement tier — where the arrow actually went missing
 
-`Cantillon`, `Stigler`, `Starr`, `BigoniCameraCasari` read state and report. **None of them has a return arrow.** In stock-and-flow terms they are instruments on the stocks, outside the dynamics entirely.
+The first draft of this page said the four meters have no return arrow at all. **That was wrong, and checking it is what found the real gap.** Every one of them already publishes:
 
-That is by design — `Stigler`'s own header: *"it computes and exposes, it controls nothing."* But it raises the question the diagram makes unavoidable: **a meter that changes nothing is decorative.** The intended return path is:
+| meter | publication path | what it must declare first |
+|---|---|---|
+| `Stigler` | `checkAndRecord` → `Checked` | — (the whole method is public) |
+| `Cantillon` | `attribute` → `Attributed` | a stated counterfactual |
+| `Starr` | `recordVerdict` → `Verdict` | a justified `gammaStar` threshold |
+| `BigoniCameraCasari` | `finding` → `Finding` | a pre-declared minimum sample |
+
+Four for four, all state-changing rather than views, and three of the four refuse to publish until a discipline has been declared. `Stigler.checkAndRecord` even exists *for this reason*, and says so: `check` is a view, so *"a contract built to X-ray the skim leaves no image when it finds one."* These are the most disciplined publication paths in the cast. They are not ornamental.
+
+The break was at the **other end of the chain**:
 
 ```
 meter  →  a finding  →  ⟨JUDGEMENT-REGISTER: a person decides⟩  →  Friedman proposal  →  dials
+                                                                        ↑
+                                                          nowhere to record what it answers
 ```
+
+`Friedman.Proposal` was `{target, data, eta, yes, executed}`. A dial could move with no reason attached to it — so the chain ended in a call that could not be reconstructed later, and it ended **silently**, which is §0.2's failure precisely: the non-event left no trace. Fixed here: `propose` now takes a required `rationale`, stored and evented. It automates nothing — a human still writes the sentence and the members still vote. It makes the human's step leave a record, which is the same discipline the meters already keep, applied at the one point in the building that can act on the world.
+
+**What is still open, stated as the gap it is.** The canon supplies *capabilities* and refers *duties*. A finding can now be published and a proposal can now cite it, but nothing obliges anyone to answer a finding, and nothing runs a clock on it. The register enumerates classes of judgement; it has no column for **whose duty, on what clock**. That is the honest residue, and it is the same shape as the keeper problem in §0.2 — an unnamed party whose non-action leaves no record.
 
 The loop closes **through a human, on purpose**. Every automatic-looking path in this building has a person standing in it, and the register names which decisions are theirs. That is the architecture's actual thesis, and this diagram is the proof: you can trace every loop and find the human.
 
@@ -167,6 +188,6 @@ Solid arrows are on-chain calls. Dashed arrows leave the system and return throu
 
 1. **Two closed loops, both balancing, both in one contract.** There is no reinforcing loop anywhere on-chain. The system cannot run away on its own — it can only be *driven*.
 2. **The reinforcing loops are all outside or social** — acceptance (R1) in the world, composition (R2) among the DAO's members. That is where the framework's own warnings live, and neither is code.
-3. **The measurement tier is a dead end by design**, and its only exit is a person. If a meter's finding never reaches a proposal, the tier is ornamental — which is now a checkable property rather than a worry.
+3. **The measurement tier's only exit is a person**, and every meter already publishes to it under a declared discipline. The missing half was the citation on the far side, now required. What remains missing is a *duty with a clock* — nobody is obliged to answer a finding.
 4. **`balance → votes` is missing on purpose.** Wealth does not buy dials here.
-5. **B4 is supported but unwired.** `inGoodStanding` is a view nobody consumes. Either wire it or say plainly that reputation is advisory.
+5. **B4 stays unwired, by ruling.** Reputation is advisory. Automating it would drive a normative output from an adjudicative input with neither class's guard in the path — and the loop's sign depends on whether you read it from the ledger's side or the member's.
