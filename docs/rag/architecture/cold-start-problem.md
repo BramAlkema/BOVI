@@ -50,6 +50,22 @@ Every working money in human history has solved cold-start with one of four engi
 
 Each engine attaches a *non-monetary demand source* to the token to overcome the cold-start. Without one of these (or a known equivalent), the network does not start.
 
+## The formal version (Choi & Rocheteau)
+
+Choi and Rocheteau's *Money Mining and Price Dynamics* (2019) models this directly: a search economy where money is privately produced by a time-consuming mining technology, and agents choose between mining and producing goods. Their results line up with the account above and derive several parts of it.
+
+- **The thin-market mechanism, derived.** Early on, agents holding the new money "hoard it because they have no opportunities to use it as a medium of exchange." That is the Metcalfe-in-reverse story above, obtained as an equilibrium property rather than asserted. In *all* equilibria of the model, the new money does not circulate initially.
+- **The speculative return is the wage of the bootstrap.** The value of money "must appreciate over time in order to induce agents to mine." Engine 2's *who pays* column is not a sociological observation about enthusiasts; it is a condition for supply to appear at all. A token that does not reward early holders faster than the discount rate does not get produced.
+- **The opening phase is efficient, not pathological.** The initial non-circulating period is shown to be constrained-efficient. Cold-start's first phase is what a planner would also choose, which argues against reading the speculative stage purely as waste.
+- **Circulation begins with abundance, not with belief.** "It is only when money is sufficiently abundant that agents stop hoarding it." The binding constraint on becoming transactional is quantity, not sentiment.
+- **Velocity is a misleading early signal.** A money can have a real transactional role in the long run while showing none in the short run, so judging a young currency by how little it circulates is a mistake.
+
+Two limits worth stating. The model concerns *privately mined token* money, so it speaks to Engines 2 and 3 and is silent on tax-driven and platform-leveraged bootstraps. And it is a working paper; cite the direction of its results rather than specific coefficients until the published version is checked.
+
+**Hypothesis this suggests (not the authors' claim).** If the appreciation phase exists to call forth a costly supply, then monies with no supply to call forth should not need one. That would sort the four engines into two structural classes: *token* monies (speculative, commodity) which bootstrap through a scarcity-and-appreciation phase, and *ledger* monies (tax-driven, platform-leveraged, mutual credit) which bootstrap through imposed or inherited acceptance. A net-zero mutual-credit ledger has nothing to appreciate and nothing to mine, so on this reading it never has to pass through a bubble to start — a point in its favour that the framework has not previously made. The model does not test this; the inference is from its scope, not its results.
+
+One consequence is already checkable: a **demurrage-bearing token cannot bootstrap by mining**, since a negative holding return cannot induce costly production. Gesellian designs accordingly ride an already-bootstrapped unit — Wörgl's stamped scrip was denominated in schillings. Melt appears to be a post-bootstrap design.
+
 ## The "real miners" insight
 
 For Bitcoin specifically: the *real miners* are not the people running ASICs. They are the people who held through bear markets, built exchanges, integrated payment processors, convinced merchants. They are paid in capital appreciation rather than block rewards. Their economic contribution to the network's existence is far larger than the proof-of-work miners'.

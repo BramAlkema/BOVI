@@ -40,6 +40,8 @@ Bitcoin is the textbook case. For its first several years, almost no one used it
 
 **The "real miners"** of Bitcoin are not the ASIC operators — they are the people who held through bear markets, built exchanges, integrated payment processors, convinced merchants. They are paid in capital appreciation. Their economic contribution to the network's existence is far larger than the proof-of-work miners'.
 
+**The appreciation is a requirement, not a windfall.** Choi and Rocheteau (2019) model privately mined money and find that its value "must appreciate over time in order to induce agents to mine" — mining competes with producing goods, so the expected holding return has to beat the foregone production profit. This upgrades the engine's account of itself: early holders are not merely enthusiasts who happened to subsidise the rail, and the appreciation is not incidental to the bootstrap but the price that calls the supply into existence. It also predicts the awkward corollary that this engine cannot be combined with demurrage, since a negative holding return cannot induce costly production. See [cold-start problem](cold-start-problem.md) for the fuller treatment.
+
 ## Engine 3: Industrial / ornamental use value
 
 A commodity has *intrinsic* demand for non-monetary purposes — gold for jewellery and electrical contacts, salt for food preservation, cattle for milk and labour, cowries as decorative items. That underlying demand creates a baseline of holders. The commodity then accumulates monetary functions on top of its primary use.
