@@ -23,7 +23,7 @@ This is the intellectual lineage BOVI lives in. The opposite tradition — **for
 | 1925 | **Marcel Mauss**, *The Gift* | The founding text. Establishes that gift exchange is *not* primitive market exchange — it's a different mode with its own logic. The "obligation to give, receive, and reciprocate" is a separate social structure from market trade. |
 | 1944 | **Karl Polanyi**, *The Great Transformation* | Distinguishes **reciprocity, redistribution, and market exchange** as distinct *forms of integration*. The "embedded economy" thesis: pre-modern economies were embedded in social relations, not abstract markets. |
 | 1972 | **Marshall Sahlins**, *Stone Age Economics* | Sharpens the typology, maps it onto kinship distance: closer = more communal sharing; farther = more market-like exchange. |
-| 1991 | **Alan Fiske**, *Structures of Social Life* | Synthesises into the four-mode Relational Models Theory, grounded in cross-cultural fieldwork. (See [Fiske](fiske-relational-models.md).) |
+| 1991 | **Alan Fiske**, *Structures of Social Life* | Synthesises into the four-mode Relational Models Theory — his Moose (Burkina Faso) fieldwork plus a synthesis of the wider ethnographic record. (Evidence status: [Fiske](fiske-relational-models.md).) |
 | 2011 | **David Graeber**, *Debt: The First 5,000 Years* | Extends the tradition into a frontal critique of the economists' barter myth. Shows credit/debt predates currency by millennia. |
 | 2010s+ | **Bill Maurer, Keith Hart, Deborah Tooker** and the **digital-money anthropologists** | Apply the tradition to mobile money, crypto, and modern unbundling. |
 

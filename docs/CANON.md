@@ -202,7 +202,7 @@ Mapped from Alan Fiske's Relational Models Theory (1991).
 | **Value** | V | Market Pricing | *"The price is the price."* — spot trade between strangers | "Is the price right?" |
 | **Immediate** | I | Communal Sharing | *"We don't count, we just give."* — gift, care, relationship | "Are we okay?" |
 
-These are **cognitive primitives** found across cultures (Fiske's claim, supported by cross-cultural fieldwork). Not learned behaviours. Universally available, universally applied.
+Fiske proposes these as **innately prepared, culturally completed** — his own doctrine pairs each innate structure ("mod") with learned cultural parameters ("preos"), so "not learned" would overstate him. Innateness evidence is strongest for AR and CS, open for EM, absent for MP — a distribution that cuts the framework's way: the *market* mode is the least wired-in of the four (Posture #1's point, made by the psychology). Universally available as a repertoire; how each applies is cultural.
 
 ### The five axioms of money
 
@@ -400,7 +400,7 @@ This is a feature, not a bug. The framework is a *diagnostic vocabulary*, not a 
 
 ## Substantivist anthropology lineage (in one paragraph)
 
-The framework lives in the substantivist tradition of economic anthropology: **Mauss** (*The Gift*, 1925) established gift exchange as a non-market mode with its own logic; **Polanyi** (*The Great Transformation*, 1944) distinguished reciprocity, redistribution, and market exchange as distinct *forms of integration*; **Sahlins** (*Stone Age Economics*, 1972) sharpened the typology and mapped it onto kinship distance; **Fiske** (*Structures of Social Life*, 1991) gave the four-mode synthesis with cross-cultural fieldwork backing; **Graeber** (*Debt: The First 5,000 Years*, 2011) demolished the barter myth and traced 5,000 years of credit; **Maurer**, **Hart**, **Tooker** apply the tradition to digital money, mobile money, and crypto. **BOVI is the substantivist tradition given a modern face for digital-era money.** The opposing tradition — formalism — holds that market logic is universal across cultures and history. The framework rejects formalism on empirical grounds.
+The framework lives in the substantivist tradition of economic anthropology: **Mauss** (*The Gift*, 1925) established gift exchange as a non-market mode with its own logic; **Polanyi** (*The Great Transformation*, 1944) distinguished reciprocity, redistribution, and market exchange as distinct *forms of integration*; **Sahlins** (*Stone Age Economics*, 1972) sharpened the typology and mapped it onto kinship distance; **Fiske** (*Structures of Social Life*, 1991) gave the four-mode synthesis — his own Moose (Burkina Faso) fieldwork plus a synthesis of the wider ethnographic record; **Graeber** (*Debt: The First 5,000 Years*, 2011) demolished the barter myth and traced 5,000 years of credit; **Maurer**, **Hart**, **Tooker** apply the tradition to digital money, mobile money, and crypto. **BOVI is the substantivist tradition given a modern face for digital-era money.** The opposing tradition — formalism — holds that market logic is universal across cultures and history. The framework rejects formalism on empirical grounds.
 
 ---
 
