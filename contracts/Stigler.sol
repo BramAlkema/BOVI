@@ -17,8 +17,13 @@ pragma solidity ^0.8.20;
  *     returns how far a quote strays — the overcharge, made explicit.
  *
  * A pure observer (like Cantillon): it computes and exposes, it controls nothing.
- * Cantillon X-rays the MONETARY skim (who gets new money first); Stigler X-rays
- * the MARKET skim (are you overpaying for this good). Two channels, one X-ray.
+ * The pairing, restated 2026-08 after audit — the earlier gloss here said
+ * Cantillon X-rays "who gets new money first," which is not his mechanism and is
+ * not what that contract measures. Cantillon X-rays exposure to a moving LEVEL
+ * (claims fixed in nominal terms, with a remaining term); Stigler X-rays
+ * dispersion under SEARCH COST (are you overpaying for this good). Only the
+ * second is an information phenomenon — which is why this one, and not that one,
+ * belongs in the known-ness gap. Two different skims, two different axes.
  *
  * A ChallengeBond publishing path is a proposed extension. Unlike Hayek, this
  * contract does not currently implement one.
