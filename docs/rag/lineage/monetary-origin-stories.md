@@ -32,7 +32,7 @@ The story persists because it makes money look private, neutral, and market-y. B
 
 > "Money started as units of account for tracking who owes whom."
 
-- **Source tradition**: Innes (1913) → Keynes → Graeber → Hudson → modern monetary anthropology
+- **Source tradition**: Innes (1913) → Keynes → **Hudson → Graeber** → modern monetary anthropology. *(Ordering corrected 2026-08: Graeber's Mesopotamia chapter draws on Hudson and names him in-text, so he is a popularisation of Hudson on this point rather than independent confirmation of him — citing both as support is double-counting one source.)*
 - **The claim**: in Mesopotamia, temples and palaces tracked who owed grain to whom on clay tablets — proto-cuneiform, Uruk IV, ~3400–3100 BCE. The *unit of account* came first; the *coin* came thousands of years later. Money started as **bookkeeping**.
 - **BOVI mode**: **Balanced** mode origin (ledgers first)
 
