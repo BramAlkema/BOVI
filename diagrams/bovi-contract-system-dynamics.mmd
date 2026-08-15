@@ -1,0 +1,62 @@
+graph TD
+    ACT["activity<br/>(the real economy)"]
+    ACC["acceptance<br/>(in the world)"]
+    PPL["people<br/>reporters and play"]
+
+    BAL["STOCK: balance i<br/>signed, sum = 0"]
+    LIM["STOCK: creditLimit i<br/>the teeth"]
+    COM["STOCK: commons<br/>where melt lands"]
+    REP["STOCK: reputation<br/>Greif"]
+    IDX["STOCK: index level<br/>Hayek"]
+
+    KRU["Krugman<br/>stance"]
+    KW["KiyotakiWright<br/>threshold"]
+    GRE["Greif<br/>report"]
+
+    CAN["METER: Cantillon<br/>nominal exposure"]
+    STI["METER: Stigler<br/>price dispersion"]
+    STA["METER: Starr<br/>sink capacity"]
+    BCC["METER: BigoniCameraCasari<br/>did the floor bind"]
+
+    JUD["JUDGEMENT REGISTER<br/>a person decides"]
+    FRI["Friedman DAO<br/>one member one vote"]
+
+    NOVOTE["ABSENT BY DESIGN<br/>balance never buys votes<br/>plutocracy loop does not close"]
+
+    BAL -->|"B1 melt: accrue on touch"| COM
+    COM -->|"B1 fee lands"| BAL
+    BAL -->|"B2 approaches limit"| LIM
+    LIM -->|"B2 blocks next transfer"| BAL
+
+    ACC --> KW
+    KW -.->|"R1 reinforcing, runs in world"| ACC
+
+    ACT -->|"oracle"| KRU
+    KRU -->|"B3 elasticity"| LIM
+    LIM -.->|"B3 credit capacity"| ACT
+
+    PPL -->|"reports"| GRE
+    GRE --> REP
+    REP -.->|"B4 view, nothing consumes it"| BAL
+
+    PPL -->|"observed prices"| IDX
+    IDX --> CAN
+    IDX --> STI
+
+    BAL --> CAN
+    BAL --> BCC
+    LIM --> BCC
+    BAL --> STA
+
+    CAN --> JUD
+    STI --> JUD
+    STA --> JUD
+    BCC --> JUD
+
+    JUD -->|"proposal"| FRI
+    FRI -->|"R2 addMember, self-composing"| FRI
+    FRI -->|"sets dials"| LIM
+    FRI -->|"sets melt rate"| BAL
+
+    BAL -.->|"NO SUCH ARROW"| NOVOTE
+    NOVOTE -.-> FRI
