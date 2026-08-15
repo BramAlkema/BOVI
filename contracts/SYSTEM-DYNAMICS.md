@@ -1,0 +1,172 @@
+# The cast as a system — stocks, flows, and where the loops close
+
+A stock-and-flow reading of all fifteen contracts, derived from the code rather than the intentions. Symbols: [`NOTATION.md`](NOTATION.md).
+
+**The finding, first, because it is the whole diagram:** the contract system contains **exactly two closed automatic feedback loops**, and both live inside `Kocherlakota`. Every other loop leaves the system and returns through an oracle, a reporter, a provider, or a human governance call. That is not an omission. It is the architecture's signature — *"nothing in here can act on its own"* — and it is checkable, so it should be checked.
+
+---
+
+## Stocks — the things that accumulate
+
+| stock | owner | signed? | notes |
+|---|---|---|---|
+| `balance[i]` | `Kocherlakota` | **yes** | The core stock. Σ must be 0 ([`netSupply`](NOTATION.md#netsupply)). |
+| `creditLimit[i]` | `Kocherlakota` | no | A stock of *permission*, not of value. The teeth. |
+| pending demurrage | `Kocherlakota` | no | Accrued, uncharged. Invisible between touches. |
+| `commons` balance | `Kocherlakota` | yes | Where the melt lands. A named beneficiary. |
+| reputation | `Greif` | **yes** | Fed by reporters, read as a gate. |
+| index level | `Hayek` | no | The rod. Median of competing providers. |
+| observations | `BigoniCameraCasari` | no | Accumulating evidence, per arm. |
+| registered sinks | `Starr` | no | Decreed and realised obligation streams. |
+
+---
+
+## The two closed loops — fully on-chain
+
+These need no caller beyond the transacting party. They are the only genuinely automatic dynamics in the building.
+
+**B1 — the melt (balancing, on the store function).**
+```
+balance[i] > 0  →  _accrue on touch  →  fee = balance · demurrageBps · elapsed / period
+                →  balance[i] falls, commons rises  →  (loop)
+```
+Gesell's design as a balancing loop: holding is taxed, so holding falls. Note the trigger — `_accrue` fires inside `pay`, so **transacting is what charges the idle**, and a balance nobody touches melts only when `poke` is called. The loop is closed but its *clock* is event-driven.
+
+**B2 — the limit (balancing, on debt).**
+```
+balance[i] falls  →  approaches −_limitOf(i)  →  require() blocks the next transfer  →  (loop)
+```
+This is the floor that the token form gets for free and the signed ledger has to legislate. [`BigoniCameraCasari`](BigoniCameraCasari.sol) exists to measure whether this loop ever actually engages — if [`b`](NOTATION.md#b) reads zero, B2 never fired and no behaviour in that run is attributable to it.
+
+---
+
+## The loops that leave the system
+
+Each of these is a genuine feedback loop, and each one routes through the world.
+
+**R1 — acceptance (reinforcing).** The framework's central loop, and the one it is *about*.
+```
+marketability  →  acceptance  →  marketability
+```
+`KiyotakiWright` isolates the feedback and computes the threshold — but it takes marketability scores as **externally supplied**. The loop runs in the world; the contract is a demonstrator of its shape. Reinforcing in both directions: the cold-start trap and the collapse are the same loop with the sign flipped.
+
+**B3 — the stabiliser (balancing, countercyclical by design).**
+```
+activity  →  Krugman.report (oracle)  →  stance()  →  elasticityFactorBps()
+         →  Kocherlakota._limitOf  →  credit capacity  →  ⟨the real economy⟩  →  activity
+```
+Everything up to `_limitOf` is on-chain. The return arrow — does credit capacity change activity? — closes **outside**, and `activity` re-enters through an oracle. This is the longest loop in the building and the only one that touches production.
+
+**B4 — enforcement (balancing).**
+```
+default  →  Greif.report by a reporter  →  reputation falls
+        →  inGoodStanding() gate  →  reduced exposure  →  (loop)
+```
+Note the gap: `inGoodStanding` is a **view**. Nothing consumes it automatically — a caller must wire it. So B4 is a loop the architecture *supports* rather than one it *runs*.
+
+**R2 — composition (reinforcing, and the one to watch).**
+```
+Friedman members  →  propose/vote  →  addMember (onlySelf)  →  Friedman members
+```
+The DAO sets its own membership. That is a reinforcing loop on *who decides*, and it is the classic entrenchment risk.
+
+**What is deliberately absent, and worth saying out loud:** there is **no arrow from `balance` to voting weight**. `Friedman` is one-member-one-vote — `isMember` is a boolean and `voted` is a boolean, with a quorum. So the plutocracy loop (*wealth → votes → dials → wealth*) **does not close in this system by construction**. That is the single most important negative space in the diagram, and it is a design choice, not an accident.
+
+---
+
+## The measurement tier — gauges, not governors
+
+`Cantillon`, `Stigler`, `Starr`, `BigoniCameraCasari` read state and report. **None of them has a return arrow.** In stock-and-flow terms they are instruments on the stocks, outside the dynamics entirely.
+
+That is by design — `Stigler`'s own header: *"it computes and exposes, it controls nothing."* But it raises the question the diagram makes unavoidable: **a meter that changes nothing is decorative.** The intended return path is:
+
+```
+meter  →  a finding  →  ⟨JUDGEMENT-REGISTER: a person decides⟩  →  Friedman proposal  →  dials
+```
+
+The loop closes **through a human, on purpose**. Every automatic-looking path in this building has a person standing in it, and the register names which decisions are theirs. That is the architecture's actual thesis, and this diagram is the proof: you can trace every loop and find the human.
+
+---
+
+## The diagram
+
+```mermaid
+flowchart TB
+    subgraph WORLD["the world — where every long loop closes"]
+        ACT[activity]:::world
+        ACC[acceptance]:::world
+        PPL[people / play]:::world
+    end
+
+    subgraph LEDGER["Kocherlakota — the only closed loops"]
+        BAL[("balance[i]<br/>signed, Σ=0")]:::stock
+        LIM[("creditLimit[i]")]:::stock
+        COM[("commons")]:::stock
+        BAL -->|B1 melt| COM
+        LIM -->|B2 blocks| BAL
+        BAL -->|approaches| LIM
+    end
+
+    subgraph GOV["governance — routed through people"]
+        FRI[Friedman<br/>1 member 1 vote]:::gov
+        JUD{{JUDGEMENT<br/>a person decides}}:::human
+        FRI -->|R2 addMember| FRI
+    end
+
+    subgraph FEED["oracles & reporters"]
+        KRU[Krugman]:::gate
+        HAY[Hayek]:::gate
+        GRE[Greif]:::gate
+        KW[KiyotakiWright]:::gate
+    end
+
+    subgraph METER["measurement — no return arrows"]
+        CAN[Cantillon]:::meter
+        STI[Stigler]:::meter
+        STA[Starr]:::meter
+        BCC[BigoniCameraCasari]:::meter
+    end
+
+    ACT -->|oracle| KRU
+    KRU -->|B3 elasticity| LIM
+    LIM -.->|credit capacity| ACT
+    ACC --> KW
+    KW -.->|threshold| ACC
+    PPL -->|reports| GRE
+    GRE -.->|B4 gate, unwired| BAL
+    PPL -->|prices| HAY
+    HAY --> CAN
+    HAY --> STI
+
+    BAL --> CAN
+    BAL --> BCC
+    LIM --> BCC
+    BAL --> STA
+
+    CAN --> JUD
+    STI --> JUD
+    STA --> JUD
+    BCC --> JUD
+    JUD --> FRI
+    FRI -->|sets dials| LIM
+    FRI -->|sets melt| BAL
+
+    classDef stock fill:#2d3b4e,stroke:#7f9ab5,color:#e8eef5
+    classDef meter fill:#3d3326,stroke:#b5945f,color:#f2ebe0
+    classDef gate fill:#263b33,stroke:#6fae90,color:#e4f2ec
+    classDef gov fill:#3b2b3b,stroke:#a97fa9,color:#f2e8f2
+    classDef human fill:#4e2d2d,stroke:#c98b8b,color:#f7e9e9
+    classDef world fill:#2a2a2a,stroke:#8a8a8a,color:#ededed
+```
+
+Solid arrows are on-chain calls. Dashed arrows leave the system and return through the world. Every dashed arrow is a place the architecture chose not to automate.
+
+---
+
+## What the diagram makes visible
+
+1. **Two closed loops, both balancing, both in one contract.** There is no reinforcing loop anywhere on-chain. The system cannot run away on its own — it can only be *driven*.
+2. **The reinforcing loops are all outside or social** — acceptance (R1) in the world, composition (R2) among the DAO's members. That is where the framework's own warnings live, and neither is code.
+3. **The measurement tier is a dead end by design**, and its only exit is a person. If a meter's finding never reaches a proposal, the tier is ornamental — which is now a checkable property rather than a worry.
+4. **`balance → votes` is missing on purpose.** Wealth does not buy dials here.
+5. **B4 is supported but unwired.** `inGoodStanding` is a view nobody consumes. Either wire it or say plainly that reputation is advisory.
