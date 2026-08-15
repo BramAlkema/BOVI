@@ -78,6 +78,7 @@ Each file has YAML frontmatter with `tags` and `type`. For embedding-based RAG, 
 - [Argentina: The Big Mac War & Dollarisation](cases/argentina-bigmac-dollarisation.md)
 - [Ithaca HOURS & Local Currencies](cases/ithaca-hours.md)
 - [Gold Standard Era](cases/gold-standard-era.md)
+- [Rai Stone Money of Yap](cases/rai-stones-yap.md)
 
 ### Pedagogy
 - [Five Insights to Unlearn](pedagogy/insights-to-unlearn.md)
