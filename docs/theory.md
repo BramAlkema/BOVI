@@ -40,28 +40,31 @@ Alan Page Fiske (1991) identified four elementary forms of sociality that appear
 
 | Fiske Model | BOVI Mode | Monetary Function | Key Insight |
 |-------------|-----------|------------------|-------------|
-| EM | **Balanced** | Unit of account, store of value | Money as distributed ledger |
+| EM | **Balanced** | Unit of account, store of value | Peer reciprocity kept even over time |
 | AR | **Obligated** | Required payment medium | Money as political control |
 | MP | **Value** | Medium of exchange | Money as coordination tool |
 | CS | **Immediate** | Direct reciprocity anchor | Money as fairness intuition |
 
 ### Balanced Mode (Equality Matching → EM)
 
-**Core Function:** Money as society's distributed ledger for tracking obligations across time.
+**Core Function:** Reciprocity between peers, kept roughly even over time — "are we even?" A standing account stays open between two named parties, and the amount owed back is a rough equivalence rather than a price.
 
-**Mechanism:** 
-- Known money supply functions as shared memory
-- Counterfeiting violates record integrity  
-- Periodic settlement reduces transaction costs
+**Mechanism:**
 - Symmetry demands equal treatment
+- Obligations are tracked but not priced
+- Turn-taking and deferred return, not spot settlement
+- Violations register as a peer taking advantage, not as a rule broken
 
 **Historical Examples:**
-- Mesopotamian proto-cuneiform accounting tablets
-- Medieval English tally sticks
-- Modern double-entry bookkeeping
-- Blockchain distributed ledgers
+- Rotating savings clubs — susu, chit funds, tandas
+- Labour-exchange customs — barn-raising, harvest rings, work parties
+- Peer favour ledgers and evenly split costs among equals
 
 **Emotional Resonance:** Fairness violations feel like cheating the system
+
+> **Correction (superseded by `FOUNDATIONS.md` Stone 2).** This section previously gave Balanced mode the core function "money as society's distributed ledger," and listed proto-cuneiform tablets, medieval English tally sticks, double-entry bookkeeping and distributed ledgers as its historical examples. That assignment does not survive the later canon and was propagating errors into the RAG layer.
+>
+> The ledger is not one mode's property. Stone 2 derives it as the substrate of *all* money, and the Tally is designed as a single four-discipline ledger — so "keeps a record" cannot diagnose a mode. Of the four examples, **proto-cuneiform tablets and English exchequer tallies are Obligated**: both recorded amounts prescribed by an authority — temple and palace dues, tax and tribute receipts. **Double-entry bookkeeping and distributed ledgers are mode-agnostic technologies**, carrying whichever discipline is written into them. The diagnosis rule is in [four-modes-overview.md](rag/core/four-modes-overview.md).
 
 ### Obligated Mode (Authority Ranking → AR)
 

@@ -25,7 +25,20 @@ Properties:
 - **Multilateral coordination**: circular trades become visually obvious
 - **Single coherent display**: not per-user dashboards
 
-The historical rope was secretly a Balanced-mode primitive. The Tally extends it to all four modes.
+## Mode classification
+
+**The historical tally rope is a Value-mode artifact.** This corrects an earlier classification of it as "secretly a Balanced-mode primitive," which had propagated into the glossary and [balanced-mode.md](../modes/balanced-mode.md).
+
+The book settles it. Chapter 22: *"Money, we saw there, is what happened when one of the four — clear-it-now, between strangers — got its own infrastructure, and the other three stayed behind in memory, rank, and love. The Tally is the rest of the ledger coming home."* If the Tally is the rest of the ledger *coming home*, the rope was the channel already present, and Intermezzo 8A names it: the village "built one channel, the clear-it-now channel." Value is the discipline money got infrastructure for; the rope is that infrastructure in its earliest form.
+
+The supporting evidence points the same way. The rope prices goods in a common metric — an axe at six marks, a spear at four — and its stated purpose is to work *across kin lines without converting strangers into kin*: without it, every cross-kin trade "either becomes a personal debt, which feels intrusive, or a gift, which feels expensive. The rope is the third option." Avoiding the relational reading is the point.
+
+**Why it looked Balanced.** Two things misled, and both are worth naming because the same errors recur elsewhere:
+
+- *The running net is plumbing, not the discipline.* The rope defers numerical settlement — Adam +3, Oz −2 — which resembles a Balanced-mode standing account. But the relationship closes at the trade; what remains is, in 8A's words, "not you owing me in the thick sense" but "the public residue of a trade that the system can clear later." A card payment is Value mode even though the bank settles net two days later.
+- *Symmetric participation is governance, not mode.* Equal pegs, a record everyone can inspect, and freedom to leave describe who is protected, not which discipline runs. A market with equal access is still a market.
+
+The Tally extends the rope to all four modes.
 
 ## What Splitwise gets wrong
 

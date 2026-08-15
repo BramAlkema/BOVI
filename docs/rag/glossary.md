@@ -45,7 +45,7 @@ One-line definitions for retrieval. Each term links to the file that treats it i
 - **PDA** — Personal Data Assistant: tool for tracking your own price history. Minimum viable: a notebook. → [PDA](practice/personal-pda.md)
 - **Personal index** — A basket of items you actually buy, used as your own measure of currency value. → [indices](practice/personal-indices.md)
 - **The Tally** — Mode-aware group ledger, the modern equivalent of the historical tally rope. → [Tally](practice/the-tally-product.md)
-- **Tally rope (historical)** — Medieval coordination device: rope, pegs, central hub. The original Balanced-mode primitive. → [historical](practice/the-tally-product.md)
+- **Tally rope (historical)** — Coordination device: rope, pegs, central hub. A **Value**-mode primitive — the clear-it-now channel given infrastructure; its running net is settlement plumbing, not Balanced mode. Note two distinct devices share the name: the five-knight price-revealing mechanism, and the four-peg village netting rope of Intermezzo 8A. → [historical](practice/the-tally-product.md#mode-classification)
 - **Five-layer financial stack** — Long-term contracting, short-term transactions, wealth storage, price discovery, account sweeping. → [stack](architecture/five-layer-stack.md)
 
 ## Lineage

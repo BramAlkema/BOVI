@@ -30,6 +30,20 @@ Four cognitive primitives humans use to structure exchange. Mapped from Alan Fis
 - **Obligated** — *"Because they said so."* Authority-imposed exchange, voluntary or coerced. → [O deep](../modes/obligated-mode.md)
 - **Immediate** — *"We don't count, we just give."* Family, gift, care, no tracking. → [I deep](../modes/immediate-mode.md)
 
+## How to diagnose a mode (and two ways it goes wrong)
+
+A mode is a rule for **when and whether the ledger must clear**. Diagnose it by asking two questions about the exchange, not about the equipment:
+
+1. **Does the relationship close?** If the exchange ends when the transfer is made and nothing personal is left outstanding, that is Value. If a standing account remains open between two named parties, that is Balanced.
+2. **Who sets the amount?** A price arrived at between the parties is Value. A figure prescribed by rank, office, occasion or rule is Obligated. Rough equivalence owed back over time is Balanced. No reckoning at all is Immediate.
+
+Two recurring misdiagnoses, both of which had taken root in this corpus:
+
+- **Mistaking settlement plumbing for the discipline.** A running net balance that squares later is *infrastructure*, not a mode. A card payment is Value mode even though the bank settles net two days afterwards; the relationship closed at the counter. Record-keeping technologies — double-entry bookkeeping, distributed ledgers — are mode-agnostic by construction, which is the whole point of a ledger that can carry all four disciplines.
+- **Mistaking symmetric participation for equality matching.** Everyone holding an equal peg, seeing the whole record and being free to leave is a *governance* property. It says who is protected, not which discipline is running. A market with equal access is still a market.
+
+The corollary worth keeping: **an instrument's substrate is downstream of its discipline.** Value must clear to an exact figure, so it needs resolution — divisibility. Obligated discharges a prescribed amount, so it needs unmistakable identity instead, and indivisibility becomes a feature, since an object that cannot be quietly part-paid makes the discharge public. See [rai stone money](../cases/rai-stones-yap.md) for the worked case.
+
 ## What the four-mode framework does
 
 1. **Replaces the textbook "money is one thing"** with a structurally plural account of how humans exchange.
