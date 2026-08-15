@@ -10,7 +10,7 @@ That progression matters. Prose can slide between *money is memory* as a metapho
 
 The result is not a proposed currency. It is not production software, an audit, a monetary constitution, or an empirical demonstration that people would want to live under these rules. It is an **executable canon**: a set of small Solidity contracts that translate the book's claims into operations precise enough to inspect and contest. The contracts do not prove that the theory is true. They prove that we have stopped hiding its verbs.
 
-At the snapshot used for this edition, the repository contains fifteen implemented contracts. Seven appear in the end-to-end demonstration, one has a test file of its own, and seven stand as separate mechanisms exercised by neither. Gesell's demurrage is an overlay inside the memory ledger rather than a sixteenth contract. A further set of named rooms now exists as provisional protocol blueprints. That distinction—implemented, integrated, and specified—is part of the argument. A blueprint is not a building, and a building that compiles is not a city.
+At the snapshot used for this edition, the repository contains sixteen implemented contracts. Seven appear in the end-to-end demonstration, two have test files of their own, and seven stand as separate mechanisms exercised by neither. Gesell's demurrage is an overlay inside the memory ledger rather than a seventeenth contract. A further set of named rooms now exists as provisional protocol blueprints. That distinction—implemented, integrated, and specified—is part of the argument. A blueprint is not a building, and a building that compiles is not a city.
 
 ---
 
@@ -24,6 +24,7 @@ The suite is easiest to understand as a building, not a chain of famous names. T
 | Settlement spine | *Kocherlakota* | records signed positions and clears at net zero |
 | Relational boundary | *Fiske* | keeps Immediate-mode bonds off the settlement rail |
 | Constitutional control | *Friedman* | makes changes pass through vote and delay |
+| The office | *Ostrom* | names who must invoke a duty, and by when, so that not doing it leaves a record |
 | Enforcement | *Greif*, *ChallengeBond* | attaches consequences to records and assertions |
 
 | Layer | Implemented module | The narrow job |
@@ -173,7 +174,7 @@ Fiske is therefore less a mode engine than a permission primitive. It shows wher
 
 ---
 
-## 4 · Friedman: who may turn the dials
+## 4 · Friedman and Ostrom: who may turn the dials, and who must turn the crank
 
 Once credit limits, provider lists, demurrage rates, reporters, and oracle parameters are visible, a harder question arrives: who may change them?
 
@@ -191,7 +192,7 @@ But constitutional thinness is not constitutional completeness. The contract has
 
 This is a recurring lesson in the suite: removing monetary mysticism does not remove government. It reveals where government was hiding. A hard-coded rule is still law technology. Its politics live in membership, amendment, exit, and the distribution of practical power to fork—not in whether the rule is written by a parliament or a compiler.
 
-### Protocol card — `Friedman`
+#### Protocol card — `Friedman`
 
 **State.** Current membership and headcount; timelock and quorum; proposals containing target, calldata, queue time, yes-count, and executed flag; one vote bit per proposal and address.
 
@@ -204,6 +205,38 @@ This is a recurring lesson in the suite: removing monetary mysticism does not re
 **Audit boundary.** The reason is free text and is never checked, so it constrains the record and not the decision; nothing obliges anyone to answer a published finding, and no clock runs on one. The constructor and amendments permit zero addresses, zero or impossible quorum, and zero delay. There are no no-votes, cancellation, expiry, veto, delegation, emergency stop, or proposal-type restrictions. Votes are not snapshotted: removed members' old votes remain and new members may vote on old proposals. A queued proposal survives later membership or quorum changes. Any calldata may be relayed, so capture of the membership captures every attached module.
 
 ---
+
+### The other half of the question
+
+Governance answers who may *change* a rule. It does not answer who must *run* one, and for a long time nothing in the suite did.
+
+Every contract here is strictly reactive. A settlement does not settle until someone calls the settle function; a holding charge is not charged until someone touches the account; a stabilisation rule does not stabilise until someone reports. There is always a party who makes the machinery move, and that party had no contract, no vote, and no name. The suite called them the keeper in a footnote and carried on.
+
+What made this more than tidiness was a discovery about the holding charge. The rate is retroactive: it applies the current parameters to all the time elapsed since an account was last touched. Setting the rate to zero was described as erasing every holder's pending liability, and it does not. It erases only the spans that have not yet been *charged* — so the erasure reaches exactly those holders nobody happened to touch first. Two accounts can hold the same balance, for the same year, under the same rate, and end the episode having paid different amounts. Nothing in the rules distinguishes them. The difference is made entirely by the order in which an unnamed person chose to act.
+
+That is a distributional power. It was not held by governance, it was not voted on, and no one had noticed it, because the mechanism by which it operates is a *non-event*: an account that goes untouched emits nothing. Silence and compliance produce the identical record, which is to say no record.
+
+Underneath the mechanism sat a habit of language. This book has defined a mode as a rule about when and whether the ledger must clear. *Must* — who must? A duty with nobody it falls to is not a stricter duty. It is an unfinished one. And the agentless obligation is exactly the grammar the book spends its length refusing everywhere else: money *has* value, the market *clears*, prices *adjust*. Delete the agent and the property appears to float free, which is the whole conjuring trick. The field card at the back of this book had asked the missing question for years — *when and whether must this clear, and says who?* The definition had dropped it. The practical tool was right and the theory was not.
+
+The Ostrom contract is that question given a storage slot. An office is a duty stated in words, a holder appointed with a mandate on the record, and a period. The holder discharges it by recording that they acted. When the period lapses, anyone at all may flag the office overdue, and that flag emits. A missed clearing stops being an absence and becomes a fact with a name attached to it.
+
+The contract is named for Elinor Ostrom because the gap was hers rather than anyone else's. The economics of getting a monitor to bother was solved long ago by Alchian and Demsetz: give the monitor the residual, and this suite had already done it—whoever charges an idle account keeps a share. Willingness was never the problem. Ostrom's principle is the other one: that a commons endures when its monitors are accountable to the people whose commons it is. Incentive without accountability produces someone who will certainly come, and no answer at all to *who*, or *when*.
+
+Three things it deliberately does not do. It does not call the target, because nothing here can act on its own, and a contract claiming otherwise would be lying about the property this suite is most careful to admit. It does not close the regress: somebody must call the flag as well. And it does not punish. Whether a person failed is a question of adjudication; what should happen to them is a question of distribution; and fusing the two is precisely the error refused a few pages later in the case of reputation. The record accumulates, and removing a holder remains a governance act that must now state its reason—for which the record is available.
+
+What changes is one thing, and it is enough to be worth a contract. The chain of *someone has to do this* now ends at a named party instead of at nobody, and their absence is public rather than silent.
+
+#### Protocol card — `Ostrom`
+
+**State.** Governance address; a list of offices, each holding a stated duty, an informational target address, a holder, a period, the time it was last discharged, and a count of times it has been flagged overdue.
+
+**Roles and commands.** Governance calls `createOffice`, `appoint`, `vacate`, and `setPeriod`. The holder calls `discharge`. Anyone calls `flagOverdue`, `isOverdue`, `isVacant`, and `vacancies`.
+
+**Transition.** An office cannot be created without both a non-empty duty and a non-zero period, and cannot be filled without a non-empty mandate. Appointment restarts the clock. `discharge` accepts only the holder and stamps the current time. `flagOverdue` does nothing before the period lapses; after it, the miss count rises, the clock resets, and an event fires—so one lapse yields one flag however many callers report it.
+
+**Invariant.** A duty always has words and a clock. A vacant office is visible as vacant, and a duty does not disappear when its holder does. No sanction follows from any number of misses.
+
+**Audit boundary.** The contract cannot verify that the holder did the work; it records that a named party asserted it. It cannot act, and its own flag needs a caller, so the regress terminates rather than closes. An office appointed by a captured governance is a captured office. The target address is informational and unenforced; there is no per-office reward, no appeal against a flag, and no scope declaration, so an office covering a set of accounts cannot express which of them it actually reached—which is the very asymmetry that motivated it.
 
 ## 5 · Greif and ChallengeBond: the teeth
 
@@ -456,7 +489,7 @@ The separation from Kiyotaki–Wright matters. A currency can be universally acc
 
 ## 9 · The bench engine: eight tests, nine scenes
 
-The repository's principal Foundry test file is called `CoreE2E.t.sol`; a second, smaller file covers the Clark threshold in isolation. Its setup deploys six modules: Friedman, Greif, Hayek, Kocherlakota, Fisher, and Krugman. It admits three ledger participants, registers identities, admits three index providers, and sets an employer's credit limit. It then gives Friedman authority over Kocherlakota, Greif, and Hayek. Fisher has immutable dependencies rather than a governor. Krugman's governance remains with the deployer. Schumpeter becomes the seventh implemented module exercised by the file, but it is deployed separately inside its own scene with a mock settlement token and its own deployer governance.
+The repository's principal Foundry test file is called `CoreE2E.t.sol`; two smaller files cover the Clark threshold and the Ostrom office in isolation. Its setup deploys six modules: Friedman, Greif, Hayek, Kocherlakota, Fisher, and Krugman. It admits three ledger participants, registers identities, admits three index providers, and sets an employer's credit limit. It then gives Friedman authority over Kocherlakota, Greif, and Hayek. Fisher has immutable dependencies rather than a governor. Krugman's governance remains with the deployer. Schumpeter becomes the seventh implemented module exercised by the file, but it is deployed separately inside its own scene with a mock settlement token and its own deployer governance.
 
 The test is a bench engine. It does not take the system on the road. Each scene turns one conceptual joint far enough to see whether the neighbouring pieces move.
 
@@ -532,9 +565,9 @@ What is demonstrated: countercyclical elasticity can alter the feasibility of ex
 
 What is not: that the reported shortfall is real, that expansion reaches the right participants, that the rule improves welfare outside this constructed case, or that Friedman governs Krugman's oracle and rule in this setup.
 
-The file contains eight test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. There are no unit tests for Fiske, ChallengeBond, Stigler, Kiyotaki–Wright, Cantillon, Starr, or Bigoni–Camera–Casari in the current test directory; no invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All fifteen source contracts compile under Solidity 0.8.20, though two of them did not until this was checked rather than assumed: the newest pair had been written and reviewed but never once put through a compiler, and each carried a parse error that a single build would have caught—a reserved word used as a field name, and an em-dash inside a revert string. Both are now fixed. The lesson is smaller than the suite's subject and worth recording anyway: a contract that has been read carefully and never compiled is prose.
+The file contains eight test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. There are no unit tests for Fiske, ChallengeBond, Stigler, Kiyotaki–Wright, Cantillon, Starr, or Bigoni–Camera–Casari in the current test directory; no invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All sixteen source contracts compile under Solidity 0.8.20, though two of them did not until this was checked rather than assumed: the newest pair had been written and reviewed but never once put through a compiler, and each carried a parse error that a single build would have caught—a reserved word used as a field name, and an em-dash inside a revert string. Both are now fixed. The lesson is smaller than the suite's subject and worth recording anyway: a contract that has been read carefully and never compiled is prose.
 
-An earlier version of this appendix reported that the test suite had not been run, because the toolchain was unavailable. That was true of the machine and not of the repository, which had always carried the one line of setup required. The toolchain was installed and the suite was run: thirteen tests across two files, all passing. The distinction is worth keeping in view, because it is the same distinction the appendix keeps making elsewhere—a thing documented as possible is not a thing anyone has done, and the gap between them stays invisible until someone closes it. A green run means only that these selected state transitions behaved as asserted. It does not mean the monetary constitution is safe.
+An earlier version of this appendix reported that the test suite had not been run, because the toolchain was unavailable. That was true of the machine and not of the repository, which had always carried the one line of setup required. The toolchain was installed and the suite was run: nineteen tests across three files, all passing. The distinction is worth keeping in view, because it is the same distinction the appendix keeps making elsewhere—a thing documented as possible is not a thing anyone has done, and the gap between them stays invisible until someone closes it. A green run means only that these selected state transitions behaved as asserted. It does not mean the monetary constitution is safe.
 
 ---
 
@@ -555,6 +588,13 @@ The names in the cast can create a false sense of completeness, so the status de
 | Stigler | yes | no | standalone observer |
 | Kiyotaki–Wright | yes | no | standalone threshold model |
 | Krugman | yes | yes | scales limits; governance remains the deployer |
+| Ostrom | yes | no | own test file; names the party every other module waits on, and is attached to none of them |
+| Clark | yes | no | own test file; reads a demurrage rate through a mock |
+| Cantillon | yes | no | standalone meter; can read Hayek's level, wired to nothing |
+| Starr | yes | no | standalone meter; refuses a verdict until a threshold is declared |
+| Bigoni–Camera–Casari | yes | no | standalone meter; refuses a finding below a pre-declared sample |
+
+That last block is newer than the rest of this appendix and the column that matters is the middle one: five modules exist, compile, and are exercised by nothing the demonstration runs. Two of them were written, reviewed, cross-referenced and quoted in this book before anyone put them through a compiler, and both were broken. The table is here so that kind of gap has somewhere to show.
 
 The gaps between those columns are where the next honest work lives. “Compiles” means the compiler accepted the types and control flow. “In the test” means at least one selected path appears in the run-sheet. “Connected” means one module's output currently reaches another. None of the three means the path was adversarially tested, audited, production-ready, or socially legitimate.
 

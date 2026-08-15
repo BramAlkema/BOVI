@@ -32,10 +32,11 @@ Four cognitive primitives humans use to structure exchange. Mapped from Alan Fis
 
 ## How to diagnose a mode (and two ways it goes wrong)
 
-A mode is a rule for **when and whether the ledger must clear**. Diagnose it by asking two questions about the exchange, not about the equipment:
+A mode is a rule for **when and whether the ledger must clear, and who it falls to**. Diagnose it by asking three questions about the exchange, not about the equipment:
 
 1. **Does the relationship close?** If the exchange ends when the transfer is made and nothing personal is left outstanding, that is Value. If a standing account remains open between two named parties, that is Balanced.
 2. **Who sets the amount?** A price arrived at between the parties is Value. A figure prescribed by rank, office, occasion or rule is Obligated. Rough equivalence owed back over time is Balanced. No reckoning at all is Immediate.
+3. **Who says when?** Value answers at the counter, and the counter is both parties at once. Balanced answers between the two who keep the account, which is why it can lean for years without anyone defaulting. Obligated answers from above, on someone else's calendar. Immediate has no answer, because the question is the offence. A clearing rule with no bearer is not a stricter rule; it is an unfinished one — the third question was missing from this list until 2026-08, which is the same omission the framework's own definition carried.
 
 Two recurring misdiagnoses:
 

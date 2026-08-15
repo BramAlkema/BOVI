@@ -135,6 +135,18 @@ Governance sets the rate. **The keeper decides who it lands on**, and nobody app
 
 So: you can trace every loop and find a human. Some of them you find only by looking for who *isn't* in the register.
 
+## The skyhook, and what replaced it
+
+The keeper was missing from the cast because the framework's own grammar had no slot for them. `FOUNDATIONS.md` defined a mode as *"a rule about when and whether the ledger must clear."* **Must — who must?** A duty with nobody it falls to is not a stricter duty; it is an unfinished one. And an agentless *must* is precisely the essentialist grammar this project exists to refuse: money *has* value, the market *clears*, prices *adjust* — delete the agent and the property floats free, which is the whole trick.
+
+The book's field card had always asked the question the definition dropped — *"when and whether must this clear, **and says who?**"* The practical tool was right and the theory was not, which is the fifth time in this audit that the repo had already fixed something in one place and failed to carry it across. The bearer clause is now restored everywhere the identity is stated.
+
+`Ostrom` is that clause given a storage slot. An office is a stated duty, a holder appointed with a mandate, and a clock; anyone may flag it overdue, which is the register's own class-A remedy — *event staleness so a missed clearing is visible as a positive fact rather than an absence.* Before it, silence and compliance were the same observation.
+
+**What it does not do, stated plainly, because the temptation runs the other way.** It cannot call the target; §0.2 is a property of the platform, and `flagOverdue` needs a caller too, so the regress does not close. It does not punish — that would fuse an adjudicative input to a normative output with neither guard, the error already ruled against in `Greif`. And the incentive half was never the gap: `Kocherlakota.pokeRewardBps` is Alchian and Demsetz's monitor taking the residual, and it was built long before anyone noticed the monitor had no name.
+
+What changes is one thing, and it is enough. The regress now terminates in a **named party** rather than in nobody, and their absence is a public fact rather than a silence. You can still trace every loop and find a human — and now the register can see them all.
+
 ---
 
 ## The diagram

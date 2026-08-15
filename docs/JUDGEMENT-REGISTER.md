@@ -45,7 +45,15 @@ Whoever runs the keeper is therefore a load-bearing party with no contract, no v
 **A — close it:** incentivise invocation (keeper rewards), and event *staleness* so a missed clearing is visible as a positive fact rather than an absence.
 **B — refer it:** the keeper. An institution must run it, and be accountable for running it. Naming this is the honest alternative to pretending the ledger is self-executing.
 
-**And a class this register does not have (added 2026-08).** The four-class table above sorts *decisions* and assigns each a guard. The keeper makes no decision in any of the four classes — they make a **timing choice**. That is why the register did not catch the case now recorded under `Kocherlakota`: when a retroactive rate change meets a caller who chooses whom to charge first, timing becomes distributional, and no row here covers it. The instrument built to enumerate the humans in this canon cannot see this one. Stated as a gap rather than patched, because adding a fifth class without a guard to put in it would only look like progress.
+**A fifth class, and now a guard for it (added 2026-08).** The four-class table above sorts *decisions* and assigns each a guard. The keeper makes no decision in any of the four — they make a **timing choice**, and no row covered it. That is why the register did not catch the case now recorded under `Kocherlakota`: when a retroactive rate change meets a caller who chooses whom to charge first, timing becomes distributional. The instrument built to enumerate the humans in this canon could not see the one its own §0.2 had named.
+
+| Class | The question | Correct guard | Wrong guard |
+|---|---|---|---|
+| **Executive** | this must happen — who does it, and by when? | a named office: a holder, a clock, and a public record of non-performance | **a reward alone.** Paying a caller solves willingness, not accountability; it says someone will come, not who, and not when |
+
+The guard was withheld until there was one to name. `Ostrom` is it: an office is a stated duty, a holder appointed with a mandate, and a period, and anyone may flag it overdue — which converts a missed clearing from an absence into an evented fact. Note what it does **not** do. It cannot call the target (§0.2 is a property of the platform, and `flagOverdue` needs a caller too, so the regress does not close). It does not punish, because "did they fail?" is adjudicative and "what happens to them" is normative, and fusing those is the error already ruled against under `Greif`. The sanction is referred to `Friedman`, which must now state a reason and can cite the missed count as one.
+
+**And the grammar this was hiding in.** `FOUNDATIONS.md` defined a mode as *"a rule about when and whether the ledger must clear."* Must — who must? A duty with nobody it falls to is not stricter, it is unfinished, and an agentless *must* is the essentialist grammar the framework exists to refuse. The book's field card had asked the missing question all along — *and says who?* — while every statement of the definition dropped it. Corrected across the canon 2026-08. That the practical tool was right and the theory was not is the fifth time this session the repo had already diagnosed something and failed to propagate it.
 
 ## The register (written contracts)
 
@@ -146,6 +154,14 @@ Ledger-likeness is "an externally supplied toy input." A demonstrator, not deplo
 | `netPriceAtZeroPositive` — does harvesting stay profitable to zero? | **Epistemic** | — | A scientific determination, per stock. **Not a vote, not governance.** The clearest case in the register of a judgement that must go to expertise |
 | `r`, `K` | Epistemic | — | Stock assessment. Same guard |
 | δ, the demurrage source | Normative | Already evented and gov-gated | — |
+
+### `Ostrom` — the office
+| Judgement | Class | A — close it | B — refer it |
+|---|---|---|---|
+| Whether the holder actually did the work | **Epistemic** | Not closable: this contract cannot see into the target, and a claim that it could would be the oracle problem in a different hat. What it establishes is that a named party asserted it, at a time, under their own address | The people affected, who can observe the target directly |
+| Who is appointed, and who may remove them | **Constitutive** | Governance-gated, with a mandate required on the record | Prior to the contract, like every membership question here. An office appointed by a captured governance is a captured office |
+| What a missed count should cost | **Normative** | Deliberately not wired — see the `Greif` ruling for why an adjudicative input must not drive a normative output unguarded | `Friedman`, citing the count as its stated reason |
+| That someone must call `flagOverdue` too | **Executive** | **Irreducible here.** The regress does not close; it terminates in a named office rather than in nobody | Itself, recursively — which is honest rather than clever |
 
 ## The irreducible residue
 

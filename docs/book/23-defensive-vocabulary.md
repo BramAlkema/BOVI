@@ -61,7 +61,7 @@ We never handed you a doctrine. We handed you, one chapter at a time, a small se
 
 *Which function am I using this for?* — medium, unit, store, deferred payment — and have I confused one for another, or let one tool pretend to do all four?
 
-*Which mode did this collapse into?* — Value, Balanced, Obligated, Immediate — which is to ask: when and whether must this clear, and is that the discipline this exchange should be under?
+*Which mode did this collapse into?* — Value, Balanced, Obligated, Immediate — which is to ask: when and whether must this clear, who it falls to, and is that the discipline this exchange should be under?
 
 *Who decided that, and could I refuse?* — the consent axis under every authority and every price.
 

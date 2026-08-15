@@ -32,7 +32,7 @@ A bridal party fighting over who pays for what — the same fight everyone has h
 
 ## Subarcs
 
-- **Seed of the clearing-discipline arc:** the modes count in four different ways (Fiske's own scale-type observation — nominal/ordinal/interval/ratio). Stated as a curiosity here; becomes the hinge in Ch 4 (a mode = a rule for when the ledger must clear).
+- **Seed of the clearing-discipline arc:** the modes count in four different ways (Fiske's own scale-type observation — nominal/ordinal/interval/ratio). Stated as a curiosity here; becomes the hinge in Ch 4 (a mode = a rule for when the ledger must clear, and who it falls to — the bearer clause is load-bearing and was missing until 2026-08).
 - Anthropology lineage threaded gently — Mauss, Polanyi, Sahlins, Fiske footnoted but not foregrounded.
 - The bridal party returns in Chapters 12, 15, and 22 for different analytical work each time. First of four uses.
 - First introduction of the four modes that organise the entire rest of the book.
