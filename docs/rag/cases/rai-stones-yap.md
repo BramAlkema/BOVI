@@ -2,7 +2,7 @@
 title: Rai Stone Money of Yap
 type: case
 tags: [rai, yap, stone-money, title-registry, clearing-discipline, obligated-mode, balanced-mode, anti-essentialism, hard-money]
-sources: [FOUNDATIONS.md, THE-THEORY-OF-MONEY-RECENSION.md, book/08a-ye-tally-rope.md]
+sources: [primary-literature, FOUNDATIONS.md, THE-THEORY-OF-MONEY-RECENSION.md, book/08a-ye-tally-rope.md]
 related: [../core/portable-forgetful-ledger.md, ../core/five-axioms.md, ../modes/obligated-mode.md, ../modes/balanced-mode.md, ../practice/the-tally-product.md, bitcoin.md]
 ---
 
@@ -66,7 +66,7 @@ Legend: ✅ primary text retrieved and read · ⚠️ consulted at one remove, v
 - ✅ Gillilland, C. L. C. (1975). *The Stone Money of Yap: A Numismatic Survey*. Smithsonian Studies in History and Technology 23. Includes *Civil Action No. 25* (1961) and Yap Islands Congress Resolution 10-65 (1965) as appendices.
 - ✅ Friedman, M. (1991). "The Island of Stone Money." Hoover Institution Working Paper E-91-3. *(Distinct from the `Friedman` contract in this repo, which names him for rules-over-discretion governance.)*
 - ✅ Fitzpatrick, S. M. (2002). "A Radiocarbon Chronology of Yapese Stone Money Quarries in Palau." *Micronesica* 34(2): 227–242.
-- ✅ Walton, J. L. (2022). "Bitcoin and stone money: Anglophone use of Yapese economic cultures, 1910–2020." *Finance and Society* 8(1): 42–66. The leading corrective to the received retellings.
+- ✅ Walton, J. L. (2022). "Bitcoin and stone money: Anglophone use of Yapese economic cultures, 1910–2020." *Finance and Society* 8(1): 42–66. Open access; collates the documented errors in the textbook and popular retellings.
 - ✅ Lautz, T. (2007). "The world's most curious money?" ICOMON. Field-reliable; repeats the debunked O'Keefe shipwreck story.
 - ⚠️ Goldberg, D. (2005). "Famous Myths of 'Fiat Money'." *JMCB* 37(5). Abstract only; full text paywalled.
 - ⚠️ Fitzpatrick, S. M. & McKeon, S. (2020). "Banking on Stone Money: Ancient Antecedents to Bitcoin." *Economic Anthropology* 7(1). Closed access; quoted via Walton.
