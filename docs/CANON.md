@@ -144,6 +144,7 @@ And the identity's silence is where this framework does its work. *"The deficit 
 - **Default**: Splitwise is helpful — it removes the awkwardness of money among friends
 - **Framework**: Splitwise treats *everything* as Balanced mode. It silently converts gifts (Immediate) into debts (Balanced), market trades (Value) into peer reciprocity, rent payments (Obligated) into ledger entries. By stripping mode information, it makes friendships feel transactional. The friction it removes is the friction of *what kind of relationship the friends are having*.
 - **Why**: Tools that are mode-blind impose one mode by default. The proposed [Tally](rag/practice/the-tally-product.md) fixes this by tagging each transaction with its mode (O / V / B / I), making the Immediate-mode "doesn't count" tag a first-class feature.
+- **Pedigree (borrowed, not invented)**: this is Fiske's own territory. Fiske & Tetlock, "Taboo Trade-offs" (*Political Psychology* 18(2), 1997) and McGraw & Tetlock (*J. Consumer Psychology* 15(1), 2005) show that applying Market Pricing norms to Communal Sharing, Authority Ranking or Equality Matching relationships provokes moral outrage and what they call *constitutive incommensurability* — the offence is not the amount but the mode transfer. Splitwise is that result, shipped as a product. The framework's contribution here is the diagnosis of a *tool* as the agent of the mode transfer, not the underlying psychology.
 
 ### Quirk 16 — "Underbanked" is a colonial frame
 

@@ -48,12 +48,26 @@ BOVI is the application of Fiske's RMT to monetary exchange.
 
 ## The mapping at a glance
 
-| Fiske model | Symbol | BOVI mode | Monetary function in BOVI |
-|---|---|---|---|
-| EM (Equality Matching) | EM | **Balanced** | Distributed ledger; tracks obligations across time |
-| AR (Authority Ranking) | AR | **Obligated** | Required payment medium; political control |
-| MP (Market Pricing) | MP | **Value** | Medium of exchange; coordination tool |
-| CS (Communal Sharing) | CS | **Immediate** | Direct reciprocity; fairness intuition anchor |
+| Fiske model | Symbol | BOVI mode | Measurement scale (Fiske's own) | Clearing discipline |
+|---|---|---|---|---|
+| CS (Communal Sharing) | CS | **Immediate** | nominal | never clears |
+| AR (Authority Ranking) | AR | **Obligated** | ordinal | clears on schedule, amount prescribed by rank or occasion |
+| EM (Equality Matching) | EM | **Balanced** | interval | nets over a window; rough equivalence, not a price |
+| MP (Market Pricing) | MP | **Value** | ratio | clears now, at a price, between strangers |
+
+The scale column is Fiske's own correspondence to Stevens's levels of measurement (Fiske 1991; 1992). It makes the modes the four resolutions a ledger can keep — the canonical statement is `FOUNDATIONS.md` §"modes as clearing disciplines".
+
+## What Fiske does *not* say — money is not MP's property
+
+This is the most commonly mis-stated part of the correspondence, and it was previously mis-stated here. Fiske defines Market Pricing by **proportionality**, not by money:
+
+> "Market Pricing (MP) relationships are oriented to socially meaningful ratios or rates such as prices, wages, interest, rents, tithes, or cost-benefit analyses. **Money need not be the medium**, and MP relationships need not be selfish, competitive, maximizing, or materialistic."
+
+His MP examples include cost-effectiveness standards, utilitarian judgments, equity in proportion to contribution, and spending time efficiently — none of which involve money. He also places prescribed transfers *inside* the other models: "offerings of filial piety" under AR, "restitution in kind" under EM. Money-like transfers therefore already live across the models, which is precisely why MP has no monopoly on money.
+
+**The consequence for BOVI.** This table previously carried a fourth column assigning each model a monetary function — EM "distributed ledger," AR "required payment medium," MP "medium of exchange," CS "direct reciprocity anchor." No published source makes that mapping, and it cuts against Fiske twice: he denies MP owns money, and the two taxonomies are orthogonal — he partitions *kinds of relationship*, the four functions partition *uses of one instrument*. The mapping has been retired; see `../../MODE-FUNCTION-MAPPING-PLAN.md`.
+
+What the framework may legitimately claim is a correspondence between Fiske's relationship typology and the instrument typology of Polanyi, Dalton and Kuroda — **claimed as the framework's own contribution**, not as something found in Fiske. See [special-purpose money](special-purpose-money.md).
 
 ## Why this is the right intellectual foundation for BOVI
 

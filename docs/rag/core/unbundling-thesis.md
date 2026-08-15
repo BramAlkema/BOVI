@@ -85,3 +85,4 @@ The unbundled stack is not the future of money; it is the *current practice* of 
 - [Five-Layer Stack](../architecture/five-layer-stack.md) — practical architecture
 - [Two-Layer Pattern](../architecture/two-layer-pattern.md) — bundled bootstrap, unbundled use
 - [Unbundled Personal Stack](../practice/unbundled-personal-stack.md) — how to build your own
+- [Special-Purpose Money](../lineage/special-purpose-money.md) — the pedigree: Jevons asserted the functions were separable in 1875, and unbundled monetary arrangements are the historical norm

@@ -22,7 +22,7 @@ Then walk the user through four contexts in which the same bill operates as a di
 - *You owe your roommate $20 for groceries*
 - User sees: *"This $20 is a way to balance our accounts, make things fair"*
 - Emotional tone: justice, reciprocity, settling debts
-- This is **Equality Matching** — the ledger function
+- This is **Equality Matching** — a standing account between peers, squared over time
 
 ### Context 2: Obligated mode
 - *Your boss gives you $20 for lunch during a work meeting*
