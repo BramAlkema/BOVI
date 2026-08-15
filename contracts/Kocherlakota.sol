@@ -41,9 +41,40 @@ pragma solidity ^0.8.20;
  * decides what is inspectable): demurrage that has ACCRUED but not been charged
  * emits nothing, because no transaction occurs until someone touches the holder.
  * `balance` is therefore knowably stale between touches — read `pendingDemurrage`
- * alongside it. Nothing in here can act on its own (§0.2): `poke` exists because
- * the melt needs a caller, and `setPokeReward` exists because a caller needs a
- * reason. Whoever runs that keeper is a load-bearing party the cast does not name.
+ * alongside it (and note `grossInCirculation()` reads raw balances, so it
+ * OVERSTATES gross by the sum of pending demurrage). Nothing in here can act on
+ * its own (§0.2): `poke` exists because the melt needs a caller, and
+ * `setPokeReward` exists because a caller needs a reason. Whoever runs that keeper
+ * is a load-bearing party the cast does not name.
+ *
+ * AXIOM AUDIT (2026-08). Checked against FOUNDATIONS Stone 4.
+ *  - A1 resolution: holds (uint256; divisibility is free for an abstract ledger).
+ *  - B1 conservation: holds, on every write path — pay/payFrom, _accrue, the poke
+ *    reward, and jubilee (which credits exactly what it absorbed, so integer
+ *    division cannot mint). `netSupply()` is the standing check; it must read 0.
+ *  - B2 authentication: holds within the model (msg.sender + isKnight; operator
+ *    powers explicit and evented).
+ *  - B3 symmetrically-known supply: STRAINS, in three named gaps — and Stone 4
+ *    predicts exactly this, since "sufficiently known" is a threshold and the
+ *    shortfall between sufficient and perfect is where the skim lives.
+ *      (i) the stabiliser is an external oracle: `_limitOf` reads
+ *          `elasticityFactorBps()` from another contract, so every knight's
+ *          effective limit — the gross claim capacity — can move without this
+ *          contract emitting anything. Reading your own limit needs two logs.
+ *      (ii) demurrage is retroactive (see setDemurrage), which is a steward lever
+ *          over past periods; DemurrageChanged fires, but no holder's altered
+ *          pending liability does.
+ *      (iii) balance staleness, above.
+ *    None of these break conservation. All three redistribute gross claims. That
+ *    is the doctrine working, not failing: extraction pools in the known-ness gap.
+ *
+ * WHY THE CREDIT LIMIT IS NOT DECORATION. A token ledger's balances cannot go
+ * below zero, and that floor IS its enforcement — possession is settlement, so
+ * nobody can owe (Kocherlakota's money is "a primitive form of memory"; the floor
+ * is what the primitive form buys, and experimentally it is what disciplines
+ * free-riding: Bigoni-Camera-Casari 2020). This ledger lifts the floor — signed
+ * balances — and therefore MUST supply enforcement another way. `creditLimit` is
+ * that way. Stone 4's "no floor, pay with teeth," instantiated.
  */
 interface IKrugman {
     function elasticityFactorBps() external view returns (uint256);
@@ -265,6 +296,12 @@ contract Kocherlakota {
     function netSupply() external view returns (int256 net) {
         for (uint256 i = 0; i < knights.length; i++) net += balance[knights[i]];   // MUST be 0
     }
+    /// ⚠ Reads raw balances, so this OVERSTATES gross by the sum of pending
+    /// demurrage across un-poked holders. Left uncorrected deliberately: accruing
+    /// inside a view would either lie about state or cost gas to tell the truth.
+    /// The honest read is this minus `pendingDemurrage` over the membership — the
+    /// known-ness gap named in the header, visible in the transparency function
+    /// itself rather than hidden behind it.
     function grossInCirculation() external view returns (uint256 gross) {
         for (uint256 i = 0; i < knights.length; i++) { int256 b = balance[knights[i]]; if (b > 0) gross += uint256(b); }
     }
