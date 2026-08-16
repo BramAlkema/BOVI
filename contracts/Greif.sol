@@ -2,12 +2,11 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Greif — identity & reputation (the teeth)
+ * @title Greif — V1 identity and reputation memory (advisory)
  *
  * Executes: Avner Greif — reputation institutions that let strangers trade
- * (the Maghribi coalition). This is the enforcement Kocherlakota's theorem
- * needs: a record's power over a token is that it can reward and punish
- * individually. Authorized reporters adjust reputation; another system may use
+ * (the Maghribi coalition). This demonstrator stores one global attributed
+ * score. Authorized reporters adjust reputation; another system may use
  * `inGoodStanding` as an exclusion gate. The current Schumpeter contract does
  * not report defaults here. Governance can be transferred to Friedman; this is
  * done for Greif in CoreE2E but is not enforced by Greif itself.
@@ -37,9 +36,10 @@ pragma solidity ^0.8.20;
  *      in the member's capacity, and which one you call it is a choice of vantage — the
  *      aggregate vantage this framework exists to distrust.
  *
- * WHAT WOULD HAVE TO EXIST FIRST, if the gate is ever wired: reports routed through
- * `ChallengeBond` with a stated reason and a dispute window (the register already
- * prescribes this), a floor the gate cannot cut capacity below, and a route back up.
+ * WHAT WOULD HAVE TO EXIST FIRST, if a contextual gate is ever wired: a typed
+ * claim → challenge → finding lifecycle with a stated reason and evidence
+ * (`ChallengeBond` is only one possible contest topology), a floor the gate cannot
+ * cut capacity below, and a route back up.
  * Without a terminus the reinforcing arm in (3) has no bottom, and a reputation system
  * with no bottom is a debt trap with a clean interface. Until then: advisory, said
  * plainly, and callers who choose to read `inGoodStanding` do so as a named decision.
@@ -48,7 +48,7 @@ pragma solidity ^0.8.20;
  *   - PRIVACY: a public reputation registry is a panopticon. A real version
  *     uses ZK selective disclosure — prove "standing ≥ X" without revealing who
  *     you are or your history.
- *   - SYBIL-RESISTANCE: teeth need real identities; decentralized
+ *   - SYBIL-RESISTANCE: persistent reputation needs defensible identities; decentralized
  *     proof-of-personhood is the open problem. Genesis registration is a
  *     stand-in for the demonstrator.
  */
@@ -73,7 +73,7 @@ contract Greif {
     function deregister(address who) external onlyGov { registered[who] = false; emit Deregistered(who); }
     function setReporter(address who, bool ok) external onlyGov { isReporter[who] = ok; emit ReporterSet(who, ok); }
 
-    // the teeth primitive: an authorized reporter adjusts standing without evidence or appeal
+    // V1 memory primitive: an authorized reporter adjusts a global score without evidence or appeal
     function report(address who, int256 delta) external {
         require(isReporter[msg.sender], "not reporter");
         require(registered[who], "unknown");

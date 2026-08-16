@@ -1,10 +1,12 @@
 graph TD
     ACT["activity<br/>(the real economy)"]
     ACC["acceptance<br/>(in the world)"]
-    PPL["people<br/>reporters and play"]
+    PPL["people and institutions<br/>observe, trigger, find, respond, repair"]
+    PRIME["priming source<br/>who pays the siphon cost"]
+    CONT["continuation surplus<br/>future opportunity at risk"]
 
     BAL["STOCK: balance i<br/>signed, sum = 0"]
-    LIM["STOCK: creditLimit i<br/>the teeth"]
+    LIM["STOCK: creditLimit i<br/>new-exposure guard"]
     COM["STOCK: commons<br/>where melt lands"]
     REP["STOCK: reputation<br/>Greif"]
     IDX["STOCK: index level<br/>Hayek"]
@@ -18,18 +20,23 @@ graph TD
     STA["METER: Starr<br/>sink capacity"]
     BCC["METER: BigoniCameraCasari<br/>did the floor bind"]
 
-    JUD["JUDGEMENT REGISTER<br/>a person decides"]
+    JUD["JUDGEMENT / RESPONSE<br/>guard and topology declared"]
     FRI["Friedman DAO<br/>one member one vote"]
+
+    SAFE["CLOSED ON-CHAIN<br/>transaction-safety invariants<br/>not institutional loops"]
 
     NOVOTE["ABSENT BY DESIGN<br/>balance never buys votes<br/>plutocracy loop does not close"]
 
-    BAL -->|"B1 melt: accrue on touch"| COM
-    COM -->|"B1 fee lands"| BAL
-    BAL -->|"B2 approaches limit"| LIM
-    LIM -->|"B2 blocks next transfer"| BAL
+    BAL -->|"B1 after pay or poke: triggered transfer"| COM
+    BAL -.->|"approaches B2 boundary"| LIM
+    LIM -->|"revert: state unchanged"| BAL
+    BAL -->|"paired-write conservation"| SAFE
 
+    PRIME -->|"early acceptance domain"| ACC
     ACC --> KW
     KW -.->|"R1 reinforcing, runs in world"| ACC
+    ACC -.->|"installed future use"| CONT
+    CONT -.->|"conditional reason to maintain"| PPL
 
     ACT -->|"oracle"| KRU
     KRU -->|"B3 elasticity"| LIM
@@ -37,7 +44,7 @@ graph TD
 
     PPL -->|"reports"| GRE
     GRE --> REP
-    REP -.->|"B4 view, nothing consumes it"| BAL
+    REP -.->|"advisory view; response separately chosen"| PPL
 
     PPL -->|"observed prices"| IDX
     IDX --> CAN
@@ -48,12 +55,12 @@ graph TD
     LIM --> BCC
     BAL --> STA
 
-    CAN --> JUD
-    STI --> JUD
-    STA --> JUD
-    BCC --> JUD
+    CAN -->|"finding"| JUD
+    STI -->|"finding"| JUD
+    STA -->|"finding"| JUD
+    BCC -->|"finding"| JUD
 
-    JUD -->|"proposal"| FRI
+    JUD -.->|"one optional response topology"| FRI
     FRI -->|"R2 addMember, self-composing"| FRI
     FRI -->|"sets dials"| LIM
     FRI -->|"sets melt rate"| BAL

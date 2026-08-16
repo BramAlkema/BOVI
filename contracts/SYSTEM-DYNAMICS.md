@@ -1,8 +1,8 @@
 # The cast as a system — stocks, flows, and where the loops close
 
-A stock-and-flow reading of all fifteen contracts, derived from the code rather than the intentions. Symbols: [`NOTATION.md`](NOTATION.md).
+A stock-and-flow reading of all sixteen contracts, derived from the code rather than the intentions. Symbols: [`NOTATION.md`](NOTATION.md). The ground-up successor and its closure ledger are specified in [`V2-OVERHAUL-PLAN.md`](V2-OVERHAUL-PLAN.md).
 
-**The finding, first, because it is the whole diagram:** the contract system contains **exactly two closed automatic feedback loops**, and both live inside `Kocherlakota`. Every other loop leaves the system and returns through an oracle, a reporter, a provider, or a human governance call. That is not an omission. It is the architecture's signature — *"nothing in here can act on its own"* — and it is checkable, so it should be checked.
+**Correction first, because it changes the diagram:** the earlier audit called two `Kocherlakota` paths “closed automatic feedback loops.” That was too strong. Demurrage is decay triggered by `pay` or `poke`; the credit limit is a safety guard that reverts a transaction without restoring a stock. The closed on-chain objects are narrower **within-transaction invariants**—paired-write conservation and authenticated/authorised state changes—not complete institutional loops. Every claim about liveness, world observation, acceptance, consequence or continuation leaves the runtime and must return through a declared keeper topology. “Closed” is therefore qualified below rather than used as a synonym for “coded.”
 
 ---
 
@@ -11,7 +11,7 @@ A stock-and-flow reading of all fifteen contracts, derived from the code rather 
 | stock | owner | signed? | notes |
 |---|---|---|---|
 | `balance[i]` | `Kocherlakota` | **yes** | The core stock. Σ must be 0 ([`netSupply`](NOTATION.md#netsupply)). |
-| `creditLimit[i]` | `Kocherlakota` | no | A stock of *permission*, not of value. The teeth. |
+| `creditLimit[i]` | `Kocherlakota` | no | A stock of *permission*, not of value. It caps new exposure; it does not make an existing debtor perform. |
 | pending demurrage | `Kocherlakota` | no | Accrued, uncharged. Invisible between touches. |
 | `commons` balance | `Kocherlakota` | yes | Where the melt lands. A named beneficiary. |
 | reputation | `Greif` | **yes** | Fed by reporters, read as a gate. |
@@ -21,28 +21,28 @@ A stock-and-flow reading of all fifteen contracts, derived from the code rather 
 
 ---
 
-## The two closed loops — fully on-chain
+## Two automatic consequences after a call — not complete loops
 
-These need no caller beyond the transacting party. They are the only genuinely automatic dynamics in the building.
+These paths execute deterministically once a caller supplies a valid transaction. That is **call-closure**, not self-starting liveness, observation, response or economic continuation.
 
-**B1 — the melt (balancing, on the store function).**
+**B1 — the melt (a caller-triggered balancing tendency on the store function).**
 ```
 balance[i] > 0  →  _accrue on touch  →  fee = balance · demurrageBps · elapsed / period
                 →  balance[i] falls, commons rises  →  (loop)
 ```
-Gesell's design as a balancing loop: holding is taxed, so holding falls. Note the trigger — `_accrue` fires inside `pay`, so **transacting is what charges the idle**, and a balance nobody touches melts only when `poke` is called. The loop is closed but its *clock* is event-driven.
+Gesell's design supplies a balancing tendency: holding is taxed, so holding should fall. But `_accrue` fires inside `pay`, so **transacting is what charges the idle**, and a balance nobody touches melts only when `poke` is called. The arithmetic consequence is call-closed. Its timing and incidence are not: somebody must pull, and caller order can decide who is charged before a rate change.
 
-**B2 — the limit (balancing, on debt).**
+**B2 — the limit (an ex-ante safety boundary on debt).**
 ```
 balance[i] falls  →  approaches −_limitOf(i)  →  require() blocks the next transfer  →  (loop)
 ```
-This is the floor that the token form gets for free and the signed ledger has to legislate. [`BigoniCameraCasari`](BigoniCameraCasari.sol) exists to measure whether this loop ever actually engages — if [`b`](NOTATION.md#b) reads zero, B2 never fired and no behaviour in that run is attributable to it.
+This is the floor that the token form gets for free and the signed ledger has to legislate. A failed `require` leaves the state unchanged: it blocks additional exposure but supplies no return arrow that makes an existing debtor repay. [`BigoniCameraCasari`](BigoniCameraCasari.sol) can measure whether the boundary ever engages—if [`b`](NOTATION.md#b) reads zero, B2 never fired and no behaviour in that run is attributable to it—but the guard is not enforcement and not a feedback loop.
 
 ---
 
-## The loops that leave the system
+## Feedback claims that leave the system
 
-Each of these is a genuine feedback loop, and each one routes through the world.
+Each of these is a proposed or partial feedback path, and each one routes through the world. Whether it closes depends on actors, observation, motivation, response, repair and continuation—not on the existence of the visible Solidity segment.
 
 **R1 — acceptance (reinforcing).** The framework's central loop, and the one it is *about*.
 ```
@@ -57,7 +57,7 @@ activity  →  Krugman.report (oracle)  →  stance()  →  elasticityFactorBps(
 ```
 Everything up to `_limitOf` is on-chain. The return arrow — does credit capacity change activity? — closes **outside**, and `activity` re-enters through an oracle. This is the longest loop in the building and the only one that touches production.
 
-**B4 — enforcement. Supported, not run — and ruled that way.**
+**B4 — the proposed performance-response path. Recorded, not enforced—and ruled that way.**
 ```
 default  →  Greif.report by a reporter  →  reputation falls
         →  inGoodStanding() gate  →  reduced exposure  →  (loop)
@@ -103,15 +103,15 @@ meter  →  a finding  →  ⟨JUDGEMENT-REGISTER: a person decides⟩  →  Fri
 
 `Friedman.Proposal` was `{target, data, eta, yes, executed}`. A dial could move with no reason attached to it — so the chain ended in a call that could not be reconstructed later, and it ended **silently**, which is §0.2's failure precisely: the non-event left no trace. Fixed here: `propose` now takes a required `rationale`, stored and evented. It automates nothing — a human still writes the sentence and the members still vote. It makes the human's step leave a record, which is the same discipline the meters already keep, applied at the one point in the building that can act on the world.
 
-**What is still open, stated as the gap it is.** The canon supplies *capabilities* and refers *duties*. A finding can now be published and a proposal can now cite it, but nothing obliges anyone to answer a finding, and nothing runs a clock on it. The register enumerates classes of judgement; it has no column for **whose duty, on what clock**. That is the honest residue, and it is the same shape as the keeper problem in §0.2 — an unnamed party whose non-action leaves no record.
+**What is still open, stated as the gap it is.** The canon supplies *capabilities* and refers *duties*. A finding can now be published and a proposal can cite it, but no response topology, obligation or clock is declared. That need not be repaired by appointing one official: affected users may independently change future terms, a quorum may respond, or nobody may respond. The honest residue is the unnamed edge between finding and consequence, including the possibility of non-action.
 
-The loop closes **through a human, on purpose**. That is the architecture's thesis, and the diagram was offered as its proof: trace every loop, find the person.
+The long path can return **through people and institutions, on purpose**. That remains the architecture's thesis, but the audit question is now sharper: for every arrow, name who observes, who pulls, why they pull, what they may do, and what happens when they do not.
 
 ## The thesis is true. Its comfort is misplaced.
 
 The claim survives tracing — but tracing shows the people standing in these loops are not all the same kind of person, and the difference is the whole story.
 
-**Two roles, routinely conflated.** A **decider** supplies a judgement: what the index reads, what counts as a default, where the credit limit lands. A **trigger** supplies a clock: someone has to *call* the function, because nothing here wakes up (§0.2). Deciders are enumerated, classified and guarded by the register. Triggers are not in it at all.
+**Two roles, routinely conflated—and only part of the topology.** A **decider** supplies a judgement: what the index reads, what counts as a default, where the credit limit lands. A **trigger** supplies a clock: someone has to *call* the function, because nothing here wakes up (§0.2). The wider circuit also needs observers, reporters, responders and repairers. Deciders are enumerated, classified and guarded by the register. The other functions are not yet systematically typed.
 
 Sort the loops that way and the picture changes:
 
@@ -123,29 +123,29 @@ Sort the loops that way and the picture changes:
 | B4 reputation | a reporter | — (advisory) | ruled, not wired |
 | R2 composition | the members | a member | yes |
 
-**The two fully closed on-chain loops have no decider at all.** B1 and B2 run without anyone's judgement — and that was read as their virtue. It is, right up until you notice that a loop with no decider still has a trigger, and that in B1 the trigger's timing is *distributional*.
+**The two paths once called fully closed have no in-call decider.** That was read as their virtue. But B1 still has a trigger whose timing is distributional, while B2 is only a guard. Determinism after a call does not supply the rest of an institutional circuit.
 
 **The demonstration, now a passing test.** `setDemurrage` is documented as a steward lever that, set to zero, erases *"every holder's pending liability."* Uniform, as written. It is not uniform: `_accrue` erases only the span nobody has charged yet, so the erasure reaches exactly the holders no one happened to poke first. `test_Gesell_WhoPaysTheMeltIsDecidedByWhoeverPokesFirst` puts two holders side by side with the same balance, the same elapsed time and the same rate, pokes one before the rate falls, and ends with one having paid and the other not. No rule distinguishes them. `netSupply()` reads zero at every step — which is the point, not a mitigation: the invariant the ledger actually guarantees never moves, and the entire redistribution happens in gross claims. *Extraction pools in the known-ness gap*, as an assertion rather than a slogan.
 
-Governance sets the rate. **The keeper decides who it lands on**, and nobody appointed the keeper.
+Governance sets the rate. **Caller order decides who it lands on.** The triggering function may be distributed across transactors, rewarded open callers, or an office; V1 declares none of those as a topology, so it cannot state the liveness or incidence assumption it is making.
 
-**Why the register missed it.** Its four-class table sorts *decisions* — adjudicative, epistemic, normative, constitutive — and assigns each a guard. The keeper makes no decision in any of the four. They make a **timing choice**, and the table has no row for timing. So the instrument built to enumerate the humans in this building cannot see one of them. That is not a gap beside the register; it is a gap *in* the register, and it is the same hole as residue item 5 seen from the other side — item 5 says *nobody is obliged to act*, this says *whoever does act picks when, and when is distributional*. One gap: **duty and its clock.**
+**Why the register missed it.** Its four-class table sorts *decisions*—adjudicative, epistemic, normative, constitutive—and assigns each a guard. A trigger need make none of those decisions; it makes a **timing choice**, and the table had no row for timing. So an instrument built to enumerate judgements could not see one of the people affecting incidence. Executive action must therefore declare a keeper topology, clock, motivation, fallback and succession rather than merely add a fifth decision label.
 
-**The asymmetry worth sitting with.** Since `propose` began requiring a stated reason, the governance half of that episode — the call setting the rate to zero — has to say on the record what it answers. The keeper half still says nothing. The same distributional episode is now half-legible, and the half that stayed dark is the half nobody voted for.
+**The asymmetry worth sitting with.** Since `propose` began requiring a stated reason, the governance half of that episode—the call setting the rate to zero—has to say on the record what it answers. The triggering half still says nothing. The same distributional episode is now half-legible, and the half that stayed dark is the half nobody voted for.
 
-So: you can trace every loop and find a human. Some of them you find only by looking for who *isn't* in the register.
+So: trace every edge and find its actors. Some appear only when the audit stops looking solely for judgement and asks who observes, pulls, responds and repairs.
 
-## The skyhook, and what replaced it
+## No skyhook: keeper functions and their topologies
 
-The keeper was missing from the cast because the framework's own grammar had no slot for them. `FOUNDATIONS.md` defined a mode as *"a rule about when and whether the ledger must clear."* **Must — who must?** A duty with nobody it falls to is not a stricter duty; it is an unfinished one. And an agentless *must* is precisely the essentialist grammar this project exists to refuse: money *has* value, the market *clears*, prices *adjust* — delete the agent and the property floats free, which is the whole trick.
+Keepership was missing from the cast because the framework's own grammar had no slot for it. `FOUNDATIONS.md` defined a mode as *"a rule about when and whether the ledger must clear."* **Must—who observes, who triggers, who records, who responds, and who repairs?** A duty with none of those functions assigned is not stricter; it is unfinished. And an agentless *must* is precisely the essentialist grammar this project exists to refuse: money *has* value, the market *clears*, prices *adjust*—delete the actors and the property floats free, which is the whole trick.
 
-The book's field card had always asked the question the definition dropped — *"when and whether must this clear, **and says who?**"* The practical tool was right and the theory was not, which is the fifth time in this audit that the repo had already fixed something in one place and failed to carry it across. The bearer clause is now restored everywhere the identity is stated.
+The book's field card had always asked the question the definition dropped—*"when and whether must this clear, **and says who?**"* The practical tool was right and the theory was not. The further correction is that there need not be one answer. Authentication may be bilateral, triggering open, observation distributed among affected users, findings made by a peer quorum, and rule maintenance assigned to an office. Keeperhood attaches to an action, not once to the whole system.
 
-`Ostrom` is that clause given a storage slot. An office is a stated duty, a holder appointed with a mandate, and a clock; anyone may flag it overdue, which is the register's own class-A remedy — *event staleness so a missed clearing is visible as a positive fact rather than an absence.* Before it, silence and compliance were the same observation.
+`Ostrom` gives the **appointed-office topology** a storage slot. An office is a stated duty, a holder appointed with a mandate, and a clock; anyone may flag it overdue, converting one kind of silence into a reported event. That remains useful where the group actually appoints an office. It is not required for a tally rope, Bitcoin validation, bilateral correct change, customary refusal, or every other function users can distribute among themselves.
 
-**What it does not do, stated plainly, because the temptation runs the other way.** It cannot call the target; §0.2 is a property of the platform, and `flagOverdue` needs a caller too, so the regress does not close. It does not punish — that would fuse an adjudicative input to a normative output with neither guard, the error already ruled against in `Greif`. And the incentive half was never the gap: `Kocherlakota.pokeRewardBps` is Alchian and Demsetz's monitor taking the residual, and it was built long before anyone noticed the monitor had no name.
+**What it does not do, stated plainly, because the temptation runs the other way.** It cannot call the target; `flagOverdue` needs a caller too. Its holder self-attests performance, so the record does not establish the world fact. It does not punish—that would fuse an epistemic/adjudicative input to a normative output with neither guard. And a reward such as `Kocherlakota.pokeRewardBps` addresses willingness only under a price assumption; it does not establish accountability, timing, succession or enough continuation surplus to keep the function supplied.
 
-What changes is one thing, and it is enough. The regress now terminates in a **named party** rather than in nobody, and their absence is a public fact rather than a silence. You can still trace every loop and find a human — and now the register can see them all.
+V2 therefore does not terminate the regress in one named party. It terminates each **specified edge** in a declared topology or an explicit open boundary. Distributed users can supply the consequence by changing their own future acceptance, credit, cooperation or forgiveness; an office, issuer or regulator is optional. The remaining empirical question is whether expected future opportunity is large and reliable enough to cover defection and keeper costs. That belongs in the continuation assumption and simulation, not in a Solidity address.
 
 ---
 
@@ -159,13 +159,13 @@ flowchart TB
         PPL[people / play]:::world
     end
 
-    subgraph LEDGER["Kocherlakota — the only closed loops"]
+    subgraph LEDGER["Kocherlakota — call-closed safety mechanics"]
         BAL[("balance[i]<br/>signed, Σ=0")]:::stock
         LIM[("creditLimit[i]")]:::stock
         COM[("commons")]:::stock
-        BAL -->|B1 melt| COM
-        LIM -->|B2 blocks| BAL
-        BAL -->|approaches| LIM
+        BAL -->|B1 melt after call| COM
+        LIM -->|B2 guards next write| BAL
+        BAL -.->|approaches boundary| LIM
     end
 
     subgraph GOV["governance — routed through people"]
@@ -220,14 +220,14 @@ flowchart TB
     classDef world fill:#2a2a2a,stroke:#8a8a8a,color:#ededed
 ```
 
-Solid arrows are on-chain calls. Dashed arrows leave the system and return through the world. Every dashed arrow is a place the architecture chose not to automate.
+Solid arrows are on-chain calls. Dashed arrows leave the system and return through the world. Every dashed arrow needs an actor, evidence path, motivation and failure path—or must be labelled an explicitly open boundary.
 
 ---
 
 ## What the diagram makes visible
 
-1. **Two closed loops, both balancing, both in one contract.** There is no reinforcing loop anywhere on-chain. The system cannot run away on its own — it can only be *driven*.
-2. **The reinforcing loops are all outside or social** — acceptance (R1) in the world, composition (R2) among the DAO's members. That is where the framework's own warnings live, and neither is code.
-3. **The measurement tier's only exit is a person**, and every meter already publishes to it under a declared discipline. The missing half was the citation on the far side, now required. What remains missing is a *duty with a clock* — nobody is obliged to answer a finding.
+1. **Two call-deterministic paths, not two complete loops.** B1 is triggered decay; B2 is a guard. The defensible closed claims are transaction-safety invariants.
+2. **The material reinforcing loops are social or cross-boundary**—acceptance (R1) in the world, composition (R2) among the DAO's members. Code can record or constrain pieces without manufacturing the return path.
+3. **The measurement tier exits to a response topology**, and every meter already publishes under some discipline. What remains missing is who may consume the finding, why they respond, under which guard, on what clock, and with what repair or refusal path.
 4. **`balance → votes` is missing on purpose.** Wealth does not buy dials here.
 5. **B4 stays unwired, by ruling.** Reputation is advisory. Automating it would drive a normative output from an adjudicative input with neither class's guard in the path — and the loop's sign depends on whether you read it from the ledger's side or the member's.

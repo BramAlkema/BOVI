@@ -210,14 +210,14 @@ contract CoreE2E is Test {
         assertEq(rope.netSupply(), int256(0));
     }
 
-    // ── Lesson 4b: the record has teeth (Greif) ──────────────────────────────
-    function test_Greif_TeethExcludeADefaulter() public {
+    // ── Lesson 4b: Greif records an advisory threshold result ────────────────
+    function test_Greif_ViewFallsBelowThresholdAfterReport() public {
         address reporter = makeAddr("reporter");
         _gov(address(greif), abi.encodeWithSignature("setReporter(address,bool)", reporter, true));
 
         assertTrue(greif.inGoodStanding(borrower, 0));      // starts clean
         vm.prank(reporter); greif.report(borrower, -5);     // a default dings standing
-        assertFalse(greif.inGoodStanding(borrower, 0));     // excluded — punish individually
+        assertFalse(greif.inGoodStanding(borrower, 0));     // the view flips; no consumer excludes anyone
     }
 
     // ── Lesson 4c: priced credit allocates and exposes the take (Schumpeter) ─

@@ -42,7 +42,7 @@ contract Hayek {
 
     address public governance;               // the Friedman/DialDAO governor
     uint64  public maxStale;                 // values older than this are ignored
-    IChallengeBond public challenge;         // the teeth (optimistic oracle)
+    IChallengeBond public challenge;         // optional bonded-contest source; not truth or enforcement
     bytes32 public constant TOPIC = keccak256("HAYEK_INDEX");
 
     address[] public providers;
@@ -68,7 +68,7 @@ contract Hayek {
     function setMaxStale(uint64 s) external onlyGov { maxStale = s; emit MaxStaleSet(s); }
     function setChallenge(address c) external onlyGov { challenge = IChallengeBond(c); emit ChallengeSet(c); }
 
-    // TEETH PATH: admit a value only after it survived a ChallengeBond assertion
+    // CONTESTED PATH: admit a value after the V1 ChallengeBond outcome; this remains an attributed assertion
     function finalize(address provider, uint256 assertionId) external {
         require(address(challenge) != address(0), "no challenge");
         require(isProvider[provider], "not a provider");

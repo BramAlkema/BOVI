@@ -27,8 +27,8 @@ interface IERC20 { function transferFrom(address from, address to, uint256 amoun
  *                         are not implemented.
  *  VALUE INCIDENTAL       settles in any IERC20 (a Kocherlakota-wrapper, a
  *                         stablecoin, whatever).
- *  HARD PART NAMED        the attestor is the trust point. Greif, legal teeth,
- *                         a bid process, and restructuring remain proposed
+ *  HARD PART NAMED        the attestor is the trust point. Contextual Greif memory,
+ *                         legal recourse, a bid process, and restructuring remain proposed
  *                         integrations, not current state transitions.
  */
 contract Schumpeter {

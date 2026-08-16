@@ -13,7 +13,8 @@ pragma solidity ^0.8.20;
  * restores the very memory money was a substitute for, so we use memory —
  * credit — not the blunt second-best token. Cost of the upgrade, carried
  * knowingly: signed balances lift the token's floor at zero, which was its
- * built-in enforcement — hence the creditLimit dial below, the teeth.)
+ * immediate settlement discipline. The credit-limit dial below caps new exposure;
+ * it does not make an existing debtor perform.)
  *
  * Lineage (one identity, named from three sides): Kocherlakota's *money is memory*,
  * Alfred Mitchell-Innes's *money is credit* (1913/1914 — the same record seen from
@@ -44,8 +45,9 @@ pragma solidity ^0.8.20;
  * alongside it (and note `grossInCirculation()` reads raw balances, so it
  * OVERSTATES gross by the sum of pending demurrage). Nothing in here can act on
  * its own (§0.2): `poke` exists because the melt needs a caller, and
- * `setPokeReward` exists because a caller needs a reason. Whoever runs that keeper
- * is a load-bearing party the cast does not name.
+ * `setPokeReward` exists because a caller needs a reason. V2 treats triggering as
+ * one keeper function with an open/rewarded topology; observation, accountability,
+ * fallback and continuation remain separate.
  *
  * AXIOM AUDIT (2026-08). Checked against FOUNDATIONS Stone 4.
  *  - A1 resolution: holds (uint256; divisibility is free for an abstract ledger).
@@ -65,7 +67,7 @@ pragma solidity ^0.8.20;
  *          over past periods; DemurrageChanged fires, but no holder's altered
  *          pending liability does.
  *      (iii) balance staleness, above.
- *      (iv) THE PRODUCT OF (ii) AND THE KEEPER, which is worse than either. The
+ *      (iv) THE PRODUCT OF (ii) AND CALLER ORDER, which is worse than either. The
  *          retroactive lever is documented above as uniform — set the rate to 0 and
  *          "every holder's pending liability" is erased. It is not uniform. `_accrue`
  *          erases only the span nobody has CHARGED yet, so the erasure reaches exactly
@@ -73,7 +75,7 @@ pragma solidity ^0.8.20;
  *          balance, the same elapsed time and the same rate can end the episode having
  *          paid different amounts, and the only thing separating them is an unnamed
  *          party's choice of when to call a public function. Governance sets the rate;
- *          the keeper decides who it lands on. See
+ *          the distributed triggering topology decides who it lands on. See
  *          `test_Gesell_WhoPaysTheMeltIsDecidedByWhoeverPokesFirst`.
  *          The poke reward pushes toward poking everyone, so this is a distributional
  *          LEVER rather than a profitable attack on its own — but a lever held by an
@@ -87,15 +89,16 @@ pragma solidity ^0.8.20;
  * nobody can owe (Kocherlakota's money is "a primitive form of memory"; the floor
  * is what the primitive form buys, and experimentally it is what disciplines
  * free-riding: Bigoni-Camera-Casari 2020). This ledger lifts the floor — signed
- * balances — and therefore MUST supply enforcement another way. `creditLimit` is
- * that way. Stone 4's "no floor, pay with teeth," instantiated.
+ * balances — and therefore reopens the performance problem. `creditLimit` blocks
+ * additional exposure; it does not collect existing debt. Observation, contestable
+ * findings, counterparty response, repair, and continuation remain outside it.
  *
  * AND THE ROOM THAT TESTS THIS ONE. `BigoniCameraCasari.sol` is the controlled
  * experiment on exactly the design decision above: run this ledger with the limit
  * in force and again with it lifted, and their result says the advantage collapses
  * when it is lifted. Set `creditLimit` to its maximum and you are running their
  * Money Unconstrained arm against this implementation. If `bindingBps` there comes
- * back at zero, the limit never bit and nothing in this contract's enforcement
+ * back at zero, the limit never bit and nothing in this contract's exposure-guard
  * story was doing work in that run — which is a finding, and the reason that room
  * exists.
  */

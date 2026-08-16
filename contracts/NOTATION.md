@@ -73,7 +73,7 @@ Condition B (participation)  γ  ≥  γ*
 
 **Why κ is undiscounted.** Coverage is an *absorption* question, not a *pricing* one: discounting changes what a sink is worth, not whether it can swallow the stock. `presentValue(id, r)` is exposed for pricing and is deliberately excluded from the verdict.
 
-**Enforcement shortfall** — `(Σ decreed − Σ realised) / Σ decreed`, in bps. Not explained here; that residual belongs to [`Greif`](Greif.sol).
+**Performance shortfall** — `(Σ decreed − Σ realised) / Σ decreed`, in bps. This is a measurement, not an enforcement module. A contextual [`Greif`](Greif.sol) record may preserve an attributed finding; affected counterparties or institutions separately choose any future response.
 
 ---
 
@@ -107,7 +107,7 @@ se   =  sqrt(  p₁(1−p₁)/n₁  +  p₂(1−p₂)/n₂  )
 | symbol | code | is | scale | range | notes |
 |---|---|---|---|---|---|
 | <a id="balance"></a>**balance** | `balance` | signed peg position | ledger units, **signed** | ≥ −`creditLimit` | Negative is permitted — that is the whole design, and the reason the floor's enforcement has to be supplied elsewhere. |
-| <a id="creditlimit"></a>**creditLimit** | `creditLimit` | maximum permitted debt | ledger units | ≥ 0 | The teeth. Set it to maximum and you are running [`BigoniCameraCasari`](#experiment)'s unconstrained arm. |
+| <a id="creditlimit"></a>**creditLimit** | `creditLimit` | maximum permitted debt | ledger units | ≥ 0 | An ex-ante exposure guard, not enforcement of existing debt. Set it to maximum and you are running [`BigoniCameraCasari`](#experiment)'s unconstrained arm. |
 | <a id="netsupply"></a>**netSupply** | `netSupply()` | Σ of all balances | ledger units, signed | **must be 0** | The conservation invariant. |
 | <a id="gross"></a>**gross** | `grossInCirculation()` | Σ of positive balances | ledger units | ≥ 0 | ⚠ Reads raw balances, so it **overstates** by the sum of pending demurrage. |
 | <a id="demurrage"></a>**demurrageBps** | `demurrageBps` | melt per `demurragePeriod` on positive balances | bps | ≥ 0 | ⚠ Applied retroactively over the un-accrued span. |

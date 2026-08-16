@@ -6,7 +6,7 @@ The limit is that **every bend relocates a judgement rather than removing it**. 
 
 > Each bend is a specific claim about where human judgement gets reinserted, and who guards it.
 
-That claim is only worth anything if the points are enumerated. This is the enumeration. Two columns follow every entry: **A — close it** (the gap is a design deficiency and code can take it) and **B — refer it** (the gap is constitutive and belongs to an institution, named).
+That claim is only worth anything if the points are enumerated. This is the enumeration. Two columns follow every entry: **A — close it** (the gap is a design deficiency and code can take it) and **B — refer it** (the gap remains in the world and needs a declared actor, keeper topology or explicit open boundary).
 
 ## Four classes of judgement — and they take different guards
 
@@ -34,30 +34,30 @@ For a canon whose purpose is making the skim visible, this is the master judgeme
 **A — close it:** treat the event set as part of the specification, not as debug output. State in each header what is *deliberately* not evented and why.
 **B — refer it:** an audit standard for record granularity. There is no chain-level guarantee to appeal to.
 
-### 0.2 Nothing in the canon can act — Constitutive, unguarded
+### 0.2 Nothing in the canon can act without an event source — Constitutive, unguarded
 
 Ciatto et al. find that mainstream contracts lack three mechanisms: encapsulation of control flow, asynchronous communication, and **pro-activeness**. "SC are strictly reactive to stimuli coming exclusively from off-chain entities" — a limitation they attribute to the object-oriented computational model, not to blockchains as such (their agent-oriented Tenderfone supports time triggers and contract-to-contract messages; Ethereum and HLF fail only on Linda's *suspensive semantics*, Corda additionally on reference uncoupling).
 
-This bites the canon precisely. `Fisher.settle()`, `Clark.step()`, `Krugman`'s rule, `Kocherlakota`'s demurrage accrual: none of them can wake up. **Someone must call them.** So the framework's central claim — a mode is a rule for *when* the ledger must clear — is only half-executable. The code enforces *whether* a clearing is valid when poked; it cannot enforce *that it happens*. If nobody calls `settle()`, the obligation silently does not clear, and no event records the non-event.
+This bites the canon precisely. `Fisher.settle()`, `Clark.step()`, `Krugman`'s rule, `Kocherlakota`'s demurrage accrual: none of them can wake up. **Some declared actor or service must call them.** So the framework's central claim—a mode is a rule for *when* the ledger must clear—is only half-executable. The code constrains *whether* a clearing is valid when poked; it cannot compel *that it happens*. If nobody calls `settle()`, the obligation silently does not clear, and no event records the non-event.
 
-Whoever runs the keeper is therefore a load-bearing party with no contract, no vote and no name in the cast.
+The load-bearing object is therefore not necessarily one keeper but a set of **keeper functions**: observe, trigger, authenticate, record, contest, find, respond, repair and maintain the rule. Different people or systems may carry each function.
 
-**A — close it:** incentivise invocation (keeper rewards), and event *staleness* so a missed clearing is visible as a positive fact rather than an absence.
-**B — refer it:** the keeper. An institution must run it, and be accountable for running it. Naming this is the honest alternative to pretending the ledger is self-executing.
+**A — close it:** declare a topology for each function; where appropriate incentivise invocation, event *staleness*, add fallback/succession, and distinguish a report of non-performance from proof that it occurred.
+**B — refer it:** bilateral parties, ordinary users, open callers, competitive providers, a quorum, a rotating group, an appointed office or an external institution may carry different functions. Naming the topology and its failure condition is the honest alternative to pretending the ledger is self-executing.
 
-**A fifth class, and now a guard for it (added 2026-08).** The four-class table above sorts *decisions* and assigns each a guard. The keeper makes no decision in any of the four — they make a **timing choice**, and no row covered it. That is why the register did not catch the case now recorded under `Kocherlakota`: when a retroactive rate change meets a caller who chooses whom to charge first, timing becomes distributional. The instrument built to enumerate the humans in this canon could not see the one its own §0.2 had named.
+**A fifth class, and now a topology requirement for it (revised 2026-08).** The four-class table above sorts *decisions* and assigns each a guard. A trigger may make no decision in any of the four—it makes a **timing choice**, and no row covered it. That is why the register did not catch the case now recorded under `Kocherlakota`: when a retroactive rate change meets callers who determine whom to charge first, timing becomes distributional. The instrument built to enumerate judgements could not see a non-judgement action that affected incidence.
 
 | Class | The question | Correct guard | Wrong guard |
 |---|---|---|---|
-| **Executive** | this must happen — who does it, and by when? | a named office: a holder, a clock, and a public record of non-performance | **a reward alone.** Paying a caller solves willingness, not accountability; it says someone will come, not who, and not when |
+| **Executive** | this must happen—who observes, triggers and follows through, and by when? | a declared keeper topology per function, with motivation or duty, clock, failure signal, fallback and succession. An appointed office is one valid topology | **a reward or office alone.** A reward addresses willingness under a price assumption; an office names responsibility. Neither by itself supplies observation, truth, fallback, adequate funding or continuation |
 
-The guard was withheld until there was one to name. `Ostrom` is it: an office is a stated duty, a holder appointed with a mandate, and a period, and anyone may flag it overdue — which converts a missed clearing from an absence into an evented fact. Note what it does **not** do. It cannot call the target (§0.2 is a property of the platform, and `flagOverdue` needs a caller too, so the regress does not close). It does not punish, because "did they fail?" is adjudicative and "what happens to them" is normative, and fusing those is the error already ruled against under `Greif`. The sanction is referred to `Friedman`, which must now state a reason and can cite the missed count as one.
+`Ostrom` implements the appointed-office case: a stated duty, holder, mandate and period, while an open caller may flag it overdue. That makes a report of staleness visible where the group has chosen an office. It does **not** supply the universal guard. `flagOverdue` needs a caller; the holder self-attests performance; its current clock reset also compresses a long absence into one missed count. Nor does it punish, because “did they fail?” and “what response is legitimate?” require different guards. A tally rope, Bitcoin validation, correct change and customary refusal may distribute these same functions without an office.
 
-**And the grammar this was hiding in.** `FOUNDATIONS.md` defined a mode as *"a rule about when and whether the ledger must clear."* Must — who must? A duty with nobody it falls to is not stricter, it is unfinished, and an agentless *must* is the essentialist grammar the framework exists to refuse. The book's field card had asked the missing question all along — *and says who?* — while every statement of the definition dropped it. Corrected across the canon 2026-08. That the practical tool was right and the theory was not is the fifth time this session the repo had already diagnosed something and failed to propagate it.
+**And the grammar this was hiding in.** `FOUNDATIONS.md` defined a mode as *"a rule about when and whether the ledger must clear."* Must—who observes, who pulls, who responds? A duty with no bearer topology is not stricter; it is unfinished, and an agentless *must* is the essentialist grammar the framework exists to refuse. The book's field card had asked the missing question all along—*and says who?* The further correction is plural: there may be several answers for one clearing episode.
 
 ## The register (written contracts)
 
-### `ChallengeBond` — the enforcement teeth
+### `ChallengeBond` — one contestable-assertion topology
 | Judgement | Class | A — close it | B — refer it |
 |---|---|---|---|
 | Who resolves a dispute (`arbiter` is a single resolver) | Adjudicative | Replace with a decentralised verifier / schelling vote; add an appeals path | The court of last resort. No chain supplies one |
@@ -67,7 +67,7 @@ The guard was withheld until there was one to name. `Ostrom` is it: an office is
 ### `Greif` — reputation
 | Judgement | Class | A — close it | B — refer it |
 |---|---|---|---|
-| Who may report, and what counts as a default | Adjudicative | Route reports through `ChallengeBond`; require an evented reason | The default-definition standard |
+| Who may report, and what counts as a default | Adjudicative | Use a typed claim → challenge → finding lifecycle with a reason and evidence; bonded challenge is one optional topology | The default-definition standard |
 | A public registry is a panopticon | Normative | ZK selective disclosure — prove "standing ≥ X" without the history | What may be asked at all |
 | Sybil-resistance | **Constitutive** | — | Open problem. Named as irreducible in the README, correctly |
 | Whether `inGoodStanding` should gate `Kocherlakota._limitOf` | **Adjudicative → Normative** | **Not closable as a wire.** It would drive a normative output (credit capacity) from an adjudicative input (what counts as a default) with neither class's guard in the path — and `report` acts "without evidence or appeal." Prerequisites, in order: reports through `ChallengeBond` with a stated reason and a dispute window; a floor the gate cannot cut capacity below; a route back up | **Ruled advisory, 2026-08.** A caller that chooses to read the gate owns that decision and its sign: the loop is balancing in the system's exposure and reinforcing in the member's capacity, and picking the first label is picking the aggregate vantage |
@@ -140,7 +140,7 @@ The guard was withheld until there was one to name. `Ostrom` is it: an office is
 | Membership — one member, one vote | **Constitutive** | — | Prior to the contract. "Capture it and you capture the system" |
 | Whether a minority can leave or fork | Normative | — | **Explicitly outside the contract.** Exit rights are institutional — this is Hirschman's *exit, voice, loyalty*, and the canon currently supplies only voice |
 | A dial that moves with no reason on the record | Normative | **Closed 2026-08.** `propose` requires a `rationale`, stored and evented. Every meter in the cast already gates publication behind a declared discipline; this contract, the only one that can act, recorded a target and a calldata blob and nothing about why | — |
-| Whether anyone must *answer* a published finding | Normative | Not closable in-contract. A duty needs an addressee and a clock, and this register enumerates classes of judgement without a column for either | The body that owes the answer. Same shape as the keeper in §0.2: an unnamed party whose non-action leaves no record |
+| Whether anyone must *answer* a published finding | Normative | Not closable by publication. Declare who may respond, under which policy and clock, and whether non-response is allowed; affected users may respond independently rather than through one body | The chosen response topology—or an explicit open boundary. A finding has no automatic consequence |
 
 ### `Fisher` — indexed obligations
 Inherits `Hayek`'s basket judgement whole. No independent point.
@@ -155,15 +155,15 @@ Ledger-likeness is "an externally supplied toy input." A demonstrator, not deplo
 | `r`, `K` | Epistemic | — | Stock assessment. Same guard |
 | δ, the demurrage source | Normative | Already evented and gov-gated | — |
 
-### `Ostrom` — the office
+### `Ostrom` — the appointed-office topology
 | Judgement | Class | A — close it | B — refer it |
 |---|---|---|---|
 | Whether the holder actually did the work | **Epistemic** | Not closable: this contract cannot see into the target, and a claim that it could would be the oracle problem in a different hat. What it establishes is that a named party asserted it, at a time, under their own address | The people affected, who can observe the target directly |
 | Who is appointed, and who may remove them | **Constitutive** | Governance-gated, with a mandate required on the record | Prior to the contract, like every membership question here. An office appointed by a captured governance is a captured office |
 | What a missed count should cost | **Normative** | Deliberately not wired — see the `Greif` ruling for why an adjudicative input must not drive a normative output unguarded | `Friedman`, citing the count as its stated reason |
-| That someone must call `flagOverdue` too | **Executive** | **Irreducible here.** The regress does not close; it terminates in a named office rather than in nobody | Itself, recursively — which is honest rather than clever |
+| That someone must call `flagOverdue` too | **Executive** | Declare the open-caller topology, its motivation, clock and fallback; do not claim the office closes its own observation path | An office can be accountable for one duty while triggering, observation and consequence remain distributed or external |
 
-## The irreducible residue
+## The residue and declared boundaries
 
 Five. The canon already named three; the audits added the rest, and what looked like two separate gaps turned out to be one seen from either side:
 
@@ -171,10 +171,7 @@ Five. The canon already named three; the audits added the rest, and what looked 
 2. **The inter-community reserve floor** (`Keynes`, between truly trustless parties) — already listed in the README.
 3. **Moral force** (`Fiske`) — the contract flags; humans care.
 4. **Exit** (`Friedman`) — the canon implements voice and not exit, and should say so.
-5. **Duty and its clock** — one residue with two faces, and they were logged separately before it was clear they were the same thing.
-   - *Nobody must act.* The canon supplies capabilities and refers duties. A finding can be recorded — four meters do it under declared discipline — and a proposal can now cite one, and still nobody owes an answer and no clock runs on one.
-   - *Whoever does act picks when.* No contract in the canon can act on its own (§0.2), so every clearing discipline waits on an unnamed party choosing to invoke it. Where a retroactive parameter is in play, that choice is not merely a delay: it decides who bears the charge (see `Kocherlakota`, and the test named there).
-   Governance's half of such an episode now has to state a reason on the record. The keeper's half does not. The asymmetry is the residue.
+5. **Keeper topology, its clock and its continuation condition.** The canon supplies capabilities but does not systematically declare who observes, invokes, responds and repairs, or why they continue doing so. Some functions can be distributed over users; some can be priced; some may be assigned to an office; some remain external. Where a retroactive parameter is in play, triggering order can decide incidence (see `Kocherlakota`). Where response depends on lost future trade, expected continuation surplus must exceed defection and keeper cost. These are conditional closure claims to test, not a reason to insert a universal keeper or score.
 
 ## The cost of every bend, stated against ourselves
 
@@ -227,7 +224,7 @@ Consistent with "been done before is a plus":
 
   **Where to read next, in order.** Parvizimosaed et al., *Automated generation of smart contract code from legal contract specifications with Symboleo2SC* (2024) — the deontic meeting a compile target, which is the direct comparison with Frantz & Nowostawski's *Deontic → modifier + throw*; then *Specification and analysis of legal contracts with Symboleo* (SoSyM 2022) for the full semantics; then *Engineering Smart Contracts with Symboleo: Progress Report 2024*. Also live: SymboleoPC (property checking), SymboleoNLP and an LLM auto-corrector. ⚠️ No open-access PDFs found for any of these through the citation API — expect a library pull or an author request. Titles verified, contents unread.
 
-  That is a stronger and more honest ground for the keeper than "smart contracts are reactive." The keeper is not an artefact of a young platform that a better runtime would retire. They are what a duty needs in order to be *observed to have been breached*, in any formalism that represents change as events — which is all of them. `Ostrom` records duties and events their breach and still needs a caller for `flagOverdue`; the most mature obligation-modelling programme in the field needs someone to write `happens(deliveryDuePassed, 10)`. Same terminus, reached from opposite directions, thirty years and 27 axioms apart.
+  That is a stronger and more honest ground for **keeper functions** than “smart contracts are reactive.” Observation and triggering are not artefacts of a young platform that a better runtime would retire. A duty needs somebody or some accepted process to observe and record its performance or apparent breach in any event-based formalism. `Ostrom` assigns one office topology and still needs a caller for `flagOverdue`; the Symboleo example still needs someone to write `happens(deliveryDuePassed, 10)`. The common terminus is not one named keeper. It is a declared observer/trigger topology—or an explicit open boundary.
 
 - **The expressiveness benchmark.** Ciatto, Mariani, Maffi & Omicini, *Blockchain-Based Coordination: Assessing the Expressive Power of Smart Contracts* (Information 11(1):52, 2020) — benchmarks Ethereum, HyperLedger Fabric, Corda and their Tenderfone against the Linda coordination model. Findings that bear directly on this register are folded into the two entries above.
 - **Ostrom and blockchains.** Rozas et al. (2021) apply Ostromian analysis to blockchain governance across six affordances — tokenisation, self-enforcement, autonomous automation, decentralised power, transparency, codified trust — with monitoring and graduated sanctioning as the live cases. Also *Ostrom Amongst the Machines* (blockchain as knowledge commons).

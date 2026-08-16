@@ -51,7 +51,7 @@ A tax obligation denominated in a currency obtainable only by selling your labou
 
 ### Epilogue · new section — where the machine hands back
 The session's most original artefact and the answer to the book's most dangerous question (*so your system is trustless too?*). Four kinds of judgement, each needing a different guard: **adjudicative** (a dispute needs a decider), **epistemic** (what is the state of the world — never a vote), **normative** (who bears what — the affected, voting, with real exit), **constitutive** (who counts as a member at all — prior to the rest, and unsolved). Plus the finding: a register of judgement points is also a register of **capture** points.
-**And the keeper.** Nothing in the machinery can act on its own; every clearing depends on someone choosing to call it. So the clearing-discipline claim is half-executable — the machine enforces *whether* a clearing is valid, never *that it happens*. Whoever runs that is load-bearing and unnamed. State it; it is the strongest thing in the section precisely because it is a limitation.
+**And keeper topology.** Nothing in the machinery can act without an event source; every clearing depends on people or services observing, triggering, recording and responding. The first pass looked for one unnamed keeper. The revision must show how those functions can be divided among counterparties, ordinary users, open callers, providers, quorums, rotating members, an office or an external institution. State the motivation, clock, fallback and continuation assumption for each edge. An appointed office is one answer, not the skyhook.
 
 ---
 
@@ -109,7 +109,7 @@ Extend subarc 10 to run through Ch 17 (the largest unvoted mode default) and Ch 
 1. README — add subarc 10, extend the Part II blurb.
 2. Ch 5 — both P1 beats. This is the load-bearing edit; everything else hangs off it.
 3. Chs 22, 23, Field Book — the asymmetry guardrail.
-4. Epilogue — *where the machine hands back*, including the keeper.
+4. Epilogue — *where the machine hands back*, including distributed keeper topology, priming and continuation.
 5. **Ch 17 + Ch 19 — the depoliticisation case and Mundell as its mirror.** Do this before the other P2 material: Ch 17 currently has no monetary case at all, and this one tests the chapter's own claim to non-partisanship instead of asserting it.
 6. Chs 13, 18/19 — Sen and the hut tax as witnesses.
 7. Appendix — reach and the ratio, if the Machinery isn't already long enough.

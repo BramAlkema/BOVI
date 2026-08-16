@@ -124,7 +124,7 @@ Kocherlakota supplies a clean existence proof for several claims:
 - demurrage and default can redistribute positions without violating conservation;
 - measurement, governance, stabilisation, and relational permission can be attached as separate modules.
 
-It does not prove that strangers will accept the marks, that admitted identities represent unique people, that debtors can or should be compelled to perform, or that the chosen credit limits are just. It cannot. Those are the social facts from which the record gets its teeth.
+It does not prove that strangers will accept the marks, that admitted identities represent unique people, that debtors can or should be compelled to perform, or that the chosen credit limits are just. It cannot. Those are institutional facts from which the record may acquire consequence through future counterparties, collateral, recourse, forgiveness or law.
 
 The implementation is deliberately small and correspondingly unfit for scale. Several view and jubilee operations loop over the full member list. Members can be added but not removed. The ledger is public. Credit policy remains discretionary unless governance is attached. There is no recovery process, privacy layer, appeal, legal interface, or resistance to one person acquiring many identities. The code isolates the hard questions; it does not dissolve them.
 
@@ -206,25 +206,25 @@ This is a recurring lesson in the suite: removing monetary mysticism does not re
 
 ---
 
-### The other half of the question
+### The other half of the question: who keeps each edge alive?
 
-Governance answers who may *change* a rule. It does not answer who must *run* one, and for a long time nothing in the suite did.
+Governance answers who may *change* a rule. It does not answer who observes, triggers, records, contests, responds to or repairs each step, and for a long time the suite had no vocabulary for those functions.
 
-Every contract here is strictly reactive. A settlement does not settle until someone calls the settle function; a holding charge is not charged until someone touches the account; a stabilisation rule does not stabilise until someone reports. There is always a party who makes the machinery move, and that party had no contract, no vote, and no name. The suite called them the keeper in a footnote and carried on.
+Every contract here is strictly reactive. A settlement does not settle until someone calls the settle function; a holding charge is not charged until someone touches the account; a stabilisation rule does not stabilise until someone reports. The first audit therefore looked for one missing party and called them *the keeper*. The deeper audit found a topology instead: counterparties may authenticate, any user may trigger, affected peers may observe, a quorum may find, future counterparties may respond, and an office may maintain one scheduled function. Keeperhood attaches to an edge, not once to the whole institution.
 
 What made this more than tidiness was a discovery about the holding charge. The rate is retroactive: it applies the current parameters to all the time elapsed since an account was last touched. Setting the rate to zero was described as erasing every holder's pending liability, and it does not. It erases only the spans that have not yet been *charged* — so the erasure reaches exactly those holders nobody happened to touch first. Two accounts can hold the same balance, for the same year, under the same rate, and end the episode having paid different amounts. Nothing in the rules distinguishes them. The difference is made entirely by the order in which an unnamed person chose to act.
 
-That is a distributional power. It was not held by governance, it was not voted on, and no one had noticed it, because the mechanism by which it operates is a *non-event*: an account that goes untouched emits nothing. Silence and compliance produce the identical record, which is to say no record.
+That is a distributional power. It was not held by governance, it was not voted on, and no one had noticed it, because the mechanism by which it operates is a *non-event*: an account that goes untouched emits nothing. Silence and compliance produce the identical record, which is to say no record. The power may be exercised by many callers rather than one office; distribution does not make its incidence disappear.
 
-Underneath the mechanism sat a habit of language. This book has defined a mode as a rule about when and whether the ledger must clear. *Must* — who must? A duty with nobody it falls to is not a stricter duty. It is an unfinished one. And the agentless obligation is exactly the grammar the book spends its length refusing everywhere else: money *has* value, the market *clears*, prices *adjust*. Delete the agent and the property appears to float free, which is the whole conjuring trick. The field card at the back of this book had asked the missing question for years — *when and whether must this clear, and says who?* The definition had dropped it. The practical tool was right and the theory was not.
+Underneath the mechanism sat a habit of language. This book has defined a mode as a rule about when and whether the ledger must clear. *Must*—who observes, who pulls, who records, who responds? A duty with no bearer topology is not stricter. It is unfinished. And the agentless obligation is exactly the grammar the book spends its length refusing everywhere else: money *has* value, the market *clears*, prices *adjust*. Delete the actors and the property appears to float free, which is the whole conjuring trick. The field card at the back of this book had asked the missing question for years—*when and whether must this clear, and says who?*—but V2 must permit several answers in one episode.
 
-The Ostrom contract is that question given a storage slot. An office is a duty stated in words, a holder appointed with a mandate on the record, and a period. The holder discharges it by recording that they acted. When the period lapses, anyone at all may flag the office overdue, and that flag emits. A missed clearing stops being an absence and becomes a fact with a name attached to it.
+The Ostrom contract gives one answer a storage slot: the **appointed-office topology**. An office is a duty stated in words, a holder appointed with a mandate on the record, and a period. The holder records an assertion that they acted. When the period lapses, anyone at all may flag the office overdue, and that flag emits. This makes a report of staleness visible; it does not verify the performance or the miss.
 
-The contract is named for Elinor Ostrom because the gap was hers rather than anyone else's. The economics of getting a monitor to bother was solved long ago by Alchian and Demsetz: give the monitor the residual, and this suite had already done it—whoever charges an idle account keeps a share. Willingness was never the problem. Ostrom's principle is the other one: that a commons endures when its monitors are accountable to the people whose commons it is. Incentive without accountability produces someone who will certainly come, and no answer at all to *who*, or *when*.
+The contract is named for Elinor Ostrom because accountable monitoring is one real answer. Alchian and Demsetz supply another part: a share of the residual can motivate monitoring, and this suite lets whoever charges an idle account keep a share. But a reward does not prove that somebody will come on time, that the price covers the work, that the observer is truthful, or that the role survives exit. Incentive, accountability, fallback and continuation are separate questions.
 
-Three things it deliberately does not do. It does not call the target, because nothing here can act on its own, and a contract claiming otherwise would be lying about the property this suite is most careful to admit. It does not close the regress: somebody must call the flag as well. And it does not punish. Whether a person failed is a question of adjudication; what should happen to them is a question of distribution; and fusing the two is precisely the error refused a few pages later in the case of reputation. The record accumulates, and removing a holder remains a governance act that must now state its reason—for which the record is available.
+Three things it deliberately does not do. It does not call the target. It does not verify its holder's assertion or close the open-caller path for its own flag. And it does not punish. Whether a person failed is epistemic and adjudicative; what should happen is normative; fusing them is precisely the error refused below in the case of reputation. The record accumulates, and a separately authorised party may later cite it.
 
-What changes is one thing, and it is enough to be worth a contract. The chain of *someone has to do this* now ends at a named party instead of at nobody, and their absence is public rather than silent.
+What changes is one thing, and it remains enough to be worth a contract: where a group really chooses an office, responsibility and a clock can be named. It does not follow that every chain ends in an office. Tally keepers, Bitcoin validators, cash users making correct change and peers maintaining a custom may distribute the other functions among themselves.
 
 #### Protocol card — `Ostrom`
 
@@ -236,25 +236,25 @@ What changes is one thing, and it is enough to be worth a contract. The chain of
 
 **Invariant.** A duty always has words and a clock. A vacant office is visible as vacant, and a duty does not disappear when its holder does. No sanction follows from any number of misses.
 
-**Audit boundary.** The contract cannot verify that the holder did the work; it records that a named party asserted it. It cannot act, and its own flag needs a caller, so the regress terminates rather than closes. An office appointed by a captured governance is a captured office. The target address is informational and unenforced; there is no per-office reward, no appeal against a flag, and no scope declaration, so an office covering a set of accounts cannot express which of them it actually reached—which is the very asymmetry that motivated it.
+**Audit boundary.** The contract cannot verify that the holder did the work; it records that a named party asserted it. It cannot act, and its own flag needs a caller. Worse, `flagOverdue` resets `lastDischarged` despite no discharge, so a long absence can be compressed into a smaller missed count. An office appointed by a captured governance is captured. The target is informational; there is no scope, evidence, fallback, succession or appeal. This is one keeper topology and a V2 counterexample, not the universal closure primitive.
 
-## 5 · Greif and ChallengeBond: the teeth
+## 5 · Greif and ChallengeBond: memory and contest, not teeth
 
-A ledger can remember perfectly and still be useless. If a participant may take from the network, abandon the negative position, return under a new name, and suffer no consequence, memory is archival rather than monetary. Credit needs teeth.
+A ledger can remember perfectly and still be useless. If a participant may take from the network, abandon the negative position, return under a new name, and face no changed future terms, memory is archival rather than consequential. The remaining question is institutional: who observes, who may contest, which future counterparties care, and how repair or rebirth remains possible.
 
-The suite offers two different primitives. Greif attaches consequences to a person-like address. ChallengeBond attaches consequences to an assertion. Neither creates truth. Both change the price of lying.
+The suite offers two partial primitives. Greif stores an attributed score for a person-like address. ChallengeBond makes one assertion contestable and allocates escrowed bonds. Neither creates truth, and neither supplies the later social consequence. Calling both “teeth” collapsed memory, contest and response into one box.
 
-### Greif: standing as an exclusion surface
+### Greif: an advisory memory surface
 
 Greif maintains a registry, a signed reputation score, and a set of authorised reporters. Governance admits participants and reporters. A reporter may add or subtract from a registered participant's score. Another contract can ask whether that participant is in good standing relative to a threshold.
 
-This is Kocherlakota's enforcement residual made explicit. The memory ledger says who received without yet giving. Greif makes that history selectively consequential: a poor record can exclude someone from a future opportunity. The end-to-end test registers a borrower, authorises a reporter through Friedman, subtracts five after a default-like event, and verifies that the borrower no longer passes a zero threshold.
+This is one attempted representation of Kocherlakota's performance residual. The memory ledger says who received without yet giving. Greif lets a caller ask whether a reporter-adjusted score crosses a chosen threshold. The end-to-end test registers a borrower, authorises a reporter through Friedman, subtracts five after a default-like event, and verifies only that the view returns false. Nothing in the cast consumes that view, so nobody is excluded.
 
-That is enough to demonstrate individual punishment. It is nowhere near enough to demonstrate justice. A reporter may lie. A score may collapse context into a number. Registration may become a gate controlled by incumbents. A public registry can become a permanent panopticon. A person can be unable to escape an error—or escape every consequence by creating another address.
+That is enough to demonstrate attributed memory, not individual punishment. A reporter may lie. A score collapses context into a number. Registration may become a gate controlled by incumbents. A public registry can become a permanent panopticon. A person can be unable to escape an error—or escape every consequence by creating another address. V2 therefore replaces the global scalar with contextual, evidence-linked, challengeable, expiring and repairable findings.
 
 The contract comments name the two largest residuals: privacy and Sybil resistance. A more serious implementation might use selective disclosure so someone can prove “standing above threshold” without revealing identity or history. It would still need a defensible answer to one-human-many-addresses, shared devices, lost keys, contested identity, and legitimate rebirth. The code does not pretend those questions are software details.
 
-One integration gap also matters. Schumpeter emits a default event and describes it as a hook for Greif, but the present contracts do not wire that hook. The end-to-end test uses a separate reporter. The institutional sentence—*default lowers future standing*—exists as two clauses awaiting a conjunction.
+One integration gap also matters. Schumpeter emits a default event and describes it as a hook for Greif, but the present contracts do not wire that hook. That restraint is fortunate: V1 lets any caller race an irreversible default immediately after maturity, so automatically propagating it would turn an unchallenged claim into a general sanction.
 
 A second gap looks identical and is not. Nothing consumes the standing check. The obvious completion is a single line inside the ledger, where each participant's credit ceiling is computed: read the standing, and shrink the ceiling when it falls. That line is refused, and the refusal is the more interesting artifact.
 
@@ -276,7 +276,7 @@ So the standing check stays advisory, and the ledger says in its own comments th
 
 **Audit boundary.** A report contains no reason, evidence hash, affected contract, appeal state, expiry, or per-reporter limit. Governance can appoint the reporter that judges it. Scores are public; addresses are not people; Sybil resistance is absent. Schumpeter default does not call `report`. Nothing consumes `inGoodStanding`: it is advisory by ruling, and a caller that gates on it owns that decision and its direction.
 
-### ChallengeBond: optimistic truth with collateral
+### ChallengeBond: an optimistic assertion with collateral
 
 ChallengeBond implements a familiar optimistic pattern. An asserter posts a value and a bond. During a liveness window, another participant may dispute by matching that bond. If no one disputes, the assertion settles as truthful and the original bond returns. If disputed, an arbiter chooses a winner, who receives both bonds.
 
@@ -284,7 +284,7 @@ The mechanism turns a claim into a wager with a public deadline. It is useful wh
 
 Optimistic verification does not make the oracle disappear. It distributes the work and prices the challenge. An undisputed claim becomes “truthful” even if everyone was inattentive, colluding, intimidated, or too poor to post the matching bond. A disputed claim still ends at an arbiter. A large bond deters casual lies and legitimate challengers together; a small bond may price dishonesty too cheaply. The liveness window may be too short for the people most affected.
 
-The current contract fixes the arbiter, bond, and liveness at construction. Bonds are paid in the chain's native asset. There is no appeal, fee, partial slashing, evidence record, or protection against an economically stronger party repeatedly exhausting challengers. The code supplies teeth, not a theory of due process.
+The current contract fixes the arbiter, bond, and liveness at construction. Bonds are paid in the chain's native asset. There is no appeal, arbiter timeout, domain separation, evidence record, or protection against an economically stronger party repeatedly exhausting challengers. The code supplies one contest and escrow-allocation topology, not truth, enforcement or a theory of due process.
 
 #### Protocol card — `ChallengeBond`
 
@@ -756,7 +756,7 @@ Activity, index levels, observed prices, productive-purpose scores, modes, and d
 
 ### Enforcement
 
-A negative balance is a record, not a harvest. Greif can exclude an address; ChallengeBond can slash a posted bond. Neither produces the goods, care, labour, tax capacity, or legal judgment that completes a claim. The phrase “no floor, pay with teeth” is diagnostic, not celebratory. If intrinsic backing is absent, the quality and justice of enforcement become more important, not less.
+A negative balance is a record, not a harvest. Greif can answer a contextual standing query; nothing currently excludes the address. ChallengeBond can allocate posted bonds after its own resolution path. Neither produces the goods, care, labour, tax capacity, future trade or legal judgement that completes a claim. The honest chain is record → contestable finding → separately chosen response → repair or exit. If intrinsic backing is absent, the quality and justice of that whole institution become more important, not less.
 
 ### Governance legitimacy
 
@@ -784,41 +784,19 @@ The relativist advantage is therefore conditional. An intersubjective model pres
 
 ## 12 · How to reproduce the demonstration
 
-The source tree is intentionally small:
-
-```text
-contracts/
-    ChallengeBond.sol
-    Fisher.sol
-    Fiske.sol
-    Friedman.sol
-    Greif.sol
-    Hayek.sol
-    KiyotakiWright.sol
-    Kocherlakota.sol
-    Krugman.sol
-    Schumpeter.sol
-    Stigler.sol
-test/
-    CoreE2E.t.sol
-```
-
-The Foundry configuration fixes Solidity at version 0.8.20 and declares a remapping for `forge-std`. The dependency is not currently present in `lib/`. The source-only compiler audit used:
+The live inventory is generated from the repository rather than repeated as a hand-maintained tree. At this edition it contains sixteen Solidity contracts and three test suites. `forge-std` is a git submodule, so a fresh clone first fetches it:
 
 ```bash
-mkdir -p /tmp/bovi-solc-audit
-npx --yes solc@0.8.20 --bin --abi \
-  -o /tmp/bovi-solc-audit contracts/*.sol
+git submodule update --init --recursive
+forge test
+forge coverage
+forge build --force --ast
+python3 scripts/position-audit.py
 ```
 
-All eleven source files compiled successfully as Solidity `0.8.20+commit.a1b79de6`; the command produced an ABI and bytecode artifact for each contract and interface it encountered. Compilation checks syntax, types, and compiler-enforced arithmetic. It does not execute a transition or prove an invariant.
+Verified 2026-08 with solc 0.8.20: nineteen tests pass. Coverage is 45.21% of lines, 42.93% of statements, 26.25% of branches and 40.78% of functions. Seven contracts have no executed test path: `BigoniCameraCasari`, `Cantillon`, `ChallengeBond`, `Fiske`, `KiyotakiWright`, `Starr` and `Stigler`. The forced AST build matters: without `--force`, an unchanged artifact may lack its AST and the position script silently skips it.
 
-With Foundry installed and its dependency fetched, the intended test reproduction is:
-
-```bash
-forge install foundry-rs/forge-std
-forge test -vv
-```
+Compilation checks syntax, types and compiler-enforced arithmetic. The passing suite establishes only its assertions, not security, institutional liveness, adoption or the truth of world-side reports. The V2 plan turns the uncovered and overclaimed paths into explicit redesign tests; see [`../../contracts/V2-OVERHAUL-PLAN.md`](../../contracts/V2-OVERHAUL-PLAN.md).
 
 The useful reading order is not alphabetical.
 
@@ -826,15 +804,16 @@ The useful reading order is not alphabetical.
 2. Read `Fiske.sol`, then return to the optional gate in Kocherlakota. Notice that the deepest protection is refusal to record.
 3. Read `Friedman.sol` and follow the handover in `CoreE2E.t.sol`. Verify that the old steward loses its direct power.
 4. Read Hayek and Fisher together. Trace a rod observation into a nominal settlement.
-5. Read Greif and ChallengeBond as two non-equivalent kinds of teeth.
+5. Read Greif and ChallengeBond as non-equivalent memory and contest mechanisms, neither of which supplies a social consequence.
 6. Read Schumpeter and compare the comments with the actual first-funder-wins transition.
 7. Read Stigler beside Hayek: one estimates a general rod; the other checks a price for a named good.
 8. Read Kiyotaki–Wright before Krugman. Keep selection and stabilisation separate.
-9. Finish with the test file. For every assertion, ask which social premise had to be supplied before the machine could reach it.
+9. Read Ostrom as the appointed-office topology, then compare it with the distributed keeper functions in the V2 plan.
+10. Finish with all three test files. For every assertion, ask which social premise had to be supplied before the machine could reach it—and whether the test name claims more than the assertion proves.
 
 Then alter the machine. Remove one side of the paired settlement in a disposable copy and watch conservation fail. Bypass the credit limit and see unbounded promises enter. Replace the median with one provider. Set an extreme responsiveness. Let one party overwrite an Immediate tag. Give a reporter power without an appeal. The point is not to vandalise the code. It is to learn the shape of the institution by touching its load-bearing walls.
 
-Forge was not available in the environment that assembled this edition, and the declared `forge-std` path was absent, so `CoreE2E.t.sol` was not executed. The source was freshly compiled; the test file is included as a bench-engine specification, not reported as a passing run. A later edition should record compiler output, test count, commit identifier, dependency lock, invariant suite, and audit status rather than letting “there are tests” harden into “the system is tested.”
+The reproducibility rule is now stricter: record compiler output, test count, coverage, commit identifier, dependency lock, invariant suite and audit status rather than letting “there are tests” harden into “the system is tested.” Generated counts should replace prose counts in V2 so another added contract cannot leave the appendix one generation behind.
 
 ---
 

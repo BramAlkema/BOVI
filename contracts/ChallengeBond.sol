@@ -2,17 +2,18 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title ChallengeBond — optimistic assertion with a bond (the enforcement teeth)
+ * @title ChallengeBond — V1 optimistic assertion with a bond
  *
  * Pattern: UMA's optimistic oracle. An asserter posts a value with a bond.
  * During a liveness window anyone may dispute by matching the bond. Undisputed
  * → the value is truthful and the bond returns. Disputed → an arbiter resolves
  * and the loser's bond is slashed to the winner.
  *
- * This is a horizontal that turns "detectable" into "punished" — one possible
- * source of teeth for the wider stack. Hayek has an implemented finalize path;
+ * This is one contest topology. It allocates the two posted bonds after timeout
+ * or a single arbiter's resolution; it does not establish equal standing, world
+ * truth, or any later social consequence. Hayek has an implemented finalize path;
  * Schumpeter and Greif are not wired to it in the current demonstrator.
- * "Truthful" here means undisputed or arbiter-upheld, not objectively true.
+ * The V1 enum name "Truthful" means undisputed or arbiter-upheld, not objectively true.
  *
  * (Demonstrator: `arbiter` is a single resolver — point it at Friedman. A
  *  production version replaces it with a decentralised vote / DVM.)

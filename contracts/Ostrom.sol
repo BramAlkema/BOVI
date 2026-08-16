@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Ostrom — the office (who holds the crank, and what their silence looks like)
+ * @title Ostrom — V1 appointed-office keeper topology
  *
  * Executes: Elinor Ostrom, *Governing the Commons* (1990) — the design principle
  * that a durable commons has MONITORS, and that the monitors are accountable to
@@ -11,43 +11,42 @@ pragma solidity ^0.8.20;
  * WHY THIS CONTRACT EXISTS, WHICH IS A CONFESSION BEFORE IT IS A DESIGN.
  * Nothing in this canon can act on its own (judgement register §0.2). Every
  * clearing discipline waits on somebody choosing to invoke it: `Fisher.settle`,
- * `Clark.step`, `Krugman`'s rule, `Kocherlakota`'s demurrage accrual. That party
- * was load-bearing from the first commit and had no contract, no vote and no name
- * in the cast. The canon called them "the keeper" in a footnote and moved on.
+ * `Clark.step`, `Krugman`'s rule, `Kocherlakota`'s demurrage accrual. The first
+ * audit called that missing party "the keeper." V2 corrects this to a topology:
+ * observation, triggering, authentication, contest, response and repair may be
+ * divided among users, providers, quorums, offices or external institutions.
+ * This contract represents only the appointed-office case.
  *
  * Then the stock-and-flow audit found what the omission costs. `setDemurrage` is
  * documented as a steward lever that, set to zero, erases "every holder's pending
  * liability" — uniform, as written. It is not uniform. `_accrue` erases only the
  * span nobody has CHARGED yet, so the erasure reaches exactly the holders no one
  * happened to poke first. Two holders, same balance, same elapsed time, same rate,
- * different outcome, and the only thing separating them is when an unnamed party
- * chose to call a public function. See
+ * different outcome, and the only thing separating them is caller order on a
+ * public function. See
  * `test_Gesell_WhoPaysTheMeltIsDecidedByWhoeverPokesFirst`. Governance sets the
- * rate; the keeper decides who it lands on.
+ * rate; the undeclared triggering topology decides who it lands on.
  *
  * AND THE GRAMMAR UNDERNEATH IT. The framework defines a mode as "a rule about
- * when and whether the ledger must clear." Must — who must? A duty with nobody it
- * falls to is not a stricter duty, it is an unfinished one, and an agentless *must*
+ * when and whether the ledger must clear." Must — who observes, triggers, records,
+ * and responds? A duty with no bearer topology is unfinished, and an agentless *must*
  * is precisely the essentialist grammar this project exists to refuse (money *has*
  * value; the market *clears*). The book's own field card always asked the question
- * the definition dropped — *and says who?* This contract is that question given a
- * storage slot.
+ * the definition dropped — *and says who?* This contract gives one possible answer
+ * a storage slot.
  *
  * WHAT IT DOES, AND THE MUCH LARGER LIST OF WHAT IT DOES NOT
- * An office is a named duty, a holder, and a clock. The holder DISCHARGES it by
+ * An office is a named duty, a holder, and a clock. The holder ASSERTS discharge by
  * recording that they ran the crank. When the clock runs past the period, anyone
- * may call `flagOverdue`, which emits. That single event is the whole point and it
- * comes straight from the register's own class-A remedy: *event staleness so a
- * missed clearing is visible as a positive fact rather than an absence.* A thing
- * that does not happen emits nothing, which is why nobody ever noticed the keeper.
- * Here, not happening leaves a mark.
+ * may call `flagOverdue`, which emits. The event makes an attributed staleness report
+ * visible; it does not establish the underlying world fact. A thing that does not
+ * happen emits nothing until an observer supplies an event.
  *
  * It does NOT call the target. It cannot: §0.2 is a property of the platform, not
  * an oversight, and a contract claiming to make the ledger self-executing would be
  * lying about the thing this cast is most careful about. `flagOverdue` still needs
- * a caller. The regress is real and is not closed here — what changes is that the
- * regress now terminates in a NAMED party rather than in nobody, and their absence
- * is a public fact rather than a silence.
+ * a caller. This office names responsibility for one duty; it does not close its
+ * own observation/trigger path or prove that an absence occurred.
  *
  * It also does not punish. `missed` accumulates and is exposed; no sanction fires.
  * Ostrom's other principle here is GRADUATED SANCTIONS, and wiring one would repeat
@@ -60,7 +59,8 @@ pragma solidity ^0.8.20;
  *   - Alchian & Demsetz (1972), team production: the monitor must be given the
  *     residual or they will not monitor. That half is ALREADY BUILT — it is
  *     `Kocherlakota.pokeRewardBps`, which pays a caller a share of what they
- *     collect. The incentive was never the gap.
+ *     collect. That may help willingness; it does not prove timely participation,
+ *     accountability, fallback or enough continuation surplus.
  *   - Ostrom: the monitor must be *accountable*, and to the people affected. That
  *     is the gap, and it is this contract.
  *   - Hohfeld (1913), "Some Fundamental Legal Conceptions as Applied in Judicial
@@ -80,15 +80,15 @@ pragma solidity ^0.8.20;
  * So the real ground is narrower and harder: in any event-based formalism, NOTHING
  * HAPPENED IS NOT AN EVENT. Non-occurrence has no representation of its own; it has
  * to be reified as an observation, and an observation needs an observer. A better
- * runtime does not retire the keeper. The keeper is what a breach needs in order to
- * be seen at all.
+ * runtime does not retire observation and triggering. A breach needs an observer or
+ * accepted observation process in order to be represented at all.
  *
  * THE REGISTER'S MISSING CLASS. Its four classes sort DECISIONS — adjudicative,
- * epistemic, normative, constitutive — and give each a guard. The keeper makes no
- * decision in any of the four; they make a TIMING choice, and there was no row for
- * it, which is why the register could not see the one human its own §0.2 had named.
- * A fifth class was withheld because there was no guard to put in it. This is the
- * guard.
+ * epistemic, normative, constitutive — and give each a guard. A trigger may make no
+ * decision in any of the four; it makes a TIMING choice, and there was no row for
+ * it. The executive correction is a declared topology per function, with clock,
+ * motivation, failure signal, fallback and succession. This office is one topology,
+ * not the guard for all executive action.
  */
 contract Ostrom {
     address public governance;
@@ -185,16 +185,18 @@ contract Ostrom {
     /// left no trace anywhere — the ledger simply did not move, and an absence is
     /// unreadable. Now it is a log line with a name in it.
     ///
-    /// Note what this still does not fix: someone has to call THIS too. The regress
-    /// does not close. It terminates in a named office instead of in nobody, which
-    /// is the difference between an accountable gap and an invisible one.
+    /// Note what this still does not fix: someone has to call THIS too. The office
+    /// names one duty; triggering remains an open-caller topology with no declared
+    /// motivation or fallback.
     function flagOverdue(uint256 id) external returns (bool flagged) {
         Office storage o = offices[id];
         require(o.exists, "no such office");
         uint64 dueAt = o.lastDischarged + o.period;
         if (block.timestamp <= dueAt) return false;
         o.missed += 1;
-        o.lastDischarged = uint64(block.timestamp);   // one flag per elapsed period, not per caller
+        // V1 flaw retained for the reference baseline: observation resets the
+        // performance clock and can compress a long absence into one missed count.
+        o.lastDischarged = uint64(block.timestamp);
         emit Overdue(id, o.holder, dueAt, uint64(block.timestamp), o.missed);
         return true;
     }

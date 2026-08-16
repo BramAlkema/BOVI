@@ -7,9 +7,9 @@ pragma solidity ^0.8.20;
  * Executes: Ross M. Starr, "The Price of Money in a Pure Exchange Monetary
  * Economy with Taxation" (Econometrica, 1974), Theorems 2 & 3 — the size problem
  * stated as an impossibility result. A future obligation denominated in the unit
- * is a guaranteed future acceptor, and that is the strongest selection device
- * anyone has built. But it has a *capacity condition*: the take must cover the
- * stock. An undersized sink supports nothing.
+ * supplies a modelled future sink, conditional on realised acceptance and
+ * collection. But it has a *capacity condition*: the take must cover the stock.
+ * An undersized or unenforced sink supports nothing under this model.
  *
  * This contract exists because "the state can just demand it in tax" is asserted
  * far more often than it is checked. Here it is a function call with a threshold,
@@ -46,14 +46,14 @@ pragma solidity ^0.8.20;
  *      `verdict` reverts until it is. An undeclared threshold is an assumption
  *      hiding as a default.
  *
- * AND A THIRD QUANTITY THE THEORY DOES NOT SUPPLY: ENFORCEMENT.
+ * AND A THIRD QUANTITY THE THEORY DOES NOT SUPPLY: REALISED PERFORMANCE.
  * A decree is not a collection. Taiwan under Japanese administration, c. 1895,
  * made taxes payable only in Japanese money precisely to install the currency;
  * people deferred paying, revenue collapsed, and the policy was abandoned. The
  * decreed sink was never the realised one. So this contract tracks both, and the
- * shortfall is not its business to explain — that residual belongs to `Greif`
- * (identity, reputation, and the teeth). Realised collection, not the statute, is
- * what enters condition A.
+ * shortfall is not its business to explain. Contextual memory, contest, response,
+ * and keeper topology are separate layers; `Greif` does not own the residual.
+ * Realised collection, not the statute, is what enters condition A.
  *
  * WHAT IT REFUSES TO REPORT
  * A price. What travels backward from a sink is ACCEPTANCE, not a level — Starr's
@@ -63,7 +63,7 @@ pragma solidity ^0.8.20;
  * capacity finding and nothing else.
  *
  * WIRING. Stock and obligations may be supplied directly or read from a ledger.
- * The enforcement residual pairs with `Greif`; the selection reading pairs with
+ * A performance finding may be recorded contextually; the selection reading pairs with
  * `KiyotakiWright` (the acceptance-feedback threshold, which is the same
  * if-and-only-if in a different dress).
  */
