@@ -29,3 +29,27 @@ And the constraint. **There is no theory of monetary value in this book.** He gi
 There is also some ordinary carelessness. A footnote about the founding of Apple is wrong in every particular; a passage on the Federal Reserve overstates its distance from the government; the chapter on 1971 and American debt-imperialism is the weakest in the book, asserted rather than evidenced, and it requires you to believe that US Treasuries are a promise everyone knows will not be kept, when they are the most sought-after asset on earth. None of that touches the anthropology. It does tell you what happens when he moves outside his field.
 
 So: use him. He is the best readable synthesis of a real and hard-won result, and the result is one your book depends on. But cite the careful Graeber rather than the quotable one, and put the primary sources underneath anything that has to bear weight — Humphrey for barter, the assyriologists for Mesopotamia, the numismatists for coin. Do that and a successful attack on *Debt*, when it comes, costs you a footnote instead of a chapter.
+
+---
+
+## Where to read these
+
+**The book itself** — [*Debt: The First 5,000 Years*, Melville House first printing, 2011](https://archive.org/details/graeber-debt_the_first_5000_years), full text.
+
+**Graeber answering his critics** — ["On the Invention of Money"](https://libcom.org/article/invention-money-notes-sex-adventure-monomaniacal-sociopathy-and-true-function-economics), his 2011 reply to the economists, and where the flat "0%" formulation appears. His [reply to the Crooked Timber seminar](https://crookedtimber.org/2012/04/02/seminar-on-debt-the-first-5000-years-reply/), and his [reply to Brad DeLong](https://davidgraeber.org/articles/brad-delong-reply/) on the Apple and Federal Reserve errors. The [full seminar](https://crookedtimber.org/category/david-graeber-debt-seminar/) is the single best entry point to the whole argument.
+
+**The barter claim** — Caroline Humphrey, "Barter and Economic Disintegration," *Man* 20(1), 1985: [JSTOR](https://www.jstor.org/stable/2802221), or [this open PDF](https://voidnetwork.gr/wp-content/uploads/2016/09/Barter-and-economic-disintegration-by-Caroline-Humphrey.pdf) if you want to read the truncated sentence in context — it is on the first page.
+
+**The economists** — Robert Murphy, ["Have Anthropologists Overturned Menger?"](https://mises.org/mises-daily/have-anthropologists-overturned-menger); George Selgin, "The Myth of the Myth of Barter" ([Cato original](https://www.cato.org/blog/myth-myth-barter), which currently blocks non-browser requests — the [FEE reprint](https://fee.org/articles/is-barter-a-myth/) is the same piece); Jeffrey Rogers Hummel, [on Graeber at Econlib](https://www.econlib.org/archives/2012/07/hummel_on_graeb.html), the most structurally careful of the three.
+
+**The missing value theory** — Mike Beggs, ["Debt: The First 500 Pages"](https://jacobin.com/2012/08/debt-the-first-500-pages), which is where the "economics-sized gap" line comes from. J.W. Mason's defence, ["In Defense of David Graeber's *Debt*"](https://jacobin.com/2012/09/in-defense-of-david-graebers-debt/), concedes more than it means to.
+
+**The scholarly reviews** — Bill Maurer, "David Graeber's *Wunderkammer*," *Anthropological Forum* 23(1), 2013: [open PDF](https://escholarship.org/content/qt2n76r50s/qt2n76r50s_noSplash_8f94cd6b7f32ca8af7ff69aa18fce96a.pdf) (the [publisher's version](https://doi.org/10.1080/00664677.2012.729492) is paywalled). This is the one to read if you read only one. John Holbo, ["Reciprocity vs. Baseline Communism"](https://crookedtimber.org/2015/02/19/reciprocity-vs-baseline-communism/), on the typology's other seam.
+
+**Antiquity and the coinage question** — John Weisweiler (ed.), *Debt in the Ancient Mediterranean and Near East* (Oxford, 2022), whose opening chapter is on Graeber's currency-slavery-warfare complex; OUP blocks scripted requests, so the [Bryn Mawr review](https://bmcr.brynmawr.edu/2023/2023.09.30/) is the accessible way in. Neville Morley, a Roman historian, weighs the ancient history [here](https://crookedtimber.org/2012/02/22/the-return-of-grand-narrative-in-the-human-sciences/).
+
+**The 1971 chapter** — Henry Farrell, ["The world economy is not a tribute system"](https://crookedtimber.org/2012/02/22/the-world-economy-is-not-a-tribute-system/), and his [retrospective a decade on](https://crookedtimber.org/2023/07/08/debt-4102-days-later/).
+
+**The factual errors** — Brad DeLong has pursued these for years; [this post](https://braddelong.substack.com/p/on-april-fools-day-we-remember-david) collects the Apple paragraph.
+
+**Worth reading even though it isn't a criticism you need** — Chris Knight, ["Did Communism Make Us Human?"](https://libcom.org/article/did-communism-make-us-human-anthropology-david-graeber-chris-knight), attacks baseline communism from the left, and is the most interesting disagreement in the pile.
