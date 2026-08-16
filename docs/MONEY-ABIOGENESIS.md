@@ -1,8 +1,8 @@
-# Money Abiogenesis — how money precipitates from a tradeability gradient
+# Money Abiogenesis — conditional propagation along a tradeability gradient
 
-The genesis half of the value theory. `VALUE-LINEAGE.md` says what money's value *is* (floorless but fruitful — the marginal trades it enables). This says where money *comes from*, and *why it is the ledger that wins*.
+The selection sketch beside the value theory. `VALUE-LINEAGE.md` says what money's value *is* (floorless but fruitful — the marginal trades it enables). This note isolates one propagation mechanism and the ledger-like traits that can help inside it. It does not by itself explain cold start, guarantee emergence or select one universal winner.
 
-It is the transaction-cost (Mengerian) counterpart to Samuelson's relay: where Samuelson shows fiat money *can hold* value once it exists, this shows money **self-assembles** from a gradient — an abiogenesis — and decomposes "tradeability" to reveal that the heavy lifting is done by **known, divisible supply: the ledger**, not by anything commodity-like.
+It is a transaction-cost (Mengerian) counterpart to Samuelson's relay: where Samuelson shows fiat money *can hold* value once it exists, this shows how acceptance can become self-reinforcing **after a credible circulation circuit exists**, and decomposes “tradeability” to reveal the work done by ledger-like properties. Cold-start priming, incumbent switching costs and post-installation continuation are separate mechanisms specified in [`v2/SELECTION-LIFECYCLE.md`](v2/SELECTION-LIFECYCLE.md).
 
 ## Setup
 
@@ -36,19 +36,21 @@ reduces cleanly to:
 
 Because `d` is tiny (direct barter is so improbable), the bar on the right is near zero — so **even a modestly-tradeable intermediary beats direct exchange, despite adding a trade.** And the higher `τ_M`, the more goods-pairs for which mixing-in-M wins. *Adding* a trade *lowers* the total because the added legs route through a good that is cheap to trade. That is the whole of "money's value is the transaction cost it avoids," in one inequality.
 
-## Result 2 — abiogenesis (money self-assembles)
+The comparison is conditional on finding counterparties for both legs. It therefore starts with part of the institutional result already in place; it does not say who pays to make M available, why the first acceptor can re-spend it, or how M outbids an installed incumbent.
 
-Make tradeability **endogenous**. Let `a_M` = the fraction of agents who'll accept M, and `τ_M = β_M · g(a_M)` with `g` increasing (more acceptors → easier to offload → higher tradeability) and `β_M` the good's *intrinsic* edge. Agents route every trade through `argmax_i τ_i`. Then:
+## Result 2 — conditional propagation after priming
+
+Make tradeability **endogenous**. Let `a_M` = the fraction of agents who will accept M in one declared domain, and `τ_M = β_M · g(a_M)` with `g` increasing (more acceptors → easier to offload → higher tradeability) and `β_M` the candidate's non-network edge. Conditional on a working path, routing through M can produce:
 
 > use M as intermediary → `a_M` ↑ → `τ_M` ↑ → (Result 1) M wins *more* pairs → more use → `a_M` ↑ → …
 
-**Positive feedback — autocatalysis.** A good whose use-as-money raises its own tradeability, which raises its use-as-money, is the economic analogue of an *autocatalytic set* in origin-of-life chemistry: the smallest initial edge `β` snowballs to monopoly. The dynamics converge to **one** good with `τ → 1, a → 1` (universal money), all others → 0.
+**Positive feedback — but only inside a viable basin.** A good whose use-as-money raises its own tradeability, which raises its use-as-money, is analogous to an autocatalytic set. Before that feedback can run, however, a priming mechanism must supply a wedge for a **minimum credible circulation circuit**: available → acquired → tendered → accepted → transferred or posted → re-spent, cleared or redeemed → available again. A seed that cannot close that path decays. Below critical mass the same network effects normally defend the incumbent.
 
-As in Samuelson, there are **multiple equilibria** — *which* good wins is path-dependent (a Schelling point) — but *that* some good wins is **generic**. Money isn't designed or decreed; it precipitates out of the gradient. Trade is the primordial soup; money is the self-replicating cycle that bootstraps out of it.
+There can therefore be multiple equilibria, failure regions, reverse cascades and path dependence. No result here makes emergence generic, and no global monopoly follows. Selection is scoped: card and cash, local unit and dollar, chip and national unit, or payment and tip instruments may remain installed in overlapping domains. Tax receivability, subsidy, coercion, legal privilege, platform leverage, prior use, speculation and familiar form are possible priming wedges; none is renamed “the gradient.”
 
 ## Result 3 — the ledger does the heavy lifting in `τ`
 
-Everything turns on `β`, the intrinsic edge that seeds the snowball. Decompose the per-leg cost into what it is actually made of, and ask which good-properties cut each piece:
+The within-model advantage turns on `β`, the candidate's non-network edge. Decompose the per-leg cost into what it is actually made of, and ask which properties cut each piece:
 
 | transaction-cost component | what cuts it | ledger or commodity? |
 |---|---|---|
@@ -69,9 +71,9 @@ Two pieces do the most lifting, and they are exactly the framework's two supply 
 
 (See the canon: *symmetrically known supply* and the *freebie* status of divisibility for a ledger — divisibility is a *property a ledger has for free*, a problem only a commodity must solve.)
 
-## Result 4 — so money evolves toward the pure ledger
+## Result 4 — pressure toward ledger-like traits, not a destiny
 
-Since maximising `τ` *is* maximising ledger-likeness, the autocatalytic climb does not stop at a commodity. It keeps going **up the tradeability gradient toward the `τ = 1` limit — which is the pure ledger**: infinitely divisible, perfectly fungible, supply exactly known, transfer weightless.
+Within this cost model, raising ledger-likeness raises `τ`, so a more divisible, auditable and transferable arrangement can outcompete a less convenient one *inside the same domain, other things equal*. The `τ = 1` pure ledger is a limiting case, not a prediction that history must converge on one substrate.
 
 The commodity was only ever an **imperfect carrier** of ledger-properties:
 
@@ -81,23 +83,23 @@ The commodity was only ever an **imperfect carrier** of ledger-properties:
    failure)        supply doubt)       ledger)          ledger)
 ```
 
-Each step is more ledger-like → more tradeable → selected. So **money sheds the commodity and approaches the bare ledger.** Abiogenesis at the start; the climb to the pure ledger ever after. This is why the historical record reads as *ledger-reliability improving over time*, not *commodity → abstraction* — and why the framework's minimal money is a net-zero credit ledger, not a token.
+The sequence illustrates ways a substrate can become more ledger-like; it is not a universal chronology or an adoption theorem. Installed custom, authentication practice, switching cost, law, custody, trust in issuance and familiar form can preserve older substrates, while different rails divide functions. The framework's minimal engineered instance can still be a net-zero credit ledger without claiming that every monetary ecology must end there.
 
 ## How it sits next to Samuelson
 
 | | Samuelson / Tirole | this model |
 |---|---|---|
-| question | can fiat money *have* value? | how does money *come to be*, and *why this good*? |
-| answer | yes — a self-relaying bubble (consistency) | it precipitates from a tradeability gradient (genesis) |
-| selection | punted (multiple equilibria) | same multiplicity, but the *winner* is the most ledger-like good |
+| question | can fiat money *have* value? | when can indirect exchange propagate, and which traits help? |
+| answer | yes — a self-relaying bubble (consistency) | conditionally, after a credible circuit exists |
+| selection | punted (multiple equilibria) | conditional propagation advantage inside a scoped, already credible circuit |
 | "tradeability" | not decomposed | **decomposed → it *is* ledger-likeness** |
 
-Complementary: Samuelson proves the floorless value is *consistent*; this proves it *emerges*, and identifies what tradeability is *made of* — and the heavy lifting is **known divisible supply: the ledger.**
+Complementary: Samuelson establishes a consistency result; this note isolates a conditional propagation feedback and identifies ledger-like components of tradeability. `SelectionLifecycle` carries the missing priming, installation, maintenance, decline and coexistence semantics.
 
 ## Honest pedigree
 
-- The emergence is **Kiyotaki–Wright (1989)** — money as "the most marketable good" — in transaction-cost dress, with Menger's saleability (*Grundsätze* 1871, "On the Origin of Money" 1892) underneath.
-- The move that is the framework's own: the **decomposition of marketability into ledger-vs-commodity properties**, showing marketability *is* ledger-likeness — so the autocatalytic climb ends at the bare record, and the two supply axioms (known supply, divisibility) fall out as the `τ`-drivers.
+- The acceptance-feedback lineage is **Kiyotaki–Wright (1989)** in transaction-cost dress, with Menger's saleability (*Grundsätze* 1871, "On the Origin of Money" 1892) underneath. Neither the equation above nor the V1 Solidity threshold implements their heterogeneous search economy or supplies the cold start.
+- The move that is the framework's own: the **decomposition of marketability into ledger-vs-commodity properties**, identifying known supply and divisibility as `τ`-drivers inside this cost model. It is not a theorem that every monetary ecology ends at a bare record.
 
 ## The identity — a divisible, known-supply good *is* a ledger
 
@@ -126,6 +128,7 @@ Two consequences:
 
 ## See also
 
-- `docs/VALUE-LINEAGE.md` — what money's value *is* (Simmel / Patinkin: floorless but fruitful). This doc is the *genesis* companion.
-- `contracts/Kocherlakota.sol` — the `τ = 1` limit, instantiated: a net-zero ledger, no token, divisibility free, supply known.
+- `docs/VALUE-LINEAGE.md` — what money's value *is* (Simmel / Patinkin: floorless but fruitful). This doc is the conditional-selection companion.
+- `docs/v2/SELECTION-LIFECYCLE.md` — the scoped lifecycle, minimum credible circuit, priming/continuation handoff and evidence boundaries that this toy feedback omits.
+- `contracts/Kocherlakota.sol` — the V1 net-zero ledger mechanics demonstrator, not a completed selection lifecycle.
 - Canon: *symmetrically known supply*; divisibility as a ledger *freebie*; ledger-reliability-improving-over-time as the read on monetary history.

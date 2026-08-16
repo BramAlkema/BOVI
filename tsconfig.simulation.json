@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "lib/v2/selection-lifecycle",
+    "outDir": "dist/selection-lifecycle",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": true,
+    "noEmit": false
+  },
+  "include": ["lib/v2/selection-lifecycle/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lib/v2/selection-lifecycle/**/__tests__/**",
+    "lib/v2/selection-lifecycle/**/*.test.ts"
+  ]
+}

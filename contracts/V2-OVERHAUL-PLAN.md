@@ -1,6 +1,6 @@
 # Contract system V2 — ground-up overhaul and closure audit
 
-*Candidate architecture, 2026-08. Nothing in this document is deployed. V1 remains the executable reference until V2 passes the gates below.*
+_Candidate architecture, 2026-08. The `SelectionLifecycle` JSON-safe source, validator, deterministic ABM/replay and narrow evidence adapters are implemented; no V2 proof target or Solidity deployment exists. V1 remains the executable Solidity reference until V2 passes the gates below._
 
 ## Decision
 
@@ -28,9 +28,9 @@ This is a reproducible demonstrator baseline, not a security, adoption or instit
 
 V2 begins from seven propositions established by the recent audit and research thread. They are candidate synthesis, not claims that the current Solidity proves them.
 
-1. **Selection has a lifecycle.** A possible money moves through `candidate → priming → propagation → installed use → maintenance/repair → decline, exit or succession`. A stationary acceptance equilibrium starts after the hard part.
+1. **Selection has a lifecycle.** A possible money moves through `candidate → priming → propagating → installed-supported → installed-self-maintaining`, with explicit `repairing`, `fragile`, `declining`, `exited`, `collapsed` and `superseded` paths. A stationary acceptance equilibrium starts after the hard part.
 2. **Cold start is siphon priming.** Before a continuous acceptance path exists, somebody must bear a priming cost: subsidy, coercion, tax receivability, legal privilege, platform leverage, prior use, speculation, familiar form, or some other wedge. Network effects usually defend the incumbent before they amplify the challenger.
-3. **Continuation surplus can replace the priming wedge.** Once enough parties expect future opportunities from continued participation, the loss of future trade, credit, cooperation, access and specialisation can make performance locally self-enforcing. This is conditional, not magic: the surplus must reach the relevant actor, exceed defection and keeper costs, and remain sufficiently likely and soon.
+3. **Actor-accessible continuation surplus can replace the priming wedge.** Once installed, continued circulation can preserve gains from specialisation, fractionated trade across quantity/time/counterparty, and conflict mitigation. Those gains may make performance locally self-enforcing only where the actor being asked to act can actually reach them. There is no valid global continuation scalar: each load-bearing actor/action needs its own counterfactual, accessible share, loss path, horizon and cost test.
 4. **Keepership is a topology, not necessarily an office.** Observation, triggering, authentication, accounting, challenge, finding, consequence, repair and rule maintenance may be divided among counterparties, ordinary users, open callers, providers, quorums, rotating members, a named office, or an external institution. `Ostrom` represents one topology. It is not the terminus of every regress.
 5. **Record, judgement and consequence are different stages.** `Greif` can preserve contextual reputation memory. `ChallengeBond` can make an assertion contestable. Neither is “the teeth.” The consequence may come from later refusal, reduced exposure, lost trade, collateral, an office, law, or no response at all. No reputation output may silently become a sanction input.
 6. **Monies coexist and compete at more than one level.** Units, ledgers, instruments and rails can divide work within the same person and transaction: local currency and dollars, card and cash, payment and tip, casino chip and national unit, venue token and card rail. Acceptance must therefore be scoped to a domain, function and relationship, not assigned once to a whole currency.
@@ -40,25 +40,25 @@ V2 begins from seven propositions established by the recent audit and research t
 
 Thinker names remain citations and intellectual lineage. They stop being the primary module boundary. Every V2 mechanism must first fill one **circuit card**:
 
-| Field | Required question |
-|---|---|
-| Scope | In which population, relationship, function, place, period and acceptance domain does this claim apply? |
-| Monetary object | Which unit, ledger, claim, instrument and rail are involved? Which may coexist? |
-| Parties and positions | Who can act, who is acted upon, who benefits, who bears cost, and who has standing? |
-| Stocks and state | What persists, under whose control, at what resolution, and with what conservation rule? |
-| Lifecycle | What creates, activates, suspends, performs, violates, repairs, terminates or succeeds the arrangement? |
-| Transitions | Which event changes which state; who may invoke it; which guard and deadline apply? |
-| Observation | Which fact comes from the world, who reports it, by what method, with what provenance and staleness rule? |
-| Priming | Who bears the cold-start cost, what early domain is targeted, and when may the wedge stop? |
-| Keeper topology | For every observation and transition, who notices, triggers, records, challenges, finds, responds and repairs? |
-| Continuation | What future surplus makes each participant and keeper continue; who does not receive it; what is the outside option? |
-| Contest | What may be challenged, by whom, at what cost, before what deadline, and with what appeal? |
-| Consequence | Who chooses and applies a response to a finding? Is it advisory, automatic, bilateral, collective or external? |
-| Recovery | How can an error, default, lost key, incapacity or fulfilled remedy restore standing and participation? |
-| Constitution | Who can change the rule, by what procedure, with what non-retroactivity and affected-party guard? |
-| Exit and succession | How can a party leave, a group fork, a role rotate, or a failed provider be replaced without losing the record? |
-| Threats | What can collusion, capture, censorship, Sybil identities, surveillance, timing, wealth or resource asymmetry do? |
-| Evidence | What proof, simulation, deployment test and observable kill condition would refute the claim? |
+| Field                 | Required question                                                                                                    |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Scope                 | In which population, relationship, function, place, period and acceptance domain does this claim apply?              |
+| Monetary object       | Which unit, ledger, claim, instrument and rail are involved? Which may coexist?                                      |
+| Parties and positions | Who can act, who is acted upon, who benefits, who bears cost, and who has standing?                                  |
+| Stocks and state      | What persists, under whose control, at what resolution, and with what conservation rule?                             |
+| Lifecycle             | What creates, activates, suspends, performs, violates, repairs, terminates or succeeds the arrangement?              |
+| Transitions           | Which event changes which state; who may invoke it; which guard and deadline apply?                                  |
+| Observation           | Which fact comes from the world, who reports it, by what method, with what provenance and staleness rule?            |
+| Priming               | Who bears the cold-start cost, what early domain is targeted, and when may the wedge stop?                           |
+| Keeper topology       | For every observation and transition, who notices, triggers, records, challenges, finds, responds and repairs?       |
+| Continuation          | What future surplus makes each participant and keeper continue; who does not receive it; what is the outside option? |
+| Contest               | What may be challenged, by whom, at what cost, before what deadline, and with what appeal?                           |
+| Consequence           | Who chooses and applies a response to a finding? Is it advisory, automatic, bilateral, collective or external?       |
+| Recovery              | How can an error, default, lost key, incapacity or fulfilled remedy restore standing and participation?              |
+| Constitution          | Who can change the rule, by what procedure, with what non-retroactivity and affected-party guard?                    |
+| Exit and succession   | How can a party leave, a group fork, a role rotate, or a failed provider be replaced without losing the record?      |
+| Threats               | What can collusion, capture, censorship, Sybil identities, surveillance, timing, wealth or resource asymmetry do?    |
+| Evidence              | What proof, simulation, deployment test and observable kill condition would refute the claim?                        |
 
 A card does not compile while one of these fields is blank. “The market,” “governance,” “the community,” “users,” “the oracle,” and “the keeper” are not filled fields unless their membership, powers and topology are declared.
 
@@ -79,11 +79,25 @@ The V2 source model should minimally type:
 - `KeeperAssignment`: function plus topology, cost, incentive or duty, clock, fallback and succession.
 - `Assertion`, `Challenge`, `Finding`, `Consequence`, `Appeal` and `Repair`: separate objects with no implicit wire between them.
 - `ExposurePolicy`: the future counterparty who bears risk chooses whether to accept, refuse, shorten terms, require collateral, forgive or ignore a contextual finding.
-- `PrimingMechanism`: payer, cost, targeted domain, wedge, stop condition and capture risk.
-- `ContinuationAssumption`: future opportunity, beneficiary, horizon, probability, outside option, defection gain and keeper cost, with a refutation condition.
+- `PrimingMechanism`: payer, allocated cost, targeted domain/role/function, challenged incumbent, wedge, minimum circuit, start condition, stop condition, post-removal test, capture risk and refutation path.
+- `ContinuationAssumption`: keyed by actor × action × domain, with an exact record required for every load-bearing action and optional non-circuit diagnostic records kept non-gating; a future opportunity decomposed without overlap into specialisation, trade-fractionation and conflict-mitigation gains; actor-accessible share, counterfactual, horizon, probability/loss path, outside option, defection gain, participation/keeper/risk cost and refutation condition.
 - `Exit`, `Fork` and `Succession`: rights and data/state consequences.
 
 Candidate keeper topologies are `self`, `bilateral`, `open`, `provider`, `federated`, `quorum`, `rotating`, `office`, `protocol` and `external`. A circuit may compose several. These are specification types, not a proposal for one giant Solidity dispatcher.
+
+### The `SelectionLifecycle` source module
+
+Selection is now owned by one implemented mechanism-named source module, `SelectionLifecycle`, specified in [`../docs/v2/SELECTION-LIFECYCLE.md`](../docs/v2/SELECTION-LIFECYCLE.md). It owns the scoped state machine, minimum credible circulation circuit, propagation assumptions, supported-to-self-maintaining handoff and actor-specific continuation tests. It does not own ledger postings, customary rules, reputation, offices, sink capacity or experimental results; those arrive through narrow, provenance-preserving evidence adapters.
+
+Its JSON-safe source uses safe-integer `MicroUnits` for quantities/payoffs, integer `Ppm` in `0..1_000_000` for probabilities and integer ticks for time. Floating-point probabilities, decimal money strings and out-of-safe-range arithmetic are invalid source, not rounding opportunities.
+
+The minimum circuit is stronger than a seed and weaker than universal adoption. Schema v1 requires exactly one circuit per domain/instrument pair. Its continuous relationships execute in declared order from availability through acquisition, tender, acceptance and posting/transfer to exactly one re-spend, clearing or redemption path and final renewal; every edge names both relationship endpoints as load-bearing actors. Outside explicit targeted priming, those actors' exact action-specific continuation margins gate performance; bilateral keepers are restricted to the edge endpoints. Cumulative same-tick concrete keeper cost/reward and funder payments replace generic claim estimates, so one continuation value cannot be reused before state advances. A fallback must serve the same keeper function, and a fulfilled fallback satisfies its root obligation instead of adding a failed primary to the coverage denominator. Cooperative surplus is realised only after final renewal, only from active, probability-scaled, non-overlapping opportunities explicitly claimed by the circuit's load-bearing actor/actions. Attempted/completed windows and credibility remain keyed to that circuit, so unrelated activity cannot carry it. `priming → propagating` is forbidden until its declared guard holds.
+
+Installation first enters `installed-supported`, whether support remains or certification evidence is merely maturing. Runtime support means an active external priming input or an externally funded keeper that is executable under the actual required edge topology anywhere on its primary/fallback path, not an unused or wrong-counterparty external assignment elsewhere. Its removal—or installation with no support—starts a fresh clock; returning support resets that clock. Support can block self-maintenance but cannot conceal failed maintenance or lost credibility after the evidence window. Only a fresh post-removal operating window at least as long as the removal, maintenance and circuit windows, renewed circuit/maintenance evidence, required circuit actor/action claims and a viable primary-or-fallback keeper/funder path permit `installed-self-maintaining`; unrelated diagnostics and unused assignments do not gate it. A current attempted root with no primary/fallback path retaining positive cumulative actor/funder economics immediately reopens closure; reliability and capacity misses remain subject to their declared window tolerances. Internal rewards require named participant funders, positive cumulative same-tick `fund-keeper` margins and bounded per-actor, per-tick funding capacity; external rewards require named non-participant payers and a bounded per-assignment, per-tick budget. Priming's fixed cost and carried keeper rewards debit its named participant payers or explicit external draw and cannot exceed its total budget. Stopping a wedge never proves that continuation has taken over.
+
+The engine uses a versioned staged schedule: every actor's adoption decision in a tick reads one common pre-adoption snapshot, then ordered circuit performance and keeper actions update the log. The tally canonical demonstrates a targeted seed, a later vulnerable cluster and a still later unprimed adopter; first adoption installs the actor's declared complement, which can defend an installed network against later competitors, while scoped coexistence remains non-interference rather than a causal force. `run-started` records the canonical scenario hash, claimed seed and run horizon; by itself it does not authenticate that the engine followed them. Structural replay requires the validated source, strictly ordered logical time, exact scoped keeper/evidence metadata and recomputation of every present engine-derived lifecycle guard. It does not authenticate omissions. `verifyDeterministicTrace` is the hostile-import boundary: with trusted scenario, seed and tick horizon it reruns the pinned engine and compares every canonical event payload before replay. Repair, exit and succession are represented only when an accepted external finding is supplied; externally determined collapse may use the same finding path, while the ABM also has a mechanically guarded collapse. The simulator does not invent any of those findings.
+
+`KiyotakiWright.sol` is frozen as a V1 compatibility fixture. Its three externally supplied scores may reproduce an old threshold trace, but V2 does not extend it or migrate its state. It has no agents, domains, circuit, matching, priming or actor-specific continuation and therefore cannot emit a V2 lifecycle transition.
 
 ## Enforcement without a skyhook
 
@@ -104,27 +118,29 @@ The record supplies memory. People and institutions may supply consequences thro
 The continuation hypothesis is correspondingly precise:
 
 ```text
-specialisation
-  → mutual dependence
-  → continuation surplus
-  → greater incentive to perform and maintain the record
+specialisation + fractionated trade + conflict mitigation
+  → actor-accessible continuation opportunities
+  → expected surplus at risk for a particular action
+  → greater incentive for that actor to perform and maintain the record
   → safer local credit and cooperation
   → deeper specialisation
 ```
 
 This loop is not a universal social-credit score. Reputation must be contextual, purpose-limited, challengeable, time-aware and repairable. V2 rejects automatic cross-context propagation, irreversible exclusion, wealth-weighted truth, and sanctions with no appeal or route back.
 
-The maintenance hypothesis to sweep—not assume—is:
+The self-maintenance hypothesis to sweep—not assume—is:
 
 ```text
-P(observation and consequential response)
-× expected discounted continuation surplus at risk
+P(the opportunity remains available)
+× P(the declared direct or finding-mediated loss path if the actor stops)
+× PV(non-overlapping actor-accessible surplus components)
 + immediate bond/reward
 >
-one-shot defection gain + participation cost + keeper effort + risk
+outside-option advantage + one-shot defection gain
++ participation cost + keeper effort + risk
 ```
 
-Failure does not prove the instrument impossible. It means the profile needs an ongoing subsidy, duty, coercive support, office or other external input and must say so.
+This inequality is evaluated separately for every load-bearing actor/action. Merchant gains cannot silently motivate an unpaid observer, and an aggregate network benefit cannot be copied into every keeper's account. Failure does not prove the instrument impossible. It means that actor needs an ongoing subsidy, duty, coercive support, office or other external input and the profile must say so.
 
 ## New candidate primitive: `Ellickson`
 
@@ -143,20 +159,35 @@ Its candidate responsibilities are:
 
 It must not infer social assent from silence, universalise a local custom, auto-punish a reported breach, or claim that informal order is benign. The first implementation should be a reference profile for the Knights' Tally Rope, not a universal customary-law machine.
 
+### Narrow evidence inputs to `SelectionLifecycle`
+
+The lifecycle reads observations; it does not absorb the mechanisms that produced them. The following source-level read-only adapters are implemented, but are not serialized as scenario fields:
+
+| Input lineage        | Mechanism-named adapter          | Admissible contribution                                                                                    | Forbidden upgrade                                                             |
+| -------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `Starr`              | `SinkCapacityAdapter`            | Conditional, preregistered stock/realised-sink coverage and encounter-share evidence.                      | No price, adoption or general cold-start verdict.                             |
+| `Kocherlakota`       | `LedgerTraceAdapter`             | Paired postings, positions, conservation and staleness.                                                    | A posting is not delivery, correct change, discharge or continued acceptance. |
+| `Ellickson`          | `CustomOrderAdapter`             | Scoped custom claims, bilateral performance claims, challenge, peer finding, repair, fork and exit.        | No assent from silence, universal custom, fairness or automatic sanction.     |
+| V2 `Greif`           | `ContextualFindingMemoryAdapter` | Attributed, scoped, expiring, challengeable and repairable findings.                                       | No global score and no exposure decision; V1 deltas remain archive-only.      |
+| `Ostrom`             | `OfficeKeeperAdapter`            | Office assignment, duty, clock, vacancy, self-asserted discharge and separately timed overdue observation. | No proof of performance, liveness, accountability or punishment.              |
+| `BigoniCameraCasari` | `ExperimentCalibrationAdapter`   | Preregistration, treatment/control observations, binding rate, effect and uncertainty.                     | No production rule or automatic transition.                                   |
+
+Every adapter preserves reporter, method, provenance, period, uncertainty, freshness and challenge status. It can support or refute a transition guard only through the declared claim/finding path; it cannot emit a lifecycle transition.
+
 ## Loop closure is a vector
 
 No V2 document may call a loop simply “closed.” Every loop receives this closure vector:
 
-| Dimension | Closed only when… |
-|---|---|
-| **Computational** | every in-system state transition has an executable path and its safety invariants hold. |
-| **Trigger/liveness** | an assigned topology can notice and invoke each due transition within a declared bound, with fallback and succession. |
-| **Epistemic** | required world facts have a method, provenance, uncertainty, freshness and challenge path. |
-| **Adjudicative** | disputed claims reach a finding under the declared guard and resource asymmetry is addressed or exposed. |
-| **Normative/consequence** | the party authorised to select a response is named, affected-party legitimacy is declared, and no advisory output becomes punishment by accident. |
-| **Recovery** | error, cure, appeal, re-entry, forgiveness, lost keys and incapacity have an attainable path rather than permanent limbo. |
-| **Economic continuation** | the relevant actors receive expected continuation surplus exceeding defection, participation and keeper costs under tested ranges. |
-| **Constitutional** | rules, roles and providers can change, fork, exit or succeed without retroactive seizure or an unreplaceable actor. |
+| Dimension                 | Closed only when…                                                                                                                                                                                                                   |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Computational**         | every in-system state transition has an executable path and its safety invariants hold.                                                                                                                                             |
+| **Trigger/liveness**      | an assigned topology can notice and invoke each due transition within a declared bound, with fallback and succession.                                                                                                               |
+| **Epistemic**             | required world facts have a method, provenance, uncertainty, freshness and challenge path.                                                                                                                                          |
+| **Adjudicative**          | disputed claims reach a finding under the declared guard and resource asymmetry is addressed or exposed.                                                                                                                            |
+| **Normative/consequence** | the party authorised to select a response is named, affected-party legitimacy is declared, and no advisory output becomes punishment by accident.                                                                                   |
+| **Recovery**              | error, cure, appeal, re-entry, forgiveness, lost keys and incapacity have an attainable path rather than permanent limbo.                                                                                                           |
+| **Economic continuation** | every load-bearing actor/action has non-overlapping, accessible expected surplus at risk exceeding outside-option, defection, participation, keeper and risk costs under tested ranges—or the profile remains explicitly supported. |
+| **Constitutional**        | rules, roles and providers can change, fork, exit or succeed without retroactive seizure or an unreplaceable actor.                                                                                                                 |
 
 Each dimension is marked `closed`, `open boundary`, `bonded assumption`, `not applicable` or `failed`, with evidence. An open world boundary is honest. An unnamed edge is a failed audit.
 
@@ -211,18 +242,18 @@ The four inventories are checked in both directions. No source item may be orpha
 
 Before a V2 release candidate, one profile for each case must fill the same schema:
 
-| Profile | Distinction it must preserve |
-|---|---|
-| Bitcoin | independent consensus/authentication topology; speculative priming; no claim that a Solidity wrapper recreates it. |
-| Prison cigarettes | commodity possession, bounded acceptance, informal authentication and local future interaction. |
-| Knights' Tally Rope | bilateral records, distributed custom maintenance, peer findings and continuation surplus without issuer or regulator. |
-| Gold | physical authentication, path-dependent legitimacy, custody/assay costs and coexistence with ledger claims. |
-| State fiat | unit, cash, deposits, tax/legal wedges, issuer and many keeper topologies kept distinct. |
-| Dollarisation | local unit and dollar coexisting by function; taxes as one wedge rather than a sufficient adoption account. |
+| Profile                                 | Distinction it must preserve                                                                                                                                                                                          |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bitcoin                                 | independent consensus/authentication topology; speculative priming; no claim that a Solidity wrapper recreates it.                                                                                                    |
+| Prison cigarettes                       | commodity possession, bounded acceptance, informal authentication and local future interaction.                                                                                                                       |
+| Knights' Tally Rope                     | bilateral records, distributed custom maintenance, peer findings and actor-accessible continuation without issuer or regulator.                                                                                       |
+| Gold                                    | physical authentication, path-dependent legitimacy, custody/assay costs and coexistence with ledger claims.                                                                                                           |
+| State fiat                              | unit, cash, deposits, tax/legal wedges, issuer and many keeper topologies kept distinct.                                                                                                                              |
+| Dollarisation                           | local unit and dollar coexisting by function; taxes as one wedge rather than a sufficient adoption account.                                                                                                           |
 | Orphaned Swiss Iraqi dinar in Kurdistan | the disappearance of issuer/regulator separated from installed recognition, denominations, pricing, correct change, debt discharge and continuing acceptance. This is a maintenance/orphaning case, not a cold start. |
-| Cash, card and phone payment | one purchase function contested by distinct instruments/rails, including a cash tip beside a card bill. |
-| Venue tokens and casino chips | sharply bounded acceptance, issuer redemption/custom and local exit risk. |
-| Coupons and company scrip | restricted domain, bridge/redemption terms and coercive lock-in distinguished. |
+| Cash, card and phone payment            | one purchase function contested by distinct instruments/rails, including a cash tip beside a card bill.                                                                                                               |
+| Venue tokens and casino chips           | sharply bounded acceptance, issuer redemption/custom and local exit risk.                                                                                                                                             |
+| Coupons and company scrip               | restricted domain, bridge/redemption terms and coercive lock-in distinguished.                                                                                                                                        |
 
 Passing does not mean each profile is deployed in Solidity. It means proof, simulation, deployment and world-boundary choices are explicit and the shared ontology does not erase the feature the example was chosen to test.
 
@@ -230,25 +261,25 @@ Passing does not mean each profile is deployed in Solidity. It means proof, simu
 
 This table is a hypothesis to test, not preservation by sunk cost. Each row still needs a function/state/event migration ledger before implementation.
 
-| V1 artifact | V2 candidate disposition | Reason |
-|---|---|---|
-| `Kocherlakota` | **retain kernel; split and rewrite the rest** | Preserve paired signed writes and conservation; rename `Settled` to `Posted` unless a receipt establishes discharge. Separate membership, credit underwriting, stabilisation, mode gate, demurrage, jubilee, keeper incentives and governance. Bound signed conversion and use rate epochs. |
-| `Fiske` | **promote to source-level type system** | Modes and explicit conversions constrain all targets; one last-writer-wins mode per unordered pair cannot express card-meal/cash-tip coexistence and permits unilateral overwrite. Scope mode to episode, purpose, domain and time with appropriate assent. |
-| `Greif` | **replace with contextual reputation memory** | Preserve attributed records; remove “teeth,” universal score and implied automatic exclusion. |
-| `ChallengeBond` | **split and narrow to contestable assertions** | Bonding prices attention and enables dispute; it does not establish truth, equal standing or enforcement. Separate generic claim lifecycle from this optional topology; add domain separation, timeout, appeal/fallback and consumed findings; use `Unchallenged`/`Upheld`, not `Truthful`. |
-| `Ostrom` | **retain as an office-topology adapter** | A named duty, clock and staleness record remain useful; the office is one keeper topology, not the universal terminus. Split performed time from overdue-observation time: V1's `flagOverdue` resets `lastDischarged` even though no discharge occurred. |
-| `Friedman` | **rewrite as one constitutional topology** | Preserve rule-bound proposals and rationales; add affected scope, non-retroactivity, exit/fork and succession. |
-| `Fisher` | **merge into generic obligation lifecycle** | Indexed obligations need bilateral assent, typed parties, partial performance, due-index snapshot, arrears, acceptable instruments, rounding, contest, cure, forgiveness and termination; V1 permits unilateral creation/cancellation and a late call erases missed periods. |
-| `Schumpeter` | **rewrite as a credit composition/profile** | Separate contested attestation, allocation, obligation, default claim and consequence; do not pretend first-funder is an auction. V1 lets any caller race an irreversible default after maturity. |
-| `Hayek` | **retain and harden as optional observation aggregation** | Type the unit and basket, expose provenance/freshness and keep provider governance outside the numerical median. Remove or label the trusting bypass and prevent settled assertions from refreshing stale values by replay. |
-| `Stigler` | **retain as a measurement path** | Publication discipline is useful; state who may act on a finding and under which guard. |
-| `Cantillon` | **retain as an incidence meter** | It measures nominal exposure; it neither diagnoses informational ignorance nor supplies a policy response. |
-| `Starr` | **demote to a conditional capacity meter** | Keep decreed versus realised collection separate; remove the claim that the residual belongs to `Greif`, freeze preregistered thresholds before outcomes, and label sufficiency as conditional on its model. |
-| `BigoniCameraCasari` | **move to evidence/simulation profile** | It is an experiment treatment and diagnostic, not a production institution. Preregistration must precede observations and the experimental condition must be enforced by the finding. |
-| `KiyotakiWright` | **move to simulation profile** | Acceptance feedback requires heterogeneous agents, domains and paths; external scores in Solidity demonstrate only a threshold. |
-| `Krugman` | **split rule from deployment adapter** | Prove/simulate the stabiliser; deploy only the typed observation and authorised parameter interface. |
-| `Clark` | **keep as Tier-2 proof/simulation profile** | The liquidation threshold tests reach beyond money but is not part of the institutional runtime. |
-| `Ellickson` | **add as a new reference profile/primitive composition** | Supplies distributed custom, performance, breach, peer finding and repair without issuer or automatic sanction. |
+| V1 artifact          | V2 candidate disposition                                   | Reason                                                                                                                                                                                                                                                                                      |
+| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Kocherlakota`       | **retain kernel; split and rewrite the rest**              | Preserve paired signed writes and conservation; rename `Settled` to `Posted` unless a receipt establishes discharge. Separate membership, credit underwriting, stabilisation, mode gate, demurrage, jubilee, keeper incentives and governance. Bound signed conversion and use rate epochs. |
+| `Fiske`              | **promote to source-level type system**                    | Modes and explicit conversions constrain all targets; one last-writer-wins mode per unordered pair cannot express card-meal/cash-tip coexistence and permits unilateral overwrite. Scope mode to episode, purpose, domain and time with appropriate assent.                                 |
+| `Greif`              | **replace with contextual reputation memory**              | Preserve attributed records; remove “teeth,” universal score and implied automatic exclusion.                                                                                                                                                                                               |
+| `ChallengeBond`      | **split and narrow to contestable assertions**             | Bonding prices attention and enables dispute; it does not establish truth, equal standing or enforcement. Separate generic claim lifecycle from this optional topology; add domain separation, timeout, appeal/fallback and consumed findings; use `Unchallenged`/`Upheld`, not `Truthful`. |
+| `Ostrom`             | **retain as an office-topology adapter**                   | A named duty, clock and staleness record remain useful; the office is one keeper topology, not the universal terminus. Split performed time from overdue-observation time: V1's `flagOverdue` resets `lastDischarged` even though no discharge occurred.                                    |
+| `Friedman`           | **rewrite as one constitutional topology**                 | Preserve rule-bound proposals and rationales; add affected scope, non-retroactivity, exit/fork and succession.                                                                                                                                                                              |
+| `Fisher`             | **merge into generic obligation lifecycle**                | Indexed obligations need bilateral assent, typed parties, partial performance, due-index snapshot, arrears, acceptable instruments, rounding, contest, cure, forgiveness and termination; V1 permits unilateral creation/cancellation and a late call erases missed periods.                |
+| `Schumpeter`         | **rewrite as a credit composition/profile**                | Separate contested attestation, allocation, obligation, default claim and consequence; do not pretend first-funder is an auction. V1 lets any caller race an irreversible default after maturity.                                                                                           |
+| `Hayek`              | **retain and harden as optional observation aggregation**  | Type the unit and basket, expose provenance/freshness and keep provider governance outside the numerical median. Remove or label the trusting bypass and prevent settled assertions from refreshing stale values by replay.                                                                 |
+| `Stigler`            | **retain as a measurement path**                           | Publication discipline is useful; state who may act on a finding and under which guard.                                                                                                                                                                                                     |
+| `Cantillon`          | **retain as an incidence meter**                           | It measures nominal exposure; it neither diagnoses informational ignorance nor supplies a policy response.                                                                                                                                                                                  |
+| `Starr`              | **demote to `SinkCapacityAdapter` input**                  | Keep decreed versus realised collection separate; remove the claim that the residual belongs to `Greif`, freeze preregistered thresholds before outcomes, and label sufficiency as conditional on its model. It cannot advance selection by itself.                                         |
+| `BigoniCameraCasari` | **move behind `ExperimentCalibrationAdapter`**             | It is an experiment treatment and diagnostic, not a production institution. Preregistration must precede observations and the experimental condition must be enforced by the finding.                                                                                                       |
+| `KiyotakiWright`     | **freeze and retire to compatibility fixture**             | Preserve the V1 threshold trace for comparison only. V2 propagation lives inside `SelectionLifecycle` and requires heterogeneous agents, domains, circuits and paths; no V1 score or `isMoney` flag migrates.                                                                               |
+| `Krugman`            | **split rule from deployment adapter**                     | Prove/simulate the stabiliser; deploy only the typed observation and authorised parameter interface.                                                                                                                                                                                        |
+| `Clark`              | **keep as Tier-2 proof/simulation profile**                | The liquidation threshold tests reach beyond money but is not part of the institutional runtime.                                                                                                                                                                                            |
+| `Ellickson`          | **add as a reference profile behind `CustomOrderAdapter`** | Supplies distributed custom, performance, breach, peer finding and repair without issuer or automatic sanction; it does not own selection.                                                                                                                                                  |
 
 Blueprint-only cast members receive the same `retain / rewrite / compose / evidence-only / retire` decision before V2 calls its inventory exhaustive. No new thinker-named Solidity contract is admitted merely to complete the honour roll.
 
@@ -284,7 +315,7 @@ The first V2 slice should be deliberately small and institutionally complete:
 - advisory, contextual reputation memory;
 - separately chosen continuation, refusal, forgiveness or restored credit;
 - a quorum rule change plus real exit/fork and role succession;
-- a declared priming payer and an ABM that varies continuation surplus and keeper cost.
+- a declared priming payer and an ABM that varies, per actor/action, accessible specialisation, fractionation and conflict-mitigation gains, their loss paths and keeper cost.
 
 The slice initially avoids external price oracles, universal identity and automatic physical enforcement. It is complete only if a member can join, exchange, receive correct change or explicitly tip, default, contest, repair, leave and survive replacement of every non-party provider.
 
@@ -314,7 +345,7 @@ The slice initially avoids external price oracles, universal identity and automa
 
 - Pre-register/bond assumptions rather than tuning them after the result.
 - Sweep priming cost, incumbent switching cost, network threshold and domain size.
-- Sweep continuation surplus, horizon, uncertainty, defection gain and keeper cost.
+- Sweep each actor's accessible specialisation, trade-fractionation and conflict-mitigation components, overlap guards, horizon, loss-path uncertainty, outside option, defection gain and keeper cost; never tune one global continuation scalar.
 - Test heterogeneous beliefs, multiple simultaneous monies/rails and partial adoption.
 - Test keeper dropout, free riding, collusion, censorship, delayed triggering and uneven observation.
 - Test false reports, asymmetric challenge resources, repair and re-entry.
@@ -338,7 +369,7 @@ Stop or redesign a mechanism when any of these persists:
 - it needs an unnamed actor or a permanently trusted, irreplaceable provider;
 - a finding automatically creates irreversible exclusion;
 - a global score leaks across unrelated contexts;
-- the keeper cost routinely exceeds the continuation surplus available to keepers;
+- a load-bearing actor's participation or keeper cost routinely exceeds the continuation surplus accessible to that actor;
 - the mechanism only works under a hidden subsidy or coercive priming wedge;
 - an intended balancing loop reinforces distress for the party who must recover;
 - an oracle or governance actor can redistribute retroactively without observable consent;
@@ -349,20 +380,21 @@ Stop or redesign a mechanism when any of these persists:
 
 V2 may import arithmetic; it must not import unilateral assertions as legitimacy. If a live V1 instance is ever discovered, use this default classification:
 
-| V1 state | V2 default treatment |
-|---|---|
-| members, balances and limits | Import only from a fixed snapshot with a deterministic reconciliation root and a proved before/after conservation equation; settle one explicit demurrage epoch first. Limits become evidence for renewed underwriting, not necessarily rights. |
-| operator approvals | Reset; new modules and blanket authority require fresh consent. |
-| `Fisher` obligations | Bilateral re-ratification/novation for active items; otherwise archive as unilateral records. |
-| `Fiske` modes | Import only as party assertions/proposals, not as mutually established context or custom. |
-| `Greif` scores and reports | Archive only; never generate a V2 consequence from context-free, unchallenged history. |
-| active `Schumpeter` loans | Settle under V1 or novate with borrower and lender signatures; public default flags enter V2, if at all, as disputed claims. |
-| `ChallengeBond` assertions | Resolve/refund where possible and archive; never replay an outcome into a new domain. |
-| provider rosters and readings | Re-admit providers under V2 policy; all readings begin stale and need fresh provenance. |
-| governance membership and proposals | Fresh constitutional ratification; do not carry pending proposals or old votes. |
-| `Ostrom` offices | Re-declare only where an office topology is chosen; re-ratify holder, scope, clock, fallback and succession. |
-| meter and experiment runs | Immutable research archive with new run IDs and genuine preregistration in V2. |
-| `KiyotakiWright` and `Clark` state | No migration; rerun from versioned seeds and assumption manifests in simulation/proof targets. |
+| V1 state                            | V2 default treatment                                                                                                                                                                                                                            |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| members, balances and limits        | Import only from a fixed snapshot with a deterministic reconciliation root and a proved before/after conservation equation; settle one explicit demurrage epoch first. Limits become evidence for renewed underwriting, not necessarily rights. |
+| operator approvals                  | Reset; new modules and blanket authority require fresh consent.                                                                                                                                                                                 |
+| `Fisher` obligations                | Bilateral re-ratification/novation for active items; otherwise archive as unilateral records.                                                                                                                                                   |
+| `Fiske` modes                       | Import only as party assertions/proposals, not as mutually established context or custom.                                                                                                                                                       |
+| `Greif` scores and reports          | Archive only; never generate a V2 consequence from context-free, unchallenged history.                                                                                                                                                          |
+| active `Schumpeter` loans           | Settle under V1 or novate with borrower and lender signatures; public default flags enter V2, if at all, as disputed claims.                                                                                                                    |
+| `ChallengeBond` assertions          | Resolve/refund where possible and archive; never replay an outcome into a new domain.                                                                                                                                                           |
+| provider rosters and readings       | Re-admit providers under V2 policy; all readings begin stale and need fresh provenance.                                                                                                                                                         |
+| governance membership and proposals | Fresh constitutional ratification; do not carry pending proposals or old votes.                                                                                                                                                                 |
+| `Ostrom` offices                    | Re-declare only where an office topology is chosen; re-ratify holder, scope, clock, fallback and succession.                                                                                                                                    |
+| meter and experiment runs           | Immutable research archive with new run IDs and genuine preregistration in V2.                                                                                                                                                                  |
+| `KiyotakiWright` state              | No migration and no V2 rerun as a lifecycle model; retain only versioned compatibility traces proving what the frozen threshold fixture did. New propagation runs use `SelectionLifecycle`.                                                     |
+| `Clark` state                       | No migration; rerun from versioned seeds and assumption manifests in simulation/proof targets.                                                                                                                                                  |
 
 Some mappings cannot be reconstructed from storage alone; V1 events also omit material context in places. V2 therefore defines an export schema and causal/domain identifiers before storage layout, not after deployment.
 
@@ -384,7 +416,8 @@ Some mappings cannot be reconstructed from storage alone; V1 events also omit ma
 
 ### Phase 1 — source model
 
-- Define the required types, circuit-card schema, lifecycle semantics and target boundaries.
+- `SelectionLifecycle` now supplies the JSON-safe schema, strict validator, deterministic event reducer/structural replay, strict source-seed-horizon trace verifier, staged ABM, narrow evidence adapters, canonical scenarios and safe-integer parameter sweep described in [`../docs/v2/SELECTION-LIFECYCLE.md`](../docs/v2/SELECTION-LIFECYCLE.md).
+- Complete the remaining circuit-card types and target boundaries outside that selection slice.
 - Decide each implemented and blueprint artifact's disposition.
 - **Exit:** every declared field has semantics, examples and at least one invalid example the checker must reject.
 
@@ -396,7 +429,7 @@ Some mappings cannot be reconstructed from storage alone; V1 events also omit ma
 
 ### Phase 3 — complete vertical slice
 
-- Implement the Knights' Tally Rope across source, proof, ABM and Solidity subsets.
+- Extend the implemented Tally Rope selection scenario into join/exchange/custom/repair/exit/succession traces across source, proof, ABM and any justified Solidity subsets.
 - **Exit:** join/exchange/correct-change-or-explicit-tip/default/challenge/repair/exit/succession traces pass, including adverse paths.
 
 ### Phase 4 — breadth and migration

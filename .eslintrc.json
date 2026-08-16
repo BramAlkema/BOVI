@@ -26,6 +26,12 @@
         "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
         "@typescript-eslint/no-explicit-any": "off"
       }
+    },
+    {
+      "files": ["lib/**/__tests__/**/*.ts"],
+      "env": {
+        "jest": true
+      }
     }
   ],
   "ignorePatterns": ["dist/", "node_modules/", "*.config.js", "lib/__tests__/**"]
