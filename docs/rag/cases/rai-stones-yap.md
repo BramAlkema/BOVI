@@ -70,7 +70,7 @@ Legend: ✅ primary text retrieved and read · ⚠️ consulted at one remove, v
 
 - ✅ Furness, W. H., III (1910). *The Island of Stone Money: Uap of the Carolines*. Lippincott. (Title page reads *Uap*.)
 - ✅ Gillilland, C. L. C. (1975). *The Stone Money of Yap: A Numismatic Survey*. Smithsonian Studies in History and Technology 23. Includes *Civil Action No. 25* (1961) and Yap Islands Congress Resolution 10-65 (1965) as appendices.
-- ✅ Friedman, M. (1991). "The Island of Stone Money." Hoover Institution Working Paper E-91-3. *(Distinct from the `Friedman` contract in this repo, which names him for rules-over-discretion governance.)*
+- ✅ Friedman, M. (1991). "The Island of Stone Money." Hoover Institution Working Paper E-91-3. *(Distinct from the `GovernedDials` contract in this repo, which names him for rules-over-discretion governance.)*
 - ✅ Fitzpatrick, S. M. (2002). "A Radiocarbon Chronology of Yapese Stone Money Quarries in Palau." *Micronesica* 34(2): 227–242.
 - ✅ Walton, J. L. (2022). "Bitcoin and stone money: Anglophone use of Yapese economic cultures, 1910–2020." *Finance and Society* 8(1): 42–66. Open access; collates the documented errors in the textbook and popular retellings.
 - ✅ Lautz, T. (2007). "The world's most curious money?" ICOMON. Field-reliable; repeats the debunked O'Keefe shipwreck story.

@@ -2,17 +2,17 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Hayek — the competing-basket numeraire (formerly "SharedNumeraire")
+ * @title SharedNumeraire — the competing-basket numeraire (formerly "SharedNumeraire")
  *
- * Executes: Friedrich Hayek, "Denationalisation of Money" (1976) — competing
+ * Executes: Friedrich SharedNumeraire, "Denationalisation of Money" (1976) — competing
  * private issuers, disciplined by competition and exit. Aimed, deliberately, at
  * the UNIT OF ACCOUNT rather than the medium: per Brunnermeier the power and
  * stickiness live in the unit, so that is where competition is most needed.
- * More-Hayekian-than-Hayek: competition trained on the layer where the chokepoint
+ * More-Hayekian-than-SharedNumeraire: competition trained on the layer where the chokepoint
  * actually forms.
  *
- * This is the SHARED ROD that long contracts denominate in (Schumpeter loans,
- * Fisher indexed obligations) so prices stay comparable — Brunnermeier's warning:
+ * This is the SHARED ROD that long contracts denominate in (ProductiveCredit loans,
+ * IndexedObligation indexed obligations) so prices stay comparable — Brunnermeier's warning:
  * you cannot fully privatise the unit without killing coordination. Zelizer
  * (PrivateBasket) rides on top as a personal overlay, not a replacement.
  *
@@ -37,12 +37,12 @@ interface IChallengeBond {
     function result(uint256 id) external view returns (bool truthful, address asserter, bytes32 topic, uint256 value);
 }
 
-contract Hayek {
+contract SharedNumeraire {
     uint256 public constant BASE = 1e18;     // 1e18 == genesis price level
 
-    address public governance;               // the Friedman/DialDAO governor
+    address public governance;               // the GovernedDials/DialDAO governor
     uint64  public maxStale;                 // values older than this are ignored
-    IChallengeBond public challenge;         // optional bonded-contest source; not truth or enforcement
+    IChallengeBond public challenge;                // optional bonded-contest source; not truth or enforcement
     bytes32 public constant TOPIC = keccak256("HAYEK_INDEX");
 
     address[] public providers;

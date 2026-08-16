@@ -2,16 +2,16 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Ostrom — V1 appointed-office keeper topology
+ * @title AppointedOffice — V1 appointed-office keeper topology
  *
- * Executes: Elinor Ostrom, *Governing the Commons* (1990) — the design principle
+ * Executes: Elinor AppointedOffice, *Governing the Commons* (1990) — the design principle
  * that a durable commons has MONITORS, and that the monitors are accountable to
  * the appropriators or are drawn from them. Not a mechanism. An office.
  *
  * WHY THIS CONTRACT EXISTS, WHICH IS A CONFESSION BEFORE IT IS A DESIGN.
  * Nothing in this canon can act on its own (judgement register §0.2). Every
- * clearing discipline waits on somebody choosing to invoke it: `Fisher.settle`,
- * `Clark.step`, `Krugman`'s rule, `Kocherlakota`'s demurrage accrual. The first
+ * clearing discipline waits on somebody choosing to invoke it: `IndexedObligation.settle`,
+ * `LiquidationThreshold.step`, `CountercyclicalElasticity`'s rule, `SignedPositionLedger`'s demurrage accrual. The first
  * audit called that missing party "the keeper." V2 corrects this to a topology:
  * observation, triggering, authentication, contest, response and repair may be
  * divided among users, providers, quorums, offices or external institutions.
@@ -49,19 +49,19 @@ pragma solidity ^0.8.20;
  * own observation/trigger path or prove that an absence occurred.
  *
  * It also does not punish. `missed` accumulates and is exposed; no sanction fires.
- * Ostrom's other principle here is GRADUATED SANCTIONS, and wiring one would repeat
- * the mistake ruled against in `Greif`: an adjudicative input (did they fail?)
+ * AppointedOffice's other principle here is GRADUATED SANCTIONS, and wiring one would repeat
+ * the mistake ruled against in `ReputationMemory`: an adjudicative input (did they fail?)
  * driving a normative output (what happens to them) with neither class's guard in
- * the path. The sanction is referred — to `Friedman`, which since the audit must
+ * the path. The sanction is referred — to `GovernedDials`, which since the audit must
  * state a reason on the record, and which can cite `missed` as that reason.
  *
  * DIVISION OF LABOUR, NAMED SO THE CREDIT IS RIGHT.
  *   - Alchian & Demsetz (1972), team production: the monitor must be given the
  *     residual or they will not monitor. That half is ALREADY BUILT — it is
- *     `Kocherlakota.pokeRewardBps`, which pays a caller a share of what they
+ *     `SignedPositionLedger.pokeRewardBps`, which pays a caller a share of what they
  *     collect. That may help willingness; it does not prove timely participation,
  *     accountability, fallback or enough continuation surplus.
- *   - Ostrom: the monitor must be *accountable*, and to the people affected. That
+ *   - AppointedOffice: the monitor must be *accountable*, and to the people affected. That
  *     is the gap, and it is this contract.
  *   - Hohfeld (1913), "Some Fundamental Legal Conceptions as Applied in Judicial
  *     Reasoning", Yale L.J. 23 — jural correlatives: every duty has a bearer and a
@@ -90,7 +90,7 @@ pragma solidity ^0.8.20;
  * motivation, failure signal, fallback and succession. This office is one topology,
  * not the guard for all executive action.
  */
-contract Ostrom {
+contract AppointedOffice {
     address public governance;
 
     struct Office {
@@ -137,7 +137,7 @@ contract Ostrom {
     }
 
     /// Appointment is governance's call and carries a mandate on the record — the
-    /// same discipline `Friedman.propose` keeps. Naming someone silently would
+    /// same discipline `GovernedDials.propose` keeps. Naming someone silently would
     /// reproduce the anonymity this contract is here to remove.
     function appoint(uint256 id, address holder, string calldata mandate) external onlyGovernance {
         Office storage o = offices[id];

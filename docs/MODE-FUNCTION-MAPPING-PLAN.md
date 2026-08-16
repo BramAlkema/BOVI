@@ -101,7 +101,7 @@ Both are Value-mode, so this does not disturb the ruling; it is a naming problem
 
 ## Verification
 
-1. `grep -rn "Monetary Function\|Fiske Model\|ledger function" docs/` returns only intended sites.
+1. `grep -rn "Monetary Function\|ModePermissionGate Model\|ledger function" docs/` returns only intended sites.
 2. No file assigns the ledger, or any record-keeping technology, to a single mode.
 3. `theory.md` and `rag/lineage/fiske-relational-models.md` agree with each other and with `FOUNDATIONS.md:39`.
 4. Any surviving mode↔function statement passes failure mode #4 — it must not read as "these four functions belong together, one per mode."

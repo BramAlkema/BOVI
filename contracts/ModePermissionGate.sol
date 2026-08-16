@@ -2,13 +2,13 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Fiske — the modes, as a permission layer (the soul's manners)
+ * @title ModePermissionGate — the modes, as a permission layer (the soul's manners)
  *
- * Executes: Alan Fiske, Relational Models Theory — the four fairness logics.
+ * Executes: Alan ModePermissionGate, Relational Models Theory — the four fairness logics.
  * What is contractable: a relationship's mode TAG, a GATE other contracts honour,
- * and a taboo FLAG when extraction wears the wrong mode (Fiske–Tetlock).
+ * and a taboo FLAG when extraction wears the wrong mode (ModePermissionGate–Tetlock).
  *
- * Modes on MONEY — the ancestors Fiske's general models meet here: Paul Bohannan's
+ * Modes on MONEY — the ancestors ModePermissionGate's general models meet here: Paul Bohannan's
  * spheres of exchange (cross-sphere conversion is a moral violation; general-purpose
  * money collapses the spheres — the bundling critique's root) and Viviana Zelizer's
  * earmarking / *special monies* (money carries relational meaning; never the neutral
@@ -24,7 +24,7 @@ pragma solidity ^0.8.20;
  * Better still, keep Immediate relationships off-chain entirely; use the tag
  * only as a defensive opt-out.
  */
-contract Fiske {
+contract ModePermissionGate {
     enum Mode { Unset, Immediate, Balanced, Obligated, Value }
 
     mapping(bytes32 => Mode) internal _mode;   // relationship → declared mode (an oracle input)

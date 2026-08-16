@@ -2,9 +2,9 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Kocherlakota — the memory ledger (formerly "TallyRope")
+ * @title SignedPositionLedger — the memory ledger (formerly "TallyRope")
  *
- * Executes: Narayana Kocherlakota, "Money Is Memory," Journal of Economic
+ * Executes: Narayana SignedPositionLedger, "Money Is Memory," Journal of Economic
  * Theory 81 (1998). Money is a PRIMITIVE FORM of a public record of obligations
  * (his phrase; the theorem is an inclusion — anything the token achieves, the
  * record achieves, and not conversely); valued because it is a record, not
@@ -16,7 +16,7 @@ pragma solidity ^0.8.20;
  * immediate settlement discipline. The credit-limit dial below caps new exposure;
  * it does not make an existing debtor perform.)
  *
- * Lineage (one identity, named from three sides): Kocherlakota's *money is memory*,
+ * Lineage (one identity, named from three sides): SignedPositionLedger's *money is memory*,
  * Alfred Mitchell-Innes's *money is credit* (1913/1914 — the same record seen from
  * the debt side), and Perry Mehrling's *money view* (all banking a swap of IOUs; the
  * hierarchy of money). Memory, credit, balance-sheet: one ledger, three honest names.
@@ -33,7 +33,7 @@ pragma solidity ^0.8.20;
  *  - interest-free (no usury, no debt-spiral, no jubilee-or-bust).
  *  - settlement is forgetting (`jubilee` socialises a default across creditors).
  *  - the steward cannot break paired-write conservation, but can redistribute
- *    through limits, demurrage, and jubilee. Point it at Friedman so those
+ *    through limits, demurrage, and jubilee. Point it at GovernedDials so those
  *    powers are evented, voted, and delayed.
  *  - Balanced/Value/Obligated only. Never put Immediate-mode (gifts, care) on
  *    an immutable public ledger.
@@ -86,14 +86,14 @@ pragma solidity ^0.8.20;
  *
  * WHY THE CREDIT LIMIT IS NOT DECORATION. A token ledger's balances cannot go
  * below zero, and that floor IS its enforcement — possession is settlement, so
- * nobody can owe (Kocherlakota's money is "a primitive form of memory"; the floor
+ * nobody can owe (SignedPositionLedger's money is "a primitive form of memory"; the floor
  * is what the primitive form buys, and experimentally it is what disciplines
  * free-riding: Bigoni-Camera-Casari 2020). This ledger lifts the floor — signed
  * balances — and therefore reopens the performance problem. `creditLimit` blocks
  * additional exposure; it does not collect existing debt. Observation, contestable
  * findings, counterparty response, repair, and continuation remain outside it.
  *
- * AND THE ROOM THAT TESTS THIS ONE. `BigoniCameraCasari.sol` is the controlled
+ * AND THE ROOM THAT TESTS THIS ONE. `ExperimentCalibrationEvidence.sol` is the controlled
  * experiment on exactly the design decision above: run this ledger with the limit
  * in force and again with it lifted, and their result says the advantage collapses
  * when it is lifted. Set `creditLimit` to its maximum and you are running their
@@ -102,24 +102,61 @@ pragma solidity ^0.8.20;
  * story was doing work in that run — which is a finding, and the reason that room
  * exists.
  */
-interface IKrugman {
+interface ICountercyclicalElasticity {
     function elasticityFactorBps() external view returns (uint256);
 }
-
-interface IFiske {
+interface IModePermissionGate {
     function requireTouchable(address a, address b) external view;
 }
 
-contract Kocherlakota {
-    address public steward;                 // → replace with the Friedman/DialDAO governor
-    address public stabiliser;              // optional Krugman steering wheel; off by default
-    IFiske  public fiske;                   // optional mode guard; off by default
+interface IBilateralModeAgreement {
+    function requirePostable(uint256 agreementId, address a, address b, bytes32 domain, bytes32 purpose) external view;
+}
+
+contract SignedPositionLedger {
+    uint256 public constant MAX_POSITION_V2 = uint256(uint128(type(int128).max));
+
+    error InvalidPostingGrant();
+    error InvalidPosting();
+    error PostingGrantInactive();
+    error PostingGrantExceeded();
+    error PositionBoundExceeded();
+
+    struct PostingGrant {
+        uint64 expiry;
+        uint256 maxPerPost;
+        uint256 remaining;
+        bool enabled;
+    }
+
+    struct PostingRequest {
+        bytes32 postingRef;
+        uint256 episodeId;
+        uint256 modeAgreementId;
+        address modeRegistry;
+        bytes32 domain;
+        bytes32 purpose;
+        address from;
+        address to;
+        uint256 amount;
+    }
+
+    address public steward;                 // → replace with the GovernedDials/DialDAO governor
+    address public stabiliser;              // optional CountercyclicalElasticity steering wheel; off by default
+    IModePermissionGate  public fiske;                   // optional mode guard; off by default
 
     address[] public knights;               // membership (for iteration in jubilee)
     mapping(address => bool)    public isKnight;
     mapping(address => int256)  public balance;       // signed peg position
     mapping(address => uint256) public creditLimit;   // max allowed debt — the dial
     mapping(address => mapping(address => bool)) public operatorApproved; // owner → operator → ok
+
+    // V2 posting state has a separate zero genesis. No legacy overlay touches it.
+    mapping(address => int256) public positionV2;
+    mapping(bytes32 => bool) public postingRefUsed;
+    mapping(bytes32 => PostingGrant) internal _postingGrants;
+    int256 public netPositionsV2;
+    uint256 public grossClaimsV2;
 
     // --- Gesell demurrage overlay ---
     uint256 public pokeRewardBps;           // share of a collected fee paid to a third-party poker (0 = off)
@@ -141,6 +178,29 @@ contract Kocherlakota {
     event Demurrage(address indexed holder, uint256 fee);
     event PokeRewardSet(uint256 bps);
     event Poked(address indexed holder, address indexed poker, uint256 fee, uint256 reward);
+    event PostingGrantSet(
+        address indexed owner,
+        address indexed operator,
+        address indexed modeRegistry,
+        bytes32 domain,
+        uint64 expiry,
+        uint256 maxPerPost,
+        uint256 remaining,
+        bool enabled
+    );
+    event Posted(
+        bytes32 indexed postingRef,
+        uint256 indexed episodeId,
+        uint256 indexed modeAgreementId,
+        address modeRegistry,
+        bytes32 domain,
+        bytes32 purpose,
+        address from,
+        address to,
+        uint256 amount,
+        address operator
+    );
+
 
     modifier onlySteward() { require(msg.sender == steward, "not steward"); _; }
 
@@ -166,14 +226,14 @@ contract Kocherlakota {
         emit CreditLimitSet(knight, limit);
     }
 
-    // optional steering wheel (Krugman): off by default. When set, the rule-bound
+    // optional steering wheel (CountercyclicalElasticity): off by default. When set, the rule-bound
     // stance loosens/tightens every credit limit countercyclically — QUANTITY only,
     // never a peg on value. address(0) ⇒ no effect (pure base limits).
     function setStabiliser(address k) external onlySteward { stabiliser = k; emit StabiliserSet(k); }
-    function setFiske(address f) external onlySteward { fiske = IFiske(f); emit FiskeSet(f); }
+    function setFiske(address f) external onlySteward { fiske = IModePermissionGate(f); emit FiskeSet(f); }
 
-    /// Reputation is deliberately NOT read here. `Greif.inGoodStanding` exists and would
-    /// slot in on the next line; the ruling in Greif's header is that it must not, because
+    /// Reputation is deliberately NOT read here. `ReputationMemory.inGoodStanding` exists and would
+    /// slot in on the next line; the ruling in ReputationMemory's header is that it must not, because
     /// a reporter who acts "without evidence or appeal" would then be setting credit
     /// capacity — an adjudicative input driving a normative output, with neither class's
     /// guard in the path. The stabiliser below is read instead, and its input is at least
@@ -181,7 +241,7 @@ contract Kocherlakota {
     function _limitOf(address k) internal view returns (uint256) {
         uint256 base = creditLimit[k];
         if (stabiliser == address(0)) return base;
-        return (base * IKrugman(stabiliser).elasticityFactorBps()) / 10000;
+        return (base * ICountercyclicalElasticity(stabiliser).elasticityFactorBps()) / 10000;
     }
 
     function setDemurrage(uint256 bps, uint64 period, address commons_) external onlySteward {
@@ -193,7 +253,7 @@ contract Kocherlakota {
         // return in `_accrue` stamp lastAccrued without charging — erasing every
         // holder's pending liability. Two steward redistribution levers over PAST
         // periods. Not fixed here (a rate-epoch ledger is out of demonstrator scope);
-        // made visible, and this is the call to point at Friedman first.
+        // made visible, and this is the call to point at GovernedDials first.
         emit DemurrageChanged(demurrageBps, demurragePeriod, bps, period);
         demurrageBps = bps;
         demurragePeriod = period;
@@ -232,7 +292,7 @@ contract Kocherlakota {
         emit Settled(msg.sender, to, amount);
     }
 
-    // --- operator: let an approved agent (Fisher, Baumol) settle on your behalf ---
+    // --- operator: let an approved agent (IndexedObligation, Baumol) settle on your behalf ---
     function approveOperator(address operator, bool ok) external {
         require(isKnight[msg.sender], "not a knight");
         operatorApproved[msg.sender][operator] = ok;
@@ -252,6 +312,108 @@ contract Kocherlakota {
         balance[from] = nb;
         balance[to] += int256(amount);
         emit Settled(from, to, amount);
+    }
+
+    // --- V2: bounded posting, explicitly not settlement or discharge --------
+
+    function postingGrantKey(address owner, address operator, address modeRegistry, bytes32 domain)
+        public
+        pure
+        returns (bytes32)
+    {
+        return keccak256(abi.encode(owner, operator, modeRegistry, domain));
+    }
+
+    function setPostingGrant(
+        address operator,
+        address modeRegistry,
+        bytes32 domain,
+        uint64 expiry,
+        uint256 maxPerPost,
+        uint256 cumulativeAllowance,
+        bool enabled
+    ) external {
+        if (operator == address(0) || modeRegistry == address(0) || domain == bytes32(0)) {
+            revert InvalidPostingGrant();
+        }
+        if (enabled) {
+            if (
+                expiry <= block.timestamp || maxPerPost == 0 || maxPerPost > MAX_POSITION_V2 || cumulativeAllowance == 0
+                    || cumulativeAllowance > MAX_POSITION_V2
+            ) revert InvalidPostingGrant();
+        }
+
+        bytes32 key = postingGrantKey(msg.sender, operator, modeRegistry, domain);
+        _postingGrants[key] =
+            PostingGrant({expiry: expiry, maxPerPost: maxPerPost, remaining: cumulativeAllowance, enabled: enabled});
+        emit PostingGrantSet(
+            msg.sender, operator, modeRegistry, domain, expiry, maxPerPost, cumulativeAllowance, enabled
+        );
+    }
+
+    function postingGrant(address owner, address operator, address modeRegistry, bytes32 domain)
+        external
+        view
+        returns (PostingGrant memory)
+    {
+        return _postingGrants[postingGrantKey(owner, operator, modeRegistry, domain)];
+    }
+
+    function postFrom(PostingRequest calldata request) external {
+        if (
+            request.postingRef == bytes32(0) || postingRefUsed[request.postingRef] || request.from == address(0)
+                || request.to == address(0) || request.from == request.to || request.amount == 0
+                || request.amount > MAX_POSITION_V2 || request.modeRegistry == address(0)
+        ) revert InvalidPosting();
+
+        bytes32 key = postingGrantKey(request.from, msg.sender, request.modeRegistry, request.domain);
+        PostingGrant storage grant = _postingGrants[key];
+        if (!grant.enabled || block.timestamp > grant.expiry) revert PostingGrantInactive();
+        if (request.amount > grant.maxPerPost || request.amount > grant.remaining) revert PostingGrantExceeded();
+
+        IBilateralModeAgreement(request.modeRegistry)
+            .requirePostable(request.modeAgreementId, request.from, request.to, request.domain, request.purpose);
+
+        int256 delta = int256(request.amount);
+        int256 oldFrom = positionV2[request.from];
+        int256 oldTo = positionV2[request.to];
+        int256 newFrom = oldFrom - delta;
+        int256 newTo = oldTo + delta;
+        if (
+            newFrom < -int256(MAX_POSITION_V2) || newFrom > int256(MAX_POSITION_V2) || newTo < -int256(MAX_POSITION_V2)
+                || newTo > int256(MAX_POSITION_V2)
+        ) revert PositionBoundExceeded();
+
+        uint256 oldGross = _positive(oldFrom) + _positive(oldTo);
+        uint256 newGross = _positive(newFrom) + _positive(newTo);
+
+        postingRefUsed[request.postingRef] = true;
+        grant.remaining -= request.amount;
+        positionV2[request.from] = newFrom;
+        positionV2[request.to] = newTo;
+        netPositionsV2 = netPositionsV2 - oldFrom - oldTo + newFrom + newTo;
+        grossClaimsV2 = grossClaimsV2 - oldGross + newGross;
+
+        _emitPosted(request);
+    }
+
+    function _positive(int256 value) internal pure returns (uint256) {
+        return value > 0 ? uint256(value) : 0;
+    }
+
+    function _emitPosted(PostingRequest calldata request) internal {
+        emit Posted(
+            request.postingRef,
+            request.episodeId,
+            request.modeAgreementId,
+            request.modeRegistry,
+            request.domain,
+            request.purpose,
+            request.from,
+            request.to,
+            request.amount,
+            msg.sender
+        );
     }
 
     // --- Gesell: charge positive balances over elapsed time; transfer to commons ---

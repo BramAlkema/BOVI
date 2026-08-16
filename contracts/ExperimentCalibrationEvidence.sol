@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title BigoniCameraCasari — the paired treatment (does the floor bind, and does it matter?)
+ * @title ExperimentCalibrationEvidence — the paired treatment (does the floor bind, and does it matter?)
  *
  * Executes: Maria Bigoni, Gabriele Camera & Marco Casari, "Money is More than
  * Memory" (ESI Working Paper 14-17, Chapman; Journal of Monetary Economics 110,
@@ -15,7 +15,7 @@ pragma solidity ^0.8.20;
  *    that the suggested functional equality between money and memory does not
  *    translate into an empirical equivalence."
  *
- * They tested `Kocherlakota` and it did not survive intact. Cooperation was
+ * They tested `SignedPositionLedger` and it did not survive intact. Cooperation was
  * HIGHER under money than under a visible public record; under memory some
  * subjects ran large deficits and free-riders were not disciplined; and the
  * decisive arm — Money Unconstrained, which lifts the liquidity constraint so
@@ -26,12 +26,12 @@ pragma solidity ^0.8.20;
  * Every other room here executes an argument. This one executes an EXPERIMENT,
  * and it is the only entry that found against the house: this framework prefers
  * the minimal ledger, and the result says the token's hard floor at zero is a
- * feature the signed-balance ledger gives up. `Kocherlakota.sol` lifts that floor
+ * feature the signed-balance ledger gives up. `SignedPositionLedger.sol` lifts that floor
  * deliberately — signed balances, credit limits — and this is the controlled test
  * of precisely that design decision. A cast with nothing in it that can embarrass
  * the cast has not been tested.
  *
- * Precedent for the shape: `Fiske` already describes no ledger machinery and
+ * Precedent for the shape: `ModePermissionGate` already describes no ledger machinery and
  * guards where the record may not go. This is the second non-mechanism room, and
  * it opens the category the building lacked — contracts that MEASURE rather than
  * transact.
@@ -59,7 +59,7 @@ pragma solidity ^0.8.20;
  * THE REFUSAL, WHICH IS THE POINT
  * `finding` reverts without BOTH arms populated and both above a declared minimum
  * sample. A single arm is an anecdote with arithmetic on it. This mirrors
- * `Cantillon`, which refuses to attribute a transfer without a counterfactual:
+ * `NominalExposureMeter`, which refuses to attribute a transfer without a counterfactual:
  * one contract will not name a beneficiary without a comparison, and this one
  * will not name an effect without a control.
  *
@@ -67,10 +67,10 @@ pragma solidity ^0.8.20;
  * floor-on/floor-off switch IS their Money vs Money Unconstrained contrast, so a
  * player running it re-runs the 2014 experiment against this cast's own
  * implementation. Constrained arms should be sourced from a ledger with a live
- * credit limit (`Kocherlakota`); unconstrained arms from the same ledger with the
+ * credit limit (`SignedPositionLedger`); unconstrained arms from the same ledger with the
  * limit lifted. Same rules, one parameter moved. That is what makes it a test.
  */
-contract BigoniCameraCasari {
+contract ExperimentCalibrationEvidence {
     uint256 public constant WAD = 1e18;
     uint256 public constant BPS = 10_000;
 

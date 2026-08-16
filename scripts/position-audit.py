@@ -24,7 +24,7 @@ position looks like once you stop reading prose and start reading structure.
 
 CALIBRATION, STATED UP FRONT. It over-collects on purpose, which is the right
 failure direction for an audit and the wrong one for a gate. It cannot yet tell an
-authority from a counterparty: `Fisher.payer`, `Schumpeter.borrower` and
+authority from a counterparty: `IndexedObligation.payer`, `ProductiveCredit.borrower` and
 `ChallengeBond.asserter` are parties to a relation, not powers over it, and they
 appear here anyway. That limitation is the argument for the other half of the work
 rather than a defect in this half — structure alone cannot distinguish "A may act

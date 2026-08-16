@@ -2,33 +2,33 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Krugman — the countercyclical stabiliser (the steering wheel)
+ * @title CountercyclicalElasticity — the countercyclical stabiliser (the steering wheel)
  *
- * Fills the gap Krugman himself found: the cascade was plumbing, not policy —
+ * Fills the gap CountercyclicalElasticity himself found: the cascade was plumbing, not policy —
  * "who steadies demand when the whole thing has a bad year?" This is that layer.
  *
  * The babysitting co-op, in code: when activity falls below trend (everyone
  * hoarding, velocity collapsing — a spot demand shortfall), EXPAND the elastic
- * supply; when it overheats, tighten. The rails (Kocherlakota credit limits,
+ * supply; when it overheats, tighten. The rails (SignedPositionLedger credit limits,
  * Bagehot liquidity) read `elasticityFactorBps()` and scale their elasticity by it.
  *
- * Built the framework's way, which gently inverts Krugman's instinct:
+ * Built the framework's way, which gently inverts CountercyclicalElasticity's instinct:
  * countercyclical management BY RULE, not by a discretionary central banker
- * (Friedman sets the rule; no one steers by hand). That is the
- * market-monetarist / NGDP-rule synthesis — Krugman's goal, Friedman's method.
+ * (GovernedDials sets the rule; no one steers by hand). That is the
+ * market-monetarist / NGDP-rule synthesis — CountercyclicalElasticity's goal, GovernedDials's method.
  *
  *  CANON GUARDS:
  *   - adjusts QUANTITY (elasticity), never PEGS the unit. The currency still
  *     floats and melts; we steady ACTIVITY, not the currency's value.
- *   - expansion may have Cantillon effects. Rule changes and reports are evented;
+ *   - expansion may have NominalExposureMeter effects. Rule changes and reports are evented;
  *     downstream recipients and incidence still require a separate tracer.
  *
  *  ⚠ The hardest, most fragile layer, and a demonstrator of the missing steering
  *    wheel — NOT a claim to drive. The activity reading is an ORACLE problem
  *    (gameable — this is *why* stabilisation is hard), and any rule can misfire.
  */
-contract Krugman {
-    address public governance;     // Friedman — sets the rule's parameters
+contract CountercyclicalElasticity {
+    address public governance;     // GovernedDials — sets the rule's parameters
     address public oracle;         // reports measured activity (the hard input)
 
     uint256 public target;         // trend activity (NGDP-ish), set by governance

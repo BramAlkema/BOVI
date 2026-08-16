@@ -16,18 +16,18 @@ Solidity has no floats. Everything below is an integer in one of two scales.
 
 Rates arrive as **bps**; anything compounded or discounted moves into **WAD** for the loop and comes back. A quantity named `…Bps` is always a rate or share; a bare quantity is a stock or a flow in the ledger's own units.
 
-One subtlety worth stating because it looks wrong on first read: in the variance terms of [`BigoniCameraCasari`](#se), a probability in bps multiplied by another probability in bps yields **bps²**, which is then divided by a sample count and square-rooted back to **bps**. The dimensions are right; the intermediate just isn't a percentage.
+One subtlety worth stating because it looks wrong on first read: in the variance terms of [`ExperimentCalibrationEvidence`](#se), a probability in bps multiplied by another probability in bps yields **bps²**, which is then divided by a sample count and square-rooted back to **bps**. The dimensions are right; the intermediate just isn't a percentage.
 
 ---
 
 <a id="level"></a>
-## Level and exposure — [`Cantillon.sol`](Cantillon.sol)
+## Level and exposure — [`NominalExposureMeter.sol`](NominalExposureMeter.sol)
 
 Who a moving price level moves against. The mechanism is a claim fixed in nominal terms with a remaining term — not proximity to the issuer.
 
 | symbol | code | is | scale | range | notes |
 |---|---|---|---|---|---|
-| <a id="pi"></a>**π** | `piBps` | change in the price level over the measured interval | bps | ≥ 0 | Deflation is out of scope for this meter and returns 0. Read from [`Hayek`](Hayek.sol) or supplied. |
+| <a id="pi"></a>**π** | `piBps` | change in the price level over the measured interval | bps | ≥ 0 | Deflation is out of scope for this meter and returns 0. Read from [`SharedNumeraire`](SharedNumeraire.sol) or supplied. |
 | <a id="nnp"></a>**NNP** | `netNominalPosition` | net nominal position: nominal assets − nominal liabilities | ledger units, **signed** | any | `+` = net nominal **creditor** (loses to inflation); `−` = net nominal **debtor** (gains). Σ over a closed set must be **0**. |
 | <a id="F"></a>**F** | `flowPerPeriod` | a payment fixed in nominal terms, per period | ledger units | ≥ 0 | The rent, the wage. Cantillon's *baux* and *gages fixes*. |
 | <a id="T"></a>**T** | `remainingTerms` | periods still to run before the claim can be re-priced | count | 0 … `MAX_TERMS` (240) | Exposure → 0 as T → 0. Renewal is the cure. |
@@ -53,7 +53,7 @@ loss  =  Σ_{t=1..T}  F · d_t · ( 1 − f_t )
 ---
 
 <a id="capacity"></a>
-## Capacity — [`Starr.sol`](Starr.sol)
+## Capacity — [`SinkCapacityEvidence.sol`](SinkCapacityEvidence.sol)
 
 Whether an obligation-sink is big enough to do the work claimed of it. Two conditions that fail independently.
 
@@ -73,12 +73,12 @@ Condition B (participation)  γ  ≥  γ*
 
 **Why κ is undiscounted.** Coverage is an *absorption* question, not a *pricing* one: discounting changes what a sink is worth, not whether it can swallow the stock. `presentValue(id, r)` is exposed for pricing and is deliberately excluded from the verdict.
 
-**Performance shortfall** — `(Σ decreed − Σ realised) / Σ decreed`, in bps. This is a measurement, not an enforcement module. A contextual [`Greif`](Greif.sol) record may preserve an attributed finding; affected counterparties or institutions separately choose any future response.
+**Performance shortfall** — `(Σ decreed − Σ realised) / Σ decreed`, in bps. This is a measurement, not an enforcement module. A contextual [`ReputationMemory`](ReputationMemory.sol) record may preserve an attributed finding; affected counterparties or institutions separately choose any future response.
 
 ---
 
 <a id="experiment"></a>
-## Experiment — [`BigoniCameraCasari.sol`](BigoniCameraCasari.sol)
+## Experiment — [`ExperimentCalibrationEvidence.sol`](ExperimentCalibrationEvidence.sol)
 
 The paired treatment on the zero floor. Descriptive statistics only.
 
@@ -102,12 +102,12 @@ se   =  sqrt(  p₁(1−p₁)/n₁  +  p₂(1−p₂)/n₂  )
 ---
 
 <a id="ledger"></a>
-## Ledger — [`Kocherlakota.sol`](Kocherlakota.sol)
+## Ledger — [`SignedPositionLedger.sol`](SignedPositionLedger.sol)
 
 | symbol | code | is | scale | range | notes |
 |---|---|---|---|---|---|
 | <a id="balance"></a>**balance** | `balance` | signed peg position | ledger units, **signed** | ≥ −`creditLimit` | Negative is permitted — that is the whole design, and the reason the floor's enforcement has to be supplied elsewhere. |
-| <a id="creditlimit"></a>**creditLimit** | `creditLimit` | maximum permitted debt | ledger units | ≥ 0 | An ex-ante exposure guard, not enforcement of existing debt. Set it to maximum and you are running [`BigoniCameraCasari`](#experiment)'s unconstrained arm. |
+| <a id="creditlimit"></a>**creditLimit** | `creditLimit` | maximum permitted debt | ledger units | ≥ 0 | An ex-ante exposure guard, not enforcement of existing debt. Set it to maximum and you are running [`ExperimentCalibrationEvidence`](#experiment)'s unconstrained arm. |
 | <a id="netsupply"></a>**netSupply** | `netSupply()` | Σ of all balances | ledger units, signed | **must be 0** | The conservation invariant. |
 | <a id="gross"></a>**gross** | `grossInCirculation()` | Σ of positive balances | ledger units | ≥ 0 | ⚠ Reads raw balances, so it **overstates** by the sum of pending demurrage. |
 | <a id="demurrage"></a>**demurrageBps** | `demurrageBps` | melt per `demurragePeriod` on positive balances | bps | ≥ 0 | ⚠ Applied retroactively over the un-accrued span. |

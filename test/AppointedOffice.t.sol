@@ -2,14 +2,14 @@
 pragma solidity ^0.8.20;
 
 import "forge-std/Test.sol";
-import {Ostrom} from "../contracts/Ostrom.sol";
+import {AppointedOffice} from "../contracts/AppointedOffice.sol";
 
 /**
  * The office, on the bench. Each test is one clause of the claim that a duty
  * with no bearer is unfinished — not one that binds harder.
  */
-contract OstromTest is Test {
-    Ostrom o;
+contract AppointedOfficeTest is Test {
+    AppointedOffice o;
 
     address gov    = makeAddr("gov");
     address keeper = makeAddr("keeper");
@@ -19,7 +19,7 @@ contract OstromTest is Test {
 
     function setUp() public {
         vm.prank(gov);
-        o = new Ostrom();
+        o = new AppointedOffice();
     }
 
     function _office() internal returns (uint256 id) {

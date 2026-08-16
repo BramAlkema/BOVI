@@ -72,11 +72,11 @@ A *floor anchor* fixes you to the seabed (objective value, the bottom turtle). A
 Not the value theory (Simmel had it; Patinkin formalised the no-regression move; Lagos–Wright microfounded the service). The framework's own contributions are:
 1. **The synthesis** — Simmel (philosophy) + Patinkin (formal) + Lagos–Wright (frictions) + Ostroy/Kocherlakota (the minimal ledger form), assembled and made consistent.
 2. **The selection story made operational** — common knowledge of acceptance as *why* the monetary equilibrium obtains (the part OLG punts).
-3. **The minimal mutual-credit form** — net-zero, no token, settled-as-you-go: the least bubble-dependent, most minimal realisation (`Kocherlakota.sol`, the two-line transfer at the core).
+3. **The minimal mutual-credit form** — net-zero, no token, settled-as-you-go: the least bubble-dependent, most minimal realisation (`SignedPositionLedger.sol`, the two-line transfer at the core).
 
 ## Where it lives in the code
 
-At the heart of `contracts/Kocherlakota.sol`, in `pay`:
+At the heart of `contracts/SignedPositionLedger.sol`, in `pay`:
 
 ```solidity
 // the whole of money, here: one mark down, one mark up, on a record we both

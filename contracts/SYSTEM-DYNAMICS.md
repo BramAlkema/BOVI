@@ -2,7 +2,7 @@
 
 A stock-and-flow reading of all sixteen contracts, derived from the code rather than the intentions. Symbols: [`NOTATION.md`](NOTATION.md). The ground-up successor and its closure ledger are specified in [`V2-OVERHAUL-PLAN.md`](V2-OVERHAUL-PLAN.md).
 
-**Correction first, because it changes the diagram:** the earlier audit called two `Kocherlakota` paths “closed automatic feedback loops.” That was too strong. Demurrage is decay triggered by `pay` or `poke`; the credit limit is a safety guard that reverts a transaction without restoring a stock. The closed on-chain objects are narrower **within-transaction invariants**—paired-write conservation and authenticated/authorised state changes—not complete institutional loops. Every claim about liveness, world observation, acceptance, consequence or continuation leaves the runtime and must return through a declared keeper topology. “Closed” is therefore qualified below rather than used as a synonym for “coded.”
+**Correction first, because it changes the diagram:** the earlier audit called two `SignedPositionLedger` paths “closed automatic feedback loops.” That was too strong. Demurrage is decay triggered by `pay` or `poke`; the credit limit is a safety guard that reverts a transaction without restoring a stock. The closed on-chain objects are narrower **within-transaction invariants**—paired-write conservation and authenticated/authorised state changes—not complete institutional loops. Every claim about liveness, world observation, acceptance, consequence or continuation leaves the runtime and must return through a declared keeper topology. “Closed” is therefore qualified below rather than used as a synonym for “coded.”
 
 ---
 
@@ -10,14 +10,14 @@ A stock-and-flow reading of all sixteen contracts, derived from the code rather 
 
 | stock | owner | signed? | notes |
 |---|---|---|---|
-| `balance[i]` | `Kocherlakota` | **yes** | The core stock. Σ must be 0 ([`netSupply`](NOTATION.md#netsupply)). |
-| `creditLimit[i]` | `Kocherlakota` | no | A stock of *permission*, not of value. It caps new exposure; it does not make an existing debtor perform. |
-| pending demurrage | `Kocherlakota` | no | Accrued, uncharged. Invisible between touches. |
-| `commons` balance | `Kocherlakota` | yes | Where the melt lands. A named beneficiary. |
-| reputation | `Greif` | **yes** | Fed by reporters, read as a gate. |
-| index level | `Hayek` | no | The rod. Median of competing providers. |
-| observations | `BigoniCameraCasari` | no | Accumulating evidence, per arm. |
-| registered sinks | `Starr` | no | Decreed and realised obligation streams. |
+| `balance[i]` | `SignedPositionLedger` | **yes** | The core stock. Σ must be 0 ([`netSupply`](NOTATION.md#netsupply)). |
+| `creditLimit[i]` | `SignedPositionLedger` | no | A stock of *permission*, not of value. It caps new exposure; it does not make an existing debtor perform. |
+| pending demurrage | `SignedPositionLedger` | no | Accrued, uncharged. Invisible between touches. |
+| `commons` balance | `SignedPositionLedger` | yes | Where the melt lands. A named beneficiary. |
+| reputation | `ReputationMemory` | **yes** | Fed by reporters, read as a gate. |
+| index level | `SharedNumeraire` | no | The rod. Median of competing providers. |
+| observations | `ExperimentCalibrationEvidence` | no | Accumulating evidence, per arm. |
+| registered sinks | `SinkCapacityEvidence` | no | Decreed and realised obligation streams. |
 
 ---
 
@@ -36,7 +36,7 @@ Gesell's design supplies a balancing tendency: holding is taxed, so holding shou
 ```
 balance[i] falls  →  approaches −_limitOf(i)  →  require() blocks the next transfer  →  (loop)
 ```
-This is the floor that the token form gets for free and the signed ledger has to legislate. A failed `require` leaves the state unchanged: it blocks additional exposure but supplies no return arrow that makes an existing debtor repay. [`BigoniCameraCasari`](BigoniCameraCasari.sol) can measure whether the boundary ever engages—if [`b`](NOTATION.md#b) reads zero, B2 never fired and no behaviour in that run is attributable to it—but the guard is not enforcement and not a feedback loop.
+This is the floor that the token form gets for free and the signed ledger has to legislate. A failed `require` leaves the state unchanged: it blocks additional exposure but supplies no return arrow that makes an existing debtor repay. [`ExperimentCalibrationEvidence`](ExperimentCalibrationEvidence.sol) can measure whether the boundary ever engages—if [`b`](NOTATION.md#b) reads zero, B2 never fired and no behaviour in that run is attributable to it—but the guard is not enforcement and not a feedback loop.
 
 ---
 
@@ -48,23 +48,23 @@ Each of these is a proposed or partial feedback path, and each one routes throug
 ```
 marketability  →  acceptance  →  marketability
 ```
-`KiyotakiWright` isolates the feedback and computes the threshold — but it takes marketability scores as **externally supplied**. The loop runs in the world; the contract is a demonstrator of its shape. Reinforcing in both directions: the cold-start trap and the collapse are the same loop with the sign flipped.
+`AcceptanceThreshold` isolates the feedback and computes the threshold — but it takes marketability scores as **externally supplied**. The loop runs in the world; the contract is a demonstrator of its shape. Reinforcing in both directions: the cold-start trap and the collapse are the same loop with the sign flipped.
 
 **B3 — the stabiliser (balancing, countercyclical by design).**
 ```
-activity  →  Krugman.report (oracle)  →  stance()  →  elasticityFactorBps()
-         →  Kocherlakota._limitOf  →  credit capacity  →  ⟨the real economy⟩  →  activity
+activity  →  CountercyclicalElasticity.report (oracle)  →  stance()  →  elasticityFactorBps()
+         →  SignedPositionLedger._limitOf  →  credit capacity  →  ⟨the real economy⟩  →  activity
 ```
 Everything up to `_limitOf` is on-chain. The return arrow — does credit capacity change activity? — closes **outside**, and `activity` re-enters through an oracle. This is the longest loop in the building and the only one that touches production.
 
 **B4 — the proposed performance-response path. Recorded, not enforced—and ruled that way.**
 ```
-default  →  Greif.report by a reporter  →  reputation falls
+default  →  ReputationMemory.report by a reporter  →  reputation falls
         →  inGoodStanding() gate  →  reduced exposure  →  (loop)
 ```
-`inGoodStanding` is a **view**, and nothing consumes it. The obvious repair is one line inside `Kocherlakota._limitOf`. It is refused, and the refusal is now written into both headers.
+`inGoodStanding` is a **view**, and nothing consumes it. The obvious repair is one line inside `SignedPositionLedger._limitOf`. It is refused, and the refusal is now written into both headers.
 
-**Read the classes, not the arrows.** The judgement register sorts every decision into four kinds with different correct guards. The *input* to this loop — what counts as a default — is **adjudicative**, and its guard is arbitration with an appeals path. The *output* — credit limits per member — is **normative**, and its guard is the affected members, voting; the register calls it the most consequential distributional call in the system. An automatic wire supplies neither. It is not the wrong guard. It is the **absence** of one, in a path that `Greif.report`'s own comment describes as acting *"without evidence or appeal."*
+**Read the classes, not the arrows.** The judgement register sorts every decision into four kinds with different correct guards. The *input* to this loop — what counts as a default — is **adjudicative**, and its guard is arbitration with an appeals path. The *output* — credit limits per member — is **normative**, and its guard is the affected members, voting; the register calls it the most consequential distributional call in the system. An automatic wire supplies neither. It is not the wrong guard. It is the **absence** of one, in a path that `ReputationMemory.report`'s own comment describes as acting *"without evidence or appeal."*
 
 **And the sign flips depending on who is reading.** Label it from the ledger's side and it is balancing: default → standing falls → exposure reduced → fewer defaults. Label it from the member's side and the same arrows are reinforcing: default → standing falls → limit falls → less room to trade out of the hole → default. One loop, balancing in the system's exposure and reinforcing in the member's capacity. Calling it "balancing" is not a reading of the arrows; it is a choice of vantage — and it is the aggregate vantage this framework exists to distrust. A reputation gate with no floor and no route back up is a debt trap with a clean interface.
 
@@ -72,11 +72,11 @@ So: **reputation is advisory, said plainly.** What would have to exist before th
 
 **R2 — composition (reinforcing, and the one to watch).**
 ```
-Friedman members  →  propose/vote  →  addMember (onlySelf)  →  Friedman members
+GovernedDials members  →  propose/vote  →  addMember (onlySelf)  →  GovernedDials members
 ```
 The DAO sets its own membership. That is a reinforcing loop on *who decides*, and it is the classic entrenchment risk.
 
-**What is deliberately absent, and worth saying out loud:** there is **no arrow from `balance` to voting weight**. `Friedman` is one-member-one-vote — `isMember` is a boolean and `voted` is a boolean, with a quorum. So the plutocracy loop (*wealth → votes → dials → wealth*) **does not close in this system by construction**. That is the single most important negative space in the diagram, and it is a design choice, not an accident.
+**What is deliberately absent, and worth saying out loud:** there is **no arrow from `balance` to voting weight**. `GovernedDials` is one-member-one-vote — `isMember` is a boolean and `voted` is a boolean, with a quorum. So the plutocracy loop (*wealth → votes → dials → wealth*) **does not close in this system by construction**. That is the single most important negative space in the diagram, and it is a design choice, not an accident.
 
 ---
 
@@ -86,22 +86,22 @@ The first draft of this page said the four meters have no return arrow at all. *
 
 | meter | publication path | what it must declare first |
 |---|---|---|
-| `Stigler` | `checkAndRecord` → `Checked` | — (the whole method is public) |
-| `Cantillon` | `attribute` → `Attributed` | a stated counterfactual |
-| `Starr` | `recordVerdict` → `Verdict` | a justified `gammaStar` threshold |
-| `BigoniCameraCasari` | `finding` → `Finding` | a pre-declared minimum sample |
+| `PriceDiscoveryCheck` | `checkAndRecord` → `Checked` | — (the whole method is public) |
+| `NominalExposureMeter` | `attribute` → `Attributed` | a stated counterfactual |
+| `SinkCapacityEvidence` | `recordVerdict` → `Verdict` | a justified `gammaStar` threshold |
+| `ExperimentCalibrationEvidence` | `finding` → `Finding` | a pre-declared minimum sample |
 
-Four for four, all state-changing rather than views, and three of the four refuse to publish until a discipline has been declared. `Stigler.checkAndRecord` even exists *for this reason*, and says so: `check` is a view, so *"a contract built to X-ray the skim leaves no image when it finds one."* These are the most disciplined publication paths in the cast. They are not ornamental.
+Four for four, all state-changing rather than views, and three of the four refuse to publish until a discipline has been declared. `PriceDiscoveryCheck.checkAndRecord` even exists *for this reason*, and says so: `check` is a view, so *"a contract built to X-ray the skim leaves no image when it finds one."* These are the most disciplined publication paths in the cast. They are not ornamental.
 
 The break was at the **other end of the chain**:
 
 ```
-meter  →  a finding  →  ⟨JUDGEMENT-REGISTER: a person decides⟩  →  Friedman proposal  →  dials
+meter  →  a finding  →  ⟨JUDGEMENT-REGISTER: a person decides⟩  →  GovernedDials proposal  →  dials
                                                                         ↑
                                                           nowhere to record what it answers
 ```
 
-`Friedman.Proposal` was `{target, data, eta, yes, executed}`. A dial could move with no reason attached to it — so the chain ended in a call that could not be reconstructed later, and it ended **silently**, which is §0.2's failure precisely: the non-event left no trace. Fixed here: `propose` now takes a required `rationale`, stored and evented. It automates nothing — a human still writes the sentence and the members still vote. It makes the human's step leave a record, which is the same discipline the meters already keep, applied at the one point in the building that can act on the world.
+`GovernedDials.Proposal` was `{target, data, eta, yes, executed}`. A dial could move with no reason attached to it — so the chain ended in a call that could not be reconstructed later, and it ended **silently**, which is §0.2's failure precisely: the non-event left no trace. Fixed here: `propose` now takes a required `rationale`, stored and evented. It automates nothing — a human still writes the sentence and the members still vote. It makes the human's step leave a record, which is the same discipline the meters already keep, applied at the one point in the building that can act on the world.
 
 **What is still open, stated as the gap it is.** The canon supplies *capabilities* and refers *duties*. A finding can now be published and a proposal can cite it, but no response topology, obligation or clock is declared. That need not be repaired by appointing one official: affected users may independently change future terms, a quorum may respond, or nobody may respond. The honest residue is the unnamed edge between finding and consequence, including the possibility of non-action.
 
@@ -141,9 +141,9 @@ Keepership was missing from the cast because the framework's own grammar had no 
 
 The book's field card had always asked the question the definition dropped—*"when and whether must this clear, **and says who?**"* The practical tool was right and the theory was not. The further correction is that there need not be one answer. Authentication may be bilateral, triggering open, observation distributed among affected users, findings made by a peer quorum, and rule maintenance assigned to an office. Keeperhood attaches to an action, not once to the whole system.
 
-`Ostrom` gives the **appointed-office topology** a storage slot. An office is a stated duty, a holder appointed with a mandate, and a clock; anyone may flag it overdue, converting one kind of silence into a reported event. That remains useful where the group actually appoints an office. It is not required for a tally rope, Bitcoin validation, bilateral correct change, customary refusal, or every other function users can distribute among themselves.
+`AppointedOffice` gives the **appointed-office topology** a storage slot. An office is a stated duty, a holder appointed with a mandate, and a clock; anyone may flag it overdue, converting one kind of silence into a reported event. That remains useful where the group actually appoints an office. It is not required for a tally rope, Bitcoin validation, bilateral correct change, customary refusal, or every other function users can distribute among themselves.
 
-**What it does not do, stated plainly, because the temptation runs the other way.** It cannot call the target; `flagOverdue` needs a caller too. Its holder self-attests performance, so the record does not establish the world fact. It does not punish—that would fuse an epistemic/adjudicative input to a normative output with neither guard. And a reward such as `Kocherlakota.pokeRewardBps` addresses willingness only under a price assumption; it does not establish accountability, timing, succession or enough continuation surplus to keep the function supplied.
+**What it does not do, stated plainly, because the temptation runs the other way.** It cannot call the target; `flagOverdue` needs a caller too. Its holder self-attests performance, so the record does not establish the world fact. It does not punish—that would fuse an epistemic/adjudicative input to a normative output with neither guard. And a reward such as `SignedPositionLedger.pokeRewardBps` addresses willingness only under a price assumption; it does not establish accountability, timing, succession or enough continuation surplus to keep the function supplied.
 
 V2 therefore does not terminate the regress in one named party. It terminates each **specified edge** in a declared topology or an explicit open boundary. Distributed users can supply the consequence by changing their own future acceptance, credit, cooperation or forgiveness; an office, issuer or regulator is optional. The remaining empirical question is whether expected future opportunity is large and reliable enough to cover defection and keeper costs. That belongs in the continuation assumption and simulation, not in a Solidity address.
 
@@ -159,7 +159,7 @@ flowchart TB
         PPL[people / play]:::world
     end
 
-    subgraph LEDGER["Kocherlakota — call-closed safety mechanics"]
+    subgraph LEDGER["SignedPositionLedger — call-closed safety mechanics"]
         BAL[("balance[i]<br/>signed, Σ=0")]:::stock
         LIM[("creditLimit[i]")]:::stock
         COM[("commons")]:::stock
@@ -169,23 +169,23 @@ flowchart TB
     end
 
     subgraph GOV["governance — routed through people"]
-        FRI[Friedman<br/>1 member 1 vote]:::gov
+        FRI[GovernedDials<br/>1 member 1 vote]:::gov
         JUD{{JUDGEMENT<br/>a person decides}}:::human
         FRI -->|R2 addMember| FRI
     end
 
     subgraph FEED["oracles & reporters"]
-        KRU[Krugman]:::gate
-        HAY[Hayek]:::gate
-        GRE[Greif]:::gate
-        KW[KiyotakiWright]:::gate
+        KRU[CountercyclicalElasticity]:::gate
+        HAY[SharedNumeraire]:::gate
+        GRE[ReputationMemory]:::gate
+        KW[AcceptanceThreshold]:::gate
     end
 
     subgraph METER["measurement — publishes, does not govern"]
-        CAN[Cantillon]:::meter
-        STI[Stigler]:::meter
-        STA[Starr]:::meter
-        BCC[BigoniCameraCasari]:::meter
+        CAN[NominalExposureMeter]:::meter
+        STI[PriceDiscoveryCheck]:::meter
+        STA[SinkCapacityEvidence]:::meter
+        BCC[ExperimentCalibrationEvidence]:::meter
     end
 
     ACT -->|oracle| KRU

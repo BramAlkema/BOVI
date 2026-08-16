@@ -2,7 +2,10 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title ChallengeBond — V1 optimistic assertion with a bond
+ * @title ChallengeBond — V1 fixed-stake assertion contest
+ * @dev Named for Gordon ChallengeBond's economics of contests and rent-seeking only
+ * at the level of costly competition for an allocated prize. This contract has
+ * no probabilistic contest-success function and does not reproduce his model.
  *
  * Pattern: UMA's optimistic oracle. An asserter posts a value with a bond.
  * During a liveness window anyone may dispute by matching the bond. Undisputed
@@ -11,28 +14,34 @@ pragma solidity ^0.8.20;
  *
  * This is one contest topology. It allocates the two posted bonds after timeout
  * or a single arbiter's resolution; it does not establish equal standing, world
- * truth, or any later social consequence. Hayek has an implemented finalize path;
- * Schumpeter and Greif are not wired to it in the current demonstrator.
+ * truth, or any later social consequence. SharedNumeraire has an implemented finalize path;
+ * ProductiveCredit and ReputationMemory are not wired to it in the current demonstrator.
  * The V1 enum name "Truthful" means undisputed or arbiter-upheld, not objectively true.
  *
- * (Demonstrator: `arbiter` is a single resolver — point it at Friedman. A
+ * (Demonstrator: `arbiter` is a single resolver — point it at GovernedDials. A
  *  production version replaces it with a decentralised vote / DVM.)
  */
 contract ChallengeBond {
-    enum State { None, Asserted, Disputed, Truthful, Refuted }
+    enum State {
+        None,
+        Asserted,
+        Disputed,
+        Truthful,
+        Refuted
+    }
 
     struct Assertion {
         address asserter;
         address disputer;
         bytes32 topic;
         uint256 value;
-        uint64  assertedAt;
-        State   state;
+        uint64 assertedAt;
+        State state;
     }
 
-    address public arbiter;     // resolves disputes (→ Friedman; ideally a DVM)
-    uint256 public bond;        // required bond, in wei
-    uint64  public liveness;    // dispute window
+    address public arbiter; // resolves disputes (→ GovernedDials; ideally a DVM)
+    uint256 public bond; // required bond, in wei
+    uint64 public liveness; // dispute window
 
     Assertion[] public assertions;
 
@@ -41,7 +50,9 @@ contract ChallengeBond {
     event Settled(uint256 indexed id, bool truthful);
 
     constructor(address _arbiter, uint256 _bond, uint64 _liveness) {
-        arbiter = _arbiter; bond = _bond; liveness = _liveness;
+        arbiter = _arbiter;
+        bond = _bond;
+        liveness = _liveness;
     }
 
     // assert a value (cannot be named `assert` — reserved)
@@ -78,8 +89,13 @@ contract ChallengeBond {
         require(msg.sender == arbiter, "not arbiter");
         Assertion storage a = assertions[id];
         require(a.state == State.Disputed, "not disputed");
-        if (asserterWins) { a.state = State.Truthful; _pay(a.asserter, bond * 2); }
-        else              { a.state = State.Refuted;  _pay(a.disputer, bond * 2); }
+        if (asserterWins) {
+            a.state = State.Truthful;
+            _pay(a.asserter, bond * 2);
+        } else {
+            a.state = State.Refuted;
+            _pay(a.disputer, bond * 2);
+        }
         emit Settled(id, asserterWins);
     }
 
@@ -89,7 +105,7 @@ contract ChallengeBond {
     }
 
     function _pay(address to, uint256 amt) internal {
-        (bool ok, ) = payable(to).call{value: amt}("");
+        (bool ok,) = payable(to).call{value: amt}("");
         require(ok, "pay failed");
     }
 }

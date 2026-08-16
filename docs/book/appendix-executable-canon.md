@@ -1,43 +1,43 @@
 # Appendix: The Executable Canon
 
-> *A contract is an argument stripped of its adjectives. It cannot tell us that an institution is wise, fair, or legitimate. It can tell us who may do what, to whom, under which condition, and where the remainder goes. That is already a severe improvement in honesty.*
+> _A contract is an argument stripped of its adjectives. It cannot tell us that an institution is wise, fair, or legitimate. It can tell us who may do what, to whom, under which condition, and where the remainder goes. That is already a severe improvement in honesty._
 
 **Part VIII — The Machinery** · [Index](README.md) · Prev: [Epilogue](epilogue-the-machinery.md) · Next: [The Field Book](fieldbook-the-money-tool.md)
 
 The body of this book made a claim about money in ordinary language. The Epilogue made the same claim in mathematics. Here we make it one last time in code.
 
-That progression matters. Prose can slide between *money is memory* as a metaphor and *money is memory* as an institutional proposition. Mathematics stops some of the sliding by forcing us to state the relation. Code stops a different kind. It asks which address may change the memory, which line conserves the total, who supplies the index, what happens when a debtor fails, and whether the person supposedly constrained by a rule can simply call around it. A noun such as *trust*, *governance*, or *stability* must become a verb with a caller.
+That progression matters. Prose can slide between _money is memory_ as a metaphor and _money is memory_ as an institutional proposition. Mathematics stops some of the sliding by forcing us to state the relation. Code stops a different kind. It asks which address may change the memory, which line conserves the total, who supplies the index, what happens when a debtor fails, and whether the person supposedly constrained by a rule can simply call around it. A noun such as _trust_, _governance_, or _stability_ must become a verb with a caller.
 
 The result is not a proposed currency. It is not production software, an audit, a monetary constitution, or an empirical demonstration that people would want to live under these rules. It is an **executable canon**: a set of small Solidity contracts that translate the book's claims into operations precise enough to inspect and contest. The contracts do not prove that the theory is true. They prove that we have stopped hiding its verbs.
 
-At the snapshot used for this edition, the repository contains sixteen implemented contracts. Seven appear in the end-to-end demonstration, two have test files of their own, and seven stand as separate mechanisms exercised by neither. Gesell's demurrage is an overlay inside the memory ledger rather than a seventeenth contract. A further set of named rooms now exists as provisional protocol blueprints. That distinction—implemented, integrated, and specified—is part of the argument. A blueprint is not a building, and a building that compiles is not a city.
+At the snapshot used for this edition, the repository contains eighteen implemented Solidity source contracts. Seven appear in the end-to-end demonstration; Clark, Ostrom, Kiyotaki–Wright, Fiske's compatibility path, FiskeModeAgreement, Kocherlakota's isolated posting path and Williamson receive focused coverage elsewhere; and five stand as separate mechanisms exercised by no test. Gesell's demurrage remains an overlay inside the memory ledger rather than another contract. A further set of named rooms exists as provisional protocol blueprints. That distinction—implemented, integrated, and specified—is part of the argument. A blueprint is not a building, and a building that compiles is not a city.
 
 ---
 
 ## 1 · The building at a glance
 
-The suite is easiest to understand as a building, not a chain of famous names. The memory ledger is the floor. Around it sit constitutional controls, measurement devices, enforcement devices, and tools that unbundle jobs ordinarily forced into one instrument.
+The suite is easiest to understand as a building, not a chain of famous names. A name here marks whose mechanism a module executes; it is neither a claim that the mechanism is correct nor an endorsement of the person, several of whom held views the book argues against. The memory ledger is the floor. Around it sit constitutional controls, measurement devices, enforcement devices, and tools that unbundle jobs ordinarily forced into one instrument.
 
-| Layer | Implemented module | The narrow job |
-|---|---|---|
-| Emergence | *Kiyotaki–Wright* | shows an acceptance score feeding on itself |
-| Settlement spine | *Kocherlakota* | records signed positions and clears at net zero |
-| Relational boundary | *Fiske* | keeps Immediate-mode bonds off the settlement rail |
-| Constitutional control | *Friedman* | makes changes pass through vote and delay |
-| The office | *Ostrom* | names who must invoke a duty, and by when, so that not doing it leaves a record |
-| Enforcement | *Greif*, *ChallengeBond* | attaches consequences to records and assertions |
+| Layer                  | Implemented module       | The narrow job                                                                  |
+| ---------------------- | ------------------------ | ------------------------------------------------------------------------------- |
+| Emergence              | _Kiyotaki–Wright_        | shows an acceptance score feeding on itself                                     |
+| Settlement spine       | _Kocherlakota_           | records signed positions and clears at net zero                                 |
+| Relational boundary    | _Fiske_                  | keeps Immediate-mode bonds off the settlement rail                              |
+| Constitutional control | _Friedman_               | makes changes pass through vote and delay                                       |
+| The office             | _Ostrom_                 | names who must invoke a duty, and by when, so that not doing it leaves a record |
+| Enforcement            | _Greif_, _Tullock_ | attaches consequences to records and assertions                                 |
 
-| Layer | Implemented module | The narrow job |
-|---|---|---|
-| Unit of account | *Hayek* | derives a shared rod from competing fresh observations |
-| Deferred obligations | *Fisher* | indexes a contract to the rod and settles it on the ledger |
-| Productive credit | *Schumpeter* | exposes loan purpose, score, price, repayment, and default |
-| Price discovery | *Stigler* | compares a quote with a median observed price |
-| Stabilisation | *Krugman* | adjusts credit elasticity against an activity shortfall |
+| Layer                | Implemented module | The narrow job                                             |
+| -------------------- | ------------------ | ---------------------------------------------------------- |
+| Unit of account      | _Hayek_            | derives a shared rod from competing fresh observations     |
+| Deferred obligations | _Fisher_           | indexes a contract to the rod and settles it on the ledger |
+| Productive credit    | _Schumpeter_       | exposes loan purpose, score, price, repayment, and default |
+| Price discovery      | _Stigler_          | compares a quote with a median observed price              |
+| Stabilisation        | _Krugman_          | adjusts credit elasticity against an activity shortfall    |
 
-This is an unbundled monetary stack. No module is permitted to announce itself as *money* and thereby inherit all monetary functions. The ledger settles. The rod measures. The Fisher contract carries a promise through time. The Schumpeter contract prices a loan. Greif supplies a reputational primitive. Friedman can control attached dials. Kiyotaki–Wright abstracts one acceptance feedback. Each layer can therefore fail in its own name.
+This is an unbundled monetary stack. No module is permitted to announce itself as _money_ and thereby inherit all monetary functions. The ledger settles. The rod measures. The Fisher contract carries a promise through time. The Schumpeter contract prices a loan. Greif supplies a reputational primitive. Friedman can control attached dials. Kiyotaki–Wright abstracts one acceptance feedback. Each layer can therefore fail in its own name.
 
-The actual dependency path is narrower than the cast list suggests. In `CoreE2E`, Friedman governs Kocherlakota, Greif, and Hayek; Hayek supplies Fisher's rod; and Fisher settles through Kocherlakota. Krugman can scale Kocherlakota's limits but remains governed by the deployer in that setup. ChallengeBond and Fiske are optional paths, and the test attaches neither. Greif and ChallengeBond sit horizontally as different attempts to supply the enforcement that every elegant ledger quietly presupposes. Stigler observes prices beside the rail. Schumpeter allocates an existing settlement asset in an isolated scene. Kiyotaki–Wright stands alone as a threshold demonstrator.
+The actual dependency path is narrower than the cast list suggests. In `CoreE2E`, Friedman governs Kocherlakota, Greif, and Hayek; Hayek supplies Fisher's rod; and Fisher settles through Kocherlakota. Krugman can scale Kocherlakota's limits but remains governed by the deployer in that setup. Tullock and Fiske are optional paths, and the test attaches neither. Greif and Tullock sit horizontally as different attempts to supply the enforcement that every elegant ledger quietly presupposes. Stigler observes prices beside the rail. Schumpeter allocates an existing settlement asset in an isolated scene. Kiyotaki–Wright stands alone as a threshold demonstrator.
 
 Already the architecture says something that a balance in a banking app conceals. “Money” is not one object. It is a settlement record surrounded by institutions that govern admission, credit, measurement, enforcement, time, and exit. The usual bundle makes those institutions look like properties of a thing. The executable canon turns the thing back into a stack of decisions.
 
@@ -65,7 +65,7 @@ balance[from] = balance[from] - int256(amount);
 balance[to]   = balance[to]   + int256(amount);
 ```
 
-One position moves down, another moves up. There is no mint, reserve vault, commodity field, redemption promise, or total-token supply. The balances *are* the monetary record. If an employer buys one hundred units of work, the employer moves to minus one hundred and the worker to plus one hundred. The pair records one unfinished social fact from opposite sides.
+One position moves down, another moves up. There is no mint, reserve vault, commodity field, redemption promise, or total-token supply. The balances _are_ the monetary record. If an employer buys one hundred units of work, the employer moves to minus one hundred and the worker to plus one hundred. The pair records one unfinished social fact from opposite sides.
 
 ### Net is an invariant; gross is a condition
 
@@ -84,7 +84,7 @@ This is the rope from Chapter 8A rendered in state variables. The length of rope
 
 ### Admission, authentication, and the credit dial
 
-The ledger is not permissionless. A steward admits members—called `knights` in the code—and assigns each a credit limit. A payment can push a payer no lower than the negative of that effective limit. Membership answers *whose marks count*. The limit answers *how far the group will let this member pull purchasing power forward*.
+The ledger is not permissionless. A steward admits members—called `knights` in the code—and assigns each a credit limit. A payment can push a payer no lower than the negative of that effective limit. Membership answers _whose marks count_. The limit answers _how far the group will let this member pull purchasing power forward_.
 
 That is the contract's authentication and risk boundary. It is also an extraction boundary. Whoever controls admission and credit limits controls whose promises become spendable and on what scale. The contract does not disguise that authority as neutral monetary plumbing. Every admission and limit change emits an event, and the steward can be transferred to the Friedman governance contract so that the dial cannot be moved by an administrator's private call.
 
@@ -102,7 +102,7 @@ fee = positive balance × rate × elapsed time / period
 
 The holder moves down by the fee and the commons moves up by the same amount. Net remains zero. Nothing is burned and nothing is created. The rule redistributes a positive position from holder to commons.
 
-This makes the book's medium–store conflict visible. A settlement rail can be engineered to circulate precisely because it is unattractive as a long-term silo. Wealth storage can then migrate to a tool designed for that job. But the code also prevents us from romanticising the mechanism. Demurrage is a tax schedule administered by whoever governs the rate, period, and destination. The word *melt* sounds natural; the state transition is political. The fee is only legitimate to the degree that the rule, commons, exit, and governing process are legitimate.
+This makes the book's medium–store conflict visible. A settlement rail can be engineered to circulate precisely because it is unattractive as a long-term silo. Wealth storage can then migrate to a tool designed for that job. But the code also prevents us from romanticising the mechanism. Demurrage is a tax schedule administered by whoever governs the rate, period, and destination. The word _melt_ sounds natural; the state transition is political. The fee is only legitimate to the degree that the rule, commons, exit, and governing process are legitimate.
 
 Nor does the implementation literally distinguish a virtuous transactor from an idle hoarder. It accrues against elapsed time on a positive balance. Movement causes accrual to be calculated; it does not erase it. “Idle” is therefore an interpretation of the economic design, not a behavioural fact detected by the contract.
 
@@ -150,13 +150,13 @@ The Fiske contract asks the question every accounting system is tempted to skip:
 
 It defines five states: Unset, Immediate, Balanced, Obligated, and Value. A relationship identifier is symmetric, so the pair Alice–Bob is the same pair as Bob–Alice. Another contract can ask whether that pair is Immediate and, if so, refuse to record or price the interaction.
 
-Only one mode currently has mechanical force. `requireTouchable` rejects an Immediate relationship. This is intentional. The other three clearing disciplines describe *how* an entry should settle; Immediate says that compulsory settlement is the category error. Its first protection is exclusion.
+Only one mode currently has mechanical force. `requireTouchable` rejects an Immediate relationship. This is intentional. The other three clearing disciplines describe _how_ an entry should settle; Immediate says that compulsory settlement is the category error. Its first protection is exclusion.
 
-The irony is visible in the design. To defend a gift from accounting, the contract records a minimal fact about the relationship: *do not account for this*. Even that may be too much. The cleanest Immediate ledger is often no ledger at all. The tag is therefore best read as a defensive opt-out at the edge of an otherwise hungry system, not as a digital description of intimacy.
+The irony is visible in the design. To defend a gift from accounting, the contract records a minimal fact about the relationship: _do not account for this_. Even that may be too much. The cleanest Immediate ledger is often no ledger at all. The tag is therefore best read as a defensive opt-out at the edge of an otherwise hungry system, not as a digital description of intimacy.
 
 The second operation, `flagIfTaboo`, emits an event when a fee, interest charge, price, or other extraction appears inside an Immediate relationship. It does not reverse the charge or punish the caller. It turns a disguised mode switch into an observable. This is the executable version of the book's defensive vocabulary: first name what happened; then decide what institution should follow.
 
-The limitations are sharp. Either party may unilaterally declare the mode, and a later declaration overwrites an earlier one. There is no mutual signature, challenge period, evidence standard, or appeal. Balanced, Obligated, and Value are labels rather than complete settlement behaviours. A production design would require consent and perhaps a ChallengeBond around contested classification. Yet automatic classification by an “intelligent” agent would not solve the political problem. It would merely move the power to whoever owns the classifier.
+The limitations are sharp. Either party may unilaterally declare the mode, and a later declaration overwrites an earlier one. There is no mutual signature, challenge period, evidence standard, or appeal. Balanced, Obligated, and Value are labels rather than complete settlement behaviours. A production design would require consent and perhaps a Tullock around contested classification. Yet automatic classification by an “intelligent” agent would not solve the political problem. It would merely move the power to whoever owns the classifier.
 
 Fiske is therefore less a mode engine than a permission primitive. It shows where the modes belong in a monetary stack: not as sentimental commentary after the transaction, but as a boundary condition before a generic rail is allowed to touch the relationship.
 
@@ -208,15 +208,15 @@ This is a recurring lesson in the suite: removing monetary mysticism does not re
 
 ### The other half of the question: who keeps each edge alive?
 
-Governance answers who may *change* a rule. It does not answer who observes, triggers, records, contests, responds to or repairs each step, and for a long time the suite had no vocabulary for those functions.
+Governance answers who may _change_ a rule. It does not answer who observes, triggers, records, contests, responds to or repairs each step, and for a long time the suite had no vocabulary for those functions.
 
-Every contract here is strictly reactive. A settlement does not settle until someone calls the settle function; a holding charge is not charged until someone touches the account; a stabilisation rule does not stabilise until someone reports. The first audit therefore looked for one missing party and called them *the keeper*. The deeper audit found a topology instead: counterparties may authenticate, any user may trigger, affected peers may observe, a quorum may find, future counterparties may respond, and an office may maintain one scheduled function. Keeperhood attaches to an edge, not once to the whole institution.
+Every contract here is strictly reactive. A settlement does not settle until someone calls the settle function; a holding charge is not charged until someone touches the account; a stabilisation rule does not stabilise until someone reports. The first audit therefore looked for one missing party and called them _the keeper_. The deeper audit found a topology instead: counterparties may authenticate, any user may trigger, affected peers may observe, a quorum may find, future counterparties may respond, and an office may maintain one scheduled function. Keeperhood attaches to an edge, not once to the whole institution.
 
-What made this more than tidiness was a discovery about the holding charge. The rate is retroactive: it applies the current parameters to all the time elapsed since an account was last touched. Setting the rate to zero was described as erasing every holder's pending liability, and it does not. It erases only the spans that have not yet been *charged* — so the erasure reaches exactly those holders nobody happened to touch first. Two accounts can hold the same balance, for the same year, under the same rate, and end the episode having paid different amounts. Nothing in the rules distinguishes them. The difference is made entirely by the order in which an unnamed person chose to act.
+What made this more than tidiness was a discovery about the holding charge. The rate is retroactive: it applies the current parameters to all the time elapsed since an account was last touched. Setting the rate to zero was described as erasing every holder's pending liability, and it does not. It erases only the spans that have not yet been _charged_ — so the erasure reaches exactly those holders nobody happened to touch first. Two accounts can hold the same balance, for the same year, under the same rate, and end the episode having paid different amounts. Nothing in the rules distinguishes them. The difference is made entirely by the order in which an unnamed person chose to act.
 
-That is a distributional power. It was not held by governance, it was not voted on, and no one had noticed it, because the mechanism by which it operates is a *non-event*: an account that goes untouched emits nothing. Silence and compliance produce the identical record, which is to say no record. The power may be exercised by many callers rather than one office; distribution does not make its incidence disappear.
+That is a distributional power. It was not held by governance, it was not voted on, and no one had noticed it, because the mechanism by which it operates is a _non-event_: an account that goes untouched emits nothing. Silence and compliance produce the identical record, which is to say no record. The power may be exercised by many callers rather than one office; distribution does not make its incidence disappear.
 
-Underneath the mechanism sat a habit of language. This book has defined a mode as a rule about when and whether the ledger must clear. *Must*—who observes, who pulls, who records, who responds? A duty with no bearer topology is not stricter. It is unfinished. And the agentless obligation is exactly the grammar the book spends its length refusing everywhere else: money *has* value, the market *clears*, prices *adjust*. Delete the actors and the property appears to float free, which is the whole conjuring trick. The field card at the back of this book had asked the missing question for years—*when and whether must this clear, and says who?*—but V2 must permit several answers in one episode.
+Underneath the mechanism sat a habit of language. This book has defined a mode as a rule about when and whether the ledger must clear. _Must_—who observes, who pulls, who records, who responds? A duty with no bearer topology is not stricter. It is unfinished. And the agentless obligation is exactly the grammar the book spends its length refusing everywhere else: money _has_ value, the market _clears_, prices _adjust_. Delete the actors and the property appears to float free, which is the whole conjuring trick. The field card at the back of this book had asked the missing question for years—_when and whether must this clear, and says who?_—but V2 must permit several answers in one episode.
 
 The Ostrom contract gives one answer a storage slot: the **appointed-office topology**. An office is a duty stated in words, a holder appointed with a mandate on the record, and a period. The holder records an assertion that they acted. When the period lapses, anyone at all may flag the office overdue, and that flag emits. This makes a report of staleness visible; it does not verify the performance or the miss.
 
@@ -238,21 +238,21 @@ What changes is one thing, and it remains enough to be worth a contract: where a
 
 **Audit boundary.** The contract cannot verify that the holder did the work; it records that a named party asserted it. It cannot act, and its own flag needs a caller. Worse, `flagOverdue` resets `lastDischarged` despite no discharge, so a long absence can be compressed into a smaller missed count. An office appointed by a captured governance is captured. The target is informational; there is no scope, evidence, fallback, succession or appeal. This is one keeper topology and a V2 counterexample, not the universal closure primitive.
 
-## 5 · Greif and ChallengeBond: memory and contest, not teeth
+## 5 · Greif and Tullock: memory and contest, not teeth
 
 A ledger can remember perfectly and still be useless. If a participant may take from the network, abandon the negative position, return under a new name, and face no changed future terms, memory is archival rather than consequential. The remaining question is institutional: who observes, who may contest, which future counterparties care, and how repair or rebirth remains possible.
 
-The suite offers two partial primitives. Greif stores an attributed score for a person-like address. ChallengeBond makes one assertion contestable and allocates escrowed bonds. Neither creates truth, and neither supplies the later social consequence. Calling both “teeth” collapsed memory, contest and response into one box.
+The suite offers two partial primitives. Greif stores an attributed score for a person-like address. Tullock makes one assertion contestable and allocates escrowed bonds. Neither creates truth, and neither supplies the later social consequence. Calling both “teeth” collapsed memory, contest and response into one box.
 
-### Greif: an advisory memory surface
+### Greif: two advisory memory surfaces
 
-Greif maintains a registry, a signed reputation score, and a set of authorised reporters. Governance admits participants and reporters. A reporter may add or subtract from a registered participant's score. Another contract can ask whether that participant is in good standing relative to a threshold.
+Greif preserves its original registry, signed reputation score, and governance-authorised reporters as a compatibility trace. It now adds a separate contextual path: a subject authorises one reporter for an opaque domain and purpose; that reporter records an opaque evidence reference and a time-bounded `Performed` or `Breached` outcome; the subject may challenge and propose repair; and only the original reporter may acknowledge the proposed repair. A later consumer records whether it ignores or considers an active finding. None of these actions changes the legacy score or calls another contract.
 
 This is one attempted representation of Kocherlakota's performance residual. The memory ledger says who received without yet giving. Greif lets a caller ask whether a reporter-adjusted score crosses a chosen threshold. The end-to-end test registers a borrower, authorises a reporter through Friedman, subtracts five after a default-like event, and verifies only that the view returns false. Nothing in the cast consumes that view, so nobody is excluded.
 
-That is enough to demonstrate attributed memory, not individual punishment. A reporter may lie. A score collapses context into a number. Registration may become a gate controlled by incumbents. A public registry can become a permanent panopticon. A person can be unable to escape an error—or escape every consequence by creating another address. V2 therefore replaces the global scalar with contextual, evidence-linked, challengeable, expiring and repairable findings.
+The legacy path demonstrates attributed memory, not individual punishment. A reporter may lie. A score collapses context into a number. Registration may become a gate controlled by incumbents. A public registry can become a permanent panopticon. A person can be unable to escape an error—or escape every consequence by creating another address. The amendment narrows those defects without claiming to solve them: contextual findings are evidence-linked, challengeable, expiring and repairable, while consumers must own the decision to consider them. The global scalar remains callable only as the old comparison path.
 
-The contract comments name the two largest residuals: privacy and Sybil resistance. A more serious implementation might use selective disclosure so someone can prove “standing above threshold” without revealing identity or history. It would still need a defensible answer to one-human-many-addresses, shared devices, lost keys, contested identity, and legitimate rebirth. The code does not pretend those questions are software details.
+The amendment stores opaque hashes rather than cleartext evidence, but parties, clocks and outcomes remain public. It is data minimisation, not selective disclosure or privacy. A more serious implementation still needs defensible answers to one-human-many-addresses, shared devices, lost keys, contested identity, retaliation and legitimate rebirth. The focused tests show explicitly that a finding remains attached to one address and does not follow a fresh one; that is the Sybil problem made visible, not solved.
 
 One integration gap also matters. Schumpeter emits a default event and describes it as a hook for Greif, but the present contracts do not wire that hook. That restraint is fortunate: V1 lets any caller race an irreversible default immediately after maturity, so automatically propagating it would turn an unchallenged claim into a general sanction.
 
@@ -266,27 +266,33 @@ So the standing check stays advisory, and the ledger says in its own comments th
 
 #### Protocol card — `Greif`
 
-**State.** Governance address; registration bit and signed reputation per address; reporter-authorisation bit per address.
+**State.** Legacy governance, registration, signed reputation and reporter bits; plus isolated scoped reporter authorities, contextual findings, challenge and repair references, and append-only consumer-use decisions.
 
-**Roles and commands.** Governance calls `register`, `deregister`, `setReporter`, and `setGovernance`. An authorised reporter calls `report(subject, delta)`. Anyone calls `inGoodStanding(subject, minimum)`.
+**Roles and commands.** The legacy roles remain unchanged. In the new path a subject calls `authorizeContextReporter` or `revokeContextReporter`; the scoped reporter calls `recordContextualFinding`; the subject calls `challengeContextualFinding` and `proposeContextualRepair`; the original reporter calls `acknowledgeContextualRepair`; and a consumer calls `recordFindingUse` with its own rationale reference.
 
-**Transition.** A report requires an authorised caller and registered subject, then adds an unrestricted signed delta and emits the new total. Deregistration disables threshold checks but does not erase reputation; re-registration restores the old score.
+**Transition.** The legacy delta path is unchanged. A contextual record requires a distinct subject and reporter, matching subject-issued domain/purpose authority, opaque evidence, and an expiry no later than the authority or one year. Challenge blocks active consideration without declaring refutation. A subject may propose repair only for an adverse finding; the original reporter acknowledges it. Expiry is derived from the clock and needs no keeper call.
 
-**Invariant.** Unauthorised callers cannot change a score. `inGoodStanding` is true exactly when the subject is registered and its score meets the caller-supplied threshold.
+**Invariant.** Unauthorised callers cannot change a score or append a contextual finding. The two state domains do not mutate one another. Only an unexpired, unchallenged and unrepaired finding may be recorded as `Consider`; cross-domain and cross-purpose use reverts. Neither consumer choice produces an external effect.
 
-**Audit boundary.** A report contains no reason, evidence hash, affected contract, appeal state, expiry, or per-reporter limit. Governance can appoint the reporter that judges it. Scores are public; addresses are not people; Sybil resistance is absent. Schumpeter default does not call `report`. Nothing consumes `inGoodStanding`: it is advisory by ruling, and a caller that gates on it owns that decision and its direction.
+**Audit boundary.** The legacy report still contains no reason, evidence, appeal or expiry. The contextual path adds opaque references and clocks but no truth resolver, identity proof, privacy, forced response, appeal court or automatic sanction. Subject-authorised reporting can preserve an agreed relationship record and can also suppress records from reporters the subject refuses to authorise. Schumpeter calls neither path. Nothing consumes `inGoodStanding` or a contextual decision: a caller that later gates on either owns that consequence and its direction.
 
-### ChallengeBond: an optimistic assertion with collateral
+### Tullock: an optimistic assertion with collateral
 
-ChallengeBond implements a familiar optimistic pattern. An asserter posts a value and a bond. During a liveness window, another participant may dispute by matching that bond. If no one disputes, the assertion settles as truthful and the original bond returns. If disputed, an arbiter chooses a winner, who receives both bonds.
+The name points to Gordon Tullock's economics of costly contests: access to the contest and expenditure on it shape who can pursue the prize. The implementation remains an UMA-style optimistic assertion, not a transcription of Tullock's probabilistic contest-success function. Its most Tullock-like fact is also its warning: requiring a matching bond makes capital part of standing.
 
-The mechanism turns a claim into a wager with a public deadline. It is useful where facts are cheap to verify when challenged but expensive to verify universally in advance. Hayek contains a `finalize` route that accepts an index observation only after a matching ChallengeBond assertion has survived.
+Tullock implements a familiar optimistic pattern. An asserter posts a value and a bond. During a liveness window, another participant may dispute by matching that bond. If no one disputes, the assertion settles as truthful and the original bond returns. If disputed, an arbiter chooses a winner, who receives both bonds.
+
+The mechanism turns a claim into a wager with a public deadline. It is useful where facts are cheap to verify when challenged but expensive to verify universally in advance. Hayek contains a `finalize` route that accepts an index observation only after a matching Tullock assertion has survived.
 
 Optimistic verification does not make the oracle disappear. It distributes the work and prices the challenge. An undisputed claim becomes “truthful” even if everyone was inattentive, colluding, intimidated, or too poor to post the matching bond. A disputed claim still ends at an arbiter. A large bond deters casual lies and legitimate challengers together; a small bond may price dishonesty too cheaply. The liveness window may be too short for the people most affected.
 
-The current contract fixes the arbiter, bond, and liveness at construction. Bonds are paid in the chain's native asset. There is no appeal, arbiter timeout, domain separation, evidence record, or protection against an economically stronger party repeatedly exhausting challengers. The code supplies one contest and escrow-allocation topology, not truth, enforcement or a theory of due process.
+The preserved `Tullock` contract fixes the arbiter, bond, and liveness at construction. Bonds are paid in the chain's native asset. There is no appeal, arbiter timeout, domain separation, evidence record, or protection against an economically stronger party repeatedly exhausting challengers. It remains the exact V1 compatibility trace.
 
-#### Protocol card — `ChallengeBond`
+The amendment therefore does not enlarge or silently repair that trace. `Shavell`, named for Steven Shavell's economic analysis of litigation, private adjudication and appeals, supplies a separate path: a claimant identifies one challenger, primary resolver, fallback/appeal resolver and consumer; scopes an opaque claim and provenance reference by domain and purpose; and prepays stake plus each resolver's fee. A matching challenge starts bounded resolution clocks. A timely resolver receives its declared fee. If both resolvers remain silent, anyone may finalize an inconclusive outcome and the claimant and challenger recover their remaining escrow through pull credits. No appointed keeper is required merely to release the funds.
+
+Silence is `Unchallenged`, never `Upheld`. A primary finding can be appealed once by its losing party, and a fallback finding may replace it without erasing the primary record. `Upheld` and `Rejected` remain attributed resolver findings, not truth. Only the named consumer may consume a terminal non-inconclusive outcome, in the declared scope, once; consumption emits a record and calls no consequence.
+
+#### Protocol card — `Tullock`
 
 **State.** Immutable-in-practice arbiter, native-asset bond, and liveness duration; an append-only array of assertions with asserter, first disputer, topic, value, timestamp, and state.
 
@@ -297,6 +303,18 @@ The current contract fixes the arbiter, bond, and liveness at construction. Bond
 **Invariant.** Each assertion takes at most one disputer and pays at most the two posted bonds through its normal path. State is set before payout, and a failed payout reverts the state change.
 
 **Audit boundary.** “Truthful” means unchallenged or arbiter-upheld. Zero bond or zero liveness is allowed. There is no evidence field, appeal, timeout for a silent arbiter, assertion-count getter, accidental-fund withdrawal, or defence against a winner that rejects payment and permanently blocks settlement. A settled assertion has no consumed bit, so Hayek may reuse it indefinitely. Only Hayek currently reads this contract; the advertised Schumpeter and Greif links are absent.
+
+#### Protocol card — `Shavell`
+
+**State.** Domain-separated contests with named claimant, challenger, primary resolver, fallback/appeal resolver and consumer; opaque claim, provenance, challenge, appeal and finding references; bounded clocks; prepaid stake and resolver fees; terminal outcome; consumed bit; and pull-payment credits.
+
+**Roles and commands.** The claimant calls `createContest`; only the named challenger calls `challengeContest`; the primary resolver calls `resolvePrimary`; the losing party calls `appealContest`; the fallback resolver calls `resolveAppeal` or, after primary silence, `resolveFallback`; anyone advances an expired terminal clock; the named consumer calls `consumeContestOutcome`; each credited actor withdraws its own balance.
+
+**Transition.** An open claim becomes `Unchallenged` after its challenge clock. A challenge opens a paid primary clock and then a paid fallback clock. A primary finding opens one appeal clock. Timely findings allocate stake and fees; a silent terminal resolver path becomes `Inconclusive` and refunds remaining participant escrow. State and credits change before the only new external call, user-initiated withdrawal.
+
+**Invariant.** One domain-separated key creates at most one contest. Each terminal path credits no more than its deposited escrow. Primary and appeal histories remain visible. A terminal contest cannot reopen or pay twice. Only one matching consumer use is recordable, and no consumer use calls another contract.
+
+**Audit boundary.** Named standing may exclude an affected challenger. Bond and fee size may privilege wealth, deter a valid challenge or buy attention without buying honesty. Resolvers may collude, lack relevant evidence or remain silent; fallback makes escrow recoverable, not resolution reliable. Public opaque references supply data minimisation, not privacy. Identity, evidence quality, legitimacy, retaliation, enforcement and later social response remain outside the contract. Hayek still reads only the legacy `Tullock` result, so no existing production path consumes the new finding.
 
 This distinction is central to intersubjective money. A rule becomes objective only in the narrow sense that a machine applies it consistently. The choice of rule, reporter, threshold, bond, clock, and arbiter remains intersubjective and institutional. Automation can make power legible. It cannot convert power into physics.
 
@@ -316,15 +334,19 @@ The median makes the index robust to a minority of extreme reports. The provider
 
 This is named for Hayek, but it does not implement competing private currencies. It implements competition among suppliers of a **unit-of-account signal** while retaining a shared rod for coordination. That is the deliberate twist. If the unit is where contracts, wages, accounts, and expectations become sticky, competition belongs around the process that measures it—not necessarily in a proliferation of mutually unintelligible settlement media.
 
-The contract exposes two paths. `publish` trusts an admitted provider to submit a positive number. `finalize` accepts a number only when that provider made a matching ChallengeBond assertion that settled as truthful. The contrast is pedagogically useful: an oracle with a provider list is trust administered; an optimistic oracle adds a priced opportunity to contest.
+The contract exposes two paths. `publish` trusts an admitted provider to submit a positive number. `finalize` accepts a number only when that provider made a matching Tullock assertion that settled as truthful. The contrast is pedagogically useful: an oracle with a provider list is trust administered; an optimistic oracle adds a priced opportunity to contest.
 
 Neither route knows how the index was computed. “Derived from observable settlements” is an off-chain requirement, not an on-chain fact. The contract has no basket composition, weights, data provenance, revisions policy, geographic scope, household profile, or historical series. A median can be robust and wrong. Governance can admit three addresses controlled by one party. Freshness prevents an old value from surviving forever; it does not make a new value honest.
 
 There is also a computational boundary. The implementation gathers and insertion-sorts provider values on every read. That is clear for a demonstrator and poor architecture for a large provider set. Again the point is not throughput. It is to let us point at the exact location where “the value of money” becomes “a governed statistic assembled from observations.”
 
+The amendment preserves this whole path as a compatibility trace and adds `Condorcet` beside it. Condorcet supplies the lineage of information aggregation, but not a truth theorem here: the contract neither establishes reporter competence nor independence, and it takes a numeric median rather than a majority vote. A consumer freezes one evidence epoch: unit, basket, observed period, method, provider roster, quorum, challenger, incentive references and three deadlines. The roster contains at most sixteen providers and cannot be changed. Each provider submits once with an opaque provenance reference, observation time and declared uncertainty. The named challenger may exclude a submission with its own opaque reference, but challenge does not label the report false.
+
+After the challenge window, the consumer may finalize once if enough unchallenged submissions remain fresh. The mechanism records an overflow-safe median, included count, maximum declared uncertainty and digest of the included provider records. Missing, challenged or stale quorum reverts; expiry produces no observation. The output calls no Fisher obligation, selection lifecycle or policy adapter. It is a typed observation record, not the rod's automatic installation.
+
 #### Protocol card — `Hayek`
 
-**State.** Governance address, maximum data age, optional ChallengeBond address, an array of admitted providers, and each provider's latest index value and timestamp.
+**State.** Governance address, maximum data age, optional Tullock address, an array of admitted providers, and each provider's latest index value and timestamp.
 
 **Roles and commands.** Governance calls `setGovernance`, `setMaxStale`, `setChallenge`, `admitProvider`, and `removeProvider`. An admitted provider calls `publish`. Anyone calls `finalize` with a provider and assertion identifier, or reads `current`, `valueOf`, `deviationBps`, and `providerCount`.
 
@@ -332,7 +354,19 @@ There is also a computational boundary. The implementation gathers and insertion
 
 **Invariant.** For a fixed provider set, clock, and observation map, the rod is deterministic. Removed providers do not contribute. Governance never writes the rod directly, although it chooses who may write its inputs.
 
-**Audit boundary.** The trusting `publish` route remains open after ChallengeBond is attached, so bonded finalisation does not close the bypass. One provider is a sufficient “median”; independence and quorum are not represented. A settled assertion can be replayed. `valueOf` returns stale data, while `deviationBps` may compare it with a fresh median. Midpoint addition and deviation multiplication can overflow, and every read sorts in quadratic time. Basket construction, provenance, revisions, geography, and household relevance remain off-chain.
+**Audit boundary.** The trusting `publish` route remains open after Tullock is attached, so bonded finalisation does not close the bypass. One provider is a sufficient “median”; independence and quorum are not represented. A settled assertion can be replayed. `valueOf` returns stale data, while `deviationBps` may compare it with a fresh median. Midpoint addition and deviation multiplication can overflow, and every read sorts in quadratic time. Basket construction, provenance, revisions, geography, and household relevance remain off-chain.
+
+#### Protocol card — `Condorcet`
+
+**State.** Immutable-per-epoch consumer, challenger, unit, basket, method, period, provider/challenger incentive references, bounded roster, quorum, submission/challenge/finalization clocks and freshness bound; one observation per provider; challenge history; optional terminal aggregate.
+
+**Roles and commands.** The consumer calls `createEpoch` and `finalizeAggregate`. A named rostered provider calls `submitObservation` once. The named challenger calls `challengeObservation`. Anyone may read the frozen terms, roster, observations and finalized output.
+
+**Transition.** Creation freezes a domain-separated epoch. Submission records a positive value, provenance, in-period observed time, on-chain submission time and bounded uncertainty. Challenge excludes a submitted input without refuting it. Finalization after challenge close filters challenged and stale inputs, requires quorum, sorts at most sixteen values and records one median output. After finalization or finalization expiry, no later output is possible.
+
+**Invariant.** Provider membership, scope, clocks and quorum never mutate. Epoch and provider submissions cannot replay. Included values belong only to that epoch's unit, basket and period. Even-value midpoint arithmetic cannot overflow. Finalization is one-shot and contains no external call.
+
+**Audit boundary.** The consumer chooses the roster, quorum, challenger, basket and method; freezing discretion makes it legible but not legitimate. Incentive references name off-chain terms but neither pay nor motivate anyone on-chain. A challenger can censor enough reports to halt quorum. A provider majority can coordinate on the same wrong value and move the median. Provenance hashes are not evidence verification, uncertainty is self-declared, and bounded gas is not provider independence. No result is wired into Hayek or Fisher.
 
 ### Fisher: a stable promise over an unstable medium
 
@@ -348,6 +382,14 @@ The demonstrator remains permissive. The payer may cancel unilaterally. There is
 
 Fisher therefore demonstrates indexation, not a complete employment, rent, pension, or loan contract. The institutional layer around a promise is larger than its arithmetic.
 
+The amendment keeps that demonstrator byte-for-byte and adds `JohnCommons` as a separate mechanism. The name comes from John R. Commons's treatment of **futurity** in _Institutional Economics_ (1934): economic transactions arrange present rights, duties and expectations around future production and consumption. This contract does not claim to instantiate those legal rights. It borrows the narrower temporal insight: a future obligation needs a calendar and explicit revisions, not one mutable “last paid” timestamp.
+
+A debtor proposes typed terms and a creditor must accept before any schedule exists. Every numbered period opens independently after its own due date. Either party may propose a unit- and basket-matched index observation, but only the counterparty can accept it; acceptance fixes that period's due amount and explicit rounding remainder. The contract never calls Hayek, an aggregation module, a token or a ledger.
+
+Tender is also separated from recognised performance. A debtor's tender proposal leaves the residual unchanged until the creditor acknowledges it. Rejection stays in history, concurrent proposals cannot overfill the residual, and only the creditor may expressly forgive. A debtor may propose a cure extension bounded from the original due-plus-grace clock; creditor acceptance moves only the arrears clock. Either party may propose termination, but the other must accept, and termination blocks only not-yet-due periods. Earlier due periods and their residuals remain inspectable.
+
+This is still an assertion machine. Counterparty acceptance does not prove the index, delivery, control of an address, acceptable payment, hardship, legal discharge or enforceability. Lost-key succession and contested index truth remain outside this slice. The mechanism removes no need for evidence, judgement or external institutions; it only stops one party or one late call from silently rewriting the obligation's recorded calendar.
+
 #### Protocol card — `Fisher`
 
 **State.** Immutable rod and settlement-ledger addresses; an append-only array of obligations containing payer, payee, rod amount, period, last-payment time, and active flag.
@@ -360,6 +402,18 @@ Fisher therefore demonstrates indexation, not a complete employment, rent, pensi
 
 **Audit boundary.** The payee never accepts the obligation and the payer may cancel unilaterally, repeatedly. Missed periods do not accumulate: a late call pays once and resets the clock to now. `due` remains callable for inactive entries. Multiplication may overflow and division rounds down. Operator approval is broad rather than obligation-scoped. There are no arrears, end date, grace, notice, collateral, dispute, or remedy rules.
 
+#### Protocol card — `JohnCommons`
+
+**State.** Bilaterally activated typed terms; a bounded fixed schedule; one independently opened episode per period; append-only index, tender, cure and termination proposals; accepted due amount and rounding remainder; acknowledged and forgiven totals; cure and termination clocks.
+
+**Roles and commands.** The debtor proposes terms, tender and cure. The creditor accepts or rejects terms and claimed performance, and alone may forgive. Either party opens a due period, proposes an index observation, proposes termination or reports quantified arrears. Observation and termination acceptance always belongs to the other party.
+
+**Transition.** Creditor acceptance activates the schedule. A due period opens without advancing another period. Counterparty acceptance of a fresh matching observation fixes due arithmetic. Creditor acknowledgement, not tender, reduces residual. Accepted cure extends only the arrears clock within an absolute bound. Accepted termination blocks later-due periods without deleting earlier episodes.
+
+**Invariant.** A terms key and scheduled period cannot replay. Maximum-width `uint128` reference and index values multiply in `uint256`; quotient and remainder are deterministic. A residual falls only through creditor-acknowledged performance or creditor forgiveness. Neither cure nor termination reduces it. The contract performs no external call.
+
+**Audit boundary.** The parties choose the index type and assert its observation; the chain does not verify either. A creditor can withhold acknowledgement and a debtor can withhold maintenance. Public opaque references are not privacy. Address loss, succession, evidence contests, acceptable tender, legal discharge, enforcement, hardship and fairness remain unimplemented.
+
 ### Stigler: the market skim, measured rather than forbidden
 
 Stigler performs a neighbouring but distinct measurement. Governed providers publish observed transaction prices for a named good. The contract ignores stale reports, takes the median of fresh ones, and compares a quoted price with that reference. It returns the deviation in basis points and marks an overcharge when the quote lies above the reference by more than a caller-supplied fair band.
@@ -368,7 +422,7 @@ The module is intentionally an observer. It does not set a legal price, block a 
 
 This is the market counterpart to making monetary extraction visible. Cantillon asks who benefits first from a change in money. Stigler asks whether a buyer is paying more than the discovered terms available elsewhere. Both convert an invisible spread into a number that can be argued over.
 
-The limits are again instructive. The provider set is governed. Observations have no on-chain proof of sale. The fair band comes from the caller. Quality, location, delivery, discrimination, urgency, and bundled service may make two nominally identical goods incomparable. An earlier design proposed ChallengeBond-gated publishing analogous to Hayek, but the current Stigler contract contains no such integration. That room is described, not wired.
+The limits are again instructive. The provider set is governed. Observations have no on-chain proof of sale. The fair band comes from the caller. Quality, location, delivery, discrimination, urgency, and bundled service may make two nominally identical goods incomparable. An earlier design proposed Tullock-gated publishing analogous to Hayek, but the current Stigler contract contains no such integration. That room is described, not wired.
 
 Most importantly, the median is not an objective value. It is a public settlement ratio assembled from selected observations under a declared method. That makes it reproducible and contestable, not metaphysically true. Intersubjective finance does not abolish numbers. It becomes much stricter about what the numbers are allowed to claim.
 
@@ -382,7 +436,7 @@ Most importantly, the median is not an objective value. It is a public settlemen
 
 **Invariant.** For a fixed provider set, clock, good identifier, and observation map, the reference and check result are deterministic. Stigler never blocks or reprices the sale it observes.
 
-**Audit boundary.** There is no ChallengeBond path despite the earlier design claim. One provider is sufficient. A `bytes32` good has no governed unit, quality, location, or delivery definition. Removing and later re-admitting a provider revives its stored per-good observations if still fresh. `setMaxStale` emits no event. Midpoint addition and deviation multiplication can overflow; reads sort quadratically. The caller chooses the fair band, so “overcharge” is a policy-relative signal, not an on-chain fact.
+**Audit boundary.** There is no Tullock path despite the earlier design claim. One provider is sufficient. A `bytes32` good has no governed unit, quality, location, or delivery definition. Removing and later re-admitting a provider revives its stored per-good observations if still fresh. `setMaxStale` emits no event. Midpoint addition and deviation multiplication can overflow; reads sort quadratically. The caller chooses the fair band, so “overcharge” is a policy-relative signal, not an on-chain fact.
 
 ---
 
@@ -426,7 +480,7 @@ Two contracts sit at opposite ends of the monetary life cycle. Kiyotaki–Wright
 
 ### Kiyotaki–Wright: acceptance feeds acceptance
 
-The contract named Kiyotaki–Wright contains three candidate slots. Each receives an externally supplied ledger-likeness score and an initial marketability score. It computes a holding threshold as ten thousand minus ledger-likeness. On each round, a candidate above that threshold gains a fixed adoption increment; one at or below it loses a fixed decay increment. Reaching ten thousand sets a sticky `isMoney` flag.
+The preserved compatibility path in the contract named Kiyotaki–Wright contains three candidate slots. Each receives an externally supplied ledger-likeness score and an initial marketability score. It computes a holding threshold as ten thousand minus ledger-likeness. On each round, a candidate above that threshold gains a fixed adoption increment; one at or below it loses a fixed decay increment. Reaching ten thousand sets a sticky `isMoney` flag.
 
 Its purpose is to isolate one feedback:
 
@@ -441,21 +495,23 @@ A candidate assigned a higher ledger score has a lower threshold and therefore n
 
 The canonical guard is crucial. The ledger score is a toy transaction-cost input. It does not inject intrinsic worth. The contract collapses resolution and integrity into one scalar for demonstration; it does not erase their distinction, and it does not make known supply synonymous with fixed supply or divisibility. Acceptance here changes a selection label, not the marginal worth of an additional unit. There is no consumption utility or commodity backing in the state.
 
-The name otherwise promises too much. Kiyotaki and Wright model agents, types, production, consumption, meetings, and strategic acceptance in a search economy. This contract has none of those. It is not mean-field agent matching; it is a three-score threshold dynamic inspired by one result. The inputs arrive from outside, every candidate follows the same increments, and “money” means only that a score once touched the ceiling. No current end-to-end test exercises it.
+The Solidity amendment adds a separate path rather than laundering that flag into a richer claim. Registered addresses declare action-specific accessible opportunity, credibility, horizon, costs and alternatives. An actor-approved sponsor can carry a named actor through cold start with a bounded allowance. Distinct offeror and counterparty addresses must assert offer and acceptance, and the offeror must later assert renewal before a use counts. Two fresh post-priming uses plus a participant-carried protection assertion and positive margins for every action actually used can move one of three distinct scopes to `InstalledSelfMaintaining`. A failed required margin or overdue protection can move it to `Fragile`. The old `isMoney` flag cannot cause any of these transitions.
+
+The name still promises too much. Kiyotaki and Wright model agents, types, production, consumption, meetings, and strategic acceptance in a search economy. The amendment has addresses and compatible use assertions, not those mechanisms. It is not mean-field agent matching; its declarations arrive from outside, and the contract cannot know whether opportunity, desire, delivery, consent or protection is real. The dedicated Foundry suite tests isolation between the old trace and amended lifecycle, comparative fitness, bounded consensual priming, renewed use, coexistence and failure visibility.
 
 So the module is not a simulation of the origin of actual money and does not establish Kiyotaki–Wright's equilibrium result. It is an executable thought experiment showing how a declared acceptance feedback can become self-reinforcing without putting a value floor into the candidate.
 
 #### Protocol card — `KiyotakiWright`
 
-**State.** Three ledger-likeness scores, three marketability scores, three sticky `isMoney` flags, a round counter, and fixed adoption and decay increments.
+**State.** The preserved path keeps three ledger-likeness scores, three marketability scores, three sticky `isMoney` flags, a round counter, and fixed adoption and decay increments. The separate amendment stores bounded registered addresses, actor/action opportunity declarations, approved priming sponsors and allowances, multi-party use episodes, required-action masks, three distinct acceptance scopes, participant-carried protection clocks and one scoped lifecycle per candidate.
 
-**Roles and commands.** There are no privileged roles after deployment. Anyone calls `step`, `run(rounds)`, `holdingCost(good)`, or `emergedMoney`.
+**Roles and commands.** Anyone calls the legacy views and stepping functions. Addresses self-register and declare only their own opportunity inputs. A target actor must approve an external priming sponsor. Offeror, named counterparty, priming payer and self-assigned protection actor have separate permissions in the amended path.
 
-**Transition.** For each of three goods, `holdingCost = 10,000 − ledger`. If current marketability exceeds that cost, one round adds `adopt` and caps the result at ten thousand; otherwise it subtracts `decay` and floors at zero. Reaching the ceiling sets `isMoney` forever and emits an event. `run` repeats this transition the caller's requested number of times.
+**Transition.** The legacy transition is unchanged. Separately, an action proceeds only with a positive actor-specific comparative continuation margin or a spend from that actor's approved bounded priming allowance. Offer, counterparty acceptance and offeror renewal complete one asserted use. Priming-era use cannot fill the post-removal window. Fresh renewed uses and a current participant protection assertion gate `InstalledSelfMaintaining`; a missing margin or protection path makes an installed scope `Fragile`.
 
-**Invariant.** With constructor inputs inside their intended domains, each transition keeps marketability between zero and ten thousand, and round increases once per completed step. Given the same state, the update is deterministic.
+**Invariant.** Constructor bounds now keep the legacy scores and rates inside their intended domains. The legacy trace cannot install an amended lifecycle. Priming cannot overspend its declared allowance or count as post-priming evidence. One address cannot assert both sides of a use. No actor's opportunity margin substitutes for another actor/action, and distinct scopes need not select one universal winner.
 
-**Audit boundary.** The constructor validates none of those domains. A ledger score above ten thousand underflows; seeds above the scale and an overflowing `marketability + adopt` can revert or defeat the intended clamp. `run` is unbounded in gas. `isMoney` never clears if acceptance later collapses. `emergedMoney` returns good zero for an all-zero state and resolves ties by first occurrence. Most importantly, this is a three-score threshold dynamic: it contains no agents, types, production, consumption, meetings, trades, or matching, so it is not an implementation of the Kiyotaki–Wright search model.
+**Audit boundary.** `run` remains unbounded in gas. `isMoney` never clears if legacy acceptance later collapses. `emergedMoney` returns good zero for an all-zero state and resolves ties by first occurrence. Open self-registration is bounded for gas but is not Sybil-resistant and can fill the demonstrator roster. Priming budgets are declared accounting limits, not escrowed assets. Use and protection events are address assertions, not proof of physical delivery, genuine belief, consent or continued work. The amendment contains no production, consumption, inventories, meetings or matching, so it is not an implementation of the Kiyotaki–Wright search model or the full V2 source.
 
 ### Krugman: a rule-bound steering wheel
 
@@ -541,13 +597,13 @@ What is demonstrated: the retroactive rate is described as erasing every holder'
 
 What is not: that anyone profits by doing this. The poker's fee share pushes toward charging everyone, so this is a lever rather than a scheme. What makes a lever matter is that it can be bought, and that the person holding this one was never appointed.
 
-### Scene 5: memory acquires teeth
+### Scene 5: memory changes a view, not terms
 
 Friedman authorises a reporter in Greif. A registered borrower begins in good standing. The reporter records minus five. The borrower then fails a threshold of zero.
 
-What is demonstrated: a record can punish individually through future exclusion.
+What is demonstrated: a reporter-adjusted scalar can flip an advisory threshold view for one address.
 
-What is not: that the report is accurate, proportionate, private, appealable, or attached to a real default. Schumpeter is not wired into this scene.
+What is not: any punishment or future exclusion. Nothing consumes the view. The report is not shown accurate, proportionate, private, appealable, or attached to a real default, and Schumpeter is not wired into this scene. The separate contextual-memory test exercises scope, expiry, challenge, repair and consumer-owned use without changing this legacy scene.
 
 ### Scene 6: priced credit exposes the take
 
@@ -565,9 +621,9 @@ What is demonstrated: countercyclical elasticity can alter the feasibility of ex
 
 What is not: that the reported shortfall is real, that expansion reaches the right participants, that the rule improves welfare outside this constructed case, or that Friedman governs Krugman's oracle and rule in this setup.
 
-The file contains eight test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. There are no unit tests for Fiske, ChallengeBond, Stigler, Kiyotaki–Wright, Cantillon, Starr, or Bigoni–Camera–Casari in the current test directory; no invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All sixteen source contracts compile under Solidity 0.8.20, though two of them did not until this was checked rather than assumed: the newest pair had been written and reviewed but never once put through a compiler, and each carried a parse error that a single build would have caught—a reserved word used as a field name, and an em-dash inside a revert string. Both are now fixed. The lesson is smaller than the suite's subject and worth recording anyway: a contract that has been read carefully and never compiled is prose.
+The core file contains eight test functions because the indexed-wage function carries two scenes. It is best read as a run-sheet, not a certification. A separate fifteen-test Kiyotaki–Wright suite covers its compatibility and amended paths. A twenty-three-test posting-and-settlement suite now exercises legacy Fiske compatibility, bilateral scoped modes, bounded Kocherlakota postings and explicit settlement residuals, including one conservation fuzz test. There are still no unit tests for Tullock, Stigler, Cantillon, Starr, or Bigoni–Camera–Casari; no stateful invariant fuzzing; no adversarial oracle tests; no governance-capture scenario; no privacy or Sybil layer; no gas benchmark; and no security audit. All eighteen source contracts compile under Solidity 0.8.20. The lesson remains smaller than the suite's subject and worth recording anyway: a contract that has been read carefully and never compiled is prose.
 
-An earlier version of this appendix reported that the test suite had not been run, because the toolchain was unavailable. That was true of the machine and not of the repository, which had always carried the one line of setup required. The toolchain was installed and the suite was run: nineteen tests across three files, all passing. The distinction is worth keeping in view, because it is the same distinction the appendix keeps making elsewhere—a thing documented as possible is not a thing anyone has done, and the gap between them stays invisible until someone closes it. A green run means only that these selected state transitions behaved as asserted. It does not mean the monetary constitution is safe.
+An earlier version of this appendix reported that the test suite had not been run, because the toolchain was unavailable. That was true of the machine and not of the repository, which had always carried the one line of setup required. The toolchain was installed and the suite is now fifty-seven tests across five files, all passing. The distinction is worth keeping in view, because it is the same distinction the appendix keeps making elsewhere—a thing documented as possible is not a thing anyone has done, and the gap between them stays invisible until someone closes it. A green run means only that these selected state transitions behaved as asserted. It does not mean the monetary constitution is safe.
 
 ---
 
@@ -575,24 +631,31 @@ An earlier version of this appendix reported that the test suite had not been ru
 
 The names in the cast can create a false sense of completeness, so the status deserves its own ledger.
 
-| Module | Compiles with 0.8.20 | In `CoreE2E` | Present connection |
-|---|---:|---:|---|
-| Kocherlakota | yes | yes | settlement spine |
-| Fiske | yes | no | optional gate exists but is not attached |
-| Friedman | yes | yes | governs Kocherlakota, Greif, and Hayek |
-| Greif | yes | yes | standalone reporter exercises one score change |
-| ChallengeBond | yes | no | Hayek can read a settled assertion; trusting bypass remains |
-| Hayek | yes | yes | supplies Fisher's rod through trusting publication |
-| Fisher | yes | yes | settles through Kocherlakota |
-| Schumpeter | yes | yes | isolated scene with a mock ERC-20 |
-| Stigler | yes | no | standalone observer |
-| Kiyotaki–Wright | yes | no | standalone threshold model |
-| Krugman | yes | yes | scales limits; governance remains the deployer |
-| Ostrom | yes | no | own test file; names the party every other module waits on, and is attached to none of them |
-| Clark | yes | no | own test file; reads a demurrage rate through a mock |
-| Cantillon | yes | no | standalone meter; can read Hayek's level, wired to nothing |
-| Starr | yes | no | standalone meter; refuses a verdict until a threshold is declared |
-| Bigoni–Camera–Casari | yes | no | standalone meter; refuses a finding below a pre-declared sample |
+`Williamson` names the settlement composition for Oliver E. Williamson's treatment of contractual relations as governance structures that must adapt after agreement. The contract borrows that governance question; it does not calculate transaction-cost-minimising institutional form.
+
+| Module               | Compiles with 0.8.20 | In `CoreE2E` | Present connection                                                                          |
+| -------------------- | -------------------: | -----------: | ------------------------------------------------------------------------------------------- |
+| Kocherlakota         |                  yes |          yes | V1 settlement spine plus isolated V2 posting state                                          |
+| Fiske                |                  yes |           no | preserved V1 gate; compatibility path exercised separately                                  |
+| FiskeModeAgreement   |                  yes |           no | own test file; supplies bilateral scoped mode guards to posting and settlement              |
+| Williamson          |                  yes |           no | own test file; composes mode assent with posting and explicit residual resolution           |
+| Friedman             |                  yes |          yes | governs Kocherlakota, Greif, and Hayek                                                      |
+| Greif                |                  yes |          yes | legacy score scene plus own tests for isolated contextual, expiring advisory memory          |
+| Tullock              |                  yes |           no | Hayek can read a settled assertion; trusting bypass remains                                 |
+| Shavell              |                  yes |           no | own test file; bounded contest, adjudication, fallback and appeal                           |
+| Hayek                |                  yes |          yes | supplies Fisher's rod through trusting publication                                          |
+| Condorcet            |                  yes |           no | own test file; typed bounded observation aggregation with no downstream call                |
+| Fisher               |                  yes |          yes | settles through Kocherlakota                                                                |
+| JohnCommons          |                  yes |           no | own test file; records bilateral indexed periods and performance assertions without calls   |
+| Schumpeter           |                  yes |          yes | isolated scene with a mock ERC-20                                                           |
+| Stigler              |                  yes |           no | standalone observer                                                                         |
+| Kiyotaki–Wright      |                  yes |           no | own test file; preserved threshold trace plus bounded scoped continuation amendment         |
+| Krugman              |                  yes |          yes | scales limits; governance remains the deployer                                              |
+| Ostrom               |                  yes |           no | own test file; names the party every other module waits on, and is attached to none of them |
+| Clark                |                  yes |           no | own test file; reads a demurrage rate through a mock                                        |
+| Cantillon            |                  yes |           no | standalone meter; can read Hayek's level, wired to nothing                                  |
+| Starr                |                  yes |           no | standalone meter; refuses a verdict until a threshold is declared                           |
+| Bigoni–Camera–Casari |                  yes |           no | standalone meter; refuses a finding below a pre-declared sample                             |
 
 That last block is newer than the rest of this appendix and the column that matters is the middle one: five modules exist, compile, and are exercised by nothing the demonstration runs. Two of them were written, reviewed, cross-referenced and quoted in this book before anyone put them through a compiler, and both were broken. The table is here so that kind of gap has somewhere to show.
 
@@ -752,11 +815,11 @@ Balances, reputation, providers, policy changes, and events are public in the de
 
 ### Oracle truth
 
-Activity, index levels, observed prices, productive-purpose scores, modes, and defaults all cross the boundary between world and code. The contracts can authenticate the reporter and preserve the report. They cannot make the report true. ChallengeBond can make a contest possible; it cannot guarantee attention, equal resources, or a legitimate arbiter.
+Activity, index levels, observed prices, productive-purpose scores, modes, and defaults all cross the boundary between world and code. The contracts can authenticate the reporter and preserve the report. They cannot make the report true. Tullock can make a contest possible; it cannot guarantee attention, equal resources, or a legitimate arbiter.
 
 ### Enforcement
 
-A negative balance is a record, not a harvest. Greif can answer a contextual standing query; nothing currently excludes the address. ChallengeBond can allocate posted bonds after its own resolution path. Neither produces the goods, care, labour, tax capacity, future trade or legal judgement that completes a claim. The honest chain is record → contestable finding → separately chosen response → repair or exit. If intrinsic backing is absent, the quality and justice of that whole institution become more important, not less.
+A negative balance is a record, not a harvest. Greif can answer a contextual standing query; nothing currently excludes the address. Tullock can allocate posted bonds after its own resolution path. Neither produces the goods, care, labour, tax capacity, future trade or legal judgement that completes a claim. The honest chain is record → contestable finding → separately chosen response → repair or exit. If intrinsic backing is absent, the quality and justice of that whole institution become more important, not less.
 
 ### Governance legitimacy
 
@@ -784,7 +847,7 @@ The relativist advantage is therefore conditional. An intersubjective model pres
 
 ## 12 · How to reproduce the demonstration
 
-The live inventory is generated from the repository rather than repeated as a hand-maintained tree. At this edition it contains sixteen Solidity contracts and three test suites. `forge-std` is a git submodule, so a fresh clone first fetches it:
+The live inventory is generated from the repository rather than repeated as a hand-maintained tree. At this edition it contains eighteen Solidity source contracts and five test suites. `forge-std` is a git submodule, so a fresh clone first fetches it:
 
 ```bash
 git submodule update --init --recursive
@@ -794,7 +857,7 @@ forge build --force --ast
 python3 scripts/position-audit.py
 ```
 
-Verified 2026-08 with solc 0.8.20: nineteen tests pass. Coverage is 45.21% of lines, 42.93% of statements, 26.25% of branches and 40.78% of functions. Seven contracts have no executed test path: `BigoniCameraCasari`, `Cantillon`, `ChallengeBond`, `Fiske`, `KiyotakiWright`, `Starr` and `Stigler`. The forced AST build matters: without `--force`, an unchanged artifact may lack its AST and the position script silently skips it.
+Verified 2026-08 with solc 0.8.20: fifty-seven tests pass. Coverage is 65.74% of lines, 63.89% of statements, 30.30% of branches and 55.83% of functions. Five contracts have no executed test path: `BigoniCameraCasari`, `Cantillon`, `Tullock`, `Starr` and `Stigler`. The forced AST build matters: without `--force`, an unchanged artifact may lack its AST and the position script silently skips it.
 
 Compilation checks syntax, types and compiler-enforced arithmetic. The passing suite establishes only its assertions, not security, institutional liveness, adoption or the truth of world-side reports. The V2 plan turns the uncovered and overclaimed paths into explicit redesign tests; see [`../../contracts/V2-OVERHAUL-PLAN.md`](../../contracts/V2-OVERHAUL-PLAN.md).
 
@@ -803,8 +866,8 @@ The useful reading order is not alphabetical.
 1. Start with `Kocherlakota.sol`. Find the paired balance writes, the credit-limit check, `netSupply`, and `grossInCirculation`.
 2. Read `Fiske.sol`, then return to the optional gate in Kocherlakota. Notice that the deepest protection is refusal to record.
 3. Read `Friedman.sol` and follow the handover in `CoreE2E.t.sol`. Verify that the old steward loses its direct power.
-4. Read Hayek and Fisher together. Trace a rod observation into a nominal settlement.
-5. Read Greif and ChallengeBond as non-equivalent memory and contest mechanisms, neither of which supplies a social consequence.
+4. Read Hayek and Fisher together. Trace a rod observation into a nominal settlement, then compare the isolated indexed-obligation lifecycle where observation acceptance and performance acknowledgement are explicit.
+5. Read Greif and Tullock as non-equivalent memory and contest mechanisms, neither of which supplies a social consequence.
 6. Read Schumpeter and compare the comments with the actual first-funder-wins transition.
 7. Read Stigler beside Hayek: one estimates a general rod; the other checks a price for a named good.
 8. Read Kiyotaki–Wright before Krugman. Keep selection and stabilisation separate.
@@ -823,13 +886,13 @@ A fair objection to everything above is that it is self-contained: a framework a
 
 What survives is short, and three of the survivors the reader has already met as chapters.
 
-**Clark (1973): the discount rate that makes extinction rational.** For a regenerating stock — a fishery, a forest, a herd — there is a threshold at which liquidating the whole thing and banking the proceeds beats harvesting it forever. Above roughly twice the stock's growth rate, extermination is the profit-maximising policy *for a secure sole owner with no competitors and perfect property rights.* This is the cleanest demonstration in the tier, because it defeats the standard consolation. We are used to blaming the commons: the fish die because nobody owns them. Clark's owner owns them completely and kills them anyway, on arithmetic, because the money's rate of return outran the animal's. A dial that monetary policy sets is visible here as a policy on a population, and the Gesell overlay in the memory ledger is interesting for exactly this reason — a carry cost pushes the same dial the other way.
+**Clark (1973): the discount rate that makes extinction rational.** For a regenerating stock — a fishery, a forest, a herd — there is a threshold at which liquidating the whole thing and banking the proceeds beats harvesting it forever. Above roughly twice the stock's growth rate, extermination is the profit-maximising policy _for a secure sole owner with no competitors and perfect property rights._ This is the cleanest demonstration in the tier, because it defeats the standard consolation. We are used to blaming the commons: the fish die because nobody owns them. Clark's owner owns them completely and kills them anyway, on arithmetic, because the money's rate of return outran the animal's. A dial that monetary policy sets is visible here as a policy on a population, and the Gesell overlay in the memory ledger is interesting for exactly this reason — a carry cost pushes the same dial the other way.
 
 **Sen (1981): famine at unchanged supply.** The entitlement collapse of Chapter 18, stated formally: aggregate availability adequate, claims on it failed, people died. In this tier it is the micro-over-aggregate position entire.
 
 **Forstater and Bundy: the tax that made a labour force.** Chapter 13's hut tax as a mechanism — an obligation denominated in a currency obtainable only by wage labour, producing a migrant-labour system and a rural social structure that outlived it. It is the book's own claim about where demand for a record comes from, running at the scale of a region.
 
-**Mundell (1961), Bernanke (1983), Eichengreen and Sachs (1985).** One unit across divergent regions, so shocks are absorbed in unemployment and emigration rather than the exchange rate (Chapters 17 and 19). The destruction of the credit *record* as a real cost, distinct from the quantity of money — the ledger claim tested by its own negation. And recovery timing off gold, which is the anchor-rigidity axis with a date attached.
+**Mundell (1961), Bernanke (1983), Eichengreen and Sachs (1985).** One unit across divergent regions, so shocks are absorbed in unemployment and emigration rather than the exchange rate (Chapters 17 and 19). The destruction of the credit _record_ as a real cost, distinct from the quantity of money — the ledger claim tested by its own negation. And recovery timing off gold, which is the anchor-rigidity axis with a date attached.
 
 The point of the tier is reach, not coverage. Six entries that survive a rule are worth more than sixty that survive a preference.
 
@@ -837,11 +900,11 @@ The point of the tier is reach, not coverage. Six entries that survive a rule ar
 
 We can now make the book's minimality claim by measurement rather than by assertion.
 
-The whole of money, in the ledger that carries it, is **two lines**: one balance down, one balance up, summing to zero, on a record both parties trust. Around those two sit about twenty more — is the payer admitted, is the payee admitted, is this within the credit limit, has carry cost accrued, is this a relationship the ledger has been told never to record. And around *those* sit some fourteen hundred lines of everything else: governance of the dials, index construction and competing providers, purpose-scored credit, price discovery, reputation, enforcement bonds, stabilisation, jubilee, the modes as a permission layer.
+The whole of money, in the ledger that carries it, is **two lines**: one balance down, one balance up, summing to zero, on a record both parties trust. Around those two sit about twenty more — is the payer admitted, is the payee admitted, is this within the credit limit, has carry cost accrued, is this a relationship the ledger has been told never to record. And around _those_ sit some fourteen hundred lines of everything else: governance of the dials, index construction and competing providers, purpose-scored credit, price discovery, reputation, enforcement bonds, stabilisation, jubilee, the modes as a permission layer.
 
-Two lines against fourteen hundred. That proportion is the argument of this entire book rendered as a count. The monetary act is nearly nothing — a stone-age band could weave it in an evening, and one did, on a rope. Everything else is **governance and repair**: not what money *is*, but what has to be true around it before people will use it, and what has to be rebuilt each time they stop.
+Two lines against fourteen hundred. That proportion is the argument of this entire book rendered as a count. The monetary act is nearly nothing — a stone-age band could weave it in an evening, and one did, on a rope. Everything else is **governance and repair**: not what money _is_, but what has to be true around it before people will use it, and what has to be rebuilt each time they stop.
 
-Which is why the question *what is money, really?* has always disappointed the people who asked it. They were pointing at the two lines and expecting the fourteen hundred to be inside.
+Which is why the question _what is money, really?_ has always disappointed the people who asked it. They were pointing at the two lines and expecting the fourteen hundred to be inside.
 
 ---
 

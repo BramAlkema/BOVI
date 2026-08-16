@@ -130,5 +130,5 @@ Two consequences:
 
 - `docs/VALUE-LINEAGE.md` — what money's value *is* (Simmel / Patinkin: floorless but fruitful). This doc is the conditional-selection companion.
 - `docs/v2/SELECTION-LIFECYCLE.md` — the scoped lifecycle, minimum credible circuit, priming/continuation handoff and evidence boundaries that this toy feedback omits.
-- `contracts/Kocherlakota.sol` — the V1 net-zero ledger mechanics demonstrator, not a completed selection lifecycle.
+- `contracts/SignedPositionLedger.sol` — the V1 net-zero ledger mechanics demonstrator, not a completed selection lifecycle.
 - Canon: *symmetrically known supply*; divisibility as a ledger *freebie*; ledger-reliability-improving-over-time as the read on monetary history.

@@ -3,15 +3,15 @@ pragma solidity ^0.8.20;
 
 import "forge-std/Test.sol";
 
-import {Kocherlakota} from "../contracts/Kocherlakota.sol";
-import {Hayek}        from "../contracts/Hayek.sol";
-import {Fisher, IHayek, ILedger} from "../contracts/Fisher.sol";
-import {Friedman}     from "../contracts/Friedman.sol";
-import {Greif}        from "../contracts/Greif.sol";
-import {Schumpeter, IERC20 as ICash} from "../contracts/Schumpeter.sol";
-import {Krugman}     from "../contracts/Krugman.sol";
+import {SignedPositionLedger} from "../contracts/SignedPositionLedger.sol";
+import {SharedNumeraire}        from "../contracts/SharedNumeraire.sol";
+import {IndexedObligation, ISharedNumeraire, ILedger} from "../contracts/IndexedObligation.sol";
+import {GovernedDials}     from "../contracts/GovernedDials.sol";
+import {ReputationMemory}        from "../contracts/ReputationMemory.sol";
+import {ProductiveCredit, IERC20 as ICash} from "../contracts/ProductiveCredit.sol";
+import {CountercyclicalElasticity}     from "../contracts/CountercyclicalElasticity.sol";
 
-/// minimal settlement asset for the Schumpeter (credit) lesson
+/// minimal settlement asset for the ProductiveCredit (credit) lesson
 contract MockERC20 {
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
@@ -27,12 +27,12 @@ contract MockERC20 {
  * one observable from the run-sheet. This file is not a security audit.
  */
 contract CoreE2E is Test {
-    Friedman     friedman;
-    Greif        greif;
-    Hayek        hayek;
-    Kocherlakota rope;
-    Fisher       fisher;
-    Krugman      krugman;
+    GovernedDials     friedman;
+    ReputationMemory        greif;
+    SharedNumeraire        hayek;
+    SignedPositionLedger rope;
+    IndexedObligation       fisher;
+    CountercyclicalElasticity      krugman;
 
     address alice = makeAddr("alice");
     address bob   = makeAddr("bob");
@@ -53,12 +53,12 @@ contract CoreE2E is Test {
     function setUp() public {
         address[] memory members = new address[](3);
         members[0] = alice; members[1] = bob; members[2] = carol;
-        friedman = new Friedman(members, 2 days, 2);   // 1 member 1 vote, quorum 2
-        greif    = new Greif();
-        hayek    = new Hayek(7 days);
-        rope     = new Kocherlakota();
-        fisher   = new Fisher(IHayek(address(hayek)), ILedger(address(rope)));
-        krugman  = new Krugman(activityOracle, 100, 10000);   // oracle, trend target, responsiveness(bps)
+        friedman = new GovernedDials(members, 2 days, 2);   // 1 member 1 vote, quorum 2
+        greif    = new ReputationMemory();
+        hayek    = new SharedNumeraire(7 days);
+        rope     = new SignedPositionLedger();
+        fisher   = new IndexedObligation(ISharedNumeraire(address(hayek)), ILedger(address(rope)));
+        krugman  = new CountercyclicalElasticity(activityOracle, 100, 10000);   // oracle, trend target, responsiveness(bps)
 
         // genesis (this test contract is the initial steward/gov)
         rope.admit(employer); rope.admit(worker); rope.admit(commons);
@@ -66,7 +66,7 @@ contract CoreE2E is Test {
         greif.register(employer); greif.register(worker); greif.register(borrower);
         hayek.admitProvider(p1); hayek.admitProvider(p2); hayek.admitProvider(p3);
 
-        // hand the dials to Friedman — from here, no change by fiat
+        // hand the dials to GovernedDials — from here, no change by fiat
         rope.setSteward(address(friedman));
         greif.setGovernance(address(friedman));
         hayek.setGovernance(address(friedman));
@@ -110,8 +110,8 @@ contract CoreE2E is Test {
         vm.expectRevert(bytes("state a reason"));
         friedman.propose(address(rope), data, "");
 
-        _gov(address(rope), data, "Starr verdict #0 came back UnderCovered");
-        assertEq(friedman.rationaleOf(0), "Starr verdict #0 came back UnderCovered");
+        _gov(address(rope), data, "SinkCapacityEvidence verdict #0 came back UnderCovered");
+        assertEq(friedman.rationaleOf(0), "SinkCapacityEvidence verdict #0 came back UnderCovered");
     }
 
     // ── Lessons 2+3: the rope clears; unstable currency, stable contract ─────
@@ -210,7 +210,7 @@ contract CoreE2E is Test {
         assertEq(rope.netSupply(), int256(0));
     }
 
-    // ── Lesson 4b: Greif records an advisory threshold result ────────────────
+    // ── Lesson 4b: ReputationMemory records an advisory threshold result ────────────────
     function test_Greif_ViewFallsBelowThresholdAfterReport() public {
         address reporter = makeAddr("reporter");
         _gov(address(greif), abi.encodeWithSignature("setReporter(address,bool)", reporter, true));
@@ -220,12 +220,12 @@ contract CoreE2E is Test {
         assertFalse(greif.inGoodStanding(borrower, 0));     // the view flips; no consumer excludes anyone
     }
 
-    // ── Lesson 4c: priced credit allocates and exposes the take (Schumpeter) ─
+    // ── Lesson 4c: priced credit allocates and exposes the take (ProductiveCredit) ─
     function test_Schumpeter_PricedCreditExposesInterest() public {
         address lender   = makeAddr("lender");
         address attestor = makeAddr("attestor");
         MockERC20 cash   = new MockERC20();
-        Schumpeter bank  = new Schumpeter(ICash(address(cash)), attestor);
+        ProductiveCredit bank  = new ProductiveCredit(ICash(address(cash)), attestor);
 
         cash.mint(lender, 1_000 * ONE);
         cash.mint(borrower, 5 * ONE);                       // test supplies interest; production is not modelled
@@ -244,7 +244,7 @@ contract CoreE2E is Test {
         assertEq(cash.balanceOf(borrower), 0);
     }
 
-    // ── Krugman: the freeze cures itself (the steering wheel) ────────────────
+    // ── CountercyclicalElasticity: the freeze cures itself (the steering wheel) ────────────────
     function test_Krugman_FreezeAndRecovery() public {
         _gov(address(rope), abi.encodeWithSignature("setCreditLimit(address,uint256)", employer, 100 * ONE));
         _gov(address(rope), abi.encodeWithSignature("setStabiliser(address)", address(krugman)));

@@ -4,16 +4,16 @@ pragma solidity ^0.8.20;
 interface IERC20 { function transferFrom(address from, address to, uint256 amount) external returns (bool); }
 
 /**
- * @title Schumpeter — priced productive credit (formerly "ProductiveCredit")
+ * @title ProductiveCredit — priced productive credit (formerly "ProductiveCredit")
  *
- * Executes a narrow slice of Joseph Schumpeter, "Theorie der wirtschaftlichen
+ * Executes a narrow slice of Joseph ProductiveCredit, "Theorie der wirtschaftlichen
  * Entwicklung" (1911): a lender allocates an EXISTING ERC-20 balance to a
  * proposed productive use. It does not yet create bank money. Pairs conceptually
- * with Kocherlakota, but the current demonstrator does not wire the two.
+ * with SignedPositionLedger, but the current demonstrator does not wire the two.
  *
  * Avoids the two errors we caught:
  *  - interest is RESTORED — it is the price of capital, the allocation signal
- *    (Hayek's knowledge problem; Aristotle was wrong that money is barren).
+ *    (SharedNumeraire's knowledge problem; Aristotle was wrong that money is barren).
  *  - the borrower posts a rate ceiling and the first acceptable lender funds.
  *    A competitive bid window / lender auction is still required before the
  *    rate can honestly be called market-discovered.
@@ -25,13 +25,13 @@ interface IERC20 { function transferFrom(address from, address to, uint256 amoun
  *  DEFAULT IS VISIBLE     the lender has already transferred the principal;
  *                         default emits the loss. Recovery and restructuring
  *                         are not implemented.
- *  VALUE INCIDENTAL       settles in any IERC20 (a Kocherlakota-wrapper, a
+ *  VALUE INCIDENTAL       settles in any IERC20 (a SignedPositionLedger-wrapper, a
  *                         stablecoin, whatever).
- *  HARD PART NAMED        the attestor is the trust point. Contextual Greif memory,
+ *  HARD PART NAMED        the attestor is the trust point. Contextual ReputationMemory memory,
  *                         legal recourse, a bid process, and restructuring remain proposed
  *                         integrations, not current state transitions.
  */
-contract Schumpeter {
+contract ProductiveCredit {
     enum Status { Requested, Funded, Repaid, Defaulted }
 
     struct Loan {
@@ -47,8 +47,8 @@ contract Schumpeter {
         Status  status;
     }
 
-    IERC20  public immutable value;  // settlement asset (Kocherlakota-wrapper / stablecoin / ...)
-    address public governance;       // the Friedman/DialDAO governor
+    IERC20  public immutable value;  // settlement asset (SignedPositionLedger-wrapper / stablecoin / ...)
+    address public governance;       // the GovernedDials/DialDAO governor
     address public attestor;         // sets pull-scores — the hard oracle
     uint16  public minPullScore;     // governed floor; gates out pure-push
     uint16  public maxRateBps;       // optional usury ceiling; 0 = none
@@ -124,7 +124,7 @@ contract Schumpeter {
         require(l.status == Status.Funded, "not active");
         require(block.timestamp > l.start + l.term, "not yet due");
         l.status = Status.Defaulted;              // no transfer: the principal is already gone
-        emit Defaulted(id, l.principal);          // hook: ding borrower in Greif (reputation)
+        emit Defaulted(id, l.principal);          // hook: ding borrower in ReputationMemory (reputation)
     }
 
     function _interestDue(Loan storage l) internal view returns (uint256) {

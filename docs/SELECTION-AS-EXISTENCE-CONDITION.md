@@ -64,7 +64,7 @@ Four cases keep the mechanism honest. **Fiat had to displace gold** and did so g
 
 ## What it does to the framework
 
-The framework already holds that common knowledge of acceptance **selects** which money occupies which use-domain and does not create the worth — the value/selection/termination split recorded in [the future-obligation lineage](FUTURE-OBLIGATIONS-LINEAGE.md), and the reason `Starr` exists as a capacity condition rather than a price.
+The framework already holds that common knowledge of acceptance **selects** which money occupies which use-domain and does not create the worth — the value/selection/termination split recorded in [the future-obligation lineage](FUTURE-OBLIGATIONS-LINEAGE.md), and the reason `SinkCapacityEvidence` exists as a capacity condition rather than a price.
 
 This argument makes that distinction operational rather than merely taxonomic.
 
@@ -73,7 +73,7 @@ The comfortable reading of selection is: expectation makes money possible, and s
 Three things follow.
 
 1. **The cold-start problem has a mirror, and one mechanism must answer both.** Cold start asks how anything becomes money. Free entry asks why everything does not. A framework that answers only the first is half a framework.
-2. **`Starr` stays where it was.** A tax sink can block finite-horizon unravelling and can select a currency subject to capacity conditions. Prescott and Rios-Rull provide no warrant for upgrading every sink into a general existence condition.
+2. **`SinkCapacityEvidence` stays where it was.** A tax sink can block finite-horizon unravelling and can select a currency subject to capacity conditions. Prescott and Rios-Rull provide no warrant for upgrading every sink into a general existence condition.
 3. **The strongest defensible form of the framework's thesis gets sharper.** *Money is not a substance and not merely a decree; it is an object a population converges on for a use and keeps expecting others to accept in that use.* Convergence can be domain-specific rather than total. Expectation is its medium; network structure, institutions and history govern its spread.
 
 ---
@@ -98,7 +98,7 @@ The outcome was **extreme concentration on a few focal points with an enormous n
 
 Two cautions remain. Crypto is not Prescott and Rios-Rull's OLG environment, so it is not a test of their no-restarting refinement. And crypto's focal points are not costless objects—proof-of-work, brand, exchange listing and accumulated common knowledge are asymmetries the nutshell case lacks. Which is the point: **free entry of candidates is not free entry of focal points or acceptance networks.**
 
-It also places Bitcoin precisely. Its selection devices are focal — cap, first-mover common knowledge, hashrate — and it has **no sink**: κ ≈ 0 in `Starr`'s terms, since no obligation is denominated in it at scale (see [the Bitcoin case](rag/cases/bitcoin.md)). It therefore separates two claims that Goldberg runs together: it lacks a formal terminus and remains fragile on that dimension, yet focal-network selection has plainly supported persistent adoption. That is a live question for the framework rather than a settled point in its favour.
+It also places Bitcoin precisely. Its selection devices are focal — cap, first-mover common knowledge, hashrate — and it has **no sink**: κ ≈ 0 in `SinkCapacityEvidence`'s terms, since no obligation is denominated in it at scale (see [the Bitcoin case](rag/cases/bitcoin.md)). It therefore separates two claims that Goldberg runs together: it lacks a formal terminus and remains fragile on that dimension, yet focal-network selection has plainly supported persistent adoption. That is a live question for the framework rather than a settled point in its favour.
 
 ---
 
@@ -142,7 +142,7 @@ Legend: ✅ retrieved and read · ⚠️ known only at one remove.
 - ⚠️ Wallace, N. (1981). "A Hybrid Fiat-Commodity Monetary System." *JET* 25: 421–30. Cited as an escape route.
 - ⚠️ Obstfeld, M. & Rogoff, K. (1983). "Speculative Hyperinflations in Maximizing Models: Can we Rule Them Out?" *JPE* 91: 675–87. Cited as an escape route.
 - ⚠️ Wallace, N. & Zhu, T. (2004). "A Commodity-Money Refinement in Matching Models." *JET* 117: 246–58. Cited as an escape route.
-- ⚠️ Samuelson (1958); Kiyotaki & Wright (1989, 1991, 1993) — the models under challenge. Already in the canon via `KiyotakiWright`.
+- ⚠️ Samuelson (1958); Kiyotaki & Wright (1989, 1991, 1993) — the models under challenge. Already in the canon via `AcceptanceThreshold`.
 
 **Note on what "verified" means here.** The checked sources above were read directly. Goldberg (2003a) remains the one load-bearing exception: its title and reported 2ⁿ result are known through Goldberg's later papers, not from the paper itself.
 
@@ -155,7 +155,7 @@ The correction belongs at the joints, not as a Goldberg excursus:
 | joint | what changes |
 |---|---|
 | `FOUNDATIONS.md`, the value stone | acceptance is recursively intersubjective but not automatically global; bootstrap must first outbid the incumbent for a use-domain before propagation can take over |
-| `contracts/Starr.sol` header | **unchanged**: K1 fired, so the sink keeps its source-supported capacity/termination role |
+| `contracts/SinkCapacityEvidence.sol` header | **unchanged**: K1 fired, so the sink keeps its source-supported capacity/termination role |
 | `docs/book/06-cold-start-problem.md` | the mirror—why doesn't everything become money—now sits beside cold start, with Watts and Luther supplying the transition mechanism |
 | `docs/rag/architecture/cold-start-problem.md` | compact reusable statement of the two-sided adoption problem |
 

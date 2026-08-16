@@ -2,9 +2,9 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Starr — the capacity condition (is the sink big enough to do the work claimed?)
+ * @title SinkCapacityEvidence — the capacity condition (is the sink big enough to do the work claimed?)
  *
- * Executes: Ross M. Starr, "The Price of Money in a Pure Exchange Monetary
+ * Executes: Ross M. SinkCapacityEvidence, "The Price of Money in a Pure Exchange Monetary
  * Economy with Taxation" (Econometrica, 1974), Theorems 2 & 3 — the size problem
  * stated as an impossibility result. A future obligation denominated in the unit
  * supplies a modelled future sink, conditional on realised acceptance and
@@ -21,7 +21,7 @@ pragma solidity ^0.8.20;
  * The literature this cast draws on contains two, and conflating them is the
  * usual error — they fail independently and they failed separately in history.
  *
- *   A. COVERAGE (Starr). Can the obligation stream absorb the outstanding stock?
+ *   A. COVERAGE (SinkCapacityEvidence). Can the obligation stream absorb the outstanding stock?
  *
  *          kappa  =  ( sum over t of O_t )  /  M
  *
@@ -52,11 +52,11 @@ pragma solidity ^0.8.20;
  * people deferred paying, revenue collapsed, and the policy was abandoned. The
  * decreed sink was never the realised one. So this contract tracks both, and the
  * shortfall is not its business to explain. Contextual memory, contest, response,
- * and keeper topology are separate layers; `Greif` does not own the residual.
+ * and keeper topology are separate layers; `ReputationMemory` does not own the residual.
  * Realised collection, not the statute, is what enters condition A.
  *
  * WHAT IT REFUSES TO REPORT
- * A price. What travels backward from a sink is ACCEPTANCE, not a level — Starr's
+ * A price. What travels backward from a sink is ACCEPTANCE, not a level — SinkCapacityEvidence's
  * own theorems block the unravelling; they do not set the worth. A contract that
  * returned "therefore the currency is worth X" would be making exactly the error
  * this cast files under the value/selection distinction. `verdict` returns a
@@ -64,10 +64,10 @@ pragma solidity ^0.8.20;
  *
  * WIRING. Stock and obligations may be supplied directly or read from a ledger.
  * A performance finding may be recorded contextually; the selection reading pairs with
- * `KiyotakiWright` (the acceptance-feedback threshold, which is the same
+ * `AcceptanceThreshold` (the acceptance-feedback threshold, which is the same
  * if-and-only-if in a different dress).
  */
-contract Starr {
+contract SinkCapacityEvidence {
     uint256 public constant WAD = 1e18;
     uint256 public constant BPS = 10_000;
     uint256 public constant MAX_HORIZON = 240;
@@ -149,7 +149,7 @@ contract Starr {
         return totalRealised(id) * BPS / sinks[id].stock;
     }
 
-    /// The gap between statute and collection. Not explained here — see `Greif`.
+    /// The gap between statute and collection. Not explained here — see `ReputationMemory`.
     function enforcementShortfallBps(uint256 id) public view returns (uint256) {
         uint256 d = totalDecreed(id);
         if (d == 0) return 0;

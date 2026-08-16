@@ -1,21 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-interface IHayek  { function current() external view returns (uint256); }
+interface ISharedNumeraire  { function current() external view returns (uint256); }
 interface ILedger { function payFrom(address from, address to, uint256 amount) external; }
 
 /**
- * @title Fisher — indexed obligations
+ * @title IndexedObligation — indexed obligations
  *
- * Executes: Irving Fisher — index numbers + indexation; protect contracts from
- * the money illusion. An obligation is fixed in ROD terms (units of the Hayek
+ * Executes: Irving IndexedObligation — index numbers + indexation; protect contracts from
+ * the money illusion. An obligation is fixed in ROD terms (units of the SharedNumeraire
  * index); the NOMINAL amount settled floats with that reported rod. This keeps
  * the contractual number stable relative to the selected index. It does not
  * prove the payee's lived purchasing power stays constant.
  *
  * This is the unbundling, made watchable: UNSTABLE currency, STABLE contract.
- * Denominate in the shared rod (Hayek), settle across the rope (Kocherlakota).
- * The payer pre-approves Fisher as an operator on the ledger.
+ * Denominate in the shared rod (SharedNumeraire), settle across the rope (SignedPositionLedger).
+ * The payer pre-approves IndexedObligation as an operator on the ledger.
  *
  * NOT EVENTED, deliberately (judgement register §0.1): a missed period emits
  * nothing on its own, because nothing happens — no transaction, no log. That is
@@ -23,10 +23,10 @@ interface ILedger { function payFrom(address from, address to, uint256 amount) e
  * non-existence look identical on chain. `periodsMissed` and `reportOverdue`
  * exist to make the silence readable and recordable; neither can compel payment.
  */
-contract Fisher {
-    uint256 public constant BASE = 1e18;   // matches Hayek's genesis level
+contract IndexedObligation {
+    uint256 public constant BASE = 1e18;   // matches SharedNumeraire's genesis level
 
-    IHayek  public immutable rod;
+    ISharedNumeraire  public immutable rod;
     ILedger public immutable ledger;
 
     struct Obligation { address payer; address payee; uint256 rodAmount; uint64 period; uint64 lastPaid; bool active; }
@@ -37,7 +37,7 @@ contract Fisher {
     event Cancelled(uint256 indexed id);
     event Overdue(uint256 indexed id, address indexed payer, address indexed payee, uint256 periodsMissed, uint64 since);
 
-    constructor(IHayek _rod, ILedger _ledger) { rod = _rod; ledger = _ledger; }
+    constructor(ISharedNumeraire _rod, ILedger _ledger) { rod = _rod; ledger = _ledger; }
 
     function create(address payee, uint256 rodAmount, uint64 period) external returns (uint256 id) {
         require(rodAmount > 0 && period > 0, "bad terms");
@@ -66,7 +66,7 @@ contract Fisher {
         require(block.timestamp >= o.lastPaid + o.period, "too soon");
         uint256 nominal = due(id);
         o.lastPaid = uint64(block.timestamp);
-        ledger.payFrom(o.payer, o.payee, nominal);     // payer pre-approved Fisher as operator
+        ledger.payFrom(o.payer, o.payee, nominal);     // payer pre-approved IndexedObligation as operator
         emit Settled(id, o.rodAmount, nominal, rod.current());
     }
 

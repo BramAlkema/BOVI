@@ -4,9 +4,9 @@ pragma solidity ^0.8.20;
 interface IDemurrage { function demurrageBps() external view returns (uint256); }
 
 /**
- * @title Clark — the liquidation threshold (a TIER-2 extension, not a stone)
+ * @title LiquidationThreshold — the liquidation threshold (a TIER-2 extension, not a stone)
  *
- * Executes: Colin W. Clark, "Profit Maximization and the Extinction of Animal
+ * Executes: Colin W. LiquidationThreshold, "Profit Maximization and the Extinction of Animal
  * Species," JPE 81(4) 1973, 950–961. Given that price minus harvesting cost at
  * zero population is positive, extermination can be the profit-maximising policy
  * — for a sole owner with secure property rights — once the discount rate
@@ -15,7 +15,7 @@ interface IDemurrage { function demurrageBps() external view returns (uint256); 
  * Lineage (the primitive, named from its sources): H. Scott Gordon, "The Economic
  * Theory of a Common-Property Resource: The Fishery" (JPE 1954) gives the
  * depletable common stock and rent dissipation; Milner Schaefer gives the logistic
- * regeneration this contract steps. Clark supplies the one threshold we isolate.
+ * regeneration this contract steps. LiquidationThreshold supplies the one threshold we isolate.
  *
  * TIER 2 — this is a DEMONSTRATION OF REACH, not a foundation stone. It executes
  * no monetary mechanism. It admits under the tier rule (see contracts/README.md):
@@ -26,14 +26,14 @@ interface IDemurrage { function demurrageBps() external view returns (uint256); 
  * ⚠ NO FLOOR guard, restated for the ecological case. `growthBps` is a REGENERATION
  * RATE, not intrinsic value and not backing. This contract says nothing about what
  * the stock is worth, and nothing about nature underwriting money. It says only
- * that under Clark's premises profit-maximisation liquidates it. Read it the other
+ * that under LiquidationThreshold's premises profit-maximisation liquidates it. Read it the other
  * way and you have green essentialism — the substrate error the framework refuses.
  *
- * ⚠ WHAT THIS DOES NOT IMPLEMENT. Following the KiyotakiWright precedent, this is
- * deterministic threshold dynamics, not Clark's model. There is no price, no cost
+ * ⚠ WHAT THIS DOES NOT IMPLEMENT. Following the AcceptanceThreshold precedent, this is
+ * deterministic threshold dynamics, not LiquidationThreshold's model. There is no price, no cost
  * function c(x), no bang-bang optimal control, no agents and no strategic choice.
  * Below the threshold the contract applies NO harvest — that is a null case, NOT
- * Clark's interior solution; the demonstrator makes no claim about the optimal
+ * LiquidationThreshold's interior solution; the demonstrator makes no claim about the optimal
  * sustained yield. δ > 2r is applied as a switch, not derived.
  *
  * NOT EVENTED, deliberately (judgement register §0.1 — the author, not the chain,
@@ -42,7 +42,7 @@ interface IDemurrage { function demurrageBps() external view returns (uint256); 
  * is readable as a positive fact — this contract cannot step itself (§0.2), and
  * whoever calls `step()` is an unnamed party the canon does not yet govern.
  *
- * Canon wiring: `demurrage` may point at Kocherlakota's Gesell overlay, so a
+ * Canon wiring: `demurrage` may point at SignedPositionLedger's Gesell overlay, so a
  * monetary dial visibly moves a population. Demurrage is a fee on positive
  * balances — a NEGATIVE carrying return — so it SUBTRACTS from δ and pushes the
  * stock away from liquidation. The arithmetic is exposed in `effectiveDiscountBps`
@@ -50,14 +50,14 @@ interface IDemurrage { function demurrageBps() external view returns (uint256); 
  * a demurrage fee and a market discount rate are not one quantity on one axis, and
  * this contract does not claim they are.
  */
-contract Clark {
+contract LiquidationThreshold {
     uint256 public constant SCALE = 10_000;   // basis points
 
     uint256 public immutable carrying;        // K — carrying capacity, in stock units
     uint256 public immutable growthBps;       // r — intrinsic growth rate per period
     uint256 public immutable maxHarvestBps;   // harvesting capacity per period (fraction of stock)
 
-    // Clark's premise, made load-bearing: harvesting must stay profitable all the
+    // LiquidationThreshold's premise, made load-bearing: harvesting must stay profitable all the
     // way down. False ⇒ the switch never fires, whatever δ and r are. This is the
     // contract's own falsification condition, sitting in the constructor.
     bool    public immutable netPriceAtZeroPositive;
@@ -71,7 +71,7 @@ contract Clark {
     bool    public wasLiquidating;   // last observed switch state, so a flip is evented
     uint256 public lastStepped;      // block timestamp of the last step — lets staleness be read
 
-    address public governance;                // → point at Friedman so the dial is evented
+    address public governance;                // → point at GovernedDials so the dial is evented
 
     event Step(uint256 indexed round, uint256 stock, uint256 regrown, uint256 harvested, bool liquidating);
     event SwitchFlipped(uint256 indexed round, bool liquidating, uint256 effectiveDiscountBps, uint256 thresholdBps);
@@ -113,7 +113,7 @@ contract Clark {
         return fee >= d ? 0 : d - fee;
     }
 
-    /// Clark's threshold: 2r.
+    /// LiquidationThreshold's threshold: 2r.
     function thresholdBps() public view returns (uint256) { return 2 * growthBps; }
 
     /// The switch. Note the premise guard: no profitable harvest at zero stock,
@@ -148,7 +148,7 @@ contract Clark {
 
         uint256 harvested;
         if (liq) {
-            // Clark's corner solution, rate-limited by harvesting capacity so the
+            // LiquidationThreshold's corner solution, rate-limited by harvesting capacity so the
             // decline is watchable. Below the threshold we harvest NOTHING — see
             // the header: that is a null case, not the interior solution.
             harvested = (stock * maxHarvestBps) / SCALE;
@@ -164,7 +164,7 @@ contract Clark {
         emit Step(round, stock, regrown, harvested, liq);
     }
 
-    // --- dials (evented; point governance at Friedman) ---
+    // --- dials (evented; point governance at GovernedDials) ---
 
     function setBaseDiscountBps(uint256 bps) external onlyGov {
         baseDiscountBps = bps;

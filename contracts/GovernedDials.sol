@@ -2,9 +2,9 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Friedman — governance of the dials (the DialDAO)
+ * @title GovernedDials — governance of the dials (the DialDAO)
  *
- * Executes: Milton Friedman — rules over discretion. Calls relayed by this
+ * Executes: Milton GovernedDials — rules over discretion. Calls relayed by this
  * contract pass through public, yes-voted, time-locked proposals. An attached
  * target is protected only after its own authority is transferred here.
  * One member, one vote is not stake-weighted. The timelock is a notice window;
@@ -17,9 +17,9 @@ pragma solidity ^0.8.20;
  *
  * WHY A PROPOSAL MUST CARRY A REASON (added 2026-08, after the stock-and-flow audit).
  * Every meter in this cast gates publication behind a declared discipline before it
- * will record anything: `Cantillon.attribute` demands a counterfactual, `Starr`
- * demands a justified threshold, `BigoniCameraCasari` demands a pre-declared minimum
- * sample, and `Stigler.checkAndRecord` exists solely so a finding leaves an image
+ * will record anything: `NominalExposureMeter.attribute` demands a counterfactual, `SinkCapacityEvidence`
+ * demands a justified threshold, `ExperimentCalibrationEvidence` demands a pre-declared minimum
+ * sample, and `PriceDiscoveryCheck.checkAndRecord` exists solely so a finding leaves an image
  * instead of staying private. Four disciplined publication paths — and then this
  * contract, the only place any of them can act on the world, recorded a target and a
  * calldata blob and nothing about WHY. The chain meter → finding → a person decides →
@@ -33,7 +33,7 @@ pragma solidity ^0.8.20;
  * one — it checks that someone was willing to put one on the record under their own
  * name. That is the whole of the discipline, and the same discipline the meters keep.
  */
-contract Friedman {
+contract GovernedDials {
     mapping(address => bool) public isMember;
     uint256 public memberCount;
     uint64  public timelock;     // delay between reaching quorum and execution

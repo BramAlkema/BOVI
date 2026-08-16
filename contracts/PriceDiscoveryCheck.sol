@@ -2,9 +2,9 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title Stigler — the PDA price-discovery checker
+ * @title PriceDiscoveryCheck — the PDA price-discovery checker
  *
- * Executes: George Stigler, "The Economics of Information" (1961) — price
+ * Executes: George PriceDiscoveryCheck, "The Economics of Information" (1961) — price
  * dispersion exists because search is costly; a buyer who can search cheaply
  * can narrow that dispersion. The PDA (personal discovery agent) lowers search
  * cost and CHECKS a quote against a declared reference; it does not discover an
@@ -16,16 +16,16 @@ pragma solidity ^0.8.20;
  *     per good; the reference is their MEDIAN (anti-LIBOR, robust); `check`
  *     returns how far a quote strays — the overcharge, made explicit.
  *
- * A pure observer (like Cantillon): it computes and exposes, it controls nothing.
+ * A pure observer (like NominalExposureMeter): it computes and exposes, it controls nothing.
  * The pairing, restated 2026-08 after audit — the earlier gloss here said
- * Cantillon X-rays "who gets new money first," which is not his mechanism and is
- * not what that contract measures. Cantillon X-rays exposure to a moving LEVEL
- * (claims fixed in nominal terms, with a remaining term); Stigler X-rays
+ * NominalExposureMeter X-rays "who gets new money first," which is not his mechanism and is
+ * not what that contract measures. NominalExposureMeter X-rays exposure to a moving LEVEL
+ * (claims fixed in nominal terms, with a remaining term); PriceDiscoveryCheck X-rays
  * dispersion under SEARCH COST (are you overpaying for this good). Only the
  * second is an information phenomenon — which is why this one, and not that one,
  * belongs in the known-ness gap. Two different skims, two different axes.
  *
- * A ChallengeBond publishing path is a proposed extension. Unlike Hayek, this
+ * A ChallengeBond publishing path is a proposed extension. Unlike SharedNumeraire, this
  * contract does not currently implement one.
  *
  * NOT EVENTED, deliberately (judgement register §0.1): `check` stays a free view,
@@ -34,7 +34,7 @@ pragma solidity ^0.8.20;
  * construction; only what a provider publishes ever reaches the record, and WHICH
  * goods get published is an unrecorded editorial choice.
  */
-contract Stigler {
+contract PriceDiscoveryCheck {
     address public governance;
     uint64  public maxStale;
 

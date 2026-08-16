@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-interface IHayekIndex { function current() external view returns (uint256); }
+interface INumeraireIndex { function current() external view returns (uint256); }
 
 /**
- * @title Cantillon — the nominal-exposure meter (who the level moves against)
+ * @title NominalExposureMeter — the nominal-exposure meter (who the level moves against)
  *
- * Executes: Richard Cantillon, *Essai sur la Nature du Commerce en Général*
+ * Executes: Richard NominalExposureMeter, *Essai sur la Nature du Commerce en Général*
  * (c. 1730, pub. 1755), Part II ch. VI — on the mechanism he actually described,
  * which is NOT the one later attributed to him.
  *
@@ -42,7 +42,7 @@ interface IHayekIndex { function current() external view returns (uint256); }
  *   pi NOTATION.md#pi · NNP NOTATION.md#nnp · F NOTATION.md#F
  *   T NOTATION.md#T · r NOTATION.md#r · d_t NOTATION.md#dt · f_t NOTATION.md#ft
  *
- *  1. STOCK — the Fisher channel (Doepke & Schneider; Auclert's decomposition).
+ *  1. STOCK — the IndexedObligation channel (Doepke & Schneider; Auclert's decomposition).
  *     A net nominal position NNP revalues when the level moves by π:
  *
  *         realGain_i = − NNP_i · π / (1 + π)
@@ -51,29 +51,29 @@ interface IHayekIndex { function current() external view returns (uint256); }
  *     set of contracts Σ NNP = 0 (every nominal asset is someone's nominal
  *     liability), hence Σ realGain = 0.
  *
- *  2. FLOW — Cantillon's own, and what distinguishes him from the stock story.
+ *  2. FLOW — NominalExposureMeter's own, and what distinguishes him from the stock story.
  *     A nominal flow F, fixed for T remaining periods, discounted at r, against
  *     the counterfactual of the same flow indexed (which is exactly what the
- *     `Fisher` contract in this cast provides):
+ *     `IndexedObligation` contract in this cast provides):
  *
  *         loss = Σ_{t=1..T}  F · (1+r)^−t · ( 1 − (1+π)^−t )
  *
  *     Each term is the period's real shortfall against the indexed alternative.
  *     The sum rises with π and with T, and → 0 as T → 0: the lease runs out and
- *     the landlord re-prices. That is Cantillon's sentence, in arithmetic.
+ *     the landlord re-prices. That is NominalExposureMeter's sentence, in arithmetic.
  *     The payer of the fixed flow gains precisely what the receiver loses.
  *
  * WHAT IT IS NOT. Not a claim about the *net* welfare effect of a monetary
  * expansion — the identified literature on that is genuinely mixed and in places
  * runs opposite to the folk story, and this contract takes no position on it. It
  * measures ONE well-evidenced channel: the incidence of a level change on claims
- * fixed in nominal terms. Cantillon's own conclusion, worth recording because
+ * fixed in nominal terms. NominalExposureMeter's own conclusion, worth recording because
  * the tradition drops it, is that the whole episode is transitional and ends in
  * the injecting state's impoverishment ("Voilà à-peu-près ce qui est arrivé à
  * l'Espagne"), not in a standing rent for anyone.
  *
- * WIRING. The level π comes from `Hayek` (the competing-basket numeraire) or is
- * supplied explicitly. The counterfactual is `Fisher`: this meter measures the
+ * WIRING. The level π comes from `SharedNumeraire` (the competing-basket numeraire) or is
+ * supplied explicitly. The counterfactual is `IndexedObligation`: this meter measures the
  * loss taken by NOT being indexed, which is the harm that contract exists to
  * prevent. Defence and meter, named separately, in the same building.
  *
@@ -82,13 +82,13 @@ interface IHayekIndex { function current() external view returns (uint256); }
  * an actuarial engine — read the direction and the order of magnitude, and do
  * not settle a dispute on the last digit.
  */
-contract Cantillon {
+contract NominalExposureMeter {
     uint256 public constant WAD = 1e18;
     uint256 public constant BPS = 10_000;
     uint256 public constant MAX_TERMS = 240;
 
     address public governance;
-    IHayekIndex public index;          // optional level source; 0 = supply π explicitly
+    INumeraireIndex public index;          // optional level source; 0 = supply π explicitly
     uint256 public baselineIndex;      // the level this meter measures movement from
 
     struct FixedClaim {
@@ -97,7 +97,7 @@ contract Cantillon {
         uint256 flowPerPeriod;         // F, nominal
         uint256 remainingTerms;        // T
         uint256 discountBps;           // r
-        bool    isIndexed;             // true = on Fisher; exposure is zero by construction
+        bool    isIndexed;             // true = on IndexedObligation; exposure is zero by construction
                                        // (`indexed` is reserved in Solidity — it cannot name a field)
     }
 
@@ -115,7 +115,7 @@ contract Cantillon {
 
     function setLevelSource(address hayek, uint256 baseline) external onlyGovernance {
         require(baseline > 0, "baseline");
-        index = IHayekIndex(hayek);
+        index = INumeraireIndex(hayek);
         baselineIndex = baseline;
         emit LevelSourceSet(hayek, baseline);
     }
@@ -156,7 +156,7 @@ contract Cantillon {
         return nnp >= 0 ? -int256(loss) : int256(loss);
     }
 
-    // --- channel 2: the flow, with duration — Cantillon's own ---
+    // --- channel 2: the flow, with duration — NominalExposureMeter's own ---
 
     /// Σ_{t=1..T} F·(1+r)^−t·(1 − (1+π)^−t). Zero if the claim is indexed, or if T = 0.
     function flowExposure(uint256 id, uint256 piBps) public view returns (uint256 loss) {
@@ -188,7 +188,7 @@ contract Cantillon {
 
     /// Records an incidence finding. Refuses to name a payer and a beneficiary
     /// without a stated counterfactual, per the executable-canon spec. The
-    /// counterfactual for a fixed claim is the indexed alternative — `Fisher`.
+    /// counterfactual for a fixed claim is the indexed alternative — `IndexedObligation`.
     function attribute(uint256 id, string calldata counterfactual, uint256 piBps)
         external onlyGovernance returns (int256 realTransfer)
     {
@@ -203,7 +203,7 @@ contract Cantillon {
 
     /// Σ over registered parties of the stock revaluation. MUST read 0 across a
     /// closed set — every nominal asset is someone's nominal liability. The
-    /// analogue of `Kocherlakota.netSupply()`: redistribution conserves.
+    /// analogue of `SignedPositionLedger.netSupply()`: redistribution conserves.
     function stockRevaluationSum(address[] calldata parties, uint256 piBps)
         external view returns (int256 net)
     {
