@@ -208,6 +208,25 @@ Consistent with "been done before is a plus":
 
   **Bearing on the specification-language work:** the notation exists and predates us by three decades; the compile target is what fails. Anything built here inherits that, so the useful question is not "how do we express a duty" but "what does a duty *do* at runtime when nothing can self-trigger."
 
+- **Symboleo — the deepest answer anyone has, and it lands where we landed.** Sharifi, Parvizimosaed, Amyot, Logrippo & Mylopoulos, *Symboleo: Towards a Specification Language for Legal Contracts* (RE'20, IEEE). ✅ **Retrieved and read**, along with the live toolchain — the uOttawa CSM Lab runs ~21 public repositories (IDE, compliance checker, nuXmv model checker, Symboleo2SC code generator, an LLM front end), active into 2026. This is not a paper, it is a programme.
+
+  **What they have that this canon does not.** Obligations and powers are first-class, distinguished, and Hohfeld-grounded: *"legal positions are the legal relationships between roles. For our purposes, there are just two such relationships: obligations and powers."* An obligation is *"the legal duty of a **debtor** towards a **creditor**"* — the correlative pair, both ends named, which is exactly the bearer-and-claimant structure a duty needs and a bare `address` cannot carry. Each of contract, obligation and power has a **statechart lifecycle** (create → in-effect → suspended → fulfilled / violated / discharged / terminated), formalised in 27 event-calculus axioms. Their own related-work section notes that Accord, DAML and CSL *"only capture basic legal notions (obligations but not power)"* — so on this axis Symboleo is ahead of the deployed languages, and far ahead of us.
+
+  **And the finding that matters most for §0.2.** Their compliance checker is trace-based: it *"evaluates whether given sequences of events (i.e., traces) are compliant with given contract specifications,"* with traces *"defined in batch files that are fed sequentially into the Prolog programs."* Now read their own worked example:
+
+  ```prolog
+  deadline(cons(oDel), 10).
+  happens(deliveryDuePassed, 10).
+  ```
+
+  **The deadline passing is itself an event that has to be asserted.** A duty whose moment arrives and is not discharged produces nothing until someone records that the moment arrived.
+
+  **This corrects a claim made elsewhere in this canon.** §0.2 attributes the inability to act to the object-oriented model and the EVM — Ciatto et al.'s framing, and the one `Ostrom` was built under. Symboleo shows that is too narrow. Their language is platform-independent, their semantics is event calculus, their engine is Prolog; there is no EVM anywhere near it, and a deadline is *still* a fact somebody supplies. So the wall is not Solidity's and not the blockchain's. It is this:
+
+  > **In any event-based formalism, "nothing happened" is not an event.** Non-occurrence has no natural representation. Time passing must be reified as an observation, and an observation requires an observer.
+
+  That is a stronger and more honest ground for the keeper than "smart contracts are reactive." The keeper is not an artefact of a young platform that a better runtime would retire. They are what a duty needs in order to be *observed to have been breached*, in any formalism that represents change as events — which is all of them. `Ostrom` records duties and events their breach and still needs a caller for `flagOverdue`; the most mature obligation-modelling programme in the field needs someone to write `happens(deliveryDuePassed, 10)`. Same terminus, reached from opposite directions, thirty years and 27 axioms apart.
+
 - **The expressiveness benchmark.** Ciatto, Mariani, Maffi & Omicini, *Blockchain-Based Coordination: Assessing the Expressive Power of Smart Contracts* (Information 11(1):52, 2020) — benchmarks Ethereum, HyperLedger Fabric, Corda and their Tenderfone against the Linda coordination model. Findings that bear directly on this register are folded into the two entries above.
 - **Ostrom and blockchains.** Rozas et al. (2021) apply Ostromian analysis to blockchain governance across six affordances — tokenisation, self-enforcement, autonomous automation, decentralised power, transparency, codified trust — with monitoring and graduated sanctioning as the live cases. Also *Ostrom Amongst the Machines* (blockchain as knowledge commons).
 - **Deployed mechanism design.** Quadratic funding (Solidity, deployed) and Harberger taxation from *Radical Markets* are economic mechanisms running as contracts, with sybil resistance and collusion as their live failure modes — the same residues found here.

@@ -63,10 +63,25 @@ pragma solidity ^0.8.20;
  *     collect. The incentive was never the gap.
  *   - Ostrom: the monitor must be *accountable*, and to the people affected. That
  *     is the gap, and it is this contract.
- *   - Hohfeld (1913/1917), jural correlatives — every duty has a bearer and a
- *     correlative claimant. ⚠ Cited from memory, not retrieved; the schema here
- *     does not depend on it and the citation should be checked before it is leaned
- *     on anywhere else.
+ *   - Hohfeld (1913), "Some Fundamental Legal Conceptions as Applied in Judicial
+ *     Reasoning", Yale L.J. 23 — jural correlatives: every duty has a bearer and a
+ *     correlative claimant. Citation confirmed via Symboleo (RE'20), whose legal-
+ *     position ontology is built on it; the text itself is still unread here.
+ *
+ * WHY THE REGRESS IS NOT A SOLIDITY PROBLEM (revised 2026-08, after reading Symboleo).
+ * This header first blamed the platform: nothing can act, so a duty cannot fire. That
+ * is true and too narrow. Symboleo is a platform-independent specification language
+ * with an event-calculus semantics, a statechart lifecycle for obligations, and a
+ * Prolog compliance checker — no EVM anywhere — and in its own worked example the
+ * passing of a deadline is an asserted fact: `happens(deliveryDuePassed, 10)`. A duty
+ * whose moment arrives and is not discharged still produces nothing until someone
+ * records that the moment arrived.
+ *
+ * So the real ground is narrower and harder: in any event-based formalism, NOTHING
+ * HAPPENED IS NOT AN EVENT. Non-occurrence has no representation of its own; it has
+ * to be reified as an observation, and an observation needs an observer. A better
+ * runtime does not retire the keeper. The keeper is what a breach needs in order to
+ * be seen at all.
  *
  * THE REGISTER'S MISSING CLASS. Its four classes sort DECISIONS — adjudicative,
  * epistemic, normative, constitutive — and give each a guard. The keeper makes no
