@@ -1,8 +1,8 @@
 ---
 title: Yap in Economics
 type: lineage
-tags: [yap, rai, furness, keynes, friedman, reception-history, textbooks, bitcoin, lineage]
-sources: [primary-literature, cases/rai-stones-yap.md]
+tags: [yap, rai, furness, keynes, friedman, goldberg, reception-history, textbooks, bitcoin, lineage]
+sources: [primary-literature, cases/rai-stones-yap.md, goldberg-2005-famous-myths]
 related: [../cases/rai-stones-yap.md, special-purpose-money.md, ../cases/bitcoin.md]
 ---
 
@@ -15,6 +15,8 @@ The reception history of the Rai stones: a single 1910 travel ethnography, excer
 ## The chain
 
 **Furness (1910).** William Henry Furness III visited Yap in 1903 and published *The Island of Stone Money*. His own thesis, seldom carried forward, was a **labour theory of value** — the stones as "truly a representation of labour as the mined and minted coins of civilisation." The famous sunken stone is a single informant's tale, flagged as such in his first five words ("My faithful old friend, Fatumak, assured me"), about a stone nobody living had seen, lost "a few hundred feet" offshore two or three generations earlier. The monetary moral — the comparison to Treasury silver traded on printed certificates — is Furness's addition, not the Yapese's.
+
+Goldberg (2005) presses three further objections, and the first is decisive on its own terms. **Taken entirely at face value, the story is not an instance of a medium of exchange.** Furness's own account has the claim descending within one family — the original owner was "an ancestor of *this* family" — for the two or three generations since the loss, and records no transaction ever made with it. A claim that never changes hands is not circulating, whatever else it is; the anecdote is cited for precisely the property it does not exhibit. Second, Furness's phrasing describes a collective determination rather than a spontaneous convention: the returning sailors "all testified" to the owner's blamelessness, and "thereupon it was *universally conceded*" that the loss should not affect the stone's value — which reads less like emergent belief than like a public ruling, closer in kind to a declaration that something must be accepted. Third, on the source: Fatumak was the village fortune-teller and exorcist, and Furness disparages his reliability as a storyteller elsewhere in the same book (pp. 126, 143–6, 154). The best-known monetary parable in the discipline rests on one unverifiable second-hand story from a narrator its own author did not take seriously.
 
 **Keynes (1915, 1930).** The *Economic Journal* excerpted three pages of Furness in 1915, dropping the other Yapese monies. In *A Treatise on Money* (1930) Keynes introduced the **earmarking** framing — and placed the story on the wrong island (Rossel), invented the "richest man in the island" detail, and converted Furness's explicit "without so much as a mark to indicate the exchange" into its opposite, transfer *by* marking.
 
