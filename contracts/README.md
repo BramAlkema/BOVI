@@ -75,6 +75,18 @@ Precedent for the tier's *shape*: `Fiske` is already a boundary contract — it 
 - **Exchange rates and deforestation.** Real depreciation → export agriculture → forest clearing. Tempting because it flatters an audience we would like to reach, which is precisely why it stays out until there is a citation worth defending. A lead, not an entry.
 - **Nordhaus / DICE.** An integrated assessment model, not an isolable mechanism. Out on the same grounds `KiyotakiWright` refuses to implement a search economy.
 
+## Finding the positions
+
+`scripts/position-audit.py` walks the compiled AST and lists every place `msg.sender` is tested against a stored identity — the structural signature of an authority position.
+
+```
+forge build --ast && python3 scripts/position-audit.py
+```
+
+Current reading: **26 authority positions across 14 contracts, none of them a declared type.** A hand audit of the same cast found eight. That gap is the argument: `address` is one type for the payer, the steward, the reporter, the oracle and the person they act upon, so a position can exist everywhere and be counted nowhere. A missing field is a compile error; a missing category is silence.
+
+The tool over-collects — it cannot tell an authority from a counterparty, so `Fisher.payer` and `ChallengeBond.asserter` show up alongside `Kocherlakota.steward`. Structure alone cannot make that distinction; only a declaration can. Which is the other half of the work, and why the checker and the type are one deliverable rather than two.
+
 ## Running the suite
 
 `forge-std` is a git submodule, so a fresh clone needs it fetched before anything builds:
