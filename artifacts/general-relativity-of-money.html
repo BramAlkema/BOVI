@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Monetary Field Equation — BOVI V2</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #070b12;
+        --panel: #0d1420;
+        --panel-2: #111c2b;
+        --ink: #edf5ff;
+        --muted: #95a7bc;
+        --line: #26384d;
+        --cyan: #55d6ff;
+        --green: #6de2b2;
+        --gold: #f3c76b;
+        --violet: #b7a0ff;
+        --coral: #ff8f83;
+        --blue: #7db5ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at 15% 0%, rgba(85, 214, 255, 0.12), transparent 31rem),
+          radial-gradient(circle at 90% 18%, rgba(183, 160, 255, 0.11), transparent 28rem),
+          var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .artifact {
+        width: min(1500px, 100%);
+        margin: 0 auto;
+        padding: clamp(18px, 3vw, 42px);
+      }
+
+      .eyebrow {
+        color: var(--green);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 1000px;
+        margin: 0.35rem 0 0.65rem;
+        font-size: clamp(2rem, 5vw, 4.8rem);
+        font-weight: 740;
+        letter-spacing: -0.055em;
+        line-height: 0.96;
+      }
+
+      .intro {
+        max-width: 900px;
+        margin: 0 0 1.4rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.7vw, 1.2rem);
+      }
+
+      .equation-shell {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(8, 14, 23, 0.92);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+      }
+
+      .equation-shell.is-expanded {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        border: 0;
+        border-radius: 0;
+        background: #05080e;
+      }
+
+      .toolbar {
+        position: absolute;
+        z-index: 5;
+        top: 12px;
+        right: 12px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px;
+        border: 1px solid rgba(149, 167, 188, 0.28);
+        border-radius: 12px;
+        background: rgba(7, 11, 18, 0.9);
+        backdrop-filter: blur(12px);
+      }
+
+      .tool {
+        min-width: 38px;
+        min-height: 36px;
+        border: 1px solid #31465d;
+        border-radius: 8px;
+        background: #101a28;
+        color: var(--ink);
+        cursor: pointer;
+      }
+
+      .tool:hover,
+      .tool:focus-visible {
+        border-color: var(--cyan);
+        outline: none;
+      }
+
+      .zoom-output {
+        min-width: 56px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        text-align: center;
+      }
+
+      .expanded-only {
+        display: none;
+      }
+
+      .is-expanded .expanded-only {
+        display: inline-block;
+      }
+
+      .is-expanded .collapsed-only {
+        display: none;
+      }
+
+      .viewport {
+        position: relative;
+        height: min(68vh, 720px);
+        min-height: 480px;
+        overflow: hidden;
+        cursor: zoom-in;
+        background:
+          linear-gradient(rgba(85, 214, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(85, 214, 255, 0.035) 1px, transparent 1px), #080e17;
+        background-size: 32px 32px;
+      }
+
+      .is-expanded .viewport {
+        height: 100vh;
+        min-height: 0;
+        cursor: grab;
+        touch-action: none;
+      }
+
+      .is-expanded .viewport.is-dragging {
+        cursor: grabbing;
+      }
+
+      .viewport:focus-visible {
+        outline: 3px solid var(--cyan);
+        outline-offset: -3px;
+      }
+
+      .stage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1700px;
+        min-height: 940px;
+        transform-origin: 0 0;
+        will-change: transform;
+      }
+
+      .paper {
+        position: relative;
+        width: 1640px;
+        min-height: 880px;
+        margin: 30px;
+        padding: 54px 62px 44px;
+        overflow: hidden;
+        border: 1px solid #344960;
+        border-radius: 22px;
+        background:
+          radial-gradient(circle at 93% 7%, rgba(183, 160, 255, 0.11), transparent 23rem),
+          radial-gradient(circle at 7% 96%, rgba(109, 226, 178, 0.08), transparent 26rem), #0d1521;
+        box-shadow: 0 34px 100px rgba(0, 0, 0, 0.5);
+      }
+
+      .paper::before {
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(125, 181, 255, 0.11);
+        border-radius: 15px;
+        content: "";
+        pointer-events: none;
+      }
+
+      .paper-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 30px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .paper-kicker {
+        color: var(--cyan);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .paper-title {
+        margin: 5px 0 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 34px;
+        font-weight: 600;
+      }
+
+      .paper-thesis {
+        max-width: 610px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        text-align: right;
+      }
+
+      .system {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 22px;
+        margin-top: 34px;
+      }
+
+      .brace {
+        display: grid;
+        place-items: center;
+        color: #54708d;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 310px;
+        font-weight: 200;
+        line-height: 1;
+        transform: scaleX(0.62);
+      }
+
+      .rows {
+        display: grid;
+        gap: 21px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 178px 1fr;
+        align-items: start;
+        gap: 18px;
+      }
+
+      .row-label {
+        padding-top: 7px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .formula {
+        color: #f7fbff;
+        font-family: "STIX Two Math", "Cambria Math", Georgia, "Times New Roman", serif;
+        font-size: 27px;
+        line-height: 1.65;
+        letter-spacing: 0.005em;
+      }
+
+      .formula.hero-formula {
+        font-size: 37px;
+        line-height: 1.55;
+      }
+
+      .formula.compact-formula {
+        font-size: 23px;
+        line-height: 1.8;
+      }
+
+      .term {
+        display: inline;
+        margin: 0;
+        padding: 1px 5px 2px;
+        border: 0;
+        border-bottom: 1px dotted currentColor;
+        background: transparent;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        cursor: help;
+      }
+
+      .term:hover,
+      .term:focus-visible,
+      .term.is-active {
+        border-radius: 6px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .state {
+        color: var(--cyan);
+      }
+
+      .operator {
+        color: var(--violet);
+      }
+
+      .priming {
+        color: var(--gold);
+      }
+
+      .continuation {
+        color: var(--green);
+      }
+
+      .boundary {
+        color: var(--coral);
+      }
+
+      .institution {
+        color: var(--blue);
+      }
+
+      sub,
+      sup {
+        font-size: 0.62em;
+        line-height: 0;
+      }
+
+      .fraction {
+        display: inline-grid;
+        grid-template-rows: auto auto;
+        margin: 0 4px;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 1.05;
+      }
+
+      .fraction > span:first-child {
+        padding: 0 5px 3px;
+        border-bottom: 1px solid currentColor;
+      }
+
+      .fraction > span:last-child {
+        padding-top: 3px;
+      }
+
+      .condition {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 2px 8px 2px 0;
+        padding: 3px 8px;
+        border: 1px solid rgba(109, 226, 178, 0.22);
+        border-radius: 7px;
+        background: rgba(109, 226, 178, 0.055);
+      }
+
+      .cycle-reading {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+        gap: 8px;
+        margin: 32px 0 0 64px;
+      }
+
+      .cycle-node {
+        min-height: 74px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #101a28;
+        text-align: center;
+      }
+
+      .cycle-node strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ink);
+        font-size: 14px;
+      }
+
+      .cycle-node span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .cycle-arrow {
+        position: absolute;
+        color: var(--cyan);
+        font-size: 18px;
+      }
+
+      .corrections {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin: 24px 0 0 64px;
+      }
+
+      .correction {
+        padding: 13px 15px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(8, 14, 23, 0.72);
+      }
+
+      .correction b {
+        display: inline-grid;
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        place-items: center;
+        border-radius: 7px;
+        background: #1a2a3d;
+        color: var(--cyan);
+      }
+
+      .correction strong {
+        font-size: 13px;
+      }
+
+      .correction p {
+        margin: 6px 0 0 34px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .paper-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        margin: 26px 0 0 64px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .inspector {
+        display: grid;
+        grid-template-columns: 112px 1fr;
+        gap: 16px;
+        min-height: 88px;
+        margin-top: 14px;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--panel);
+      }
+
+      .inspector-label {
+        color: var(--green);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .inspector h2 {
+        margin: 0 0 4px;
+        font-size: 1rem;
+      }
+
+      .inspector p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .hint {
+        margin: 10px 2px 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 720px) {
+        .artifact {
+          padding: 14px;
+        }
+
+        .viewport {
+          height: 62vh;
+          min-height: 420px;
+        }
+
+        .inspector {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+
+        .toolbar {
+          top: 8px;
+          right: 8px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="artifact">
+      <div class="eyebrow">BOVI V2 · candidate unifying equation</div>
+      <h1>The general relativity equation of money</h1>
+      <p class="intro">
+        Monetary structure shapes how cooperation clears; credible access to continued cooperation
+        supplies the actions that reproduce that structure.
+      </p>
+
+      <section class="equation-shell" id="equation-shell" aria-labelledby="artifact-title">
+        <h2 class="sr-only" id="artifact-title">Interactive monetary field equation</h2>
+        <div class="toolbar" role="group" aria-label="Equation controls">
+          <button
+            class="tool collapsed-only"
+            id="expand"
+            type="button"
+            aria-label="Expand equation"
+          >
+            ⛶
+          </button>
+          <button class="tool expanded-only" id="zoom-out" type="button" aria-label="Zoom out">
+            −
+          </button>
+          <output class="zoom-output expanded-only" id="zoom-output" aria-live="polite"
+            >100%</output
+          >
+          <button class="tool expanded-only" id="zoom-in" type="button" aria-label="Zoom in">
+            +
+          </button>
+          <button
+            class="tool expanded-only"
+            id="fit"
+            type="button"
+            aria-label="Fit equation to screen"
+          >
+            Fit
+          </button>
+          <button
+            class="tool expanded-only"
+            id="close"
+            type="button"
+            aria-label="Close expanded equation"
+          >
+            ×
+          </button>
+        </div>
+
+        <div
+          class="viewport"
+          id="viewport"
+          tabindex="0"
+          role="button"
+          aria-label="Click to expand the monetary field equation"
+          aria-describedby="equation-transcript"
+        >
+          <div class="stage" id="stage">
+            <article class="paper">
+              <header class="paper-header">
+                <div>
+                  <div class="paper-kicker">The monetary field equation</div>
+                  <div class="paper-title">Institutional geometry ⇄ cooperative continuation</div>
+                </div>
+                <p class="paper-thesis">
+                  The present monetary field creates future opportunities; a declared, contestable
+                  loss path connects those opportunities to the acts that recreate the field.
+                </p>
+              </header>
+
+              <div class="system">
+                <div class="brace">{</div>
+                <div class="rows">
+                  <div class="row">
+                    <div class="row-label">V1 grounds V2</div>
+                    <div class="formula">
+                      Σ<sub>V2</sub> = Ground<sub>A,B,C</sub>(Σ<sub>V1</sub>)
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="row-label">Field equation</div>
+                    <div class="formula hero-formula">
+                      <button class="term state" data-term="state" type="button">
+                        𝐌<sub>di,t+1</sub>
+                      </button>
+                      =
+                      <button class="term operator" data-term="operator" type="button">
+                        Φ<sub>Σ</sub>
+                      </button>
+                      ⎛
+                      <button class="term state" data-term="present" type="button">
+                        𝐌<sub>di,t</sub></button
+                      >,
+                      <button class="term priming" data-term="priming" type="button">
+                        𝐏<sub>di,t</sub></button
+                      >,
+                      <button class="term continuation" data-term="continuation" type="button">
+                        𝚫<sub>di,t</sub>
+                      </button>
+                      │
+                      <button class="term boundary" data-term="boundary" type="button">
+                        𝐁<sub>di,t</sub>
+                      </button>
+                      ⎞
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="row-label">Why each act occurs</div>
+                    <div class="formula compact-formula">
+                      <button class="term continuation" data-term="margin" type="button">
+                        Δ<sub>e</sub>(t)
+                      </button>
+                      = p<sup>loss</sup><sub>e</sub>(t) ∑<sup>H<sub>e</sub></sup
+                      ><sub>τ=1</sub> δ<sup>τ</sup><sub>e</sub> ∑<sub>o∈Ω<sub>e</sub></sub>
+                      𝟙[rel<sub>o,t</sub> active] ⌊p<sup>arrive</sup><sub>o</sub> q<sup>rel</sup
+                      ><sub>o,t</sub>p<sup>clear</sup><sub>o</sub> S<sup
+                        >accessible, non-overlap</sup
+                      ><sub>a,o</sub>⌋<sub>PPM</sub> + R<sup>*</sup><sub>e,t</sub> − C<sup>*</sup
+                      ><sub>e,t</sub>, &nbsp; e=(a, action, d, i)
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="row-label">Target contract memeplex</div>
+                    <div class="formula">
+                      Φ<sub>Σ</sub> = Φ<sub>repair/exit</sub> ∘
+                      <button class="term institution" data-term="keepers" type="button">
+                        Φ<sub>keepers</sub>
+                      </button>
+                      ∘ Φ<sub>obligations</sub> ∘
+                      <button class="term institution" data-term="circuit" type="button">
+                        Φ<sub>circuit</sub>
+                      </button>
+                      ∘ Φ<sub>selection</sub> ∘ Φ<sub>ledger/issuance</sub>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="row-label">Certification gate</div>
+                    <div class="formula compact-formula">
+                      <button class="term state" data-term="certification" type="button">
+                        Cert<sup>SM</sup><sub>di,t</sub> = 1
+                      </button>
+                      ⇔
+                      <button class="term priming" data-term="external" type="button">
+                        ExternalSupport<sub>di,t</sub> = 0
+                      </button>
+                      ∧
+                      <button class="term institution" data-term="evidence" type="button">
+                        W<sup>post-removal</sup><sub>t</sub> ≥ max(W<sub>remove</sub>,
+                        W<sub>maintenance</sub>, W<sub>circuit</sub>)
+                      </button>
+                      ∧ <span class="condition">Circuit<sub>di,t</sub> = credible</span> ∧
+                      <span class="condition">Maintenance<sub>di,t</sub> = met</span>
+                      ∧
+                      <button class="term institution" data-term="keepers" type="button">
+                        KeeperPaths<sup>cumulative</sup><sub>di,t</sub> = covered
+                      </button>
+                      ∧
+                      <button class="term continuation" data-term="weakest" type="button">
+                        min<sub>e∈LB(di)</sub> Δ<sub>e</sub>(t) &gt; 0
+                      </button>
+                      ; &nbsp; 𝐌<sub>di,t+1</sub> = SM only if Cert<sup>SM</sup><sub>di,t</sub> = 1
+                      ∧ LegalEdge(𝐌<sub>di,t</sub>, SM)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cycle-reading" aria-hidden="true">
+                <div class="cycle-node">
+                  <strong>Monetary field 𝐌<sub>t</sub></strong
+                  ><span>accepted ledger, circuit, path dependence</span>
+                </div>
+                <div class="cycle-node">
+                  <strong>Accessible surplus S</strong
+                  ><span>specialisation, fractionation, conflict mitigation</span>
+                </div>
+                <div class="cycle-node">
+                  <strong>Continuation margin Δ</strong
+                  ><span>declared access-loss path × future flow − cost</span>
+                </div>
+                <div class="cycle-node">
+                  <strong>Required actions e</strong
+                  ><span>tender, keep, fund, challenge, repair</span>
+                </div>
+                <div class="cycle-node">
+                  <strong>Monetary field 𝐌<sub>t+1</sub></strong
+                  ><span>reproduced, fragile, declining or replaced</span>
+                </div>
+              </div>
+
+              <div class="corrections">
+                <div class="correction">
+                  <strong><b>A</b>Missing contract</strong>
+                  <p>Add, split or connect the absent institutional mechanism.</p>
+                </div>
+                <div class="correction">
+                  <strong><b>B</b>Model boundary</strong>
+                  <p>Name what Solidity or the ABM cannot honestly know or compel.</p>
+                </div>
+                <div class="correction">
+                  <strong><b>C</b>Missing cause</strong>
+                  <p>Add the reason a particular actor performs the required action.</p>
+                </div>
+              </div>
+
+              <footer class="paper-footer">
+                <span
+                  >Componentwise rule: aggregate surplus cannot substitute for one missing
+                  load-bearing actor.</span
+                >
+                <span
+                  >ΦΣ is the full V2 research target; current code implements its SelectionLifecycle
+                  slice</span
+                >
+              </footer>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="inspector" aria-live="polite" aria-atomic="true">
+        <div class="inspector-label">Selected term</div>
+        <div>
+          <h2 id="term-title">The reciprocal field</h2>
+          <p id="term-copy">
+            Click a coloured term. The equation is recursive: the monetary institution shapes
+            cooperative opportunities, and credible access to those opportunities motivates the acts
+            that reproduce the institution.
+          </p>
+        </div>
+      </section>
+      <p class="hint">
+        Click the equation to expand. In full screen: wheel or +/− to zoom, drag or arrow keys to
+        move, 0 to fit, Escape to close.
+      </p>
+
+      <div class="sr-only" id="equation-transcript">
+        The V2 scenario is the V1 scenario grounded through three corrections: a missing contract, a
+        model boundary, or a missing causal explanation. The next monetary state for domain d and
+        instrument i equals the V2 institutional operator applied to the present monetary state,
+        priming, the vector of actor-specific continuation margins, and irreducible world boundary
+        conditions. For every load-bearing actor and action, the continuation margin equals the
+        declared probability of losing access after non-performance times discounted active,
+        relationship-scaled, non-overlapping accessible flow, plus effective reward, minus effective
+        costs; concrete cumulative economics replace generic keeper and funder estimates.
+        Self-maintenance certification requires no external support, a fresh post-removal evidence
+        window, a credible circuit, passing maintenance, cumulative keeper and funder coverage, and
+        positive load-bearing continuation margins; the lifecycle must also have a legal transition
+        into the state.
+      </div>
+    </main>
+
+    <script>
+      (() => {
+        const shell = document.querySelector("#equation-shell");
+        const viewport = document.querySelector("#viewport");
+        const stage = document.querySelector("#stage");
+        const expand = document.querySelector("#expand");
+        const close = document.querySelector("#close");
+        const zoomIn = document.querySelector("#zoom-in");
+        const zoomOut = document.querySelector("#zoom-out");
+        const fit = document.querySelector("#fit");
+        const zoomOutput = document.querySelector("#zoom-output");
+        const termTitle = document.querySelector("#term-title");
+        const termCopy = document.querySelector("#term-copy");
+        const termButtons = [...document.querySelectorAll("[data-term]")];
+
+        const definitions = {
+          state: [
+            "Next monetary geometry 𝐌ₜ₊₁",
+            "The resulting scoped institution: ledger, availability, acceptance topology, circulation, obligations, keeper topology, installed complements and lifecycle state.",
+          ],
+          present: [
+            "Present monetary geometry 𝐌ₜ",
+            "Path dependence lives here. Today’s accepted network and installed complements change tomorrow’s opportunities, thresholds and switching costs.",
+          ],
+          operator: [
+            "Institutional operator ΦΣ",
+            "The proposed full V2 contract memeplex. Each revised V1 contract must define, narrow or bound one part of the transition. The current implementation supplies the SelectionLifecycle slice, not this complete operator.",
+          ],
+          priming: [
+            "Cold-start field 𝐏",
+            "Temporary force: subsidy, coercion, tax receivability, legal privilege, prior use, familiar form, speculation or platform leverage. Positive margins may carry targeted edge performance; cold-start keeper work and internally funded keeper rewards still need named priming or external support.",
+          ],
+          continuation: [
+            "Continuation tensor 𝚫",
+            "Not a social-credit score or aggregate surplus. It preserves a separate margin for every load-bearing actor, action, domain and instrument.",
+          ],
+          boundary: [
+            "World boundary 𝐁",
+            "Delivery, authenticity, genuine assent, observation, legitimacy and future opportunity are inputs or contestable findings—not facts created by code.",
+          ],
+          margin: [
+            "Actor-action continuation margin Δₑ",
+            "The missing why: under a declared and contestable loss path, perform when discounted actor-accessible, non-overlapping future flow plus effective reward outweighs effective costs. For repeated keeper and funder work, cumulative actual rewards and costs replace generic estimates.",
+          ],
+          keepers: [
+            "Keeper operator",
+            "Users, offices or providers may perform keeping. The topology must name actors, capacity, cost, funding, reliability, fallbacks and repair; an empty role cannot act.",
+          ],
+          circuit: [
+            "Circulation operator",
+            "Availability must pass in declaration order through acquisition, tender, acceptance, posting or transfer, continued use, and renewal, stopping at the first failed edge. First acceptance alone is not circulation.",
+          ],
+          certification: [
+            "Self-maintenance certification",
+            "Certification is a guarded lifecycle transition, not a free equivalence. It needs a legal predecessor plus a complete fresh post-removal operating window.",
+          ],
+          external: [
+            "External support",
+            "This includes both active external-input priming and any executable externally funded keeper on a required primary or fallback path.",
+          ],
+          evidence: [
+            "Post-removal evidence window",
+            "Priming-era history cannot certify independence. The fresh window must be at least the largest declared removal, maintenance and circuit observation window.",
+          ],
+          weakest: [
+            "Weakest-link closure",
+            "Every load-bearing actor-action margin must hold, and every required keeper root needs a cumulative-economics-positive primary or fallback path including its funders. Aggregate gains cannot hide one missing actor.",
+          ],
+        };
+
+        let scale = 1;
+        let x = 0;
+        let y = 0;
+        let expanded = false;
+        let dragging = false;
+        let pointerId = null;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let originX = 0;
+        let originY = 0;
+        let priorFocus = null;
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        function render() {
+          stage.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+          zoomOutput.value = `${Math.round(scale * 100)}%`;
+          zoomOutput.textContent = zoomOutput.value;
+        }
+
+        function fitStage() {
+          const padding = expanded ? 44 : 24;
+          const width = stage.offsetWidth || 1700;
+          const height = stage.offsetHeight || 940;
+          const viewportWidth = viewport.clientWidth || (expanded ? 1440 : 1200);
+          const viewportHeight = viewport.clientHeight || (expanded ? 900 : 620);
+          scale = Math.min(
+            (viewportWidth - padding * 2) / width,
+            (viewportHeight - padding * 2) / height,
+            expanded ? 1 : 0.82
+          );
+          x = (viewportWidth - width * scale) / 2;
+          y = (viewportHeight - height * scale) / 2;
+          render();
+        }
+
+        function setScale(
+          nextScale,
+          anchorX = viewport.clientWidth / 2,
+          anchorY = viewport.clientHeight / 2
+        ) {
+          const bounded = clamp(nextScale, 0.3, 2.8);
+          const ratio = bounded / scale;
+          x = anchorX - (anchorX - x) * ratio;
+          y = anchorY - (anchorY - y) * ratio;
+          scale = bounded;
+          render();
+        }
+
+        function openEquation() {
+          if (expanded) return;
+          expanded = true;
+          priorFocus = document.activeElement;
+          shell.classList.add("is-expanded");
+          viewport.setAttribute("role", "group");
+          viewport.setAttribute("aria-label", "Expanded monetary field equation");
+          document.body.style.overflow = "hidden";
+          requestAnimationFrame(() => {
+            fitStage();
+            close.focus();
+          });
+        }
+
+        function closeEquation() {
+          if (!expanded) return;
+          expanded = false;
+          shell.classList.remove("is-expanded");
+          viewport.setAttribute("role", "button");
+          viewport.setAttribute("aria-label", "Click to expand the monetary field equation");
+          document.body.style.overflow = "";
+          requestAnimationFrame(() => {
+            fitStage();
+            if (priorFocus instanceof HTMLElement) priorFocus.focus();
+          });
+        }
+
+        expand.addEventListener("click", openEquation);
+        close.addEventListener("click", closeEquation);
+        fit.addEventListener("click", fitStage);
+        zoomIn.addEventListener("click", () => setScale(scale * 1.18));
+        zoomOut.addEventListener("click", () => setScale(scale / 1.18));
+
+        viewport.addEventListener("click", event => {
+          if (!expanded && !event.target.closest("[data-term]")) openEquation();
+        });
+
+        viewport.addEventListener("keydown", event => {
+          if (!expanded && (event.key === "Enter" || event.key === " ")) {
+            event.preventDefault();
+            openEquation();
+          }
+        });
+
+        viewport.addEventListener(
+          "wheel",
+          event => {
+            if (!expanded) return;
+            event.preventDefault();
+            const rect = viewport.getBoundingClientRect();
+            setScale(
+              scale * Math.exp(-event.deltaY * 0.0015),
+              event.clientX - rect.left,
+              event.clientY - rect.top
+            );
+          },
+          { passive: false }
+        );
+
+        viewport.addEventListener("pointerdown", event => {
+          if (!expanded || event.button !== 0 || event.target.closest("button")) return;
+          dragging = true;
+          pointerId = event.pointerId;
+          dragStartX = event.clientX;
+          dragStartY = event.clientY;
+          originX = x;
+          originY = y;
+          viewport.classList.add("is-dragging");
+          viewport.setPointerCapture(event.pointerId);
+        });
+
+        viewport.addEventListener("pointermove", event => {
+          if (!dragging || event.pointerId !== pointerId) return;
+          x = originX + event.clientX - dragStartX;
+          y = originY + event.clientY - dragStartY;
+          render();
+        });
+
+        function stopDragging(event) {
+          if (!dragging || event.pointerId !== pointerId) return;
+          dragging = false;
+          pointerId = null;
+          viewport.classList.remove("is-dragging");
+        }
+
+        viewport.addEventListener("pointerup", stopDragging);
+        viewport.addEventListener("pointercancel", stopDragging);
+
+        document.addEventListener("keydown", event => {
+          if (!expanded) return;
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeEquation();
+          } else if (event.key === "+" || event.key === "=") {
+            event.preventDefault();
+            setScale(scale * 1.18);
+          } else if (event.key === "-") {
+            event.preventDefault();
+            setScale(scale / 1.18);
+          } else if (event.key === "0") {
+            event.preventDefault();
+            fitStage();
+          } else if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
+            event.preventDefault();
+            const amount = event.shiftKey ? 90 : 34;
+            if (event.key === "ArrowLeft") x += amount;
+            if (event.key === "ArrowRight") x -= amount;
+            if (event.key === "ArrowUp") y += amount;
+            if (event.key === "ArrowDown") y -= amount;
+            render();
+          }
+        });
+
+        termButtons.forEach(button => {
+          button.addEventListener("click", event => {
+            event.stopPropagation();
+            const definition = definitions[button.dataset.term];
+            if (!definition) return;
+            termButtons.forEach(item => item.classList.toggle("is-active", item === button));
+            termTitle.textContent = definition[0];
+            termCopy.textContent = definition[1];
+          });
+        });
+
+        window.addEventListener("resize", fitStage);
+        requestAnimationFrame(fitStage);
+      })();
+    </script>
+  </body>
+</html>
